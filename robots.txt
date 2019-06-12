@@ -63,4 +63,4 @@ Disallow: /
 User-agent: ZoominfoBot
 Disallow: /
 
-Sitemap: https://localhost:1313/sitemap.xml
+Sitemap: https://sinowrt.github.io/sitemap.xml

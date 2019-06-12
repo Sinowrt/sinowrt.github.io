@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>嵌入式 on Sinowrt</title>
-    <link>https://localhost:1313/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/</link>
+    <link>https://sinowrt.github.io/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/</link>
     <description>Recent content in 嵌入式 on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 17 Oct 2018 03:48:52 +0000</lastBuildDate>
     
-	<atom:link href="https://localhost:1313/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://sinowrt.github.io/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>给宿舍装个智能锁吧（二）——指纹篇</title>
-      <link>https://localhost:1313/2018/2018-10-17t0348-smartlock2/</link>
+      <link>https://sinowrt.github.io/2018/2018-10-17t0348-smartlock2/</link>
       <pubDate>Wed, 17 Oct 2018 03:48:52 +0000</pubDate>
       
-      <guid>https://localhost:1313/2018/2018-10-17t0348-smartlock2/</guid>
+      <guid>https://sinowrt.github.io/2018/2018-10-17t0348-smartlock2/</guid>
       <description>2018/3/13  星期二晚上到货 取开发资料 浏览用户手册  2018/3/14  根据用户手册进行模块接线 接入串口，利用开发包中的上位机对指纹模块进行操作 用串口调试软件，输入相应的指令，进行指纹采集等操作，但进行相应的操作总是无法实现 原因：对原有指令进行了改造，而校验码并没有改变 对上位机软件进行改造，使其输出相应操作流程的指令
 在OEMHostDlg.cpp中查找对应的按钮执行的内容 1.找到void COEMHostDlg::OnBtnVerify()
   void COEMHostDlg::OnBtnVerify() { int w_nRet, w_nTmplNo, w_nFpStatus, w_nLearned; DWORD w_dwTime; CString w_strTmp; UpdateData(TRUE); if (!CheckUserID()) return; EnableControl(FALSE); GetDlgItem(IDC_BTN_DISCONNECT)-&amp;gt;EnableWindow(FALSE); GetDlgItem(IDC_BTN_STOP)-&amp;gt;EnableWindow(TRUE); m_bCancel = FALSE; w_nTmplNo = m_nUserID; //. Check if fp is exist w_nRet = m_clsCommu.Run_GetStatus(w_nTmplNo, &amp;amp;w_nFpStatus); if( w_nRet != ERR_SUCCESS ) { m_strCmdResult = GetErrorMsg(w_nRet); goto l_exit; } if( w_nRet == ERR_SUCCESS &amp;amp;&amp;amp; w_nFpStatus == GD_TEMPLATE_EMPTY ) { m_strCmdResult = _T(&amp;quot;Template is empty&amp;quot;); goto l_exit; } m_clsCommu.</description>
@@ -24,10 +24,10 @@
     
     <item>
       <title>给宿舍装个智能门锁吧（一）</title>
-      <link>https://localhost:1313/2018/2018-10-16t0811-smartlock/</link>
+      <link>https://sinowrt.github.io/2018/2018-10-16t0811-smartlock/</link>
       <pubDate>Tue, 16 Oct 2018 08:11:56 +0000</pubDate>
       
-      <guid>https://localhost:1313/2018/2018-10-16t0811-smartlock/</guid>
+      <guid>https://sinowrt.github.io/2018/2018-10-16t0811-smartlock/</guid>
       <description>初步部署 2018.1.27  舵机安装，用热熔胶将SG92R 9g小型舵机粘到门锁旁，舵机牵扯尼龙绳实现开锁动作 利用原有的papersignals固件对舵机开门的可行性进行测试，发现舵机在门锁有阻力的情况下，在舵机通电一刻仍能高效开锁 对该项目的架构进行构思  1.借鉴papersignals项目：  esp8266充当客户端，定时请求服务端获取json数据
  手机端发送请求到达服务端，服务端解析请求并修改本地json数据
  从而达到伪装实时开锁的目的  工作与过年原因项目搁置许久 2.构思内网穿透方案  利用pandorabox的可扩展性，安装内网穿透客户端ngrok

@@ -2,84 +2,84 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Sinowrt</title>
-    <link>https://localhost:1313/categories/</link>
+    <link>https://sinowrt.github.io/categories/</link>
     <description>Recent content in Categories on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 11 Dec 2018 15:41:27 +0000</lastBuildDate>
     
-	<atom:link href="https://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://sinowrt.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>C&#43;&#43;</title>
-      <link>https://localhost:1313/categories/c&#43;&#43;/</link>
+      <link>https://sinowrt.github.io/categories/c&#43;&#43;/</link>
       <pubDate>Tue, 11 Dec 2018 15:41:27 +0000</pubDate>
       
-      <guid>https://localhost:1313/categories/c&#43;&#43;/</guid>
+      <guid>https://sinowrt.github.io/categories/c&#43;&#43;/</guid>
       <description></description>
     </item>
     
     <item>
       <title>MFC</title>
-      <link>https://localhost:1313/categories/mfc/</link>
+      <link>https://sinowrt.github.io/categories/mfc/</link>
       <pubDate>Tue, 11 Dec 2018 15:41:27 +0000</pubDate>
       
-      <guid>https://localhost:1313/categories/mfc/</guid>
+      <guid>https://sinowrt.github.io/categories/mfc/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Windows</title>
-      <link>https://localhost:1313/categories/windows/</link>
+      <link>https://sinowrt.github.io/categories/windows/</link>
       <pubDate>Mon, 03 Dec 2018 12:58:57 +0000</pubDate>
       
-      <guid>https://localhost:1313/categories/windows/</guid>
+      <guid>https://sinowrt.github.io/categories/windows/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Qt</title>
-      <link>https://localhost:1313/categories/qt/</link>
+      <link>https://sinowrt.github.io/categories/qt/</link>
       <pubDate>Sat, 17 Nov 2018 15:16:56 +0000</pubDate>
       
-      <guid>https://localhost:1313/categories/qt/</guid>
+      <guid>https://sinowrt.github.io/categories/qt/</guid>
       <description></description>
     </item>
     
     <item>
       <title>群晖</title>
-      <link>https://localhost:1313/categories/%E7%BE%A4%E6%99%96/</link>
+      <link>https://sinowrt.github.io/categories/%E7%BE%A4%E6%99%96/</link>
       <pubDate>Tue, 06 Nov 2018 02:07:21 +0000</pubDate>
       
-      <guid>https://localhost:1313/categories/%E7%BE%A4%E6%99%96/</guid>
+      <guid>https://sinowrt.github.io/categories/%E7%BE%A4%E6%99%96/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Linux</title>
-      <link>https://localhost:1313/categories/linux/</link>
+      <link>https://sinowrt.github.io/categories/linux/</link>
       <pubDate>Sat, 20 Oct 2018 10:37:42 +0000</pubDate>
       
-      <guid>https://localhost:1313/categories/linux/</guid>
+      <guid>https://sinowrt.github.io/categories/linux/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Wordpress</title>
-      <link>https://localhost:1313/categories/wordpress/</link>
+      <link>https://sinowrt.github.io/categories/wordpress/</link>
       <pubDate>Sat, 20 Oct 2018 10:37:42 +0000</pubDate>
       
-      <guid>https://localhost:1313/categories/wordpress/</guid>
+      <guid>https://sinowrt.github.io/categories/wordpress/</guid>
       <description></description>
     </item>
     
     <item>
       <title>嵌入式</title>
-      <link>https://localhost:1313/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/</link>
+      <link>https://sinowrt.github.io/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/</link>
       <pubDate>Wed, 17 Oct 2018 03:48:52 +0000</pubDate>
       
-      <guid>https://localhost:1313/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/</guid>
+      <guid>https://sinowrt.github.io/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/</guid>
       <description></description>
     </item>
     

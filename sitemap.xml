@@ -2,7 +2,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
     <url>
-      <loc>https://localhost:1313/categories/c&#43;&#43;/</loc>
+      <loc>https://sinowrt.github.io/categories/c&#43;&#43;/</loc>
       
       <lastmod>2018-12-11T15:41:27+00:00</lastmod>
       
@@ -14,7 +14,7 @@
     </url>
   
     <url>
-      <loc>https://localhost:1313/categories/</loc>
+      <loc>https://sinowrt.github.io/categories/</loc>
       
       <lastmod>2018-12-11T15:41:27+00:00</lastmod>
       
@@ -26,7 +26,7 @@
     </url>
   
     <url>
-      <loc>https://localhost:1313/categories/mfc/</loc>
+      <loc>https://sinowrt.github.io/categories/mfc/</loc>
       
       <lastmod>2018-12-11T15:41:27+00:00</lastmod>
       
@@ -38,7 +38,7 @@
     </url>
   
     <url>
-      <loc>https://localhost:1313/2018/2018-12-11t1541-formview-oninitialupdate/</loc>
+      <loc>https://sinowrt.github.io/2018/2018-12-11t1541-formview-oninitialupdate/</loc>
       
       <lastmod>2018-12-11T15:41:27+00:00</lastmod>
       
@@ -48,19 +48,7 @@
     </url>
   
     <url>
-      <loc>https://localhost:1313/posts/</loc>
-      
-      <lastmod>2018-12-11T15:41:27+00:00</lastmod>
-      
-      
-      
-      <priority>0</priority>
-      
-      
-    </url>
-  
-    <url>
-      <loc>https://localhost:1313/</loc>
+      <loc>https://sinowrt.github.io/posts/</loc>
       
       <lastmod>2018-12-11T15:41:27+00:00</lastmod>
       
@@ -72,7 +60,19 @@
     </url>
   
     <url>
-      <loc>https://localhost:1313/2018/2018-12-11t1435-formview-m_hwnd/</loc>
+      <loc>https://sinowrt.github.io/</loc>
+      
+      <lastmod>2018-12-11T15:41:27+00:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>https://sinowrt.github.io/2018/2018-12-11t1435-formview-m_hwnd/</loc>
       
       <lastmod>2018-12-11T14:35:00+00:00</lastmod>
       
@@ -82,7 +82,7 @@
     </url>
   
     <url>
-      <loc>https://localhost:1313/2018/2018-12-11t1430-formview-0xc000041d/</loc>
+      <loc>https://sinowrt.github.io/2018/2018-12-11t1430-formview-0xc000041d/</loc>
       
       <lastmod>2018-12-11T14:30:47+00:00</lastmod>
       
@@ -92,7 +92,7 @@
     </url>
   
     <url>
-      <loc>https://localhost:1313/2018/2018-12-03t1258-hard-disk-parttion-unview/</loc>
+      <loc>https://sinowrt.github.io/2018/2018-12-03t1258-hard-disk-parttion-unview/</loc>
       
       <lastmod>2018-12-03T12:58:57+00:00</lastmod>
       
@@ -102,7 +102,7 @@
     </url>
   
     <url>
-      <loc>https://localhost:1313/categories/windows/</loc>
+      <loc>https://sinowrt.github.io/categories/windows/</loc>
       
       <lastmod>2018-12-03T12:58:57+00:00</lastmod>
       
@@ -114,7 +114,7 @@
     </url>
   
     <url>
-      <loc>https://localhost:1313/categories/qt/</loc>
+      <loc>https://sinowrt.github.io/categories/qt/</loc>
       
       <lastmod>2018-11-17T15:16:56+00:00</lastmod>
       
@@ -126,7 +126,7 @@
     </url>
   
     <url>
-      <loc>https://localhost:1313/2018/2018-11-17t1516qt5compile-error/</loc>
+      <loc>https://sinowrt.github.io/2018/2018-11-17t1516qt5compile-error/</loc>
       
       <lastmod>2018-11-17T15:16:56+00:00</lastmod>
       
@@ -136,7 +136,7 @@
     </url>
   
     <url>
-      <loc>https://localhost:1313/2018/2018-11-17t1513-install-qt5-in-win10/</loc>
+      <loc>https://sinowrt.github.io/2018/2018-11-17t1513-install-qt5-in-win10/</loc>
       
       <lastmod>2018-11-17T15:13:11+00:00</lastmod>
       
@@ -146,7 +146,7 @@
     </url>
   
     <url>
-      <loc>https://localhost:1313/2018/2018-11-06t0207-synologysetup-aria2-with-docker/</loc>
+      <loc>https://sinowrt.github.io/2018/2018-11-06t0207-synologysetup-aria2-with-docker/</loc>
       
       <lastmod>2018-11-06T02:07:21+00:00</lastmod>
       
@@ -156,7 +156,7 @@
     </url>
   
     <url>
-      <loc>https://localhost:1313/categories/%E7%BE%A4%E6%99%96/</loc>
+      <loc>https://sinowrt.github.io/categories/%E7%BE%A4%E6%99%96/</loc>
       
       <lastmod>2018-11-06T02:07:21+00:00</lastmod>
       
@@ -168,7 +168,7 @@
     </url>
   
     <url>
-      <loc>https://localhost:1313/2018/2018-11-04t1218-synalogycustomize-boot-system/</loc>
+      <loc>https://sinowrt.github.io/2018/2018-11-04t1218-synalogycustomize-boot-system/</loc>
       
       <lastmod>2018-11-04T12:18:36+00:00</lastmod>
       
@@ -178,7 +178,7 @@
     </url>
   
     <url>
-      <loc>https://localhost:1313/2018/2018-11-04t1148-synologynas-diy/</loc>
+      <loc>https://sinowrt.github.io/2018/2018-11-04t1148-synologynas-diy/</loc>
       
       <lastmod>2018-11-04T11:48:41+00:00</lastmod>
       
@@ -188,7 +188,7 @@
     </url>
   
     <url>
-      <loc>https://localhost:1313/categories/linux/</loc>
+      <loc>https://sinowrt.github.io/categories/linux/</loc>
       
       <lastmod>2018-10-20T10:37:42+00:00</lastmod>
       
@@ -200,7 +200,7 @@
     </url>
   
     <url>
-      <loc>https://localhost:1313/categories/wordpress/</loc>
+      <loc>https://sinowrt.github.io/categories/wordpress/</loc>
       
       <lastmod>2018-10-20T10:37:42+00:00</lastmod>
       
@@ -212,7 +212,7 @@
     </url>
   
     <url>
-      <loc>https://localhost:1313/2018/2018-10-20t1037-wordpresscode-highlight-with-prism/</loc>
+      <loc>https://sinowrt.github.io/2018/2018-10-20t1037-wordpresscode-highlight-with-prism/</loc>
       
       <lastmod>2018-10-20T10:37:42+00:00</lastmod>
       
@@ -222,7 +222,7 @@
     </url>
   
     <url>
-      <loc>https://localhost:1313/2018/2018-10-19t0256-drcom-setup-of-newifi_mini/</loc>
+      <loc>https://sinowrt.github.io/2018/2018-10-19t0256-drcom-setup-of-newifi_mini/</loc>
       
       <lastmod>2018-10-19T02:56:07+00:00</lastmod>
       
@@ -232,7 +232,7 @@
     </url>
   
     <url>
-      <loc>https://localhost:1313/2018/2018-10-17t0552-init.dkill/</loc>
+      <loc>https://sinowrt.github.io/2018/2018-10-17t0552-init.dkill/</loc>
       
       <lastmod>2018-10-17T05:52:17+00:00</lastmod>
       
@@ -242,7 +242,7 @@
     </url>
   
     <url>
-      <loc>https://localhost:1313/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/</loc>
+      <loc>https://sinowrt.github.io/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/</loc>
       
       <lastmod>2018-10-17T03:48:52+00:00</lastmod>
       
@@ -254,7 +254,7 @@
     </url>
   
     <url>
-      <loc>https://localhost:1313/2018/2018-10-17t0348-smartlock2/</loc>
+      <loc>https://sinowrt.github.io/2018/2018-10-17t0348-smartlock2/</loc>
       
       <lastmod>2018-10-17T03:48:52+00:00</lastmod>
       
@@ -264,7 +264,7 @@
     </url>
   
     <url>
-      <loc>https://localhost:1313/2018/2018-10-16t1040-ubuntu/</loc>
+      <loc>https://sinowrt.github.io/2018/2018-10-16t1040-ubuntu/</loc>
       
       <lastmod>2018-10-16T10:40:36+00:00</lastmod>
       
@@ -274,7 +274,7 @@
     </url>
   
     <url>
-      <loc>https://localhost:1313/2018/2018-10-16t0811-smartlock/</loc>
+      <loc>https://sinowrt.github.io/2018/2018-10-16t0811-smartlock/</loc>
       
       <lastmod>2018-10-16T08:11:56+00:00</lastmod>
       
@@ -284,7 +284,7 @@
     </url>
   
     <url>
-      <loc>https://localhost:1313/tags/</loc>
+      <loc>https://sinowrt.github.io/tags/</loc>
       
       
       
