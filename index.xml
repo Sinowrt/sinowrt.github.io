@@ -215,27 +215,27 @@ void View_OnlineShopManagement::OnDraw(CDC* /*pDC*/)
 
 &lt;h4 id=&#34;0x00-前阵子用旧电脑装了个群晖nas-无奈用的120g硬盘-完全不够用-看手上还有个500g的三星机械盘-就买了个光驱硬盘盒-到手后插上电脑没显示分区-不兼容-盘坏了&#34;&gt;0x00 前阵子用旧电脑装了个群晖nas，无奈用的120G硬盘，完全不够用，看手上还有个500G的三星机械盘，就买了个光驱硬盘盒，到手后插上电脑没显示分区？不兼容？盘坏了？&lt;/h4&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/12/1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-12-03T1258/1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&#34;0x01-打开设备管理器-扫描硬件更新-可以看到三星机械盘-盘和架子应该没问题&#34;&gt;0x01 打开设备管理器，扫描硬件更新，可以看到三星机械盘，盘和架子应该没问题&lt;/h4&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/12/2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-12-03T1258/2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&#34;0x02-打开partition-wizard-可以看到硬盘基本信息都在-就是没有盘符&#34;&gt;0x02 打开partition wizard,可以看到硬盘基本信息都在，就是没有盘符&lt;/h4&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/12/3.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-12-03T1258/3.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&#34;0x03-分配盘符后-可以看到电脑显示分区正常-应该是没有挂载&#34;&gt;0x03 分配盘符后，可以看到电脑显示分区正常，应该是没有挂载&lt;/h4&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/12/4.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-12-03T1258/4.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&#34;0x04-也可以利用diskpart对卷进行挂载&#34;&gt;0x04 也可以利用diskpart对卷进行挂载&lt;/h4&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/12/5.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-12-03T1258/5.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&#34;0x05-z盘挂载成功&#34;&gt;0x05 Z盘挂载成功&lt;/h4&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/12/6.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-12-03T1258/6.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -277,15 +277,15 @@ void View_OnlineShopManagement::OnDraw(CDC* /*pDC*/)
 
 &lt;ul&gt;
 &lt;li&gt;上&lt;a href=&#34;http://download.qt.io/archive/qt/5.11/5.11.2/&#34; title=&#34;Qt下载页面&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;Qt下载页面&lt;/a&gt;下载你系统对应的安装包
-&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/1.png&#34; alt=&#34;image&#34; /&gt;&lt;/li&gt;
+&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-17T1513/1.png&#34; alt=&#34;image&#34; /&gt;&lt;/li&gt;
 &lt;li&gt;我的是Windoes 10,直接下载qt-opensource-windows-x86-5.11.2.exe&lt;/li&gt;
 &lt;li&gt;直接打开qt-opensource-windows-x86-5.11.2.exe安装程序&lt;/li&gt;
 &lt;li&gt;在第一个界面直接下一步&lt;/li&gt;
 &lt;li&gt;填写账号这一块，如果没有事先申请也可以先跳过这一步
-&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/2.png&#34; alt=&#34;image&#34; /&gt; &lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/3.png&#34; alt=&#34;&#34; /&gt;&lt;/li&gt;
+&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-17T1513/2.png&#34; alt=&#34;image&#34; /&gt; &lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-17T1513/3.png&#34; alt=&#34;&#34; /&gt;&lt;/li&gt;
 &lt;li&gt;选择安装文件夹&lt;/li&gt;
 &lt;li&gt;选择编译器，由于我的电脑装了vs2015，所以直接选了MSVC 2015 64-bit（若未安装任何编译器可以直接选择MinGW 5.3.0 32bit）
-&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/4.png&#34; alt=&#34;image&#34; /&gt; &lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/5.png&#34; alt=&#34;&#34; /&gt;&lt;/li&gt;
+&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-17T1513/4.png&#34; alt=&#34;image&#34; /&gt; &lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-17T1513/5.png&#34; alt=&#34;&#34; /&gt;&lt;/li&gt;
 &lt;li&gt;接下来一路下一步即可&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -294,9 +294,9 @@ void View_OnlineShopManagement::OnDraw(CDC* /*pDC*/)
 &lt;ul&gt;
 &lt;li&gt;上&lt;a href=&#34;https://developer.microsoft.com/zh-cn/windows/downloads/sdk-archive&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;Microsoft开发者下载站&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;我的系统是Windows 10，还是按自己的系统版本进行下载
-&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/6.png&#34; alt=&#34;image&#34; /&gt;&lt;/li&gt;
+&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-17T1513/6.png&#34; alt=&#34;image&#34; /&gt;&lt;/li&gt;
 &lt;li&gt;下载之后得到这样一个exe，打开按步骤安装
-&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/7.png&#34; alt=&#34;&#34; /&gt;&lt;/li&gt;
+&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-17T1513/7.png&#34; alt=&#34;&#34; /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&#34;0x03-配置qt&#34;&gt;0x03 配置Qt&lt;/h2&gt;
@@ -308,12 +308,12 @@ void View_OnlineShopManagement::OnDraw(CDC* /*pDC*/)
 &lt;li&gt;填写Debugger的名称&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;浏览WindowsSKD的安装路径，找到你所需要的Debugger，这里我设置了Windows 10的x64的和x86的cdb.exe
-&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/8.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-17T1513/8.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&#34;2-配置kit&#34;&gt;2.配置kit&lt;/h4&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;按根据截图按需配置就可以了
-&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/10.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-17T1513/10.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h4 id=&#34;到了这步配置基本完成-但是我在编译程序的过程中遇到error-link1158-无法运行rc-exe的报错&#34;&gt;到了这步配置基本完成，但是我在编译程序的过程中遇到error link1158 无法运行rc.exe的报错&lt;/h4&gt;
@@ -323,7 +323,7 @@ void View_OnlineShopManagement::OnDraw(CDC* /*pDC*/)
 &lt;ul&gt;
 &lt;li&gt;到&lt;code&gt;C:\Program Files (x86)\Windows Kits\10\bin\10.0.17763.0&lt;/code&gt;下的文件夹找到rc.dll和rc.exe复制到qmake文件夹下&lt;/li&gt;
 &lt;li&gt;qmake的路径可以参考截图
-&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/9.png&#34; alt=&#34;image&#34; /&gt;&lt;/li&gt;
+&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-17T1513/9.png&#34; alt=&#34;image&#34; /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
@@ -341,7 +341,7 @@ void View_OnlineShopManagement::OnDraw(CDC* /*pDC*/)
 &lt;ul&gt;
 &lt;li&gt;在package center中的Third party找到docker&lt;/li&gt;
 &lt;li&gt;直接点击install进行安装
-&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/docker.png&#34; alt=&#34;image&#34; /&gt;&lt;/li&gt;
+&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-06T0207/docker.png&#34; alt=&#34;image&#34; /&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;安装完毕，点击open即可打开docker&lt;/p&gt;
 
@@ -350,26 +350,26 @@ void View_OnlineShopManagement::OnDraw(CDC* /*pDC*/)
 &lt;li&gt;&lt;p&gt;点击Registry选项卡，搜索aria2&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;找到xujinkai那个下载下来
-&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/image.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-06T0207/image.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;0x02-启动容器&#34;&gt;0x02 启动容器&lt;/h2&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;点击image选项卡，点击launch进行启动
-&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/launch0.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-06T0207/launch0.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;0x03-启动设置&#34;&gt;0x03 启动设置&lt;/h2&gt;
 
 &lt;h3 id=&#34;点击advance&#34;&gt;点击Advance&lt;/h3&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/launch1.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-06T0207/launch1.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;1-advance-setting-打上这两个-设置开机自启动以及创建桌面快捷方式&#34;&gt;1）Advance Setting 打上这两个√，设置开机自启动以及创建桌面快捷方式&lt;/h3&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/launch2.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-06T0207/launch2.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;2-volume设置-添加这两项-前面的文件夹随便选-圈起来的位置务必一样&#34;&gt;2）Volume设置，添加这两项，前面的文件夹随便选，圈起来的位置务必一样&lt;/h3&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/launch3.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-06T0207/launch3.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;3-port设置-为了方便使用-local-port修改成您想要的端口&#34;&gt;3）Port设置，为了方便使用，local port修改成您想要的端口&lt;/h3&gt;&lt;/li&gt;
 
@@ -380,23 +380,23 @@ void View_OnlineShopManagement::OnDraw(CDC* /*pDC*/)
 &lt;li&gt;&lt;p&gt;第三项为下载文件目录端口&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/launch4.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-06T0207/launch4.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;4-environment设置-如图添加这两项-否则webui会报错-分别填写你的用户名和密码-ok&#34;&gt;4）Environment设置 如图添加这两项，否则webui会报错，分别填写你的用户名和密码，ok&lt;/h3&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/launch5.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-06T0207/launch5.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;5-完成高级设置后-next&#34;&gt;5）完成高级设置后，next&lt;/h3&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/launch6.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-06T0207/launch6.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;6-最后apply&#34;&gt;6）最后apply&lt;/h3&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/apply.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-06T0207/apply.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;7-打开浏览器-输入服务器地址以及你设置的webui端口-即可访问aria2-webui&#34;&gt;7）打开浏览器，输入服务器地址以及你设置的webui端口，即可访问aria2 webui&lt;/h3&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/finish.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-06T0207/finish.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -410,7 +410,7 @@ void View_OnlineShopManagement::OnDraw(CDC* /*pDC*/)
 
 &lt;h2 id=&#34;0x00-打开osfmount&#34;&gt;0x00 打开osfmount&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/osfmount1.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-04T1218/osfmount1.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;0x01-挂载引导文件&#34;&gt;0x01 挂载引导文件&lt;/h2&gt;
 
@@ -419,7 +419,7 @@ void View_OnlineShopManagement::OnDraw(CDC* /*pDC*/)
 &lt;li&gt;填写offset为16MBytes&lt;/li&gt;
 &lt;li&gt;去掉read—only前面的勾&lt;/li&gt;
 &lt;li&gt;点击ok进行挂载
-&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/osfmount2-1.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/li&gt;
+&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-04T1218/osfmount2-1.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&#34;0x02-解压目标系统文件&#34;&gt;0x02 解压目标系统文件&lt;/h2&gt;
@@ -433,7 +433,7 @@ void View_OnlineShopManagement::OnDraw(CDC* /*pDC*/)
 
 &lt;h2 id=&#34;0x03-卸载虚拟磁盘&#34;&gt;0x03 卸载虚拟磁盘&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/dismount.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-04T1218/dismount.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;0x04-将img文件通过win32diskimager写入u盘即可&#34;&gt;0x04 将img文件通过Win32DiskImager写入U盘即可&lt;/h2&gt;
 </description>
@@ -473,7 +473,7 @@ void View_OnlineShopManagement::OnDraw(CDC* /*pDC*/)
 
 &lt;h2 id=&#34;0x03-网络拓扑&#34;&gt;0x03 网络拓扑&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/拓扑.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-04T1148/拓扑.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;0x04-安装过程&#34;&gt;0x04 安装过程&lt;/h2&gt;
 
@@ -488,7 +488,7 @@ void View_OnlineShopManagement::OnDraw(CDC* /*pDC*/)
 &lt;li&gt;打开osfmount，对img文件进行挂载，如下所示&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/osfmount1.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-04T1148/osfmount1.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;选择img文件&lt;/li&gt;
@@ -497,18 +497,18 @@ void View_OnlineShopManagement::OnDraw(CDC* /*pDC*/)
 &lt;li&gt;点击OK即挂载成功&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/osfmount2.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-04T1148/osfmount2.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&#34;2-查看u盘vid与pid&#34;&gt;2）查看U盘vid与pid&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;打开设备管理器，找到你的U盘
-&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/设备管理器.png&#34; alt=&#34;image&#34; /&gt;&lt;/li&gt;
+&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-04T1148/设备管理器.png&#34; alt=&#34;image&#34; /&gt;&lt;/li&gt;
 &lt;li&gt;双击打开&lt;/li&gt;
 &lt;li&gt;打开详细信息选项卡，属性下拉选择硬件id，就可以直接看到vid与pid&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/vp.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-04T1148/vp.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&#34;3-修改img文件里的vid与pid&#34;&gt;3）修改img文件里的vid与pid&lt;/h4&gt;
 
@@ -517,12 +517,12 @@ void View_OnlineShopManagement::OnDraw(CDC* /*pDC*/)
 &lt;li&gt;用notepad++打开grub文件夹下的grub.cfg文件&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;修改第22行和23行的vid、pid为你U盘对应的数值
-&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/MODIvp.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-04T1148/MODIvp.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;修改保存之后即可卸载刚刚挂载的设备&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/dismount.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-04T1148/dismount.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&#34;4-打开win32diskimager将img文件写入u盘&#34;&gt;4）打开Win32DiskImager将img文件写入U盘&lt;/h4&gt;
 
@@ -531,7 +531,7 @@ void View_OnlineShopManagement::OnDraw(CDC* /*pDC*/)
 &lt;li&gt;点击写入即可&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/win32.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-04T1148/win32.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&#34;5-用网线将准备安装群晖系统的电脑连入局域网内&#34;&gt;5）用网线将准备安装群晖系统的电脑连入局域网内&lt;/h4&gt;
 
@@ -544,20 +544,20 @@ void View_OnlineShopManagement::OnDraw(CDC* /*pDC*/)
 
 &lt;h4 id=&#34;7-打开群晖助手搜索局域网内的准备安装群晖系统的机器&#34;&gt;7）打开群晖助手搜索局域网内的准备安装群晖系统的机器&lt;/h4&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/setup.jpg&#34; alt=&#34;image&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-04T1148/setup.jpg&#34; alt=&#34;image&#34; /&gt;
  * 右键安装，注意一定要选择跟版本号以及型号都一致的pat，否则会出错
  * PS:6.x.x引导文件的版本号可以自定义，见&lt;a href=&#34;https://prismjs.com/download.html&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;自定义黑群晖6.x.x引导系统版本&lt;/a&gt;
- &lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/setup1.png&#34; alt=&#34;image&#34; /&gt;
+ &lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-04T1148/setup1.png&#34; alt=&#34;image&#34; /&gt;
  * 选好群晖系统之后，直接下一步
  * 填写服务器密码
- &lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/setup2.png&#34; alt=&#34;image&#34; /&gt;
+ &lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-04T1148/setup2.png&#34; alt=&#34;image&#34; /&gt;
 * 设置网络，如果网络内有DHCP服务器，可以直接下一步
 * 若没有DHCP服务器，或者希望服务器用静态地址，选手动配置
- &lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/setup3.png&#34; alt=&#34;image&#34; /&gt;
+ &lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-04T1148/setup3.png&#34; alt=&#34;image&#34; /&gt;
 * 配置好网络之后，点击完成，安装就开始了，如下所示：
- &lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/setup4.png&#34; alt=&#34;image&#34; /&gt;
+ &lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-04T1148/setup4.png&#34; alt=&#34;image&#34; /&gt;
 * 到了这一步，DMS安装完成，会重启服务器
- &lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/setup5.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+ &lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-04T1148/setup5.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;注意&#34;&gt;注意：&lt;/h2&gt;
 
@@ -567,19 +567,19 @@ void View_OnlineShopManagement::OnDraw(CDC* /*pDC*/)
 &lt;li&gt;解决方法：在出现引导失败的情况时，即左上角一直有个光标在闪，应该立即重启服务器，手动选择U盘启动方式，等待片刻即可出现下面的提示&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/setup6.png&#34; alt=&#34;image&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-04T1148/setup6.png&#34; alt=&#34;image&#34; /&gt;
  * 出现安装成功的提示之后，即可右键，进行联机
- &lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/finish0.png&#34; alt=&#34;image&#34; /&gt;
+ &lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-04T1148/finish0.png&#34; alt=&#34;image&#34; /&gt;
 * 联机将会通过默认浏览器打开这个界面,填入admin以及您设置的密码即可登陆服务器
- &lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/finish1.png&#34; alt=&#34;image&#34; /&gt;
+ &lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-04T1148/finish1.png&#34; alt=&#34;image&#34; /&gt;
 * 第一次联机要求对服务器进行配置，升级配置我们选择第三项，手动升级，否则会出现自动更新系统，而引导文件不支持该系统，则会引导失败，系统无法启动
 * 其他选项保持默认即可
- &lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/finish2.png&#34; alt=&#34;image&#34; /&gt;
+ &lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-04T1148/finish2.png&#34; alt=&#34;image&#34; /&gt;
 * 这个界面是用于设置QuickConnect账户，便于外网访问，我们是黑群晖，所以这一步选择跳过
 * 要通过外网访问则要通过路由设置内网穿透
- &lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/finish3.png&#34; alt=&#34;image&#34; /&gt;
+ &lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-04T1148/finish3.png&#34; alt=&#34;image&#34; /&gt;
 * 完成所有设置之后，就能进入系统了
- &lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/final.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+ &lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-04T1148/final.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
 </description>
     </item>
     
@@ -861,7 +861,7 @@ start
 &lt;li&gt;&lt;p&gt;于是想到，应该是这句把自己也kill掉了，于是去掉&lt;code&gt;| xargs kill -9&lt;/code&gt;只留下&lt;code&gt;ps w | grep &amp;quot;.*drcom.*&amp;quot; | grep -v &#39;grep&#39; | cut -c 2-5&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
 
 &lt;li&gt;&lt;p&gt;执行&lt;code&gt;/etc/init.d/drcom_client stop&lt;/code&gt;，果然，出现了两个pid，在前面再加一句ps -w看看结果
-&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/10/1-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-10-17T0552/1-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&#34;solution&#34;&gt;Solution&lt;/h2&gt;
@@ -877,7 +877,7 @@ start
 
 &lt;li&gt;&lt;h3 id=&#34;3-测试restart是否成功&#34;&gt;3.测试restart是否成功&lt;/h3&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/10/2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-10-17T0552/2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;修改的drcom_client如下&lt;/p&gt;
