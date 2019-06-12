@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="sinowrt">
+  
+  
+  
+  <link rel="prev" href="https://localhost:1313/2018/2018-10-17t0552-init.dkill/" />
+  <link rel="next" href="https://localhost:1313/2018/2018-10-20t1037-wordpresscode-highlight-with-prism/" />
+  <link rel="canonical" href="https://localhost:1313/2018/2018-10-19t0256-drcom-setup-of-newifi_mini/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           newifi mini安装drcom全攻略 | Sinowrt
+       
+  </title>
+  <meta name="title" content="newifi mini安装drcom全攻略 | Sinowrt">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/localhost:1313"
+    },
+    "articleSection" : "posts",
+    "name" : "newifi mini安装drcom全攻略",
+    "headline" : "newifi mini安装drcom全攻略",
+    "description" : "起始条件：  刷入breed的newifi mini一台 网线一根  后续部署  刷入pandorabox r355固件 配置无线名、密码 在\/etc\/opkg.conf后追加  arch all 100 arch ramips_24kec 200 arch ramips 300  离线安装python环境  分别下载  libgcc_4.8-linaro-1_ramips_24kec.ipk libc_0.9.33.2-1_ramips_24kec.ipk libpthread_0.9.33.2-1_ramips_24kec.ipk zlib_1.2.8-1_ramips_24kec.ipk libffi_3.0.13-1_ramips_24kec.ipk python-mini_2.7.3-2_ramips_24kec.ipk   将上述ipk放到tmp目录下 依次安装 安装完毕可以在putty中输入 python 以检验是否安装成功  安装drcom客户端  将drcom客户端的python脚本放入\/usr\/bin中（注意，此脚本为改动后的命令行脚本），将权限改为0755 输入python \/usr\/bin\/drcom -u 你的账号 -p 你的密码，回车，在浏览器验证是否能成功登录上网  安装drcom_client可视化配置界面  复制drcom(etc_config)到括号中的路径，并去掉括号以及括号中的路径 复制drcom.lua(usr_lib_lua_luci_controller)到括号中的路径，并去掉括号以及括号中的路径，更改为0755权限 复制drcom.lua(usr_lib_lua_luci_model_cbi)到括号中的路径，并去掉括号以及括号中的路径，更改为0755权限 复制drcom.lua(usr-lib-lua-luci-model-cbi-admin_services)到括号中的路径，并去掉括号以及括号中的路径，更改为0755权限 复制drcom_client(etc_init.d)到括号中的路径，并去掉括号以及括号中的路径，更改为0755权限 重启路由  配置drcom_client  进入luci管理界面 在服务中找到drcom_client单击进入 填入drcom的账号和密码 save\x26amp;apply 打开浏览器打开任意网页验证是否登录成功  配置自启动  在\/etc\/hotplut.",
+    "inLanguage" : "en-us",
+    "author" : "SinoWRT",
+    "creator" : "SinoWRT",
+    "publisher": "SinoWRT",
+    "accountablePerson" : "SinoWRT",
+    "copyrightHolder" : "SinoWRT",
+    "copyrightYear" : "2018",
+    "datePublished": "2018-10-19 02:56:07 \x2b0000 \x2b0000",
+    "dateModified" : "2018-10-19 02:56:07 \x2b0000 \x2b0000",
+    "url" : "https:\/\/localhost:1313\/2018\/2018-10-19t0256-drcom-setup-of-newifi_mini\/",
+    "wordCount" : "123",
+    "keywords" : [  "Sinowrt"]
+}
+</script>
+
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://localhost:1313">Sinowrt</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://localhost:1313">Sinowrt</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">newifi mini安装drcom全攻略</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="https://localhost:1313" rel="author">SinoWRT</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2018-10-19 itemprop="datePublished">October 19, 2018</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="https://localhost:1313/categories/linux/"> Linux </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          
+
+<h2 id="起始条件">起始条件：</h2>
+
+<ul>
+<li>刷入breed的newifi mini一台</li>
+<li>网线一根</li>
+</ul>
+
+<h2 id="后续部署">后续部署</h2>
+
+<ul>
+<li>刷入pandorabox r355固件</li>
+<li>配置无线名、密码</li>
+<li>在/etc/opkg.conf后追加</li>
+</ul>
+
+<pre><code class="language-shell">arch all 100  
+arch ramips_24kec 200  
+arch ramips 300
+</code></pre>
+
+<h2 id="离线安装python环境">离线安装python环境</h2>
+
+<ul>
+<li>分别下载</li>
+</ul>
+
+<pre><code class="language-python">libgcc_4.8-linaro-1_ramips_24kec.ipk  
+libc_0.9.33.2-1_ramips_24kec.ipk  
+libpthread_0.9.33.2-1_ramips_24kec.ipk  
+zlib_1.2.8-1_ramips_24kec.ipk  
+libffi_3.0.13-1_ramips_24kec.ipk  
+python-mini_2.7.3-2_ramips_24kec.ipk
+</code></pre>
+
+<ul>
+<li>将上述ipk放到tmp目录下</li>
+<li>依次安装</li>
+<li>安装完毕可以在putty中输入  <code>python</code>
+以检验是否安装成功</li>
+</ul>
+
+<h2 id="安装drcom客户端">安装drcom客户端</h2>
+
+<ul>
+<li>将drcom客户端的python脚本放入<code>/usr/bin</code>中（注意，此脚本为改动后的命令行脚本），将权限改为0755</li>
+<li>输入<code>python /usr/bin/drcom -u 你的账号 -p 你的密码</code>，回车，在浏览器验证是否能成功登录上网</li>
+</ul>
+
+<h2 id="安装drcom-client可视化配置界面">安装drcom_client可视化配置界面</h2>
+
+<ul>
+<li>复制drcom(etc_config)到括号中的路径，并去掉括号以及括号中的路径</li>
+<li>复制drcom.lua(usr_lib_lua_luci_controller)到括号中的路径，并去掉括号以及括号中的路径，更改为0755权限</li>
+<li>复制drcom.lua(usr_lib_lua_luci_model_cbi)到括号中的路径，并去掉括号以及括号中的路径，更改为0755权限</li>
+<li>复制drcom.lua(usr-lib-lua-luci-model-cbi-admin_services)到括号中的路径，并去掉括号以及括号中的路径，更改为0755权限</li>
+<li>复制drcom_client(etc_init.d)到括号中的路径，并去掉括号以及括号中的路径，更改为0755权限</li>
+<li>重启路由</li>
+</ul>
+
+<h2 id="配置drcom-client">配置drcom_client</h2>
+
+<ul>
+<li>进入luci管理界面</li>
+<li>在服务中找到drcom_client单击进入</li>
+<li>填入drcom的账号和密码 save&amp;apply</li>
+<li>打开浏览器打开任意网页验证是否登录成功</li>
+</ul>
+
+<h2 id="配置自启动">配置自启动</h2>
+
+<ul>
+<li>在/etc/hotplut.d/iface/中新建99-drcom文件，授权0755权限，在文件中写入</li>
+</ul>
+
+<pre><code class="language-shell">#!/bin/sh
+# /etc/hotplug.d/iface/99-drcom
+
+if [ &quot;$ACTION&quot; = ifup ]; then 
+    if [ &quot;${INTERFACE}&quot; = &quot;wan&quot; ]; then
+        sleep 10 &amp;&amp; /etc/init.d/drcom_client start
+    fi
+fi
+</code></pre>
+
+<ul>
+<li>重启验证自启即可</li>
+</ul>
+
+<h2 id="配置断网重连">配置断网重连</h2>
+
+<ul>
+<li>在/etc/中新建Drcom_AutoLink文件，授权0755权限，在文件中写入</li>
+</ul>
+
+<pre><code class="language-shell">#! /bin/bash
+#检测网络连接
+ping -c 1 www.baidu.com &gt; /dev/null 2&gt;&amp;1
+if [ $? -eq 0 ];then
+    echo linkOk!!
+else
+    /etc/init.d/drcom_client stop
+    /etc/init.d/drcom_client start
+fi
+</code></pre>
+
+<ul>
+<li>在putty中输入<code>crontab -e</code>编辑crontab文件，加入如下内容:
+<code>shell
+*/1 * * * * sh /etc/Drcom_AutoLink
+</code>
+* 表示每1分钟检测一次
+* 保存退出编辑
+* 在putty中输入/etc/init.d/cron restart
+重启crontab即可立即应用刚才创建的计划任务</li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>sinowrt </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=https://localhost:1313/2018/2018-10-19t0256-drcom-setup-of-newifi_mini/>https://localhost:1313/2018/2018-10-19t0256-drcom-setup-of-newifi_mini/</span>
+            </p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="https://localhost:1313">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://localhost:1313/2018/2018-10-17t0552-init.dkill/" class="prev" rel="prev" title="init.d 的 脚本中使用 kill 的怪事"><i class="iconfont icon-left"></i>&nbsp;init.d 的 脚本中使用 kill 的怪事</a>
+         
+        
+        <a href="https://localhost:1313/2018/2018-10-20t1037-wordpresscode-highlight-with-prism/" class="next" rel="next" title="用prism为WordPress页面实现代码高亮">用prism为WordPress页面实现代码高亮&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2011 - 2019</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://localhost:1313">sinowrt</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

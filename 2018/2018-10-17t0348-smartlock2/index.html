@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="sinowrt">
+  
+  
+  
+  <link rel="prev" href="https://localhost:1313/2018/2018-10-16t1040-ubuntu/" />
+  <link rel="next" href="https://localhost:1313/2018/2018-10-17t0552-init.dkill/" />
+  <link rel="canonical" href="https://localhost:1313/2018/2018-10-17t0348-smartlock2/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           给宿舍装个智能锁吧（二）——指纹篇 | Sinowrt
+       
+  </title>
+  <meta name="title" content="给宿舍装个智能锁吧（二）——指纹篇 | Sinowrt">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/localhost:1313"
+    },
+    "articleSection" : "posts",
+    "name" : "给宿舍装个智能锁吧（二）——指纹篇",
+    "headline" : "给宿舍装个智能锁吧（二）——指纹篇",
+    "description" : "2018\/3\/13  星期二晚上到货 取开发资料 浏览用户手册  2018\/3\/14  根据用户手册进行模块接线 接入串口，利用开发包中的上位机对指纹模块进行操作 用串口调试软件，输入相应的指令，进行指纹采集等操作，但进行相应的操作总是无法实现 原因：对原有指令进行了改造，而校验码并没有改变 对上位机软件进行改造，使其输出相应操作流程的指令\n在OEMHostDlg.cpp中查找对应的按钮执行的内容 1.找到void COEMHostDlg::OnBtnVerify()\n  void COEMHostDlg::OnBtnVerify() { int w_nRet, w_nTmplNo, w_nFpStatus, w_nLearned; DWORD w_dwTime; CString w_strTmp; UpdateData(TRUE); if (!CheckUserID()) return; EnableControl(FALSE); GetDlgItem(IDC_BTN_DISCONNECT)-\x26gt;EnableWindow(FALSE); GetDlgItem(IDC_BTN_STOP)-\x26gt;EnableWindow(TRUE); m_bCancel = FALSE; w_nTmplNo = m_nUserID; \/\/. Check if fp is exist w_nRet = m_clsCommu.Run_GetStatus(w_nTmplNo, \x26amp;w_nFpStatus); if( w_nRet != ERR_SUCCESS ) { m_strCmdResult = GetErrorMsg(w_nRet); goto l_exit; } if( w_nRet == ERR_SUCCESS \x26amp;\x26amp; w_nFpStatus == GD_TEMPLATE_EMPTY ) { m_strCmdResult = _T(\x26quot;Template is empty\x26quot;); goto l_exit; } m_clsCommu.",
+    "inLanguage" : "en-us",
+    "author" : "SinoWRT",
+    "creator" : "SinoWRT",
+    "publisher": "SinoWRT",
+    "accountablePerson" : "SinoWRT",
+    "copyrightHolder" : "SinoWRT",
+    "copyrightYear" : "2018",
+    "datePublished": "2018-10-17 03:48:52 \x2b0000 \x2b0000",
+    "dateModified" : "2018-10-17 03:48:52 \x2b0000 \x2b0000",
+    "url" : "https:\/\/localhost:1313\/2018\/2018-10-17t0348-smartlock2\/",
+    "wordCount" : "708",
+    "keywords" : [  "Sinowrt"]
+}
+</script>
+
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://localhost:1313">Sinowrt</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://localhost:1313">Sinowrt</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">给宿舍装个智能锁吧（二）——指纹篇</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="https://localhost:1313" rel="author">SinoWRT</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2018-10-17 itemprop="datePublished">October 17, 2018</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="https://localhost:1313/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/"> 嵌入式 </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          
+
+<h2 id="2018-3-13">2018/3/13</h2>
+
+<ul>
+<li>星期二晚上到货</li>
+<li>取开发资料</li>
+<li>浏览用户手册</li>
+</ul>
+
+<h2 id="2018-3-14">2018/3/14</h2>
+
+<ul>
+<li>根据用户手册进行模块接线</li>
+<li>接入串口，利用开发包中的上位机对指纹模块进行操作</li>
+<li>用串口调试软件，输入相应的指令，进行指纹采集等操作，但进行相应的操作总是无法实现</li>
+<li>原因：对原有指令进行了改造，而校验码并没有改变</li>
+
+<li><p>对上位机软件进行改造，使其输出相应操作流程的指令</p>
+
+<h4 id="在oemhostdlg-cpp中查找对应的按钮执行的内容">在OEMHostDlg.cpp中查找对应的按钮执行的内容</h4></li>
+
+<li><p>1.找到void COEMHostDlg::OnBtnVerify()</p></li>
+</ul>
+
+<pre><code class="language-csharp">void COEMHostDlg::OnBtnVerify() 
+{
+    int     w_nRet, w_nTmplNo, w_nFpStatus, w_nLearned;
+    DWORD   w_dwTime;
+    CString w_strTmp;
+
+    UpdateData(TRUE);
+
+    if (!CheckUserID())
+        return;
+
+    EnableControl(FALSE);
+    GetDlgItem(IDC_BTN_DISCONNECT)-&gt;EnableWindow(FALSE);
+    GetDlgItem(IDC_BTN_STOP)-&gt;EnableWindow(TRUE);
+    
+    m_bCancel = FALSE;
+
+    w_nTmplNo = m_nUserID;
+
+    //. Check if fp is exist
+    w_nRet = m_clsCommu.Run_GetStatus(w_nTmplNo, &amp;w_nFpStatus);
+    
+    if( w_nRet != ERR_SUCCESS )
+    {
+        m_strCmdResult = GetErrorMsg(w_nRet);
+        goto l_exit;
+    }
+    
+    if( w_nRet == ERR_SUCCESS &amp;&amp; w_nFpStatus == GD_TEMPLATE_EMPTY )
+    {
+        m_strCmdResult = _T(&quot;Template is empty&quot;);
+        goto l_exit;
+    }
+    
+    m_clsCommu.Run_SLEDControl(1);
+
+    m_strCmdResult = _T(&quot;Input your finger.&quot;);
+    UpdateData(FALSE);
+    
+    w_dwTime = GetTickCount();
+    
+    //. Get Image
+    while (1)
+    {
+        DoEvents();
+
+        if(m_bCancel)
+        {
+            m_strCmdResult = _T(&quot;Operation Canceled&quot;);
+            goto l_exit;
+        }
+
+        //. Get Image
+        w_nRet = m_clsCommu.Run_GetImage();
+        
+        if(w_nRet == ERR_SUCCESS)
+            break;
+        else if(w_nRet == ERR_CONNECTION)
+        {
+            m_strCmdResult = GetErrorMsg(w_nRet);
+            goto l_exit;
+        }                   
+    }
+    
+    m_strCmdResult = &quot;Release your finger&quot;;
+    UpdateData(FALSE);
+    DoEvents();
+
+    //. Up Image
+    if (m_chkShowImage.GetCheck())
+    {
+        m_strCmdResult = _T(&quot;Uploading image...&quot;);
+        UpdateData(FALSE);
+        DoEvents();
+
+        w_nRet = m_clsCommu.Run_UpImage(0, g_FpImageBuf, &amp;g_nImageWidth, &amp;g_nImageHeight);
+
+        if(w_nRet != ERR_SUCCESS)
+        {
+            m_strCmdResult = GetErrorMsg(w_nRet);
+            goto l_exit;
+        }   
+
+        m_wndFinger.SetImage(g_FpImageBuf, g_nImageWidth, g_nImageHeight);
+
+        m_strCmdResult = _T(&quot;Uploading image is successed.&quot;);
+        UpdateData(FALSE);
+        DoEvents();
+    }
+
+    w_dwTime = GetTickCount();
+
+    //. Create Template
+    w_nRet = m_clsCommu.Run_Generate(0);
+    
+    if (w_nRet != ERR_SUCCESS)
+    {
+        m_strCmdResult = GetErrorMsg(w_nRet);
+        goto l_exit;
+    }
+
+    //. Verify 
+    w_nRet = m_clsCommu.Run_Verify(w_nTmplNo, 0, &amp;w_nLearned);
+    
+    w_dwTime = GetTickCount() - w_dwTime;
+
+    if (w_nRet == ERR_SUCCESS)
+    {
+        m_strCmdResult.Format(_T(&quot;Result : Success\r\nTemplate No : %d, Learn Result : %d\r\nMatch Time : %dms&quot;), w_nTmplNo, w_nLearned, w_dwTime );
+    }
+    else
+    {
+        m_strCmdResult = GetErrorMsg(w_nRet);
+    }
+    
+l_exit:
+    m_clsCommu.Run_SLEDControl(0);
+    UpdateData(FALSE);  
+    EnableControl(TRUE);
+    GetDlgItem(IDC_BTN_DISCONNECT)-&gt;EnableWindow(TRUE);
+}
+</code></pre>
+
+<p><strong>2.查看m_clsCommu.Run_SLEDControl(0)，跳转到Communication.cpp</strong></p>
+
+<pre><code class="language-csharp">int CCommunication::Run_SLEDControl(int p_nState)
+{
+    BOOL    w_bRet;
+    BYTE    w_abyData[2];
+    
+    w_abyData[0] = LOBYTE(p_nState);
+    w_abyData[1] = HIBYTE(p_nState);
+    
+    InitCmdPacket(CMD_SLED_CTRL, m_bySrcDeviceID, m_byDstDeviceID, (BYTE*)&amp;w_abyData, 2);
+    
+    SEND_COMMAND(CMD_SLED_CTRL, w_bRet, m_bySrcDeviceID, m_byDstDeviceID);
+    
+    if(!w_bRet)
+        return ERR_CONNECTION;
+    
+    return RESPONSE_RET;
+}
+</code></pre>
+
+<p>3.查看SEND_COMMAND定义，跳转到Command.cpp</p>
+
+<pre><code class="language-csharp">BOOL SendCommand(WORD p_wCMDCode, BYTE p_bySrcDeviceID, BYTE p_byDstDeviceID)
+{
+    DWORD   w_nSendCnt = 0;
+    LONG    w_nResult = 0;
+
+    g_Serial.Purge();   
+
+    ::SendMessage(g_hMainWnd, WM_CMD_PACKET_HOOK, 0, 0);
+
+    w_nResult = g_Serial.Write(g_Packet, g_dwPacketSize , &amp;w_nSendCnt, NULL, COMM_TIMEOUT);
+
+    if(ERROR_SUCCESS != w_nResult)
+    {
+        return FALSE;
+    }
+
+    return ReceiveAck(p_wCMDCode, p_bySrcDeviceID, p_byDstDeviceID);
+}
+</code></pre>
+
+<p>4.可以看到串口输出函数g_Serial.Write,g_packet应该为输出的内容，现在要做的就是将g_packet打印出来
+5.顺势根据<code>return ReceiveAck(p_wCMDCode, p_bySrcDeviceID, p_byDstDeviceID)</code>语句找到ReceiveAck函数，分析可知发送了消息通过ReceiveAck函数接收响应内容，则在此也添加Print_gPacket(false)以打印接收的内容</p>
+
+<pre><code class="language-csharp">BOOL ReceiveAck(WORD p_wCMDCode, BYTE p_bySrcDeviceID, BYTE p_byDstDeviceID)
+{
+    Print_gPacket(true);
+    DWORD   w_nAckCnt = 0;
+    LONG    w_nResult = 0;
+    DWORD   w_dwTimeOut = COMM_TIMEOUT;
+
+    if (p_wCMDCode == CMD_TEST_CONNECTION)
+        w_dwTimeOut = 2000;
+    else if (p_wCMDCode == CMD_ADJUST_SENSOR)
+        w_dwTimeOut = 30000;
+    
+l_read_packet:
+
+    //w_nResult = g_Serial.Read(g_Packet, sizeof(ST_RCM_PACKET), &amp;w_nAckCnt, NULL, w_dwTimeOut);    
+    if (!ReadDataN(g_Packet, sizeof(ST_RCM_PACKET), w_dwTimeOut))
+    {
+        return FALSE;
+    }
+
+    g_dwPacketSize = sizeof(ST_RCM_PACKET); 
+
+    ::SendMessage(g_hMainWnd, WM_RCM_PACKET_HOOK, 0, 0);
+
+    if (!CheckReceive(g_Packet, sizeof(ST_RCM_PACKET), RCM_PREFIX_CODE, p_wCMDCode))
+        return FALSE;
+    
+    if (g_pCmdPacket-&gt;m_byDstDeviceID != p_bySrcDeviceID)
+    {
+        goto l_read_packet;
+    }
+
+    Print_gPacket(false);
+    return TRUE;
+}
+</code></pre>
+
+<p>6.由于该软件为mfc程序，所以在command添加如下代码，在输出的debug内容中显示相应的内容</p>
+
+<pre><code class="language-csharp">#include &quot;windows.h&quot;
+#ifdef _DEBUG    
+
+#define DP0(fmt) {TCHAR sOut[256];_stprintf_s(sOut,_T(fmt));OutputDebugString(sOut);}    
+#define DP1(fmt,var) {TCHAR sOut[256];_stprintf_s(sOut,_T(fmt),var);OutputDebugString(sOut);}    
+#define DP2(fmt,var1,var2) {TCHAR sOut[256];_stprintf_s(sOut,_T(fmt),var1,var2);OutputDebugString(sOut);}    
+#define DP3(fmt,var1,var2,var3) {TCHAR sOut[256];_stprintf_s(sOut,_T(fmt),var1,var2,var3);OutputDebugString(sOut);}    
+
+#endif
+</code></pre>
+
+<p>7.添加一个函数，用于打印g_packet,</p>
+
+<pre><code class="language-csharp">/******************************
+ create by Jacky  2018/3/14
+ To print command
+ type true  for send
+      false for recive
+*******************************/
+void Print_gPacket(bool type) {
+    if (type) {
+        DP0(&quot;发送的数据：&quot;);
+    }
+    else {
+        DP0(&quot;接收的数据：&quot;);
+    }
+    for (int i = 0; i &lt; 26; i++) {
+        DP1(&quot;%02x&quot;, g_Packet[i]);
+    }
+    DP0(&quot;\n&quot;);
+}
+</code></pre>
+
+<ul>
+<li>总结出采集验证指纹的过程总共有以下几条指令</li>
+</ul>
+
+<pre><code class="language-csharp">*****************************
+*    指纹模块一次指纹比对 
+*    host命令
+*****************************
+// 采集指纹
+55aa000020000000000000000000000000000000000000001f01
+
+// 模板生成到rambuffer0
+55aa000060000200000000000000000000000000000000006101
+
+// 1:N对比
+55aa00006300060000000100f401000000000000000000005e02
+
+// 关灯
+55aa000024000200000000000000000000000000000000002501
+</code></pre>
+
+<h2 id="2018-3-15">2018/3/15</h2>
+
+<ul>
+<li>由于esp8266与指纹模块通讯的过程中串口的数据交换并不可见，所以想到透传</li>
+<li>上午上完课回来，进行透传程序Transmission的编写</li>
+</ul>
+
+<pre><code class="language-csharp">#include &lt;ESP8266WiFi.h&gt;
+
+const char *ssid = &quot;&quot;;
+const char *password = &quot;&quot;;
+
+const int tcpPort = 80;//要建立的TCP服务的端口号
+
+WiFiServer server(tcpPort);
+
+
+void setup()
+{
+    Serial.begin(115200);
+    delay(10);
+    Serial.println();
+    Serial.println();
+    Serial.print(&quot;Connecting to &quot;);
+    Serial.println(ssid);
+
+    WiFi.begin(ssid, password);
+
+    while (WiFi.status() != WL_CONNECTED)
+    {
+        delay(500);
+        Serial.print(&quot;.&quot;);
+    }
+
+    Serial.println(&quot;&quot;);
+    Serial.println(&quot;WiFi connected&quot;);
+    Serial.println(&quot;IP address: &quot;);
+    Serial.println(WiFi.localIP());
+    server.begin();
+}
+
+
+void loop()
+{
+    WiFiClient client = server.available();
+    if (client) {
+        while (client.connected()) {
+            /*while (client.available()) {
+            char c = client.read();
+            Serial.write(c);
+            }*/
+
+            if(client.available()){
+            size_t counti=client.available();
+            uint8_t *buf=new uint8_t[counti];
+            Serial.write((const uint8_t*)buf,counti);
+            delete(buf);
+            }
+
+            delay(1000);   //由于指纹模块是首先发送响应头再发响应数据，若不加这句，响应数据会分两次读取
+
+            if (Serial.available())
+            {
+                size_t counti = Serial.available();
+                uint8_t *sbuf = new uint8_t[counti];
+                Serial.readBytes(sbuf, counti);
+                client.write((const uint8_t*)sbuf, counti);
+
+                delete(sbuf);
+            }
+        }
+        client.stop();
+    }
+
+}
+</code></pre>
+
+<ul>
+<li>注：</li>
+<li>1.有坑，请看注释</li>
+<li>2.遇到下列报错：</li>
+</ul>
+
+<pre><code class="language-csharp">Compiling debug version of 'Transmission' for 'NodeMCU 1.0 (ESP-12E Module)'
+ 
+Error compiling project sources
+Debug build failed for project 'Transmission'
+ESP8266WiFi.h:39: In file included from
+Transmission.ino: from
+WiFiClient.h: In instantiation of size_t WiFiClient::write(T&amp;, size_t) [with T = unsigned char*; size_t = unsigned int]
+Transmission.ino:60: required from here
+ 
+WiFiClient.h: 123:36: error: request for member 'available' in 'source', which is of non-class type 'unsigned char*
+   size_t left = source.available()
+ 
+WiFiClient.h: 127:5: error: request for member 'read' in 'source', which is of non-class type 'unsigned char*
+   source.read(buffer.get(), will_send)
+</code></pre>
+
+<p>原因是client的write函数必须传入一个buffer，但是通过网上查找解决方案，发现在第一个参数前加上(const uint8_t*)进行强制转换也可以编译通过</p>
+
+<h1 id="2018-3-16">2018/3/16</h1>
+
+<h4 id="透传实现了-那么就开始改造原有的mysmartlock-ino-首先第一版的程序构思为">透传实现了，那么就开始改造原有的mySmartLock.ino，首先第一版的程序构思为：</h4>
+
+<p>循环
+* 1.读取指纹模块的手指感应信号（有信号就逐条发送指纹验证指令）
+* 2.读取网络端是否传来请求（有就判断请求url是否包含指定的字符串）
+* 3.读取透传客户端是否已连接（若已连接且传入debug()就更改标志，（考虑到指令录指纹时会造成录指纹和验证指纹指令的冲突）停止1的指纹验证，并允许串口穿透输入与输出，若为exit()就修改标志，重新启用1的指纹验证，只输出串口通讯的信息）</p>
+
+<h3 id="第一版的编程实现-采用的串行处理模式">第一版的编程实现，采用的串行处理模式</h3>
+
+<ul>
+<li>坑1：在判断串口传入数据是否为debug()或exit()的过程中，用到了strcmp()函数，但是貌似读取出来的unsigned char*类型的字节流是不带结束符的而&rdquo;debug()&ldquo;是带结束符的长度为8的char数组，所以一直判断不等，经过查阅资料，发现还有一个函数就是strncmp()可以进行一定长度字符串的比较，所以改用 <code>strncmp((const char*)command, &quot;debug()&quot;, counti)</code>语句进行判断，经测试完全可行！！</li>
+</ul>
+
+<h4 id="但是问题来了-在arduino的loop-函数中-是循环执行的-当透传客户端连接上之后-除非用-while-client-connected-语句进行连接的保持-否则当前的transclient实例会在一次循环后被销毁-但是若保持连接又无法输出当前指纹模块与esp8266的通讯交互信息">但是问题来了，在arduino的loop()函数中，是循环执行的，当透传客户端连接上之后，除非用<code>while (client.connected())</code>语句进行连接的保持，否则当前的transclient实例会在一次循环后被销毁，但是若保持连接又无法输出当前指纹模块与esp8266的通讯交互信息</h4>
+
+<h3 id="发现还是程序的状态图没分清楚-构思总结出改进的三个状态">发现还是程序的状态图没分清楚，构思总结出改进的三个状态</h3>
+
+<ul>
+<li>1.透传连接，并通过debug()进入debug模式</li>
+<li>2.透传连接，保持默认状态，或在debug模式下通过exit()退出调试模式的，就只输出esp8266与指纹通讯的信息</li>
+<li>3.串口没有连接，esp8266与指纹模块正常通讯</li>
+</ul>
+
+<h3 id="编程实现">编程实现</h3>
+
+<ul>
+<li>1.将指纹验证和读取网络请求两部分封装成loopBody(bool modeSwitch)</li>
+<li>2.用modeSwitch标记是否进入了debug模式，通过判断modeSwitch来判断是否进行透传输出，modeSwitch通过是否传入debug()和exit()命令进行切换</li>
+<li>3.在transclient可用时进入while(client.connected())的循环，可以进行回话的保持，返回当前串口通讯的数据</li>
+<li>4.源码见<a href="https://github.com/sinowrt/mySmartLock" rel="nofollow noreferrer" target="_blank">github</a></li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>sinowrt </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=https://localhost:1313/2018/2018-10-17t0348-smartlock2/>https://localhost:1313/2018/2018-10-17t0348-smartlock2/</span>
+            </p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="https://localhost:1313">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://localhost:1313/2018/2018-10-16t1040-ubuntu/" class="prev" rel="prev" title="ubuntu 16.04部署ss"><i class="iconfont icon-left"></i>&nbsp;ubuntu 16.04部署ss</a>
+         
+        
+        <a href="https://localhost:1313/2018/2018-10-17t0552-init.dkill/" class="next" rel="next" title="init.d 的 脚本中使用 kill 的怪事">init.d 的 脚本中使用 kill 的怪事&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2011 - 2019</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://localhost:1313">sinowrt</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

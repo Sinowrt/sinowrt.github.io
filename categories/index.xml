@@ -6,9 +6,82 @@
     <description>Recent content in Categories on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Tue, 11 Dec 2018 15:41:27 +0000</lastBuildDate>
     
 	<atom:link href="https://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>C&#43;&#43;</title>
+      <link>https://localhost:1313/categories/c&#43;&#43;/</link>
+      <pubDate>Tue, 11 Dec 2018 15:41:27 +0000</pubDate>
+      
+      <guid>https://localhost:1313/categories/c&#43;&#43;/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>MFC</title>
+      <link>https://localhost:1313/categories/mfc/</link>
+      <pubDate>Tue, 11 Dec 2018 15:41:27 +0000</pubDate>
+      
+      <guid>https://localhost:1313/categories/mfc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Windows</title>
+      <link>https://localhost:1313/categories/windows/</link>
+      <pubDate>Mon, 03 Dec 2018 12:58:57 +0000</pubDate>
+      
+      <guid>https://localhost:1313/categories/windows/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Qt</title>
+      <link>https://localhost:1313/categories/qt/</link>
+      <pubDate>Sat, 17 Nov 2018 15:16:56 +0000</pubDate>
+      
+      <guid>https://localhost:1313/categories/qt/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>群晖</title>
+      <link>https://localhost:1313/categories/%E7%BE%A4%E6%99%96/</link>
+      <pubDate>Tue, 06 Nov 2018 02:07:21 +0000</pubDate>
+      
+      <guid>https://localhost:1313/categories/%E7%BE%A4%E6%99%96/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>https://localhost:1313/categories/linux/</link>
+      <pubDate>Sat, 20 Oct 2018 10:37:42 +0000</pubDate>
+      
+      <guid>https://localhost:1313/categories/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Wordpress</title>
+      <link>https://localhost:1313/categories/wordpress/</link>
+      <pubDate>Sat, 20 Oct 2018 10:37:42 +0000</pubDate>
+      
+      <guid>https://localhost:1313/categories/wordpress/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>嵌入式</title>
+      <link>https://localhost:1313/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/</link>
+      <pubDate>Wed, 17 Oct 2018 03:48:52 +0000</pubDate>
+      
+      <guid>https://localhost:1313/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>

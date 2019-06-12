@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="sinowrt">
+  
+  
+  
+  <link rel="prev" href="https://localhost:1313/2018/2018-11-04t1218-synalogycustomize-boot-system/" />
+  <link rel="next" href="https://localhost:1313/2018/2018-11-17t1513-install-qt5-in-win10/" />
+  <link rel="canonical" href="https://localhost:1313/2018/2018-11-06t0207-synologysetup-aria2-with-docker/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           利用docker为群晖部署aria2下载工具 | Sinowrt
+       
+  </title>
+  <meta name="title" content="利用docker为群晖部署aria2下载工具 | Sinowrt">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/localhost:1313"
+    },
+    "articleSection" : "posts",
+    "name" : "利用docker为群晖部署aria2下载工具",
+    "headline" : "利用docker为群晖部署aria2下载工具",
+    "description" : " 0x00 安装docker  在package center中的Third party找到docker 直接点击install进行安装  安装完毕，点击open即可打开docker\n0x01 下载aria2映像 点击Registry选项卡，搜索aria2\n 找到xujinkai那个下载下来 0x02 启动容器 点击image选项卡，点击launch进行启动 0x03 启动设置 点击Advance 1）Advance Setting 打上这两个√，设置开机自启动以及创建桌面快捷方式 2）Volume设置，添加这两项，前面的文件夹随便选，圈起来的位置务必一样 3）Port设置，为了方便使用，local port修改成您想要的端口 第一项为下载端口\n 第二项为webui端口\n 第三项为下载文件目录端口\n  4）Environment设置 如图添加这两项，否则webui会报错，分别填写你的用户名和密码，ok 5）完成高级设置后，next 6）最后apply 7）打开浏览器，输入服务器地址以及你设置的webui端口，即可访问aria2 webui ",
+    "inLanguage" : "en-us",
+    "author" : "SinoWRT",
+    "creator" : "SinoWRT",
+    "publisher": "SinoWRT",
+    "accountablePerson" : "SinoWRT",
+    "copyrightHolder" : "SinoWRT",
+    "copyrightYear" : "2018",
+    "datePublished": "2018-11-06 02:07:21 \x2b0000 \x2b0000",
+    "dateModified" : "2018-11-06 02:07:21 \x2b0000 \x2b0000",
+    "url" : "https:\/\/localhost:1313\/2018\/2018-11-06t0207-synologysetup-aria2-with-docker\/",
+    "wordCount" : "32",
+    "keywords" : [  "Sinowrt"]
+}
+</script>
+
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://localhost:1313">Sinowrt</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://localhost:1313">Sinowrt</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">利用docker为群晖部署aria2下载工具</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="https://localhost:1313" rel="author">SinoWRT</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2018-11-06 itemprop="datePublished">November 6, 2018</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="https://localhost:1313/categories/%E7%BE%A4%E6%99%96/"> 群晖 </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+            
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          
+
+<h2 id="0x00-安装docker">0x00 安装docker</h2>
+
+<ul>
+<li>在package center中的Third party找到docker</li>
+<li>直接点击install进行安装
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://blog.sinowrt.cn/wp-content/uploads/2018/11/docker.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></li>
+
+<li><p>安装完毕，点击open即可打开docker</p>
+
+<h2 id="0x01-下载aria2映像">0x01 下载aria2映像</h2></li>
+
+<li><p>点击Registry选项卡，搜索aria2</p></li>
+
+<li><p>找到xujinkai那个下载下来
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://blog.sinowrt.cn/wp-content/uploads/2018/11/image.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
+
+<h2 id="0x02-启动容器">0x02 启动容器</h2></li>
+
+<li><p>点击image选项卡，点击launch进行启动
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://blog.sinowrt.cn/wp-content/uploads/2018/11/launch0.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
+
+<h2 id="0x03-启动设置">0x03 启动设置</h2>
+
+<h3 id="点击advance">点击Advance</h3>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://blog.sinowrt.cn/wp-content/uploads/2018/11/launch1.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
+
+<h3 id="1-advance-setting-打上这两个-设置开机自启动以及创建桌面快捷方式">1）Advance Setting 打上这两个√，设置开机自启动以及创建桌面快捷方式</h3>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://blog.sinowrt.cn/wp-content/uploads/2018/11/launch2.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
+
+<h3 id="2-volume设置-添加这两项-前面的文件夹随便选-圈起来的位置务必一样">2）Volume设置，添加这两项，前面的文件夹随便选，圈起来的位置务必一样</h3>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://blog.sinowrt.cn/wp-content/uploads/2018/11/launch3.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
+
+<h3 id="3-port设置-为了方便使用-local-port修改成您想要的端口">3）Port设置，为了方便使用，local port修改成您想要的端口</h3></li>
+
+<li><p>第一项为下载端口</p></li>
+
+<li><p>第二项为webui端口</p></li>
+
+<li><p>第三项为下载文件目录端口</p></li>
+</ul>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://blog.sinowrt.cn/wp-content/uploads/2018/11/launch4.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
+
+<h3 id="4-environment设置-如图添加这两项-否则webui会报错-分别填写你的用户名和密码-ok">4）Environment设置 如图添加这两项，否则webui会报错，分别填写你的用户名和密码，ok</h3>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://blog.sinowrt.cn/wp-content/uploads/2018/11/launch5.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
+
+<h3 id="5-完成高级设置后-next">5）完成高级设置后，next</h3>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://blog.sinowrt.cn/wp-content/uploads/2018/11/launch6.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
+
+<h3 id="6-最后apply">6）最后apply</h3>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://blog.sinowrt.cn/wp-content/uploads/2018/11/apply.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
+
+<h3 id="7-打开浏览器-输入服务器地址以及你设置的webui端口-即可访问aria2-webui">7）打开浏览器，输入服务器地址以及你设置的webui端口，即可访问aria2 webui</h3>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://blog.sinowrt.cn/wp-content/uploads/2018/11/finish.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
+
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>sinowrt </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=https://localhost:1313/2018/2018-11-06t0207-synologysetup-aria2-with-docker/>https://localhost:1313/2018/2018-11-06t0207-synologysetup-aria2-with-docker/</span>
+            </p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="https://localhost:1313">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://localhost:1313/2018/2018-11-04t1218-synalogycustomize-boot-system/" class="prev" rel="prev" title="自定义黑群晖6.X.X引导系统版本"><i class="iconfont icon-left"></i>&nbsp;自定义黑群晖6.X.X引导系统版本</a>
+         
+        
+        <a href="https://localhost:1313/2018/2018-11-17t1513-install-qt5-in-win10/" class="next" rel="next" title="Windows 10安装Qt5.11.2">Windows 10安装Qt5.11.2&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2011 - 2019</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://localhost:1313">sinowrt</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+     <link href="//lib.baomitu.com/lightgallery/1.6.11/css/lightgallery.min.css" rel="stylesheet">  
+      
+     <script src="/js/vendor_gallery.min.js" async="" ></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

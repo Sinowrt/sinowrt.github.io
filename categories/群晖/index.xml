@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>群晖 on Sinowrt</title>
+    <link>https://localhost:1313/categories/%E7%BE%A4%E6%99%96/</link>
+    <description>Recent content in 群晖 on Sinowrt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 06 Nov 2018 02:07:21 +0000</lastBuildDate>
+    
+	<atom:link href="https://localhost:1313/categories/%E7%BE%A4%E6%99%96/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>利用docker为群晖部署aria2下载工具</title>
+      <link>https://localhost:1313/2018/2018-11-06t0207-synologysetup-aria2-with-docker/</link>
+      <pubDate>Tue, 06 Nov 2018 02:07:21 +0000</pubDate>
+      
+      <guid>https://localhost:1313/2018/2018-11-06t0207-synologysetup-aria2-with-docker/</guid>
+      <description> 0x00 安装docker  在package center中的Third party找到docker 直接点击install进行安装  安装完毕，点击open即可打开docker
+0x01 下载aria2映像 点击Registry选项卡，搜索aria2
+ 找到xujinkai那个下载下来 0x02 启动容器 点击image选项卡，点击launch进行启动 0x03 启动设置 点击Advance 1）Advance Setting 打上这两个√，设置开机自启动以及创建桌面快捷方式 2）Volume设置，添加这两项，前面的文件夹随便选，圈起来的位置务必一样 3）Port设置，为了方便使用，local port修改成您想要的端口 第一项为下载端口
+ 第二项为webui端口
+ 第三项为下载文件目录端口
+  4）Environment设置 如图添加这两项，否则webui会报错，分别填写你的用户名和密码，ok 5）完成高级设置后，next 6）最后apply 7）打开浏览器，输入服务器地址以及你设置的webui端口，即可访问aria2 webui </description>
+    </item>
+    
+    <item>
+      <title>自定义黑群晖6.X.X引导系统版本</title>
+      <link>https://localhost:1313/2018/2018-11-04t1218-synalogycustomize-boot-system/</link>
+      <pubDate>Sun, 04 Nov 2018 12:18:36 +0000</pubDate>
+      
+      <guid>https://localhost:1313/2018/2018-11-04t1218-synalogycustomize-boot-system/</guid>
+      <description> 0x00 打开osfmount 0x01 挂载引导文件  选择img文件 填写offset为16MBytes 去掉read—only前面的勾 点击ok进行挂载   0x02 解压目标系统文件  将xxxxxxx.pat的后缀改成rar 解压 从解压得到的文件夹里面找到rd.gz和zlmage 复制这两个文件到虚拟磁盘根目录下替换原文件  0x03 卸载虚拟磁盘 0x04 将img文件通过Win32DiskImager写入U盘即可 </description>
+    </item>
+    
+    <item>
+      <title>旧笔记本安装黑群晖NAS系统——打造属于自己的私有云</title>
+      <link>https://localhost:1313/2018/2018-11-04t1148-synologynas-diy/</link>
+      <pubDate>Sun, 04 Nov 2018 11:48:41 +0000</pubDate>
+      
+      <guid>https://localhost:1313/2018/2018-11-04t1148-synologynas-diy/</guid>
+      <description>0x00 硬件条件 1.废旧的三星rv415笔记本电脑  CPU AMD Fusion APU E-450 RAM DDR3 2G 800MHz
+2.SANDISK U盘 32G 一个  0x02 软件条件 1.群晖6.x.x引导文件 2.OSFmount 用于挂载引导镜像便于修改 3.Win32DiskImager 将引导文件写入U盘 4.群晖6.1-15047系统文件 5.群晖助手 0x03 网络拓扑 0x04 安装过程 1.安装之前建议先把硬盘格了再进行全新安装 2.制作引导系统 1）挂载img文件  安装osfmount 打开osfmount，对img文件进行挂载，如下所示   选择img文件 填写offset如图所示，选择单位KBytes 去掉read-only前面的勾 点击OK即挂载成功  2）查看U盘vid与pid  打开设备管理器，找到你的U盘  双击打开 打开详细信息选项卡，属性下拉选择硬件id，就可以直接看到vid与pid  3）修改img文件里的vid与pid  打开刚刚挂载成功的磁盘 用notepad++打开grub文件夹下的grub.cfg文件 修改第22行和23行的vid、pid为你U盘对应的数值  修改保存之后即可卸载刚刚挂载的设备
+  4）打开Win32DiskImager将img文件写入U盘  选择刚刚修改好的img文件 点击写入即可  5）用网线将准备安装群晖系统的电脑连入局域网内 6）进入bios将你的电脑启动首选项设置为U盘启动  每台机器都不一样，大家可以google一下 要注意的是，这步很重要，到安装完成重启的过程中，没有选择U盘启动，而由硬盘启动的话，将会引导失败，出现联机失败的错误  7）打开群晖助手搜索局域网内的准备安装群晖系统的机器 * 右键安装，注意一定要选择跟版本号以及型号都一致的pat，否则会出错 * PS:6.</description>
+    </item>
+    
+  </channel>
+</rss>

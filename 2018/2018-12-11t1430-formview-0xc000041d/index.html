@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="sinowrt">
+  
+  
+  
+  <link rel="prev" href="https://localhost:1313/2018/2018-12-03t1258-hard-disk-parttion-unview/" />
+  <link rel="next" href="https://localhost:1313/2018/2018-12-11t1435-formview-m_hwnd/" />
+  <link rel="canonical" href="https://localhost:1313/2018/2018-12-11t1430-formview-0xc000041d/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           MFC Dialog中嵌入Formview 0XC000041D:用户回调期间遇到未经处理的异常 | Sinowrt
+       
+  </title>
+  <meta name="title" content="MFC Dialog中嵌入Formview 0XC000041D:用户回调期间遇到未经处理的异常 | Sinowrt">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/localhost:1313"
+    },
+    "articleSection" : "posts",
+    "name" : "MFC Dialog中嵌入Formview 0XC000041D:用户回调期间遇到未经处理的异常",
+    "headline" : "MFC Dialog中嵌入Formview 0XC000041D:用户回调期间遇到未经处理的异常",
+    "description" : "在填充Formview时，遇到0XC000041D:用户回调期间遇到未经处理的异常(已解决) 原因：HBRUSH hbr = OnCtlColor(pDC, pWnd, nCtlColor);这一句中应该在OnCtlColor前面添加命名空间:: 否则编译器会误解为递归函数 源码如下： #pragma once #include \x26quot;NormalBtn.h\x26quot; #include \x26quot;resource.h\x26quot; #include \x26lt;Gdiplus.h\x26gt; using namespace Gdiplus; \/\/ View_OnlineShopManagement 窗体视图 class View_OnlineShopManagement : public CFormView { DECLARE_DYNCREATE(View_OnlineShopManagement) protected: View_OnlineShopManagement(); \/\/ 动态创建所使用的受保护的构造函数 virtual ~View_OnlineShopManagement(); public: #ifdef AFX_DESIGN_TIME enum { IDD = IDD_FORMVIEW_OSM }; #endif #ifdef _DEBUG virtual void AssertValid() const; #ifndef _WIN32_WCE virtual void Dump(CDumpContext\x26amp; dc) const; #endif #endif protected: virtual void DoDataExchange(CDataExchange* pDX); \/\/ DDX\/DDV 支持 DECLARE_MESSAGE_MAP() public: virtual void OnInitialUpdate(); GdiplusStartupInput m_gdiplusStartupInput; ULONG_PTR m_gdiplusToken; afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor); virtual void OnDraw(CDC* \/*pDC*\/); };  \/\/ View_OnlineShopManagement.",
+    "inLanguage" : "en-us",
+    "author" : "SinoWRT",
+    "creator" : "SinoWRT",
+    "publisher": "SinoWRT",
+    "accountablePerson" : "SinoWRT",
+    "copyrightHolder" : "SinoWRT",
+    "copyrightYear" : "2018",
+    "datePublished": "2018-12-11 14:30:47 \x2b0000 \x2b0000",
+    "dateModified" : "2018-12-11 14:30:47 \x2b0000 \x2b0000",
+    "url" : "https:\/\/localhost:1313\/2018\/2018-12-11t1430-formview-0xc000041d\/",
+    "wordCount" : "240",
+    "keywords" : [  "Sinowrt"]
+}
+</script>
+
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://localhost:1313">Sinowrt</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://localhost:1313">Sinowrt</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">MFC Dialog中嵌入Formview 0XC000041D:用户回调期间遇到未经处理的异常</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="https://localhost:1313" rel="author">SinoWRT</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2018-12-11 itemprop="datePublished">December 11, 2018</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="https://localhost:1313/categories/c&#43;&#43;/"> C&#43;&#43; </a>
+                        <a href="https://localhost:1313/categories/mfc/"> MFC </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          
+
+<h3 id="在填充formview时-遇到0xc000041d-用户回调期间遇到未经处理的异常-已解决">在填充Formview时，遇到0XC000041D:用户回调期间遇到未经处理的异常(已解决)</h3>
+
+<h4 id="原因-hbrush-hbr-onctlcolor-pdc-pwnd-nctlcolor-这一句中应该在onctlcolor前面添加命名空间-否则编译器会误解为递归函数">原因：<code>HBRUSH hbr = OnCtlColor(pDC, pWnd, nCtlColor);</code>这一句中应该在OnCtlColor前面添加命名空间:: 否则编译器会误解为递归函数</h4>
+
+<h4 id="源码如下">源码如下：</h4>
+
+<pre><code class="language-cpp">#pragma once
+#include &quot;NormalBtn.h&quot;
+#include &quot;resource.h&quot;
+#include &lt;Gdiplus.h&gt;
+using namespace Gdiplus;
+
+// View_OnlineShopManagement 窗体视图
+
+class View_OnlineShopManagement : public CFormView
+{
+    DECLARE_DYNCREATE(View_OnlineShopManagement)
+
+protected:
+    View_OnlineShopManagement();           // 动态创建所使用的受保护的构造函数
+    virtual ~View_OnlineShopManagement();
+
+public:
+#ifdef AFX_DESIGN_TIME
+    enum { IDD = IDD_FORMVIEW_OSM };
+#endif
+#ifdef _DEBUG
+    virtual void AssertValid() const;
+#ifndef _WIN32_WCE
+    virtual void Dump(CDumpContext&amp; dc) const;
+#endif
+#endif
+
+protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
+    DECLARE_MESSAGE_MAP()
+
+public:
+    
+    virtual void OnInitialUpdate();
+    GdiplusStartupInput m_gdiplusStartupInput;
+    ULONG_PTR m_gdiplusToken;
+    afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
+    virtual void OnDraw(CDC* /*pDC*/);
+};
+
+
+
+</code></pre>
+
+<pre><code class="language-cpp">// View_OnlineShopManagement.cpp : 实现文件
+//
+#include &quot;stdafx.h&quot;
+#include &quot;SD3000BAS.h&quot;
+#include &quot;View_OnlineShopManagement.h&quot;
+
+// View_OnlineShopManagement
+
+IMPLEMENT_DYNCREATE(View_OnlineShopManagement, CFormView)
+
+View_OnlineShopManagement::View_OnlineShopManagement()
+    : CFormView(IDD_FORMVIEW_OSM)
+{
+}
+
+View_OnlineShopManagement::~View_OnlineShopManagement()
+{
+}
+
+void View_OnlineShopManagement::DoDataExchange(CDataExchange* pDX)
+{
+    CFormView::DoDataExchange(pDX);
+    //DDX_Control(pDX, IDC_BUTTON1, register_btn);
+}
+
+BEGIN_MESSAGE_MAP(View_OnlineShopManagement, CFormView)
+    ON_WM_CTLCOLOR()
+END_MESSAGE_MAP()
+
+
+// View_OnlineShopManagement 诊断
+
+#ifdef _DEBUG
+void View_OnlineShopManagement::AssertValid() const
+{
+    CFormView::AssertValid();
+}
+
+#ifndef _WIN32_WCE
+void View_OnlineShopManagement::Dump(CDumpContext&amp; dc) const
+{
+    CFormView::Dump(dc);
+}
+#endif
+#endif //_DEBUG
+
+
+// View_OnlineShopManagement 消息处理程序
+
+
+void View_OnlineShopManagement::OnInitialUpdate()
+{
+    CFormView::OnInitialUpdate();
+    
+    // TODO: 在此添加专用代码和/或调用基类
+}
+
+HBRUSH View_OnlineShopManagement::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
+{
+    //HBRUSH hbr = OnCtlColor(pDC, pWnd, nCtlColor);    //问题出现在这里！！！！！
+    HBRUSH hbr = CFormView::CFormView(pDC, pWnd, nCtlColor); //改成这样问题解决
+    // TODO:  在此更改 DC 的任何特性
+    static CBrush gBr;
+    static bool isInited = false;
+    if (!isInited)
+    {
+        CBitmap bitmap;
+        bitmap.LoadBitmap(IDB_BITMAP1);
+        gBr.CreatePatternBrush(&amp;bitmap);
+        COLORREF clearColor = -1;
+        bitmap.DeleteObject();
+        isInited = true;
+    }
+    if (pWnd == this)
+    {
+        pDC-&gt;SetBkMode(TRANSPARENT);
+        return gBr; //主窗口背景使用这个背景刷
+    }
+    else
+    {
+        pDC-&gt;SetBkMode(TRANSPARENT);
+        return   (HBRUSH)::GetStockObject(NULL_BRUSH); //其他控件使用透明背景
+    }
+
+
+    // TODO:  如果默认的不是所需画笔，则返回另一个画笔
+    return hbr;
+}
+
+
+void View_OnlineShopManagement::OnDraw(CDC* /*pDC*/)
+{
+
+}
+
+</code></pre>
+
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>sinowrt </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=https://localhost:1313/2018/2018-12-11t1430-formview-0xc000041d/>https://localhost:1313/2018/2018-12-11t1430-formview-0xc000041d/</span>
+            </p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="https://localhost:1313">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://localhost:1313/2018/2018-12-03t1258-hard-disk-parttion-unview/" class="prev" rel="prev" title="Win10装光驱位硬盘分区不显示"><i class="iconfont icon-left"></i>&nbsp;Win10装光驱位硬盘分区不显示</a>
+         
+        
+        <a href="https://localhost:1313/2018/2018-12-11t1435-formview-m_hwnd/" class="next" rel="next" title="MFC Dialog中嵌入Formview 初始化控件时m_hWnd为空">MFC Dialog中嵌入Formview 初始化控件时m_hWnd为空&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2011 - 2019</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://localhost:1313">sinowrt</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

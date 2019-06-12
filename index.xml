@@ -5,7 +5,1732 @@
     <description>Recent content in Sinowrt on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Tue, 11 Dec 2018 15:41:27 +0000</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>MFC FormView中的OnInitialUpdate不调用</title>
+      <link>https://localhost:1313/2018/2018-12-11t1541-formview-oninitialupdate/</link>
+      <pubDate>Tue, 11 Dec 2018 15:41:27 +0000</pubDate>
+      
+      <guid>https://localhost:1313/2018/2018-12-11t1541-formview-oninitialupdate/</guid>
+      <description>
+
+&lt;h4 id=&#34;0x00-在formview中的oninitialupdate中初始化了个自定义的按钮-但是运行无任何样式效果&#34;&gt;0x00 在Formview中的OnInitialUpdate中初始化了个自定义的按钮，但是运行无任何样式效果&lt;/h4&gt;
+
+&lt;h4 id=&#34;0x01-在oninitialupdate里打了个断点再次运行-发现此方法根本未调用&#34;&gt;0x01 在OnInitialUpdate里打了个断点再次运行，发现此方法根本未调用&lt;/h4&gt;
+
+&lt;h4 id=&#34;0x02-在formview-create后-手动调用oninitialupdate解决-如下所示&#34;&gt;0x02 在FormView Create后，手动调用OnInitialUpdate解决，如下所示&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;    CWnd* pFrameWnd = this;
+    CCreateContext pContext;
+    pContext.m_pCurrentDoc = 0;
+    pContext.m_pNewViewClass = RUNTIME_CLASS(View_OnlineShopManagement); 
+    View_OnlineShopManagement* pView = (View_OnlineShopManagement*)((CFrameWnd*)pFrameWnd)-&amp;gt;CreateView(&amp;amp;pContext);
+    pView-&amp;gt;ShowWindow(SW_NORMAL);
+
+    pView-&amp;gt;OnInitialUpdate();  //手动调用
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>MFC Dialog中嵌入Formview 初始化控件时m_hWnd为空</title>
+      <link>https://localhost:1313/2018/2018-12-11t1435-formview-m_hwnd/</link>
+      <pubDate>Tue, 11 Dec 2018 14:35:00 +0000</pubDate>
+      
+      <guid>https://localhost:1313/2018/2018-12-11t1435-formview-m_hwnd/</guid>
+      <description>
+
+&lt;h3 id=&#34;原因-在构造函数中进行控件的初始化&#34;&gt;原因：在构造函数中进行控件的初始化&lt;/h3&gt;
+
+&lt;h3 id=&#34;解决方法-formview中-控件的初始化应该放在oninitialupdate中&#34;&gt;解决方法：Formview中，控件的初始化应该放在OnInitialUpdate中&lt;/h3&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>MFC Dialog中嵌入Formview 0XC000041D:用户回调期间遇到未经处理的异常</title>
+      <link>https://localhost:1313/2018/2018-12-11t1430-formview-0xc000041d/</link>
+      <pubDate>Tue, 11 Dec 2018 14:30:47 +0000</pubDate>
+      
+      <guid>https://localhost:1313/2018/2018-12-11t1430-formview-0xc000041d/</guid>
+      <description>
+
+&lt;h3 id=&#34;在填充formview时-遇到0xc000041d-用户回调期间遇到未经处理的异常-已解决&#34;&gt;在填充Formview时，遇到0XC000041D:用户回调期间遇到未经处理的异常(已解决)&lt;/h3&gt;
+
+&lt;h4 id=&#34;原因-hbrush-hbr-onctlcolor-pdc-pwnd-nctlcolor-这一句中应该在onctlcolor前面添加命名空间-否则编译器会误解为递归函数&#34;&gt;原因：&lt;code&gt;HBRUSH hbr = OnCtlColor(pDC, pWnd, nCtlColor);&lt;/code&gt;这一句中应该在OnCtlColor前面添加命名空间:: 否则编译器会误解为递归函数&lt;/h4&gt;
+
+&lt;h4 id=&#34;源码如下&#34;&gt;源码如下：&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;#pragma once
+#include &amp;quot;NormalBtn.h&amp;quot;
+#include &amp;quot;resource.h&amp;quot;
+#include &amp;lt;Gdiplus.h&amp;gt;
+using namespace Gdiplus;
+
+// View_OnlineShopManagement 窗体视图
+
+class View_OnlineShopManagement : public CFormView
+{
+    DECLARE_DYNCREATE(View_OnlineShopManagement)
+
+protected:
+    View_OnlineShopManagement();           // 动态创建所使用的受保护的构造函数
+    virtual ~View_OnlineShopManagement();
+
+public:
+#ifdef AFX_DESIGN_TIME
+    enum { IDD = IDD_FORMVIEW_OSM };
+#endif
+#ifdef _DEBUG
+    virtual void AssertValid() const;
+#ifndef _WIN32_WCE
+    virtual void Dump(CDumpContext&amp;amp; dc) const;
+#endif
+#endif
+
+protected:
+    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
+    DECLARE_MESSAGE_MAP()
+
+public:
+    
+    virtual void OnInitialUpdate();
+    GdiplusStartupInput m_gdiplusStartupInput;
+    ULONG_PTR m_gdiplusToken;
+    afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
+    virtual void OnDraw(CDC* /*pDC*/);
+};
+
+
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;// View_OnlineShopManagement.cpp : 实现文件
+//
+#include &amp;quot;stdafx.h&amp;quot;
+#include &amp;quot;SD3000BAS.h&amp;quot;
+#include &amp;quot;View_OnlineShopManagement.h&amp;quot;
+
+// View_OnlineShopManagement
+
+IMPLEMENT_DYNCREATE(View_OnlineShopManagement, CFormView)
+
+View_OnlineShopManagement::View_OnlineShopManagement()
+    : CFormView(IDD_FORMVIEW_OSM)
+{
+}
+
+View_OnlineShopManagement::~View_OnlineShopManagement()
+{
+}
+
+void View_OnlineShopManagement::DoDataExchange(CDataExchange* pDX)
+{
+    CFormView::DoDataExchange(pDX);
+    //DDX_Control(pDX, IDC_BUTTON1, register_btn);
+}
+
+BEGIN_MESSAGE_MAP(View_OnlineShopManagement, CFormView)
+    ON_WM_CTLCOLOR()
+END_MESSAGE_MAP()
+
+
+// View_OnlineShopManagement 诊断
+
+#ifdef _DEBUG
+void View_OnlineShopManagement::AssertValid() const
+{
+    CFormView::AssertValid();
+}
+
+#ifndef _WIN32_WCE
+void View_OnlineShopManagement::Dump(CDumpContext&amp;amp; dc) const
+{
+    CFormView::Dump(dc);
+}
+#endif
+#endif //_DEBUG
+
+
+// View_OnlineShopManagement 消息处理程序
+
+
+void View_OnlineShopManagement::OnInitialUpdate()
+{
+    CFormView::OnInitialUpdate();
+    
+    // TODO: 在此添加专用代码和/或调用基类
+}
+
+HBRUSH View_OnlineShopManagement::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
+{
+    //HBRUSH hbr = OnCtlColor(pDC, pWnd, nCtlColor);    //问题出现在这里！！！！！
+    HBRUSH hbr = CFormView::CFormView(pDC, pWnd, nCtlColor); //改成这样问题解决
+    // TODO:  在此更改 DC 的任何特性
+    static CBrush gBr;
+    static bool isInited = false;
+    if (!isInited)
+    {
+        CBitmap bitmap;
+        bitmap.LoadBitmap(IDB_BITMAP1);
+        gBr.CreatePatternBrush(&amp;amp;bitmap);
+        COLORREF clearColor = -1;
+        bitmap.DeleteObject();
+        isInited = true;
+    }
+    if (pWnd == this)
+    {
+        pDC-&amp;gt;SetBkMode(TRANSPARENT);
+        return gBr; //主窗口背景使用这个背景刷
+    }
+    else
+    {
+        pDC-&amp;gt;SetBkMode(TRANSPARENT);
+        return   (HBRUSH)::GetStockObject(NULL_BRUSH); //其他控件使用透明背景
+    }
+
+
+    // TODO:  如果默认的不是所需画笔，则返回另一个画笔
+    return hbr;
+}
+
+
+void View_OnlineShopManagement::OnDraw(CDC* /*pDC*/)
+{
+
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Win10装光驱位硬盘分区不显示</title>
+      <link>https://localhost:1313/2018/2018-12-03t1258-hard-disk-parttion-unview/</link>
+      <pubDate>Mon, 03 Dec 2018 12:58:57 +0000</pubDate>
+      
+      <guid>https://localhost:1313/2018/2018-12-03t1258-hard-disk-parttion-unview/</guid>
+      <description>
+
+&lt;h4 id=&#34;0x00-前阵子用旧电脑装了个群晖nas-无奈用的120g硬盘-完全不够用-看手上还有个500g的三星机械盘-就买了个光驱硬盘盒-到手后插上电脑没显示分区-不兼容-盘坏了&#34;&gt;0x00 前阵子用旧电脑装了个群晖nas，无奈用的120G硬盘，完全不够用，看手上还有个500G的三星机械盘，就买了个光驱硬盘盒，到手后插上电脑没显示分区？不兼容？盘坏了？&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/12/1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;0x01-打开设备管理器-扫描硬件更新-可以看到三星机械盘-盘和架子应该没问题&#34;&gt;0x01 打开设备管理器，扫描硬件更新，可以看到三星机械盘，盘和架子应该没问题&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/12/2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;0x02-打开partition-wizard-可以看到硬盘基本信息都在-就是没有盘符&#34;&gt;0x02 打开partition wizard,可以看到硬盘基本信息都在，就是没有盘符&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/12/3.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;0x03-分配盘符后-可以看到电脑显示分区正常-应该是没有挂载&#34;&gt;0x03 分配盘符后，可以看到电脑显示分区正常，应该是没有挂载&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/12/4.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;0x04-也可以利用diskpart对卷进行挂载&#34;&gt;0x04 也可以利用diskpart对卷进行挂载&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/12/5.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;0x05-z盘挂载成功&#34;&gt;0x05 Z盘挂载成功&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/12/6.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Qt5 error LNK2019 无法解析的外部符号的解决方法</title>
+      <link>https://localhost:1313/2018/2018-11-17t1516qt5compile-error/</link>
+      <pubDate>Sat, 17 Nov 2018 15:16:56 +0000</pubDate>
+      
+      <guid>https://localhost:1313/2018/2018-11-17t1516qt5compile-error/</guid>
+      <description>
+
+&lt;h1 id=&#34;编译过程中连接错误&#34;&gt;编译过程中连接错误&lt;/h1&gt;
+
+&lt;h4 id=&#34;尝试删除build文件夹-问题解决&#34;&gt;尝试删除build文件夹，问题解决&lt;/h4&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Windows 10安装Qt5.11.2</title>
+      <link>https://localhost:1313/2018/2018-11-17t1513-install-qt5-in-win10/</link>
+      <pubDate>Sat, 17 Nov 2018 15:13:11 +0000</pubDate>
+      
+      <guid>https://localhost:1313/2018/2018-11-17t1513-install-qt5-in-win10/</guid>
+      <description>
+
+&lt;h2 id=&#34;0x00背景&#34;&gt;0x00背景&lt;/h2&gt;
+
+&lt;h4 id=&#34;信管作业要求用c-实现进销存系统用户交互界面以及业务逻辑&#34;&gt;信管作业要求用C++实现进销存系统用户交互界面以及业务逻辑&lt;/h4&gt;
+
+&lt;h2 id=&#34;0x01-必备安装包&#34;&gt;0x01 必备安装包&lt;/h2&gt;
+
+&lt;h4 id=&#34;1-qt-opensource-windows-x86-5-11-2-exe&#34;&gt;1.qt-opensource-windows-x86-5.11.2.exe&lt;/h4&gt;
+
+&lt;h4 id=&#34;2-windows-sdk&#34;&gt;2.Windows SDK&lt;/h4&gt;
+
+&lt;h2 id=&#34;0x02-下载与安装&#34;&gt;0x02 下载与安装&lt;/h2&gt;
+
+&lt;h4 id=&#34;1-qt下载与安装&#34;&gt;1.Qt下载与安装&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;上&lt;a href=&#34;http://download.qt.io/archive/qt/5.11/5.11.2/&#34; title=&#34;Qt下载页面&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;Qt下载页面&lt;/a&gt;下载你系统对应的安装包
+&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/1.png&#34; alt=&#34;image&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;我的是Windoes 10,直接下载qt-opensource-windows-x86-5.11.2.exe&lt;/li&gt;
+&lt;li&gt;直接打开qt-opensource-windows-x86-5.11.2.exe安装程序&lt;/li&gt;
+&lt;li&gt;在第一个界面直接下一步&lt;/li&gt;
+&lt;li&gt;填写账号这一块，如果没有事先申请也可以先跳过这一步
+&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/2.png&#34; alt=&#34;image&#34; /&gt; &lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/3.png&#34; alt=&#34;&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;选择安装文件夹&lt;/li&gt;
+&lt;li&gt;选择编译器，由于我的电脑装了vs2015，所以直接选了MSVC 2015 64-bit（若未安装任何编译器可以直接选择MinGW 5.3.0 32bit）
+&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/4.png&#34; alt=&#34;image&#34; /&gt; &lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/5.png&#34; alt=&#34;&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;接下来一路下一步即可&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;2-windows-sdk下载与安装&#34;&gt;2.Windows SDK下载与安装&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;上&lt;a href=&#34;https://developer.microsoft.com/zh-cn/windows/downloads/sdk-archive&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;Microsoft开发者下载站&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;我的系统是Windows 10，还是按自己的系统版本进行下载
+&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/6.png&#34; alt=&#34;image&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;下载之后得到这样一个exe，打开按步骤安装
+&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/7.png&#34; alt=&#34;&#34; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;0x03-配置qt&#34;&gt;0x03 配置Qt&lt;/h2&gt;
+
+&lt;h4 id=&#34;1-配置debugger&#34;&gt;1.配置Debugger&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;工具——选项——kits——Debuggers——Add&lt;/li&gt;
+&lt;li&gt;填写Debugger的名称&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;浏览WindowsSKD的安装路径，找到你所需要的Debugger，这里我设置了Windows 10的x64的和x86的cdb.exe
+&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/8.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;2-配置kit&#34;&gt;2.配置kit&lt;/h4&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;按根据截图按需配置就可以了
+&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/10.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;到了这步配置基本完成-但是我在编译程序的过程中遇到error-link1158-无法运行rc-exe的报错&#34;&gt;到了这步配置基本完成，但是我在编译程序的过程中遇到error link1158 无法运行rc.exe的报错&lt;/h4&gt;
+
+&lt;h4 id=&#34;error-link1158-无法运行rc-exe问题解决方法&#34;&gt;error link1158 无法运行rc.exe问题解决方法&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;到&lt;code&gt;C:\Program Files (x86)\Windows Kits\10\bin\10.0.17763.0&lt;/code&gt;下的文件夹找到rc.dll和rc.exe复制到qmake文件夹下&lt;/li&gt;
+&lt;li&gt;qmake的路径可以参考截图
+&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/9.png&#34; alt=&#34;image&#34; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>利用docker为群晖部署aria2下载工具</title>
+      <link>https://localhost:1313/2018/2018-11-06t0207-synologysetup-aria2-with-docker/</link>
+      <pubDate>Tue, 06 Nov 2018 02:07:21 +0000</pubDate>
+      
+      <guid>https://localhost:1313/2018/2018-11-06t0207-synologysetup-aria2-with-docker/</guid>
+      <description>
+
+&lt;h2 id=&#34;0x00-安装docker&#34;&gt;0x00 安装docker&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;在package center中的Third party找到docker&lt;/li&gt;
+&lt;li&gt;直接点击install进行安装
+&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/docker.png&#34; alt=&#34;image&#34; /&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;安装完毕，点击open即可打开docker&lt;/p&gt;
+
+&lt;h2 id=&#34;0x01-下载aria2映像&#34;&gt;0x01 下载aria2映像&lt;/h2&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;点击Registry选项卡，搜索aria2&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;找到xujinkai那个下载下来
+&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/image.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;0x02-启动容器&#34;&gt;0x02 启动容器&lt;/h2&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;点击image选项卡，点击launch进行启动
+&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/launch0.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;0x03-启动设置&#34;&gt;0x03 启动设置&lt;/h2&gt;
+
+&lt;h3 id=&#34;点击advance&#34;&gt;点击Advance&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/launch1.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;1-advance-setting-打上这两个-设置开机自启动以及创建桌面快捷方式&#34;&gt;1）Advance Setting 打上这两个√，设置开机自启动以及创建桌面快捷方式&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/launch2.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;2-volume设置-添加这两项-前面的文件夹随便选-圈起来的位置务必一样&#34;&gt;2）Volume设置，添加这两项，前面的文件夹随便选，圈起来的位置务必一样&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/launch3.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;3-port设置-为了方便使用-local-port修改成您想要的端口&#34;&gt;3）Port设置，为了方便使用，local port修改成您想要的端口&lt;/h3&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;第一项为下载端口&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;第二项为webui端口&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;第三项为下载文件目录端口&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/launch4.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;4-environment设置-如图添加这两项-否则webui会报错-分别填写你的用户名和密码-ok&#34;&gt;4）Environment设置 如图添加这两项，否则webui会报错，分别填写你的用户名和密码，ok&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/launch5.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;5-完成高级设置后-next&#34;&gt;5）完成高级设置后，next&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/launch6.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;6-最后apply&#34;&gt;6）最后apply&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/apply.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;7-打开浏览器-输入服务器地址以及你设置的webui端口-即可访问aria2-webui&#34;&gt;7）打开浏览器，输入服务器地址以及你设置的webui端口，即可访问aria2 webui&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/finish.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>自定义黑群晖6.X.X引导系统版本</title>
+      <link>https://localhost:1313/2018/2018-11-04t1218-synalogycustomize-boot-system/</link>
+      <pubDate>Sun, 04 Nov 2018 12:18:36 +0000</pubDate>
+      
+      <guid>https://localhost:1313/2018/2018-11-04t1218-synalogycustomize-boot-system/</guid>
+      <description>
+
+&lt;h2 id=&#34;0x00-打开osfmount&#34;&gt;0x00 打开osfmount&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/osfmount1.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;0x01-挂载引导文件&#34;&gt;0x01 挂载引导文件&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;选择img文件&lt;/li&gt;
+&lt;li&gt;填写offset为16MBytes&lt;/li&gt;
+&lt;li&gt;去掉read—only前面的勾&lt;/li&gt;
+&lt;li&gt;点击ok进行挂载
+&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/osfmount2-1.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;0x02-解压目标系统文件&#34;&gt;0x02 解压目标系统文件&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;将xxxxxxx.pat的后缀改成rar&lt;/li&gt;
+&lt;li&gt;解压&lt;/li&gt;
+&lt;li&gt;从解压得到的文件夹里面找到rd.gz和zlmage&lt;/li&gt;
+&lt;li&gt;复制这两个文件到虚拟磁盘根目录下替换原文件&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;0x03-卸载虚拟磁盘&#34;&gt;0x03 卸载虚拟磁盘&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/dismount.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;0x04-将img文件通过win32diskimager写入u盘即可&#34;&gt;0x04 将img文件通过Win32DiskImager写入U盘即可&lt;/h2&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>旧笔记本安装黑群晖NAS系统——打造属于自己的私有云</title>
+      <link>https://localhost:1313/2018/2018-11-04t1148-synologynas-diy/</link>
+      <pubDate>Sun, 04 Nov 2018 11:48:41 +0000</pubDate>
+      
+      <guid>https://localhost:1313/2018/2018-11-04t1148-synologynas-diy/</guid>
+      <description>
+
+&lt;h2 id=&#34;0x00-硬件条件&#34;&gt;0x00 硬件条件&lt;/h2&gt;
+
+&lt;h3 id=&#34;1-废旧的三星rv415笔记本电脑&#34;&gt;1.废旧的三星rv415笔记本电脑&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;CPU  AMD Fusion APU E-450&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;RAM  DDR3 2G 800MHz&lt;/p&gt;
+
+&lt;h3 id=&#34;2-sandisk-u盘-32g-一个&#34;&gt;2.SANDISK U盘 32G 一个&lt;/h3&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;0x02-软件条件&#34;&gt;0x02 软件条件&lt;/h2&gt;
+
+&lt;h3 id=&#34;1-群晖6-x-x引导文件&#34;&gt;1.群晖6.x.x引导文件&lt;/h3&gt;
+
+&lt;h3 id=&#34;2-osfmount-用于挂载引导镜像便于修改&#34;&gt;2.OSFmount 用于挂载引导镜像便于修改&lt;/h3&gt;
+
+&lt;h3 id=&#34;3-win32diskimager-将引导文件写入u盘&#34;&gt;3.Win32DiskImager 将引导文件写入U盘&lt;/h3&gt;
+
+&lt;h3 id=&#34;4-群晖6-1-15047系统文件&#34;&gt;4.群晖6.1-15047系统文件&lt;/h3&gt;
+
+&lt;h3 id=&#34;5-群晖助手&#34;&gt;5.群晖助手&lt;/h3&gt;
+
+&lt;h2 id=&#34;0x03-网络拓扑&#34;&gt;0x03 网络拓扑&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/拓扑.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;0x04-安装过程&#34;&gt;0x04 安装过程&lt;/h2&gt;
+
+&lt;h3 id=&#34;1-安装之前建议先把硬盘格了再进行全新安装&#34;&gt;1.安装之前建议先把硬盘格了再进行全新安装&lt;/h3&gt;
+
+&lt;h3 id=&#34;2-制作引导系统&#34;&gt;2.制作引导系统&lt;/h3&gt;
+
+&lt;h4 id=&#34;1-挂载img文件&#34;&gt;1）挂载img文件&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;安装osfmount&lt;/li&gt;
+&lt;li&gt;打开osfmount，对img文件进行挂载，如下所示&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/osfmount1.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;选择img文件&lt;/li&gt;
+&lt;li&gt;填写offset如图所示，选择单位KBytes&lt;/li&gt;
+&lt;li&gt;去掉read-only前面的勾&lt;/li&gt;
+&lt;li&gt;点击OK即挂载成功&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/osfmount2.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;2-查看u盘vid与pid&#34;&gt;2）查看U盘vid与pid&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;打开设备管理器，找到你的U盘
+&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/设备管理器.png&#34; alt=&#34;image&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;双击打开&lt;/li&gt;
+&lt;li&gt;打开详细信息选项卡，属性下拉选择硬件id，就可以直接看到vid与pid&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/vp.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;3-修改img文件里的vid与pid&#34;&gt;3）修改img文件里的vid与pid&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;打开刚刚挂载成功的磁盘&lt;/li&gt;
+&lt;li&gt;用notepad++打开grub文件夹下的grub.cfg文件&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;修改第22行和23行的vid、pid为你U盘对应的数值
+&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/MODIvp.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;修改保存之后即可卸载刚刚挂载的设备&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/dismount.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;4-打开win32diskimager将img文件写入u盘&#34;&gt;4）打开Win32DiskImager将img文件写入U盘&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;选择刚刚修改好的img文件&lt;/li&gt;
+&lt;li&gt;点击写入即可&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/win32.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;5-用网线将准备安装群晖系统的电脑连入局域网内&#34;&gt;5）用网线将准备安装群晖系统的电脑连入局域网内&lt;/h4&gt;
+
+&lt;h4 id=&#34;6-进入bios将你的电脑启动首选项设置为u盘启动&#34;&gt;6）进入bios将你的电脑启动首选项设置为U盘启动&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;每台机器都不一样，大家可以google一下&lt;/li&gt;
+&lt;li&gt;要注意的是，这步很重要，到安装完成重启的过程中，没有选择U盘启动，而由硬盘启动的话，将会引导失败，出现联机失败的错误&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;7-打开群晖助手搜索局域网内的准备安装群晖系统的机器&#34;&gt;7）打开群晖助手搜索局域网内的准备安装群晖系统的机器&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/setup.jpg&#34; alt=&#34;image&#34; /&gt;
+ * 右键安装，注意一定要选择跟版本号以及型号都一致的pat，否则会出错
+ * PS:6.x.x引导文件的版本号可以自定义，见&lt;a href=&#34;https://prismjs.com/download.html&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;自定义黑群晖6.x.x引导系统版本&lt;/a&gt;
+ &lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/setup1.png&#34; alt=&#34;image&#34; /&gt;
+ * 选好群晖系统之后，直接下一步
+ * 填写服务器密码
+ &lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/setup2.png&#34; alt=&#34;image&#34; /&gt;
+* 设置网络，如果网络内有DHCP服务器，可以直接下一步
+* 若没有DHCP服务器，或者希望服务器用静态地址，选手动配置
+ &lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/setup3.png&#34; alt=&#34;image&#34; /&gt;
+* 配置好网络之后，点击完成，安装就开始了，如下所示：
+ &lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/setup4.png&#34; alt=&#34;image&#34; /&gt;
+* 到了这一步，DMS安装完成，会重启服务器
+ &lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/setup5.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;注意&#34;&gt;注意：&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;现象：如果BIOS没设置好，会直接从硬盘启动，系统无法引导：即左上角一直有个光标在闪&lt;/li&gt;
+&lt;li&gt;后果：若倒计时超时，会出现无法联机的错误，重启服务器再搜索群晖服务器，会显示可转移，即没安装成功&lt;/li&gt;
+&lt;li&gt;解决方法：在出现引导失败的情况时，即左上角一直有个光标在闪，应该立即重启服务器，手动选择U盘启动方式，等待片刻即可出现下面的提示&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/setup6.png&#34; alt=&#34;image&#34; /&gt;
+ * 出现安装成功的提示之后，即可右键，进行联机
+ &lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/finish0.png&#34; alt=&#34;image&#34; /&gt;
+* 联机将会通过默认浏览器打开这个界面,填入admin以及您设置的密码即可登陆服务器
+ &lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/finish1.png&#34; alt=&#34;image&#34; /&gt;
+* 第一次联机要求对服务器进行配置，升级配置我们选择第三项，手动升级，否则会出现自动更新系统，而引导文件不支持该系统，则会引导失败，系统无法启动
+* 其他选项保持默认即可
+ &lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/finish2.png&#34; alt=&#34;image&#34; /&gt;
+* 这个界面是用于设置QuickConnect账户，便于外网访问，我们是黑群晖，所以这一步选择跳过
+* 要通过外网访问则要通过路由设置内网穿透
+ &lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/finish3.png&#34; alt=&#34;image&#34; /&gt;
+* 完成所有设置之后，就能进入系统了
+ &lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/11/final.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>用prism为WordPress页面实现代码高亮</title>
+      <link>https://localhost:1313/2018/2018-10-20t1037-wordpresscode-highlight-with-prism/</link>
+      <pubDate>Sat, 20 Oct 2018 10:37:42 +0000</pubDate>
+      
+      <guid>https://localhost:1313/2018/2018-10-20t1037-wordpresscode-highlight-with-prism/</guid>
+      <description>
+
+&lt;h2 id=&#34;0x01-下载prism的css与js文件&#34;&gt;0x01 下载prism的css与js文件&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;在&lt;a href=&#34;https://prismjs.com/download.html&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;prism官网&lt;/a&gt;下载prism的css与js文件&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;0x02-ssh方式登陆服务器&#34;&gt;0x02 ssh方式登陆服务器&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;在路径&lt;code&gt;/wordpress/htdocs/wp-content/themes/你的主题名称/&lt;/code&gt;路径下创建prism文件夹&lt;/li&gt;
+&lt;li&gt;将prism.css与prism.js两个文件上传到prism文件夹中&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;0x03-修改functions-php&#34;&gt;0x03 修改functions.php&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;在&lt;code&gt;/wordpress/htdocs/wp-content/themes/你的主题名称/&lt;/code&gt;下找到functions.php&lt;/li&gt;
+&lt;li&gt;vi修改文件，添加以下语句：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;function add_prism() {
+        wp_register_style(
+            &#39;prismCSS&#39;, 
+            get_stylesheet_directory_uri() . &#39;/prism/prism.css&#39; //自定义路径          
+        );
+        wp_register_script(
+            &#39;prismJS&#39;,
+            get_stylesheet_directory_uri() . &#39;/prism/prism.js&#39;   //自定义路径          
+        );
+        wp_enqueue_style(&#39;prismCSS&#39;);
+        wp_enqueue_script(&#39;prismJS&#39;);
+    }
+add_action(&#39;wp_enqueue_scripts&#39;, &#39;add_prism&#39;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;0x04注意&#34;&gt;0x04注意&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;get_stylesheet_directory_uri()&lt;/code&gt;与&lt;code&gt;get_parent_theme_file_path( &#39;/inc/color-patterns.php&#39; )&lt;/code&gt;的区别&lt;/li&gt;
+&lt;li&gt;使用&lt;code&gt;get_parent_theme_file_path( &#39;/prism/prism.css&#39; )&lt;/code&gt;语句之后发现页面代码高亮没生效&lt;/li&gt;
+&lt;li&gt;通过chrome F12调试 发现prism.css与prism.js没加载成功&lt;/li&gt;
+&lt;li&gt;细看发现请求路径不对劲&lt;/li&gt;
+&lt;li&gt;修改成&lt;code&gt;get_stylesheet_directory_uri().&#39;/prism/prism.js&#39;&lt;/code&gt;之后代码高亮生效&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>newifi mini安装drcom全攻略</title>
+      <link>https://localhost:1313/2018/2018-10-19t0256-drcom-setup-of-newifi_mini/</link>
+      <pubDate>Fri, 19 Oct 2018 02:56:07 +0000</pubDate>
+      
+      <guid>https://localhost:1313/2018/2018-10-19t0256-drcom-setup-of-newifi_mini/</guid>
+      <description>
+
+&lt;h2 id=&#34;起始条件&#34;&gt;起始条件：&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;刷入breed的newifi mini一台&lt;/li&gt;
+&lt;li&gt;网线一根&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;后续部署&#34;&gt;后续部署&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;刷入pandorabox r355固件&lt;/li&gt;
+&lt;li&gt;配置无线名、密码&lt;/li&gt;
+&lt;li&gt;在/etc/opkg.conf后追加&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;arch all 100  
+arch ramips_24kec 200  
+arch ramips 300
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;离线安装python环境&#34;&gt;离线安装python环境&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;分别下载&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;libgcc_4.8-linaro-1_ramips_24kec.ipk  
+libc_0.9.33.2-1_ramips_24kec.ipk  
+libpthread_0.9.33.2-1_ramips_24kec.ipk  
+zlib_1.2.8-1_ramips_24kec.ipk  
+libffi_3.0.13-1_ramips_24kec.ipk  
+python-mini_2.7.3-2_ramips_24kec.ipk
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;将上述ipk放到tmp目录下&lt;/li&gt;
+&lt;li&gt;依次安装&lt;/li&gt;
+&lt;li&gt;安装完毕可以在putty中输入  &lt;code&gt;python&lt;/code&gt;
+以检验是否安装成功&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;安装drcom客户端&#34;&gt;安装drcom客户端&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;将drcom客户端的python脚本放入&lt;code&gt;/usr/bin&lt;/code&gt;中（注意，此脚本为改动后的命令行脚本），将权限改为0755&lt;/li&gt;
+&lt;li&gt;输入&lt;code&gt;python /usr/bin/drcom -u 你的账号 -p 你的密码&lt;/code&gt;，回车，在浏览器验证是否能成功登录上网&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;安装drcom-client可视化配置界面&#34;&gt;安装drcom_client可视化配置界面&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;复制drcom(etc_config)到括号中的路径，并去掉括号以及括号中的路径&lt;/li&gt;
+&lt;li&gt;复制drcom.lua(usr_lib_lua_luci_controller)到括号中的路径，并去掉括号以及括号中的路径，更改为0755权限&lt;/li&gt;
+&lt;li&gt;复制drcom.lua(usr_lib_lua_luci_model_cbi)到括号中的路径，并去掉括号以及括号中的路径，更改为0755权限&lt;/li&gt;
+&lt;li&gt;复制drcom.lua(usr-lib-lua-luci-model-cbi-admin_services)到括号中的路径，并去掉括号以及括号中的路径，更改为0755权限&lt;/li&gt;
+&lt;li&gt;复制drcom_client(etc_init.d)到括号中的路径，并去掉括号以及括号中的路径，更改为0755权限&lt;/li&gt;
+&lt;li&gt;重启路由&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;配置drcom-client&#34;&gt;配置drcom_client&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;进入luci管理界面&lt;/li&gt;
+&lt;li&gt;在服务中找到drcom_client单击进入&lt;/li&gt;
+&lt;li&gt;填入drcom的账号和密码 save&amp;amp;apply&lt;/li&gt;
+&lt;li&gt;打开浏览器打开任意网页验证是否登录成功&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;配置自启动&#34;&gt;配置自启动&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;在/etc/hotplut.d/iface/中新建99-drcom文件，授权0755权限，在文件中写入&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;#!/bin/sh
+# /etc/hotplug.d/iface/99-drcom
+
+if [ &amp;quot;$ACTION&amp;quot; = ifup ]; then 
+    if [ &amp;quot;${INTERFACE}&amp;quot; = &amp;quot;wan&amp;quot; ]; then
+        sleep 10 &amp;amp;&amp;amp; /etc/init.d/drcom_client start
+    fi
+fi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;重启验证自启即可&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;配置断网重连&#34;&gt;配置断网重连&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;在/etc/中新建Drcom_AutoLink文件，授权0755权限，在文件中写入&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;#! /bin/bash
+#检测网络连接
+ping -c 1 www.baidu.com &amp;gt; /dev/null 2&amp;gt;&amp;amp;1
+if [ $? -eq 0 ];then
+    echo linkOk!!
+else
+    /etc/init.d/drcom_client stop
+    /etc/init.d/drcom_client start
+fi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;在putty中输入&lt;code&gt;crontab -e&lt;/code&gt;编辑crontab文件，加入如下内容:
+&lt;code&gt;shell
+*/1 * * * * sh /etc/Drcom_AutoLink
+&lt;/code&gt;
+* 表示每1分钟检测一次
+* 保存退出编辑
+* 在putty中输入/etc/init.d/cron restart
+重启crontab即可立即应用刚才创建的计划任务&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>init.d 的 脚本中使用 kill 的怪事</title>
+      <link>https://localhost:1313/2018/2018-10-17t0552-init.dkill/</link>
+      <pubDate>Wed, 17 Oct 2018 05:52:17 +0000</pubDate>
+      
+      <guid>https://localhost:1313/2018/2018-10-17t0552-init.dkill/</guid>
+      <description>
+
+&lt;h1 id=&#34;2018-08-20&#34;&gt;2018.08.20&lt;/h1&gt;
+
+&lt;h4 id=&#34;使用自动安装drcom的shell脚本之后-打开配置界面-进行认证之后-想起昨晚有那么一瞬间发现-在drcom的luci界面配置以及apply之后-ps-w会出现两条python-drcom的进程-于是再次打开putty查看-果然不出所料-于是就有了这篇文章&#34;&gt;使用自动安装drcom的shell脚本之后，打开配置界面，进行认证之后，想起昨晚有那么一瞬间发现，在drcom的luci界面配置以及apply之后，ps -w会出现两条python drcom的进程，于是再次打开putty查看，果然不出所料，于是就有了这篇文章&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;#!/bin/sh /etc/rc.common
+run_drcom()
+{
+local username
+local password
+config_get username $1 username
+config_get password $1 password
+python /usr/bin/drcom -u $username -p $password &amp;amp;
+}
+start()
+{
+config_load drcom
+config_foreach run_drcom login
+}
+stop()
+{
+ps w | grep &amp;quot;.*drcom.*&amp;quot; | grep -v &#39;grep&#39; | cut -c 2-5 | xargs kill -9
+echo &amp;quot;Drcom Client for GDUFE has stoped.&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;大二的时候，在写了drcom的luci界面之后，发现有时候使用drcom_client的stop命令会不奏效，经过查看代码，发现问题应该出在&lt;code&gt;cut -c 2-5&lt;/code&gt;上&lt;/p&gt;
+
+&lt;h3 id=&#34;for-example&#34;&gt;for example&lt;/h3&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;h3 id=&#34;cut-c-2-5-是截取了第二到第五位的字符串-即4位pid&#34;&gt;&lt;code&gt;cut -c 2-5 是截取了第二到第五位的字符串 即4位pid&lt;/code&gt;&lt;/h3&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;h3 id=&#34;若pid大于4位之后便不再好使&#34;&gt;&lt;code&gt;若pid大于4位之后便不再好使&lt;/code&gt;&lt;/h3&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;我有印象当时已经改正了，这次出现的 drcom_client 脚本，便是原原本本的当年的模样，至于为什么会这样，可能当时我只改了路由器上的脚本，而没有更新本地脚本&lt;/p&gt;
+
+&lt;h4 id=&#34;不过-这次的问题不在这里-而是这次的问题-暴露了这个潜在的问题&#34;&gt;不过，这次的问题不在这里，而是这次的问题，暴露了这个潜在的问题&lt;/h4&gt;
+
+&lt;p&gt;这次的问题的导火索是&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;local fs = require &amp;quot;nixio.fs&amp;quot;
+local sys = require &amp;quot;luci.sys&amp;quot;
+m = Map(&amp;quot;drcom&amp;quot;,translate(&amp;quot;Dr.com configure&amp;quot;),translate(&amp;quot;GDUFE Dr.com client configure&amp;quot;))
+s = m:section(TypedSection,&amp;quot;login&amp;quot;)
+s.anonymous = true
+
+
+name = s:option(Value, &amp;quot;username&amp;quot;, translate(&amp;quot;Username&amp;quot;))
+pass = s:option(Value, &amp;quot;password&amp;quot;, translate(&amp;quot;Password&amp;quot;))
+pass.password = true
+
+local apply = luci.http.formvalue(&amp;quot;cbi.apply&amp;quot;)
+if apply then
+    io.popen(&amp;quot;/etc/init.d/drcom_client start&amp;quot;)
+end
+
+return m
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;原来是apply这段，我记得当时也改过了，可是，这就是咸丰年的那一版。。。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;我想在&lt;code&gt;io.popen(&amp;quot;/etc/init.d/drcom_client start&amp;quot;)&lt;/code&gt;上面加上一段&lt;code&gt;io.popen(&amp;quot;/etc/init.d/drcom_client stop&amp;quot;)&lt;/code&gt;就完事了，可是，完美主义并不允许我这么做。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;我想，在Drcom_AutoLink上也是一个 stop 一个 start 这样也太low了吧，为什么不给drcom_client写一个restart呢，像&lt;code&gt;service network restart&lt;/code&gt;用的多顺手。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;二话不说，打开/etc/init.d/drcom_client 添上一段&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;restart(){
+stop
+sleep 1
+start
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;可是每次执行&lt;code&gt;/etc/init.d/drcom_client restart&lt;/code&gt;就只有一句Killed，就啥反应也没有了，就连&lt;code&gt;echo &amp;quot;Drcom Client for GDUFE has stoped.&amp;quot;&lt;/code&gt;这句也没输出&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;restart没反应对吧，一句一句来，先&lt;code&gt;/etc/init.d/drcom_client stop&lt;/code&gt;,奇了怪了，&lt;code&gt;echo &amp;quot;Drcom Client for GDUFE has stoped.&amp;quot;&lt;/code&gt;同样没输出，我就纳闷了&lt;/li&gt;
+&lt;li&gt;难道是restart没重写成功？&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;难道是stop没重写成功？&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;h3 id=&#34;当我去掉-ps-w-grep-drcom-grep-v-grep-cut-c-2-5-xargs-kill-9-这一句后-echo-drcom-client-for-gdufe-has-stoped-竟然成功输出了&#34;&gt;当我去掉&lt;code&gt;ps w | grep &amp;quot;.*drcom.*&amp;quot; | grep -v &#39;grep&#39; | cut -c 2-5 | xargs kill -9&lt;/code&gt;这一句后，&lt;code&gt;echo &amp;quot;Drcom Client for GDUFE has stoped.&amp;quot;&lt;/code&gt;竟然成功输出了&lt;/h3&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;于是想到，应该是这句把自己也kill掉了，于是去掉&lt;code&gt;| xargs kill -9&lt;/code&gt;只留下&lt;code&gt;ps w | grep &amp;quot;.*drcom.*&amp;quot; | grep -v &#39;grep&#39; | cut -c 2-5&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;执行&lt;code&gt;/etc/init.d/drcom_client stop&lt;/code&gt;，果然，出现了两个pid，在前面再加一句ps -w看看结果
+&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/10/1-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;solution&#34;&gt;Solution&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;h3 id=&#34;1-修复只截取4位pid&#34;&gt;1.修复只截取4位pid&lt;/h3&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;h3 id=&#34;2-精准匹配进程名称&#34;&gt;2.精准匹配进程名称&lt;/h3&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;修改&lt;code&gt;ps w | grep &amp;quot;.*drcom.*&amp;quot; | grep -v &#39;grep&#39; | cut -c 2-5 | xargs kill -9&lt;/code&gt;为&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;code&gt;ps w | grep &amp;quot;python.*.drcom&amp;quot; |grep -v &#39;grep&#39;| awk &#39;{print $1}&#39;| xargs kill -9&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;h3 id=&#34;3-测试restart是否成功&#34;&gt;3.测试restart是否成功&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://blog.sinowrt.cn/wp-content/uploads/2018/10/2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;修改的drcom_client如下&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;#!/bin/sh /etc/rc.common
+START=10
+STOP=15
+run_drcom()
+{
+local username
+local password
+config_get username $1 username
+config_get password $1 password
+python /usr/bin/drcom -u $username -p $password &amp;amp;
+}
+start()
+{
+config_load drcom
+config_foreach run_drcom login
+}
+stop()
+{
+ps w | grep &amp;quot;python.*.drcom&amp;quot; |grep -v &#39;grep&#39;| awk &#39;{print $1}&#39;| xargs kill -9
+echo &amp;quot;Drcom Client for GDUFE has stoped.&amp;quot;
+}
+restart(){
+stop
+sleep 1
+start
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>给宿舍装个智能锁吧（二）——指纹篇</title>
+      <link>https://localhost:1313/2018/2018-10-17t0348-smartlock2/</link>
+      <pubDate>Wed, 17 Oct 2018 03:48:52 +0000</pubDate>
+      
+      <guid>https://localhost:1313/2018/2018-10-17t0348-smartlock2/</guid>
+      <description>
+
+&lt;h2 id=&#34;2018-3-13&#34;&gt;2018/3/13&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;星期二晚上到货&lt;/li&gt;
+&lt;li&gt;取开发资料&lt;/li&gt;
+&lt;li&gt;浏览用户手册&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;2018-3-14&#34;&gt;2018/3/14&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;根据用户手册进行模块接线&lt;/li&gt;
+&lt;li&gt;接入串口，利用开发包中的上位机对指纹模块进行操作&lt;/li&gt;
+&lt;li&gt;用串口调试软件，输入相应的指令，进行指纹采集等操作，但进行相应的操作总是无法实现&lt;/li&gt;
+&lt;li&gt;原因：对原有指令进行了改造，而校验码并没有改变&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;对上位机软件进行改造，使其输出相应操作流程的指令&lt;/p&gt;
+
+&lt;h4 id=&#34;在oemhostdlg-cpp中查找对应的按钮执行的内容&#34;&gt;在OEMHostDlg.cpp中查找对应的按钮执行的内容&lt;/h4&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;1.找到void COEMHostDlg::OnBtnVerify()&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-csharp&#34;&gt;void COEMHostDlg::OnBtnVerify() 
+{
+    int     w_nRet, w_nTmplNo, w_nFpStatus, w_nLearned;
+    DWORD   w_dwTime;
+    CString w_strTmp;
+
+    UpdateData(TRUE);
+
+    if (!CheckUserID())
+        return;
+
+    EnableControl(FALSE);
+    GetDlgItem(IDC_BTN_DISCONNECT)-&amp;gt;EnableWindow(FALSE);
+    GetDlgItem(IDC_BTN_STOP)-&amp;gt;EnableWindow(TRUE);
+    
+    m_bCancel = FALSE;
+
+    w_nTmplNo = m_nUserID;
+
+    //. Check if fp is exist
+    w_nRet = m_clsCommu.Run_GetStatus(w_nTmplNo, &amp;amp;w_nFpStatus);
+    
+    if( w_nRet != ERR_SUCCESS )
+    {
+        m_strCmdResult = GetErrorMsg(w_nRet);
+        goto l_exit;
+    }
+    
+    if( w_nRet == ERR_SUCCESS &amp;amp;&amp;amp; w_nFpStatus == GD_TEMPLATE_EMPTY )
+    {
+        m_strCmdResult = _T(&amp;quot;Template is empty&amp;quot;);
+        goto l_exit;
+    }
+    
+    m_clsCommu.Run_SLEDControl(1);
+
+    m_strCmdResult = _T(&amp;quot;Input your finger.&amp;quot;);
+    UpdateData(FALSE);
+    
+    w_dwTime = GetTickCount();
+    
+    //. Get Image
+    while (1)
+    {
+        DoEvents();
+
+        if(m_bCancel)
+        {
+            m_strCmdResult = _T(&amp;quot;Operation Canceled&amp;quot;);
+            goto l_exit;
+        }
+
+        //. Get Image
+        w_nRet = m_clsCommu.Run_GetImage();
+        
+        if(w_nRet == ERR_SUCCESS)
+            break;
+        else if(w_nRet == ERR_CONNECTION)
+        {
+            m_strCmdResult = GetErrorMsg(w_nRet);
+            goto l_exit;
+        }                   
+    }
+    
+    m_strCmdResult = &amp;quot;Release your finger&amp;quot;;
+    UpdateData(FALSE);
+    DoEvents();
+
+    //. Up Image
+    if (m_chkShowImage.GetCheck())
+    {
+        m_strCmdResult = _T(&amp;quot;Uploading image...&amp;quot;);
+        UpdateData(FALSE);
+        DoEvents();
+
+        w_nRet = m_clsCommu.Run_UpImage(0, g_FpImageBuf, &amp;amp;g_nImageWidth, &amp;amp;g_nImageHeight);
+
+        if(w_nRet != ERR_SUCCESS)
+        {
+            m_strCmdResult = GetErrorMsg(w_nRet);
+            goto l_exit;
+        }   
+
+        m_wndFinger.SetImage(g_FpImageBuf, g_nImageWidth, g_nImageHeight);
+
+        m_strCmdResult = _T(&amp;quot;Uploading image is successed.&amp;quot;);
+        UpdateData(FALSE);
+        DoEvents();
+    }
+
+    w_dwTime = GetTickCount();
+
+    //. Create Template
+    w_nRet = m_clsCommu.Run_Generate(0);
+    
+    if (w_nRet != ERR_SUCCESS)
+    {
+        m_strCmdResult = GetErrorMsg(w_nRet);
+        goto l_exit;
+    }
+
+    //. Verify 
+    w_nRet = m_clsCommu.Run_Verify(w_nTmplNo, 0, &amp;amp;w_nLearned);
+    
+    w_dwTime = GetTickCount() - w_dwTime;
+
+    if (w_nRet == ERR_SUCCESS)
+    {
+        m_strCmdResult.Format(_T(&amp;quot;Result : Success\r\nTemplate No : %d, Learn Result : %d\r\nMatch Time : %dms&amp;quot;), w_nTmplNo, w_nLearned, w_dwTime );
+    }
+    else
+    {
+        m_strCmdResult = GetErrorMsg(w_nRet);
+    }
+    
+l_exit:
+    m_clsCommu.Run_SLEDControl(0);
+    UpdateData(FALSE);  
+    EnableControl(TRUE);
+    GetDlgItem(IDC_BTN_DISCONNECT)-&amp;gt;EnableWindow(TRUE);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;2.查看m_clsCommu.Run_SLEDControl(0)，跳转到Communication.cpp&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-csharp&#34;&gt;int CCommunication::Run_SLEDControl(int p_nState)
+{
+    BOOL    w_bRet;
+    BYTE    w_abyData[2];
+    
+    w_abyData[0] = LOBYTE(p_nState);
+    w_abyData[1] = HIBYTE(p_nState);
+    
+    InitCmdPacket(CMD_SLED_CTRL, m_bySrcDeviceID, m_byDstDeviceID, (BYTE*)&amp;amp;w_abyData, 2);
+    
+    SEND_COMMAND(CMD_SLED_CTRL, w_bRet, m_bySrcDeviceID, m_byDstDeviceID);
+    
+    if(!w_bRet)
+        return ERR_CONNECTION;
+    
+    return RESPONSE_RET;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;3.查看SEND_COMMAND定义，跳转到Command.cpp&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-csharp&#34;&gt;BOOL SendCommand(WORD p_wCMDCode, BYTE p_bySrcDeviceID, BYTE p_byDstDeviceID)
+{
+    DWORD   w_nSendCnt = 0;
+    LONG    w_nResult = 0;
+
+    g_Serial.Purge();   
+
+    ::SendMessage(g_hMainWnd, WM_CMD_PACKET_HOOK, 0, 0);
+
+    w_nResult = g_Serial.Write(g_Packet, g_dwPacketSize , &amp;amp;w_nSendCnt, NULL, COMM_TIMEOUT);
+
+    if(ERROR_SUCCESS != w_nResult)
+    {
+        return FALSE;
+    }
+
+    return ReceiveAck(p_wCMDCode, p_bySrcDeviceID, p_byDstDeviceID);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;4.可以看到串口输出函数g_Serial.Write,g_packet应该为输出的内容，现在要做的就是将g_packet打印出来
+5.顺势根据&lt;code&gt;return ReceiveAck(p_wCMDCode, p_bySrcDeviceID, p_byDstDeviceID)&lt;/code&gt;语句找到ReceiveAck函数，分析可知发送了消息通过ReceiveAck函数接收响应内容，则在此也添加Print_gPacket(false)以打印接收的内容&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-csharp&#34;&gt;BOOL ReceiveAck(WORD p_wCMDCode, BYTE p_bySrcDeviceID, BYTE p_byDstDeviceID)
+{
+    Print_gPacket(true);
+    DWORD   w_nAckCnt = 0;
+    LONG    w_nResult = 0;
+    DWORD   w_dwTimeOut = COMM_TIMEOUT;
+
+    if (p_wCMDCode == CMD_TEST_CONNECTION)
+        w_dwTimeOut = 2000;
+    else if (p_wCMDCode == CMD_ADJUST_SENSOR)
+        w_dwTimeOut = 30000;
+    
+l_read_packet:
+
+    //w_nResult = g_Serial.Read(g_Packet, sizeof(ST_RCM_PACKET), &amp;amp;w_nAckCnt, NULL, w_dwTimeOut);    
+    if (!ReadDataN(g_Packet, sizeof(ST_RCM_PACKET), w_dwTimeOut))
+    {
+        return FALSE;
+    }
+
+    g_dwPacketSize = sizeof(ST_RCM_PACKET); 
+
+    ::SendMessage(g_hMainWnd, WM_RCM_PACKET_HOOK, 0, 0);
+
+    if (!CheckReceive(g_Packet, sizeof(ST_RCM_PACKET), RCM_PREFIX_CODE, p_wCMDCode))
+        return FALSE;
+    
+    if (g_pCmdPacket-&amp;gt;m_byDstDeviceID != p_bySrcDeviceID)
+    {
+        goto l_read_packet;
+    }
+
+    Print_gPacket(false);
+    return TRUE;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;6.由于该软件为mfc程序，所以在command添加如下代码，在输出的debug内容中显示相应的内容&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-csharp&#34;&gt;#include &amp;quot;windows.h&amp;quot;
+#ifdef _DEBUG    
+
+#define DP0(fmt) {TCHAR sOut[256];_stprintf_s(sOut,_T(fmt));OutputDebugString(sOut);}    
+#define DP1(fmt,var) {TCHAR sOut[256];_stprintf_s(sOut,_T(fmt),var);OutputDebugString(sOut);}    
+#define DP2(fmt,var1,var2) {TCHAR sOut[256];_stprintf_s(sOut,_T(fmt),var1,var2);OutputDebugString(sOut);}    
+#define DP3(fmt,var1,var2,var3) {TCHAR sOut[256];_stprintf_s(sOut,_T(fmt),var1,var2,var3);OutputDebugString(sOut);}    
+
+#endif
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;7.添加一个函数，用于打印g_packet,&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-csharp&#34;&gt;/******************************
+ create by Jacky  2018/3/14
+ To print command
+ type true  for send
+      false for recive
+*******************************/
+void Print_gPacket(bool type) {
+    if (type) {
+        DP0(&amp;quot;发送的数据：&amp;quot;);
+    }
+    else {
+        DP0(&amp;quot;接收的数据：&amp;quot;);
+    }
+    for (int i = 0; i &amp;lt; 26; i++) {
+        DP1(&amp;quot;%02x&amp;quot;, g_Packet[i]);
+    }
+    DP0(&amp;quot;\n&amp;quot;);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;总结出采集验证指纹的过程总共有以下几条指令&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-csharp&#34;&gt;*****************************
+*    指纹模块一次指纹比对 
+*    host命令
+*****************************
+// 采集指纹
+55aa000020000000000000000000000000000000000000001f01
+
+// 模板生成到rambuffer0
+55aa000060000200000000000000000000000000000000006101
+
+// 1:N对比
+55aa00006300060000000100f401000000000000000000005e02
+
+// 关灯
+55aa000024000200000000000000000000000000000000002501
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;2018-3-15&#34;&gt;2018/3/15&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;由于esp8266与指纹模块通讯的过程中串口的数据交换并不可见，所以想到透传&lt;/li&gt;
+&lt;li&gt;上午上完课回来，进行透传程序Transmission的编写&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-csharp&#34;&gt;#include &amp;lt;ESP8266WiFi.h&amp;gt;
+
+const char *ssid = &amp;quot;&amp;quot;;
+const char *password = &amp;quot;&amp;quot;;
+
+const int tcpPort = 80;//要建立的TCP服务的端口号
+
+WiFiServer server(tcpPort);
+
+
+void setup()
+{
+    Serial.begin(115200);
+    delay(10);
+    Serial.println();
+    Serial.println();
+    Serial.print(&amp;quot;Connecting to &amp;quot;);
+    Serial.println(ssid);
+
+    WiFi.begin(ssid, password);
+
+    while (WiFi.status() != WL_CONNECTED)
+    {
+        delay(500);
+        Serial.print(&amp;quot;.&amp;quot;);
+    }
+
+    Serial.println(&amp;quot;&amp;quot;);
+    Serial.println(&amp;quot;WiFi connected&amp;quot;);
+    Serial.println(&amp;quot;IP address: &amp;quot;);
+    Serial.println(WiFi.localIP());
+    server.begin();
+}
+
+
+void loop()
+{
+    WiFiClient client = server.available();
+    if (client) {
+        while (client.connected()) {
+            /*while (client.available()) {
+            char c = client.read();
+            Serial.write(c);
+            }*/
+
+            if(client.available()){
+            size_t counti=client.available();
+            uint8_t *buf=new uint8_t[counti];
+            Serial.write((const uint8_t*)buf,counti);
+            delete(buf);
+            }
+
+            delay(1000);   //由于指纹模块是首先发送响应头再发响应数据，若不加这句，响应数据会分两次读取
+
+            if (Serial.available())
+            {
+                size_t counti = Serial.available();
+                uint8_t *sbuf = new uint8_t[counti];
+                Serial.readBytes(sbuf, counti);
+                client.write((const uint8_t*)sbuf, counti);
+
+                delete(sbuf);
+            }
+        }
+        client.stop();
+    }
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;注：&lt;/li&gt;
+&lt;li&gt;1.有坑，请看注释&lt;/li&gt;
+&lt;li&gt;2.遇到下列报错：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-csharp&#34;&gt;Compiling debug version of &#39;Transmission&#39; for &#39;NodeMCU 1.0 (ESP-12E Module)&#39;
+ 
+Error compiling project sources
+Debug build failed for project &#39;Transmission&#39;
+ESP8266WiFi.h:39: In file included from
+Transmission.ino: from
+WiFiClient.h: In instantiation of size_t WiFiClient::write(T&amp;amp;, size_t) [with T = unsigned char*; size_t = unsigned int]
+Transmission.ino:60: required from here
+ 
+WiFiClient.h: 123:36: error: request for member &#39;available&#39; in &#39;source&#39;, which is of non-class type &#39;unsigned char*
+   size_t left = source.available()
+ 
+WiFiClient.h: 127:5: error: request for member &#39;read&#39; in &#39;source&#39;, which is of non-class type &#39;unsigned char*
+   source.read(buffer.get(), will_send)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;原因是client的write函数必须传入一个buffer，但是通过网上查找解决方案，发现在第一个参数前加上(const uint8_t*)进行强制转换也可以编译通过&lt;/p&gt;
+
+&lt;h1 id=&#34;2018-3-16&#34;&gt;2018/3/16&lt;/h1&gt;
+
+&lt;h4 id=&#34;透传实现了-那么就开始改造原有的mysmartlock-ino-首先第一版的程序构思为&#34;&gt;透传实现了，那么就开始改造原有的mySmartLock.ino，首先第一版的程序构思为：&lt;/h4&gt;
+
+&lt;p&gt;循环
+* 1.读取指纹模块的手指感应信号（有信号就逐条发送指纹验证指令）
+* 2.读取网络端是否传来请求（有就判断请求url是否包含指定的字符串）
+* 3.读取透传客户端是否已连接（若已连接且传入debug()就更改标志，（考虑到指令录指纹时会造成录指纹和验证指纹指令的冲突）停止1的指纹验证，并允许串口穿透输入与输出，若为exit()就修改标志，重新启用1的指纹验证，只输出串口通讯的信息）&lt;/p&gt;
+
+&lt;h3 id=&#34;第一版的编程实现-采用的串行处理模式&#34;&gt;第一版的编程实现，采用的串行处理模式&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;坑1：在判断串口传入数据是否为debug()或exit()的过程中，用到了strcmp()函数，但是貌似读取出来的unsigned char*类型的字节流是不带结束符的而&amp;rdquo;debug()&amp;ldquo;是带结束符的长度为8的char数组，所以一直判断不等，经过查阅资料，发现还有一个函数就是strncmp()可以进行一定长度字符串的比较，所以改用 &lt;code&gt;strncmp((const char*)command, &amp;quot;debug()&amp;quot;, counti)&lt;/code&gt;语句进行判断，经测试完全可行！！&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&#34;但是问题来了-在arduino的loop-函数中-是循环执行的-当透传客户端连接上之后-除非用-while-client-connected-语句进行连接的保持-否则当前的transclient实例会在一次循环后被销毁-但是若保持连接又无法输出当前指纹模块与esp8266的通讯交互信息&#34;&gt;但是问题来了，在arduino的loop()函数中，是循环执行的，当透传客户端连接上之后，除非用&lt;code&gt;while (client.connected())&lt;/code&gt;语句进行连接的保持，否则当前的transclient实例会在一次循环后被销毁，但是若保持连接又无法输出当前指纹模块与esp8266的通讯交互信息&lt;/h4&gt;
+
+&lt;h3 id=&#34;发现还是程序的状态图没分清楚-构思总结出改进的三个状态&#34;&gt;发现还是程序的状态图没分清楚，构思总结出改进的三个状态&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;1.透传连接，并通过debug()进入debug模式&lt;/li&gt;
+&lt;li&gt;2.透传连接，保持默认状态，或在debug模式下通过exit()退出调试模式的，就只输出esp8266与指纹通讯的信息&lt;/li&gt;
+&lt;li&gt;3.串口没有连接，esp8266与指纹模块正常通讯&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;编程实现&#34;&gt;编程实现&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;1.将指纹验证和读取网络请求两部分封装成loopBody(bool modeSwitch)&lt;/li&gt;
+&lt;li&gt;2.用modeSwitch标记是否进入了debug模式，通过判断modeSwitch来判断是否进行透传输出，modeSwitch通过是否传入debug()和exit()命令进行切换&lt;/li&gt;
+&lt;li&gt;3.在transclient可用时进入while(client.connected())的循环，可以进行回话的保持，返回当前串口通讯的数据&lt;/li&gt;
+&lt;li&gt;4.源码见&lt;a href=&#34;https://github.com/sinowrt/mySmartLock&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;github&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>ubuntu 16.04部署ss</title>
+      <link>https://localhost:1313/2018/2018-10-16t1040-ubuntu/</link>
+      <pubDate>Tue, 16 Oct 2018 10:40:36 +0000</pubDate>
+      
+      <guid>https://localhost:1313/2018/2018-10-16t1040-ubuntu/</guid>
+      <description>
+
+&lt;h1 id=&#34;2018-04-06&#34;&gt;2018/04/06&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;准备部署亚马逊云的ss服务端，无意中看到有一张8刀的未付账单&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;经过查看账单详情，发现美国的俄亥俄州的服务器还没关闭，导致东京和美国的服务器同时开启，当然超出了亚马逊云的免费范围，所以对于国外的云服务器还是要定时上去查看一下，以防意外扣费的发生&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;本篇主要是对ubuntu 16.04上部署ss服务端进行记录的的过程&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;准备工作&#34;&gt;准备工作&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;利用putty的puttygen对亚马逊云派发的秘钥文件*.pem转换为putty能识别的ppk文件&lt;/li&gt;
+&lt;li&gt;启动putty，在ssh的auth中浏览文件夹选中刚才转换出来的ppk文件&lt;/li&gt;
+&lt;li&gt;填写服务器地址以及默认用户名ubuntu@ip地址&lt;/li&gt;
+&lt;li&gt;填写ssh端口22&lt;/li&gt;
+&lt;li&gt;若要进行ping检测，则需要在安全组中添加icmp入站规则&lt;/li&gt;
+&lt;li&gt;对该配置进行保存以便日后维护&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;正式部署&#34;&gt;正式部署&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;首先在终端输入&lt;code&gt;sudo apt-get update&lt;/code&gt;  更新源&lt;/li&gt;
+&lt;li&gt;接着安装pip3，输入&lt;code&gt;sudo apt install python3-pip&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;安装ss，输入&lt;code&gt;sudo pip3 install shadowsocks&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;配置ss，输入&lt;code&gt;sudo vi /etc/shadowsocks&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;在vi中输入ss的配置如下所示：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+    &amp;quot;server&amp;quot;:&amp;quot;0.0.0.0&amp;quot;,
+    &amp;quot;server_port&amp;quot;:444,
+    &amp;quot;local_address&amp;quot;:&amp;quot;127.0.0.1&amp;quot;,
+    &amp;quot;local_port&amp;quot;:1080,
+    &amp;quot;password&amp;quot;:&amp;quot;mypasswd&amp;quot;,
+    &amp;quot;timeout&amp;quot;:300,
+    &amp;quot;method&amp;quot;:&amp;quot;aes-256-cfb&amp;quot;,
+    &amp;quot;fast_open&amp;quot;:false
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;保存退出&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;如果ss不是安装在/usr/bin或/usr/local/bin,要先查看ss的路径，输入&lt;code&gt;whereis ssserver&lt;/code&gt;（故建议在安装ss前先&lt;code&gt;cd /usr/bin&lt;/code&gt;）&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;将查询到的路径复制，输入&lt;code&gt;sudo vi /etc/sudoers&lt;/code&gt;，粘贴到secure_path后面，以冒号分隔强制保存退出即可&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;最后输入&lt;code&gt;sudo ssserver -c /etc/shadowsocks.json -d start &amp;amp;&lt;/code&gt;启动ss 服务即可用客户端进行连接&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>给宿舍装个智能门锁吧（一）</title>
+      <link>https://localhost:1313/2018/2018-10-16t0811-smartlock/</link>
+      <pubDate>Tue, 16 Oct 2018 08:11:56 +0000</pubDate>
+      
+      <guid>https://localhost:1313/2018/2018-10-16t0811-smartlock/</guid>
+      <description>
+
+&lt;h2 id=&#34;初步部署&#34;&gt;初步部署&lt;/h2&gt;
+
+&lt;h4 id=&#34;2018-1-27&#34;&gt;2018.1.27&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;舵机安装，用热熔胶将SG92R 9g小型舵机粘到门锁旁，舵机牵扯尼龙绳实现开锁动作&lt;/li&gt;
+&lt;li&gt;利用原有的papersignals固件对舵机开门的可行性进行测试，发现舵机在门锁有阻力的情况下，在舵机通电一刻仍能高效开锁&lt;/li&gt;
+&lt;li&gt;对该项目的架构进行构思&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;1-借鉴papersignals项目&#34;&gt;&lt;strong&gt;1.借鉴papersignals项目：&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;esp8266充当客户端，定时请求服务端获取json数据&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;手机端发送请求到达服务端，服务端解析请求并修改本地json数据&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;从而达到伪装实时开锁的目的&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;工作与过年原因项目搁置许久&#34;&gt;工作与过年原因项目搁置许久&lt;/h2&gt;
+
+&lt;h3 id=&#34;2-构思内网穿透方案&#34;&gt;&lt;strong&gt;2.构思内网穿透方案&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;利用pandorabox的可扩展性，安装内网穿透客户端ngrok&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;在搬瓦工vps上安装ngrokd服务端&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;抛弃papersignals的类似方式，将esp8266作为服务端，手机作为客户端&lt;/li&gt;
+&lt;li&gt;鉴于小程序的跨平台特性，决定采用小程序的方式进行手机端开发&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;在搬瓦工vps搭建ngrok服务端的过程&#34;&gt;在搬瓦工vps搭建ngrok服务端的过程&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;参考&lt;a href=&#34;https://www.leocode.net/article/index/19.html&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;这篇博客&lt;/a&gt;在vps上进行ngrok的编译&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;该博客中遇到的问题，我全都遇到了，按照相应的步骤操作即可解决&lt;/li&gt;
+&lt;li&gt;另外在go1.4安装操作步骤混乱的时候，造成goroot路径的错乱，从而无法安装上go1.4和go1.6，只需要unset GOROOT即可&lt;/li&gt;
+&lt;li&gt;一切安装就绪，卡在ngrok的go编译上，在编译过程中报错：go build project/test: signal: killed 查阅&lt;a href=&#34;https://segmentfault.com/q/1010000000486445&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;资料&lt;/a&gt;，发现是vps内存太小导致的无法编译&lt;/li&gt;
+&lt;li&gt;改用centos进行编译，但是只有visualbox的centos镜像，而visualbox复制文件上面完全比不上vmware方便，所以改用ubuntu进行ngrok编译。&lt;/li&gt;
+&lt;li&gt;在ubuntu中部署ngrok编译环境的时候，使用yum命令，发现yum是centos专用的安装命令，在ubuntu上使用会导致很多问题的发生，例如yum的源不知如何配置，所以用回apt命令&lt;/li&gt;
+&lt;li&gt;由于无法使用yum，造成很多依赖包无法安装上，所以无法安装上官网下载的go1.10包&lt;/li&gt;
+&lt;li&gt;查找资料发现可以使用sudo apt-get install go-lang命令直接安装go环境，若找不到直接apt update更新源即可&lt;/li&gt;
+&lt;li&gt;开启sslocal，把ngrok项目从git中拉下来&lt;/li&gt;
+&lt;li&gt;对ngrok项目进行编译&lt;/li&gt;
+&lt;li&gt;其中最重要的是$NGROK_DOMAIN的设置，在该教程中直接关系到openssl证书的生成&lt;/li&gt;
+&lt;li&gt;编译出ngrokd服务端&lt;/li&gt;
+&lt;li&gt;丢进vps中跑一下&lt;/li&gt;
+&lt;li&gt;问题：80端口和443端口的占用&lt;/li&gt;
+&lt;li&gt;解决：启动ngrok命令中修改-httpAddr以及httpsAddr 以更改监听端口，4443为透传接入端口，更改之后直接启动即可，在浏览器中输入www.sinowrt.cn:81 出现trunnel&amp;hellip;的即表示启动成功&lt;/li&gt;
+&lt;li&gt;编译出windows的客户端，windows的客户端必须要在cmd中才能运行，新建ngrok.cfg,将内容&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;server_addr: &amp;quot;www.sinowrt.cn:4443&amp;quot;
+trust_host_root_certs: false
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;写入该文件中，在cmd进入该目录，敲入命令&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;ngrok.exe -config=&amp;quot;ngrok.cfg&amp;quot; -subdomain=&amp;quot;abc&amp;quot; 80
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;连接上ngrok服务端即可将本地的80端口暴露出外网&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;问题：一开始死活连接不上，出现fail&lt;/li&gt;
+&lt;li&gt;原因：abc.www.sinowrt.cn没有配置解析，dns无法解析该url所以造成无法连接上服务器，在腾讯云中添加*.www的泛解析，问题解决&lt;/li&gt;
+&lt;li&gt;问题：出现reconnecting&lt;/li&gt;
+&lt;li&gt;原因：server_addr后面的内容必须跟证书生成过程中的地址完全匹配，重新填写该参数或重新生成证书而重新编译即可解决问题&lt;/li&gt;
+&lt;li&gt;至此，服务器端部署告一段落
+直接敲入命令&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;以上部署在应用到小程序中会有坑，请看小程序中的分析&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;最终版的命令&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;./ngrokd -domain=ngrok.sinowrt.cn -httpAddr=:80 -httpsAddr=:443 -tlsCrt /etc/ngrok_ssl/server.crt -tlsKey /etc/ngrok_ssl/server.key&amp;amp;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;即可启动ngrok服务端&lt;/p&gt;
+
+&lt;h3 id=&#34;小程序-我只是个开门的玩意儿-开发的过程&#34;&gt;小程序“我只是个开门的玩意儿”开发的过程&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;小程序账号的申请&lt;/li&gt;
+&lt;li&gt;基本信息的填写&lt;/li&gt;
+&lt;li&gt;开发工具的下载&lt;/li&gt;
+&lt;li&gt;根据原有的框架，对bindViewTap函数进行改写，点击即调用wx.request方法发起post请求&lt;/li&gt;
+&lt;li&gt;由于wx.request会对url进行安全校验，根据网上资料指示，在开发工具中关闭校验&lt;/li&gt;
+&lt;li&gt;问题：发现wx.request不能加端口号&lt;/li&gt;
+&lt;li&gt;解决: 修改vps的apache监听端口为81，ngrokd的监听端口为80&lt;/li&gt;
+&lt;li&gt;添加toast对开门过程进行文字弹幕展示&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;以上部署在应用到小程序中会有坑-请看后续分析&#34;&gt;以上部署在应用到小程序中会有坑，请看后续分析&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;2018.3.2进行了体验版本的发布，回来想试用一下app进行开门，发现竟然无响应&lt;/li&gt;
+&lt;li&gt;无意中开启调试模式，竟然又可以了（此事用的是http协议）&lt;/li&gt;
+&lt;li&gt;查阅网上资料，发现要进行合法域名配置，于是配置合法域名为abc.ngrok.sinowrt.cn（发现一个问题，域名的前缀为https，且无法更改）&lt;/li&gt;
+&lt;li&gt;发现仍是在开发工具中成功运行，而app中始终是调试模式才能成功&lt;/li&gt;
+&lt;li&gt;继续查阅资料，发现只有调试模式才没有进行域名校验&lt;/li&gt;
+&lt;li&gt;查看vps中的443端口占用，ssserver占用了，对sserver进行kill -9 pid操作，再用其他端口重新开启，再重新开启ngrok服务，https连接没问题&lt;/li&gt;
+&lt;li&gt;再修改客户端中的连接协议为https&lt;/li&gt;
+&lt;li&gt;开启开发工具和域名合法检测，发现始终无法请求成功（重启ngrokd的时候发现有配置服务器证书的参数）&lt;/li&gt;
+&lt;li&gt;在腾讯云上为ngrok.sinowrt.cn申请免费的ssl证书,审核成功后，下载，放入vps，指定ngrokd的证书为/etc/ngrok_ssl/server.csr与/etc/ngrok_ssl/server.key&lt;/li&gt;
+&lt;li&gt;发现请求abc.ngrok.sinowrt.cn仍然为不安全，而ngrok.sinowrt.cn却是安全的了&lt;/li&gt;
+&lt;li&gt;于是再为abc.ngrok.sinowrt.cn申请ssl证书，&lt;/li&gt;
+&lt;li&gt;为了减少错误的发生，将ngrok.sinowrt.cn的证书放进ubuntu的ngrok编译环境中，重新编译出ngrokd扔进去vps中&lt;/li&gt;
+&lt;li&gt;按上述的方法指定该证书，重启ngrokd，成功&lt;/li&gt;
+&lt;li&gt;但是小程序似乎仍然毫无反应，而改回http之后才有反应，判断应该是请求的时候被拦截了&lt;/li&gt;
+&lt;li&gt;查看服务器端的tls支持情况，发现服务器端是支持tls1.2以下版本的&lt;/li&gt;
+&lt;li&gt;再查阅&lt;a href=&#34;https://www.jianshu.com/p/082ba2965a88&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;资料1&lt;/a&gt;以及&lt;a href=&#34;http://blog.csdn.net/hgg923/article/details/73897011&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;资料2&lt;/a&gt;,按照相应步骤配置中间证书后，小程序请求问题终于解决了，一切正常使用&lt;/li&gt;
+&lt;li&gt;在使用过程中，点下按钮由于服务端会有延时操作，所以过了几秒才有开锁成功，所以添加“正在开锁”的toast&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;esp8266服务端的搭建&#34;&gt;esp8266服务端的搭建&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;参考网上&lt;a href=&#34;http://www.yfrobot.com/thread-11874-1-1.html&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;资料&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;将如下源码进行改写&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;/*
+    This sketch demonstrates how to set up a simple HTTP-like server.
+    The server will set a GPIO pin depending on the request
+      http://server_ip/gpio/0 will set the GPIO2 low,
+      http://server_ip/gpio/1 will set the GPIO2 high
+    server_ip is the IP address of the ESP8266 module, will be
+    printed to Serial when the module is connected.
+*/
+ 
+#include &amp;lt;ESP8266WiFi.h&amp;gt;
+ 
+#define LED 2
+ 
+const char* ssid = &amp;quot;YFROBOT&amp;quot;;
+const char* password = &amp;quot;yfrobot2016&amp;quot;;
+ 
+// Create an instance of the server
+// specify the port to listen on as an argument
+WiFiServer server(80);
+ 
+void setup() {
+  WiFi.mode(WIFI_STA);
+  Serial.begin(115200);
+  delay(10);
+ 
+  // prepare GPIO2
+  pinMode(LED, OUTPUT);
+ 
+  // Connect to WiFi network
+  Serial.println();
+  Serial.println();
+  Serial.print(&amp;quot;Connecting to &amp;quot;);
+  Serial.println(ssid);
+ 
+  WiFi.begin(ssid, password);
+ 
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(&amp;quot;.&amp;quot;);
+  }
+  Serial.println(&amp;quot;&amp;quot;);
+  Serial.println(&amp;quot;WiFi connected&amp;quot;);
+ 
+  // Start the server
+  server.begin();
+  Serial.println(&amp;quot;Server started&amp;quot;);
+ 
+  // Print the IP address
+  Serial.println(WiFi.localIP());
+ 
+  digitalWrite(LED, 1); // LOW 
+}
+ 
+void loop() {
+  // Check if a client has connected
+  WiFiClient client = server.available();
+  if (!client) {
+    return;
+  }
+ 
+  // Read the first line of the request
+  String req = client.readStringUntil(&#39;\r&#39;);
+  Serial.println(req);
+  client.flush();
+  delay(10);
+ 
+  // Match the request
+  int val = 1;
+  if (req.indexOf(&amp;quot;/gpio/0&amp;quot;) != -1)
+    val = 1;
+  else if (req.indexOf(&amp;quot;/gpio/1&amp;quot;) != -1)
+    val = 0;
+  else {
+    Serial.println(&amp;quot;invalid request&amp;quot;);
+    client.stop();
+    return;
+  }
+ 
+  // Set GPIO2 according to the request
+  digitalWrite(LED, val);
+ 
+  // Prepare the response
+  String s = &amp;quot;HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n&amp;lt;!DOCTYPE HTML&amp;gt;\r\n&amp;lt;html&amp;gt;\r\nGPIO is now &amp;quot;;
+  s += (val) ? &amp;quot;low&amp;quot; : &amp;quot;high&amp;quot;;
+  s += &amp;quot;&amp;lt;/html&amp;gt;\n&amp;quot;;
+  // Send the response to the client
+  client.print(s);
+  delay(1);
+   
+  Serial.println(&amp;quot;Client disonnected&amp;quot;);
+  // The client will actually be disconnected
+  // when the function returns and &#39;client&#39; object is detroyed
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;添加servo控制，以及相应的请求解析即可完成舵机的控制&lt;/li&gt;
+&lt;li&gt;将改写好的ino文件烧录进esp8266即可&lt;/li&gt;
+&lt;li&gt;烧写接线与正常运行接线区别只在于gpio0&lt;br /&gt;
+gpio15 -&amp;gt; -&lt;br /&gt;
+ch_en  -&amp;gt; +&lt;br /&gt;
+vcc -&amp;gt; +&lt;br /&gt;
+gnd -&amp;gt;-&lt;br /&gt;
+烧录：gpio -&amp;gt; -
+运行：gpio -&amp;gt; + 或 置空+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;pandorabox的ngrok客户端部署&#34;&gt;pandorabox的ngrok客户端部署&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;查阅资料发现openwrt上的ngrok客户端为c编写的ngrokc&lt;/li&gt;
+&lt;li&gt;ngrokc的github地址：&lt;a href=&#34;https://github.com/dosgo/ngrok-c&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;https://github.com/dosgo/ngrok-c&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;无意中又发现python版本的ngrok：&lt;a href=&#34;https://github.com/hauntek/python-ngrok&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;https://github.com/hauntek/python-ngrok&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;正好我的路由配置了python环境，为了省事，直接用python版本的&lt;/li&gt;
+&lt;li&gt;将ngrok客户端的py文件扔进/usr/bin中，运行发现缺少ssl.py模块，安装完整版的python以及openssl也无法解决，最后配置源，安装了python-openssl问题才解决&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;python版本的ngrok客户端由于我在windows中已经配置好它的配置文件，放到路由中直接运行即可，下面贴出配置文件：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+&amp;quot;server&amp;quot;: {
+    &amp;quot;host&amp;quot;: &amp;quot;ngrok.sinowrt.cn&amp;quot;,
+    &amp;quot;port&amp;quot;: 4443,
+    &amp;quot;bufsize&amp;quot;: 1024
+},
+&amp;quot;client&amp;quot;: [
+    {
+        &amp;quot;protocol&amp;quot;: &amp;quot;http&amp;quot;,
+        &amp;quot;hostname&amp;quot;: &amp;quot;&amp;quot;,
+        &amp;quot;subdomain&amp;quot;: &amp;quot;abc&amp;quot;,
+        &amp;quot;rport&amp;quot;: 0,
+        &amp;quot;lhost&amp;quot;: &amp;quot;127.0.0.1&amp;quot;,
+        &amp;quot;lport&amp;quot;: 8080
+    }
+]
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;直接运行命令：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;python ./ngrok /etc/config/ngrok.config&amp;amp;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;即可启动客户端&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;以上部署在应用小程序的时候会有坑，请看小程序中的分析&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;最终版的ngrok.config:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+&amp;quot;server&amp;quot;: {
+    &amp;quot;host&amp;quot;: &amp;quot;ngrok.sinowrt.cn&amp;quot;,
+    &amp;quot;port&amp;quot;: 4443,
+    &amp;quot;bufsize&amp;quot;: 1024
+},
+&amp;quot;client&amp;quot;: [
+    {
+        &amp;quot;protocol&amp;quot;: &amp;quot;https&amp;quot;,
+        &amp;quot;hostname&amp;quot;: &amp;quot;&amp;quot;,
+        &amp;quot;subdomain&amp;quot;: &amp;quot;abc&amp;quot;,
+        &amp;quot;rport&amp;quot;: 0,
+        &amp;quot;lhost&amp;quot;: &amp;quot;192.168.1.121&amp;quot;,
+        &amp;quot;lport&amp;quot;: 80
+    }
+]
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;startssl-https-segmentfault-com-a-1190000007547179&#34;&gt;&lt;a href=&#34;https://segmentfault.com/a/1190000007547179&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;StartSSL&lt;/a&gt;&lt;/h2&gt;
+
+&lt;h1 id=&#34;2018-3-7&#34;&gt;2018/3/7&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;晚上发现舵机扫齿了，果然，塑料齿轮还是太脆了&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2018-3-8&#34;&gt;2018/3/8&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;早上淘了一个金属齿轮的国产舵机MG945，看了店家描述,总结下&lt;/li&gt;
+&lt;li&gt;MG996和MG995优点在于响应快，扭力相对小&lt;/li&gt;
+&lt;li&gt;MG945优点在于扭力大，相应相对较慢&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;2018-3-10&#34;&gt;2018/3/10&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;下午拿了舵机装上直接点亮&lt;/li&gt;
+&lt;li&gt;修复发现很久的bug&lt;/li&gt;
+&lt;li&gt;由于舵机初始化时currentposition角度为unlockposition 90，开机时由于&lt;code&gt;MoveServoToPosition(RESETPOSITION, 10);&lt;/code&gt;语句，舵机会先转到90度再转到180度&lt;/li&gt;
+&lt;li&gt;更改为初始化currentposition角度为RESTPOSTION&lt;/li&gt;
+&lt;li&gt;更改unlockposition为0&lt;/li&gt;
+&lt;li&gt;更改resetposition为90&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
   </channel>
 </rss>

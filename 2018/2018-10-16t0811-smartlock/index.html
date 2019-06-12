@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="sinowrt">
+  
+  
+  
+  
+  <link rel="next" href="https://localhost:1313/2018/2018-10-16t1040-ubuntu/" />
+  <link rel="canonical" href="https://localhost:1313/2018/2018-10-16t0811-smartlock/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           给宿舍装个智能门锁吧（一） | Sinowrt
+       
+  </title>
+  <meta name="title" content="给宿舍装个智能门锁吧（一） | Sinowrt">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/localhost:1313"
+    },
+    "articleSection" : "posts",
+    "name" : "给宿舍装个智能门锁吧（一）",
+    "headline" : "给宿舍装个智能门锁吧（一）",
+    "description" : "初步部署 2018.1.27  舵机安装，用热熔胶将SG92R 9g小型舵机粘到门锁旁，舵机牵扯尼龙绳实现开锁动作 利用原有的papersignals固件对舵机开门的可行性进行测试，发现舵机在门锁有阻力的情况下，在舵机通电一刻仍能高效开锁 对该项目的架构进行构思  1.借鉴papersignals项目：  esp8266充当客户端，定时请求服务端获取json数据\n 手机端发送请求到达服务端，服务端解析请求并修改本地json数据\n 从而达到伪装实时开锁的目的  工作与过年原因项目搁置许久 2.构思内网穿透方案  利用pandorabox的可扩展性，安装内网穿透客户端ngrok\n 在搬瓦工vps上安装ngrokd服务端\n 抛弃papersignals的类似方式，将esp8266作为服务端，手机作为客户端 鉴于小程序的跨平台特性，决定采用小程序的方式进行手机端开发  在搬瓦工vps搭建ngrok服务端的过程  参考这篇博客在vps上进行ngrok的编译\n 该博客中遇到的问题，我全都遇到了，按照相应的步骤操作即可解决 另外在go1.4安装操作步骤混乱的时候，造成goroot路径的错乱，从而无法安装上go1.4和go1.6，只需要unset GOROOT即可 一切安装就绪，卡在ngrok的go编译上，在编译过程中报错：go build project\/test: signal: killed 查阅资料，发现是vps内存太小导致的无法编译 改用centos进行编译，但是只有visualbox的centos镜像，而visualbox复制文件上面完全比不上vmware方便，所以改用ubuntu进行ngrok编译。 在ubuntu中部署ngrok编译环境的时候，使用yum命令，发现yum是centos专用的安装命令，在ubuntu上使用会导致很多问题的发生，例如yum的源不知如何配置，所以用回apt命令 由于无法使用yum，造成很多依赖包无法安装上，所以无法安装上官网下载的go1.10包 查找资料发现可以使用sudo apt-get install go-lang命令直接安装go环境，若找不到直接apt update更新源即可 开启sslocal，把ngrok项目从git中拉下来 对ngrok项目进行编译 其中最重要的是$NGROK_DOMAIN的设置，在该教程中直接关系到openssl证书的生成 编译出ngrokd服务端 丢进vps中跑一下 问题：80端口和443端口的占用 解决：启动ngrok命令中修改-httpAddr以及httpsAddr 以更改监听端口，4443为透传接入端口，更改之后直接启动即可，在浏览器中输入www.sinowrt.cn:81 出现trunnel\x26hellip;的即表示启动成功 编译出windows的客户端，windows的客户端必须要在cmd中才能运行，新建ngrok.cfg,将内容  server_addr: \x26quot;www.sinowrt.cn:4443\x26quot; trust_host_root_certs: false  写入该文件中，在cmd进入该目录，敲入命令\nngrok.exe -config=\x26quot;ngrok.cfg\x26quot; -subdomain=\x26quot;abc\x26quot; 80  连接上ngrok服务端即可将本地的80端口暴露出外网",
+    "inLanguage" : "en-us",
+    "author" : "SinoWRT",
+    "creator" : "SinoWRT",
+    "publisher": "SinoWRT",
+    "accountablePerson" : "SinoWRT",
+    "copyrightHolder" : "SinoWRT",
+    "copyrightYear" : "2018",
+    "datePublished": "2018-10-16 08:11:56 \x2b0000 \x2b0000",
+    "dateModified" : "2018-10-16 08:11:56 \x2b0000 \x2b0000",
+    "url" : "https:\/\/localhost:1313\/2018\/2018-10-16t0811-smartlock\/",
+    "wordCount" : "482",
+    "keywords" : [  "Sinowrt"]
+}
+</script>
+
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://localhost:1313">Sinowrt</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://localhost:1313">Sinowrt</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">给宿舍装个智能门锁吧（一）</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="https://localhost:1313" rel="author">SinoWRT</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2018-10-16 itemprop="datePublished">October 16, 2018</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="https://localhost:1313/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/"> 嵌入式 </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          
+
+<h2 id="初步部署">初步部署</h2>
+
+<h4 id="2018-1-27">2018.1.27</h4>
+
+<ul>
+<li>舵机安装，用热熔胶将SG92R 9g小型舵机粘到门锁旁，舵机牵扯尼龙绳实现开锁动作</li>
+<li>利用原有的papersignals固件对舵机开门的可行性进行测试，发现舵机在门锁有阻力的情况下，在舵机通电一刻仍能高效开锁</li>
+<li>对该项目的架构进行构思</li>
+</ul>
+
+<h3 id="1-借鉴papersignals项目"><strong>1.借鉴papersignals项目：</strong></h3>
+
+<ul>
+<li>esp8266充当客户端，定时请求服务端获取json数据<br /></li>
+<li>手机端发送请求到达服务端，服务端解析请求并修改本地json数据<br /></li>
+<li>从而达到伪装实时开锁的目的</li>
+</ul>
+
+<h2 id="工作与过年原因项目搁置许久">工作与过年原因项目搁置许久</h2>
+
+<h3 id="2-构思内网穿透方案"><strong>2.构思内网穿透方案</strong></h3>
+
+<ul>
+<li>利用pandorabox的可扩展性，安装内网穿透客户端ngrok<br /></li>
+<li>在搬瓦工vps上安装ngrokd服务端<br /></li>
+<li>抛弃papersignals的类似方式，将esp8266作为服务端，手机作为客户端</li>
+<li>鉴于小程序的跨平台特性，决定采用小程序的方式进行手机端开发</li>
+</ul>
+
+<h3 id="在搬瓦工vps搭建ngrok服务端的过程">在搬瓦工vps搭建ngrok服务端的过程</h3>
+
+<ul>
+<li>参考<a href="https://www.leocode.net/article/index/19.html" rel="nofollow noreferrer" target="_blank">这篇博客</a>在vps上进行ngrok的编译<br /></li>
+<li>该博客中遇到的问题，我全都遇到了，按照相应的步骤操作即可解决</li>
+<li>另外在go1.4安装操作步骤混乱的时候，造成goroot路径的错乱，从而无法安装上go1.4和go1.6，只需要unset GOROOT即可</li>
+<li>一切安装就绪，卡在ngrok的go编译上，在编译过程中报错：go build project/test: signal: killed 查阅<a href="https://segmentfault.com/q/1010000000486445" rel="nofollow noreferrer" target="_blank">资料</a>，发现是vps内存太小导致的无法编译</li>
+<li>改用centos进行编译，但是只有visualbox的centos镜像，而visualbox复制文件上面完全比不上vmware方便，所以改用ubuntu进行ngrok编译。</li>
+<li>在ubuntu中部署ngrok编译环境的时候，使用yum命令，发现yum是centos专用的安装命令，在ubuntu上使用会导致很多问题的发生，例如yum的源不知如何配置，所以用回apt命令</li>
+<li>由于无法使用yum，造成很多依赖包无法安装上，所以无法安装上官网下载的go1.10包</li>
+<li>查找资料发现可以使用sudo apt-get install go-lang命令直接安装go环境，若找不到直接apt update更新源即可</li>
+<li>开启sslocal，把ngrok项目从git中拉下来</li>
+<li>对ngrok项目进行编译</li>
+<li>其中最重要的是$NGROK_DOMAIN的设置，在该教程中直接关系到openssl证书的生成</li>
+<li>编译出ngrokd服务端</li>
+<li>丢进vps中跑一下</li>
+<li>问题：80端口和443端口的占用</li>
+<li>解决：启动ngrok命令中修改-httpAddr以及httpsAddr 以更改监听端口，4443为透传接入端口，更改之后直接启动即可，在浏览器中输入www.sinowrt.cn:81 出现trunnel&hellip;的即表示启动成功</li>
+<li>编译出windows的客户端，windows的客户端必须要在cmd中才能运行，新建ngrok.cfg,将内容</li>
+</ul>
+
+<pre><code class="language-json">server_addr: &quot;www.sinowrt.cn:4443&quot;
+trust_host_root_certs: false
+</code></pre>
+
+<p>写入该文件中，在cmd进入该目录，敲入命令</p>
+
+<pre><code class="language-shell">ngrok.exe -config=&quot;ngrok.cfg&quot; -subdomain=&quot;abc&quot; 80
+</code></pre>
+
+<p>连接上ngrok服务端即可将本地的80端口暴露出外网</p>
+
+<ul>
+<li>问题：一开始死活连接不上，出现fail</li>
+<li>原因：abc.www.sinowrt.cn没有配置解析，dns无法解析该url所以造成无法连接上服务器，在腾讯云中添加*.www的泛解析，问题解决</li>
+<li>问题：出现reconnecting</li>
+<li>原因：server_addr后面的内容必须跟证书生成过程中的地址完全匹配，重新填写该参数或重新生成证书而重新编译即可解决问题</li>
+<li>至此，服务器端部署告一段落
+直接敲入命令</li>
+
+<li><p>以上部署在应用到小程序中会有坑，请看小程序中的分析</p></li>
+
+<li><p>最终版的命令</p></li>
+</ul>
+
+<pre><code class="language-shell">./ngrokd -domain=ngrok.sinowrt.cn -httpAddr=:80 -httpsAddr=:443 -tlsCrt /etc/ngrok_ssl/server.crt -tlsKey /etc/ngrok_ssl/server.key&amp;
+</code></pre>
+
+<p>即可启动ngrok服务端</p>
+
+<h3 id="小程序-我只是个开门的玩意儿-开发的过程">小程序“我只是个开门的玩意儿”开发的过程</h3>
+
+<ul>
+<li>小程序账号的申请</li>
+<li>基本信息的填写</li>
+<li>开发工具的下载</li>
+<li>根据原有的框架，对bindViewTap函数进行改写，点击即调用wx.request方法发起post请求</li>
+<li>由于wx.request会对url进行安全校验，根据网上资料指示，在开发工具中关闭校验</li>
+<li>问题：发现wx.request不能加端口号</li>
+<li>解决: 修改vps的apache监听端口为81，ngrokd的监听端口为80</li>
+<li>添加toast对开门过程进行文字弹幕展示<br /></li>
+</ul>
+
+<h2 id="以上部署在应用到小程序中会有坑-请看后续分析">以上部署在应用到小程序中会有坑，请看后续分析</h2>
+
+<ul>
+<li>2018.3.2进行了体验版本的发布，回来想试用一下app进行开门，发现竟然无响应</li>
+<li>无意中开启调试模式，竟然又可以了（此事用的是http协议）</li>
+<li>查阅网上资料，发现要进行合法域名配置，于是配置合法域名为abc.ngrok.sinowrt.cn（发现一个问题，域名的前缀为https，且无法更改）</li>
+<li>发现仍是在开发工具中成功运行，而app中始终是调试模式才能成功</li>
+<li>继续查阅资料，发现只有调试模式才没有进行域名校验</li>
+<li>查看vps中的443端口占用，ssserver占用了，对sserver进行kill -9 pid操作，再用其他端口重新开启，再重新开启ngrok服务，https连接没问题</li>
+<li>再修改客户端中的连接协议为https</li>
+<li>开启开发工具和域名合法检测，发现始终无法请求成功（重启ngrokd的时候发现有配置服务器证书的参数）</li>
+<li>在腾讯云上为ngrok.sinowrt.cn申请免费的ssl证书,审核成功后，下载，放入vps，指定ngrokd的证书为/etc/ngrok_ssl/server.csr与/etc/ngrok_ssl/server.key</li>
+<li>发现请求abc.ngrok.sinowrt.cn仍然为不安全，而ngrok.sinowrt.cn却是安全的了</li>
+<li>于是再为abc.ngrok.sinowrt.cn申请ssl证书，</li>
+<li>为了减少错误的发生，将ngrok.sinowrt.cn的证书放进ubuntu的ngrok编译环境中，重新编译出ngrokd扔进去vps中</li>
+<li>按上述的方法指定该证书，重启ngrokd，成功</li>
+<li>但是小程序似乎仍然毫无反应，而改回http之后才有反应，判断应该是请求的时候被拦截了</li>
+<li>查看服务器端的tls支持情况，发现服务器端是支持tls1.2以下版本的</li>
+<li>再查阅<a href="https://www.jianshu.com/p/082ba2965a88" rel="nofollow noreferrer" target="_blank">资料1</a>以及<a href="http://blog.csdn.net/hgg923/article/details/73897011" rel="nofollow noreferrer" target="_blank">资料2</a>,按照相应步骤配置中间证书后，小程序请求问题终于解决了，一切正常使用</li>
+<li>在使用过程中，点下按钮由于服务端会有延时操作，所以过了几秒才有开锁成功，所以添加“正在开锁”的toast</li>
+</ul>
+
+<h3 id="esp8266服务端的搭建">esp8266服务端的搭建</h3>
+
+<ul>
+<li>参考网上<a href="http://www.yfrobot.com/thread-11874-1-1.html" rel="nofollow noreferrer" target="_blank">资料</a></li>
+<li>将如下源码进行改写</li>
+</ul>
+
+<pre><code class="language-cpp">/*
+    This sketch demonstrates how to set up a simple HTTP-like server.
+    The server will set a GPIO pin depending on the request
+      http://server_ip/gpio/0 will set the GPIO2 low,
+      http://server_ip/gpio/1 will set the GPIO2 high
+    server_ip is the IP address of the ESP8266 module, will be
+    printed to Serial when the module is connected.
+*/
+ 
+#include &lt;ESP8266WiFi.h&gt;
+ 
+#define LED 2
+ 
+const char* ssid = &quot;YFROBOT&quot;;
+const char* password = &quot;yfrobot2016&quot;;
+ 
+// Create an instance of the server
+// specify the port to listen on as an argument
+WiFiServer server(80);
+ 
+void setup() {
+  WiFi.mode(WIFI_STA);
+  Serial.begin(115200);
+  delay(10);
+ 
+  // prepare GPIO2
+  pinMode(LED, OUTPUT);
+ 
+  // Connect to WiFi network
+  Serial.println();
+  Serial.println();
+  Serial.print(&quot;Connecting to &quot;);
+  Serial.println(ssid);
+ 
+  WiFi.begin(ssid, password);
+ 
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(&quot;.&quot;);
+  }
+  Serial.println(&quot;&quot;);
+  Serial.println(&quot;WiFi connected&quot;);
+ 
+  // Start the server
+  server.begin();
+  Serial.println(&quot;Server started&quot;);
+ 
+  // Print the IP address
+  Serial.println(WiFi.localIP());
+ 
+  digitalWrite(LED, 1); // LOW 
+}
+ 
+void loop() {
+  // Check if a client has connected
+  WiFiClient client = server.available();
+  if (!client) {
+    return;
+  }
+ 
+  // Read the first line of the request
+  String req = client.readStringUntil('\r');
+  Serial.println(req);
+  client.flush();
+  delay(10);
+ 
+  // Match the request
+  int val = 1;
+  if (req.indexOf(&quot;/gpio/0&quot;) != -1)
+    val = 1;
+  else if (req.indexOf(&quot;/gpio/1&quot;) != -1)
+    val = 0;
+  else {
+    Serial.println(&quot;invalid request&quot;);
+    client.stop();
+    return;
+  }
+ 
+  // Set GPIO2 according to the request
+  digitalWrite(LED, val);
+ 
+  // Prepare the response
+  String s = &quot;HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n&lt;!DOCTYPE HTML&gt;\r\n&lt;html&gt;\r\nGPIO is now &quot;;
+  s += (val) ? &quot;low&quot; : &quot;high&quot;;
+  s += &quot;&lt;/html&gt;\n&quot;;
+  // Send the response to the client
+  client.print(s);
+  delay(1);
+   
+  Serial.println(&quot;Client disonnected&quot;);
+  // The client will actually be disconnected
+  // when the function returns and 'client' object is detroyed
+}
+</code></pre>
+
+<ul>
+<li>添加servo控制，以及相应的请求解析即可完成舵机的控制</li>
+<li>将改写好的ino文件烧录进esp8266即可</li>
+<li>烧写接线与正常运行接线区别只在于gpio0<br />
+gpio15 -&gt; -<br />
+ch_en  -&gt; +<br />
+vcc -&gt; +<br />
+gnd -&gt;-<br />
+烧录：gpio -&gt; -
+运行：gpio -&gt; + 或 置空+</li>
+</ul>
+
+<h3 id="pandorabox的ngrok客户端部署">pandorabox的ngrok客户端部署</h3>
+
+<ul>
+<li>查阅资料发现openwrt上的ngrok客户端为c编写的ngrokc</li>
+<li>ngrokc的github地址：<a href="https://github.com/dosgo/ngrok-c" rel="nofollow noreferrer" target="_blank">https://github.com/dosgo/ngrok-c</a></li>
+<li>无意中又发现python版本的ngrok：<a href="https://github.com/hauntek/python-ngrok" rel="nofollow noreferrer" target="_blank">https://github.com/hauntek/python-ngrok</a></li>
+<li>正好我的路由配置了python环境，为了省事，直接用python版本的</li>
+<li>将ngrok客户端的py文件扔进/usr/bin中，运行发现缺少ssl.py模块，安装完整版的python以及openssl也无法解决，最后配置源，安装了python-openssl问题才解决</li>
+
+<li><p>python版本的ngrok客户端由于我在windows中已经配置好它的配置文件，放到路由中直接运行即可，下面贴出配置文件：</p>
+
+<pre><code class="language-json">{
+&quot;server&quot;: {
+    &quot;host&quot;: &quot;ngrok.sinowrt.cn&quot;,
+    &quot;port&quot;: 4443,
+    &quot;bufsize&quot;: 1024
+},
+&quot;client&quot;: [
+    {
+        &quot;protocol&quot;: &quot;http&quot;,
+        &quot;hostname&quot;: &quot;&quot;,
+        &quot;subdomain&quot;: &quot;abc&quot;,
+        &quot;rport&quot;: 0,
+        &quot;lhost&quot;: &quot;127.0.0.1&quot;,
+        &quot;lport&quot;: 8080
+    }
+]
+}
+</code></pre>
+
+<p>直接运行命令：</p>
+
+<pre><code class="language-shell">python ./ngrok /etc/config/ngrok.config&amp;
+</code></pre>
+
+<p>即可启动客户端</p></li>
+
+<li><p>以上部署在应用小程序的时候会有坑，请看小程序中的分析</p></li>
+
+<li><p>最终版的ngrok.config:</p>
+
+<pre><code class="language-json">{
+&quot;server&quot;: {
+    &quot;host&quot;: &quot;ngrok.sinowrt.cn&quot;,
+    &quot;port&quot;: 4443,
+    &quot;bufsize&quot;: 1024
+},
+&quot;client&quot;: [
+    {
+        &quot;protocol&quot;: &quot;https&quot;,
+        &quot;hostname&quot;: &quot;&quot;,
+        &quot;subdomain&quot;: &quot;abc&quot;,
+        &quot;rport&quot;: 0,
+        &quot;lhost&quot;: &quot;192.168.1.121&quot;,
+        &quot;lport&quot;: 80
+    }
+]
+}
+</code></pre>
+
+<h2 id="startssl-https-segmentfault-com-a-1190000007547179"><a href="https://segmentfault.com/a/1190000007547179" rel="nofollow noreferrer" target="_blank">StartSSL</a></h2>
+
+<h1 id="2018-3-7">2018/3/7</h1>
+
+<ul>
+<li>晚上发现舵机扫齿了，果然，塑料齿轮还是太脆了</li>
+</ul>
+
+<h1 id="2018-3-8">2018/3/8</h1>
+
+<ul>
+<li>早上淘了一个金属齿轮的国产舵机MG945，看了店家描述,总结下</li>
+<li>MG996和MG995优点在于响应快，扭力相对小</li>
+<li>MG945优点在于扭力大，相应相对较慢</li>
+</ul>
+
+<h1 id="2018-3-10">2018/3/10</h1>
+
+<ul>
+<li>下午拿了舵机装上直接点亮</li>
+<li>修复发现很久的bug</li>
+<li>由于舵机初始化时currentposition角度为unlockposition 90，开机时由于<code>MoveServoToPosition(RESETPOSITION, 10);</code>语句，舵机会先转到90度再转到180度</li>
+<li>更改为初始化currentposition角度为RESTPOSTION</li>
+<li>更改unlockposition为0</li>
+<li>更改resetposition为90</li>
+</ul></li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>sinowrt </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=https://localhost:1313/2018/2018-10-16t0811-smartlock/>https://localhost:1313/2018/2018-10-16t0811-smartlock/</span>
+            </p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="https://localhost:1313">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+         
+        
+        <a href="https://localhost:1313/2018/2018-10-16t1040-ubuntu/" class="next" rel="next" title="ubuntu 16.04部署ss">ubuntu 16.04部署ss&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2011 - 2019</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://localhost:1313">sinowrt</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

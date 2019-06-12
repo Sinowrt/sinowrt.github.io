@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="sinowrt">
+  
+  
+  
+  <link rel="prev" href="https://localhost:1313/2018/2018-10-17t0348-smartlock2/" />
+  <link rel="next" href="https://localhost:1313/2018/2018-10-19t0256-drcom-setup-of-newifi_mini/" />
+  <link rel="canonical" href="https://localhost:1313/2018/2018-10-17t0552-init.dkill/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           init.d 的 脚本中使用 kill 的怪事 | Sinowrt
+       
+  </title>
+  <meta name="title" content="init.d 的 脚本中使用 kill 的怪事 | Sinowrt">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/localhost:1313"
+    },
+    "articleSection" : "posts",
+    "name" : "init.d 的 脚本中使用 kill 的怪事",
+    "headline" : "init.d 的 脚本中使用 kill 的怪事",
+    "description" : "2018.08.20 使用自动安装drcom的shell脚本之后，打开配置界面，进行认证之后，想起昨晚有那么一瞬间发现，在drcom的luci界面配置以及apply之后，ps -w会出现两条python drcom的进程，于是再次打开putty查看，果然不出所料，于是就有了这篇文章 #!\/bin\/sh \/etc\/rc.common run_drcom() { local username local password config_get username $1 username config_get password $1 password python \/usr\/bin\/drcom -u $username -p $password \x26amp; } start() { config_load drcom config_foreach run_drcom login } stop() { ps w | grep \x26quot;.*drcom.*\x26quot; | grep -v \x27grep\x27 | cut -c 2-5 | xargs kill -9 echo \x26quot;Drcom Client for GDUFE has stoped.\x26quot; }   大二的时候，在写了drcom的luci界面之后，发现有时候使用drcom_client的stop命令会不奏效，经过查看代码，发现问题应该出在cut -c 2-5上\nfor example cut -c 2-5 是截取了第二到第五位的字符串 即4位pid 若pid大于4位之后便不再好使  我有印象当时已经改正了，这次出现的 drcom_client 脚本，便是原原本本的当年的模样，至于为什么会这样，可能当时我只改了路由器上的脚本，而没有更新本地脚本",
+    "inLanguage" : "en-us",
+    "author" : "SinoWRT",
+    "creator" : "SinoWRT",
+    "publisher": "SinoWRT",
+    "accountablePerson" : "SinoWRT",
+    "copyrightHolder" : "SinoWRT",
+    "copyrightYear" : "2018",
+    "datePublished": "2018-10-17 05:52:17 \x2b0000 \x2b0000",
+    "dateModified" : "2018-10-17 05:52:17 \x2b0000 \x2b0000",
+    "url" : "https:\/\/localhost:1313\/2018\/2018-10-17t0552-init.dkill\/",
+    "wordCount" : "306",
+    "keywords" : [  "Sinowrt"]
+}
+</script>
+
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://localhost:1313">Sinowrt</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://localhost:1313">Sinowrt</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">init.d 的 脚本中使用 kill 的怪事</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="https://localhost:1313" rel="author">SinoWRT</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2018-10-17 itemprop="datePublished">October 17, 2018</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="https://localhost:1313/categories/linux/"> Linux </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+            
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          
+
+<h1 id="2018-08-20">2018.08.20</h1>
+
+<h4 id="使用自动安装drcom的shell脚本之后-打开配置界面-进行认证之后-想起昨晚有那么一瞬间发现-在drcom的luci界面配置以及apply之后-ps-w会出现两条python-drcom的进程-于是再次打开putty查看-果然不出所料-于是就有了这篇文章">使用自动安装drcom的shell脚本之后，打开配置界面，进行认证之后，想起昨晚有那么一瞬间发现，在drcom的luci界面配置以及apply之后，ps -w会出现两条python drcom的进程，于是再次打开putty查看，果然不出所料，于是就有了这篇文章</h4>
+
+<pre><code class="language-shell">#!/bin/sh /etc/rc.common
+run_drcom()
+{
+local username
+local password
+config_get username $1 username
+config_get password $1 password
+python /usr/bin/drcom -u $username -p $password &amp;
+}
+start()
+{
+config_load drcom
+config_foreach run_drcom login
+}
+stop()
+{
+ps w | grep &quot;.*drcom.*&quot; | grep -v 'grep' | cut -c 2-5 | xargs kill -9
+echo &quot;Drcom Client for GDUFE has stoped.&quot;
+}
+</code></pre>
+
+<ul>
+<li><p>大二的时候，在写了drcom的luci界面之后，发现有时候使用drcom_client的stop命令会不奏效，经过查看代码，发现问题应该出在<code>cut -c 2-5</code>上</p>
+
+<h3 id="for-example">for example</h3></li>
+
+<li><h3 id="cut-c-2-5-是截取了第二到第五位的字符串-即4位pid"><code>cut -c 2-5 是截取了第二到第五位的字符串 即4位pid</code></h3></li>
+
+<li><h3 id="若pid大于4位之后便不再好使"><code>若pid大于4位之后便不再好使</code></h3></li>
+</ul>
+
+<p>我有印象当时已经改正了，这次出现的 drcom_client 脚本，便是原原本本的当年的模样，至于为什么会这样，可能当时我只改了路由器上的脚本，而没有更新本地脚本</p>
+
+<h4 id="不过-这次的问题不在这里-而是这次的问题-暴露了这个潜在的问题">不过，这次的问题不在这里，而是这次的问题，暴露了这个潜在的问题</h4>
+
+<p>这次的问题的导火索是</p>
+
+<pre><code class="language-shell">local fs = require &quot;nixio.fs&quot;
+local sys = require &quot;luci.sys&quot;
+m = Map(&quot;drcom&quot;,translate(&quot;Dr.com configure&quot;),translate(&quot;GDUFE Dr.com client configure&quot;))
+s = m:section(TypedSection,&quot;login&quot;)
+s.anonymous = true
+
+
+name = s:option(Value, &quot;username&quot;, translate(&quot;Username&quot;))
+pass = s:option(Value, &quot;password&quot;, translate(&quot;Password&quot;))
+pass.password = true
+
+local apply = luci.http.formvalue(&quot;cbi.apply&quot;)
+if apply then
+    io.popen(&quot;/etc/init.d/drcom_client start&quot;)
+end
+
+return m
+</code></pre>
+
+<p>原来是apply这段，我记得当时也改过了，可是，这就是咸丰年的那一版。。。</p>
+
+<ul>
+<li><p>我想在<code>io.popen(&quot;/etc/init.d/drcom_client start&quot;)</code>上面加上一段<code>io.popen(&quot;/etc/init.d/drcom_client stop&quot;)</code>就完事了，可是，完美主义并不允许我这么做。</p></li>
+
+<li><p>我想，在Drcom_AutoLink上也是一个 stop 一个 start 这样也太low了吧，为什么不给drcom_client写一个restart呢，像<code>service network restart</code>用的多顺手。</p></li>
+
+<li><p>二话不说，打开/etc/init.d/drcom_client 添上一段</p>
+
+<pre><code class="language-shell">restart(){
+stop
+sleep 1
+start
+}
+</code></pre>
+
+<p>可是每次执行<code>/etc/init.d/drcom_client restart</code>就只有一句Killed，就啥反应也没有了，就连<code>echo &quot;Drcom Client for GDUFE has stoped.&quot;</code>这句也没输出</p>
+
+<ul>
+<li>restart没反应对吧，一句一句来，先<code>/etc/init.d/drcom_client stop</code>,奇了怪了，<code>echo &quot;Drcom Client for GDUFE has stoped.&quot;</code>同样没输出，我就纳闷了</li>
+<li>难道是restart没重写成功？</li>
+
+<li><p>难道是stop没重写成功？</p></li>
+
+<li><h3 id="当我去掉-ps-w-grep-drcom-grep-v-grep-cut-c-2-5-xargs-kill-9-这一句后-echo-drcom-client-for-gdufe-has-stoped-竟然成功输出了">当我去掉<code>ps w | grep &quot;.*drcom.*&quot; | grep -v 'grep' | cut -c 2-5 | xargs kill -9</code>这一句后，<code>echo &quot;Drcom Client for GDUFE has stoped.&quot;</code>竟然成功输出了</h3></li>
+
+<li><p>于是想到，应该是这句把自己也kill掉了，于是去掉<code>| xargs kill -9</code>只留下<code>ps w | grep &quot;.*drcom.*&quot; | grep -v 'grep' | cut -c 2-5</code></p></li>
+
+<li><p>执行<code>/etc/init.d/drcom_client stop</code>，果然，出现了两个pid，在前面再加一句ps -w看看结果
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://blog.sinowrt.cn/wp-content/uploads/2018/10/1-1.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p></li>
+</ul>
+
+<h2 id="solution">Solution</h2>
+
+<ul>
+<li><h3 id="1-修复只截取4位pid">1.修复只截取4位pid</h3></li>
+
+<li><h3 id="2-精准匹配进程名称">2.精准匹配进程名称</h3></li>
+
+<li><p>修改<code>ps w | grep &quot;.*drcom.*&quot; | grep -v 'grep' | cut -c 2-5 | xargs kill -9</code>为</p></li>
+
+<li><p><code>ps w | grep &quot;python.*.drcom&quot; |grep -v 'grep'| awk '{print $1}'| xargs kill -9</code></p></li>
+
+<li><h3 id="3-测试restart是否成功">3.测试restart是否成功</h3>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://blog.sinowrt.cn/wp-content/uploads/2018/10/2.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p></li>
+</ul>
+
+<p>修改的drcom_client如下</p>
+
+<pre><code class="language-shell">#!/bin/sh /etc/rc.common
+START=10
+STOP=15
+run_drcom()
+{
+local username
+local password
+config_get username $1 username
+config_get password $1 password
+python /usr/bin/drcom -u $username -p $password &amp;
+}
+start()
+{
+config_load drcom
+config_foreach run_drcom login
+}
+stop()
+{
+ps w | grep &quot;python.*.drcom&quot; |grep -v 'grep'| awk '{print $1}'| xargs kill -9
+echo &quot;Drcom Client for GDUFE has stoped.&quot;
+}
+restart(){
+stop
+sleep 1
+start
+}
+</code></pre></li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>sinowrt </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=https://localhost:1313/2018/2018-10-17t0552-init.dkill/>https://localhost:1313/2018/2018-10-17t0552-init.dkill/</span>
+            </p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="https://localhost:1313">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://localhost:1313/2018/2018-10-17t0348-smartlock2/" class="prev" rel="prev" title="给宿舍装个智能锁吧（二）——指纹篇"><i class="iconfont icon-left"></i>&nbsp;给宿舍装个智能锁吧（二）——指纹篇</a>
+         
+        
+        <a href="https://localhost:1313/2018/2018-10-19t0256-drcom-setup-of-newifi_mini/" class="next" rel="next" title="newifi mini安装drcom全攻略">newifi mini安装drcom全攻略&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2011 - 2019</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://localhost:1313">sinowrt</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+     <link href="//lib.baomitu.com/lightgallery/1.6.11/css/lightgallery.min.css" rel="stylesheet">  
+      
+     <script src="/js/vendor_gallery.min.js" async="" ></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MFC on Sinowrt</title>
+    <link>https://localhost:1313/categories/mfc/</link>
+    <description>Recent content in MFC on Sinowrt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 11 Dec 2018 15:41:27 +0000</lastBuildDate>
+    
+	<atom:link href="https://localhost:1313/categories/mfc/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>MFC FormView中的OnInitialUpdate不调用</title>
+      <link>https://localhost:1313/2018/2018-12-11t1541-formview-oninitialupdate/</link>
+      <pubDate>Tue, 11 Dec 2018 15:41:27 +0000</pubDate>
+      
+      <guid>https://localhost:1313/2018/2018-12-11t1541-formview-oninitialupdate/</guid>
+      <description> 0x00 在Formview中的OnInitialUpdate中初始化了个自定义的按钮，但是运行无任何样式效果 0x01 在OnInitialUpdate里打了个断点再次运行，发现此方法根本未调用 0x02 在FormView Create后，手动调用OnInitialUpdate解决，如下所示 CWnd* pFrameWnd = this; CCreateContext pContext; pContext.m_pCurrentDoc = 0; pContext.m_pNewViewClass = RUNTIME_CLASS(View_OnlineShopManagement); View_OnlineShopManagement* pView = (View_OnlineShopManagement*)((CFrameWnd*)pFrameWnd)-&amp;gt;CreateView(&amp;amp;pContext); pView-&amp;gt;ShowWindow(SW_NORMAL); pView-&amp;gt;OnInitialUpdate(); //手动调用  </description>
+    </item>
+    
+    <item>
+      <title>MFC Dialog中嵌入Formview 初始化控件时m_hWnd为空</title>
+      <link>https://localhost:1313/2018/2018-12-11t1435-formview-m_hwnd/</link>
+      <pubDate>Tue, 11 Dec 2018 14:35:00 +0000</pubDate>
+      
+      <guid>https://localhost:1313/2018/2018-12-11t1435-formview-m_hwnd/</guid>
+      <description> 原因：在构造函数中进行控件的初始化 解决方法：Formview中，控件的初始化应该放在OnInitialUpdate中 </description>
+    </item>
+    
+    <item>
+      <title>MFC Dialog中嵌入Formview 0XC000041D:用户回调期间遇到未经处理的异常</title>
+      <link>https://localhost:1313/2018/2018-12-11t1430-formview-0xc000041d/</link>
+      <pubDate>Tue, 11 Dec 2018 14:30:47 +0000</pubDate>
+      
+      <guid>https://localhost:1313/2018/2018-12-11t1430-formview-0xc000041d/</guid>
+      <description>在填充Formview时，遇到0XC000041D:用户回调期间遇到未经处理的异常(已解决) 原因：HBRUSH hbr = OnCtlColor(pDC, pWnd, nCtlColor);这一句中应该在OnCtlColor前面添加命名空间:: 否则编译器会误解为递归函数 源码如下： #pragma once #include &amp;quot;NormalBtn.h&amp;quot; #include &amp;quot;resource.h&amp;quot; #include &amp;lt;Gdiplus.h&amp;gt; using namespace Gdiplus; // View_OnlineShopManagement 窗体视图 class View_OnlineShopManagement : public CFormView { DECLARE_DYNCREATE(View_OnlineShopManagement) protected: View_OnlineShopManagement(); // 动态创建所使用的受保护的构造函数 virtual ~View_OnlineShopManagement(); public: #ifdef AFX_DESIGN_TIME enum { IDD = IDD_FORMVIEW_OSM }; #endif #ifdef _DEBUG virtual void AssertValid() const; #ifndef _WIN32_WCE virtual void Dump(CDumpContext&amp;amp; dc) const; #endif #endif protected: virtual void DoDataExchange(CDataExchange* pDX); // DDX/DDV 支持 DECLARE_MESSAGE_MAP() public: virtual void OnInitialUpdate(); GdiplusStartupInput m_gdiplusStartupInput; ULONG_PTR m_gdiplusToken; afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor); virtual void OnDraw(CDC* /*pDC*/); };  // View_OnlineShopManagement.</description>
+    </item>
+    
+  </channel>
+</rss>

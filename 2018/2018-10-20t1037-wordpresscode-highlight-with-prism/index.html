@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="sinowrt">
+  
+  
+  
+  <link rel="prev" href="https://localhost:1313/2018/2018-10-19t0256-drcom-setup-of-newifi_mini/" />
+  <link rel="next" href="https://localhost:1313/2018/2018-11-04t1148-synologynas-diy/" />
+  <link rel="canonical" href="https://localhost:1313/2018/2018-10-20t1037-wordpresscode-highlight-with-prism/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           用prism为WordPress页面实现代码高亮 | Sinowrt
+       
+  </title>
+  <meta name="title" content="用prism为WordPress页面实现代码高亮 | Sinowrt">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/localhost:1313"
+    },
+    "articleSection" : "posts",
+    "name" : "用prism为WordPress页面实现代码高亮",
+    "headline" : "用prism为WordPress页面实现代码高亮",
+    "description" : " 0x01 下载prism的css与js文件  在prism官网下载prism的css与js文件  0x02 ssh方式登陆服务器  在路径\/wordpress\/htdocs\/wp-content\/themes\/你的主题名称\/路径下创建prism文件夹 将prism.css与prism.js两个文件上传到prism文件夹中  0x03 修改functions.php  在\/wordpress\/htdocs\/wp-content\/themes\/你的主题名称\/下找到functions.php vi修改文件，添加以下语句：  function add_prism() { wp_register_style( \x27prismCSS\x27, get_stylesheet_directory_uri() . \x27\/prism\/prism.css\x27 \/\/自定义路径 ); wp_register_script( \x27prismJS\x27, get_stylesheet_directory_uri() . \x27\/prism\/prism.js\x27 \/\/自定义路径 ); wp_enqueue_style(\x27prismCSS\x27); wp_enqueue_script(\x27prismJS\x27); } add_action(\x27wp_enqueue_scripts\x27, \x27add_prism\x27);  0x04注意  get_stylesheet_directory_uri()与get_parent_theme_file_path( \x27\/inc\/color-patterns.php\x27 )的区别 使用get_parent_theme_file_path( \x27\/prism\/prism.css\x27 )语句之后发现页面代码高亮没生效 通过chrome F12调试 发现prism.css与prism.js没加载成功 细看发现请求路径不对劲 修改成get_stylesheet_directory_uri().\x27\/prism\/prism.js\x27之后代码高亮生效  ",
+    "inLanguage" : "en-us",
+    "author" : "SinoWRT",
+    "creator" : "SinoWRT",
+    "publisher": "SinoWRT",
+    "accountablePerson" : "SinoWRT",
+    "copyrightHolder" : "SinoWRT",
+    "copyrightYear" : "2018",
+    "datePublished": "2018-10-20 10:37:42 \x2b0000 \x2b0000",
+    "dateModified" : "2018-10-20 10:37:42 \x2b0000 \x2b0000",
+    "url" : "https:\/\/localhost:1313\/2018\/2018-10-20t1037-wordpresscode-highlight-with-prism\/",
+    "wordCount" : "45",
+    "keywords" : [  "Sinowrt"]
+}
+</script>
+
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://localhost:1313">Sinowrt</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://localhost:1313">Sinowrt</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">用prism为WordPress页面实现代码高亮</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="https://localhost:1313" rel="author">SinoWRT</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2018-10-20 itemprop="datePublished">October 20, 2018</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="https://localhost:1313/categories/linux/"> Linux </a>
+                        <a href="https://localhost:1313/categories/wordpress/"> Wordpress </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          
+
+<h2 id="0x01-下载prism的css与js文件">0x01 下载prism的css与js文件</h2>
+
+<ul>
+<li>在<a href="https://prismjs.com/download.html" rel="nofollow noreferrer" target="_blank">prism官网</a>下载prism的css与js文件</li>
+</ul>
+
+<h2 id="0x02-ssh方式登陆服务器">0x02 ssh方式登陆服务器</h2>
+
+<ul>
+<li>在路径<code>/wordpress/htdocs/wp-content/themes/你的主题名称/</code>路径下创建prism文件夹</li>
+<li>将prism.css与prism.js两个文件上传到prism文件夹中</li>
+</ul>
+
+<h2 id="0x03-修改functions-php">0x03 修改functions.php</h2>
+
+<ul>
+<li>在<code>/wordpress/htdocs/wp-content/themes/你的主题名称/</code>下找到functions.php</li>
+<li>vi修改文件，添加以下语句：</li>
+</ul>
+
+<pre><code class="language-js">function add_prism() {
+        wp_register_style(
+            'prismCSS', 
+            get_stylesheet_directory_uri() . '/prism/prism.css' //自定义路径          
+        );
+        wp_register_script(
+            'prismJS',
+            get_stylesheet_directory_uri() . '/prism/prism.js'   //自定义路径          
+        );
+        wp_enqueue_style('prismCSS');
+        wp_enqueue_script('prismJS');
+    }
+add_action('wp_enqueue_scripts', 'add_prism');
+</code></pre>
+
+<h2 id="0x04注意">0x04注意</h2>
+
+<ul>
+<li><code>get_stylesheet_directory_uri()</code>与<code>get_parent_theme_file_path( '/inc/color-patterns.php' )</code>的区别</li>
+<li>使用<code>get_parent_theme_file_path( '/prism/prism.css' )</code>语句之后发现页面代码高亮没生效</li>
+<li>通过chrome F12调试 发现prism.css与prism.js没加载成功</li>
+<li>细看发现请求路径不对劲</li>
+<li>修改成<code>get_stylesheet_directory_uri().'/prism/prism.js'</code>之后代码高亮生效</li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>sinowrt </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=https://localhost:1313/2018/2018-10-20t1037-wordpresscode-highlight-with-prism/>https://localhost:1313/2018/2018-10-20t1037-wordpresscode-highlight-with-prism/</span>
+            </p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="https://localhost:1313">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="https://localhost:1313/2018/2018-10-19t0256-drcom-setup-of-newifi_mini/" class="prev" rel="prev" title="newifi mini安装drcom全攻略"><i class="iconfont icon-left"></i>&nbsp;newifi mini安装drcom全攻略</a>
+         
+        
+        <a href="https://localhost:1313/2018/2018-11-04t1148-synologynas-diy/" class="next" rel="next" title="旧笔记本安装黑群晖NAS系统——打造属于自己的私有云">旧笔记本安装黑群晖NAS系统——打造属于自己的私有云&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2011 - 2019</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://localhost:1313">sinowrt</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>嵌入式 on Sinowrt</title>
+    <link>https://localhost:1313/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/</link>
+    <description>Recent content in 嵌入式 on Sinowrt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 17 Oct 2018 03:48:52 +0000</lastBuildDate>
+    
+	<atom:link href="https://localhost:1313/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>给宿舍装个智能锁吧（二）——指纹篇</title>
+      <link>https://localhost:1313/2018/2018-10-17t0348-smartlock2/</link>
+      <pubDate>Wed, 17 Oct 2018 03:48:52 +0000</pubDate>
+      
+      <guid>https://localhost:1313/2018/2018-10-17t0348-smartlock2/</guid>
+      <description>2018/3/13  星期二晚上到货 取开发资料 浏览用户手册  2018/3/14  根据用户手册进行模块接线 接入串口，利用开发包中的上位机对指纹模块进行操作 用串口调试软件，输入相应的指令，进行指纹采集等操作，但进行相应的操作总是无法实现 原因：对原有指令进行了改造，而校验码并没有改变 对上位机软件进行改造，使其输出相应操作流程的指令
+在OEMHostDlg.cpp中查找对应的按钮执行的内容 1.找到void COEMHostDlg::OnBtnVerify()
+  void COEMHostDlg::OnBtnVerify() { int w_nRet, w_nTmplNo, w_nFpStatus, w_nLearned; DWORD w_dwTime; CString w_strTmp; UpdateData(TRUE); if (!CheckUserID()) return; EnableControl(FALSE); GetDlgItem(IDC_BTN_DISCONNECT)-&amp;gt;EnableWindow(FALSE); GetDlgItem(IDC_BTN_STOP)-&amp;gt;EnableWindow(TRUE); m_bCancel = FALSE; w_nTmplNo = m_nUserID; //. Check if fp is exist w_nRet = m_clsCommu.Run_GetStatus(w_nTmplNo, &amp;amp;w_nFpStatus); if( w_nRet != ERR_SUCCESS ) { m_strCmdResult = GetErrorMsg(w_nRet); goto l_exit; } if( w_nRet == ERR_SUCCESS &amp;amp;&amp;amp; w_nFpStatus == GD_TEMPLATE_EMPTY ) { m_strCmdResult = _T(&amp;quot;Template is empty&amp;quot;); goto l_exit; } m_clsCommu.</description>
+    </item>
+    
+    <item>
+      <title>给宿舍装个智能门锁吧（一）</title>
+      <link>https://localhost:1313/2018/2018-10-16t0811-smartlock/</link>
+      <pubDate>Tue, 16 Oct 2018 08:11:56 +0000</pubDate>
+      
+      <guid>https://localhost:1313/2018/2018-10-16t0811-smartlock/</guid>
+      <description>初步部署 2018.1.27  舵机安装，用热熔胶将SG92R 9g小型舵机粘到门锁旁，舵机牵扯尼龙绳实现开锁动作 利用原有的papersignals固件对舵机开门的可行性进行测试，发现舵机在门锁有阻力的情况下，在舵机通电一刻仍能高效开锁 对该项目的架构进行构思  1.借鉴papersignals项目：  esp8266充当客户端，定时请求服务端获取json数据
+ 手机端发送请求到达服务端，服务端解析请求并修改本地json数据
+ 从而达到伪装实时开锁的目的  工作与过年原因项目搁置许久 2.构思内网穿透方案  利用pandorabox的可扩展性，安装内网穿透客户端ngrok
+ 在搬瓦工vps上安装ngrokd服务端
+ 抛弃papersignals的类似方式，将esp8266作为服务端，手机作为客户端 鉴于小程序的跨平台特性，决定采用小程序的方式进行手机端开发  在搬瓦工vps搭建ngrok服务端的过程  参考这篇博客在vps上进行ngrok的编译
+ 该博客中遇到的问题，我全都遇到了，按照相应的步骤操作即可解决 另外在go1.4安装操作步骤混乱的时候，造成goroot路径的错乱，从而无法安装上go1.4和go1.6，只需要unset GOROOT即可 一切安装就绪，卡在ngrok的go编译上，在编译过程中报错：go build project/test: signal: killed 查阅资料，发现是vps内存太小导致的无法编译 改用centos进行编译，但是只有visualbox的centos镜像，而visualbox复制文件上面完全比不上vmware方便，所以改用ubuntu进行ngrok编译。 在ubuntu中部署ngrok编译环境的时候，使用yum命令，发现yum是centos专用的安装命令，在ubuntu上使用会导致很多问题的发生，例如yum的源不知如何配置，所以用回apt命令 由于无法使用yum，造成很多依赖包无法安装上，所以无法安装上官网下载的go1.10包 查找资料发现可以使用sudo apt-get install go-lang命令直接安装go环境，若找不到直接apt update更新源即可 开启sslocal，把ngrok项目从git中拉下来 对ngrok项目进行编译 其中最重要的是$NGROK_DOMAIN的设置，在该教程中直接关系到openssl证书的生成 编译出ngrokd服务端 丢进vps中跑一下 问题：80端口和443端口的占用 解决：启动ngrok命令中修改-httpAddr以及httpsAddr 以更改监听端口，4443为透传接入端口，更改之后直接启动即可，在浏览器中输入www.sinowrt.cn:81 出现trunnel&amp;hellip;的即表示启动成功 编译出windows的客户端，windows的客户端必须要在cmd中才能运行，新建ngrok.cfg,将内容  server_addr: &amp;quot;www.sinowrt.cn:4443&amp;quot; trust_host_root_certs: false  写入该文件中，在cmd进入该目录，敲入命令
+ngrok.exe -config=&amp;quot;ngrok.cfg&amp;quot; -subdomain=&amp;quot;abc&amp;quot; 80  连接上ngrok服务端即可将本地的80端口暴露出外网</description>
+    </item>
+    
+  </channel>
+</rss>
