@@ -9,9 +9,9 @@
   
   
   
-  <link rel="prev" href="http://blog.sinowrt.cn/2018/2018-11-17t1516-qt5compile-error/" />
-  <link rel="next" href="http://blog.sinowrt.cn/2018/2018-12-11t1430-formview-0xc000041d/" />
-  <link rel="canonical" href="http://blog.sinowrt.cn/2018/2018-12-03t1258-hard-disk-parttion-unview/" />
+  <link rel="prev" href="http://blog.sinowrt.cn/2018/2018-11-17t1513-install-qt5-in-win10/" />
+  <link rel="next" href="http://blog.sinowrt.cn/2018/2018-12-03t1258-hard-disk-parttion-unview/" />
+  <link rel="canonical" href="http://blog.sinowrt.cn/2018/2018-11-17t1516-qt5compile-error/" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -22,10 +22,10 @@
   <title>
        
        
-           Win10装光驱位硬盘分区不显示 | Sinowrt
+           Qt5 error LNK2019 无法解析的外部符号的解决方法 | Sinowrt
        
   </title>
-  <meta name="title" content="Win10装光驱位硬盘分区不显示 | Sinowrt">
+  <meta name="title" content="Qt5 error LNK2019 无法解析的外部符号的解决方法 | Sinowrt">
     
   
   <link rel="stylesheet" href="/font/iconfont.css">
@@ -44,9 +44,9 @@
          "@id": "http:\/\/blog.sinowrt.cn"
     },
     "articleSection" : "posts",
-    "name" : "Win10装光驱位硬盘分区不显示",
-    "headline" : "Win10装光驱位硬盘分区不显示",
-    "description" : " 0x00 前阵子用旧电脑装了个群晖nas，无奈用的120G硬盘，完全不够用，看手上还有个500G的三星机械盘，就买了个光驱硬盘盒，到手后插上电脑没显示分区？不兼容？盘坏了？ 0x01 打开设备管理器，扫描硬件更新，可以看到三星机械盘，盘和架子应该没问题 0x02 打开partition wizard,可以看到硬盘基本信息都在，就是没有盘符 0x03 分配盘符后，可以看到电脑显示分区正常，应该是没有挂载 0x04 也可以利用diskpart对卷进行挂载 0x05 Z盘挂载成功 ",
+    "name" : "Qt5 error LNK2019 无法解析的外部符号的解决方法",
+    "headline" : "Qt5 error LNK2019 无法解析的外部符号的解决方法",
+    "description" : " 编译过程中连接错误 尝试删除build文件夹，问题解决 ",
     "inLanguage" : "en-us",
     "author" : "SinoWRT",
     "creator" : "SinoWRT",
@@ -54,10 +54,10 @@
     "accountablePerson" : "SinoWRT",
     "copyrightHolder" : "SinoWRT",
     "copyrightYear" : "2018",
-    "datePublished": "2018-12-03 12:58:57 \x2b0000 \x2b0000",
-    "dateModified" : "2018-12-03 12:58:57 \x2b0000 \x2b0000",
-    "url" : "http:\/\/blog.sinowrt.cn\/2018\/2018-12-03t1258-hard-disk-parttion-unview\/",
-    "wordCount" : "13",
+    "datePublished": "2018-11-17 15:16:56 \x2b0000 \x2b0000",
+    "dateModified" : "2018-11-17 15:16:56 \x2b0000 \x2b0000",
+    "url" : "http:\/\/blog.sinowrt.cn\/2018\/2018-11-17t1516-qt5compile-error\/",
+    "wordCount" : "2",
     "keywords" : [  "Sinowrt"]
 }
 </script>
@@ -116,16 +116,17 @@
       		
 <article class="post-warp" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">Win10装光驱位硬盘分区不显示</h1>
+        <h1 class="post-title" itemprop="name headline">Qt5 error LNK2019 无法解析的外部符号的解决方法</h1>
         <div class="post-meta">
                 Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">SinoWRT</a> with ♥ 
                 <span class="post-time">
-                on <time datetime=2018-12-03 itemprop="datePublished">December 3, 2018</time>
+                on <time datetime=2018-11-17 itemprop="datePublished">November 17, 2018</time>
                 </span>
                 in
                 <i class="iconfont icon-folder"></i>
                 <span class="post-category">
-                        <a href="http://blog.sinowrt.cn/categories/windows/"> Windows </a>
+                        <a href="http://blog.sinowrt.cn/categories/c&#43;&#43;/"> C&#43;&#43; </a>
+                        <a href="http://blog.sinowrt.cn/categories/qt/"> Qt </a>
                         
                 </span>
         </div>
@@ -133,8 +134,6 @@
     <div class="post-content">
         
 
-        
-            
         
 
         
@@ -150,29 +149,9 @@
 
           
 
-<h4 id="0x00-前阵子用旧电脑装了个群晖nas-无奈用的120g硬盘-完全不够用-看手上还有个500g的三星机械盘-就买了个光驱硬盘盒-到手后插上电脑没显示分区-不兼容-盘坏了">0x00 前阵子用旧电脑装了个群晖nas，无奈用的120G硬盘，完全不够用，看手上还有个500G的三星机械盘，就买了个光驱硬盘盒，到手后插上电脑没显示分区？不兼容？盘坏了？</h4>
+<h1 id="编译过程中连接错误">编译过程中连接错误</h1>
 
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-12-03T1258/1.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
-
-<h4 id="0x01-打开设备管理器-扫描硬件更新-可以看到三星机械盘-盘和架子应该没问题">0x01 打开设备管理器，扫描硬件更新，可以看到三星机械盘，盘和架子应该没问题</h4>
-
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-12-03T1258/2.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
-
-<h4 id="0x02-打开partition-wizard-可以看到硬盘基本信息都在-就是没有盘符">0x02 打开partition wizard,可以看到硬盘基本信息都在，就是没有盘符</h4>
-
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-12-03T1258/3.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
-
-<h4 id="0x03-分配盘符后-可以看到电脑显示分区正常-应该是没有挂载">0x03 分配盘符后，可以看到电脑显示分区正常，应该是没有挂载</h4>
-
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-12-03T1258/4.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
-
-<h4 id="0x04-也可以利用diskpart对卷进行挂载">0x04 也可以利用diskpart对卷进行挂载</h4>
-
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-12-03T1258/5.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
-
-<h4 id="0x05-z盘挂载成功">0x05 Z盘挂载成功</h4>
-
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-12-03T1258/6.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+<h4 id="尝试删除build文件夹-问题解决">尝试删除build文件夹，问题解决</h4>
 
     </div>
 
@@ -187,7 +166,7 @@
              
             <p class="copyright-item">
                     <span>Link:</span>
-                    <a href=http://blog.sinowrt.cn/2018/2018-12-03t1258-hard-disk-parttion-unview/>http://blog.sinowrt.cn/2018/2018-12-03t1258-hard-disk-parttion-unview/</span>
+                    <a href=http://blog.sinowrt.cn/2018/2018-11-17t1516-qt5compile-error/>http://blog.sinowrt.cn/2018/2018-11-17t1516-qt5compile-error/</span>
             </p>
             
              
@@ -208,10 +187,10 @@
 
     <div class="post-nav">
         
-        <a href="http://blog.sinowrt.cn/2018/2018-11-17t1516-qt5compile-error/" class="prev" rel="prev" title="Qt5 error LNK2019 无法解析的外部符号的解决方法"><i class="iconfont icon-left"></i>&nbsp;Qt5 error LNK2019 无法解析的外部符号的解决方法</a>
+        <a href="http://blog.sinowrt.cn/2018/2018-11-17t1513-install-qt5-in-win10/" class="prev" rel="prev" title="Windows 10安装Qt5.11.2"><i class="iconfont icon-left"></i>&nbsp;Windows 10安装Qt5.11.2</a>
          
         
-        <a href="http://blog.sinowrt.cn/2018/2018-12-11t1430-formview-0xc000041d/" class="next" rel="next" title="MFC Dialog中嵌入Formview 0XC000041D:用户回调期间遇到未经处理的异常">MFC Dialog中嵌入Formview 0XC000041D:用户回调期间遇到未经处理的异常&nbsp;<i class="iconfont icon-right"></i></a>
+        <a href="http://blog.sinowrt.cn/2018/2018-12-03t1258-hard-disk-parttion-unview/" class="next" rel="next" title="Win10装光驱位硬盘分区不显示">Win10装光驱位硬盘分区不显示&nbsp;<i class="iconfont icon-right"></i></a>
         
     </div>
 
@@ -253,9 +232,8 @@
 
 
     
-     <link href="//lib.baomitu.com/lightgallery/1.6.11/css/lightgallery.min.css" rel="stylesheet">  
-      
-     <script src="/js/vendor_gallery.min.js" async="" ></script>
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
     
   
 

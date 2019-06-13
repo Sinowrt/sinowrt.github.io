@@ -40,10 +40,10 @@
     
     <item>
       <title>Qt5 error LNK2019 无法解析的外部符号的解决方法</title>
-      <link>http://blog.sinowrt.cn/2018/2018-11-17t1516qt5compile-error/</link>
+      <link>http://blog.sinowrt.cn/2018/2018-11-17t1516-qt5compile-error/</link>
       <pubDate>Sat, 17 Nov 2018 15:16:56 +0000</pubDate>
       
-      <guid>http://blog.sinowrt.cn/2018/2018-11-17t1516qt5compile-error/</guid>
+      <guid>http://blog.sinowrt.cn/2018/2018-11-17t1516-qt5compile-error/</guid>
       <description> 编译过程中连接错误 尝试删除build文件夹，问题解决 </description>
     </item>
     
