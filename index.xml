@@ -5,8 +5,148 @@
     <description>Recent content in Sinowrt on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 13 Jun 2019 00:21:27 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 13 Jun 2019 13:02:08 +0800</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>救救bandwagonhost被禁的IP吧</title>
+      <link>http://blog.sinowrt.cn/2019/2019-06-13t1300-how-to-save-the-baned-ip/</link>
+      <pubDate>Thu, 13 Jun 2019 13:02:08 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2019/2019-06-13t1300-how-to-save-the-baned-ip/</guid>
+      <description>
+
+&lt;h2 id=&#34;0x00-事件起因&#34;&gt;0x00 事件起因&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;2019年儿童节中午，google搜索超时，ss服务器尚可ping通，但端口连接异常。&lt;/li&gt;
+&lt;li&gt;13:00 更换端口，仍无法使用，ping检测IP被墙&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;0x01-解决方案&#34;&gt;0x01 解决方案&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;有消息称等待数天即可解封&lt;/li&gt;
+&lt;li&gt;等待无果，更换v2ray+cdn+ws代理方案&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;0x02-bandwagonhost服务器安装v2ray&#34;&gt;0x02 bandwagonhost服务器安装v2ray&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;我的搬瓦工vps是3.99传家宝套餐，64M运行内存，2G磁盘空间，100G流量&lt;/li&gt;
+&lt;li&gt;需要在kvm面板上安装debian或ubuntu系统&lt;/li&gt;
+&lt;li&gt;需要注意的是我的vps在安装了debian-8.0-x86_64-minimal后，使用v2ray的官方go.sh脚本安装时，swap空间爆掉了，导致安装意外终止。根据网上的教程调整swap分区无果，于是更换ubuntu-16.04-x86_64系统，安装才得以顺利进行。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;环境-临时梯子-用于连接ip被ban的vps&#34;&gt;环境 临时梯子（用于连接ip被ban的vps）&lt;/h3&gt;
+
+&lt;h3 id=&#34;工具-putty&#34;&gt;工具 PuTTy&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;sudo su 获取root权限&lt;/li&gt;
+&lt;li&gt;在控制台输入&lt;code&gt;bash &amp;lt;(curl -L -s https://install.direct/go.sh)&lt;/code&gt;，此命令主要下载go.sh脚本并运行自动安装&lt;/li&gt;
+&lt;li&gt;控制台提示V2Ray v4.19.1 is installed.即为安装成功&lt;/li&gt;
+&lt;li&gt;记下控制台中的PORT和UUID的值&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;配置v2ray服务端&#34;&gt;配置v2ray服务端&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;v2ray使用脚本安装完成后，默认启动服务就可以使用的了，但我们为了使用websock协议，还需要配置一下&lt;/li&gt;
+&lt;li&gt;打开v2ray的配置文件（/etc/v2ray/config.json）参照下面的进行配置。&lt;/li&gt;
+&lt;li&gt;只需在port和id这两个属性中填入你之前安装v2ray时记下来的值即可。（若需要CloudeFlare进行CDN转发，port则需要配置成CloudFlare支持的端口，在CloudFlare配置部分有详细说明）&lt;/li&gt;
+&lt;li&gt;log配置是我后来加上的，不需要打日志的可以去掉。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+&amp;quot;log&amp;quot;: {
+    &amp;quot;loglevel&amp;quot;: &amp;quot;debug&amp;quot;,
+    &amp;quot;access&amp;quot;: &amp;quot;/var/log/v2ray/access.log&amp;quot;,
+    &amp;quot;error&amp;quot;: &amp;quot;/var/log/v2ray/error.log&amp;quot;
+  },
+  &amp;quot;inbounds&amp;quot;: [{
+    &amp;quot;port&amp;quot;: port,
+    &amp;quot;protocol&amp;quot;: &amp;quot;vmess&amp;quot;,
+    &amp;quot;settings&amp;quot;: {
+      &amp;quot;clients&amp;quot;: [
+        {
+          &amp;quot;id&amp;quot;: &amp;quot;UUID&amp;quot;,
+          &amp;quot;level&amp;quot;: 1,
+          &amp;quot;alterId&amp;quot;: 64
+        }
+      ]
+    },
+&amp;quot;streamSettings&amp;quot;:{
+&amp;quot;wsSettings&amp;quot;:{
+&amp;quot;path&amp;quot;:&amp;quot;/&amp;quot;,
+&amp;quot;headers&amp;quot;:{}
+},
+&amp;quot;network&amp;quot;:&amp;quot;ws&amp;quot;
+}
+  }],
+  &amp;quot;outbounds&amp;quot;: [{
+    &amp;quot;protocol&amp;quot;: &amp;quot;freedom&amp;quot;,
+    &amp;quot;settings&amp;quot;: {}
+  },{
+    &amp;quot;protocol&amp;quot;: &amp;quot;blackhole&amp;quot;,
+    &amp;quot;settings&amp;quot;: {},
+    &amp;quot;tag&amp;quot;: &amp;quot;blocked&amp;quot;
+  }],
+  &amp;quot;routing&amp;quot;: {
+    &amp;quot;rules&amp;quot;: [
+      {
+        &amp;quot;type&amp;quot;: &amp;quot;field&amp;quot;,
+        &amp;quot;ip&amp;quot;: [&amp;quot;geoip:private&amp;quot;],
+        &amp;quot;outboundTag&amp;quot;: &amp;quot;blocked&amp;quot;
+      }
+    ]
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;启动v2ray服务端&#34;&gt;启动v2ray服务端&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;在控制台输入service v2ray start启动服务即可&lt;/li&gt;
+&lt;li&gt;v2ray服务端的配置到此完成，需要注意的是，如果是谷歌云、亚马逊云或者其他服务商的需要在防火墙放行v2ray服务的端口。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;0x03-配置cloudflare-cdn&#34;&gt;0x03 配置CloudFlare CDN&lt;/h2&gt;
+
+&lt;h3 id=&#34;准备个人邮箱以及域名&#34;&gt;准备个人邮箱以及域名&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;上CloudFlare注册账号，添加域名，选择免费的套餐（每个CloudeFlare仅对一个域名提供免费服务）&lt;/li&gt;
+&lt;li&gt;将域名的DNS服务器修改为CloudFlare提供的DNS服务器（DNS服务器修改生效最长需要72小时）&lt;/li&gt;
+&lt;li&gt;在CloudFlare的DNS中添加解析记录（CDN解析生效需要稍等片刻）
+&lt;img src=&#34;http://pic.sinowrt.cn/images/2019-06-13T1300/4.png&#34; alt=&#34;image&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;需要注意的是：CloudFlare的端口转发仅限于以下端口（Cloudflare支持的 HTTP 端口为：80，8080，8880，2052，2082，2086，2095；Cloudflare 支持的 HTTPs 端口为：443，2053，2083，2087，2096，8443），所以v2ray服务端需要将端口修改成上面支持的端口。&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;另外，为了提高安全性，建议将Crypto的SSL选择为Full(Strict)模式。
+&lt;img src=&#34;http://pic.sinowrt.cn/images/2019-06-13T1300/5.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;有效性验证&#34;&gt;有效性验证&lt;/h3&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;在cmd中nslookup你的域名如(abc.domain.cn),可以正常解析&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;在cmd中telnet你的域名和端口，连通性正常即可&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;0x04-下载winddows的v2ray客户端v2rayw&#34;&gt;0x04 下载winddows的V2ray客户端V2rayW&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;根据系统情况下载&lt;a href=&#34;https://github.com/Cenmrev/V2RayW/releases&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;V2rayW&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;将文件解压后，双击V2RayW.exe&lt;/li&gt;
+&lt;li&gt;打开V2RayW.exe后，会自动下载v2ray-core的相关文件，等待片刻即可&lt;/li&gt;
+&lt;li&gt;打开V2RayW.exe，在通知栏的“W”形图标上，点击右键-配置&lt;/li&gt;
+&lt;li&gt;将域名(或IP地址)、端口、UUID、ALTERID、LEVEL填入图中相应位置，选择ws网络类型
+&lt;img src=&#34;http://pic.sinowrt.cn/images/2019-06-13T1300/6.png&#34; alt=&#34;image&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;打开传输设置，在webSocket选项卡中填入前面配置文件中的路径
+&lt;img src=&#34;http://pic.sinowrt.cn/images/2019-06-13T1300/3.png&#34; alt=&#34;image&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;设置完毕后，在W图标上右键-加载V2ray,并选择代理模式，就可以畅游网络啦:)&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>21 minutes after my birthday</title>
@@ -931,436 +1071,6 @@ sleep 1
 start
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>给宿舍装个智能锁吧（二）——指纹篇</title>
-      <link>http://blog.sinowrt.cn/2018/2018-10-17t0348-smartlock2/</link>
-      <pubDate>Wed, 17 Oct 2018 03:48:52 +0000</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2018/2018-10-17t0348-smartlock2/</guid>
-      <description>
-
-&lt;h2 id=&#34;2018-3-13&#34;&gt;2018/3/13&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;星期二晚上到货&lt;/li&gt;
-&lt;li&gt;取开发资料&lt;/li&gt;
-&lt;li&gt;浏览用户手册&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;2018-3-14&#34;&gt;2018/3/14&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;根据用户手册进行模块接线&lt;/li&gt;
-&lt;li&gt;接入串口，利用开发包中的上位机对指纹模块进行操作&lt;/li&gt;
-&lt;li&gt;用串口调试软件，输入相应的指令，进行指纹采集等操作，但进行相应的操作总是无法实现&lt;/li&gt;
-&lt;li&gt;原因：对原有指令进行了改造，而校验码并没有改变&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;对上位机软件进行改造，使其输出相应操作流程的指令&lt;/p&gt;
-
-&lt;h4 id=&#34;在oemhostdlg-cpp中查找对应的按钮执行的内容&#34;&gt;在OEMHostDlg.cpp中查找对应的按钮执行的内容&lt;/h4&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;1.找到void COEMHostDlg::OnBtnVerify()&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-csharp&#34;&gt;void COEMHostDlg::OnBtnVerify() 
-{
-    int     w_nRet, w_nTmplNo, w_nFpStatus, w_nLearned;
-    DWORD   w_dwTime;
-    CString w_strTmp;
-
-    UpdateData(TRUE);
-
-    if (!CheckUserID())
-        return;
-
-    EnableControl(FALSE);
-    GetDlgItem(IDC_BTN_DISCONNECT)-&amp;gt;EnableWindow(FALSE);
-    GetDlgItem(IDC_BTN_STOP)-&amp;gt;EnableWindow(TRUE);
-    
-    m_bCancel = FALSE;
-
-    w_nTmplNo = m_nUserID;
-
-    //. Check if fp is exist
-    w_nRet = m_clsCommu.Run_GetStatus(w_nTmplNo, &amp;amp;w_nFpStatus);
-    
-    if( w_nRet != ERR_SUCCESS )
-    {
-        m_strCmdResult = GetErrorMsg(w_nRet);
-        goto l_exit;
-    }
-    
-    if( w_nRet == ERR_SUCCESS &amp;amp;&amp;amp; w_nFpStatus == GD_TEMPLATE_EMPTY )
-    {
-        m_strCmdResult = _T(&amp;quot;Template is empty&amp;quot;);
-        goto l_exit;
-    }
-    
-    m_clsCommu.Run_SLEDControl(1);
-
-    m_strCmdResult = _T(&amp;quot;Input your finger.&amp;quot;);
-    UpdateData(FALSE);
-    
-    w_dwTime = GetTickCount();
-    
-    //. Get Image
-    while (1)
-    {
-        DoEvents();
-
-        if(m_bCancel)
-        {
-            m_strCmdResult = _T(&amp;quot;Operation Canceled&amp;quot;);
-            goto l_exit;
-        }
-
-        //. Get Image
-        w_nRet = m_clsCommu.Run_GetImage();
-        
-        if(w_nRet == ERR_SUCCESS)
-            break;
-        else if(w_nRet == ERR_CONNECTION)
-        {
-            m_strCmdResult = GetErrorMsg(w_nRet);
-            goto l_exit;
-        }                   
-    }
-    
-    m_strCmdResult = &amp;quot;Release your finger&amp;quot;;
-    UpdateData(FALSE);
-    DoEvents();
-
-    //. Up Image
-    if (m_chkShowImage.GetCheck())
-    {
-        m_strCmdResult = _T(&amp;quot;Uploading image...&amp;quot;);
-        UpdateData(FALSE);
-        DoEvents();
-
-        w_nRet = m_clsCommu.Run_UpImage(0, g_FpImageBuf, &amp;amp;g_nImageWidth, &amp;amp;g_nImageHeight);
-
-        if(w_nRet != ERR_SUCCESS)
-        {
-            m_strCmdResult = GetErrorMsg(w_nRet);
-            goto l_exit;
-        }   
-
-        m_wndFinger.SetImage(g_FpImageBuf, g_nImageWidth, g_nImageHeight);
-
-        m_strCmdResult = _T(&amp;quot;Uploading image is successed.&amp;quot;);
-        UpdateData(FALSE);
-        DoEvents();
-    }
-
-    w_dwTime = GetTickCount();
-
-    //. Create Template
-    w_nRet = m_clsCommu.Run_Generate(0);
-    
-    if (w_nRet != ERR_SUCCESS)
-    {
-        m_strCmdResult = GetErrorMsg(w_nRet);
-        goto l_exit;
-    }
-
-    //. Verify 
-    w_nRet = m_clsCommu.Run_Verify(w_nTmplNo, 0, &amp;amp;w_nLearned);
-    
-    w_dwTime = GetTickCount() - w_dwTime;
-
-    if (w_nRet == ERR_SUCCESS)
-    {
-        m_strCmdResult.Format(_T(&amp;quot;Result : Success\r\nTemplate No : %d, Learn Result : %d\r\nMatch Time : %dms&amp;quot;), w_nTmplNo, w_nLearned, w_dwTime );
-    }
-    else
-    {
-        m_strCmdResult = GetErrorMsg(w_nRet);
-    }
-    
-l_exit:
-    m_clsCommu.Run_SLEDControl(0);
-    UpdateData(FALSE);  
-    EnableControl(TRUE);
-    GetDlgItem(IDC_BTN_DISCONNECT)-&amp;gt;EnableWindow(TRUE);
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;strong&gt;2.查看m_clsCommu.Run_SLEDControl(0)，跳转到Communication.cpp&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-csharp&#34;&gt;int CCommunication::Run_SLEDControl(int p_nState)
-{
-    BOOL    w_bRet;
-    BYTE    w_abyData[2];
-    
-    w_abyData[0] = LOBYTE(p_nState);
-    w_abyData[1] = HIBYTE(p_nState);
-    
-    InitCmdPacket(CMD_SLED_CTRL, m_bySrcDeviceID, m_byDstDeviceID, (BYTE*)&amp;amp;w_abyData, 2);
-    
-    SEND_COMMAND(CMD_SLED_CTRL, w_bRet, m_bySrcDeviceID, m_byDstDeviceID);
-    
-    if(!w_bRet)
-        return ERR_CONNECTION;
-    
-    return RESPONSE_RET;
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;3.查看SEND_COMMAND定义，跳转到Command.cpp&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-csharp&#34;&gt;BOOL SendCommand(WORD p_wCMDCode, BYTE p_bySrcDeviceID, BYTE p_byDstDeviceID)
-{
-    DWORD   w_nSendCnt = 0;
-    LONG    w_nResult = 0;
-
-    g_Serial.Purge();   
-
-    ::SendMessage(g_hMainWnd, WM_CMD_PACKET_HOOK, 0, 0);
-
-    w_nResult = g_Serial.Write(g_Packet, g_dwPacketSize , &amp;amp;w_nSendCnt, NULL, COMM_TIMEOUT);
-
-    if(ERROR_SUCCESS != w_nResult)
-    {
-        return FALSE;
-    }
-
-    return ReceiveAck(p_wCMDCode, p_bySrcDeviceID, p_byDstDeviceID);
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;4.可以看到串口输出函数g_Serial.Write,g_packet应该为输出的内容，现在要做的就是将g_packet打印出来
-5.顺势根据&lt;code&gt;return ReceiveAck(p_wCMDCode, p_bySrcDeviceID, p_byDstDeviceID)&lt;/code&gt;语句找到ReceiveAck函数，分析可知发送了消息通过ReceiveAck函数接收响应内容，则在此也添加Print_gPacket(false)以打印接收的内容&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-csharp&#34;&gt;BOOL ReceiveAck(WORD p_wCMDCode, BYTE p_bySrcDeviceID, BYTE p_byDstDeviceID)
-{
-    Print_gPacket(true);
-    DWORD   w_nAckCnt = 0;
-    LONG    w_nResult = 0;
-    DWORD   w_dwTimeOut = COMM_TIMEOUT;
-
-    if (p_wCMDCode == CMD_TEST_CONNECTION)
-        w_dwTimeOut = 2000;
-    else if (p_wCMDCode == CMD_ADJUST_SENSOR)
-        w_dwTimeOut = 30000;
-    
-l_read_packet:
-
-    //w_nResult = g_Serial.Read(g_Packet, sizeof(ST_RCM_PACKET), &amp;amp;w_nAckCnt, NULL, w_dwTimeOut);    
-    if (!ReadDataN(g_Packet, sizeof(ST_RCM_PACKET), w_dwTimeOut))
-    {
-        return FALSE;
-    }
-
-    g_dwPacketSize = sizeof(ST_RCM_PACKET); 
-
-    ::SendMessage(g_hMainWnd, WM_RCM_PACKET_HOOK, 0, 0);
-
-    if (!CheckReceive(g_Packet, sizeof(ST_RCM_PACKET), RCM_PREFIX_CODE, p_wCMDCode))
-        return FALSE;
-    
-    if (g_pCmdPacket-&amp;gt;m_byDstDeviceID != p_bySrcDeviceID)
-    {
-        goto l_read_packet;
-    }
-
-    Print_gPacket(false);
-    return TRUE;
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;6.由于该软件为mfc程序，所以在command添加如下代码，在输出的debug内容中显示相应的内容&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-csharp&#34;&gt;#include &amp;quot;windows.h&amp;quot;
-#ifdef _DEBUG    
-
-#define DP0(fmt) {TCHAR sOut[256];_stprintf_s(sOut,_T(fmt));OutputDebugString(sOut);}    
-#define DP1(fmt,var) {TCHAR sOut[256];_stprintf_s(sOut,_T(fmt),var);OutputDebugString(sOut);}    
-#define DP2(fmt,var1,var2) {TCHAR sOut[256];_stprintf_s(sOut,_T(fmt),var1,var2);OutputDebugString(sOut);}    
-#define DP3(fmt,var1,var2,var3) {TCHAR sOut[256];_stprintf_s(sOut,_T(fmt),var1,var2,var3);OutputDebugString(sOut);}    
-
-#endif
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;7.添加一个函数，用于打印g_packet,&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-csharp&#34;&gt;/******************************
- create by Jacky  2018/3/14
- To print command
- type true  for send
-      false for recive
-*******************************/
-void Print_gPacket(bool type) {
-    if (type) {
-        DP0(&amp;quot;发送的数据：&amp;quot;);
-    }
-    else {
-        DP0(&amp;quot;接收的数据：&amp;quot;);
-    }
-    for (int i = 0; i &amp;lt; 26; i++) {
-        DP1(&amp;quot;%02x&amp;quot;, g_Packet[i]);
-    }
-    DP0(&amp;quot;\n&amp;quot;);
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;总结出采集验证指纹的过程总共有以下几条指令&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-csharp&#34;&gt;*****************************
-*    指纹模块一次指纹比对 
-*    host命令
-*****************************
-// 采集指纹
-55aa000020000000000000000000000000000000000000001f01
-
-// 模板生成到rambuffer0
-55aa000060000200000000000000000000000000000000006101
-
-// 1:N对比
-55aa00006300060000000100f401000000000000000000005e02
-
-// 关灯
-55aa000024000200000000000000000000000000000000002501
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;2018-3-15&#34;&gt;2018/3/15&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;由于esp8266与指纹模块通讯的过程中串口的数据交换并不可见，所以想到透传&lt;/li&gt;
-&lt;li&gt;上午上完课回来，进行透传程序Transmission的编写&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-csharp&#34;&gt;#include &amp;lt;ESP8266WiFi.h&amp;gt;
-
-const char *ssid = &amp;quot;&amp;quot;;
-const char *password = &amp;quot;&amp;quot;;
-
-const int tcpPort = 80;//要建立的TCP服务的端口号
-
-WiFiServer server(tcpPort);
-
-
-void setup()
-{
-    Serial.begin(115200);
-    delay(10);
-    Serial.println();
-    Serial.println();
-    Serial.print(&amp;quot;Connecting to &amp;quot;);
-    Serial.println(ssid);
-
-    WiFi.begin(ssid, password);
-
-    while (WiFi.status() != WL_CONNECTED)
-    {
-        delay(500);
-        Serial.print(&amp;quot;.&amp;quot;);
-    }
-
-    Serial.println(&amp;quot;&amp;quot;);
-    Serial.println(&amp;quot;WiFi connected&amp;quot;);
-    Serial.println(&amp;quot;IP address: &amp;quot;);
-    Serial.println(WiFi.localIP());
-    server.begin();
-}
-
-
-void loop()
-{
-    WiFiClient client = server.available();
-    if (client) {
-        while (client.connected()) {
-            /*while (client.available()) {
-            char c = client.read();
-            Serial.write(c);
-            }*/
-
-            if(client.available()){
-            size_t counti=client.available();
-            uint8_t *buf=new uint8_t[counti];
-            Serial.write((const uint8_t*)buf,counti);
-            delete(buf);
-            }
-
-            delay(1000);   //由于指纹模块是首先发送响应头再发响应数据，若不加这句，响应数据会分两次读取
-
-            if (Serial.available())
-            {
-                size_t counti = Serial.available();
-                uint8_t *sbuf = new uint8_t[counti];
-                Serial.readBytes(sbuf, counti);
-                client.write((const uint8_t*)sbuf, counti);
-
-                delete(sbuf);
-            }
-        }
-        client.stop();
-    }
-
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;注：&lt;/li&gt;
-&lt;li&gt;1.有坑，请看注释&lt;/li&gt;
-&lt;li&gt;2.遇到下列报错：&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-csharp&#34;&gt;Compiling debug version of &#39;Transmission&#39; for &#39;NodeMCU 1.0 (ESP-12E Module)&#39;
- 
-Error compiling project sources
-Debug build failed for project &#39;Transmission&#39;
-ESP8266WiFi.h:39: In file included from
-Transmission.ino: from
-WiFiClient.h: In instantiation of size_t WiFiClient::write(T&amp;amp;, size_t) [with T = unsigned char*; size_t = unsigned int]
-Transmission.ino:60: required from here
- 
-WiFiClient.h: 123:36: error: request for member &#39;available&#39; in &#39;source&#39;, which is of non-class type &#39;unsigned char*
-   size_t left = source.available()
- 
-WiFiClient.h: 127:5: error: request for member &#39;read&#39; in &#39;source&#39;, which is of non-class type &#39;unsigned char*
-   source.read(buffer.get(), will_send)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;原因是client的write函数必须传入一个buffer，但是通过网上查找解决方案，发现在第一个参数前加上(const uint8_t*)进行强制转换也可以编译通过&lt;/p&gt;
-
-&lt;h1 id=&#34;2018-3-16&#34;&gt;2018/3/16&lt;/h1&gt;
-
-&lt;h4 id=&#34;透传实现了-那么就开始改造原有的mysmartlock-ino-首先第一版的程序构思为&#34;&gt;透传实现了，那么就开始改造原有的mySmartLock.ino，首先第一版的程序构思为：&lt;/h4&gt;
-
-&lt;p&gt;循环
-* 1.读取指纹模块的手指感应信号（有信号就逐条发送指纹验证指令）
-* 2.读取网络端是否传来请求（有就判断请求url是否包含指定的字符串）
-* 3.读取透传客户端是否已连接（若已连接且传入debug()就更改标志，（考虑到指令录指纹时会造成录指纹和验证指纹指令的冲突）停止1的指纹验证，并允许串口穿透输入与输出，若为exit()就修改标志，重新启用1的指纹验证，只输出串口通讯的信息）&lt;/p&gt;
-
-&lt;h3 id=&#34;第一版的编程实现-采用的串行处理模式&#34;&gt;第一版的编程实现，采用的串行处理模式&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;坑1：在判断串口传入数据是否为debug()或exit()的过程中，用到了strcmp()函数，但是貌似读取出来的unsigned char*类型的字节流是不带结束符的而&amp;rdquo;debug()&amp;ldquo;是带结束符的长度为8的char数组，所以一直判断不等，经过查阅资料，发现还有一个函数就是strncmp()可以进行一定长度字符串的比较，所以改用 &lt;code&gt;strncmp((const char*)command, &amp;quot;debug()&amp;quot;, counti)&lt;/code&gt;语句进行判断，经测试完全可行！！&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&#34;但是问题来了-在arduino的loop-函数中-是循环执行的-当透传客户端连接上之后-除非用-while-client-connected-语句进行连接的保持-否则当前的transclient实例会在一次循环后被销毁-但是若保持连接又无法输出当前指纹模块与esp8266的通讯交互信息&#34;&gt;但是问题来了，在arduino的loop()函数中，是循环执行的，当透传客户端连接上之后，除非用&lt;code&gt;while (client.connected())&lt;/code&gt;语句进行连接的保持，否则当前的transclient实例会在一次循环后被销毁，但是若保持连接又无法输出当前指纹模块与esp8266的通讯交互信息&lt;/h4&gt;
-
-&lt;h3 id=&#34;发现还是程序的状态图没分清楚-构思总结出改进的三个状态&#34;&gt;发现还是程序的状态图没分清楚，构思总结出改进的三个状态&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;1.透传连接，并通过debug()进入debug模式&lt;/li&gt;
-&lt;li&gt;2.透传连接，保持默认状态，或在debug模式下通过exit()退出调试模式的，就只输出esp8266与指纹通讯的信息&lt;/li&gt;
-&lt;li&gt;3.串口没有连接，esp8266与指纹模块正常通讯&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;编程实现&#34;&gt;编程实现&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;1.将指纹验证和读取网络请求两部分封装成loopBody(bool modeSwitch)&lt;/li&gt;
-&lt;li&gt;2.用modeSwitch标记是否进入了debug模式，通过判断modeSwitch来判断是否进行透传输出，modeSwitch通过是否传入debug()和exit()命令进行切换&lt;/li&gt;
-&lt;li&gt;3.在transclient可用时进入while(client.connected())的循环，可以进行回话的保持，返回当前串口通讯的数据&lt;/li&gt;
-&lt;li&gt;4.源码见&lt;a href=&#34;https://github.com/sinowrt/mySmartLock&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;github&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
