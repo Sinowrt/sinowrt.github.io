@@ -2,57 +2,57 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>C&#43;&#43; on Sinowrt</title>
-    <link>https://sinowrt.github.io/categories/c&#43;&#43;/</link>
+    <link>http://blog.sinowrt.cn/categories/c&#43;&#43;/</link>
     <description>Recent content in C&#43;&#43; on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 11 Dec 2018 15:41:27 +0000</lastBuildDate>
     
-	<atom:link href="https://sinowrt.github.io/categories/c++/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://blog.sinowrt.cn/categories/c++/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>MFC FormView中的OnInitialUpdate不调用</title>
-      <link>https://sinowrt.github.io/2018/2018-12-11t1541-formview-oninitialupdate/</link>
+      <link>http://blog.sinowrt.cn/2018/2018-12-11t1541-formview-oninitialupdate/</link>
       <pubDate>Tue, 11 Dec 2018 15:41:27 +0000</pubDate>
       
-      <guid>https://sinowrt.github.io/2018/2018-12-11t1541-formview-oninitialupdate/</guid>
+      <guid>http://blog.sinowrt.cn/2018/2018-12-11t1541-formview-oninitialupdate/</guid>
       <description> 0x00 在Formview中的OnInitialUpdate中初始化了个自定义的按钮，但是运行无任何样式效果 0x01 在OnInitialUpdate里打了个断点再次运行，发现此方法根本未调用 0x02 在FormView Create后，手动调用OnInitialUpdate解决，如下所示 CWnd* pFrameWnd = this; CCreateContext pContext; pContext.m_pCurrentDoc = 0; pContext.m_pNewViewClass = RUNTIME_CLASS(View_OnlineShopManagement); View_OnlineShopManagement* pView = (View_OnlineShopManagement*)((CFrameWnd*)pFrameWnd)-&amp;gt;CreateView(&amp;amp;pContext); pView-&amp;gt;ShowWindow(SW_NORMAL); pView-&amp;gt;OnInitialUpdate(); //手动调用  </description>
     </item>
     
     <item>
       <title>MFC Dialog中嵌入Formview 初始化控件时m_hWnd为空</title>
-      <link>https://sinowrt.github.io/2018/2018-12-11t1435-formview-m_hwnd/</link>
+      <link>http://blog.sinowrt.cn/2018/2018-12-11t1435-formview-m_hwnd/</link>
       <pubDate>Tue, 11 Dec 2018 14:35:00 +0000</pubDate>
       
-      <guid>https://sinowrt.github.io/2018/2018-12-11t1435-formview-m_hwnd/</guid>
+      <guid>http://blog.sinowrt.cn/2018/2018-12-11t1435-formview-m_hwnd/</guid>
       <description> 原因：在构造函数中进行控件的初始化 解决方法：Formview中，控件的初始化应该放在OnInitialUpdate中 </description>
     </item>
     
     <item>
       <title>MFC Dialog中嵌入Formview 0XC000041D:用户回调期间遇到未经处理的异常</title>
-      <link>https://sinowrt.github.io/2018/2018-12-11t1430-formview-0xc000041d/</link>
+      <link>http://blog.sinowrt.cn/2018/2018-12-11t1430-formview-0xc000041d/</link>
       <pubDate>Tue, 11 Dec 2018 14:30:47 +0000</pubDate>
       
-      <guid>https://sinowrt.github.io/2018/2018-12-11t1430-formview-0xc000041d/</guid>
+      <guid>http://blog.sinowrt.cn/2018/2018-12-11t1430-formview-0xc000041d/</guid>
       <description>在填充Formview时，遇到0XC000041D:用户回调期间遇到未经处理的异常(已解决) 原因：HBRUSH hbr = OnCtlColor(pDC, pWnd, nCtlColor);这一句中应该在OnCtlColor前面添加命名空间:: 否则编译器会误解为递归函数 源码如下： #pragma once #include &amp;quot;NormalBtn.h&amp;quot; #include &amp;quot;resource.h&amp;quot; #include &amp;lt;Gdiplus.h&amp;gt; using namespace Gdiplus; // View_OnlineShopManagement 窗体视图 class View_OnlineShopManagement : public CFormView { DECLARE_DYNCREATE(View_OnlineShopManagement) protected: View_OnlineShopManagement(); // 动态创建所使用的受保护的构造函数 virtual ~View_OnlineShopManagement(); public: #ifdef AFX_DESIGN_TIME enum { IDD = IDD_FORMVIEW_OSM }; #endif #ifdef _DEBUG virtual void AssertValid() const; #ifndef _WIN32_WCE virtual void Dump(CDumpContext&amp;amp; dc) const; #endif #endif protected: virtual void DoDataExchange(CDataExchange* pDX); // DDX/DDV 支持 DECLARE_MESSAGE_MAP() public: virtual void OnInitialUpdate(); GdiplusStartupInput m_gdiplusStartupInput; ULONG_PTR m_gdiplusToken; afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor); virtual void OnDraw(CDC* /*pDC*/); };  // View_OnlineShopManagement.</description>
     </item>
     
     <item>
       <title>Qt5 error LNK2019 无法解析的外部符号的解决方法</title>
-      <link>https://sinowrt.github.io/2018/2018-11-17t1516qt5compile-error/</link>
+      <link>http://blog.sinowrt.cn/2018/2018-11-17t1516qt5compile-error/</link>
       <pubDate>Sat, 17 Nov 2018 15:16:56 +0000</pubDate>
       
-      <guid>https://sinowrt.github.io/2018/2018-11-17t1516qt5compile-error/</guid>
+      <guid>http://blog.sinowrt.cn/2018/2018-11-17t1516qt5compile-error/</guid>
       <description> 编译过程中连接错误 尝试删除build文件夹，问题解决 </description>
     </item>
     
     <item>
       <title>Windows 10安装Qt5.11.2</title>
-      <link>https://sinowrt.github.io/2018/2018-11-17t1513-install-qt5-in-win10/</link>
+      <link>http://blog.sinowrt.cn/2018/2018-11-17t1513-install-qt5-in-win10/</link>
       <pubDate>Sat, 17 Nov 2018 15:13:11 +0000</pubDate>
       
-      <guid>https://sinowrt.github.io/2018/2018-11-17t1513-install-qt5-in-win10/</guid>
+      <guid>http://blog.sinowrt.cn/2018/2018-11-17t1513-install-qt5-in-win10/</guid>
       <description> 0x00背景 信管作业要求用C++实现进销存系统用户交互界面以及业务逻辑 0x01 必备安装包 1.qt-opensource-windows-x86-5.11.2.exe 2.Windows SDK 0x02 下载与安装 1.Qt下载与安装  上Qt下载页面下载你系统对应的安装包  我的是Windoes 10,直接下载qt-opensource-windows-x86-5.11.2.exe 直接打开qt-opensource-windows-x86-5.11.2.exe安装程序 在第一个界面直接下一步 填写账号这一块，如果没有事先申请也可以先跳过这一步  选择安装文件夹 选择编译器，由于我的电脑装了vs2015，所以直接选了MSVC 2015 64-bit（若未安装任何编译器可以直接选择MinGW 5.3.0 32bit）  接下来一路下一步即可  2.Windows SDK下载与安装  上Microsoft开发者下载站 我的系统是Windows 10，还是按自己的系统版本进行下载  下载之后得到这样一个exe，打开按步骤安装   0x03 配置Qt 1.配置Debugger  工具——选项——kits——Debuggers——Add 填写Debugger的名称 浏览WindowsSKD的安装路径，找到你所需要的Debugger，这里我设置了Windows 10的x64的和x86的cdb.exe 2.配置kit 按根据截图按需配置就可以了   到了这步配置基本完成，但是我在编译程序的过程中遇到error link1158 无法运行rc.exe的报错 error link1158 无法运行rc.exe问题解决方法  到C:\Program Files (x86)\Windows Kits\10\bin\10.0.17763.0下的文件夹找到rc.dll和rc.exe复制到qmake文件夹下 qmake的路径可以参考截图   </description>
     </item>
     

@@ -2,84 +2,84 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Sinowrt</title>
-    <link>https://sinowrt.github.io/posts/</link>
+    <link>http://blog.sinowrt.cn/posts/</link>
     <description>Recent content in Posts on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 13 Jun 2019 00:21:27 +0800</lastBuildDate>
     
-	<atom:link href="https://sinowrt.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://blog.sinowrt.cn/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>21 minutes after my birthday</title>
-      <link>https://sinowrt.github.io/2019/2019-06-13t0020-21-minutes-after-my-birthday/</link>
+      <link>http://blog.sinowrt.cn/2019/2019-06-13t0020-21-minutes-after-my-birthday/</link>
       <pubDate>Thu, 13 Jun 2019 00:21:27 +0800</pubDate>
       
-      <guid>https://sinowrt.github.io/2019/2019-06-13t0020-21-minutes-after-my-birthday/</guid>
+      <guid>http://blog.sinowrt.cn/2019/2019-06-13t0020-21-minutes-after-my-birthday/</guid>
       <description>现在是2019年6月13日00点21分，距离我上一个生日已经过了21分。22年，我终于过了一个十分安静的生日，除了家人十年如一日的祝福，在我的微信列表里，没有一个人打扰我。我点了一个披萨，和舍友一起吃，没人知道今天是什么日子，其实也是普通的2019年6月12日。新奥尔良鸡肉味的披萨香味伴随了我的一天，手机上挂着的微信消息界面也伴随了我一天，韵达快递，电白人民医院，省汽车站，都向我表达了亲切的问候。我有一个妹妹，是网上认识的妹妹，辛苦上了一天的班后想起了我的生日，她说：“端午节后五天，生日快乐”，真幸福。</description>
     </item>
     
     <item>
       <title>MFC FormView中的OnInitialUpdate不调用</title>
-      <link>https://sinowrt.github.io/2018/2018-12-11t1541-formview-oninitialupdate/</link>
+      <link>http://blog.sinowrt.cn/2018/2018-12-11t1541-formview-oninitialupdate/</link>
       <pubDate>Tue, 11 Dec 2018 15:41:27 +0000</pubDate>
       
-      <guid>https://sinowrt.github.io/2018/2018-12-11t1541-formview-oninitialupdate/</guid>
+      <guid>http://blog.sinowrt.cn/2018/2018-12-11t1541-formview-oninitialupdate/</guid>
       <description> 0x00 在Formview中的OnInitialUpdate中初始化了个自定义的按钮，但是运行无任何样式效果 0x01 在OnInitialUpdate里打了个断点再次运行，发现此方法根本未调用 0x02 在FormView Create后，手动调用OnInitialUpdate解决，如下所示 CWnd* pFrameWnd = this; CCreateContext pContext; pContext.m_pCurrentDoc = 0; pContext.m_pNewViewClass = RUNTIME_CLASS(View_OnlineShopManagement); View_OnlineShopManagement* pView = (View_OnlineShopManagement*)((CFrameWnd*)pFrameWnd)-&amp;gt;CreateView(&amp;amp;pContext); pView-&amp;gt;ShowWindow(SW_NORMAL); pView-&amp;gt;OnInitialUpdate(); //手动调用  </description>
     </item>
     
     <item>
       <title>MFC Dialog中嵌入Formview 初始化控件时m_hWnd为空</title>
-      <link>https://sinowrt.github.io/2018/2018-12-11t1435-formview-m_hwnd/</link>
+      <link>http://blog.sinowrt.cn/2018/2018-12-11t1435-formview-m_hwnd/</link>
       <pubDate>Tue, 11 Dec 2018 14:35:00 +0000</pubDate>
       
-      <guid>https://sinowrt.github.io/2018/2018-12-11t1435-formview-m_hwnd/</guid>
+      <guid>http://blog.sinowrt.cn/2018/2018-12-11t1435-formview-m_hwnd/</guid>
       <description> 原因：在构造函数中进行控件的初始化 解决方法：Formview中，控件的初始化应该放在OnInitialUpdate中 </description>
     </item>
     
     <item>
       <title>MFC Dialog中嵌入Formview 0XC000041D:用户回调期间遇到未经处理的异常</title>
-      <link>https://sinowrt.github.io/2018/2018-12-11t1430-formview-0xc000041d/</link>
+      <link>http://blog.sinowrt.cn/2018/2018-12-11t1430-formview-0xc000041d/</link>
       <pubDate>Tue, 11 Dec 2018 14:30:47 +0000</pubDate>
       
-      <guid>https://sinowrt.github.io/2018/2018-12-11t1430-formview-0xc000041d/</guid>
+      <guid>http://blog.sinowrt.cn/2018/2018-12-11t1430-formview-0xc000041d/</guid>
       <description>在填充Formview时，遇到0XC000041D:用户回调期间遇到未经处理的异常(已解决) 原因：HBRUSH hbr = OnCtlColor(pDC, pWnd, nCtlColor);这一句中应该在OnCtlColor前面添加命名空间:: 否则编译器会误解为递归函数 源码如下： #pragma once #include &amp;quot;NormalBtn.h&amp;quot; #include &amp;quot;resource.h&amp;quot; #include &amp;lt;Gdiplus.h&amp;gt; using namespace Gdiplus; // View_OnlineShopManagement 窗体视图 class View_OnlineShopManagement : public CFormView { DECLARE_DYNCREATE(View_OnlineShopManagement) protected: View_OnlineShopManagement(); // 动态创建所使用的受保护的构造函数 virtual ~View_OnlineShopManagement(); public: #ifdef AFX_DESIGN_TIME enum { IDD = IDD_FORMVIEW_OSM }; #endif #ifdef _DEBUG virtual void AssertValid() const; #ifndef _WIN32_WCE virtual void Dump(CDumpContext&amp;amp; dc) const; #endif #endif protected: virtual void DoDataExchange(CDataExchange* pDX); // DDX/DDV 支持 DECLARE_MESSAGE_MAP() public: virtual void OnInitialUpdate(); GdiplusStartupInput m_gdiplusStartupInput; ULONG_PTR m_gdiplusToken; afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor); virtual void OnDraw(CDC* /*pDC*/); };  // View_OnlineShopManagement.</description>
     </item>
     
     <item>
       <title>Win10装光驱位硬盘分区不显示</title>
-      <link>https://sinowrt.github.io/2018/2018-12-03t1258-hard-disk-parttion-unview/</link>
+      <link>http://blog.sinowrt.cn/2018/2018-12-03t1258-hard-disk-parttion-unview/</link>
       <pubDate>Mon, 03 Dec 2018 12:58:57 +0000</pubDate>
       
-      <guid>https://sinowrt.github.io/2018/2018-12-03t1258-hard-disk-parttion-unview/</guid>
+      <guid>http://blog.sinowrt.cn/2018/2018-12-03t1258-hard-disk-parttion-unview/</guid>
       <description> 0x00 前阵子用旧电脑装了个群晖nas，无奈用的120G硬盘，完全不够用，看手上还有个500G的三星机械盘，就买了个光驱硬盘盒，到手后插上电脑没显示分区？不兼容？盘坏了？ 0x01 打开设备管理器，扫描硬件更新，可以看到三星机械盘，盘和架子应该没问题 0x02 打开partition wizard,可以看到硬盘基本信息都在，就是没有盘符 0x03 分配盘符后，可以看到电脑显示分区正常，应该是没有挂载 0x04 也可以利用diskpart对卷进行挂载 0x05 Z盘挂载成功 </description>
     </item>
     
     <item>
       <title>Qt5 error LNK2019 无法解析的外部符号的解决方法</title>
-      <link>https://sinowrt.github.io/2018/2018-11-17t1516qt5compile-error/</link>
+      <link>http://blog.sinowrt.cn/2018/2018-11-17t1516qt5compile-error/</link>
       <pubDate>Sat, 17 Nov 2018 15:16:56 +0000</pubDate>
       
-      <guid>https://sinowrt.github.io/2018/2018-11-17t1516qt5compile-error/</guid>
+      <guid>http://blog.sinowrt.cn/2018/2018-11-17t1516qt5compile-error/</guid>
       <description> 编译过程中连接错误 尝试删除build文件夹，问题解决 </description>
     </item>
     
     <item>
       <title>Windows 10安装Qt5.11.2</title>
-      <link>https://sinowrt.github.io/2018/2018-11-17t1513-install-qt5-in-win10/</link>
+      <link>http://blog.sinowrt.cn/2018/2018-11-17t1513-install-qt5-in-win10/</link>
       <pubDate>Sat, 17 Nov 2018 15:13:11 +0000</pubDate>
       
-      <guid>https://sinowrt.github.io/2018/2018-11-17t1513-install-qt5-in-win10/</guid>
+      <guid>http://blog.sinowrt.cn/2018/2018-11-17t1513-install-qt5-in-win10/</guid>
       <description> 0x00背景 信管作业要求用C++实现进销存系统用户交互界面以及业务逻辑 0x01 必备安装包 1.qt-opensource-windows-x86-5.11.2.exe 2.Windows SDK 0x02 下载与安装 1.Qt下载与安装  上Qt下载页面下载你系统对应的安装包  我的是Windoes 10,直接下载qt-opensource-windows-x86-5.11.2.exe 直接打开qt-opensource-windows-x86-5.11.2.exe安装程序 在第一个界面直接下一步 填写账号这一块，如果没有事先申请也可以先跳过这一步  选择安装文件夹 选择编译器，由于我的电脑装了vs2015，所以直接选了MSVC 2015 64-bit（若未安装任何编译器可以直接选择MinGW 5.3.0 32bit）  接下来一路下一步即可  2.Windows SDK下载与安装  上Microsoft开发者下载站 我的系统是Windows 10，还是按自己的系统版本进行下载  下载之后得到这样一个exe，打开按步骤安装   0x03 配置Qt 1.配置Debugger  工具——选项——kits——Debuggers——Add 填写Debugger的名称 浏览WindowsSKD的安装路径，找到你所需要的Debugger，这里我设置了Windows 10的x64的和x86的cdb.exe 2.配置kit 按根据截图按需配置就可以了   到了这步配置基本完成，但是我在编译程序的过程中遇到error link1158 无法运行rc.exe的报错 error link1158 无法运行rc.exe问题解决方法  到C:\Program Files (x86)\Windows Kits\10\bin\10.0.17763.0下的文件夹找到rc.dll和rc.exe复制到qmake文件夹下 qmake的路径可以参考截图   </description>
     </item>
     
     <item>
       <title>利用docker为群晖部署aria2下载工具</title>
-      <link>https://sinowrt.github.io/2018/2018-11-06t0207-synologysetup-aria2-with-docker/</link>
+      <link>http://blog.sinowrt.cn/2018/2018-11-06t0207-synologysetup-aria2-with-docker/</link>
       <pubDate>Tue, 06 Nov 2018 02:07:21 +0000</pubDate>
       
-      <guid>https://sinowrt.github.io/2018/2018-11-06t0207-synologysetup-aria2-with-docker/</guid>
+      <guid>http://blog.sinowrt.cn/2018/2018-11-06t0207-synologysetup-aria2-with-docker/</guid>
       <description> 0x00 安装docker  在package center中的Third party找到docker 直接点击install进行安装  安装完毕，点击open即可打开docker
 0x01 下载aria2映像 点击Registry选项卡，搜索aria2
  找到xujinkai那个下载下来 0x02 启动容器 点击image选项卡，点击launch进行启动 0x03 启动设置 点击Advance 1）Advance Setting 打上这两个√，设置开机自启动以及创建桌面快捷方式 2）Volume设置，添加这两项，前面的文件夹随便选，圈起来的位置务必一样 3）Port设置，为了方便使用，local port修改成您想要的端口 第一项为下载端口
@@ -90,19 +90,19 @@
     
     <item>
       <title>自定义黑群晖6.X.X引导系统版本</title>
-      <link>https://sinowrt.github.io/2018/2018-11-04t1218-synalogycustomize-boot-system/</link>
+      <link>http://blog.sinowrt.cn/2018/2018-11-04t1218-synalogycustomize-boot-system/</link>
       <pubDate>Sun, 04 Nov 2018 12:18:36 +0000</pubDate>
       
-      <guid>https://sinowrt.github.io/2018/2018-11-04t1218-synalogycustomize-boot-system/</guid>
+      <guid>http://blog.sinowrt.cn/2018/2018-11-04t1218-synalogycustomize-boot-system/</guid>
       <description> 0x00 打开osfmount 0x01 挂载引导文件  选择img文件 填写offset为16MBytes 去掉read—only前面的勾 点击ok进行挂载   0x02 解压目标系统文件  将xxxxxxx.pat的后缀改成rar 解压 从解压得到的文件夹里面找到rd.gz和zlmage 复制这两个文件到虚拟磁盘根目录下替换原文件  0x03 卸载虚拟磁盘 0x04 将img文件通过Win32DiskImager写入U盘即可 </description>
     </item>
     
     <item>
       <title>旧笔记本安装黑群晖NAS系统——打造属于自己的私有云</title>
-      <link>https://sinowrt.github.io/2018/2018-11-04t1148-synologynas-diy/</link>
+      <link>http://blog.sinowrt.cn/2018/2018-11-04t1148-synologynas-diy/</link>
       <pubDate>Sun, 04 Nov 2018 11:48:41 +0000</pubDate>
       
-      <guid>https://sinowrt.github.io/2018/2018-11-04t1148-synologynas-diy/</guid>
+      <guid>http://blog.sinowrt.cn/2018/2018-11-04t1148-synologynas-diy/</guid>
       <description>0x00 硬件条件 1.废旧的三星rv415笔记本电脑  CPU AMD Fusion APU E-450 RAM DDR3 2G 800MHz
 2.SANDISK U盘 32G 一个  0x02 软件条件 1.群晖6.x.x引导文件 2.OSFmount 用于挂载引导镜像便于修改 3.Win32DiskImager 将引导文件写入U盘 4.群晖6.1-15047系统文件 5.群晖助手 0x03 网络拓扑 0x04 安装过程 1.安装之前建议先把硬盘格了再进行全新安装 2.制作引导系统 1）挂载img文件  安装osfmount 打开osfmount，对img文件进行挂载，如下所示   选择img文件 填写offset如图所示，选择单位KBytes 去掉read-only前面的勾 点击OK即挂载成功  2）查看U盘vid与pid  打开设备管理器，找到你的U盘  双击打开 打开详细信息选项卡，属性下拉选择硬件id，就可以直接看到vid与pid  3）修改img文件里的vid与pid  打开刚刚挂载成功的磁盘 用notepad++打开grub文件夹下的grub.cfg文件 修改第22行和23行的vid、pid为你U盘对应的数值  修改保存之后即可卸载刚刚挂载的设备
   4）打开Win32DiskImager将img文件写入U盘  选择刚刚修改好的img文件 点击写入即可  5）用网线将准备安装群晖系统的电脑连入局域网内 6）进入bios将你的电脑启动首选项设置为U盘启动  每台机器都不一样，大家可以google一下 要注意的是，这步很重要，到安装完成重启的过程中，没有选择U盘启动，而由硬盘启动的话，将会引导失败，出现联机失败的错误  7）打开群晖助手搜索局域网内的准备安装群晖系统的机器 * 右键安装，注意一定要选择跟版本号以及型号都一致的pat，否则会出错 * PS:6.</description>
@@ -110,38 +110,38 @@
     
     <item>
       <title>用prism为WordPress页面实现代码高亮</title>
-      <link>https://sinowrt.github.io/2018/2018-10-20t1037-wordpresscode-highlight-with-prism/</link>
+      <link>http://blog.sinowrt.cn/2018/2018-10-20t1037-wordpresscode-highlight-with-prism/</link>
       <pubDate>Sat, 20 Oct 2018 10:37:42 +0000</pubDate>
       
-      <guid>https://sinowrt.github.io/2018/2018-10-20t1037-wordpresscode-highlight-with-prism/</guid>
+      <guid>http://blog.sinowrt.cn/2018/2018-10-20t1037-wordpresscode-highlight-with-prism/</guid>
       <description> 0x01 下载prism的css与js文件  在prism官网下载prism的css与js文件  0x02 ssh方式登陆服务器  在路径/wordpress/htdocs/wp-content/themes/你的主题名称/路径下创建prism文件夹 将prism.css与prism.js两个文件上传到prism文件夹中  0x03 修改functions.php  在/wordpress/htdocs/wp-content/themes/你的主题名称/下找到functions.php vi修改文件，添加以下语句：  function add_prism() { wp_register_style( &#39;prismCSS&#39;, get_stylesheet_directory_uri() . &#39;/prism/prism.css&#39; //自定义路径 ); wp_register_script( &#39;prismJS&#39;, get_stylesheet_directory_uri() . &#39;/prism/prism.js&#39; //自定义路径 ); wp_enqueue_style(&#39;prismCSS&#39;); wp_enqueue_script(&#39;prismJS&#39;); } add_action(&#39;wp_enqueue_scripts&#39;, &#39;add_prism&#39;);  0x04注意  get_stylesheet_directory_uri()与get_parent_theme_file_path( &#39;/inc/color-patterns.php&#39; )的区别 使用get_parent_theme_file_path( &#39;/prism/prism.css&#39; )语句之后发现页面代码高亮没生效 通过chrome F12调试 发现prism.css与prism.js没加载成功 细看发现请求路径不对劲 修改成get_stylesheet_directory_uri().&#39;/prism/prism.js&#39;之后代码高亮生效  </description>
     </item>
     
     <item>
       <title>newifi mini安装drcom全攻略</title>
-      <link>https://sinowrt.github.io/2018/2018-10-19t0256-drcom-setup-of-newifi_mini/</link>
+      <link>http://blog.sinowrt.cn/2018/2018-10-19t0256-drcom-setup-of-newifi_mini/</link>
       <pubDate>Fri, 19 Oct 2018 02:56:07 +0000</pubDate>
       
-      <guid>https://sinowrt.github.io/2018/2018-10-19t0256-drcom-setup-of-newifi_mini/</guid>
+      <guid>http://blog.sinowrt.cn/2018/2018-10-19t0256-drcom-setup-of-newifi_mini/</guid>
       <description>起始条件：  刷入breed的newifi mini一台 网线一根  后续部署  刷入pandorabox r355固件 配置无线名、密码 在/etc/opkg.conf后追加  arch all 100 arch ramips_24kec 200 arch ramips 300  离线安装python环境  分别下载  libgcc_4.8-linaro-1_ramips_24kec.ipk libc_0.9.33.2-1_ramips_24kec.ipk libpthread_0.9.33.2-1_ramips_24kec.ipk zlib_1.2.8-1_ramips_24kec.ipk libffi_3.0.13-1_ramips_24kec.ipk python-mini_2.7.3-2_ramips_24kec.ipk   将上述ipk放到tmp目录下 依次安装 安装完毕可以在putty中输入 python 以检验是否安装成功  安装drcom客户端  将drcom客户端的python脚本放入/usr/bin中（注意，此脚本为改动后的命令行脚本），将权限改为0755 输入python /usr/bin/drcom -u 你的账号 -p 你的密码，回车，在浏览器验证是否能成功登录上网  安装drcom_client可视化配置界面  复制drcom(etc_config)到括号中的路径，并去掉括号以及括号中的路径 复制drcom.lua(usr_lib_lua_luci_controller)到括号中的路径，并去掉括号以及括号中的路径，更改为0755权限 复制drcom.lua(usr_lib_lua_luci_model_cbi)到括号中的路径，并去掉括号以及括号中的路径，更改为0755权限 复制drcom.lua(usr-lib-lua-luci-model-cbi-admin_services)到括号中的路径，并去掉括号以及括号中的路径，更改为0755权限 复制drcom_client(etc_init.d)到括号中的路径，并去掉括号以及括号中的路径，更改为0755权限 重启路由  配置drcom_client  进入luci管理界面 在服务中找到drcom_client单击进入 填入drcom的账号和密码 save&amp;amp;apply 打开浏览器打开任意网页验证是否登录成功  配置自启动  在/etc/hotplut.</description>
     </item>
     
     <item>
       <title>init.d 的 脚本中使用 kill 的怪事</title>
-      <link>https://sinowrt.github.io/2018/2018-10-17t0552-init.dkill/</link>
+      <link>http://blog.sinowrt.cn/2018/2018-10-17t0552-init.dkill/</link>
       <pubDate>Wed, 17 Oct 2018 05:52:17 +0000</pubDate>
       
-      <guid>https://sinowrt.github.io/2018/2018-10-17t0552-init.dkill/</guid>
+      <guid>http://blog.sinowrt.cn/2018/2018-10-17t0552-init.dkill/</guid>
       <description>2018.08.20 使用自动安装drcom的shell脚本之后，打开配置界面，进行认证之后，想起昨晚有那么一瞬间发现，在drcom的luci界面配置以及apply之后，ps -w会出现两条python drcom的进程，于是再次打开putty查看，果然不出所料，于是就有了这篇文章 #!/bin/sh /etc/rc.common run_drcom() { local username local password config_get username $1 username config_get password $1 password python /usr/bin/drcom -u $username -p $password &amp;amp; } start() { config_load drcom config_foreach run_drcom login } stop() { ps w | grep &amp;quot;.*drcom.*&amp;quot; | grep -v &#39;grep&#39; | cut -c 2-5 | xargs kill -9 echo &amp;quot;Drcom Client for GDUFE has stoped.&amp;quot; }   大二的时候，在写了drcom的luci界面之后，发现有时候使用drcom_client的stop命令会不奏效，经过查看代码，发现问题应该出在cut -c 2-5上
 for example cut -c 2-5 是截取了第二到第五位的字符串 即4位pid 若pid大于4位之后便不再好使  我有印象当时已经改正了，这次出现的 drcom_client 脚本，便是原原本本的当年的模样，至于为什么会这样，可能当时我只改了路由器上的脚本，而没有更新本地脚本</description>
     </item>
     
     <item>
       <title>给宿舍装个智能锁吧（二）——指纹篇</title>
-      <link>https://sinowrt.github.io/2018/2018-10-17t0348-smartlock2/</link>
+      <link>http://blog.sinowrt.cn/2018/2018-10-17t0348-smartlock2/</link>
       <pubDate>Wed, 17 Oct 2018 03:48:52 +0000</pubDate>
       
-      <guid>https://sinowrt.github.io/2018/2018-10-17t0348-smartlock2/</guid>
+      <guid>http://blog.sinowrt.cn/2018/2018-10-17t0348-smartlock2/</guid>
       <description>2018/3/13  星期二晚上到货 取开发资料 浏览用户手册  2018/3/14  根据用户手册进行模块接线 接入串口，利用开发包中的上位机对指纹模块进行操作 用串口调试软件，输入相应的指令，进行指纹采集等操作，但进行相应的操作总是无法实现 原因：对原有指令进行了改造，而校验码并没有改变 对上位机软件进行改造，使其输出相应操作流程的指令
 在OEMHostDlg.cpp中查找对应的按钮执行的内容 1.找到void COEMHostDlg::OnBtnVerify()
   void COEMHostDlg::OnBtnVerify() { int w_nRet, w_nTmplNo, w_nFpStatus, w_nLearned; DWORD w_dwTime; CString w_strTmp; UpdateData(TRUE); if (!CheckUserID()) return; EnableControl(FALSE); GetDlgItem(IDC_BTN_DISCONNECT)-&amp;gt;EnableWindow(FALSE); GetDlgItem(IDC_BTN_STOP)-&amp;gt;EnableWindow(TRUE); m_bCancel = FALSE; w_nTmplNo = m_nUserID; //. Check if fp is exist w_nRet = m_clsCommu.Run_GetStatus(w_nTmplNo, &amp;amp;w_nFpStatus); if( w_nRet != ERR_SUCCESS ) { m_strCmdResult = GetErrorMsg(w_nRet); goto l_exit; } if( w_nRet == ERR_SUCCESS &amp;amp;&amp;amp; w_nFpStatus == GD_TEMPLATE_EMPTY ) { m_strCmdResult = _T(&amp;quot;Template is empty&amp;quot;); goto l_exit; } m_clsCommu.</description>
@@ -149,10 +149,10 @@ for example cut -c 2-5 是截取了第二到第五位的字符串 即4位pid 若
     
     <item>
       <title>ubuntu 16.04部署ss</title>
-      <link>https://sinowrt.github.io/2018/2018-10-16t1040-ubuntu/</link>
+      <link>http://blog.sinowrt.cn/2018/2018-10-16t1040-ubuntu/</link>
       <pubDate>Tue, 16 Oct 2018 10:40:36 +0000</pubDate>
       
-      <guid>https://sinowrt.github.io/2018/2018-10-16t1040-ubuntu/</guid>
+      <guid>http://blog.sinowrt.cn/2018/2018-10-16t1040-ubuntu/</guid>
       <description> 2018/04/06  准备部署亚马逊云的ss服务端，无意中看到有一张8刀的未付账单 经过查看账单详情，发现美国的俄亥俄州的服务器还没关闭，导致东京和美国的服务器同时开启，当然超出了亚马逊云的免费范围，所以对于国外的云服务器还是要定时上去查看一下，以防意外扣费的发生
  本篇主要是对ubuntu 16.04上部署ss服务端进行记录的的过程
   准备工作  利用putty的puttygen对亚马逊云派发的秘钥文件*.pem转换为putty能识别的ppk文件 启动putty，在ssh的auth中浏览文件夹选中刚才转换出来的ppk文件 填写服务器地址以及默认用户名ubuntu@ip地址 填写ssh端口22 若要进行ping检测，则需要在安全组中添加icmp入站规则 对该配置进行保存以便日后维护  正式部署  首先在终端输入sudo apt-get update 更新源 接着安装pip3，输入sudo apt install python3-pip 安装ss，输入sudo pip3 install shadowsocks 配置ss，输入sudo vi /etc/shadowsocks 在vi中输入ss的配置如下所示：  { &amp;quot;server&amp;quot;:&amp;quot;0.0.0.0&amp;quot;, &amp;quot;server_port&amp;quot;:444, &amp;quot;local_address&amp;quot;:&amp;quot;127.0.0.1&amp;quot;, &amp;quot;local_port&amp;quot;:1080, &amp;quot;password&amp;quot;:&amp;quot;mypasswd&amp;quot;, &amp;quot;timeout&amp;quot;:300, &amp;quot;method&amp;quot;:&amp;quot;aes-256-cfb&amp;quot;, &amp;quot;fast_open&amp;quot;:false }  保存退出
@@ -164,10 +164,10 @@ for example cut -c 2-5 是截取了第二到第五位的字符串 即4位pid 若
     
     <item>
       <title>给宿舍装个智能门锁吧（一）</title>
-      <link>https://sinowrt.github.io/2018/2018-10-16t0811-smartlock/</link>
+      <link>http://blog.sinowrt.cn/2018/2018-10-16t0811-smartlock/</link>
       <pubDate>Tue, 16 Oct 2018 08:11:56 +0000</pubDate>
       
-      <guid>https://sinowrt.github.io/2018/2018-10-16t0811-smartlock/</guid>
+      <guid>http://blog.sinowrt.cn/2018/2018-10-16t0811-smartlock/</guid>
       <description>初步部署 2018.1.27  舵机安装，用热熔胶将SG92R 9g小型舵机粘到门锁旁，舵机牵扯尼龙绳实现开锁动作 利用原有的papersignals固件对舵机开门的可行性进行测试，发现舵机在门锁有阻力的情况下，在舵机通电一刻仍能高效开锁 对该项目的架构进行构思  1.借鉴papersignals项目：  esp8266充当客户端，定时请求服务端获取json数据
  手机端发送请求到达服务端，服务端解析请求并修改本地json数据
  从而达到伪装实时开锁的目的  工作与过年原因项目搁置许久 2.构思内网穿透方案  利用pandorabox的可扩展性，安装内网穿透客户端ngrok

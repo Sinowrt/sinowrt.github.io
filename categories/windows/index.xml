@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Windows on Sinowrt</title>
-    <link>https://sinowrt.github.io/categories/windows/</link>
+    <link>http://blog.sinowrt.cn/categories/windows/</link>
     <description>Recent content in Windows on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 03 Dec 2018 12:58:57 +0000</lastBuildDate>
     
-	<atom:link href="https://sinowrt.github.io/categories/windows/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://blog.sinowrt.cn/categories/windows/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Win10装光驱位硬盘分区不显示</title>
-      <link>https://sinowrt.github.io/2018/2018-12-03t1258-hard-disk-parttion-unview/</link>
+      <link>http://blog.sinowrt.cn/2018/2018-12-03t1258-hard-disk-parttion-unview/</link>
       <pubDate>Mon, 03 Dec 2018 12:58:57 +0000</pubDate>
       
-      <guid>https://sinowrt.github.io/2018/2018-12-03t1258-hard-disk-parttion-unview/</guid>
+      <guid>http://blog.sinowrt.cn/2018/2018-12-03t1258-hard-disk-parttion-unview/</guid>
       <description> 0x00 前阵子用旧电脑装了个群晖nas，无奈用的120G硬盘，完全不够用，看手上还有个500G的三星机械盘，就买了个光驱硬盘盒，到手后插上电脑没显示分区？不兼容？盘坏了？ 0x01 打开设备管理器，扫描硬件更新，可以看到三星机械盘，盘和架子应该没问题 0x02 打开partition wizard,可以看到硬盘基本信息都在，就是没有盘符 0x03 分配盘符后，可以看到电脑显示分区正常，应该是没有挂载 0x04 也可以利用diskpart对卷进行挂载 0x05 Z盘挂载成功 </description>
     </item>
     

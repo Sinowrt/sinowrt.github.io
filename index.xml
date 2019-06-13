@@ -1,7 +1,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Sinowrt on Sinowrt</title>
-    <link>https://sinowrt.github.io/</link>
+    <link>http://blog.sinowrt.cn/</link>
     <description>Recent content in Sinowrt on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
@@ -10,20 +10,20 @@
     
     <item>
       <title>21 minutes after my birthday</title>
-      <link>https://sinowrt.github.io/2019/2019-06-13t0020-21-minutes-after-my-birthday/</link>
+      <link>http://blog.sinowrt.cn/2019/2019-06-13t0020-21-minutes-after-my-birthday/</link>
       <pubDate>Thu, 13 Jun 2019 00:21:27 +0800</pubDate>
       
-      <guid>https://sinowrt.github.io/2019/2019-06-13t0020-21-minutes-after-my-birthday/</guid>
+      <guid>http://blog.sinowrt.cn/2019/2019-06-13t0020-21-minutes-after-my-birthday/</guid>
       <description>&lt;p&gt;现在是2019年6月13日00点21分，距离我上一个生日已经过了21分。22年，我终于过了一个十分安静的生日，除了家人十年如一日的祝福，在我的微信列表里，没有一个人打扰我。我点了一个披萨，和舍友一起吃，没人知道今天是什么日子，其实也是普通的2019年6月12日。新奥尔良鸡肉味的披萨香味伴随了我的一天，手机上挂着的微信消息界面也伴随了我一天，韵达快递，电白人民医院，省汽车站，都向我表达了亲切的问候。我有一个妹妹，是网上认识的妹妹，辛苦上了一天的班后想起了我的生日，她说：“端午节后五天，生日快乐”，真幸福。&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>MFC FormView中的OnInitialUpdate不调用</title>
-      <link>https://sinowrt.github.io/2018/2018-12-11t1541-formview-oninitialupdate/</link>
+      <link>http://blog.sinowrt.cn/2018/2018-12-11t1541-formview-oninitialupdate/</link>
       <pubDate>Tue, 11 Dec 2018 15:41:27 +0000</pubDate>
       
-      <guid>https://sinowrt.github.io/2018/2018-12-11t1541-formview-oninitialupdate/</guid>
+      <guid>http://blog.sinowrt.cn/2018/2018-12-11t1541-formview-oninitialupdate/</guid>
       <description>
 
 &lt;h4 id=&#34;0x00-在formview中的oninitialupdate中初始化了个自定义的按钮-但是运行无任何样式效果&#34;&gt;0x00 在Formview中的OnInitialUpdate中初始化了个自定义的按钮，但是运行无任何样式效果&lt;/h4&gt;
@@ -46,10 +46,10 @@
     
     <item>
       <title>MFC Dialog中嵌入Formview 初始化控件时m_hWnd为空</title>
-      <link>https://sinowrt.github.io/2018/2018-12-11t1435-formview-m_hwnd/</link>
+      <link>http://blog.sinowrt.cn/2018/2018-12-11t1435-formview-m_hwnd/</link>
       <pubDate>Tue, 11 Dec 2018 14:35:00 +0000</pubDate>
       
-      <guid>https://sinowrt.github.io/2018/2018-12-11t1435-formview-m_hwnd/</guid>
+      <guid>http://blog.sinowrt.cn/2018/2018-12-11t1435-formview-m_hwnd/</guid>
       <description>
 
 &lt;h3 id=&#34;原因-在构造函数中进行控件的初始化&#34;&gt;原因：在构造函数中进行控件的初始化&lt;/h3&gt;
@@ -60,10 +60,10 @@
     
     <item>
       <title>MFC Dialog中嵌入Formview 0XC000041D:用户回调期间遇到未经处理的异常</title>
-      <link>https://sinowrt.github.io/2018/2018-12-11t1430-formview-0xc000041d/</link>
+      <link>http://blog.sinowrt.cn/2018/2018-12-11t1430-formview-0xc000041d/</link>
       <pubDate>Tue, 11 Dec 2018 14:30:47 +0000</pubDate>
       
-      <guid>https://sinowrt.github.io/2018/2018-12-11t1430-formview-0xc000041d/</guid>
+      <guid>http://blog.sinowrt.cn/2018/2018-12-11t1430-formview-0xc000041d/</guid>
       <description>
 
 &lt;h3 id=&#34;在填充formview时-遇到0xc000041d-用户回调期间遇到未经处理的异常-已解决&#34;&gt;在填充Formview时，遇到0XC000041D:用户回调期间遇到未经处理的异常(已解决)&lt;/h3&gt;
@@ -217,10 +217,10 @@ void View_OnlineShopManagement::OnDraw(CDC* /*pDC*/)
     
     <item>
       <title>Win10装光驱位硬盘分区不显示</title>
-      <link>https://sinowrt.github.io/2018/2018-12-03t1258-hard-disk-parttion-unview/</link>
+      <link>http://blog.sinowrt.cn/2018/2018-12-03t1258-hard-disk-parttion-unview/</link>
       <pubDate>Mon, 03 Dec 2018 12:58:57 +0000</pubDate>
       
-      <guid>https://sinowrt.github.io/2018/2018-12-03t1258-hard-disk-parttion-unview/</guid>
+      <guid>http://blog.sinowrt.cn/2018/2018-12-03t1258-hard-disk-parttion-unview/</guid>
       <description>
 
 &lt;h4 id=&#34;0x00-前阵子用旧电脑装了个群晖nas-无奈用的120g硬盘-完全不够用-看手上还有个500g的三星机械盘-就买了个光驱硬盘盒-到手后插上电脑没显示分区-不兼容-盘坏了&#34;&gt;0x00 前阵子用旧电脑装了个群晖nas，无奈用的120G硬盘，完全不够用，看手上还有个500G的三星机械盘，就买了个光驱硬盘盒，到手后插上电脑没显示分区？不兼容？盘坏了？&lt;/h4&gt;
@@ -251,10 +251,10 @@ void View_OnlineShopManagement::OnDraw(CDC* /*pDC*/)
     
     <item>
       <title>Qt5 error LNK2019 无法解析的外部符号的解决方法</title>
-      <link>https://sinowrt.github.io/2018/2018-11-17t1516qt5compile-error/</link>
+      <link>http://blog.sinowrt.cn/2018/2018-11-17t1516qt5compile-error/</link>
       <pubDate>Sat, 17 Nov 2018 15:16:56 +0000</pubDate>
       
-      <guid>https://sinowrt.github.io/2018/2018-11-17t1516qt5compile-error/</guid>
+      <guid>http://blog.sinowrt.cn/2018/2018-11-17t1516qt5compile-error/</guid>
       <description>
 
 &lt;h1 id=&#34;编译过程中连接错误&#34;&gt;编译过程中连接错误&lt;/h1&gt;
@@ -265,10 +265,10 @@ void View_OnlineShopManagement::OnDraw(CDC* /*pDC*/)
     
     <item>
       <title>Windows 10安装Qt5.11.2</title>
-      <link>https://sinowrt.github.io/2018/2018-11-17t1513-install-qt5-in-win10/</link>
+      <link>http://blog.sinowrt.cn/2018/2018-11-17t1513-install-qt5-in-win10/</link>
       <pubDate>Sat, 17 Nov 2018 15:13:11 +0000</pubDate>
       
-      <guid>https://sinowrt.github.io/2018/2018-11-17t1513-install-qt5-in-win10/</guid>
+      <guid>http://blog.sinowrt.cn/2018/2018-11-17t1513-install-qt5-in-win10/</guid>
       <description>
 
 &lt;h2 id=&#34;0x00背景&#34;&gt;0x00背景&lt;/h2&gt;
@@ -340,10 +340,10 @@ void View_OnlineShopManagement::OnDraw(CDC* /*pDC*/)
     
     <item>
       <title>利用docker为群晖部署aria2下载工具</title>
-      <link>https://sinowrt.github.io/2018/2018-11-06t0207-synologysetup-aria2-with-docker/</link>
+      <link>http://blog.sinowrt.cn/2018/2018-11-06t0207-synologysetup-aria2-with-docker/</link>
       <pubDate>Tue, 06 Nov 2018 02:07:21 +0000</pubDate>
       
-      <guid>https://sinowrt.github.io/2018/2018-11-06t0207-synologysetup-aria2-with-docker/</guid>
+      <guid>http://blog.sinowrt.cn/2018/2018-11-06t0207-synologysetup-aria2-with-docker/</guid>
       <description>
 
 &lt;h2 id=&#34;0x00-安装docker&#34;&gt;0x00 安装docker&lt;/h2&gt;
@@ -412,10 +412,10 @@ void View_OnlineShopManagement::OnDraw(CDC* /*pDC*/)
     
     <item>
       <title>自定义黑群晖6.X.X引导系统版本</title>
-      <link>https://sinowrt.github.io/2018/2018-11-04t1218-synalogycustomize-boot-system/</link>
+      <link>http://blog.sinowrt.cn/2018/2018-11-04t1218-synalogycustomize-boot-system/</link>
       <pubDate>Sun, 04 Nov 2018 12:18:36 +0000</pubDate>
       
-      <guid>https://sinowrt.github.io/2018/2018-11-04t1218-synalogycustomize-boot-system/</guid>
+      <guid>http://blog.sinowrt.cn/2018/2018-11-04t1218-synalogycustomize-boot-system/</guid>
       <description>
 
 &lt;h2 id=&#34;0x00-打开osfmount&#34;&gt;0x00 打开osfmount&lt;/h2&gt;
@@ -451,10 +451,10 @@ void View_OnlineShopManagement::OnDraw(CDC* /*pDC*/)
     
     <item>
       <title>旧笔记本安装黑群晖NAS系统——打造属于自己的私有云</title>
-      <link>https://sinowrt.github.io/2018/2018-11-04t1148-synologynas-diy/</link>
+      <link>http://blog.sinowrt.cn/2018/2018-11-04t1148-synologynas-diy/</link>
       <pubDate>Sun, 04 Nov 2018 11:48:41 +0000</pubDate>
       
-      <guid>https://sinowrt.github.io/2018/2018-11-04t1148-synologynas-diy/</guid>
+      <guid>http://blog.sinowrt.cn/2018/2018-11-04t1148-synologynas-diy/</guid>
       <description>
 
 &lt;h2 id=&#34;0x00-硬件条件&#34;&gt;0x00 硬件条件&lt;/h2&gt;
@@ -595,10 +595,10 @@ void View_OnlineShopManagement::OnDraw(CDC* /*pDC*/)
     
     <item>
       <title>用prism为WordPress页面实现代码高亮</title>
-      <link>https://sinowrt.github.io/2018/2018-10-20t1037-wordpresscode-highlight-with-prism/</link>
+      <link>http://blog.sinowrt.cn/2018/2018-10-20t1037-wordpresscode-highlight-with-prism/</link>
       <pubDate>Sat, 20 Oct 2018 10:37:42 +0000</pubDate>
       
-      <guid>https://sinowrt.github.io/2018/2018-10-20t1037-wordpresscode-highlight-with-prism/</guid>
+      <guid>http://blog.sinowrt.cn/2018/2018-10-20t1037-wordpresscode-highlight-with-prism/</guid>
       <description>
 
 &lt;h2 id=&#34;0x01-下载prism的css与js文件&#34;&gt;0x01 下载prism的css与js文件&lt;/h2&gt;
@@ -650,10 +650,10 @@ add_action(&#39;wp_enqueue_scripts&#39;, &#39;add_prism&#39;);
     
     <item>
       <title>newifi mini安装drcom全攻略</title>
-      <link>https://sinowrt.github.io/2018/2018-10-19t0256-drcom-setup-of-newifi_mini/</link>
+      <link>http://blog.sinowrt.cn/2018/2018-10-19t0256-drcom-setup-of-newifi_mini/</link>
       <pubDate>Fri, 19 Oct 2018 02:56:07 +0000</pubDate>
       
-      <guid>https://sinowrt.github.io/2018/2018-10-19t0256-drcom-setup-of-newifi_mini/</guid>
+      <guid>http://blog.sinowrt.cn/2018/2018-10-19t0256-drcom-setup-of-newifi_mini/</guid>
       <description>
 
 &lt;h2 id=&#34;起始条件&#34;&gt;起始条件：&lt;/h2&gt;
@@ -776,10 +776,10 @@ fi
     
     <item>
       <title>init.d 的 脚本中使用 kill 的怪事</title>
-      <link>https://sinowrt.github.io/2018/2018-10-17t0552-init.dkill/</link>
+      <link>http://blog.sinowrt.cn/2018/2018-10-17t0552-init.dkill/</link>
       <pubDate>Wed, 17 Oct 2018 05:52:17 +0000</pubDate>
       
-      <guid>https://sinowrt.github.io/2018/2018-10-17t0552-init.dkill/</guid>
+      <guid>http://blog.sinowrt.cn/2018/2018-10-17t0552-init.dkill/</guid>
       <description>
 
 &lt;h1 id=&#34;2018-08-20&#34;&gt;2018.08.20&lt;/h1&gt;
@@ -925,10 +925,10 @@ start
     
     <item>
       <title>给宿舍装个智能锁吧（二）——指纹篇</title>
-      <link>https://sinowrt.github.io/2018/2018-10-17t0348-smartlock2/</link>
+      <link>http://blog.sinowrt.cn/2018/2018-10-17t0348-smartlock2/</link>
       <pubDate>Wed, 17 Oct 2018 03:48:52 +0000</pubDate>
       
-      <guid>https://sinowrt.github.io/2018/2018-10-17t0348-smartlock2/</guid>
+      <guid>http://blog.sinowrt.cn/2018/2018-10-17t0348-smartlock2/</guid>
       <description>
 
 &lt;h2 id=&#34;2018-3-13&#34;&gt;2018/3/13&lt;/h2&gt;
@@ -1355,10 +1355,10 @@ WiFiClient.h: 127:5: error: request for member &#39;read&#39; in &#39;source&#39
     
     <item>
       <title>ubuntu 16.04部署ss</title>
-      <link>https://sinowrt.github.io/2018/2018-10-16t1040-ubuntu/</link>
+      <link>http://blog.sinowrt.cn/2018/2018-10-16t1040-ubuntu/</link>
       <pubDate>Tue, 16 Oct 2018 10:40:36 +0000</pubDate>
       
-      <guid>https://sinowrt.github.io/2018/2018-10-16t1040-ubuntu/</guid>
+      <guid>http://blog.sinowrt.cn/2018/2018-10-16t1040-ubuntu/</guid>
       <description>
 
 &lt;h1 id=&#34;2018-04-06&#34;&gt;2018/04/06&lt;/h1&gt;
