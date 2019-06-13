@@ -19,6 +19,18 @@
     </item>
     
     <item>
+      <title>About</title>
+      <link>http://blog.sinowrt.cn/about/</link>
+      <pubDate>Wed, 12 Jun 2019 22:41:27 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/about/</guid>
+      <description>
+
+&lt;h1 id=&#34;fuck-the-god-dame-world&#34;&gt;Fuck the god dame world:)&lt;/h1&gt;
+</description>
+    </item>
+    
+    <item>
       <title>MFC FormView中的OnInitialUpdate不调用</title>
       <link>http://blog.sinowrt.cn/2018/2018-12-11t1541-formview-oninitialupdate/</link>
       <pubDate>Tue, 11 Dec 2018 15:41:27 +0000</pubDate>
@@ -1349,69 +1361,6 @@ WiFiClient.h: 127:5: error: request for member &#39;read&#39; in &#39;source&#39
 &lt;li&gt;2.用modeSwitch标记是否进入了debug模式，通过判断modeSwitch来判断是否进行透传输出，modeSwitch通过是否传入debug()和exit()命令进行切换&lt;/li&gt;
 &lt;li&gt;3.在transclient可用时进入while(client.connected())的循环，可以进行回话的保持，返回当前串口通讯的数据&lt;/li&gt;
 &lt;li&gt;4.源码见&lt;a href=&#34;https://github.com/sinowrt/mySmartLock&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;github&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>ubuntu 16.04部署ss</title>
-      <link>http://blog.sinowrt.cn/2018/2018-10-16t1040-ubuntu/</link>
-      <pubDate>Tue, 16 Oct 2018 10:40:36 +0000</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2018/2018-10-16t1040-ubuntu/</guid>
-      <description>
-
-&lt;h1 id=&#34;2018-04-06&#34;&gt;2018/04/06&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;准备部署亚马逊云的ss服务端，无意中看到有一张8刀的未付账单&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;经过查看账单详情，发现美国的俄亥俄州的服务器还没关闭，导致东京和美国的服务器同时开启，当然超出了亚马逊云的免费范围，所以对于国外的云服务器还是要定时上去查看一下，以防意外扣费的发生&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;本篇主要是对ubuntu 16.04上部署ss服务端进行记录的的过程&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;准备工作&#34;&gt;准备工作&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;利用putty的puttygen对亚马逊云派发的秘钥文件*.pem转换为putty能识别的ppk文件&lt;/li&gt;
-&lt;li&gt;启动putty，在ssh的auth中浏览文件夹选中刚才转换出来的ppk文件&lt;/li&gt;
-&lt;li&gt;填写服务器地址以及默认用户名ubuntu@ip地址&lt;/li&gt;
-&lt;li&gt;填写ssh端口22&lt;/li&gt;
-&lt;li&gt;若要进行ping检测，则需要在安全组中添加icmp入站规则&lt;/li&gt;
-&lt;li&gt;对该配置进行保存以便日后维护&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;正式部署&#34;&gt;正式部署&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;首先在终端输入&lt;code&gt;sudo apt-get update&lt;/code&gt;  更新源&lt;/li&gt;
-&lt;li&gt;接着安装pip3，输入&lt;code&gt;sudo apt install python3-pip&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;安装ss，输入&lt;code&gt;sudo pip3 install shadowsocks&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;配置ss，输入&lt;code&gt;sudo vi /etc/shadowsocks&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;在vi中输入ss的配置如下所示：&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
-    &amp;quot;server&amp;quot;:&amp;quot;0.0.0.0&amp;quot;,
-    &amp;quot;server_port&amp;quot;:444,
-    &amp;quot;local_address&amp;quot;:&amp;quot;127.0.0.1&amp;quot;,
-    &amp;quot;local_port&amp;quot;:1080,
-    &amp;quot;password&amp;quot;:&amp;quot;mypasswd&amp;quot;,
-    &amp;quot;timeout&amp;quot;:300,
-    &amp;quot;method&amp;quot;:&amp;quot;aes-256-cfb&amp;quot;,
-    &amp;quot;fast_open&amp;quot;:false
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;保存退出&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;如果ss不是安装在/usr/bin或/usr/local/bin,要先查看ss的路径，输入&lt;code&gt;whereis ssserver&lt;/code&gt;（故建议在安装ss前先&lt;code&gt;cd /usr/bin&lt;/code&gt;）&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;将查询到的路径复制，输入&lt;code&gt;sudo vi /etc/sudoers&lt;/code&gt;，粘贴到secure_path后面，以冒号分隔强制保存退出即可&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;最后输入&lt;code&gt;sudo ssserver -c /etc/shadowsocks.json -d start &amp;amp;&lt;/code&gt;启动ss 服务即可用客户端进行连接&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
