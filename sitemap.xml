@@ -38,7 +38,43 @@
     </url>
   
     <url>
+      <loc>http://blog.sinowrt.cn/tags/</loc>
+      
+      <lastmod>2019-06-13T13:02:08+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/vpn/</loc>
+      
+      <lastmod>2019-06-13T13:02:08+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
       <loc>http://blog.sinowrt.cn/categories/vpn/</loc>
+      
+      <lastmod>2019-06-13T13:02:08+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/%E6%90%AC%E7%93%A6%E5%B7%A5/</loc>
       
       <lastmod>2019-06-13T13:02:08+08:00</lastmod>
       
@@ -67,28 +103,6 @@
       <lastmod>2019-06-13T13:02:08+08:00</lastmod>
       
       
-      
-      
-    </url>
-  
-    <url>
-      <loc>http://blog.sinowrt.cn/2019/2019-06-13t0020-21-minutes-after-my-birthday/</loc>
-      
-      <lastmod>2019-06-13T00:21:27+08:00</lastmod>
-      
-      
-      
-      
-    </url>
-  
-    <url>
-      <loc>http://blog.sinowrt.cn/categories/%E7%90%90%E4%BA%8B/</loc>
-      
-      <lastmod>2019-06-13T00:21:27+08:00</lastmod>
-      
-      
-      
-      <priority>0</priority>
       
       
     </url>
@@ -345,16 +359,6 @@
       <lastmod>2018-10-16T08:11:56+00:00</lastmod>
       
       
-      
-      
-    </url>
-  
-    <url>
-      <loc>http://blog.sinowrt.cn/tags/</loc>
-      
-      
-      
-      <priority>0</priority>
       
       
     </url>

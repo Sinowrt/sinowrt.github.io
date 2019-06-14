@@ -6,9 +6,28 @@
     <description>Recent content in Tags on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <lastBuildDate>Thu, 13 Jun 2019 13:02:08 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>vpn</title>
+      <link>http://blog.sinowrt.cn/tags/vpn/</link>
+      <pubDate>Thu, 13 Jun 2019 13:02:08 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/tags/vpn/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>搬瓦工</title>
+      <link>http://blog.sinowrt.cn/tags/%E6%90%AC%E7%93%A6%E5%B7%A5/</link>
+      <pubDate>Thu, 13 Jun 2019 13:02:08 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/tags/%E6%90%AC%E7%93%A6%E5%B7%A5/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>
