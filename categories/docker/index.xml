@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>docker on Sinowrt</title>
+    <link>http://blog.sinowrt.cn/categories/docker/</link>
+    <description>Recent content in docker on Sinowrt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 05 Aug 2019 17:47:08 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.sinowrt.cn/categories/docker/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>群晖docker与移动网络的恩怨情仇</title>
+      <link>http://blog.sinowrt.cn/2019/2019-08-05t1747-the-fucking-china-mobile/</link>
+      <pubDate>Mon, 05 Aug 2019 17:47:08 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2019/2019-08-05t1747-the-fucking-china-mobile/</guid>
+      <description> 0x00 起因  舍友淘汰了一台笔记本电脑，被水泡了，也经过我的手修过，最后硬盘还是回天乏术。毕业了，也就扔给我了，由于手头上没有多余的硬盘，于是拆掉了群晖上的120G的东芝硬盘安上去。但是在转移资料的时候，只转移了盘内的文件，没有留意到群晖的package也需要转移。就这样，配置好在docker上的aria2也GG了。群晖没有了离线下载，就如烧烤没有孜然，失去了灵魂。 学校上个月换了运营商，换成了稀巴烂的移动网。 今天恰好有空，就重装一下aria2。  0x01 经过  docker安装挺顺利的，接下来就找一下aria2的镜像呗，输入aria2查找了半天，却弹了个failed to query registry的提示出来。我寻思着，是不是注册表源失效了，换成阿里云的源，结果直接not found。 这就奇怪了，以前安装的时候一切挺顺利的，没遇到过这种情况。于是google了一番，有让改dns的，改了n多个也没见效果。后来发现挺多回帖说是移动网的问题，用代理下吧，newifi3刚拿回来还没空刷机，刷完机还得配梯子，也挺折腾的。 我的网络是中继了学校的wifi过来的，于是我用手机开了个wifi，那就中继手机吧。试了一下，果然是移动网的问题，这个问题也就结了。  0x02 总结  移动网垃圾！  </description>
+    </item>
+    
+  </channel>
+</rss>

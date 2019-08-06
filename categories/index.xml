@@ -6,10 +6,37 @@
     <description>Recent content in Categories on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 13 Jun 2019 13:02:08 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 05 Aug 2019 17:47:08 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>docker</title>
+      <link>http://blog.sinowrt.cn/categories/docker/</link>
+      <pubDate>Mon, 05 Aug 2019 17:47:08 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>移动</title>
+      <link>http://blog.sinowrt.cn/categories/%E7%A7%BB%E5%8A%A8/</link>
+      <pubDate>Mon, 05 Aug 2019 17:47:08 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/%E7%A7%BB%E5%8A%A8/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>群晖</title>
+      <link>http://blog.sinowrt.cn/categories/%E7%BE%A4%E6%99%96/</link>
+      <pubDate>Mon, 05 Aug 2019 17:47:08 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/%E7%BE%A4%E6%99%96/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>vpn</title>
@@ -62,15 +89,6 @@
       <pubDate>Sat, 17 Nov 2018 15:16:56 +0000</pubDate>
       
       <guid>http://blog.sinowrt.cn/categories/qt/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>群晖</title>
-      <link>http://blog.sinowrt.cn/categories/%E7%BE%A4%E6%99%96/</link>
-      <pubDate>Tue, 06 Nov 2018 02:07:21 +0000</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/categories/%E7%BE%A4%E6%99%96/</guid>
       <description></description>
     </item>
     
