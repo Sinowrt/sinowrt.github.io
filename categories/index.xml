@@ -6,10 +6,37 @@
     <description>Recent content in Categories on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 05 Aug 2019 17:47:08 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 10 Aug 2019 15:44:08 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>bug</title>
+      <link>http://blog.sinowrt.cn/categories/bug/</link>
+      <pubDate>Sat, 10 Aug 2019 15:44:08 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/bug/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>win10</title>
+      <link>http://blog.sinowrt.cn/categories/win10/</link>
+      <pubDate>Sat, 10 Aug 2019 15:44:08 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/win10/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>任务栏</title>
+      <link>http://blog.sinowrt.cn/categories/%E4%BB%BB%E5%8A%A1%E6%A0%8F/</link>
+      <pubDate>Sat, 10 Aug 2019 15:44:08 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/%E4%BB%BB%E5%8A%A1%E6%A0%8F/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>docker</title>

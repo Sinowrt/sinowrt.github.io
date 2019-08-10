@@ -5,8 +5,73 @@
     <description>Recent content in Sinowrt on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 05 Aug 2019 17:47:08 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 10 Aug 2019 15:44:08 +0800</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>win10任务栏单程序多窗口无法切换的问题</title>
+      <link>http://blog.sinowrt.cn/2019/2019-08-10t1544-clicking-windows10-taskbar-preview-notworking/</link>
+      <pubDate>Sat, 10 Aug 2019 15:44:08 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2019/2019-08-10t1544-clicking-windows10-taskbar-preview-notworking/</guid>
+      <description>
+
+&lt;h2 id=&#34;0x00-状况描述&#34;&gt;0x00 状况描述&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;在某应用上面操作一段时间之后，将鼠标悬停在任务栏的某已打开多个窗口的应用程序上面时，其上方的预览窗口一闪而过。需要点击任务栏，使任务栏获得焦点后，再将鼠标悬停在该多窗口应用程序上方，才会显示预览窗口。此时，再将光标悬停在某预览窗口上方，单击，奇迹出现了——该窗口并不会恢复，而是一闪而过，点击之前的桌面是啥样就是啥样。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;正常健康的win10系统，在鼠标悬停在任务栏的应用图标上面，加入该页面打开了多个窗口（如chrome以及windows的资源管理器）图标上方会出现预览窗口，然后鼠标悬停在某个窗口上方并单击即可打开该窗口。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;这是一个间歇性的问题&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;这个问题应该在很久之前就出现了，但是一直使用win+tab快捷键能够解决，就一直没当回事&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;最近键盘放在一个不太方便的位置，每次需要切换窗口都需要另一只手够到键盘，win+tab切换，才发现问题大条了&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;0x01-问题排查过程&#34;&gt;0x01 问题排查过程&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;上百度搜索 win10 无法切换窗口，发现较多的是2015年的一个bug。对于该bug的描述是————某应用程序打开了多个窗口，若需要从其中一个窗口切换到另一个窗口，需要将当前窗口最小化，需要切换的窗口才能显示在最前端。该问题看似很像我的问题，但是其实不是一回事。于是我继续查找，还有大部分是快捷键alt+tab都不生效的，这个问题似乎已经有了解决方案，只要将注册表中的“AltTabSettings”项修改为1就行了。但是我的问题也不是这样啊，算了还是请出谷歌吧。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;在谷歌上搜索win10 无法切换窗口，发现了挺多在microsoft support上的提问，有好几个类似我的情形，但是得到的回复都是&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;1.在启动项中隐藏所有windows自带的服务，把其他服务全部关闭自启动并重启（对我无效）&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;2.将系统文件与镜像文件进行对比，检查是否存在缺陷文件，并修复重启（对我无效）&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;当然，也有很多大神朋友说是BING输入法或者BING词典的问题，导致焦点丢失，卸载了就好了。（我的系统中也没有折玩意儿啊）&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;在microsoft support中发现一个回复挺有意思的，说到国外似乎没有这种情况发生？？？&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;于是我推测是不是系统自带的中文输入法有问题，我甚至将系统语言修改为英文，但是问题如故。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;我开始在谷歌上面利用clicking windows10 taskbar preview not working，了解到在外国友人手中的电脑也存在该问题，于是我就放心了，这应该是windows10的一个bug。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;经过众多方法都无果之后，我似乎放弃了，甚至一度想要恢复到win7，但是我并没有备份，当然这也只能是想想了。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;后来我来到了国外版的知乎Reddit中，简简单单地搜索windows10 taskbar期望找到一个同病相怜的“友人”。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;没想到我真的找到了，顿时内牛满面，该网友还用一段youtube的视频完美复现了这种情况，他提到它也到microsoft support上提问过，但是都是得到万金油式的回答（类似重启啊，修改注册表啊。。。），并在最后着重提到他也重装了多次系统，以及另外一个他遇到的bug（在开始菜单中右键也会一闪而过，但这个问题我倒没有遇到过）。唉！是windows的bug石锤了。我的心情有所平复，但是我依旧没有得到一个满意的答案。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;贴出该问题的&lt;a href=&#34;https://www.reddit.com/r/techsupport/comments/8qlqcx/windows_10_taskbar_thumbnail_preview_not_working/&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;地址&lt;/a&gt;，有兴趣的朋友可以看一下跟你遇到的问题是不是一样鸭！&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;在我不死心的时候，我想到会不会是跟我之前安装的SynTPEnh.exe，触摸板辅助软件有关呢。二话不说，先用任务管理器杀掉再说吧。但是十分巧合，我按错按键了，想按ctrl+shift+esc，竟然按了win+r，更巧合的是r也没按出来。这时我就发现，外接键盘的win键按了竟然没弹出开始菜单？？？我反复按，只有极少部分时候会弹出开始菜单的界面。会不会是我的键盘失灵了？我此时又按了一下笔记本自带键盘的win键，发现似乎桌面刷新了一下，开始菜单也出现了。我也顾不上那么多，打开任务管理器把SynTPEnh.exe杀了。此时我再用鼠标悬停到chrome上面，发现竟然好了？？？好了？？？那这到底是跟外接键盘还是SynTPEnh.exe有关呢。于是我利用控制变量法，进行了一系列的实验，发现与谁都无关！！！&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;也不能说一无所获吧，我还是找到了解决问题的方法。当问题出现的时候，只要按一下笔记本自带键盘的win键，弹出开始菜单，一切又开始正常工作了。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;0x02-总结&#34;&gt;0x02 总结&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;windows10 还是会存在一定的小问题，其实也不小了，至少影响到了工作效率嘛。&lt;/li&gt;
+&lt;li&gt;我甚是想念windows7的稳定，并且强烈建议强迫症患者还是留在win7吧，windows10虽然相对于刚面世时少了很多问题，但是小问题依旧存在。&lt;/li&gt;
+&lt;li&gt;win7与win10就像心头的朱砂痣与床前明月光，win7稳定而强大，虽然用户界面做的差了点，但是经过多年的沉淀，很多小问题都被发现并被开发者或用户解决了，无论大小问题，在网上都能搜到解决方案。而win10，外观非常惊艳，但是小问题依旧存在，由于面世的时间并不久，很多小问题都没有受到开发者的关注，并且用户也没有摸索到解决方案，导致强迫症患者非常头疼。&lt;/li&gt;
+&lt;li&gt;一句话总结：macos真香！&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>群晖docker与移动网络的恩怨情仇</title>
@@ -944,155 +1009,6 @@ fi
 * 保存退出编辑
 * 在putty中输入/etc/init.d/cron restart
 重启crontab即可立即应用刚才创建的计划任务&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>init.d 的 脚本中使用 kill 的怪事</title>
-      <link>http://blog.sinowrt.cn/2018/2018-10-17t0552-init.dkill/</link>
-      <pubDate>Wed, 17 Oct 2018 05:52:17 +0000</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2018/2018-10-17t0552-init.dkill/</guid>
-      <description>
-
-&lt;h1 id=&#34;2018-08-20&#34;&gt;2018.08.20&lt;/h1&gt;
-
-&lt;h4 id=&#34;使用自动安装drcom的shell脚本之后-打开配置界面-进行认证之后-想起昨晚有那么一瞬间发现-在drcom的luci界面配置以及apply之后-ps-w会出现两条python-drcom的进程-于是再次打开putty查看-果然不出所料-于是就有了这篇文章&#34;&gt;使用自动安装drcom的shell脚本之后，打开配置界面，进行认证之后，想起昨晚有那么一瞬间发现，在drcom的luci界面配置以及apply之后，ps -w会出现两条python drcom的进程，于是再次打开putty查看，果然不出所料，于是就有了这篇文章&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;#!/bin/sh /etc/rc.common
-run_drcom()
-{
-local username
-local password
-config_get username $1 username
-config_get password $1 password
-python /usr/bin/drcom -u $username -p $password &amp;amp;
-}
-start()
-{
-config_load drcom
-config_foreach run_drcom login
-}
-stop()
-{
-ps w | grep &amp;quot;.*drcom.*&amp;quot; | grep -v &#39;grep&#39; | cut -c 2-5 | xargs kill -9
-echo &amp;quot;Drcom Client for GDUFE has stoped.&amp;quot;
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;大二的时候，在写了drcom的luci界面之后，发现有时候使用drcom_client的stop命令会不奏效，经过查看代码，发现问题应该出在&lt;code&gt;cut -c 2-5&lt;/code&gt;上&lt;/p&gt;
-
-&lt;h3 id=&#34;for-example&#34;&gt;for example&lt;/h3&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;h3 id=&#34;cut-c-2-5-是截取了第二到第五位的字符串-即4位pid&#34;&gt;&lt;code&gt;cut -c 2-5 是截取了第二到第五位的字符串 即4位pid&lt;/code&gt;&lt;/h3&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;h3 id=&#34;若pid大于4位之后便不再好使&#34;&gt;&lt;code&gt;若pid大于4位之后便不再好使&lt;/code&gt;&lt;/h3&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;我有印象当时已经改正了，这次出现的 drcom_client 脚本，便是原原本本的当年的模样，至于为什么会这样，可能当时我只改了路由器上的脚本，而没有更新本地脚本&lt;/p&gt;
-
-&lt;h4 id=&#34;不过-这次的问题不在这里-而是这次的问题-暴露了这个潜在的问题&#34;&gt;不过，这次的问题不在这里，而是这次的问题，暴露了这个潜在的问题&lt;/h4&gt;
-
-&lt;p&gt;这次的问题的导火索是&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;local fs = require &amp;quot;nixio.fs&amp;quot;
-local sys = require &amp;quot;luci.sys&amp;quot;
-m = Map(&amp;quot;drcom&amp;quot;,translate(&amp;quot;Dr.com configure&amp;quot;),translate(&amp;quot;GDUFE Dr.com client configure&amp;quot;))
-s = m:section(TypedSection,&amp;quot;login&amp;quot;)
-s.anonymous = true
-
-
-name = s:option(Value, &amp;quot;username&amp;quot;, translate(&amp;quot;Username&amp;quot;))
-pass = s:option(Value, &amp;quot;password&amp;quot;, translate(&amp;quot;Password&amp;quot;))
-pass.password = true
-
-local apply = luci.http.formvalue(&amp;quot;cbi.apply&amp;quot;)
-if apply then
-    io.popen(&amp;quot;/etc/init.d/drcom_client start&amp;quot;)
-end
-
-return m
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;原来是apply这段，我记得当时也改过了，可是，这就是咸丰年的那一版。。。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;我想在&lt;code&gt;io.popen(&amp;quot;/etc/init.d/drcom_client start&amp;quot;)&lt;/code&gt;上面加上一段&lt;code&gt;io.popen(&amp;quot;/etc/init.d/drcom_client stop&amp;quot;)&lt;/code&gt;就完事了，可是，完美主义并不允许我这么做。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;我想，在Drcom_AutoLink上也是一个 stop 一个 start 这样也太low了吧，为什么不给drcom_client写一个restart呢，像&lt;code&gt;service network restart&lt;/code&gt;用的多顺手。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;二话不说，打开/etc/init.d/drcom_client 添上一段&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;restart(){
-stop
-sleep 1
-start
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;可是每次执行&lt;code&gt;/etc/init.d/drcom_client restart&lt;/code&gt;就只有一句Killed，就啥反应也没有了，就连&lt;code&gt;echo &amp;quot;Drcom Client for GDUFE has stoped.&amp;quot;&lt;/code&gt;这句也没输出&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;restart没反应对吧，一句一句来，先&lt;code&gt;/etc/init.d/drcom_client stop&lt;/code&gt;,奇了怪了，&lt;code&gt;echo &amp;quot;Drcom Client for GDUFE has stoped.&amp;quot;&lt;/code&gt;同样没输出，我就纳闷了&lt;/li&gt;
-&lt;li&gt;难道是restart没重写成功？&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;难道是stop没重写成功？&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;h3 id=&#34;当我去掉-ps-w-grep-drcom-grep-v-grep-cut-c-2-5-xargs-kill-9-这一句后-echo-drcom-client-for-gdufe-has-stoped-竟然成功输出了&#34;&gt;当我去掉&lt;code&gt;ps w | grep &amp;quot;.*drcom.*&amp;quot; | grep -v &#39;grep&#39; | cut -c 2-5 | xargs kill -9&lt;/code&gt;这一句后，&lt;code&gt;echo &amp;quot;Drcom Client for GDUFE has stoped.&amp;quot;&lt;/code&gt;竟然成功输出了&lt;/h3&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;于是想到，应该是这句把自己也kill掉了，于是去掉&lt;code&gt;| xargs kill -9&lt;/code&gt;只留下&lt;code&gt;ps w | grep &amp;quot;.*drcom.*&amp;quot; | grep -v &#39;grep&#39; | cut -c 2-5&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;执行&lt;code&gt;/etc/init.d/drcom_client stop&lt;/code&gt;，果然，出现了两个pid，在前面再加一句ps -w看看结果
-&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-10-17T0552/1-1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;solution&#34;&gt;Solution&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;h3 id=&#34;1-修复只截取4位pid&#34;&gt;1.修复只截取4位pid&lt;/h3&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;h3 id=&#34;2-精准匹配进程名称&#34;&gt;2.精准匹配进程名称&lt;/h3&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;修改&lt;code&gt;ps w | grep &amp;quot;.*drcom.*&amp;quot; | grep -v &#39;grep&#39; | cut -c 2-5 | xargs kill -9&lt;/code&gt;为&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;code&gt;ps w | grep &amp;quot;python.*.drcom&amp;quot; |grep -v &#39;grep&#39;| awk &#39;{print $1}&#39;| xargs kill -9&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;h3 id=&#34;3-测试restart是否成功&#34;&gt;3.测试restart是否成功&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-10-17T0552/2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;修改的drcom_client如下&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;#!/bin/sh /etc/rc.common
-START=10
-STOP=15
-run_drcom()
-{
-local username
-local password
-config_get username $1 username
-config_get password $1 password
-python /usr/bin/drcom -u $username -p $password &amp;amp;
-}
-start()
-{
-config_load drcom
-config_foreach run_drcom login
-}
-stop()
-{
-ps w | grep &amp;quot;python.*.drcom&amp;quot; |grep -v &#39;grep&#39;| awk &#39;{print $1}&#39;| xargs kill -9
-echo &amp;quot;Drcom Client for GDUFE has stoped.&amp;quot;
-}
-restart(){
-stop
-sleep 1
-start
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>

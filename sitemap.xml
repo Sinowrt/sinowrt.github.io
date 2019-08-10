@@ -4,7 +4,7 @@
     <url>
       <loc>http://blog.sinowrt.cn/categories/</loc>
       
-      <lastmod>2019-08-05T17:47:08+08:00</lastmod>
+      <lastmod>2019-08-10T15:44:08+08:00</lastmod>
       
       
       
@@ -16,7 +16,7 @@
     <url>
       <loc>http://blog.sinowrt.cn/posts/</loc>
       
-      <lastmod>2019-08-05T17:47:08+08:00</lastmod>
+      <lastmod>2019-08-10T15:44:08+08:00</lastmod>
       
       
       
@@ -28,7 +28,7 @@
     <url>
       <loc>http://blog.sinowrt.cn/</loc>
       
-      <lastmod>2019-08-05T17:47:08+08:00</lastmod>
+      <lastmod>2019-08-10T15:44:08+08:00</lastmod>
       
       
       
@@ -40,7 +40,89 @@
     <url>
       <loc>http://blog.sinowrt.cn/tags/</loc>
       
-      <lastmod>2019-08-05T17:47:08+08:00</lastmod>
+      <lastmod>2019-08-10T15:44:08+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/categories/bug/</loc>
+      
+      <lastmod>2019-08-10T15:44:08+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/bug/</loc>
+      
+      <lastmod>2019-08-10T15:44:08+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/categories/win10/</loc>
+      
+      <lastmod>2019-08-10T15:44:08+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/win10/</loc>
+      
+      <lastmod>2019-08-10T15:44:08+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/2019/2019-08-10t1544-clicking-windows10-taskbar-preview-notworking/</loc>
+      
+      <lastmod>2019-08-10T15:44:08+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/categories/%E4%BB%BB%E5%8A%A1%E6%A0%8F/</loc>
+      
+      <lastmod>2019-08-10T15:44:08+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/%E4%BB%BB%E5%8A%A1%E6%A0%8F/</loc>
+      
+      <lastmod>2019-08-10T15:44:08+08:00</lastmod>
       
       
       
