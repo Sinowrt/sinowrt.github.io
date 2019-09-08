@@ -33,8 +33,12 @@
 &lt;ul&gt;
 &lt;li&gt;首先是备份原厂固件，用风枪将flash取下，焊到编程器上面，我用的是ch341普通的绿板编程器，备份过程挺久的，毕竟固件有16m。&lt;/li&gt;
 &lt;li&gt;固件备份完成后，直接擦除芯片，将breed写入flash，我用的是h大的将gpio12作为reset键的版本&lt;code&gt;breed-ar724x-reset12-r1163.bin&lt;/code&gt;，烧录好就将flash焊回去。&lt;/li&gt;
-&lt;li&gt;烧好breed，就要改reset键了。这里参考的是坛友的&lt;a href=&#34;https://www.anywlan.com/thread-258718-1-1.html&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;改装方案&lt;/a&gt; 用漆包线将7240的第89脚用漆包线引出，焊到空车位上，在旁边补上10k上拉电阻，翻到后面同样用漆包线引到直连reset键的一脚。&lt;/li&gt;
-&lt;li&gt;很奇怪，我按照坛友的方法改好后，开机却一直重启。用万用表测量gpio12开机后的对地电压，开机时很稳定的2.5v但是开机完成后马上跳回0.1v，于是我尝试将电阻换为2.2k甚至1k，问题依旧，最后直接不要电阻，将电阻两脚直接点上，没再出现重启的现象。最后还是接上了20欧的电阻，电流能减少一点是一点，开机一切正常。&lt;/li&gt;
+&lt;li&gt;烧好breed，就要改reset键了。这里参考的是坛友的&lt;a href=&#34;https://www.anywlan.com/thread-258718-1-1.html&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;改装方案&lt;/a&gt; 用漆包线将7240的第89脚用漆包线引出，焊到空车位上，在旁边补上10k上拉电阻
+&lt;img src=&#34;http://pic.sinowrt.cn/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20190908165043.jpg&#34; alt=&#34;&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;翻到后面同样用漆包线引到直连reset键的C70电容右脚。
+&lt;img src=&#34;http://pic.sinowrt.cn/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_201909081650432.jpg&#34; alt=&#34;&#34; /&gt;
+&lt;img src=&#34;http://pic.sinowrt.cn/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_201909081650431.jpg&#34; alt=&#34;&#34; /&gt;&lt;/li&gt;
+&lt;li&gt;很奇怪，我按照坛友的方法改好后，开机却一直重启。用万用表测量gpio12的对地电压，开机时很稳定的2.5v但是开机完成后马上跳回0.1v，导致机器无限重启。于是我尝试将电阻换为2.2k甚至1k，问题依旧，最后直接不要电阻，将电阻两脚直接点上，没再出现重启的现象。最后还是接上了20欧的电阻，电流能减少一点是一点，开机一切正常。&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&#34;0x03-提取art&#34;&gt;0x03 提取art&lt;/h2&gt;
