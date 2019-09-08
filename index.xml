@@ -5,8 +5,64 @@
     <description>Recent content in Sinowrt on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 10 Aug 2019 15:44:08 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 08 Sep 2019 15:59:08 +0800</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>中兴W815N V3 500mw网桥改ubnt</title>
+      <link>http://blog.sinowrt.cn/2019/2019-09-08t1559-zte-w815n-refitting/</link>
+      <pubDate>Sun, 08 Sep 2019 15:59:08 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2019/2019-09-08t1559-zte-w815n-refitting/</guid>
+      <description>
+
+&lt;h2 id=&#34;0x00-状况描述&#34;&gt;0x00 状况描述&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;毕业租房子后，一直在整网络。因为是出租屋，想着租一年就搬了，就把学校的热点桥接过来将就着用就算了。这两个月，桥接用过newifi mini，TP的340G+，信号一直不理想，就想着搞个正版ubnt。看着看着，就觉得吧，这个ubnt的水也深，也不便宜，看到无线论坛上有坛友说用运营级别的大功率网桥，深入了解，其中还真的不乏好设备。看过烽火2400、中兴W815，想着大品牌折腾的人应该不少，最后入手了中兴W815。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;0x01-设备描述&#34;&gt;0x01 设备描述&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;中兴W815拥有双功放，无线功率最高可达500mw，基于7240+9283方案，改ubnt的教程也不少，但是资料较为零散，需要取百家所长。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;0x02-改装过程&#34;&gt;0x02 改装过程&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;首先是备份原厂固件，用风枪将flash取下，焊到编程器上面，我用的是ch341普通的绿板编程器，备份过程挺久的，毕竟固件有16m。&lt;/li&gt;
+&lt;li&gt;固件备份完成后，直接擦除芯片，将breed写入flash，我用的是h大的将gpio12作为reset键的版本&lt;code&gt;breed-ar724x-reset12-r1163.bin&lt;/code&gt;，烧录好就将flash焊回去。&lt;/li&gt;
+&lt;li&gt;烧好breed，就要改reset键了。这里参考的是坛友的&lt;a href=&#34;https://www.anywlan.com/thread-258718-1-1.html&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;改装方案&lt;/a&gt; 用漆包线将7240的第89脚用漆包线引出，焊到空车位上，在旁边补上10k上拉电阻，翻到后面同样用漆包线引到直连reset键的一脚。&lt;/li&gt;
+&lt;li&gt;很奇怪，我按照坛友的方法改好后，开机却一直重启。用万用表测量gpio12开机后的对地电压，开机时很稳定的2.5v但是开机完成后马上跳回0.1v，于是我尝试将电阻换为2.2k甚至1k，问题依旧，最后直接不要电阻，将电阻两脚直接点上，没再出现重启的现象。最后还是接上了20欧的电阻，电流能减少一点是一点，开机一切正常。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;0x03-提取art&#34;&gt;0x03 提取art&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;art在原厂固件的最后64KB，直接用winhex备份出来即可&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;0x04-刷入ubnt固件与art&#34;&gt;0x04 刷入ubnt固件与art&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;由于我找不到适用的ubnt固件，最后还是用了坛友的编程器固件，最后刷入art正常使用&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;0x05-外接天线&#34;&gt;0x05 外接天线&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;由于原机的天线接头比较特别，是N型母头，要和sma接头的八木天线连接，还得买个N型公头转sma外螺内针的转接头&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;0x06-使用效果&#34;&gt;0x06 使用效果&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;用原机的5dbi天线伸出窗外效果还行，信号在-60db左右，但是这机子不防水啊，常年这样用也不是办法，但是把机子放在室内，再外接八木天线或者6dbi的全向天线效果都不理想！&lt;/li&gt;
+&lt;li&gt;总结：翻车了！&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>win10任务栏单程序多窗口无法切换的问题(已解决)</title>
@@ -891,132 +947,6 @@ add_action(&#39;wp_enqueue_scripts&#39;, &#39;add_prism&#39;);
 &lt;li&gt;通过chrome F12调试 发现prism.css与prism.js没加载成功&lt;/li&gt;
 &lt;li&gt;细看发现请求路径不对劲&lt;/li&gt;
 &lt;li&gt;修改成&lt;code&gt;get_stylesheet_directory_uri().&#39;/prism/prism.js&#39;&lt;/code&gt;之后代码高亮生效&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>newifi mini安装drcom全攻略</title>
-      <link>http://blog.sinowrt.cn/2018/2018-10-19t0256-drcom-setup-of-newifi_mini/</link>
-      <pubDate>Fri, 19 Oct 2018 02:56:07 +0000</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2018/2018-10-19t0256-drcom-setup-of-newifi_mini/</guid>
-      <description>
-
-&lt;h2 id=&#34;起始条件&#34;&gt;起始条件：&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;刷入breed的newifi mini一台&lt;/li&gt;
-&lt;li&gt;网线一根&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;后续部署&#34;&gt;后续部署&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;刷入pandorabox r355固件&lt;/li&gt;
-&lt;li&gt;配置无线名、密码&lt;/li&gt;
-&lt;li&gt;在/etc/opkg.conf后追加&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;arch all 100  
-arch ramips_24kec 200  
-arch ramips 300
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;离线安装python环境&#34;&gt;离线安装python环境&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;分别下载&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;libgcc_4.8-linaro-1_ramips_24kec.ipk  
-libc_0.9.33.2-1_ramips_24kec.ipk  
-libpthread_0.9.33.2-1_ramips_24kec.ipk  
-zlib_1.2.8-1_ramips_24kec.ipk  
-libffi_3.0.13-1_ramips_24kec.ipk  
-python-mini_2.7.3-2_ramips_24kec.ipk
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;将上述ipk放到tmp目录下&lt;/li&gt;
-&lt;li&gt;依次安装&lt;/li&gt;
-&lt;li&gt;安装完毕可以在putty中输入  &lt;code&gt;python&lt;/code&gt;
-以检验是否安装成功&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;安装drcom客户端&#34;&gt;安装drcom客户端&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;将drcom客户端的python脚本放入&lt;code&gt;/usr/bin&lt;/code&gt;中（注意，此脚本为改动后的命令行脚本），将权限改为0755&lt;/li&gt;
-&lt;li&gt;输入&lt;code&gt;python /usr/bin/drcom -u 你的账号 -p 你的密码&lt;/code&gt;，回车，在浏览器验证是否能成功登录上网&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;安装drcom-client可视化配置界面&#34;&gt;安装drcom_client可视化配置界面&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;复制drcom(etc_config)到括号中的路径，并去掉括号以及括号中的路径&lt;/li&gt;
-&lt;li&gt;复制drcom.lua(usr_lib_lua_luci_controller)到括号中的路径，并去掉括号以及括号中的路径，更改为0755权限&lt;/li&gt;
-&lt;li&gt;复制drcom.lua(usr_lib_lua_luci_model_cbi)到括号中的路径，并去掉括号以及括号中的路径，更改为0755权限&lt;/li&gt;
-&lt;li&gt;复制drcom.lua(usr-lib-lua-luci-model-cbi-admin_services)到括号中的路径，并去掉括号以及括号中的路径，更改为0755权限&lt;/li&gt;
-&lt;li&gt;复制drcom_client(etc_init.d)到括号中的路径，并去掉括号以及括号中的路径，更改为0755权限&lt;/li&gt;
-&lt;li&gt;重启路由&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;配置drcom-client&#34;&gt;配置drcom_client&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;进入luci管理界面&lt;/li&gt;
-&lt;li&gt;在服务中找到drcom_client单击进入&lt;/li&gt;
-&lt;li&gt;填入drcom的账号和密码 save&amp;amp;apply&lt;/li&gt;
-&lt;li&gt;打开浏览器打开任意网页验证是否登录成功&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;配置自启动&#34;&gt;配置自启动&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;在/etc/hotplut.d/iface/中新建99-drcom文件，授权0755权限，在文件中写入&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;#!/bin/sh
-# /etc/hotplug.d/iface/99-drcom
-
-if [ &amp;quot;$ACTION&amp;quot; = ifup ]; then 
-    if [ &amp;quot;${INTERFACE}&amp;quot; = &amp;quot;wan&amp;quot; ]; then
-        sleep 10 &amp;amp;&amp;amp; /etc/init.d/drcom_client start
-    fi
-fi
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;重启验证自启即可&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;配置断网重连&#34;&gt;配置断网重连&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;在/etc/中新建Drcom_AutoLink文件，授权0755权限，在文件中写入&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;#! /bin/bash
-#检测网络连接
-ping -c 1 www.baidu.com &amp;gt; /dev/null 2&amp;gt;&amp;amp;1
-if [ $? -eq 0 ];then
-    echo linkOk!!
-else
-    /etc/init.d/drcom_client stop
-    /etc/init.d/drcom_client start
-fi
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;在putty中输入&lt;code&gt;crontab -e&lt;/code&gt;编辑crontab文件，加入如下内容:
-&lt;code&gt;shell
-*/1 * * * * sh /etc/Drcom_AutoLink
-&lt;/code&gt;
-* 表示每1分钟检测一次
-* 保存退出编辑
-* 在putty中输入/etc/init.d/cron restart
-重启crontab即可立即应用刚才创建的计划任务&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>

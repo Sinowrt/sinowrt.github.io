@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="sinowrt">
+  
+  
+  
+  <link rel="prev" href="http://blog.sinowrt.cn/2019/2019-08-10t1544-clicking-windows10-taskbar-preview-notworking/" />
+  
+  <link rel="canonical" href="http://blog.sinowrt.cn/2019/2019-09-08t1559-zte-w815n-refitting/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           中兴W815N V3 500mw网桥改ubnt | Sinowrt
+       
+  </title>
+  <meta name="title" content="中兴W815N V3 500mw网桥改ubnt | Sinowrt">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/blog.sinowrt.cn"
+    },
+    "articleSection" : "posts",
+    "name" : "中兴W815N V3 500mw网桥改ubnt",
+    "headline" : "中兴W815N V3 500mw网桥改ubnt",
+    "description" : " 0x00 状况描述  毕业租房子后，一直在整网络。因为是出租屋，想着租一年就搬了，就把学校的热点桥接过来将就着用就算了。这两个月，桥接用过newifi mini，TP的340G\x2b，信号一直不理想，就想着搞个正版ubnt。看着看着，就觉得吧，这个ubnt的水也深，也不便宜，看到无线论坛上有坛友说用运营级别的大功率网桥，深入了解，其中还真的不乏好设备。看过烽火2400、中兴W815，想着大品牌折腾的人应该不少，最后入手了中兴W815。  0x01 设备描述  中兴W815拥有双功放，无线功率最高可达500mw，基于7240\x2b9283方案，改ubnt的教程也不少，但是资料较为零散，需要取百家所长。  0x02 改装过程  首先是备份原厂固件，用风枪将flash取下，焊到编程器上面，我用的是ch341普通的绿板编程器，备份过程挺久的，毕竟固件有16m。 固件备份完成后，直接擦除芯片，将breed写入flash，我用的是h大的将gpio12作为reset键的版本breed-ar724x-reset12-r1163.bin，烧录好就将flash焊回去。 烧好breed，就要改reset键了。这里参考的是坛友的改装方案 用漆包线将7240的第89脚用漆包线引出，焊到空车位上，在旁边补上10k上拉电阻，翻到后面同样用漆包线引到直连reset键的一脚。 很奇怪，我按照坛友的方法改好后，开机却一直重启。用万用表测量gpio12开机后的对地电压，开机时很稳定的2.5v但是开机完成后马上跳回0.1v，于是我尝试将电阻换为2.2k甚至1k，问题依旧，最后直接不要电阻，将电阻两脚直接点上，没再出现重启的现象。最后还是接上了20欧的电阻，电流能减少一点是一点，开机一切正常。  0x03 提取art  art在原厂固件的最后64KB，直接用winhex备份出来即可  0x04 刷入ubnt固件与art  由于我找不到适用的ubnt固件，最后还是用了坛友的编程器固件，最后刷入art正常使用  0x05 外接天线  由于原机的天线接头比较特别，是N型母头，要和sma接头的八木天线连接，还得买个N型公头转sma外螺内针的转接头  0x06 使用效果  用原机的5dbi天线伸出窗外效果还行，信号在-60db左右，但是这机子不防水啊，常年这样用也不是办法，但是把机子放在室内，再外接八木天线或者6dbi的全向天线效果都不理想！ 总结：翻车了！  ",
+    "inLanguage" : "en-us",
+    "author" : "sinowrt",
+    "creator" : "sinowrt",
+    "publisher": "sinowrt",
+    "accountablePerson" : "sinowrt",
+    "copyrightHolder" : "sinowrt",
+    "copyrightYear" : "2019",
+    "datePublished": "2019-09-08 15:59:08 \x2b0800 CST",
+    "dateModified" : "2019-09-08 15:59:08 \x2b0800 CST",
+    "url" : "http:\/\/blog.sinowrt.cn\/2019\/2019-09-08t1559-zte-w815n-refitting\/",
+    "wordCount" : "27",
+    "keywords" : [ "网桥","ubnt","路由改机", "Sinowrt"]
+}
+</script>
+
+</head>
+
+<script async src="//cdn.busuanzi.ibruce.info/cdn/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">中兴W815N V3 500mw网桥改ubnt</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2019-09-08 itemprop="datePublished">September 8, 2019</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="http://blog.sinowrt.cn/categories/%E7%BD%91%E6%A1%A5/"> 网桥 </a>
+                        <a href="http://blog.sinowrt.cn/categories/ubnt/"> ubnt </a>
+                        <a href="http://blog.sinowrt.cn/categories/%E8%B7%AF%E7%94%B1%E6%94%B9%E6%9C%BA/"> 路由改机 </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          
+
+<h2 id="0x00-状况描述">0x00 状况描述</h2>
+
+<ul>
+<li>毕业租房子后，一直在整网络。因为是出租屋，想着租一年就搬了，就把学校的热点桥接过来将就着用就算了。这两个月，桥接用过newifi mini，TP的340G+，信号一直不理想，就想着搞个正版ubnt。看着看着，就觉得吧，这个ubnt的水也深，也不便宜，看到无线论坛上有坛友说用运营级别的大功率网桥，深入了解，其中还真的不乏好设备。看过烽火2400、中兴W815，想着大品牌折腾的人应该不少，最后入手了中兴W815。</li>
+</ul>
+
+<h2 id="0x01-设备描述">0x01 设备描述</h2>
+
+<ul>
+<li>中兴W815拥有双功放，无线功率最高可达500mw，基于7240+9283方案，改ubnt的教程也不少，但是资料较为零散，需要取百家所长。</li>
+</ul>
+
+<h2 id="0x02-改装过程">0x02 改装过程</h2>
+
+<ul>
+<li>首先是备份原厂固件，用风枪将flash取下，焊到编程器上面，我用的是ch341普通的绿板编程器，备份过程挺久的，毕竟固件有16m。</li>
+<li>固件备份完成后，直接擦除芯片，将breed写入flash，我用的是h大的将gpio12作为reset键的版本<code>breed-ar724x-reset12-r1163.bin</code>，烧录好就将flash焊回去。</li>
+<li>烧好breed，就要改reset键了。这里参考的是坛友的<a href="https://www.anywlan.com/thread-258718-1-1.html" rel="nofollow noreferrer" target="_blank">改装方案</a> 用漆包线将7240的第89脚用漆包线引出，焊到空车位上，在旁边补上10k上拉电阻，翻到后面同样用漆包线引到直连reset键的一脚。</li>
+<li>很奇怪，我按照坛友的方法改好后，开机却一直重启。用万用表测量gpio12开机后的对地电压，开机时很稳定的2.5v但是开机完成后马上跳回0.1v，于是我尝试将电阻换为2.2k甚至1k，问题依旧，最后直接不要电阻，将电阻两脚直接点上，没再出现重启的现象。最后还是接上了20欧的电阻，电流能减少一点是一点，开机一切正常。</li>
+</ul>
+
+<h2 id="0x03-提取art">0x03 提取art</h2>
+
+<ul>
+<li>art在原厂固件的最后64KB，直接用winhex备份出来即可</li>
+</ul>
+
+<h2 id="0x04-刷入ubnt固件与art">0x04 刷入ubnt固件与art</h2>
+
+<ul>
+<li>由于我找不到适用的ubnt固件，最后还是用了坛友的编程器固件，最后刷入art正常使用</li>
+</ul>
+
+<h2 id="0x05-外接天线">0x05 外接天线</h2>
+
+<ul>
+<li>由于原机的天线接头比较特别，是N型母头，要和sma接头的八木天线连接，还得买个N型公头转sma外螺内针的转接头</li>
+</ul>
+
+<h2 id="0x06-使用效果">0x06 使用效果</h2>
+
+<ul>
+<li>用原机的5dbi天线伸出窗外效果还行，信号在-60db左右，但是这机子不防水啊，常年这样用也不是办法，但是把机子放在室内，再外接八木天线或者6dbi的全向天线效果都不理想！</li>
+<li>总结：翻车了！</li>
+</ul>
+
+    </div>
+	
+    <div class="post-copyright">
+             
+			
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>sinowrt </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://blog.sinowrt.cn/2019/2019-09-08t1559-zte-w815n-refitting/>http://blog.sinowrt.cn/2019/2019-09-08t1559-zte-w815n-refitting/</span>
+            </p>
+			
+			<p>
+				<span id="busuanzi_container_page_pv">
+					本文总阅读量：<span id="busuanzi_value_page_pv"></span>次
+				</span>
+			</p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/%E7%BD%91%E6%A1%A5/">
+                    #网桥</a></span>
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/ubnt/">
+                    #ubnt</a></span>
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/%E8%B7%AF%E7%94%B1%E6%94%B9%E6%9C%BA/">
+                    #路由改机</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="http://blog.sinowrt.cn">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://blog.sinowrt.cn/2019/2019-08-10t1544-clicking-windows10-taskbar-preview-notworking/" class="prev" rel="prev" title="win10任务栏单程序多窗口无法切换的问题(已解决)"><i class="iconfont icon-left"></i>&nbsp;win10任务栏单程序多窗口无法切换的问题(已解决)</a>
+         
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2019</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://blog.sinowrt.cn">sinowrt</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+	<p class="credits theme-by text-muted">
+        <span id="busuanzi_container_site_pv">
+            本站访问量：<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        &nbsp;
+        <span id="busuanzi_container_site_uv">
+            您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+        </span>
+    </p>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>
