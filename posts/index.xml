@@ -6,10 +6,20 @@
     <description>Recent content in Posts on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 08 Sep 2019 15:59:08 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 31 Oct 2019 12:00:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>记多益面试</title>
+      <link>http://blog.sinowrt.cn/2019/2019-10-31t1200-dy-interview/</link>
+      <pubDate>Thu, 31 Oct 2019 12:00:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2019/2019-10-31t1200-dy-interview/</guid>
+      <description> 0x00 面试通知  自从笔试通过后被晾了差不多半个月，30号晚突然收到多益的面试通知，面试时间为31号早上11:40，woc这么快，赶紧吃了饭回来准备一下  0x01 面试过程  早上九点多，hr突然打电话过来说面试提前到了10点，我赶紧登陆了战盟，发送了面试确认 大概10:19，面试官通知面试，但是战盟不识别摄像头，改为qq视频 面试开始了，整个过程持续了整整有30分钟，问题整理了一下，贴在下面
+1.自我介绍 2.做过什么项目，觉得特别有成就感的是哪个，用了什么技术，有没有做过web服务端项目，用了什么技术？ 3.有没有做过什么项目使用了缓存机制的？ 4.谈谈对消息队列的理解 5.堆和栈的区别，哪个快些？ 6.引用类型和值类型的概念与区别？ 7.接口和抽象类的区别？为什么使用接口和抽象类？ 8.进程与线程？ 9.使用线程的优点是什么？在什么情况下使用？ 10.手机APP消息推送的机制？ 11.有没有使用过Redis或MongoDB？ 12.TCP三次握手，四次挥手？为什么要三次握手？服务器断开与客户端断开有什么区别？ 13.使用过什么中间件？ 14.对事务的理解？ 15.非关系型数据库与关系型数据库的区别？ 16.MySql中，select * from table where field=null 为什么无法匹配空值？ 17.cookie与session的区别，通过什么将cookie与session进行匹配？ 18.如何在多线程中共享变量？ 19.Web中有哪些漏洞攻击方法需要防范？ 20.对加班的看法？ 21.最近了解什么新技术？ 22.编程题： 实现一个函数, 输入两个版本号（随机输入二位到四位），比较两个版本号的大小。 输入示例： 1.2.1 1.10.2.0   0x02 面试体验  由于是第一次面试，还是有些许紧张，问过的问题大部分都有了解过，但是还是有个别问题不熟悉，还是要拓展知识面。 编程题不难，但是要在5分钟之内给出能跑通的代码还是有点难度，要多练编程。 小声bb：面试官的问题似乎有点多，还是说在拼命捞我呢？如果是的话真的感谢！  </description>
+    </item>
     
     <item>
       <title>中兴W815N V3 500mw网桥改ubnt</title>

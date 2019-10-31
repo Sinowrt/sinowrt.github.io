@@ -5,8 +5,67 @@
     <description>Recent content in Sinowrt on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 08 Sep 2019 15:59:08 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 31 Oct 2019 12:00:00 +0800</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>记多益面试</title>
+      <link>http://blog.sinowrt.cn/2019/2019-10-31t1200-dy-interview/</link>
+      <pubDate>Thu, 31 Oct 2019 12:00:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2019/2019-10-31t1200-dy-interview/</guid>
+      <description>
+
+&lt;h1 id=&#34;0x00-面试通知&#34;&gt;0x00 面试通知&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;自从笔试通过后被晾了差不多半个月，30号晚突然收到多益的面试通知，面试时间为31号早上11:40，woc这么快，赶紧吃了饭回来准备一下&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;0x01-面试过程&#34;&gt;0x01 面试过程&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;早上九点多，hr突然打电话过来说面试提前到了10点，我赶紧登陆了战盟，发送了面试确认&lt;/li&gt;
+&lt;li&gt;大概10:19，面试官通知面试，但是战盟不识别摄像头，改为qq视频&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;面试开始了，整个过程持续了整整有30分钟，问题整理了一下，贴在下面&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;1.自我介绍
+2.做过什么项目，觉得特别有成就感的是哪个，用了什么技术，有没有做过web服务端项目，用了什么技术？
+3.有没有做过什么项目使用了缓存机制的？
+4.谈谈对消息队列的理解
+5.堆和栈的区别，哪个快些？
+6.引用类型和值类型的概念与区别？
+7.接口和抽象类的区别？为什么使用接口和抽象类？
+8.进程与线程？
+9.使用线程的优点是什么？在什么情况下使用？
+10.手机APP消息推送的机制？
+11.有没有使用过Redis或MongoDB？
+12.TCP三次握手，四次挥手？为什么要三次握手？服务器断开与客户端断开有什么区别？
+13.使用过什么中间件？
+14.对事务的理解？
+15.非关系型数据库与关系型数据库的区别？
+16.MySql中，select * from table where field=null 为什么无法匹配空值？
+17.cookie与session的区别，通过什么将cookie与session进行匹配？
+18.如何在多线程中共享变量？
+19.Web中有哪些漏洞攻击方法需要防范？
+20.对加班的看法？
+21.最近了解什么新技术？
+22.编程题：
+实现一个函数, 输入两个版本号（随机输入二位到四位），比较两个版本号的大小。 
+输入示例： 1.2.1 1.10.2.0
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&#34;0x02-面试体验&#34;&gt;0x02 面试体验&lt;/h1&gt;
+
+&lt;ul&gt;
+&lt;li&gt;由于是第一次面试，还是有些许紧张，问过的问题大部分都有了解过，但是还是有个别问题不熟悉，还是要拓展知识面。&lt;/li&gt;
+&lt;li&gt;编程题不难，但是要在5分钟之内给出能跑通的代码还是有点难度，要多练编程。&lt;/li&gt;
+&lt;li&gt;小声bb：面试官的问题似乎有点多，还是说在拼命捞我呢？如果是的话真的感谢！&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
     
     <item>
       <title>中兴W815N V3 500mw网桥改ubnt</title>
@@ -897,61 +956,6 @@ void View_OnlineShopManagement::OnDraw(CDC* /*pDC*/)
  &lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-04T1148/finish3.png&#34; alt=&#34;image&#34; /&gt;
 * 完成所有设置之后，就能进入系统了
  &lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-04T1148/final.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>用prism为WordPress页面实现代码高亮</title>
-      <link>http://blog.sinowrt.cn/2018/2018-10-20t1037-wordpresscode-highlight-with-prism/</link>
-      <pubDate>Sat, 20 Oct 2018 10:37:42 +0000</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2018/2018-10-20t1037-wordpresscode-highlight-with-prism/</guid>
-      <description>
-
-&lt;h2 id=&#34;0x01-下载prism的css与js文件&#34;&gt;0x01 下载prism的css与js文件&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;在&lt;a href=&#34;https://prismjs.com/download.html&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;prism官网&lt;/a&gt;下载prism的css与js文件&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;0x02-ssh方式登陆服务器&#34;&gt;0x02 ssh方式登陆服务器&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;在路径&lt;code&gt;/wordpress/htdocs/wp-content/themes/你的主题名称/&lt;/code&gt;路径下创建prism文件夹&lt;/li&gt;
-&lt;li&gt;将prism.css与prism.js两个文件上传到prism文件夹中&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;0x03-修改functions-php&#34;&gt;0x03 修改functions.php&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;在&lt;code&gt;/wordpress/htdocs/wp-content/themes/你的主题名称/&lt;/code&gt;下找到functions.php&lt;/li&gt;
-&lt;li&gt;vi修改文件，添加以下语句：&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;function add_prism() {
-        wp_register_style(
-            &#39;prismCSS&#39;, 
-            get_stylesheet_directory_uri() . &#39;/prism/prism.css&#39; //自定义路径          
-        );
-        wp_register_script(
-            &#39;prismJS&#39;,
-            get_stylesheet_directory_uri() . &#39;/prism/prism.js&#39;   //自定义路径          
-        );
-        wp_enqueue_style(&#39;prismCSS&#39;);
-        wp_enqueue_script(&#39;prismJS&#39;);
-    }
-add_action(&#39;wp_enqueue_scripts&#39;, &#39;add_prism&#39;);
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;0x04注意&#34;&gt;0x04注意&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;get_stylesheet_directory_uri()&lt;/code&gt;与&lt;code&gt;get_parent_theme_file_path( &#39;/inc/color-patterns.php&#39; )&lt;/code&gt;的区别&lt;/li&gt;
-&lt;li&gt;使用&lt;code&gt;get_parent_theme_file_path( &#39;/prism/prism.css&#39; )&lt;/code&gt;语句之后发现页面代码高亮没生效&lt;/li&gt;
-&lt;li&gt;通过chrome F12调试 发现prism.css与prism.js没加载成功&lt;/li&gt;
-&lt;li&gt;细看发现请求路径不对劲&lt;/li&gt;
-&lt;li&gt;修改成&lt;code&gt;get_stylesheet_directory_uri().&#39;/prism/prism.js&#39;&lt;/code&gt;之后代码高亮生效&lt;/li&gt;
-&lt;/ul&gt;
 </description>
     </item>
     
