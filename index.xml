@@ -53,47 +53,40 @@
 &lt;li&gt;Web中有哪些漏洞攻击方法需要防范？&lt;/li&gt;
 &lt;li&gt;对加班的看法？&lt;/li&gt;
 &lt;li&gt;最近了解什么新技术？&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;编程题：实现一个函数, 输入两个版本号（随机输入二位到四位），比较两个版本号的大小。
-输入示例： 1.2.1 1.10.2.0(下面贴我的烂代码，考点主要有正则表达式，字符串转Integer)&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public static int comp(String a,String b) {
-String[] k=a.split(&amp;quot;\\.&amp;quot;);
-String[] g=b.split(&amp;quot;\\.&amp;quot;);
-    
-int min=k.length&amp;gt;g.length?g.length:k.length;
-    
-for(int i=0;i&amp;lt;min;i++) {
-    int kn=Integer.parseInt(k[i]);
-    int gn=Integer.parseInt(g[i]);
-    if(kn!=gn) {
-        return kn-gn;
-    }
-}
-    
-if(k.length==g.length) {
-    return 0;
-}else if(k.length&amp;lt;g.length) {
-    return -Integer.parseInt(g[min]);
-}else{
-    return Integer.parseInt(k[min]);
-}
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ol&gt;
-&lt;li&gt;
-&lt;br /&gt;
-&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;编程题：实现一个函数, 输入两个版本号（随机输入二位到四位），比较两个版本号的大小。
+输入示例： 1.2.1 1.10.2.0(下面贴我的烂代码，考点主要有正则表达式，字符串转Integer)&lt;br /&gt;&lt;/li&gt;
 &lt;/ol&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;    public static int comp(String a,String b) {
+        String[] k=a.split(&amp;quot;\\.&amp;quot;);
+        String[] g=b.split(&amp;quot;\\.&amp;quot;);
+        
+        int min=k.length&amp;gt;g.length?g.length:k.length;
+        
+        for(int i=0;i&amp;lt;min;i++) {
+            int kn=Integer.parseInt(k[i]);
+            int gn=Integer.parseInt(g[i]);
+            if(kn!=gn) {
+                return kn-gn;
+            }
+        }
+        
+        if(k.length==g.length) {
+            return 0;
+        }else if(k.length&amp;lt;g.length) {
+            return -Integer.parseInt(g[min]);
+        }else{
+            return Integer.parseInt(k[min]);
+        }
+    }
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;h1 id=&#34;0x02-面试体验&#34;&gt;0x02 面试体验&lt;/h1&gt;
 
 &lt;ul&gt;
 &lt;li&gt;总体来说面试体验还是挺好的，由于是第一次面试，还是有些许紧张，问过的问题大部分都有了解过，但是还是有个别问题不熟悉，还是要拓展知识面。&lt;/li&gt;
 &lt;li&gt;编程题不难，但是要在5分钟之内给出能跑通的代码还是有点难度，要多练编程。&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ol&gt;
+&lt;/ul&gt;
 </description>
     </item>
     
