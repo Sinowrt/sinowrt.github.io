@@ -53,33 +53,34 @@
 &lt;li&gt;Web中有哪些漏洞攻击方法需要防范？&lt;/li&gt;
 &lt;li&gt;对加班的看法？&lt;/li&gt;
 &lt;li&gt;最近了解什么新技术？&lt;/li&gt;
-&lt;li&gt;编程题：实现一个函数, 输入两个版本号（随机输入二位到四位），比较两个版本号的大小。
-输入示例： 1.2.1 1.10.2.0(下面贴我的烂代码，考点主要有正则表达式，字符串转Integer)&lt;br /&gt;&lt;/li&gt;
-&lt;/ol&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;public static int comp(String a,String b) {
-    String[] k=a.split(&amp;quot;\\.&amp;quot;);
-    String[] g=b.split(&amp;quot;\\.&amp;quot;);
-    
-    int min=k.length&amp;gt;g.length?g.length:k.length;
-    
-    for(int i=0;i&amp;lt;min;i++) {
-        int kn=Integer.parseInt(k[i]);
-        int gn=Integer.parseInt(g[i]);
-        if(kn!=gn) {
-            return kn-gn;
-        }
+&lt;li&gt;&lt;p&gt;编程题：实现一个函数, 输入两个版本号（随机输入二位到四位），比较两个版本号的大小。
+输入示例： 1.2.1 1.10.2.0(下面贴我的烂代码，考点主要有正则表达式，字符串转Integer)&lt;br /&gt;
+```java
+public static int comp(String a,String b) {
+String[] k=a.split(&amp;rdquo;\.&amp;ldquo;);
+String[] g=b.split(&amp;rdquo;\.&amp;ldquo;);&lt;/p&gt;
+
+&lt;p&gt;int min=k.length&amp;gt;g.length?g.length:k.length;&lt;/p&gt;
+
+&lt;p&gt;for(int i=0;i&amp;lt;min;i++) {
+    int kn=Integer.parseInt(k[i]);
+    int gn=Integer.parseInt(g[i]);
+    if(kn!=gn) {
+        return kn-gn;
     }
-    
-    if(k.length==g.length) {
-        return 0;
-    }else if(k.length&amp;lt;g.length) {
-        return -Integer.parseInt(g[min]);
-    }else{
-        return Integer.parseInt(k[min]);
-    }
+}&lt;/p&gt;
+
+&lt;p&gt;if(k.length==g.length) {
+    return 0;
+}else if(k.length&lt;g.length) {
+    return -Integer.parseInt(g[min]);
+}else{
+    return Integer.parseInt(k[min]);
 }
-&lt;/code&gt;&lt;/pre&gt;
+}
+```&lt;br&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
 
 &lt;h1 id=&#34;0x02-面试体验&#34;&gt;0x02 面试体验&lt;/h1&gt;
 
