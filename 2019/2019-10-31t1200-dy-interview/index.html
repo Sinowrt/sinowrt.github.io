@@ -192,26 +192,26 @@
 输入示例： 1.2.1 1.10.2.0(下面贴我的烂代码，考点主要有正则表达式，字符串转Integer)</p>
 
 <pre><code class="language-java">public static int comp(String a,String b) {
-    String[] k=a.split(&quot;\\.&quot;);
-    String[] g=b.split(&quot;\\.&quot;);
-        
-    int min=k.length&gt;g.length?g.length:k.length;
-        
-    for(int i=0;i&lt;min;i++) {
-        int kn=Integer.parseInt(k[i]);
-        int gn=Integer.parseInt(g[i]);
-        if(kn!=gn) {
-            return kn-gn;
-        }
+String[] k=a.split(&quot;\\.&quot;);
+String[] g=b.split(&quot;\\.&quot;);
+    
+int min=k.length&gt;g.length?g.length:k.length;
+    
+for(int i=0;i&lt;min;i++) {
+    int kn=Integer.parseInt(k[i]);
+    int gn=Integer.parseInt(g[i]);
+    if(kn!=gn) {
+        return kn-gn;
     }
-        
-    if(k.length==g.length) {
-        return 0;
-    }else if(k.length&lt;g.length) {
-        return -Integer.parseInt(g[i]);
-    }else{
-        return Integer.parseInt(k[i]);
-    }
+}
+    
+if(k.length==g.length) {
+    return 0;
+}else if(k.length&lt;g.length) {
+    return -Integer.parseInt(g[min]);
+}else{
+    return Integer.parseInt(k[min]);
+}
 }
 </code></pre>
 
