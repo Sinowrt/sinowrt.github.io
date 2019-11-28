@@ -31,12 +31,14 @@
 
 &lt;h2 id=&#34;0x02-拨号设置&#34;&gt;0x02 拨号设置&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/image/2019-11-29T1228/dial.PNG&#34; alt=&#34;登录&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/image/2019-11-29T1228/dial.PNG&#34; alt=&#34;拨号设置&#34; /&gt;
 * 点击&lt;code&gt;外部网络&lt;/code&gt;
 * 选择外网连接类型为&lt;code&gt;PPPoE拨号&lt;/code&gt;
 * 在用户名称处填入&lt;code&gt;拨号账号&lt;/code&gt;
-* 在用户密码处填入&lt;code&gt;拨号密码&lt;/code&gt;s
+* 在用户密码处填入&lt;code&gt;拨号密码&lt;/code&gt;
 * 最后滑到页面底部，点击&lt;code&gt;应用本页面设置&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/image/2019-11-29T1228/save.png&#34; alt=&#34;拨号设置&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;0x03-设置好了就网上冲浪吧&#34;&gt;0x03 设置好了就网上冲浪吧！&lt;/h2&gt;
 </description>
