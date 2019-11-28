@@ -6,10 +6,19 @@
     <description>Recent content in Categories on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 31 Oct 2019 12:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 29 Nov 2019 00:28:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>路由</title>
+      <link>http://blog.sinowrt.cn/categories/%E8%B7%AF%E7%94%B1/</link>
+      <pubDate>Fri, 29 Nov 2019 00:28:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/%E8%B7%AF%E7%94%B1/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>面试</title>

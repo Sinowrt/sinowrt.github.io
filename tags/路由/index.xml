@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>路由 on Sinowrt</title>
+    <link>http://blog.sinowrt.cn/tags/%E8%B7%AF%E7%94%B1/</link>
+    <description>Recent content in 路由 on Sinowrt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 29 Nov 2019 00:28:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.sinowrt.cn/tags/%E8%B7%AF%E7%94%B1/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>newifi mini 拨号设置</title>
+      <link>http://blog.sinowrt.cn/2019/2019-11-29t1228-newifi-mini-dialing-setting/</link>
+      <pubDate>Fri, 29 Nov 2019 00:28:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2019/2019-11-29t1228-newifi-mini-dialing-setting/</guid>
+      <description> 0x00 线缆连接 * 将路由器接入电源 * 用一根网线，一端接入路由器的任意蓝色端口，另一端接入主机 * 将用于拨号的网线接入路由器的黄色端口
+0x01 登录路由器管理界面 * 打开浏览器，在地址栏输入192.168.123.1,回车 * 在弹出来的登录窗口输入用户名admin,密码admin
+0x02 拨号设置 * 点击外部网络 * 选择外网连接类型为PPPoE拨号 * 在用户名称处填入拨号账号 * 在用户密码处填入拨号密码s * 最后滑到页面底部，点击应用本页面设置
+0x03 设置好了就网上冲浪吧！ </description>
+    </item>
+    
+  </channel>
+</rss>
