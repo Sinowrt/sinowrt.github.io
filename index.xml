@@ -383,7 +383,7 @@
 
 &lt;ul&gt;
 &lt;li&gt;根据系统情况下载&lt;a href=&#34;https://github.com/Cenmrev/V2RayW/releases&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;V2rayW&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;将文件解压后，双击V2RayW.exe&lt;/li&gt;
+&lt;li&gt;将文件解压到指定文件夹后（一定要解压！不能打开解压文件就直接进行下一步操作！！！），双击V2RayW.exe&lt;/li&gt;
 &lt;li&gt;打开V2RayW.exe后，会自动下载v2ray-core的相关文件，等待片刻即可&lt;/li&gt;
 &lt;li&gt;打开V2RayW.exe，在通知栏的“W”形图标上，点击右键-配置&lt;/li&gt;
 &lt;li&gt;将域名(或IP地址)、端口、UUID、ALTERID、LEVEL填入图中相应位置，选择ws网络类型
