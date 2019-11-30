@@ -10,35 +10,35 @@
     
     <item>
       <title>newifi mini 拨号设置</title>
-      <link>http://blog.sinowrt.cn/2019/2019-11-29t1228-newifi-mini-dialing-setting/</link>
+      <link>http://blog.sinowrt.cn/2019/2019-11-29t0028-newifi-mini-dialing-setting/</link>
       <pubDate>Fri, 29 Nov 2019 00:28:00 +0800</pubDate>
       
-      <guid>http://blog.sinowrt.cn/2019/2019-11-29t1228-newifi-mini-dialing-setting/</guid>
+      <guid>http://blog.sinowrt.cn/2019/2019-11-29t0028-newifi-mini-dialing-setting/</guid>
       <description>
 
 &lt;h2 id=&#34;0x00-线缆连接&#34;&gt;0x00 线缆连接&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/image/2019-11-29T1228/back.jpg&#34; alt=&#34;背面接口&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/image/2019-11-29T0028/back.jpg&#34; alt=&#34;背面接口&#34; /&gt;
 * 将路由器接入电源
 * 用一根网线，一端接入路由器的任意蓝色端口，另一端接入主机
 * 将用于拨号的网线接入路由器的黄色端口&lt;/p&gt;
 
 &lt;h2 id=&#34;0x01-登录路由器管理界面&#34;&gt;0x01 登录路由器管理界面&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/image/2019-11-29T1228/login.png&#34; alt=&#34;登录&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/image/2019-11-29T0028/login.png&#34; alt=&#34;登录&#34; /&gt;
 * 打开浏览器，在地址栏输入&lt;code&gt;192.168.123.1&lt;/code&gt;,回车
 * 在弹出来的登录窗口输入用户名&lt;code&gt;admin&lt;/code&gt;,密码&lt;code&gt;admin258&lt;/code&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;0x02-拨号设置&#34;&gt;0x02 拨号设置&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/image/2019-11-29T1228/dial.PNG&#34; alt=&#34;拨号设置&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/image/2019-11-29T0028/dial.PNG&#34; alt=&#34;拨号设置&#34; /&gt;
 * 点击&lt;code&gt;外部网络&lt;/code&gt;
 * 选择外网连接类型为&lt;code&gt;PPPoE拨号&lt;/code&gt;
 * 在用户名称处填入&lt;code&gt;拨号账号&lt;/code&gt;
 * 在用户密码处填入&lt;code&gt;拨号密码&lt;/code&gt;
 * 最后滑到页面底部，点击&lt;code&gt;应用本页面设置&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/image/2019-11-29T1228/save.png&#34; alt=&#34;保存配置&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/image/2019-11-29T0028/save.png&#34; alt=&#34;保存配置&#34; /&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;0x03-设置好了就网上冲浪吧&#34;&gt;0x03 设置好了就网上冲浪吧！&lt;/h2&gt;
 </description>
