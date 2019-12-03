@@ -39,56 +39,11 @@
     </item>
     
     <item>
-      <title>ubnt</title>
-      <link>http://blog.sinowrt.cn/categories/ubnt/</link>
-      <pubDate>Sun, 08 Sep 2019 15:59:08 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/categories/ubnt/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>网桥</title>
-      <link>http://blog.sinowrt.cn/categories/%E7%BD%91%E6%A1%A5/</link>
-      <pubDate>Sun, 08 Sep 2019 15:59:08 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/categories/%E7%BD%91%E6%A1%A5/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>路由改机</title>
-      <link>http://blog.sinowrt.cn/categories/%E8%B7%AF%E7%94%B1%E6%94%B9%E6%9C%BA/</link>
-      <pubDate>Sun, 08 Sep 2019 15:59:08 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/categories/%E8%B7%AF%E7%94%B1%E6%94%B9%E6%9C%BA/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>bug</title>
-      <link>http://blog.sinowrt.cn/categories/bug/</link>
+      <title>Windows</title>
+      <link>http://blog.sinowrt.cn/categories/windows/</link>
       <pubDate>Sat, 10 Aug 2019 15:44:08 +0800</pubDate>
       
-      <guid>http://blog.sinowrt.cn/categories/bug/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>win10</title>
-      <link>http://blog.sinowrt.cn/categories/win10/</link>
-      <pubDate>Sat, 10 Aug 2019 15:44:08 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/categories/win10/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>任务栏</title>
-      <link>http://blog.sinowrt.cn/categories/%E4%BB%BB%E5%8A%A1%E6%A0%8F/</link>
-      <pubDate>Sat, 10 Aug 2019 15:44:08 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/categories/%E4%BB%BB%E5%8A%A1%E6%A0%8F/</guid>
+      <guid>http://blog.sinowrt.cn/categories/windows/</guid>
       <description></description>
     </item>
     
@@ -102,47 +57,11 @@
     </item>
     
     <item>
-      <title>移动</title>
-      <link>http://blog.sinowrt.cn/categories/%E7%A7%BB%E5%8A%A8/</link>
-      <pubDate>Mon, 05 Aug 2019 17:47:08 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/categories/%E7%A7%BB%E5%8A%A8/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>群晖</title>
-      <link>http://blog.sinowrt.cn/categories/%E7%BE%A4%E6%99%96/</link>
-      <pubDate>Mon, 05 Aug 2019 17:47:08 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/categories/%E7%BE%A4%E6%99%96/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>vpn</title>
       <link>http://blog.sinowrt.cn/categories/vpn/</link>
       <pubDate>Thu, 13 Jun 2019 13:02:08 +0800</pubDate>
       
       <guid>http://blog.sinowrt.cn/categories/vpn/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>搬瓦工</title>
-      <link>http://blog.sinowrt.cn/categories/%E6%90%AC%E7%93%A6%E5%B7%A5/</link>
-      <pubDate>Thu, 13 Jun 2019 13:02:08 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/categories/%E6%90%AC%E7%93%A6%E5%B7%A5/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>C&#43;&#43;</title>
-      <link>http://blog.sinowrt.cn/categories/c&#43;&#43;/</link>
-      <pubDate>Tue, 11 Dec 2018 15:41:27 +0000</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/categories/c&#43;&#43;/</guid>
       <description></description>
     </item>
     
@@ -156,15 +75,6 @@
     </item>
     
     <item>
-      <title>Windows</title>
-      <link>http://blog.sinowrt.cn/categories/windows/</link>
-      <pubDate>Mon, 03 Dec 2018 12:58:57 +0000</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/categories/windows/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Qt</title>
       <link>http://blog.sinowrt.cn/categories/qt/</link>
       <pubDate>Sat, 17 Nov 2018 15:16:56 +0000</pubDate>
@@ -174,11 +84,11 @@
     </item>
     
     <item>
-      <title>Linux</title>
-      <link>http://blog.sinowrt.cn/categories/linux/</link>
-      <pubDate>Sat, 20 Oct 2018 10:37:42 +0000</pubDate>
+      <title>群晖</title>
+      <link>http://blog.sinowrt.cn/categories/%E7%BE%A4%E6%99%96/</link>
+      <pubDate>Tue, 06 Nov 2018 02:07:21 +0000</pubDate>
       
-      <guid>http://blog.sinowrt.cn/categories/linux/</guid>
+      <guid>http://blog.sinowrt.cn/categories/%E7%BE%A4%E6%99%96/</guid>
       <description></description>
     </item>
     
@@ -188,6 +98,15 @@
       <pubDate>Sat, 20 Oct 2018 10:37:42 +0000</pubDate>
       
       <guid>http://blog.sinowrt.cn/categories/wordpress/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>http://blog.sinowrt.cn/categories/linux/</link>
+      <pubDate>Fri, 19 Oct 2018 02:56:07 +0000</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/linux/</guid>
       <description></description>
     </item>
     

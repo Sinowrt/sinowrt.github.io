@@ -6,19 +6,10 @@
     <description>Recent content in Linux on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 20 Oct 2018 10:37:42 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 19 Oct 2018 02:56:07 +0000</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/categories/linux/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>用prism为WordPress页面实现代码高亮</title>
-      <link>http://blog.sinowrt.cn/2018/2018-10-20t1037-wordpresscode-highlight-with-prism/</link>
-      <pubDate>Sat, 20 Oct 2018 10:37:42 +0000</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2018/2018-10-20t1037-wordpresscode-highlight-with-prism/</guid>
-      <description> 0x01 下载prism的css与js文件  在prism官网下载prism的css与js文件  0x02 ssh方式登陆服务器  在路径/wordpress/htdocs/wp-content/themes/你的主题名称/路径下创建prism文件夹 将prism.css与prism.js两个文件上传到prism文件夹中  0x03 修改functions.php  在/wordpress/htdocs/wp-content/themes/你的主题名称/下找到functions.php vi修改文件，添加以下语句：  function add_prism() { wp_register_style( &#39;prismCSS&#39;, get_stylesheet_directory_uri() . &#39;/prism/prism.css&#39; //自定义路径 ); wp_register_script( &#39;prismJS&#39;, get_stylesheet_directory_uri() . &#39;/prism/prism.js&#39; //自定义路径 ); wp_enqueue_style(&#39;prismCSS&#39;); wp_enqueue_script(&#39;prismJS&#39;); } add_action(&#39;wp_enqueue_scripts&#39;, &#39;add_prism&#39;);  0x04注意  get_stylesheet_directory_uri()与get_parent_theme_file_path( &#39;/inc/color-patterns.php&#39; )的区别 使用get_parent_theme_file_path( &#39;/prism/prism.css&#39; )语句之后发现页面代码高亮没生效 通过chrome F12调试 发现prism.css与prism.js没加载成功 细看发现请求路径不对劲 修改成get_stylesheet_directory_uri().&#39;/prism/prism.js&#39;之后代码高亮生效  </description>
-    </item>
     
     <item>
       <title>newifi mini安装drcom全攻略</title>
