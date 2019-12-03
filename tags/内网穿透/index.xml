@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>群晖 on Sinowrt</title>
-    <link>http://blog.sinowrt.cn/tags/%E7%BE%A4%E6%99%96/</link>
-    <description>Recent content in 群晖 on Sinowrt</description>
+    <title>内网穿透 on Sinowrt</title>
+    <link>http://blog.sinowrt.cn/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/</link>
+    <description>Recent content in 内网穿透 on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 30 Nov 2019 12:14:00 +0800</lastBuildDate>
     
-	<atom:link href="http://blog.sinowrt.cn/tags/%E7%BE%A4%E6%99%96/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://blog.sinowrt.cn/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -26,15 +26,6 @@ ngrokd -domain=ngrok.example.com  0x02 添加域名解析 添加两条域名解�
 类型 | Name | Content -|-|- A记录 | *.ngrok | ngrok服务器ip A记录 | ngrok | ngrok服务器ip
 0x03 ngrok客户端配置  在本地，我使用刷了padavan固件的newifi3路由，内置了1.4版本的ngrok客户端。服务端是1.6版本的，经测试能通用。
  客户端配置很简单   0x04 结语 到这里，群晖已经暴露在外网了，请设置强大的登录密码防止数据泄露。</description>
-    </item>
-    
-    <item>
-      <title>群晖docker与移动网络的恩怨情仇</title>
-      <link>http://blog.sinowrt.cn/2019/2019-08-05t1747-the-fucking-china-mobile/</link>
-      <pubDate>Mon, 05 Aug 2019 17:47:08 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2019/2019-08-05t1747-the-fucking-china-mobile/</guid>
-      <description> 0x00 起因  舍友淘汰了一台笔记本电脑，被水泡了，也经过我的手修过，最后硬盘还是回天乏术。毕业了，也就扔给我了，由于手头上没有多余的硬盘，于是拆掉了群晖上的120G的东芝硬盘安上去。但是在转移资料的时候，只转移了盘内的文件，没有留意到群晖的package也需要转移。就这样，配置好在docker上的aria2也GG了。群晖没有了离线下载，就如烧烤没有孜然，失去了灵魂。 学校上个月换了运营商，换成了稀巴烂的移动网。 今天恰好有空，就重装一下aria2。  0x01 经过  docker安装挺顺利的，接下来就找一下aria2的镜像呗，输入aria2查找了半天，却弹了个failed to query registry的提示出来。我寻思着，是不是注册表源失效了，换成阿里云的源，结果直接not found。 这就奇怪了，以前安装的时候一切挺顺利的，没遇到过这种情况。于是google了一番，有让改dns的，改了n多个也没见效果。后来发现挺多回帖说是移动网的问题，用代理下吧，newifi3刚拿回来还没空刷机，刷完机还得配梯子，也挺折腾的。 我的网络是中继了学校的wifi过来的，于是我用手机开了个wifi，那就中继手机吧。试了一下，果然是移动网的问题，这个问题也就结了。  0x02 总结  移动网垃圾！  </description>
     </item>
     
   </channel>

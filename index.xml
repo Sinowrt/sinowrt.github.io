@@ -5,8 +5,63 @@
     <description>Recent content in Sinowrt on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 29 Nov 2019 00:28:00 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 30 Nov 2019 12:14:00 +0800</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>如何将群晖Nas扔出外网</title>
+      <link>http://blog.sinowrt.cn/2019/2019-11-30t1214-expose-synology-diskstation-to-the-internet/</link>
+      <pubDate>Sat, 30 Nov 2019 12:14:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2019/2019-11-30t1214-expose-synology-diskstation-to-the-internet/</guid>
+      <description>
+
+&lt;h2 id=&#34;0x00-思路&#34;&gt;0x00 思路&lt;/h2&gt;
+
+&lt;p&gt;分别在vps和路由端部署ngrok服务端与客户端，客户端在线时主动向服务端发起请求建立隧道，外部设备可直接向服务端请求相应的隧道，从而实现内网穿透。&lt;/p&gt;
+
+&lt;h2 id=&#34;0x01-在vps上部署ngrok服务端&#34;&gt;0x01 在vps上部署ngrok服务端&lt;/h2&gt;
+
+&lt;p&gt;良心云和套路云的学生套餐用来做内网穿透的服务端还是相当香的，由于ngrok需要用到域名，而我的域名只在良心北了岸，要是用套路云的话会截断提示未备案，无法访问，所以这次就直接用良心云的vps搭建服务端。
+* 安装ngrok服务端&lt;/p&gt;
+
+&lt;p&gt;网上大部分教程都是从安装go环境开始，再编译ngrok客户端，过程很复杂。而我只要简单的穿透服务，不需要tls啥的，其实安装过程很简单，只需要两条命令&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;apt-get update
+apt-get install ngrok-server
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;启动ngrok服务端&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;一条命令就搞定，监听80、443、4443端口，如果vps有防火墙请放行这几个入站端口。如果需要指定证书还有端口什么的可以自行添加启动参数，这里不再赘述。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;ngrokd -domain=ngrok.example.com
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;0x02-添加域名解析&#34;&gt;0x02 添加域名解析&lt;/h2&gt;
+
+&lt;p&gt;添加两条域名解析记录&lt;br /&gt;
+类型 | Name | Content
+-|-|-
+A记录 | *.ngrok | ngrok服务器ip
+A记录 | ngrok | ngrok服务器ip&lt;/p&gt;
+
+&lt;h2 id=&#34;0x03-ngrok客户端配置&#34;&gt;0x03 ngrok客户端配置&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;在本地，我使用刷了padavan固件的newifi3路由，内置了1.4版本的ngrok客户端。服务端是1.6版本的，经测试能通用。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;客户端配置很简单
+&lt;img src=&#34;http://pic.sinowrt.cn/image/2019-11-30T1214/router%20setting.png&#34; alt=&#34;客户端配置&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;0x04-结语&#34;&gt;0x04 结语&lt;/h2&gt;
+
+&lt;p&gt;到这里，群晖已经暴露在外网了，请设置强大的登录密码防止数据泄露。&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>newifi mini 拨号设置</title>
@@ -825,45 +880,6 @@ void View_OnlineShopManagement::OnDraw(CDC* /*pDC*/)
 &lt;h3 id=&#34;7-打开浏览器-输入服务器地址以及你设置的webui端口-即可访问aria2-webui&#34;&gt;7）打开浏览器，输入服务器地址以及你设置的webui端口，即可访问aria2 webui&lt;/h3&gt;
 
 &lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-06T0207/finish.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>自定义黑群晖6.X.X引导系统版本</title>
-      <link>http://blog.sinowrt.cn/2018/2018-11-04t1218-synalogycustomize-boot-system/</link>
-      <pubDate>Sun, 04 Nov 2018 12:18:36 +0000</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2018/2018-11-04t1218-synalogycustomize-boot-system/</guid>
-      <description>
-
-&lt;h2 id=&#34;0x00-打开osfmount&#34;&gt;0x00 打开osfmount&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-04T1218/osfmount1.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;0x01-挂载引导文件&#34;&gt;0x01 挂载引导文件&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;选择img文件&lt;/li&gt;
-&lt;li&gt;填写offset为16MBytes&lt;/li&gt;
-&lt;li&gt;去掉read—only前面的勾&lt;/li&gt;
-&lt;li&gt;点击ok进行挂载
-&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-04T1218/osfmount2-1.jpg&#34; alt=&#34;image&#34; /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;0x02-解压目标系统文件&#34;&gt;0x02 解压目标系统文件&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;将xxxxxxx.pat的后缀改成rar&lt;/li&gt;
-&lt;li&gt;解压&lt;/li&gt;
-&lt;li&gt;从解压得到的文件夹里面找到rd.gz和zlmage&lt;/li&gt;
-&lt;li&gt;复制这两个文件到虚拟磁盘根目录下替换原文件&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;0x03-卸载虚拟磁盘&#34;&gt;0x03 卸载虚拟磁盘&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-11-04T1218/dismount.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;0x04-将img文件通过win32diskimager写入u盘即可&#34;&gt;0x04 将img文件通过Win32DiskImager写入U盘即可&lt;/h2&gt;
 </description>
     </item>
     

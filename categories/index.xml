@@ -6,10 +6,19 @@
     <description>Recent content in Categories on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 29 Nov 2019 00:28:00 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 30 Nov 2019 12:14:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>NAS</title>
+      <link>http://blog.sinowrt.cn/categories/nas/</link>
+      <pubDate>Sat, 30 Nov 2019 12:14:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/nas/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>路由</title>
