@@ -6,10 +6,28 @@
     <description>Recent content in Tags on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 30 Nov 2019 12:14:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 08 Jan 2020 00:21:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>diy</title>
+      <link>http://blog.sinowrt.cn/tags/diy/</link>
+      <pubDate>Wed, 08 Jan 2020 00:21:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/tags/diy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>硬件</title>
+      <link>http://blog.sinowrt.cn/tags/%E7%A1%AC%E4%BB%B6/</link>
+      <pubDate>Wed, 08 Jan 2020 00:21:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/tags/%E7%A1%AC%E4%BB%B6/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>内网穿透</title>
