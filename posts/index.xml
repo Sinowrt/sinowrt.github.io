@@ -6,10 +6,32 @@
     <description>Recent content in Posts on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 08 Jan 2020 00:21:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 10 Apr 2020 10:01:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>npm 报错 EPERM: operation not permitted</title>
+      <link>http://blog.sinowrt.cn/2020/2020-04-10t1001-npm-eperm-operation-not-permitted/</link>
+      <pubDate>Fri, 10 Apr 2020 10:01:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-04-10t1001-npm-eperm-operation-not-permitted/</guid>
+      <description>昨天从拉了个前端项目下来，用IDEA打开，例行npm install，安装到一般报错EPERM: operation not permitted
+按网上的删除package-lock.json后，情况依旧
+以为是管理员权限问题，于是win + x a调出powershell，进入项目目录，执行npm install，一样的结果
+又有人说是npm cache的问题，于是执行npm cache clean -force ，一样报错
+npm ERR! The operation was rejected by your operating system. npm ERR! It&#39;s possible that the file was already in use (by a text editor or antivirus), npm ERR! or that you lack permissions to access it. npm ERR! npm ERR! If you believe this might be a permissions issue, please double-check the npm ERR!</description>
+    </item>
+    
+    <item>
+      <title>xxl-job 启动报异常 java.lang.NoClassDefFoundError: groovy/lang/GroovyClassLoader</title>
+      <link>http://blog.sinowrt.cn/2020/2020-04-03t0853-xxl-job-groovyclassloader-noclassdeffounderror-exception/</link>
+      <pubDate>Fri, 03 Apr 2020 08:53:27 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-04-03t0853-xxl-job-groovyclassloader-noclassdeffounderror-exception/</guid>
+      <description>org.springframework.beans.factory.BeanCreationException: Error creating bean with name &#39;xxlJobExecutor&#39; defined in class path resource [org/springblade/job/executor/config/XxlJobConfig.class]: Invocation of init method failed; nested exception is java.lang.NoClassDefFoundError: groovy/lang/GroovyClassLoader at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1771) at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:593) at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515) at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320) at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222) at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318) at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:847) at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:877) at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549) at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:141) at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:744) at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:391) at org.springframework.boot.SpringApplication.run(SpringApplication.java:312) at org.springframework.boot.builder.SpringApplicationBuilder.run(SpringApplicationBuilder.java:140) at org.springblade.core.launch.BladeApplication.run(BladeApplication.java:49) at org.springblade.job.executor.JobApplication.main(JobApplication.java:34) Caused by: java.lang.NoClassDefFoundError: groovy/lang/GroovyClassLoader at com.xxl.job.core.glue.GlueFactory.&amp;lt;init&amp;gt;(GlueFactory.java:36) at com.xxl.job.core.glue.GlueFactory.&amp;lt;clinit&amp;gt;(GlueFactory.java:20) at com.xxl.job.core.executor.impl.XxlJobSpringExecutor.afterPropertiesSet(XxlJobSpringExecutor.java:39) at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1830) at org.</description>
+    </item>
     
     <item>
       <title>在esp8266中使用外部中断作为按键输入</title>

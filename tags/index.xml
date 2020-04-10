@@ -6,10 +6,28 @@
     <description>Recent content in Tags on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 08 Jan 2020 00:21:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 10 Apr 2020 10:01:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>npm</title>
+      <link>http://blog.sinowrt.cn/tags/npm/</link>
+      <pubDate>Fri, 10 Apr 2020 10:01:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/tags/npm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>xxl-job</title>
+      <link>http://blog.sinowrt.cn/tags/xxl-job/</link>
+      <pubDate>Fri, 03 Apr 2020 08:53:27 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/tags/xxl-job/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>diy</title>

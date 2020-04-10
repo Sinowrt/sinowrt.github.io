@@ -9,9 +9,9 @@
   
   
   
-  <link rel="prev" href="http://blog.sinowrt.cn/2018/2018-11-04t1148-synologynas-diy/" />
-  <link rel="next" href="http://blog.sinowrt.cn/2018/2018-11-06t0207-synologysetup-aria2-with-docker/" />
-  <link rel="canonical" href="http://blog.sinowrt.cn/2018/2018-11-04t1218-synalogycustomize-boot-system/" />
+  <link rel="prev" href="http://blog.sinowrt.cn/2020/2020-04-03t0853-xxl-job-groovyclassloader-noclassdeffounderror-exception/" />
+  
+  <link rel="canonical" href="http://blog.sinowrt.cn/2020/2020-04-10t1001-npm-eperm-operation-not-permitted/" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -22,10 +22,10 @@
   <title>
        
        
-           自定义黑群晖6.X.X引导系统版本 | Sinowrt
+           npm 报错 EPERM: operation not permitted | Sinowrt
        
   </title>
-  <meta name="title" content="自定义黑群晖6.X.X引导系统版本 | Sinowrt">
+  <meta name="title" content="npm 报错 EPERM: operation not permitted | Sinowrt">
     
   
   <link rel="stylesheet" href="/font/iconfont.css">
@@ -44,21 +44,21 @@
          "@id": "http:\/\/blog.sinowrt.cn"
     },
     "articleSection" : "posts",
-    "name" : "自定义黑群晖6.X.X引导系统版本",
-    "headline" : "自定义黑群晖6.X.X引导系统版本",
-    "description" : " 0x00 打开osfmount 0x01 挂载引导文件  选择img文件 填写offset为16MBytes 去掉read—only前面的勾 点击ok进行挂载   0x02 解压目标系统文件  将xxxxxxx.pat的后缀改成rar 解压 从解压得到的文件夹里面找到rd.gz和zlmage 复制这两个文件到虚拟磁盘根目录下替换原文件  0x03 卸载虚拟磁盘 0x04 将img文件通过Win32DiskImager写入U盘即可 ",
+    "name" : "npm 报错 EPERM: operation not permitted",
+    "headline" : "npm 报错 EPERM: operation not permitted",
+    "description" : "昨天从拉了个前端项目下来，用IDEA打开，例行npm install，安装到一般报错EPERM: operation not permitted\n按网上的删除package-lock.json后，情况依旧\n以为是管理员权限问题，于是win \x2b x a调出powershell，进入项目目录，执行npm install，一样的结果\n又有人说是npm cache的问题，于是执行npm cache clean -force ，一样报错\nnpm ERR! The operation was rejected by your operating system. npm ERR! It\x27s possible that the file was already in use (by a text editor or antivirus), npm ERR! or that you lack permissions to access it. npm ERR! npm ERR! If you believe this might be a permissions issue, please double-check the npm ERR!",
     "inLanguage" : "en-us",
-    "author" : "SinoWRT",
-    "creator" : "SinoWRT",
-    "publisher": "SinoWRT",
-    "accountablePerson" : "SinoWRT",
-    "copyrightHolder" : "SinoWRT",
-    "copyrightYear" : "2018",
-    "datePublished": "2018-11-04 12:18:36 \x2b0000 \x2b0000",
-    "dateModified" : "2018-11-04 12:18:36 \x2b0000 \x2b0000",
-    "url" : "http:\/\/blog.sinowrt.cn\/2018\/2018-11-04t1218-synalogycustomize-boot-system\/",
-    "wordCount" : "18",
-    "keywords" : [  "Sinowrt"]
+    "author" : "sinowrt",
+    "creator" : "sinowrt",
+    "publisher": "sinowrt",
+    "accountablePerson" : "sinowrt",
+    "copyrightHolder" : "sinowrt",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-04-10 10:01:00 \x2b0800 CST",
+    "dateModified" : "2020-04-10 10:01:00 \x2b0800 CST",
+    "url" : "http:\/\/blog.sinowrt.cn\/2020\/2020-04-10t1001-npm-eperm-operation-not-permitted\/",
+    "wordCount" : "109",
+    "keywords" : [ "npm", "Sinowrt"]
 }
 </script>
 
@@ -129,16 +129,16 @@ var _hmt = _hmt || [];
       		
 <article class="post-warp" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">自定义黑群晖6.X.X引导系统版本</h1>
+        <h1 class="post-title" itemprop="name headline">npm 报错 EPERM: operation not permitted</h1>
         <div class="post-meta">
-                Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">SinoWRT</a> with ♥ 
+                Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
                 <span class="post-time">
-                on <time datetime=2018-11-04 itemprop="datePublished">November 4, 2018</time>
+                on <time datetime=2020-04-10 itemprop="datePublished">April 10, 2020</time>
                 </span>
                 in
                 <i class="iconfont icon-folder"></i>
                 <span class="post-category">
-                        <a href="http://blog.sinowrt.cn/categories/nas/"> Nas </a>
+                        <a href="http://blog.sinowrt.cn/categories/develope/"> develope </a>
                         
                 </span>
         </div>
@@ -146,8 +146,6 @@ var _hmt = _hmt || [];
     <div class="post-content">
         
 
-        
-            
         
 
         
@@ -161,36 +159,30 @@ var _hmt = _hmt || [];
           
           
 
-          
+          <p>昨天从拉了个前端项目下来，用IDEA打开，例行npm install，安装到一般报错<code>EPERM: operation not permitted</code></p>
 
-<h2 id="0x00-打开osfmount">0x00 打开osfmount</h2>
+<p>按网上的删除package-lock.json后，情况依旧</p>
 
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-11-04T1218/osfmount1.jpg" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
+<p>以为是管理员权限问题，于是<code>win + x</code> <code>a</code>调出powershell，进入项目目录，执行npm install，一样的结果</p>
 
-<h2 id="0x01-挂载引导文件">0x01 挂载引导文件</h2>
+<p>又有人说是npm cache的问题，于是执行npm cache clean -force ，一样报错</p>
 
-<ul>
-<li>选择img文件</li>
-<li>填写offset为16MBytes</li>
-<li>去掉read—only前面的勾</li>
-<li>点击ok进行挂载
-<figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-11-04T1218/osfmount2-1.jpg" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></li>
-</ul>
+<pre><code>npm ERR! The operation was rejected by your operating system.
+npm ERR! It's possible that the file was already in use (by a text editor or antivirus),
+npm ERR! or that you lack permissions to access it.
+npm ERR!
+npm ERR! If you believe this might be a permissions issue, please double-check the
+npm ERR! permissions of the file and its containing directories, or try running
+npm ERR! the command again as root/Administrator (though this is not recommended).
+</code></pre>
 
-<h2 id="0x02-解压目标系统文件">0x02 解压目标系统文件</h2>
+<p>那我直接打开资源管理器，删除这个文件不就好了，可是删不掉啊，Access denied，查看文件属性-安全-高级，Unable to display current owner. 连文件所属用户都看不到啊！</p>
 
-<ul>
-<li>将xxxxxxx.pat的后缀改成rar</li>
-<li>解压</li>
-<li>从解压得到的文件夹里面找到rd.gz和zlmage</li>
-<li>复制这两个文件到虚拟磁盘根目录下替换原文件</li>
-</ul>
+<p>后来我甚至登录Administrator账户，都删不了</p>
 
-<h2 id="0x03-卸载虚拟磁盘">0x03 卸载虚拟磁盘</h2>
+<p>后来想了想，会不会是IDEA占用的问题呢，直接把IDEA关了，再<code>npm cache clean -force</code>，提示npm-cache文件夹busy，命令提示行退出该目录，再执行一次，竟然好了？！</p>
 
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-11-04T1218/dismount.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
-
-<h2 id="0x04-将img文件通过win32diskimager写入u盘即可">0x04 将img文件通过Win32DiskImager写入U盘即可</h2>
+<p>然后<code>npm install</code>，竟然一切正常？！跟我闹着玩呢？</p>
 
     </div>
 	
@@ -206,7 +198,7 @@ var _hmt = _hmt || [];
              
             <p class="copyright-item">
                     <span>Link:</span>
-                    <a href=http://blog.sinowrt.cn/2018/2018-11-04t1218-synalogycustomize-boot-system/>http://blog.sinowrt.cn/2018/2018-11-04t1218-synalogycustomize-boot-system/</span>
+                    <a href=http://blog.sinowrt.cn/2020/2020-04-10t1001-npm-eperm-operation-not-permitted/>http://blog.sinowrt.cn/2020/2020-04-10t1001-npm-eperm-operation-not-permitted/</span>
             </p>
 			
 			<p>
@@ -225,6 +217,14 @@ var _hmt = _hmt || [];
   
     <div class="post-tags">
         
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/npm/">
+                    #npm</a></span>
+            
+            </section>
+        
         <section>
                 <a href="javascript:window.history.back();">back</a></span> · 
                 <span><a href="http://blog.sinowrt.cn">home</a></span>
@@ -233,10 +233,8 @@ var _hmt = _hmt || [];
 
     <div class="post-nav">
         
-        <a href="http://blog.sinowrt.cn/2018/2018-11-04t1148-synologynas-diy/" class="prev" rel="prev" title="旧笔记本安装黑群晖NAS系统——打造属于自己的私有云"><i class="iconfont icon-left"></i>&nbsp;旧笔记本安装黑群晖NAS系统——打造属于自己的私有云</a>
+        <a href="http://blog.sinowrt.cn/2020/2020-04-03t0853-xxl-job-groovyclassloader-noclassdeffounderror-exception/" class="prev" rel="prev" title="xxl-job 启动报异常 java.lang.NoClassDefFoundError: groovy/lang/GroovyClassLoader"><i class="iconfont icon-left"></i>&nbsp;xxl-job 启动报异常 java.lang.NoClassDefFoundError: groovy/lang/GroovyClassLoader</a>
          
-        
-        <a href="http://blog.sinowrt.cn/2018/2018-11-06t0207-synologysetup-aria2-with-docker/" class="next" rel="next" title="利用docker为群晖部署aria2下载工具">利用docker为群晖部署aria2下载工具&nbsp;<i class="iconfont icon-right"></i></a>
         
     </div>
 
@@ -287,9 +285,8 @@ var _hmt = _hmt || [];
 
 
     
-     <link href="//lib.baomitu.com/lightgallery/1.6.11/css/lightgallery.min.css" rel="stylesheet">  
-      
-     <script src="/js/vendor_gallery.min.js" async="" ></script>
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
     
   
 

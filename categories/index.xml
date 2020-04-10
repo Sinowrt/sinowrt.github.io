@@ -6,10 +6,19 @@
     <description>Recent content in Categories on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 08 Jan 2020 00:21:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 10 Apr 2020 10:01:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>develope</title>
+      <link>http://blog.sinowrt.cn/categories/develope/</link>
+      <pubDate>Fri, 10 Apr 2020 10:01:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/develope/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>esp8266</title>
@@ -89,15 +98,6 @@
       <pubDate>Sat, 17 Nov 2018 15:16:56 +0000</pubDate>
       
       <guid>http://blog.sinowrt.cn/categories/qt/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>群晖</title>
-      <link>http://blog.sinowrt.cn/categories/%E7%BE%A4%E6%99%96/</link>
-      <pubDate>Tue, 06 Nov 2018 02:07:21 +0000</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/categories/%E7%BE%A4%E6%99%96/</guid>
       <description></description>
     </item>
     

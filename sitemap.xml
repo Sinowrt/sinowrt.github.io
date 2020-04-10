@@ -4,7 +4,7 @@
     <url>
       <loc>http://blog.sinowrt.cn/categories/</loc>
       
-      <lastmod>2020-01-08T00:21:00+08:00</lastmod>
+      <lastmod>2020-04-10T10:01:00+08:00</lastmod>
       
       
       
@@ -16,7 +16,7 @@
     <url>
       <loc>http://blog.sinowrt.cn/posts/</loc>
       
-      <lastmod>2020-01-08T00:21:00+08:00</lastmod>
+      <lastmod>2020-04-10T10:01:00+08:00</lastmod>
       
       
       
@@ -28,7 +28,7 @@
     <url>
       <loc>http://blog.sinowrt.cn/</loc>
       
-      <lastmod>2020-01-08T00:21:00+08:00</lastmod>
+      <lastmod>2020-04-10T10:01:00+08:00</lastmod>
       
       
       
@@ -40,11 +40,67 @@
     <url>
       <loc>http://blog.sinowrt.cn/tags/</loc>
       
-      <lastmod>2020-01-08T00:21:00+08:00</lastmod>
+      <lastmod>2020-04-10T10:01:00+08:00</lastmod>
       
       
       
       <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/categories/develope/</loc>
+      
+      <lastmod>2020-04-10T10:01:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/npm/</loc>
+      
+      <lastmod>2020-04-10T10:01:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/2020/2020-04-10t1001-npm-eperm-operation-not-permitted/</loc>
+      
+      <lastmod>2020-04-10T10:01:00+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/xxl-job/</loc>
+      
+      <lastmod>2020-04-03T08:53:27+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/2020/2020-04-03t0853-xxl-job-groovyclassloader-noclassdeffounderror-exception/</loc>
+      
+      <lastmod>2020-04-03T08:53:27+08:00</lastmod>
+      
+      
       
       
     </url>
@@ -517,18 +573,6 @@
       <lastmod>2018-11-06T02:07:21+00:00</lastmod>
       
       
-      
-      
-    </url>
-  
-    <url>
-      <loc>http://blog.sinowrt.cn/categories/%E7%BE%A4%E6%99%96/</loc>
-      
-      <lastmod>2018-11-06T02:07:21+00:00</lastmod>
-      
-      
-      
-      <priority>0</priority>
       
       
     </url>
