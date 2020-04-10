@@ -4,7 +4,7 @@
     <url>
       <loc>http://blog.sinowrt.cn/categories/</loc>
       
-      <lastmod>2020-04-10T10:01:00+08:00</lastmod>
+      <lastmod>2020-04-03T08:53:27+08:00</lastmod>
       
       
       
@@ -16,7 +16,7 @@
     <url>
       <loc>http://blog.sinowrt.cn/posts/</loc>
       
-      <lastmod>2020-04-10T10:01:00+08:00</lastmod>
+      <lastmod>2020-04-03T08:53:27+08:00</lastmod>
       
       
       
@@ -28,7 +28,7 @@
     <url>
       <loc>http://blog.sinowrt.cn/</loc>
       
-      <lastmod>2020-04-10T10:01:00+08:00</lastmod>
+      <lastmod>2020-04-03T08:53:27+08:00</lastmod>
       
       
       
@@ -40,7 +40,7 @@
     <url>
       <loc>http://blog.sinowrt.cn/tags/</loc>
       
-      <lastmod>2020-04-10T10:01:00+08:00</lastmod>
+      <lastmod>2020-04-03T08:53:27+08:00</lastmod>
       
       
       
@@ -52,33 +52,11 @@
     <url>
       <loc>http://blog.sinowrt.cn/categories/develope/</loc>
       
-      <lastmod>2020-04-10T10:01:00+08:00</lastmod>
+      <lastmod>2020-04-03T08:53:27+08:00</lastmod>
       
       
       
       <priority>0</priority>
-      
-      
-    </url>
-  
-    <url>
-      <loc>http://blog.sinowrt.cn/tags/npm/</loc>
-      
-      <lastmod>2020-04-10T10:01:00+08:00</lastmod>
-      
-      
-      
-      <priority>0</priority>
-      
-      
-    </url>
-  
-    <url>
-      <loc>http://blog.sinowrt.cn/2020/2020-04-10t1001-npm-eperm-operation-not-permitted/</loc>
-      
-      <lastmod>2020-04-10T10:01:00+08:00</lastmod>
-      
-      
       
       
     </url>

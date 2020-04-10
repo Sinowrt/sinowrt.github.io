@@ -5,41 +5,8 @@
     <description>Recent content in Sinowrt on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 10 Apr 2020 10:01:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 03 Apr 2020 08:53:27 +0800</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
-    
-    <item>
-      <title>npm 报错 EPERM: operation not permitted</title>
-      <link>http://blog.sinowrt.cn/2020/2020-04-10t1001-npm-eperm-operation-not-permitted/</link>
-      <pubDate>Fri, 10 Apr 2020 10:01:00 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2020/2020-04-10t1001-npm-eperm-operation-not-permitted/</guid>
-      <description>&lt;p&gt;昨天从拉了个前端项目下来，用IDEA打开，例行npm install，安装到一般报错&lt;code&gt;EPERM: operation not permitted&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;按网上的删除package-lock.json后，情况依旧&lt;/p&gt;
-
-&lt;p&gt;以为是管理员权限问题，于是&lt;code&gt;win + x&lt;/code&gt; &lt;code&gt;a&lt;/code&gt;调出powershell，进入项目目录，执行npm install，一样的结果&lt;/p&gt;
-
-&lt;p&gt;又有人说是npm cache的问题，于是执行npm cache clean -force ，一样报错&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;npm ERR! The operation was rejected by your operating system.
-npm ERR! It&#39;s possible that the file was already in use (by a text editor or antivirus),
-npm ERR! or that you lack permissions to access it.
-npm ERR!
-npm ERR! If you believe this might be a permissions issue, please double-check the
-npm ERR! permissions of the file and its containing directories, or try running
-npm ERR! the command again as root/Administrator (though this is not recommended).
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;那我直接打开资源管理器，删除这个文件不就好了，可是删不掉啊，Access denied，查看文件属性-安全-高级，Unable to display current owner. 连文件所属用户都看不到啊！&lt;/p&gt;
-
-&lt;p&gt;后来我甚至登录Administrator账户，都删不了&lt;/p&gt;
-
-&lt;p&gt;后来想了想，会不会是IDEA占用的问题呢，直接把IDEA关了，再&lt;code&gt;npm cache clean -force&lt;/code&gt;，提示npm-cache文件夹busy，命令提示行退出该目录，再执行一次，竟然好了？！&lt;/p&gt;
-
-&lt;p&gt;然后&lt;code&gt;npm install&lt;/code&gt;，竟然一切正常？！跟我闹着玩呢？&lt;/p&gt;
-</description>
-    </item>
     
     <item>
       <title>xxl-job 启动报异常 java.lang.NoClassDefFoundError: groovy/lang/GroovyClassLoader</title>
@@ -47,7 +14,11 @@ npm ERR! the command again as root/Administrator (though this is not recommended
       <pubDate>Fri, 03 Apr 2020 08:53:27 +0800</pubDate>
       
       <guid>http://blog.sinowrt.cn/2020/2020-04-03t0853-xxl-job-groovyclassloader-noclassdeffounderror-exception/</guid>
-      <description>&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;org.springframework.beans.factory.BeanCreationException: Error creating bean with name &#39;xxlJobExecutor&#39; defined in class path resource [org/springblade/job/executor/config/XxlJobConfig.class]: Invocation of init method failed; nested exception is java.lang.NoClassDefFoundError: groovy/lang/GroovyClassLoader
+      <description>&lt;p&gt;今天负责交接xxl-job数据同步系统，首先当然是将项目跑起来啦&lt;/p&gt;
+
+&lt;p&gt;但是项目拉下来后，配置好，运行抛了个NoClassDefFoundError异常：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;org.springframework.beans.factory.BeanCreationException: Error creating bean with name &#39;xxlJobExecutor&#39; defined in class path resource [org/springblade/job/executor/config/XxlJobConfig.class]: Invocation of init method failed; nested exception is java.lang.NoClassDefFoundError: groovy/lang/GroovyClassLoader
     at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1771)
     at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:593)
     at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
@@ -894,6 +865,20 @@ void View_OnlineShopManagement::OnDraw(CDC* /*pDC*/)
 &lt;h4 id=&#34;0x05-z盘挂载成功&#34;&gt;0x05 Z盘挂载成功&lt;/h4&gt;
 
 &lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-12-03T1258/6.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Qt5 error LNK2019 无法解析的外部符号的解决方法</title>
+      <link>http://blog.sinowrt.cn/2018/2018-11-17t1516-qt5compile-error/</link>
+      <pubDate>Sat, 17 Nov 2018 15:16:56 +0000</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2018/2018-11-17t1516-qt5compile-error/</guid>
+      <description>
+
+&lt;h1 id=&#34;编译过程中连接错误&#34;&gt;编译过程中连接错误&lt;/h1&gt;
+
+&lt;h4 id=&#34;尝试删除build文件夹-问题解决&#34;&gt;尝试删除build文件夹，问题解决&lt;/h4&gt;
 </description>
     </item>
     
