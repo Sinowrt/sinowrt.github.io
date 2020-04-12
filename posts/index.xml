@@ -6,10 +6,34 @@
     <description>Recent content in Posts on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 03 Apr 2020 08:53:27 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 12 Apr 2020 23:33:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Ubuntu]将ngrok添加到supervisor守护进程</title>
+      <link>http://blog.sinowrt.cn/2020/2020-04-12t2330-ubuntuadd-ngrok-to-supervisor/</link>
+      <pubDate>Sun, 12 Apr 2020 23:33:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-04-12t2330-ubuntuadd-ngrok-to-supervisor/</guid>
+      <description>0x00 安装Supervis 直接执行以下命令即可安装Supervisor
+sudo apt-get install supervisor  0x01 添加ngrok的supervisor配置 进入supervisor配置目录,并新建ngrok.conf文件
+cd /etc/supervisor/conf.d vi ngrok.conf  输入以下内容：
+[program:ngrok] directory = /usr/local/ngrok/ command = ngrokd -domain=&amp;quot;ngrok.******.cn&amp;quot; -httpAddr=&amp;quot;:80&amp;quot; autostart = true ; 在 supervisord 启动的时候也自动启动 startsecs = 5 ; 启动 5 秒后没有异常退出，就当作已经正常启动了 autorestart = true ; 程序异常退出后自动重启 startretries = 3 ; 启动失败自动重试次数，默认是 3 user = root ; 用哪个用户启动 redirect_stderr = true ; 把 stderr 重定向到 stdout，默认 false stdout_logfile_maxbytes = 20MB ; stdout 日志文件大小，默认 50MB stdout_logfile_backups = 20 ; stdout 日志文件备份数 stdout_logfile = /var/log/supervisor/ngrok.</description>
+    </item>
+    
+    <item>
+      <title>npm 报错 EPERM: operation not permitted</title>
+      <link>http://blog.sinowrt.cn/2020/2020-04-10t1001-npm-eperm-operation-not-permitted/</link>
+      <pubDate>Fri, 10 Apr 2020 10:01:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-04-10t1001-npm-eperm-operation-not-permitted/</guid>
+      <description>昨天从拉了个前端项目下来，用IDEA打开，例行npm install，安装到一般报错EPERM: operation not permitted
+按网上的删除package-lock.json后，情况依旧
+以为是管理员权限问题，于是win + x再按a调出powershell，进入项目目录，执行npm install，报zlib: unexpected end of file，于是执行npm cache clean -force ，报错
+npm ERR! The operation was rejected by your operating system. npm ERR! It&#39;s possible that the file was already in use (by a text editor or antivirus), npm ERR! or that you lack permissions to access it. npm ERR! npm ERR! If you believe this might be a permissions issue, please double-check the npm ERR!</description>
+    </item>
     
     <item>
       <title>xxl-job 启动报异常 java.lang.NoClassDefFoundError: groovy/lang/GroovyClassLoader</title>

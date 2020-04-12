@@ -19,8 +19,7 @@
       <guid>http://blog.sinowrt.cn/2020/2020-04-10t1001-npm-eperm-operation-not-permitted/</guid>
       <description>昨天从拉了个前端项目下来，用IDEA打开，例行npm install，安装到一般报错EPERM: operation not permitted
 按网上的删除package-lock.json后，情况依旧
-以为是管理员权限问题，于是win + x a调出powershell，进入项目目录，执行npm install，一样的结果
-又有人说是npm cache的问题，于是执行npm cache clean -force ，一样报错
+以为是管理员权限问题，于是win + x再按a调出powershell，进入项目目录，执行npm install，报zlib: unexpected end of file，于是执行npm cache clean -force ，报错
 npm ERR! The operation was rejected by your operating system. npm ERR! It&#39;s possible that the file was already in use (by a text editor or antivirus), npm ERR! or that you lack permissions to access it. npm ERR! npm ERR! If you believe this might be a permissions issue, please double-check the npm ERR!</description>
     </item>
     

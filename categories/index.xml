@@ -6,15 +6,24 @@
     <description>Recent content in Categories on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 03 Apr 2020 08:53:27 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 12 Apr 2020 23:33:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>ngrok</title>
+      <link>http://blog.sinowrt.cn/categories/ngrok/</link>
+      <pubDate>Sun, 12 Apr 2020 23:33:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/ngrok/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>develope</title>
       <link>http://blog.sinowrt.cn/categories/develope/</link>
-      <pubDate>Fri, 03 Apr 2020 08:53:27 +0800</pubDate>
+      <pubDate>Fri, 10 Apr 2020 10:01:00 +0800</pubDate>
       
       <guid>http://blog.sinowrt.cn/categories/develope/</guid>
       <description></description>
@@ -30,7 +39,7 @@
     </item>
     
     <item>
-      <title>Nas</title>
+      <title>NAS</title>
       <link>http://blog.sinowrt.cn/categories/nas/</link>
       <pubDate>Sat, 30 Nov 2019 12:14:00 +0800</pubDate>
       

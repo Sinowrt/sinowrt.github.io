@@ -5,8 +5,92 @@
     <description>Recent content in Sinowrt on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 03 Apr 2020 08:53:27 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 12 Apr 2020 23:33:00 +0800</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>[Ubuntu]将ngrok添加到supervisor守护进程</title>
+      <link>http://blog.sinowrt.cn/2020/2020-04-12t2330-ubuntuadd-ngrok-to-supervisor/</link>
+      <pubDate>Sun, 12 Apr 2020 23:33:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-04-12t2330-ubuntuadd-ngrok-to-supervisor/</guid>
+      <description>
+
+&lt;h2 id=&#34;0x00-安装supervis&#34;&gt;0x00 安装Supervis&lt;/h2&gt;
+
+&lt;p&gt;直接执行以下命令即可安装Supervisor&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;sudo apt-get install supervisor 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;0x01-添加ngrok的supervisor配置&#34;&gt;0x01 添加ngrok的supervisor配置&lt;/h2&gt;
+
+&lt;p&gt;进入supervisor配置目录,并新建ngrok.conf文件&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;cd /etc/supervisor/conf.d
+vi ngrok.conf
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;输入以下内容：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-conf&#34;&gt;[program:ngrok]
+directory = /usr/local/ngrok/
+command = ngrokd -domain=&amp;quot;ngrok.******.cn&amp;quot; -httpAddr=&amp;quot;:80&amp;quot;
+autostart = true     ; 在 supervisord 启动的时候也自动启动
+startsecs = 5        ; 启动 5 秒后没有异常退出，就当作已经正常启动了
+autorestart = true   ; 程序异常退出后自动重启
+startretries = 3     ; 启动失败自动重试次数，默认是 3
+user = root          ; 用哪个用户启动
+redirect_stderr = true  ; 把 stderr 重定向到 stdout，默认 false
+stdout_logfile_maxbytes = 20MB  ; stdout 日志文件大小，默认 50MB
+stdout_logfile_backups = 20     ; stdout 日志文件备份数
+stdout_logfile = /var/log/supervisor/ngrok.log
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;0x02-启动supervisor&#34;&gt;0x02 启动supervisor&lt;/h2&gt;
+
+&lt;p&gt;重新加载配置，即可启动supervisor&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt; supervisor reload
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;查看supervisor状态&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt; supervisor status
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>npm 报错 EPERM: operation not permitted</title>
+      <link>http://blog.sinowrt.cn/2020/2020-04-10t1001-npm-eperm-operation-not-permitted/</link>
+      <pubDate>Fri, 10 Apr 2020 10:01:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-04-10t1001-npm-eperm-operation-not-permitted/</guid>
+      <description>&lt;p&gt;昨天从拉了个前端项目下来，用IDEA打开，例行npm install，安装到一般报错&lt;code&gt;EPERM: operation not permitted&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;按网上的删除package-lock.json后，情况依旧&lt;/p&gt;
+
+&lt;p&gt;以为是管理员权限问题，于是&lt;code&gt;win + x&lt;/code&gt;再按&lt;code&gt;a&lt;/code&gt;调出powershell，进入项目目录，执行npm install，报&lt;code&gt;zlib: unexpected end of file&lt;/code&gt;，于是执行npm cache clean -force ，报错&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;npm ERR! The operation was rejected by your operating system.
+npm ERR! It&#39;s possible that the file was already in use (by a text editor or antivirus),
+npm ERR! or that you lack permissions to access it.
+npm ERR!
+npm ERR! If you believe this might be a permissions issue, please double-check the
+npm ERR! permissions of the file and its containing directories, or try running
+npm ERR! the command again as root/Administrator (though this is not recommended).
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;那我直接打开资源管理器，删除这个文件不就好了，可是删不掉啊，Access is denied，查看文件属性-安全-高级，Unable to display current owner. 连文件所属用户都看不到啊！&lt;/p&gt;
+
+&lt;p&gt;后来我甚至登录Administrator账户，都删不了&lt;/p&gt;
+
+&lt;p&gt;后来想了想，会不会是IDEA占用的问题呢，直接把IDEA关了，再&lt;code&gt;npm cache clean -force&lt;/code&gt;，提示npm-cache文件夹busy，命令提示行退出该目录，再执行一次，竟然好了？！&lt;/p&gt;
+
+&lt;p&gt;然后&lt;code&gt;npm install&lt;/code&gt;，竟然一切正常？！跟我闹着玩呢？&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>xxl-job 启动报异常 java.lang.NoClassDefFoundError: groovy/lang/GroovyClassLoader</title>
@@ -831,54 +915,6 @@ void View_OnlineShopManagement::OnDraw(CDC* /*pDC*/)
 }
 
 &lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Win10装光驱位硬盘分区不显示</title>
-      <link>http://blog.sinowrt.cn/2018/2018-12-03t1258-hard-disk-parttion-unview/</link>
-      <pubDate>Mon, 03 Dec 2018 12:58:57 +0000</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2018/2018-12-03t1258-hard-disk-parttion-unview/</guid>
-      <description>
-
-&lt;h4 id=&#34;0x00-前阵子用旧电脑装了个群晖nas-无奈用的120g硬盘-完全不够用-看手上还有个500g的三星机械盘-就买了个光驱硬盘盒-到手后插上电脑没显示分区-不兼容-盘坏了&#34;&gt;0x00 前阵子用旧电脑装了个群晖nas，无奈用的120G硬盘，完全不够用，看手上还有个500G的三星机械盘，就买了个光驱硬盘盒，到手后插上电脑没显示分区？不兼容？盘坏了？&lt;/h4&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-12-03T1258/1.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;h4 id=&#34;0x01-打开设备管理器-扫描硬件更新-可以看到三星机械盘-盘和架子应该没问题&#34;&gt;0x01 打开设备管理器，扫描硬件更新，可以看到三星机械盘，盘和架子应该没问题&lt;/h4&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-12-03T1258/2.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;h4 id=&#34;0x02-打开partition-wizard-可以看到硬盘基本信息都在-就是没有盘符&#34;&gt;0x02 打开partition wizard,可以看到硬盘基本信息都在，就是没有盘符&lt;/h4&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-12-03T1258/3.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;h4 id=&#34;0x03-分配盘符后-可以看到电脑显示分区正常-应该是没有挂载&#34;&gt;0x03 分配盘符后，可以看到电脑显示分区正常，应该是没有挂载&lt;/h4&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-12-03T1258/4.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;h4 id=&#34;0x04-也可以利用diskpart对卷进行挂载&#34;&gt;0x04 也可以利用diskpart对卷进行挂载&lt;/h4&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-12-03T1258/5.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-
-&lt;h4 id=&#34;0x05-z盘挂载成功&#34;&gt;0x05 Z盘挂载成功&lt;/h4&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/images/2018-12-03T1258/6.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Qt5 error LNK2019 无法解析的外部符号的解决方法</title>
-      <link>http://blog.sinowrt.cn/2018/2018-11-17t1516-qt5compile-error/</link>
-      <pubDate>Sat, 17 Nov 2018 15:16:56 +0000</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2018/2018-11-17t1516-qt5compile-error/</guid>
-      <description>
-
-&lt;h1 id=&#34;编译过程中连接错误&#34;&gt;编译过程中连接错误&lt;/h1&gt;
-
-&lt;h4 id=&#34;尝试删除build文件夹-问题解决&#34;&gt;尝试删除build文件夹，问题解决&lt;/h4&gt;
 </description>
     </item>
     
