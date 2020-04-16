@@ -6,10 +6,46 @@
     <description>Recent content in Posts on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 12 Apr 2020 23:33:00 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 16 Apr 2020 16:23:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>docker容器迁移</title>
+      <link>http://blog.sinowrt.cn/2020/2020-04-16t1623-migrate-the-container-to-another-docker/</link>
+      <pubDate>Thu, 16 Apr 2020 16:23:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-04-16t1623-migrate-the-container-to-another-docker/</guid>
+      <description>在项目部署的时候，本来是部署两个esxi虚拟机，但是在部署测试过程中发现对象存储服务依赖了另一个虚拟机的minio服务，由于该虚拟机的minio服务是部署在docker上的，所以打算将该容器迁移到要部署的其中一个虚拟机的docker中
+步骤： 1. 导出容器 docker export 容器ID &amp;gt;minio.tar 2. 将导出minio.tar放到要部署的虚拟机上面 3. 将该容器导入镜像docker import minio.tar minio/minio:lastest 4. 新建容器并启动镜像
+docker run -d -p 9000:9000 --name minio -d -e &amp;quot;MINIO_ACCESS_KEY=AKIAIOSFODNN7EXAMPLE&amp;quot; -e &amp;quot;MINIO_SECRET_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY&amp;quot; -v /mnt/data:/data -v /mnt/config:/root/.minio minio/minio:lastest /usr/bin/docker-entrypoint.sh server /data  启动命令可以在原宿主机上使用docker inspect 容器ID查看，并根据需求调整启动参数
+至此，容器的迁移工作顺利完成。</description>
+    </item>
+    
+    <item>
+      <title>esxi web client导出虚拟机 中断 报网络错误</title>
+      <link>http://blog.sinowrt.cn/2020/2020-04-16t1619-esxi-network-error-while-exporting-esxi-virtual-machine/</link>
+      <pubDate>Thu, 16 Apr 2020 16:19:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-04-16t1619-esxi-network-error-while-exporting-esxi-virtual-machine/</guid>
+      <description>今天使用esxi的web client导出虚拟机时，总是在导出到20G左右的时候中断，报网络异常，于是上vmware官网找有没有导出虚拟机的工具
+发现 OVFTOOL这个小工具，点击连接下载下来（需要注册账号才能下载），安装
+打开cmd进入安装文件夹，执行ovftool.exe vi://用户名@esxi的ip/虚拟机名 K:/ovf
+如果遇到 Fault cause: vim.fault.InvalidState 错误，请确认虚拟机为关机状态
+运行结果如下所示
+C:\Program Files\VMware\VMware OVF Tool&amp;gt;ovftool.exe vi://root@***.***.***.***/docker K:/ovf Enter login information for source vi://***.***.***.***/ Username: root Password: *********** Opening VI source: vi://root@***.***.***.***:443/docker Opening VI source: vi://root@***.***.***.***:443/docker Opening OVF target: K:/ovf Writing OVF package: K:/ovf\docker\docker.ovf Disk progress: 3%  这个小工具效果非常好，不用担心网络错误问题，进度也能看到，可以打9分</description>
+    </item>
+    
+    <item>
+      <title>maven问题汇总</title>
+      <link>http://blog.sinowrt.cn/2020/2020-04-16t1023-problems-i-meet-while-using-maven/</link>
+      <pubDate>Thu, 16 Apr 2020 10:23:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-04-16t1023-problems-i-meet-while-using-maven/</guid>
+      <description>今天使用maven打包上传docker时，发现许多问题，就此记录一下： 1.maven打包报多个main方法的问题
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:2.1.12.RELEASE:repackage (default) on project blade-electronic-library: Execution default of goal org.springframework.boot:spring-boot-maven-plugin:2.1.12.RELEASE:repackage failed: Unable to find a single main class from the following candidates [org.springblade.library.ElectronicLibraryApplication, org.springblade.library.controller.BookUploadController, org.springblade.library.utils.BookmarksUtils, org.springblade.library.utils.KeyContextUtils, org.springblade.library.service.impl.BookReadRankServiceImpl] -&amp;gt; [Help 1] [ERROR] [ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch. [ERROR] Re-run Maven using the -X switch to enable full debug logging. [ERROR] [ERROR] For more information about the errors and possible solutions, please read the following articles: [ERROR] [Help 1] http://cwiki.</description>
+    </item>
     
     <item>
       <title>[Ubuntu]将ngrok添加到supervisor守护进程</title>

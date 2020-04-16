@@ -9,9 +9,9 @@
   
   
   
-  <link rel="prev" href="http://blog.sinowrt.cn/2020/2020-04-10t1001-npm-eperm-operation-not-permitted/" />
-  <link rel="next" href="http://blog.sinowrt.cn/2020/2020-04-16t1023-problems-i-meet-while-using-maven/" />
-  <link rel="canonical" href="http://blog.sinowrt.cn/2020/2020-04-12t2330-ubuntuadd-ngrok-to-supervisor/" />
+  <link rel="prev" href="http://blog.sinowrt.cn/2020/2020-04-16t1023-problems-i-meet-while-using-maven/" />
+  <link rel="next" href="http://blog.sinowrt.cn/2020/2020-04-16t1623-migrate-the-container-to-another-docker/" />
+  <link rel="canonical" href="http://blog.sinowrt.cn/2020/2020-04-16t1619-esxi-network-error-while-exporting-esxi-virtual-machine/" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -22,10 +22,10 @@
   <title>
        
        
-           [Ubuntu]将ngrok添加到supervisor守护进程 | Sinowrt
+           esxi web client导出虚拟机 中断 报网络错误 | Sinowrt
        
   </title>
-  <meta name="title" content="[Ubuntu]将ngrok添加到supervisor守护进程 | Sinowrt">
+  <meta name="title" content="esxi web client导出虚拟机 中断 报网络错误 | Sinowrt">
     
   
   <link rel="stylesheet" href="/font/iconfont.css">
@@ -44,9 +44,9 @@
          "@id": "http:\/\/blog.sinowrt.cn"
     },
     "articleSection" : "posts",
-    "name" : "[Ubuntu]将ngrok添加到supervisor守护进程",
-    "headline" : "[Ubuntu]将ngrok添加到supervisor守护进程",
-    "description" : "0x00 安装Supervis 直接执行以下命令即可安装Supervisor\nsudo apt-get install supervisor  0x01 添加ngrok的supervisor配置 进入supervisor配置目录,并新建ngrok.conf文件\ncd \/etc\/supervisor\/conf.d vi ngrok.conf  输入以下内容：\n[program:ngrok] directory = \/usr\/local\/ngrok\/ command = ngrokd -domain=\x26quot;ngrok.******.cn\x26quot; -httpAddr=\x26quot;:80\x26quot; autostart = true ; 在 supervisord 启动的时候也自动启动 startsecs = 5 ; 启动 5 秒后没有异常退出，就当作已经正常启动了 autorestart = true ; 程序异常退出后自动重启 startretries = 3 ; 启动失败自动重试次数，默认是 3 user = root ; 用哪个用户启动 redirect_stderr = true ; 把 stderr 重定向到 stdout，默认 false stdout_logfile_maxbytes = 20MB ; stdout 日志文件大小，默认 50MB stdout_logfile_backups = 20 ; stdout 日志文件备份数 stdout_logfile = \/var\/log\/supervisor\/ngrok.",
+    "name" : "esxi web client导出虚拟机 中断 报网络错误",
+    "headline" : "esxi web client导出虚拟机 中断 报网络错误",
+    "description" : "今天使用esxi的web client导出虚拟机时，总是在导出到20G左右的时候中断，报网络异常，于是上vmware官网找有没有导出虚拟机的工具\n发现 OVFTOOL这个小工具，点击连接下载下来（需要注册账号才能下载），安装\n打开cmd进入安装文件夹，执行ovftool.exe vi:\/\/用户名@esxi的ip\/虚拟机名 K:\/ovf\n如果遇到 Fault cause: vim.fault.InvalidState 错误，请确认虚拟机为关机状态\n运行结果如下所示\nC:\\Program Files\\VMware\\VMware OVF Tool\x26gt;ovftool.exe vi:\/\/root@***.***.***.***\/docker K:\/ovf Enter login information for source vi:\/\/***.***.***.***\/ Username: root Password: *********** Opening VI source: vi:\/\/root@***.***.***.***:443\/docker Opening VI source: vi:\/\/root@***.***.***.***:443\/docker Opening OVF target: K:\/ovf Writing OVF package: K:\/ovf\\docker\\docker.ovf Disk progress: 3%  这个小工具效果非常好，不用担心网络错误问题，进度也能看到，可以打9分",
     "inLanguage" : "en-us",
     "author" : "sinowrt",
     "creator" : "sinowrt",
@@ -54,11 +54,11 @@
     "accountablePerson" : "sinowrt",
     "copyrightHolder" : "sinowrt",
     "copyrightYear" : "2020",
-    "datePublished": "2020-04-12 23:33:00 \x2b0800 CST",
-    "dateModified" : "2020-04-12 23:33:00 \x2b0800 CST",
-    "url" : "http:\/\/blog.sinowrt.cn\/2020\/2020-04-12t2330-ubuntuadd-ngrok-to-supervisor\/",
-    "wordCount" : "87",
-    "keywords" : [ "ngrok", "Sinowrt"]
+    "datePublished": "2020-04-16 16:19:00 \x2b0800 CST",
+    "dateModified" : "2020-04-16 16:19:00 \x2b0800 CST",
+    "url" : "http:\/\/blog.sinowrt.cn\/2020\/2020-04-16t1619-esxi-network-error-while-exporting-esxi-virtual-machine\/",
+    "wordCount" : "49",
+    "keywords" : [ "esxi", "Sinowrt"]
 }
 </script>
 
@@ -129,16 +129,16 @@ var _hmt = _hmt || [];
       		
 <article class="post-warp" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">[Ubuntu]将ngrok添加到supervisor守护进程</h1>
+        <h1 class="post-title" itemprop="name headline">esxi web client导出虚拟机 中断 报网络错误</h1>
         <div class="post-meta">
                 Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
                 <span class="post-time">
-                on <time datetime=2020-04-12 itemprop="datePublished">April 12, 2020</time>
+                on <time datetime=2020-04-16 itemprop="datePublished">April 16, 2020</time>
                 </span>
                 in
                 <i class="iconfont icon-folder"></i>
                 <span class="post-category">
-                        <a href="http://blog.sinowrt.cn/categories/ngrok/"> ngrok </a>
+                        <a href="http://blog.sinowrt.cn/categories/esxi/"> esxi </a>
                         
                 </span>
         </div>
@@ -159,50 +159,28 @@ var _hmt = _hmt || [];
           
           
 
-          
+          <p>今天使用esxi的web client导出虚拟机时，总是在导出到20G左右的时候中断，报网络异常，于是上vmware官网找有没有导出虚拟机的工具</p>
 
-<h2 id="0x00-安装supervis">0x00 安装Supervis</h2>
+<p>发现 <a href="https://my.vmware.com/cn/web/vmware/details?downloadGroup=OVFTOOL430U2&amp;productId=614" rel="nofollow noreferrer" target="_blank">OVFTOOL</a>这个小工具，点击连接下载下来（需要注册账号才能下载），安装</p>
 
-<p>直接执行以下命令即可安装Supervisor</p>
+<p>打开cmd进入安装文件夹，执行<code>ovftool.exe vi://用户名@esxi的ip/虚拟机名 K:/ovf</code></p>
 
-<pre><code class="language-shell">sudo apt-get install supervisor 
+<p>如果遇到 <code>Fault cause: vim.fault.InvalidState</code> 错误，请确认虚拟机为关机状态</p>
+
+<p>运行结果如下所示</p>
+
+<pre><code class="language-dos">C:\Program Files\VMware\VMware OVF Tool&gt;ovftool.exe vi://root@***.***.***.***/docker K:/ovf
+Enter login information for source vi://***.***.***.***/
+Username: root
+Password: ***********
+Opening VI source: vi://root@***.***.***.***:443/docker
+Opening VI source: vi://root@***.***.***.***:443/docker
+Opening OVF target: K:/ovf
+Writing OVF package: K:/ovf\docker\docker.ovf
+Disk progress: 3%
 </code></pre>
 
-<h2 id="0x01-添加ngrok的supervisor配置">0x01 添加ngrok的supervisor配置</h2>
-
-<p>进入supervisor配置目录,并新建ngrok.conf文件</p>
-
-<pre><code class="language-shell">cd /etc/supervisor/conf.d
-vi ngrok.conf
-</code></pre>
-
-<p>输入以下内容：</p>
-
-<pre><code class="language-conf">[program:ngrok]
-directory = /usr/local/ngrok/
-command = ngrokd -domain=&quot;ngrok.******.cn&quot; -httpAddr=&quot;:80&quot;
-autostart = true     ; 在 supervisord 启动的时候也自动启动
-startsecs = 5        ; 启动 5 秒后没有异常退出，就当作已经正常启动了
-autorestart = true   ; 程序异常退出后自动重启
-startretries = 3     ; 启动失败自动重试次数，默认是 3
-user = root          ; 用哪个用户启动
-redirect_stderr = true  ; 把 stderr 重定向到 stdout，默认 false
-stdout_logfile_maxbytes = 20MB  ; stdout 日志文件大小，默认 50MB
-stdout_logfile_backups = 20     ; stdout 日志文件备份数
-stdout_logfile = /var/log/supervisor/ngrok.log
-</code></pre>
-
-<h2 id="0x02-启动supervisor">0x02 启动supervisor</h2>
-
-<p>重新加载配置，即可启动supervisor</p>
-
-<pre><code class="language-shell"> supervisor reload
-</code></pre>
-
-<p>查看supervisor状态</p>
-
-<pre><code class="language-shell"> supervisor status
-</code></pre>
+<p>这个小工具效果非常好，不用担心网络错误问题，进度也能看到，可以打9分</p>
 
     </div>
 	
@@ -218,7 +196,7 @@ stdout_logfile = /var/log/supervisor/ngrok.log
              
             <p class="copyright-item">
                     <span>Link:</span>
-                    <a href=http://blog.sinowrt.cn/2020/2020-04-12t2330-ubuntuadd-ngrok-to-supervisor/>http://blog.sinowrt.cn/2020/2020-04-12t2330-ubuntuadd-ngrok-to-supervisor/</span>
+                    <a href=http://blog.sinowrt.cn/2020/2020-04-16t1619-esxi-network-error-while-exporting-esxi-virtual-machine/>http://blog.sinowrt.cn/2020/2020-04-16t1619-esxi-network-error-while-exporting-esxi-virtual-machine/</span>
             </p>
 			
 			<p>
@@ -240,8 +218,8 @@ stdout_logfile = /var/log/supervisor/ngrok.log
             <section>
             <i class="iconfont icon-tag"></i>Tag(s): 
             
-            <span class="tag"><a href="http://blog.sinowrt.cn/tags/ngrok/">
-                    #ngrok</a></span>
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/esxi/">
+                    #esxi</a></span>
             
             </section>
         
@@ -253,10 +231,10 @@ stdout_logfile = /var/log/supervisor/ngrok.log
 
     <div class="post-nav">
         
-        <a href="http://blog.sinowrt.cn/2020/2020-04-10t1001-npm-eperm-operation-not-permitted/" class="prev" rel="prev" title="npm 报错 EPERM: operation not permitted"><i class="iconfont icon-left"></i>&nbsp;npm 报错 EPERM: operation not permitted</a>
+        <a href="http://blog.sinowrt.cn/2020/2020-04-16t1023-problems-i-meet-while-using-maven/" class="prev" rel="prev" title="maven问题汇总"><i class="iconfont icon-left"></i>&nbsp;maven问题汇总</a>
          
         
-        <a href="http://blog.sinowrt.cn/2020/2020-04-16t1023-problems-i-meet-while-using-maven/" class="next" rel="next" title="maven问题汇总">maven问题汇总&nbsp;<i class="iconfont icon-right"></i></a>
+        <a href="http://blog.sinowrt.cn/2020/2020-04-16t1623-migrate-the-container-to-another-docker/" class="next" rel="next" title="docker容器迁移">docker容器迁移&nbsp;<i class="iconfont icon-right"></i></a>
         
     </div>
 

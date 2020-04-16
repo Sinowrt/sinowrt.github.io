@@ -9,9 +9,9 @@
   
   
   
-  <link rel="prev" href="http://blog.sinowrt.cn/2020/2020-04-10t1001-npm-eperm-operation-not-permitted/" />
-  <link rel="next" href="http://blog.sinowrt.cn/2020/2020-04-16t1023-problems-i-meet-while-using-maven/" />
-  <link rel="canonical" href="http://blog.sinowrt.cn/2020/2020-04-12t2330-ubuntuadd-ngrok-to-supervisor/" />
+  <link rel="prev" href="http://blog.sinowrt.cn/2020/2020-04-12t2330-ubuntuadd-ngrok-to-supervisor/" />
+  <link rel="next" href="http://blog.sinowrt.cn/2020/2020-04-16t1619-esxi-network-error-while-exporting-esxi-virtual-machine/" />
+  <link rel="canonical" href="http://blog.sinowrt.cn/2020/2020-04-16t1023-problems-i-meet-while-using-maven/" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -22,10 +22,10 @@
   <title>
        
        
-           [Ubuntu]将ngrok添加到supervisor守护进程 | Sinowrt
+           maven问题汇总 | Sinowrt
        
   </title>
-  <meta name="title" content="[Ubuntu]将ngrok添加到supervisor守护进程 | Sinowrt">
+  <meta name="title" content="maven问题汇总 | Sinowrt">
     
   
   <link rel="stylesheet" href="/font/iconfont.css">
@@ -44,9 +44,9 @@
          "@id": "http:\/\/blog.sinowrt.cn"
     },
     "articleSection" : "posts",
-    "name" : "[Ubuntu]将ngrok添加到supervisor守护进程",
-    "headline" : "[Ubuntu]将ngrok添加到supervisor守护进程",
-    "description" : "0x00 安装Supervis 直接执行以下命令即可安装Supervisor\nsudo apt-get install supervisor  0x01 添加ngrok的supervisor配置 进入supervisor配置目录,并新建ngrok.conf文件\ncd \/etc\/supervisor\/conf.d vi ngrok.conf  输入以下内容：\n[program:ngrok] directory = \/usr\/local\/ngrok\/ command = ngrokd -domain=\x26quot;ngrok.******.cn\x26quot; -httpAddr=\x26quot;:80\x26quot; autostart = true ; 在 supervisord 启动的时候也自动启动 startsecs = 5 ; 启动 5 秒后没有异常退出，就当作已经正常启动了 autorestart = true ; 程序异常退出后自动重启 startretries = 3 ; 启动失败自动重试次数，默认是 3 user = root ; 用哪个用户启动 redirect_stderr = true ; 把 stderr 重定向到 stdout，默认 false stdout_logfile_maxbytes = 20MB ; stdout 日志文件大小，默认 50MB stdout_logfile_backups = 20 ; stdout 日志文件备份数 stdout_logfile = \/var\/log\/supervisor\/ngrok.",
+    "name" : "maven问题汇总",
+    "headline" : "maven问题汇总",
+    "description" : "今天使用maven打包上传docker时，发现许多问题，就此记录一下： 1.maven打包报多个main方法的问题\n[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:2.1.12.RELEASE:repackage (default) on project blade-electronic-library: Execution default of goal org.springframework.boot:spring-boot-maven-plugin:2.1.12.RELEASE:repackage failed: Unable to find a single main class from the following candidates [org.springblade.library.ElectronicLibraryApplication, org.springblade.library.controller.BookUploadController, org.springblade.library.utils.BookmarksUtils, org.springblade.library.utils.KeyContextUtils, org.springblade.library.service.impl.BookReadRankServiceImpl] -\x26gt; [Help 1] [ERROR] [ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch. [ERROR] Re-run Maven using the -X switch to enable full debug logging. [ERROR] [ERROR] For more information about the errors and possible solutions, please read the following articles: [ERROR] [Help 1] http:\/\/cwiki.",
     "inLanguage" : "en-us",
     "author" : "sinowrt",
     "creator" : "sinowrt",
@@ -54,11 +54,11 @@
     "accountablePerson" : "sinowrt",
     "copyrightHolder" : "sinowrt",
     "copyrightYear" : "2020",
-    "datePublished": "2020-04-12 23:33:00 \x2b0800 CST",
-    "dateModified" : "2020-04-12 23:33:00 \x2b0800 CST",
-    "url" : "http:\/\/blog.sinowrt.cn\/2020\/2020-04-12t2330-ubuntuadd-ngrok-to-supervisor\/",
-    "wordCount" : "87",
-    "keywords" : [ "ngrok", "Sinowrt"]
+    "datePublished": "2020-04-16 10:23:00 \x2b0800 CST",
+    "dateModified" : "2020-04-16 10:23:00 \x2b0800 CST",
+    "url" : "http:\/\/blog.sinowrt.cn\/2020\/2020-04-16t1023-problems-i-meet-while-using-maven\/",
+    "wordCount" : "124",
+    "keywords" : [ "maven", "Sinowrt"]
 }
 </script>
 
@@ -129,16 +129,16 @@ var _hmt = _hmt || [];
       		
 <article class="post-warp" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">[Ubuntu]将ngrok添加到supervisor守护进程</h1>
+        <h1 class="post-title" itemprop="name headline">maven问题汇总</h1>
         <div class="post-meta">
                 Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
                 <span class="post-time">
-                on <time datetime=2020-04-12 itemprop="datePublished">April 12, 2020</time>
+                on <time datetime=2020-04-16 itemprop="datePublished">April 16, 2020</time>
                 </span>
                 in
                 <i class="iconfont icon-folder"></i>
                 <span class="post-category">
-                        <a href="http://blog.sinowrt.cn/categories/ngrok/"> ngrok </a>
+                        <a href="http://blog.sinowrt.cn/categories/maven/"> maven </a>
                         
                 </span>
         </div>
@@ -161,48 +161,41 @@ var _hmt = _hmt || [];
 
           
 
-<h2 id="0x00-安装supervis">0x00 安装Supervis</h2>
+<h3 id="今天使用maven打包上传docker时-发现许多问题-就此记录一下">今天使用maven打包上传docker时，发现许多问题，就此记录一下：</h3>
 
-<p>直接执行以下命令即可安装Supervisor</p>
+<p>1.maven打包报多个main方法的问题</p>
 
-<pre><code class="language-shell">sudo apt-get install supervisor 
-</code></pre>
+<p>[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:2.1.12.RELEASE:repackage (default) on project blade-electronic-library: Execution default of goal org.springframework.boot:spring-boot-maven-plugin:2.1.12.RELEASE:repackage failed: Unable to find a single main class from the following candidates [org.springblade.library.ElectronicLibraryApplication, org.springblade.library.controller.BookUploadController, org.springblade.library.utils.BookmarksUtils, org.springblade.library.utils.KeyContextUtils, org.springblade.library.service.impl.BookReadRankServiceImpl] -&gt; [Help 1]
+[ERROR]
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR]
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] <a href="http://cwiki.apache.org/confluence/display/MAVEN/PluginExecutionException" rel="nofollow noreferrer" target="_blank">http://cwiki.apache.org/confluence/display/MAVEN/PluginExecutionException</a>
+[ERROR]
+[ERROR] After correcting the problems, you can resume the build with the command
+[ERROR]   mvn <goals> -rf :blade-electronic-library</p>
 
-<h2 id="0x01-添加ngrok的supervisor配置">0x01 添加ngrok的supervisor配置</h2>
+<p>解决办法：注释掉除了启动类main方法的其余所有main方法</p>
 
-<p>进入supervisor配置目录,并新建ngrok.conf文件</p>
+<hr />
 
-<pre><code class="language-shell">cd /etc/supervisor/conf.d
-vi ngrok.conf
-</code></pre>
+<p>2.打包某子模块的时候提示模块缺失</p>
 
-<p>输入以下内容：</p>
+<p>将根模块依次进行clean compile package install后，再打包子模块</p>
 
-<pre><code class="language-conf">[program:ngrok]
-directory = /usr/local/ngrok/
-command = ngrokd -domain=&quot;ngrok.******.cn&quot; -httpAddr=&quot;:80&quot;
-autostart = true     ; 在 supervisord 启动的时候也自动启动
-startsecs = 5        ; 启动 5 秒后没有异常退出，就当作已经正常启动了
-autorestart = true   ; 程序异常退出后自动重启
-startretries = 3     ; 启动失败自动重试次数，默认是 3
-user = root          ; 用哪个用户启动
-redirect_stderr = true  ; 把 stderr 重定向到 stdout，默认 false
-stdout_logfile_maxbytes = 20MB  ; stdout 日志文件大小，默认 50MB
-stdout_logfile_backups = 20     ; stdout 日志文件备份数
-stdout_logfile = /var/log/supervisor/ngrok.log
-</code></pre>
+<hr />
 
-<h2 id="0x02-启动supervisor">0x02 启动supervisor</h2>
+<p>3.工程中引入别的模块时，由于在别的模块中定义了版本号property，导致无法引入模块的错误<code>Maven: Failed to read artifact descriptor</code></p>
 
-<p>重新加载配置，即可启动supervisor</p>
+<p>解决办法，在别的模块的工程中的pom.xml中找到该property，并在根模块添加该property，重新并打包</p>
 
-<pre><code class="language-shell"> supervisor reload
-</code></pre>
+<hr />
 
-<p>查看supervisor状态</p>
-
-<pre><code class="language-shell"> supervisor status
-</code></pre>
+<p>4.package|install|deploy的区别
+* package命令完成了项目编译、单元测试、打包功能，但没有把打好的可执行jar包（war包或其它形式的包）布署到本地maven仓库和远程maven私服仓库<br />
+* install命令完成了项目编译、单元测试、打包功能，同时把打好的可执行jar包（war包或其它形式的包）布署到本地maven仓库，但没有布署到远程maven私服仓库
+* deploy命令完成了项目编译、单元测试、打包功能，同时把打好的可执行jar包（war包或其它形式的包）布署到本地maven仓库和远程maven私服仓库</p>
 
     </div>
 	
@@ -218,7 +211,7 @@ stdout_logfile = /var/log/supervisor/ngrok.log
              
             <p class="copyright-item">
                     <span>Link:</span>
-                    <a href=http://blog.sinowrt.cn/2020/2020-04-12t2330-ubuntuadd-ngrok-to-supervisor/>http://blog.sinowrt.cn/2020/2020-04-12t2330-ubuntuadd-ngrok-to-supervisor/</span>
+                    <a href=http://blog.sinowrt.cn/2020/2020-04-16t1023-problems-i-meet-while-using-maven/>http://blog.sinowrt.cn/2020/2020-04-16t1023-problems-i-meet-while-using-maven/</span>
             </p>
 			
 			<p>
@@ -240,8 +233,8 @@ stdout_logfile = /var/log/supervisor/ngrok.log
             <section>
             <i class="iconfont icon-tag"></i>Tag(s): 
             
-            <span class="tag"><a href="http://blog.sinowrt.cn/tags/ngrok/">
-                    #ngrok</a></span>
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/maven/">
+                    #maven</a></span>
             
             </section>
         
@@ -253,10 +246,10 @@ stdout_logfile = /var/log/supervisor/ngrok.log
 
     <div class="post-nav">
         
-        <a href="http://blog.sinowrt.cn/2020/2020-04-10t1001-npm-eperm-operation-not-permitted/" class="prev" rel="prev" title="npm 报错 EPERM: operation not permitted"><i class="iconfont icon-left"></i>&nbsp;npm 报错 EPERM: operation not permitted</a>
+        <a href="http://blog.sinowrt.cn/2020/2020-04-12t2330-ubuntuadd-ngrok-to-supervisor/" class="prev" rel="prev" title="[Ubuntu]将ngrok添加到supervisor守护进程"><i class="iconfont icon-left"></i>&nbsp;[Ubuntu]将ngrok添加到supervisor守护进程</a>
          
         
-        <a href="http://blog.sinowrt.cn/2020/2020-04-16t1023-problems-i-meet-while-using-maven/" class="next" rel="next" title="maven问题汇总">maven问题汇总&nbsp;<i class="iconfont icon-right"></i></a>
+        <a href="http://blog.sinowrt.cn/2020/2020-04-16t1619-esxi-network-error-while-exporting-esxi-virtual-machine/" class="next" rel="next" title="esxi web client导出虚拟机 中断 报网络错误">esxi web client导出虚拟机 中断 报网络错误&nbsp;<i class="iconfont icon-right"></i></a>
         
     </div>
 

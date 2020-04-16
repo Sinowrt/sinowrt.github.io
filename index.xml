@@ -5,8 +5,108 @@
     <description>Recent content in Sinowrt on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 12 Apr 2020 23:33:00 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 16 Apr 2020 16:23:00 +0800</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>docker容器迁移</title>
+      <link>http://blog.sinowrt.cn/2020/2020-04-16t1623-migrate-the-container-to-another-docker/</link>
+      <pubDate>Thu, 16 Apr 2020 16:23:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-04-16t1623-migrate-the-container-to-another-docker/</guid>
+      <description>&lt;p&gt;在项目部署的时候，本来是部署两个esxi虚拟机，但是在部署测试过程中发现对象存储服务依赖了另一个虚拟机的minio服务，由于该虚拟机的minio服务是部署在docker上的，所以打算将该容器迁移到要部署的其中一个虚拟机的docker中&lt;/p&gt;
+
+&lt;p&gt;步骤：
+1. 导出容器 &lt;code&gt;docker export 容器ID &amp;gt;minio.tar&lt;/code&gt;
+2. 将导出minio.tar放到要部署的虚拟机上面
+3. 将该容器导入镜像&lt;code&gt;docker import  minio.tar minio/minio:lastest&lt;/code&gt;
+4. 新建容器并启动镜像&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;docker run -d -p 9000:9000 --name minio -d -e &amp;quot;MINIO_ACCESS_KEY=AKIAIOSFODNN7EXAMPLE&amp;quot; -e &amp;quot;MINIO_SECRET_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY&amp;quot; -v /mnt/data:/data -v /mnt/config:/root/.minio  minio/minio:lastest /usr/bin/docker-entrypoint.sh server /data
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;启动命令可以在原宿主机上使用&lt;code&gt;docker inspect 容器ID&lt;/code&gt;查看，并根据需求调整启动参数&lt;/p&gt;
+
+&lt;p&gt;至此，容器的迁移工作顺利完成。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>esxi web client导出虚拟机 中断 报网络错误</title>
+      <link>http://blog.sinowrt.cn/2020/2020-04-16t1619-esxi-network-error-while-exporting-esxi-virtual-machine/</link>
+      <pubDate>Thu, 16 Apr 2020 16:19:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-04-16t1619-esxi-network-error-while-exporting-esxi-virtual-machine/</guid>
+      <description>&lt;p&gt;今天使用esxi的web client导出虚拟机时，总是在导出到20G左右的时候中断，报网络异常，于是上vmware官网找有没有导出虚拟机的工具&lt;/p&gt;
+
+&lt;p&gt;发现 &lt;a href=&#34;https://my.vmware.com/cn/web/vmware/details?downloadGroup=OVFTOOL430U2&amp;amp;productId=614&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;OVFTOOL&lt;/a&gt;这个小工具，点击连接下载下来（需要注册账号才能下载），安装&lt;/p&gt;
+
+&lt;p&gt;打开cmd进入安装文件夹，执行&lt;code&gt;ovftool.exe vi://用户名@esxi的ip/虚拟机名 K:/ovf&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;如果遇到 &lt;code&gt;Fault cause: vim.fault.InvalidState&lt;/code&gt; 错误，请确认虚拟机为关机状态&lt;/p&gt;
+
+&lt;p&gt;运行结果如下所示&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-dos&#34;&gt;C:\Program Files\VMware\VMware OVF Tool&amp;gt;ovftool.exe vi://root@***.***.***.***/docker K:/ovf
+Enter login information for source vi://***.***.***.***/
+Username: root
+Password: ***********
+Opening VI source: vi://root@***.***.***.***:443/docker
+Opening VI source: vi://root@***.***.***.***:443/docker
+Opening OVF target: K:/ovf
+Writing OVF package: K:/ovf\docker\docker.ovf
+Disk progress: 3%
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这个小工具效果非常好，不用担心网络错误问题，进度也能看到，可以打9分&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>maven问题汇总</title>
+      <link>http://blog.sinowrt.cn/2020/2020-04-16t1023-problems-i-meet-while-using-maven/</link>
+      <pubDate>Thu, 16 Apr 2020 10:23:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-04-16t1023-problems-i-meet-while-using-maven/</guid>
+      <description>
+
+&lt;h3 id=&#34;今天使用maven打包上传docker时-发现许多问题-就此记录一下&#34;&gt;今天使用maven打包上传docker时，发现许多问题，就此记录一下：&lt;/h3&gt;
+
+&lt;p&gt;1.maven打包报多个main方法的问题&lt;/p&gt;
+
+&lt;p&gt;[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:2.1.12.RELEASE:repackage (default) on project blade-electronic-library: Execution default of goal org.springframework.boot:spring-boot-maven-plugin:2.1.12.RELEASE:repackage failed: Unable to find a single main class from the following candidates [org.springblade.library.ElectronicLibraryApplication, org.springblade.library.controller.BookUploadController, org.springblade.library.utils.BookmarksUtils, org.springblade.library.utils.KeyContextUtils, org.springblade.library.service.impl.BookReadRankServiceImpl] -&amp;gt; [Help 1]
+[ERROR]
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR]
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] &lt;a href=&#34;http://cwiki.apache.org/confluence/display/MAVEN/PluginExecutionException&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;http://cwiki.apache.org/confluence/display/MAVEN/PluginExecutionException&lt;/a&gt;
+[ERROR]
+[ERROR] After correcting the problems, you can resume the build with the command
+[ERROR]   mvn &lt;goals&gt; -rf :blade-electronic-library&lt;/p&gt;
+
+&lt;p&gt;解决办法：注释掉除了启动类main方法的其余所有main方法&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;2.打包某子模块的时候提示模块缺失&lt;/p&gt;
+
+&lt;p&gt;将根模块依次进行clean compile package install后，再打包子模块&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;3.工程中引入别的模块时，由于在别的模块中定义了版本号property，导致无法引入模块的错误&lt;code&gt;Maven: Failed to read artifact descriptor&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;解决办法，在别的模块的工程中的pom.xml中找到该property，并在根模块添加该property，重新并打包&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;4.package|install|deploy的区别
+* package命令完成了项目编译、单元测试、打包功能，但没有把打好的可执行jar包（war包或其它形式的包）布署到本地maven仓库和远程maven私服仓库&lt;br /&gt;
+* install命令完成了项目编译、单元测试、打包功能，同时把打好的可执行jar包（war包或其它形式的包）布署到本地maven仓库，但没有布署到远程maven私服仓库
+* deploy命令完成了项目编译、单元测试、打包功能，同时把打好的可执行jar包（war包或其它形式的包）布署到本地maven仓库和远程maven私服仓库&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>[Ubuntu]将ngrok添加到supervisor守护进程</title>
@@ -718,203 +818,6 @@ A记录 | ngrok | ngrok服务器ip&lt;/p&gt;
       <description>
 
 &lt;h1 id=&#34;fuck-the-god-dame-world&#34;&gt;Fuck the god dame world:)&lt;/h1&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>MFC FormView中的OnInitialUpdate不调用</title>
-      <link>http://blog.sinowrt.cn/2018/2018-12-11t1541-formview-oninitialupdate/</link>
-      <pubDate>Tue, 11 Dec 2018 15:41:27 +0000</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2018/2018-12-11t1541-formview-oninitialupdate/</guid>
-      <description>
-
-&lt;h4 id=&#34;0x00-在formview中的oninitialupdate中初始化了个自定义的按钮-但是运行无任何样式效果&#34;&gt;0x00 在Formview中的OnInitialUpdate中初始化了个自定义的按钮，但是运行无任何样式效果&lt;/h4&gt;
-
-&lt;h4 id=&#34;0x01-在oninitialupdate里打了个断点再次运行-发现此方法根本未调用&#34;&gt;0x01 在OnInitialUpdate里打了个断点再次运行，发现此方法根本未调用&lt;/h4&gt;
-
-&lt;h4 id=&#34;0x02-在formview-create后-手动调用oninitialupdate解决-如下所示&#34;&gt;0x02 在FormView Create后，手动调用OnInitialUpdate解决，如下所示&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;    CWnd* pFrameWnd = this;
-    CCreateContext pContext;
-    pContext.m_pCurrentDoc = 0;
-    pContext.m_pNewViewClass = RUNTIME_CLASS(View_OnlineShopManagement); 
-    View_OnlineShopManagement* pView = (View_OnlineShopManagement*)((CFrameWnd*)pFrameWnd)-&amp;gt;CreateView(&amp;amp;pContext);
-    pView-&amp;gt;ShowWindow(SW_NORMAL);
-
-    pView-&amp;gt;OnInitialUpdate();  //手动调用
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>MFC Dialog中嵌入Formview 初始化控件时m_hWnd为空</title>
-      <link>http://blog.sinowrt.cn/2018/2018-12-11t1435-formview-m_hwnd/</link>
-      <pubDate>Tue, 11 Dec 2018 14:35:00 +0000</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2018/2018-12-11t1435-formview-m_hwnd/</guid>
-      <description>
-
-&lt;h3 id=&#34;原因-在构造函数中进行控件的初始化&#34;&gt;原因：在构造函数中进行控件的初始化&lt;/h3&gt;
-
-&lt;h3 id=&#34;解决方法-formview中-控件的初始化应该放在oninitialupdate中&#34;&gt;解决方法：Formview中，控件的初始化应该放在OnInitialUpdate中&lt;/h3&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>MFC Dialog中嵌入Formview 0XC000041D:用户回调期间遇到未经处理的异常</title>
-      <link>http://blog.sinowrt.cn/2018/2018-12-11t1430-formview-0xc000041d/</link>
-      <pubDate>Tue, 11 Dec 2018 14:30:47 +0000</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2018/2018-12-11t1430-formview-0xc000041d/</guid>
-      <description>
-
-&lt;h3 id=&#34;在填充formview时-遇到0xc000041d-用户回调期间遇到未经处理的异常-已解决&#34;&gt;在填充Formview时，遇到0XC000041D:用户回调期间遇到未经处理的异常(已解决)&lt;/h3&gt;
-
-&lt;h4 id=&#34;原因-hbrush-hbr-onctlcolor-pdc-pwnd-nctlcolor-这一句中应该在onctlcolor前面添加命名空间-否则编译器会误解为递归函数&#34;&gt;原因：&lt;code&gt;HBRUSH hbr = OnCtlColor(pDC, pWnd, nCtlColor);&lt;/code&gt;这一句中应该在OnCtlColor前面添加命名空间:: 否则编译器会误解为递归函数&lt;/h4&gt;
-
-&lt;h4 id=&#34;源码如下&#34;&gt;源码如下：&lt;/h4&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;#pragma once
-#include &amp;quot;NormalBtn.h&amp;quot;
-#include &amp;quot;resource.h&amp;quot;
-#include &amp;lt;Gdiplus.h&amp;gt;
-using namespace Gdiplus;
-
-// View_OnlineShopManagement 窗体视图
-
-class View_OnlineShopManagement : public CFormView
-{
-    DECLARE_DYNCREATE(View_OnlineShopManagement)
-
-protected:
-    View_OnlineShopManagement();           // 动态创建所使用的受保护的构造函数
-    virtual ~View_OnlineShopManagement();
-
-public:
-#ifdef AFX_DESIGN_TIME
-    enum { IDD = IDD_FORMVIEW_OSM };
-#endif
-#ifdef _DEBUG
-    virtual void AssertValid() const;
-#ifndef _WIN32_WCE
-    virtual void Dump(CDumpContext&amp;amp; dc) const;
-#endif
-#endif
-
-protected:
-    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
-    DECLARE_MESSAGE_MAP()
-
-public:
-    
-    virtual void OnInitialUpdate();
-    GdiplusStartupInput m_gdiplusStartupInput;
-    ULONG_PTR m_gdiplusToken;
-    afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
-    virtual void OnDraw(CDC* /*pDC*/);
-};
-
-
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;// View_OnlineShopManagement.cpp : 实现文件
-//
-#include &amp;quot;stdafx.h&amp;quot;
-#include &amp;quot;SD3000BAS.h&amp;quot;
-#include &amp;quot;View_OnlineShopManagement.h&amp;quot;
-
-// View_OnlineShopManagement
-
-IMPLEMENT_DYNCREATE(View_OnlineShopManagement, CFormView)
-
-View_OnlineShopManagement::View_OnlineShopManagement()
-    : CFormView(IDD_FORMVIEW_OSM)
-{
-}
-
-View_OnlineShopManagement::~View_OnlineShopManagement()
-{
-}
-
-void View_OnlineShopManagement::DoDataExchange(CDataExchange* pDX)
-{
-    CFormView::DoDataExchange(pDX);
-    //DDX_Control(pDX, IDC_BUTTON1, register_btn);
-}
-
-BEGIN_MESSAGE_MAP(View_OnlineShopManagement, CFormView)
-    ON_WM_CTLCOLOR()
-END_MESSAGE_MAP()
-
-
-// View_OnlineShopManagement 诊断
-
-#ifdef _DEBUG
-void View_OnlineShopManagement::AssertValid() const
-{
-    CFormView::AssertValid();
-}
-
-#ifndef _WIN32_WCE
-void View_OnlineShopManagement::Dump(CDumpContext&amp;amp; dc) const
-{
-    CFormView::Dump(dc);
-}
-#endif
-#endif //_DEBUG
-
-
-// View_OnlineShopManagement 消息处理程序
-
-
-void View_OnlineShopManagement::OnInitialUpdate()
-{
-    CFormView::OnInitialUpdate();
-    
-    // TODO: 在此添加专用代码和/或调用基类
-}
-
-HBRUSH View_OnlineShopManagement::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
-{
-    //HBRUSH hbr = OnCtlColor(pDC, pWnd, nCtlColor);    //问题出现在这里！！！！！
-    HBRUSH hbr = CFormView::CFormView(pDC, pWnd, nCtlColor); //改成这样问题解决
-    // TODO:  在此更改 DC 的任何特性
-    static CBrush gBr;
-    static bool isInited = false;
-    if (!isInited)
-    {
-        CBitmap bitmap;
-        bitmap.LoadBitmap(IDB_BITMAP1);
-        gBr.CreatePatternBrush(&amp;amp;bitmap);
-        COLORREF clearColor = -1;
-        bitmap.DeleteObject();
-        isInited = true;
-    }
-    if (pWnd == this)
-    {
-        pDC-&amp;gt;SetBkMode(TRANSPARENT);
-        return gBr; //主窗口背景使用这个背景刷
-    }
-    else
-    {
-        pDC-&amp;gt;SetBkMode(TRANSPARENT);
-        return   (HBRUSH)::GetStockObject(NULL_BRUSH); //其他控件使用透明背景
-    }
-
-
-    // TODO:  如果默认的不是所需画笔，则返回另一个画笔
-    return hbr;
-}
-
-
-void View_OnlineShopManagement::OnDraw(CDC* /*pDC*/)
-{
-
-}
-
-&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     

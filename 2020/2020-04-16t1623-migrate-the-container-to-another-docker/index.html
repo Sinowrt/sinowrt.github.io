@@ -9,9 +9,9 @@
   
   
   
-  <link rel="prev" href="http://blog.sinowrt.cn/2020/2020-04-10t1001-npm-eperm-operation-not-permitted/" />
-  <link rel="next" href="http://blog.sinowrt.cn/2020/2020-04-16t1023-problems-i-meet-while-using-maven/" />
-  <link rel="canonical" href="http://blog.sinowrt.cn/2020/2020-04-12t2330-ubuntuadd-ngrok-to-supervisor/" />
+  <link rel="prev" href="http://blog.sinowrt.cn/2020/2020-04-16t1619-esxi-network-error-while-exporting-esxi-virtual-machine/" />
+  
+  <link rel="canonical" href="http://blog.sinowrt.cn/2020/2020-04-16t1623-migrate-the-container-to-another-docker/" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -22,10 +22,10 @@
   <title>
        
        
-           [Ubuntu]将ngrok添加到supervisor守护进程 | Sinowrt
+           docker容器迁移 | Sinowrt
        
   </title>
-  <meta name="title" content="[Ubuntu]将ngrok添加到supervisor守护进程 | Sinowrt">
+  <meta name="title" content="docker容器迁移 | Sinowrt">
     
   
   <link rel="stylesheet" href="/font/iconfont.css">
@@ -44,9 +44,9 @@
          "@id": "http:\/\/blog.sinowrt.cn"
     },
     "articleSection" : "posts",
-    "name" : "[Ubuntu]将ngrok添加到supervisor守护进程",
-    "headline" : "[Ubuntu]将ngrok添加到supervisor守护进程",
-    "description" : "0x00 安装Supervis 直接执行以下命令即可安装Supervisor\nsudo apt-get install supervisor  0x01 添加ngrok的supervisor配置 进入supervisor配置目录,并新建ngrok.conf文件\ncd \/etc\/supervisor\/conf.d vi ngrok.conf  输入以下内容：\n[program:ngrok] directory = \/usr\/local\/ngrok\/ command = ngrokd -domain=\x26quot;ngrok.******.cn\x26quot; -httpAddr=\x26quot;:80\x26quot; autostart = true ; 在 supervisord 启动的时候也自动启动 startsecs = 5 ; 启动 5 秒后没有异常退出，就当作已经正常启动了 autorestart = true ; 程序异常退出后自动重启 startretries = 3 ; 启动失败自动重试次数，默认是 3 user = root ; 用哪个用户启动 redirect_stderr = true ; 把 stderr 重定向到 stdout，默认 false stdout_logfile_maxbytes = 20MB ; stdout 日志文件大小，默认 50MB stdout_logfile_backups = 20 ; stdout 日志文件备份数 stdout_logfile = \/var\/log\/supervisor\/ngrok.",
+    "name" : "docker容器迁移",
+    "headline" : "docker容器迁移",
+    "description" : "在项目部署的时候，本来是部署两个esxi虚拟机，但是在部署测试过程中发现对象存储服务依赖了另一个虚拟机的minio服务，由于该虚拟机的minio服务是部署在docker上的，所以打算将该容器迁移到要部署的其中一个虚拟机的docker中\n步骤： 1. 导出容器 docker export 容器ID \x26gt;minio.tar 2. 将导出minio.tar放到要部署的虚拟机上面 3. 将该容器导入镜像docker import minio.tar minio\/minio:lastest 4. 新建容器并启动镜像\ndocker run -d -p 9000:9000 --name minio -d -e \x26quot;MINIO_ACCESS_KEY=AKIAIOSFODNN7EXAMPLE\x26quot; -e \x26quot;MINIO_SECRET_KEY=wJalrXUtnFEMI\/K7MDENG\/bPxRfiCYEXAMPLEKEY\x26quot; -v \/mnt\/data:\/data -v \/mnt\/config:\/root\/.minio minio\/minio:lastest \/usr\/bin\/docker-entrypoint.sh server \/data  启动命令可以在原宿主机上使用docker inspect 容器ID查看，并根据需求调整启动参数\n至此，容器的迁移工作顺利完成。",
     "inLanguage" : "en-us",
     "author" : "sinowrt",
     "creator" : "sinowrt",
@@ -54,11 +54,11 @@
     "accountablePerson" : "sinowrt",
     "copyrightHolder" : "sinowrt",
     "copyrightYear" : "2020",
-    "datePublished": "2020-04-12 23:33:00 \x2b0800 CST",
-    "dateModified" : "2020-04-12 23:33:00 \x2b0800 CST",
-    "url" : "http:\/\/blog.sinowrt.cn\/2020\/2020-04-12t2330-ubuntuadd-ngrok-to-supervisor\/",
-    "wordCount" : "87",
-    "keywords" : [ "ngrok", "Sinowrt"]
+    "datePublished": "2020-04-16 16:23:00 \x2b0800 CST",
+    "dateModified" : "2020-04-16 16:23:00 \x2b0800 CST",
+    "url" : "http:\/\/blog.sinowrt.cn\/2020\/2020-04-16t1623-migrate-the-container-to-another-docker\/",
+    "wordCount" : "41",
+    "keywords" : [ "docker", "Sinowrt"]
 }
 </script>
 
@@ -129,16 +129,16 @@ var _hmt = _hmt || [];
       		
 <article class="post-warp" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">[Ubuntu]将ngrok添加到supervisor守护进程</h1>
+        <h1 class="post-title" itemprop="name headline">docker容器迁移</h1>
         <div class="post-meta">
                 Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
                 <span class="post-time">
-                on <time datetime=2020-04-12 itemprop="datePublished">April 12, 2020</time>
+                on <time datetime=2020-04-16 itemprop="datePublished">April 16, 2020</time>
                 </span>
                 in
                 <i class="iconfont icon-folder"></i>
                 <span class="post-category">
-                        <a href="http://blog.sinowrt.cn/categories/ngrok/"> ngrok </a>
+                        <a href="http://blog.sinowrt.cn/categories/docker/"> docker </a>
                         
                 </span>
         </div>
@@ -159,50 +159,20 @@ var _hmt = _hmt || [];
           
           
 
-          
+          <p>在项目部署的时候，本来是部署两个esxi虚拟机，但是在部署测试过程中发现对象存储服务依赖了另一个虚拟机的minio服务，由于该虚拟机的minio服务是部署在docker上的，所以打算将该容器迁移到要部署的其中一个虚拟机的docker中</p>
 
-<h2 id="0x00-安装supervis">0x00 安装Supervis</h2>
+<p>步骤：
+1. 导出容器 <code>docker export 容器ID &gt;minio.tar</code>
+2. 将导出minio.tar放到要部署的虚拟机上面
+3. 将该容器导入镜像<code>docker import  minio.tar minio/minio:lastest</code>
+4. 新建容器并启动镜像</p>
 
-<p>直接执行以下命令即可安装Supervisor</p>
-
-<pre><code class="language-shell">sudo apt-get install supervisor 
+<pre><code class="language-shell">docker run -d -p 9000:9000 --name minio -d -e &quot;MINIO_ACCESS_KEY=AKIAIOSFODNN7EXAMPLE&quot; -e &quot;MINIO_SECRET_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY&quot; -v /mnt/data:/data -v /mnt/config:/root/.minio  minio/minio:lastest /usr/bin/docker-entrypoint.sh server /data
 </code></pre>
 
-<h2 id="0x01-添加ngrok的supervisor配置">0x01 添加ngrok的supervisor配置</h2>
+<p>启动命令可以在原宿主机上使用<code>docker inspect 容器ID</code>查看，并根据需求调整启动参数</p>
 
-<p>进入supervisor配置目录,并新建ngrok.conf文件</p>
-
-<pre><code class="language-shell">cd /etc/supervisor/conf.d
-vi ngrok.conf
-</code></pre>
-
-<p>输入以下内容：</p>
-
-<pre><code class="language-conf">[program:ngrok]
-directory = /usr/local/ngrok/
-command = ngrokd -domain=&quot;ngrok.******.cn&quot; -httpAddr=&quot;:80&quot;
-autostart = true     ; 在 supervisord 启动的时候也自动启动
-startsecs = 5        ; 启动 5 秒后没有异常退出，就当作已经正常启动了
-autorestart = true   ; 程序异常退出后自动重启
-startretries = 3     ; 启动失败自动重试次数，默认是 3
-user = root          ; 用哪个用户启动
-redirect_stderr = true  ; 把 stderr 重定向到 stdout，默认 false
-stdout_logfile_maxbytes = 20MB  ; stdout 日志文件大小，默认 50MB
-stdout_logfile_backups = 20     ; stdout 日志文件备份数
-stdout_logfile = /var/log/supervisor/ngrok.log
-</code></pre>
-
-<h2 id="0x02-启动supervisor">0x02 启动supervisor</h2>
-
-<p>重新加载配置，即可启动supervisor</p>
-
-<pre><code class="language-shell"> supervisor reload
-</code></pre>
-
-<p>查看supervisor状态</p>
-
-<pre><code class="language-shell"> supervisor status
-</code></pre>
+<p>至此，容器的迁移工作顺利完成。</p>
 
     </div>
 	
@@ -218,7 +188,7 @@ stdout_logfile = /var/log/supervisor/ngrok.log
              
             <p class="copyright-item">
                     <span>Link:</span>
-                    <a href=http://blog.sinowrt.cn/2020/2020-04-12t2330-ubuntuadd-ngrok-to-supervisor/>http://blog.sinowrt.cn/2020/2020-04-12t2330-ubuntuadd-ngrok-to-supervisor/</span>
+                    <a href=http://blog.sinowrt.cn/2020/2020-04-16t1623-migrate-the-container-to-another-docker/>http://blog.sinowrt.cn/2020/2020-04-16t1623-migrate-the-container-to-another-docker/</span>
             </p>
 			
 			<p>
@@ -240,8 +210,8 @@ stdout_logfile = /var/log/supervisor/ngrok.log
             <section>
             <i class="iconfont icon-tag"></i>Tag(s): 
             
-            <span class="tag"><a href="http://blog.sinowrt.cn/tags/ngrok/">
-                    #ngrok</a></span>
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/docker/">
+                    #docker</a></span>
             
             </section>
         
@@ -253,10 +223,8 @@ stdout_logfile = /var/log/supervisor/ngrok.log
 
     <div class="post-nav">
         
-        <a href="http://blog.sinowrt.cn/2020/2020-04-10t1001-npm-eperm-operation-not-permitted/" class="prev" rel="prev" title="npm 报错 EPERM: operation not permitted"><i class="iconfont icon-left"></i>&nbsp;npm 报错 EPERM: operation not permitted</a>
+        <a href="http://blog.sinowrt.cn/2020/2020-04-16t1619-esxi-network-error-while-exporting-esxi-virtual-machine/" class="prev" rel="prev" title="esxi web client导出虚拟机 中断 报网络错误"><i class="iconfont icon-left"></i>&nbsp;esxi web client导出虚拟机 中断 报网络错误</a>
          
-        
-        <a href="http://blog.sinowrt.cn/2020/2020-04-16t1023-problems-i-meet-while-using-maven/" class="next" rel="next" title="maven问题汇总">maven问题汇总&nbsp;<i class="iconfont icon-right"></i></a>
         
     </div>
 

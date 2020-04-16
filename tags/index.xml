@@ -6,10 +6,37 @@
     <description>Recent content in Tags on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 12 Apr 2020 23:33:00 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 16 Apr 2020 16:23:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>docker</title>
+      <link>http://blog.sinowrt.cn/tags/docker/</link>
+      <pubDate>Thu, 16 Apr 2020 16:23:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>esxi</title>
+      <link>http://blog.sinowrt.cn/tags/esxi/</link>
+      <pubDate>Thu, 16 Apr 2020 16:19:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/tags/esxi/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>maven</title>
+      <link>http://blog.sinowrt.cn/tags/maven/</link>
+      <pubDate>Thu, 16 Apr 2020 10:23:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/tags/maven/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>ngrok</title>
@@ -152,15 +179,6 @@
       <pubDate>Sat, 10 Aug 2019 15:44:08 +0800</pubDate>
       
       <guid>http://blog.sinowrt.cn/tags/%E4%BB%BB%E5%8A%A1%E6%A0%8F/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>docker</title>
-      <link>http://blog.sinowrt.cn/tags/docker/</link>
-      <pubDate>Mon, 05 Aug 2019 17:47:08 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/tags/docker/</guid>
       <description></description>
     </item>
     

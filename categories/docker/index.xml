@@ -6,10 +6,22 @@
     <description>Recent content in docker on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 05 Aug 2019 17:47:08 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 16 Apr 2020 16:23:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/categories/docker/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>docker容器迁移</title>
+      <link>http://blog.sinowrt.cn/2020/2020-04-16t1623-migrate-the-container-to-another-docker/</link>
+      <pubDate>Thu, 16 Apr 2020 16:23:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-04-16t1623-migrate-the-container-to-another-docker/</guid>
+      <description>在项目部署的时候，本来是部署两个esxi虚拟机，但是在部署测试过程中发现对象存储服务依赖了另一个虚拟机的minio服务，由于该虚拟机的minio服务是部署在docker上的，所以打算将该容器迁移到要部署的其中一个虚拟机的docker中
+步骤： 1. 导出容器 docker export 容器ID &amp;gt;minio.tar 2. 将导出minio.tar放到要部署的虚拟机上面 3. 将该容器导入镜像docker import minio.tar minio/minio:lastest 4. 新建容器并启动镜像
+docker run -d -p 9000:9000 --name minio -d -e &amp;quot;MINIO_ACCESS_KEY=AKIAIOSFODNN7EXAMPLE&amp;quot; -e &amp;quot;MINIO_SECRET_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY&amp;quot; -v /mnt/data:/data -v /mnt/config:/root/.minio minio/minio:lastest /usr/bin/docker-entrypoint.sh server /data  启动命令可以在原宿主机上使用docker inspect 容器ID查看，并根据需求调整启动参数
+至此，容器的迁移工作顺利完成。</description>
+    </item>
     
     <item>
       <title>群晖docker与移动网络的恩怨情仇</title>
