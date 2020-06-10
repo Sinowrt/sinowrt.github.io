@@ -12,7 +12,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/macbook/</loc>
+      <loc>http://blog.sinowrt.cn/tags/macbook/</loc>
       
       <lastmod>2020-06-10T14:27:00+08:00</lastmod>
       
@@ -22,7 +22,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/tags/macbook/</loc>
+      <loc>http://blog.sinowrt.cn/categories/macbook/</loc>
       
       <lastmod>2020-06-10T14:27:00+08:00</lastmod>
       
@@ -122,7 +122,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/docker/</loc>
+      <loc>http://blog.sinowrt.cn/tags/docker/</loc>
       
       <lastmod>2020-04-21T10:11:00+08:00</lastmod>
       
@@ -132,7 +132,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/tags/docker/</loc>
+      <loc>http://blog.sinowrt.cn/categories/docker/</loc>
       
       <lastmod>2020-04-21T10:11:00+08:00</lastmod>
       
@@ -262,7 +262,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/tags/ngrok/</loc>
+      <loc>http://blog.sinowrt.cn/categories/ngrok/</loc>
       
       <lastmod>2020-04-12T23:33:00+08:00</lastmod>
       
@@ -272,7 +272,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/ngrok/</loc>
+      <loc>http://blog.sinowrt.cn/tags/ngrok/</loc>
       
       <lastmod>2020-04-12T23:33:00+08:00</lastmod>
       
@@ -362,7 +362,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/tags/linux/</loc>
+      <loc>http://blog.sinowrt.cn/categories/linux/</loc>
       
       <lastmod>2020-02-18T16:02:00+08:00</lastmod>
       
@@ -372,7 +372,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/linux/</loc>
+      <loc>http://blog.sinowrt.cn/tags/linux/</loc>
       
       <lastmod>2020-02-18T16:02:00+08:00</lastmod>
       
@@ -652,7 +652,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/vpn/</loc>
+      <loc>http://blog.sinowrt.cn/tags/vpn/</loc>
       
       <lastmod>2019-06-13T13:02:08+08:00</lastmod>
       
@@ -662,7 +662,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/tags/vpn/</loc>
+      <loc>http://blog.sinowrt.cn/categories/vpn/</loc>
       
       <lastmod>2019-06-13T13:02:08+08:00</lastmod>
       
@@ -885,34 +885,6 @@
       <loc>http://blog.sinowrt.cn/2018/2018-10-16t0811-smartlock/</loc>
       
       <lastmod>2018-10-16T08:11:56+00:00</lastmod>
-      
-      
-      
-      
-    </url>
-  
-    <url>
-      <loc>http://blog.sinowrt.cn/temp/0513/</loc>
-      
-      
-      
-      <priority>0</priority>
-      
-      
-    </url>
-  
-    <url>
-      <loc>http://blog.sinowrt.cn/temp/%E4%B8%AD%E6%A0%B8%E9%92%9B%E7%99%BD%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/</loc>
-      
-      
-      
-      <priority>0</priority>
-      
-      
-    </url>
-  
-    <url>
-      <loc>http://blog.sinowrt.cn/temp/</loc>
       
       
       
