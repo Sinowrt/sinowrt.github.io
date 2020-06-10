@@ -46,7 +46,7 @@
     "articleSection" : "posts",
     "name" : "旧笔记本安装黑群晖NAS系统——打造属于自己的私有云",
     "headline" : "旧笔记本安装黑群晖NAS系统——打造属于自己的私有云",
-    "description" : "0x00 硬件条件 1.废旧的三星rv415笔记本电脑  CPU AMD Fusion APU E-450 RAM DDR3 2G 800MHz\n2.SANDISK U盘 32G 一个  0x02 软件条件 1.群晖6.x.x引导文件 2.OSFmount 用于挂载引导镜像便于修改 3.Win32DiskImager 将引导文件写入U盘 4.群晖6.1-15047系统文件 5.群晖助手 0x03 网络拓扑 0x04 安装过程 1.安装之前建议先把硬盘格了再进行全新安装 2.制作引导系统 1）挂载img文件  安装osfmount 打开osfmount，对img文件进行挂载，如下所示   选择img文件 填写offset如图所示，选择单位KBytes 去掉read-only前面的勾 点击OK即挂载成功  2）查看U盘vid与pid  打开设备管理器，找到你的U盘  双击打开 打开详细信息选项卡，属性下拉选择硬件id，就可以直接看到vid与pid  3）修改img文件里的vid与pid  打开刚刚挂载成功的磁盘 用notepad\x2b\x2b打开grub文件夹下的grub.cfg文件 修改第22行和23行的vid、pid为你U盘对应的数值  修改保存之后即可卸载刚刚挂载的设备\n  4）打开Win32DiskImager将img文件写入U盘  选择刚刚修改好的img文件 点击写入即可  5）用网线将准备安装群晖系统的电脑连入局域网内 6）进入bios将你的电脑启动首选项设置为U盘启动  每台机器都不一样，大家可以google一下 要注意的是，这步很重要，到安装完成重启的过程中，没有选择U盘启动，而由硬盘启动的话，将会引导失败，出现联机失败的错误  7）打开群晖助手搜索局域网内的准备安装群晖系统的机器 * 右键安装，注意一定要选择跟版本号以及型号都一致的pat，否则会出错 * PS:6.",
+    "description" : "0x00 硬件条件 1.废旧的三星rv415笔记本电脑  CPU AMD Fusion APU E-450 RAM DDR3 2G 800MHz  2.SANDISK U盘 32G 一个 0x02 软件条件 1.群晖6.x.x引导文件 2.OSFmount 用于挂载引导镜像便于修改 3.Win32DiskImager 将引导文件写入U盘 4.群晖6.1-15047系统文件 5.群晖助手 0x03 网络拓扑 0x04 安装过程 1.安装之前建议先把硬盘格了再进行全新安装 2.制作引导系统 1）挂载img文件  安装osfmount 打开osfmount，对img文件进行挂载，如下所示   选择img文件 填写offset如图所示，选择单位KBytes 去掉read-only前面的勾 点击OK即挂载成功  2）查看U盘vid与pid  打开设备管理器，找到你的U盘  双击打开 打开详细信息选项卡，属性下拉选择硬件id，就可以直接看到vid与pid  3）修改img文件里的vid与pid   打开刚刚挂载成功的磁盘\n  用notepad\x2b\x2b打开grub文件夹下的grub.cfg文件\n  修改第22行和23行的vid、pid为你U盘对应的数值   修改保存之后即可卸载刚刚挂载的设备\n  4）打开Win32DiskImager将img文件写入U盘  选择刚刚修改好的img文件 点击写入即可  5）用网线将准备安装群晖系统的电脑连入局域网内 6）进入bios将你的电脑启动首选项设置为U盘启动  每台机器都不一样，大家可以google一下 要注意的是，这步很重要，到安装完成重启的过程中，没有选择U盘启动，而由硬盘启动的话，将会引导失败，出现联机失败的错误  7）打开群晖助手搜索局域网内的准备安装群晖系统的机器  右键安装，注意一定要选择跟版本号以及型号都一致的pat，否则会出错 PS:6.",
     "inLanguage" : "en-us",
     "author" : "SinoWRT",
     "creator" : "SinoWRT",
@@ -57,25 +57,12 @@
     "datePublished": "2018-11-04 11:48:41 \x2b0000 \x2b0000",
     "dateModified" : "2018-11-04 11:48:41 \x2b0000 \x2b0000",
     "url" : "http:\/\/blog.sinowrt.cn\/2018\/2018-11-04t1148-synologynas-diy\/",
-    "wordCount" : "89",
+    "wordCount" : "74",
     "keywords" : [  "Sinowrt"]
 }
 </script>
 
 </head>
-
-<script async src="//cdn.busuanzi.ibruce.info/cdn/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?85719ea04c6401b98466dfdbc9399c78";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-
 
   
 
@@ -138,7 +125,7 @@ var _hmt = _hmt || [];
                 in
                 <i class="iconfont icon-folder"></i>
                 <span class="post-category">
-                        <a href="http://blog.sinowrt.cn/categories/%E7%BE%A4%E6%99%96/"> 群晖 </a>
+                        <a href="http://blog.sinowrt.cn/categories/nas/"> Nas </a>
                         
                 </span>
         </div>
@@ -161,147 +148,117 @@ var _hmt = _hmt || [];
           
           
 
-          
-
-<h2 id="0x00-硬件条件">0x00 硬件条件</h2>
-
-<h3 id="1-废旧的三星rv415笔记本电脑">1.废旧的三星rv415笔记本电脑</h3>
-
+          <h2 id="0x00-硬件条件">0x00 硬件条件</h2>
+<h3 id="1废旧的三星rv415笔记本电脑">1.废旧的三星rv415笔记本电脑</h3>
 <ul>
 <li>CPU  AMD Fusion APU E-450</li>
-
-<li><p>RAM  DDR3 2G 800MHz</p>
-
-<h3 id="2-sandisk-u盘-32g-一个">2.SANDISK U盘 32G 一个</h3></li>
+<li>RAM  DDR3 2G 800MHz</li>
 </ul>
-
+<h3 id="2sandisk-u盘-32g-一个">2.SANDISK U盘 32G 一个</h3>
 <h2 id="0x02-软件条件">0x02 软件条件</h2>
-
-<h3 id="1-群晖6-x-x引导文件">1.群晖6.x.x引导文件</h3>
-
-<h3 id="2-osfmount-用于挂载引导镜像便于修改">2.OSFmount 用于挂载引导镜像便于修改</h3>
-
-<h3 id="3-win32diskimager-将引导文件写入u盘">3.Win32DiskImager 将引导文件写入U盘</h3>
-
-<h3 id="4-群晖6-1-15047系统文件">4.群晖6.1-15047系统文件</h3>
-
-<h3 id="5-群晖助手">5.群晖助手</h3>
-
+<h3 id="1群晖6xx引导文件">1.群晖6.x.x引导文件</h3>
+<h3 id="2osfmount-用于挂载引导镜像便于修改">2.OSFmount 用于挂载引导镜像便于修改</h3>
+<h3 id="3win32diskimager-将引导文件写入u盘">3.Win32DiskImager 将引导文件写入U盘</h3>
+<h3 id="4群晖61-15047系统文件">4.群晖6.1-15047系统文件</h3>
+<h3 id="5群晖助手">5.群晖助手</h3>
 <h2 id="0x03-网络拓扑">0x03 网络拓扑</h2>
-
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-11-04T1148/拓扑.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
-
+<p><img src="http://pic.sinowrt.cn/images/2018-11-04T1148/%E6%8B%93%E6%89%91.png" alt="image"></p>
 <h2 id="0x04-安装过程">0x04 安装过程</h2>
-
-<h3 id="1-安装之前建议先把硬盘格了再进行全新安装">1.安装之前建议先把硬盘格了再进行全新安装</h3>
-
-<h3 id="2-制作引导系统">2.制作引导系统</h3>
-
-<h4 id="1-挂载img文件">1）挂载img文件</h4>
-
+<h3 id="1安装之前建议先把硬盘格了再进行全新安装">1.安装之前建议先把硬盘格了再进行全新安装</h3>
+<h3 id="2制作引导系统">2.制作引导系统</h3>
+<h4 id="1挂载img文件">1）挂载img文件</h4>
 <ul>
 <li>安装osfmount</li>
 <li>打开osfmount，对img文件进行挂载，如下所示</li>
 </ul>
-
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-11-04T1148/osfmount1.jpg" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
-
+<p><img src="http://pic.sinowrt.cn/images/2018-11-04T1148/osfmount1.jpg" alt="image"></p>
 <ul>
 <li>选择img文件</li>
 <li>填写offset如图所示，选择单位KBytes</li>
 <li>去掉read-only前面的勾</li>
 <li>点击OK即挂载成功</li>
 </ul>
-
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-11-04T1148/osfmount2.jpg" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
-
-<h4 id="2-查看u盘vid与pid">2）查看U盘vid与pid</h4>
-
+<p><img src="http://pic.sinowrt.cn/images/2018-11-04T1148/osfmount2.jpg" alt="image"></p>
+<h4 id="2查看u盘vid与pid">2）查看U盘vid与pid</h4>
 <ul>
 <li>打开设备管理器，找到你的U盘
-<figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-11-04T1148/设备管理器.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></li>
+<img src="http://pic.sinowrt.cn/images/2018-11-04T1148/%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86%E5%99%A8.png" alt="image"></li>
 <li>双击打开</li>
 <li>打开详细信息选项卡，属性下拉选择硬件id，就可以直接看到vid与pid</li>
 </ul>
-
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-11-04T1148/vp.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
-
-<h4 id="3-修改img文件里的vid与pid">3）修改img文件里的vid与pid</h4>
-
+<p><img src="http://pic.sinowrt.cn/images/2018-11-04T1148/vp.png" alt="image"></p>
+<h4 id="3修改img文件里的vid与pid">3）修改img文件里的vid与pid</h4>
 <ul>
-<li>打开刚刚挂载成功的磁盘</li>
-<li>用notepad++打开grub文件夹下的grub.cfg文件</li>
-
-<li><p>修改第22行和23行的vid、pid为你U盘对应的数值
-<figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-11-04T1148/MODIvp.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p></li>
-
-<li><p>修改保存之后即可卸载刚刚挂载的设备</p></li>
+<li>
+<p>打开刚刚挂载成功的磁盘</p>
+</li>
+<li>
+<p>用notepad++打开grub文件夹下的grub.cfg文件</p>
+</li>
+<li>
+<p>修改第22行和23行的vid、pid为你U盘对应的数值
+<img src="http://pic.sinowrt.cn/images/2018-11-04T1148/MODIvp.png" alt="image"></p>
+</li>
+<li>
+<p>修改保存之后即可卸载刚刚挂载的设备</p>
+</li>
 </ul>
-
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-11-04T1148/dismount.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
-
-<h4 id="4-打开win32diskimager将img文件写入u盘">4）打开Win32DiskImager将img文件写入U盘</h4>
-
+<p><img src="http://pic.sinowrt.cn/images/2018-11-04T1148/dismount.png" alt="image"></p>
+<h4 id="4打开win32diskimager将img文件写入u盘">4）打开Win32DiskImager将img文件写入U盘</h4>
 <ul>
 <li>选择刚刚修改好的img文件</li>
 <li>点击写入即可</li>
 </ul>
-
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-11-04T1148/win32.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
-
-<h4 id="5-用网线将准备安装群晖系统的电脑连入局域网内">5）用网线将准备安装群晖系统的电脑连入局域网内</h4>
-
-<h4 id="6-进入bios将你的电脑启动首选项设置为u盘启动">6）进入bios将你的电脑启动首选项设置为U盘启动</h4>
-
+<p><img src="http://pic.sinowrt.cn/images/2018-11-04T1148/win32.png" alt="image"></p>
+<h4 id="5用网线将准备安装群晖系统的电脑连入局域网内">5）用网线将准备安装群晖系统的电脑连入局域网内</h4>
+<h4 id="6进入bios将你的电脑启动首选项设置为u盘启动">6）进入bios将你的电脑启动首选项设置为U盘启动</h4>
 <ul>
 <li>每台机器都不一样，大家可以google一下</li>
 <li>要注意的是，这步很重要，到安装完成重启的过程中，没有选择U盘启动，而由硬盘启动的话，将会引导失败，出现联机失败的错误</li>
 </ul>
-
-<h4 id="7-打开群晖助手搜索局域网内的准备安装群晖系统的机器">7）打开群晖助手搜索局域网内的准备安装群晖系统的机器</h4>
-
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-11-04T1148/setup.jpg" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure>
- * 右键安装，注意一定要选择跟版本号以及型号都一致的pat，否则会出错
- * PS:6.x.x引导文件的版本号可以自定义，见<a href="https://prismjs.com/download.html" rel="nofollow noreferrer" target="_blank">自定义黑群晖6.x.x引导系统版本</a>
- <figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-11-04T1148/setup1.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure>
- * 选好群晖系统之后，直接下一步
- * 填写服务器密码
- <figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-11-04T1148/setup2.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure>
-* 设置网络，如果网络内有DHCP服务器，可以直接下一步
-* 若没有DHCP服务器，或者希望服务器用静态地址，选手动配置
- <figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-11-04T1148/setup3.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure>
-* 配置好网络之后，点击完成，安装就开始了，如下所示：
- <figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-11-04T1148/setup4.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure>
-* 到了这一步，DMS安装完成，会重启服务器
- <figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-11-04T1148/setup5.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
-
+<h4 id="7打开群晖助手搜索局域网内的准备安装群晖系统的机器">7）打开群晖助手搜索局域网内的准备安装群晖系统的机器</h4>
+<p><img src="http://pic.sinowrt.cn/images/2018-11-04T1148/setup.jpg" alt="image"></p>
+<ul>
+<li>右键安装，注意一定要选择跟版本号以及型号都一致的pat，否则会出错</li>
+<li>PS:6.x.x引导文件的版本号可以自定义，见<a href="https://prismjs.com/download.html">自定义黑群晖6.x.x引导系统版本</a>
+<img src="http://pic.sinowrt.cn/images/2018-11-04T1148/setup1.png" alt="image"></li>
+<li>选好群晖系统之后，直接下一步</li>
+<li>填写服务器密码
+<img src="http://pic.sinowrt.cn/images/2018-11-04T1148/setup2.png" alt="image"></li>
+<li>设置网络，如果网络内有DHCP服务器，可以直接下一步</li>
+<li>若没有DHCP服务器，或者希望服务器用静态地址，选手动配置
+<img src="http://pic.sinowrt.cn/images/2018-11-04T1148/setup3.png" alt="image"></li>
+<li>配置好网络之后，点击完成，安装就开始了，如下所示：
+<img src="http://pic.sinowrt.cn/images/2018-11-04T1148/setup4.png" alt="image"></li>
+<li>到了这一步，DMS安装完成，会重启服务器
+<img src="http://pic.sinowrt.cn/images/2018-11-04T1148/setup5.png" alt="image"></li>
+</ul>
 <h2 id="注意">注意：</h2>
-
 <ul>
 <li>现象：如果BIOS没设置好，会直接从硬盘启动，系统无法引导：即左上角一直有个光标在闪</li>
 <li>后果：若倒计时超时，会出现无法联机的错误，重启服务器再搜索群晖服务器，会显示可转移，即没安装成功</li>
 <li>解决方法：在出现引导失败的情况时，即左上角一直有个光标在闪，应该立即重启服务器，手动选择U盘启动方式，等待片刻即可出现下面的提示</li>
 </ul>
-
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-11-04T1148/setup6.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure>
- * 出现安装成功的提示之后，即可右键，进行联机
- <figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-11-04T1148/finish0.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure>
-* 联机将会通过默认浏览器打开这个界面,填入admin以及您设置的密码即可登陆服务器
- <figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-11-04T1148/finish1.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure>
-* 第一次联机要求对服务器进行配置，升级配置我们选择第三项，手动升级，否则会出现自动更新系统，而引导文件不支持该系统，则会引导失败，系统无法启动
-* 其他选项保持默认即可
- <figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-11-04T1148/finish2.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure>
-* 这个界面是用于设置QuickConnect账户，便于外网访问，我们是黑群晖，所以这一步选择跳过
-* 要通过外网访问则要通过路由设置内网穿透
- <figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-11-04T1148/finish3.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure>
-* 完成所有设置之后，就能进入系统了
- <figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-11-04T1148/final.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
+<p><img src="http://pic.sinowrt.cn/images/2018-11-04T1148/setup6.png" alt="image"></p>
+<ul>
+<li>出现安装成功的提示之后，即可右键，进行联机
+<img src="http://pic.sinowrt.cn/images/2018-11-04T1148/finish0.png" alt="image"></li>
+<li>联机将会通过默认浏览器打开这个界面,填入admin以及您设置的密码即可登陆服务器
+<img src="http://pic.sinowrt.cn/images/2018-11-04T1148/finish1.png" alt="image"></li>
+<li>第一次联机要求对服务器进行配置，升级配置我们选择第三项，手动升级，否则会出现自动更新系统，而引导文件不支持该系统，则会引导失败，系统无法启动</li>
+<li>其他选项保持默认即可
+<img src="http://pic.sinowrt.cn/images/2018-11-04T1148/finish2.png" alt="image"></li>
+<li>这个界面是用于设置QuickConnect账户，便于外网访问，我们是黑群晖，所以这一步选择跳过</li>
+<li>要通过外网访问则要通过路由设置内网穿透
+<img src="http://pic.sinowrt.cn/images/2018-11-04T1148/finish3.png" alt="image"></li>
+<li>完成所有设置之后，就能进入系统了
+<img src="http://pic.sinowrt.cn/images/2018-11-04T1148/final.png" alt="image"></li>
+</ul>
 
     </div>
-	
+
     <div class="post-copyright">
              
-			
             <p class="copyright-item">
                 <span>Author:</span>
                 <span>sinowrt </span>
@@ -313,12 +270,6 @@ var _hmt = _hmt || [];
                     <span>Link:</span>
                     <a href=http://blog.sinowrt.cn/2018/2018-11-04t1148-synologynas-diy/>http://blog.sinowrt.cn/2018/2018-11-04t1148-synologynas-diy/</span>
             </p>
-			
-			<p>
-				<span id="busuanzi_container_page_pv">
-					本文总阅读量：<span id="busuanzi_value_page_pv"></span>次
-				</span>
-			</p>
             
              
             <p class="copyright-item lincese">
@@ -369,15 +320,6 @@ var _hmt = _hmt || [];
          
 		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
     </div>
-	<p class="credits theme-by text-muted">
-        <span id="busuanzi_container_site_pv">
-            本站访问量：<span id="busuanzi_value_site_pv"></span>次
-        </span>
-        &nbsp;
-        <span id="busuanzi_container_site_uv">
-            您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
-        </span>
-    </p>
 </footer>
 
 

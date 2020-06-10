@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="sinowrt">
+  
+  
+  
+  <link rel="prev" href="http://blog.sinowrt.cn/2020/2020-04-10t1001-npm-eperm-operation-not-permitted/" />
+  <link rel="next" href="http://blog.sinowrt.cn/2020/2020-04-16t1023-problems-i-meet-while-using-maven/" />
+  <link rel="canonical" href="http://blog.sinowrt.cn/2020/2020-04-12t2330-ubuntuadd-ngrok-to-supervisor/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           [Ubuntu]将ngrok添加到supervisor守护进程 | Sinowrt
+       
+  </title>
+  <meta name="title" content="[Ubuntu]将ngrok添加到supervisor守护进程 | Sinowrt">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/blog.sinowrt.cn"
+    },
+    "articleSection" : "posts",
+    "name" : "[Ubuntu]将ngrok添加到supervisor守护进程",
+    "headline" : "[Ubuntu]将ngrok添加到supervisor守护进程",
+    "description" : "0x00 安装Supervis 直接执行以下命令即可安装Supervisor\nsudo apt-get install supervisor 0x01 添加ngrok的supervisor配置 进入supervisor配置目录,并新建ngrok.conf文件\ncd \/etc\/supervisor\/conf.d vi ngrok.conf 输入以下内容：\n[program:ngrok] directory = \/usr\/local\/ngrok\/ command = ngrokd -domain=\x26quot;ngrok.******.cn\x26quot; -httpAddr=\x26quot;:80\x26quot; autostart = true ; 在 supervisord 启动的时候也自动启动 startsecs = 5 ; 启动 5 秒后没有异常退出，就当作已经正常启动了 autorestart = true ; 程序异常退出后自动重启 startretries = 3 ; 启动失败自动重试次数，默认是 3 user = root ; 用哪个用户启动 redirect_stderr = true ; 把 stderr 重定向到 stdout，默认 false stdout_logfile_maxbytes = 20MB ; stdout 日志文件大小，默认 50MB stdout_logfile_backups = 20 ; stdout 日志文件备份数 stdout_logfile = \/var\/log\/supervisor\/ngrok.",
+    "inLanguage" : "en-us",
+    "author" : "sinowrt",
+    "creator" : "sinowrt",
+    "publisher": "sinowrt",
+    "accountablePerson" : "sinowrt",
+    "copyrightHolder" : "sinowrt",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-04-12 23:33:00 \x2b0800 CST",
+    "dateModified" : "2020-04-12 23:33:00 \x2b0800 CST",
+    "url" : "http:\/\/blog.sinowrt.cn\/2020\/2020-04-12t2330-ubuntuadd-ngrok-to-supervisor\/",
+    "wordCount" : "87",
+    "keywords" : [ "ngrok", "Sinowrt"]
+}
+</script>
+
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">[Ubuntu]将ngrok添加到supervisor守护进程</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2020-04-12 itemprop="datePublished">April 12, 2020</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="http://blog.sinowrt.cn/categories/ngrok/"> ngrok </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          <h2 id="0x00-安装supervis">0x00 安装Supervis</h2>
+<p>直接执行以下命令即可安装Supervisor</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo apt-get install supervisor 
+</code></pre></div><h2 id="0x01-添加ngrok的supervisor配置">0x01 添加ngrok的supervisor配置</h2>
+<p>进入supervisor配置目录,并新建ngrok.conf文件</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">cd /etc/supervisor/conf.d
+vi ngrok.conf
+</code></pre></div><p>输入以下内容：</p>
+<pre><code class="language-conf" data-lang="conf">[program:ngrok]
+directory = /usr/local/ngrok/
+command = ngrokd -domain=&quot;ngrok.******.cn&quot; -httpAddr=&quot;:80&quot;
+autostart = true     ; 在 supervisord 启动的时候也自动启动
+startsecs = 5        ; 启动 5 秒后没有异常退出，就当作已经正常启动了
+autorestart = true   ; 程序异常退出后自动重启
+startretries = 3     ; 启动失败自动重试次数，默认是 3
+user = root          ; 用哪个用户启动
+redirect_stderr = true  ; 把 stderr 重定向到 stdout，默认 false
+stdout_logfile_maxbytes = 20MB  ; stdout 日志文件大小，默认 50MB
+stdout_logfile_backups = 20     ; stdout 日志文件备份数
+stdout_logfile = /var/log/supervisor/ngrok.log
+</code></pre><h2 id="0x02-启动supervisor">0x02 启动supervisor</h2>
+<p>重新加载配置，即可启动supervisor</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"> supervisor reload
+</code></pre></div><p>查看supervisor状态</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"> supervisor status
+</code></pre></div>
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>sinowrt </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://blog.sinowrt.cn/2020/2020-04-12t2330-ubuntuadd-ngrok-to-supervisor/>http://blog.sinowrt.cn/2020/2020-04-12t2330-ubuntuadd-ngrok-to-supervisor/</span>
+            </p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/ngrok/">
+                    #ngrok</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="http://blog.sinowrt.cn">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://blog.sinowrt.cn/2020/2020-04-10t1001-npm-eperm-operation-not-permitted/" class="prev" rel="prev" title="npm 报错 EPERM: operation not permitted"><i class="iconfont icon-left"></i>&nbsp;npm 报错 EPERM: operation not permitted</a>
+         
+        
+        <a href="http://blog.sinowrt.cn/2020/2020-04-16t1023-problems-i-meet-while-using-maven/" class="next" rel="next" title="maven问题汇总">maven问题汇总&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2020</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://blog.sinowrt.cn">sinowrt</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

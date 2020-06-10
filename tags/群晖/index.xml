@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>群晖 on Sinowrt</title>
@@ -18,14 +18,13 @@
       
       <guid>http://blog.sinowrt.cn/2019/2019-11-30t1214-expose-synology-diskstation-to-the-internet/</guid>
       <description>0x00 思路 分别在vps和路由端部署ngrok服务端与客户端，客户端在线时主动向服务端发起请求建立隧道，外部设备可直接向服务端请求相应的隧道，从而实现内网穿透。
-0x01 在vps上部署ngrok服务端 良心云和套路云的学生套餐用来做内网穿透的服务端还是相当香的，由于ngrok需要用到域名，而我的域名只在良心北了岸，要是用套路云的话会截断提示未备案，无法访问，所以这次就直接用良心云的vps搭建服务端。 * 安装ngrok服务端
-网上大部分教程都是从安装go环境开始，再编译ngrok客户端，过程很复杂。而我只要简单的穿透服务，不需要tls啥的，其实安装过程很简单，只需要两条命令
-apt-get update apt-get install ngrok-server   启动ngrok服务端
-  一条命令就搞定，监听80、443、4443端口，如果vps有防火墙请放行这几个入站端口。如果需要指定证书还有端口什么的可以自行添加启动参数，这里不再赘述。
-ngrokd -domain=ngrok.example.com  0x02 添加域名解析 添加两条域名解析记录
+0x01 在vps上部署ngrok服务端 良心云和套路云的学生套餐用来做内网穿透的服务端还是相当香的，由于ngrok需要用到域名，而我的域名只在良心北了岸，要是用套路云的话会截断提示未备案，无法访问，所以这次就直接用良心云的vps搭建服务端。
+ 安装ngrok服务端  网上大部分教程都是从安装go环境开始，再编译ngrok客户端，过程很复杂。而我只要简单的穿透服务，不需要tls啥的，其实安装过程很简单，只需要两条命令
+apt-get update apt-get install ngrok-server  启动ngrok服务端  一条命令就搞定，监听80、443、4443端口，如果vps有防火墙请放行这几个入站端口。如果需要指定证书还有端口什么的可以自行添加启动参数，这里不再赘述。
+ngrokd -domain=ngrok.example.com 0x02 添加域名解析 添加两条域名解析记录
 类型 | Name | Content -|-|- A记录 | *.ngrok | ngrok服务器ip A记录 | ngrok | ngrok服务器ip
-0x03 ngrok客户端配置  在本地，我使用刷了padavan固件的newifi3路由，内置了1.4版本的ngrok客户端。服务端是1.6版本的，经测试能通用。
- 客户端配置很简单   0x04 结语 到这里，群晖已经暴露在外网了，请设置强大的登录密码防止数据泄露。</description>
+0x03 ngrok客户端配置   在本地，我使用刷了padavan固件的newifi3路由，内置了1.4版本的ngrok客户端。服务端是1.6版本的，经测试能通用。
+  客户端配置很简单   0x04 结语 到这里，群晖已经暴露在外网了，请设置强大的登录密码防止数据泄露。</description>
     </item>
     
     <item>
@@ -34,7 +33,7 @@ ngrokd -domain=ngrok.example.com  0x02 添加域名解析 添加两条域名解�
       <pubDate>Mon, 05 Aug 2019 17:47:08 +0800</pubDate>
       
       <guid>http://blog.sinowrt.cn/2019/2019-08-05t1747-the-fucking-china-mobile/</guid>
-      <description> 0x00 起因  舍友淘汰了一台笔记本电脑，被水泡了，也经过我的手修过，最后硬盘还是回天乏术。毕业了，也就扔给我了，由于手头上没有多余的硬盘，于是拆掉了群晖上的120G的东芝硬盘安上去。但是在转移资料的时候，只转移了盘内的文件，没有留意到群晖的package也需要转移。就这样，配置好在docker上的aria2也GG了。群晖没有了离线下载，就如烧烤没有孜然，失去了灵魂。 学校上个月换了运营商，换成了稀巴烂的移动网。 今天恰好有空，就重装一下aria2。  0x01 经过  docker安装挺顺利的，接下来就找一下aria2的镜像呗，输入aria2查找了半天，却弹了个failed to query registry的提示出来。我寻思着，是不是注册表源失效了，换成阿里云的源，结果直接not found。 这就奇怪了，以前安装的时候一切挺顺利的，没遇到过这种情况。于是google了一番，有让改dns的，改了n多个也没见效果。后来发现挺多回帖说是移动网的问题，用代理下吧，newifi3刚拿回来还没空刷机，刷完机还得配梯子，也挺折腾的。 我的网络是中继了学校的wifi过来的，于是我用手机开了个wifi，那就中继手机吧。试了一下，果然是移动网的问题，这个问题也就结了。  0x02 总结  移动网垃圾！  </description>
+      <description>0x00 起因  舍友淘汰了一台笔记本电脑，被水泡了，也经过我的手修过，最后硬盘还是回天乏术。毕业了，也就扔给我了，由于手头上没有多余的硬盘，于是拆掉了群晖上的120G的东芝硬盘安上去。但是在转移资料的时候，只转移了盘内的文件，没有留意到群晖的package也需要转移。就这样，配置好在docker上的aria2也GG了。群晖没有了离线下载，就如烧烤没有孜然，失去了灵魂。 学校上个月换了运营商，换成了稀巴烂的移动网。 今天恰好有空，就重装一下aria2。  0x01 经过  docker安装挺顺利的，接下来就找一下aria2的镜像呗，输入aria2查找了半天，却弹了个failed to query registry的提示出来。我寻思着，是不是注册表源失效了，换成阿里云的源，结果直接not found。 这就奇怪了，以前安装的时候一切挺顺利的，没遇到过这种情况。于是google了一番，有让改dns的，改了n多个也没见效果。后来发现挺多回帖说是移动网的问题，用代理下吧，newifi3刚拿回来还没空刷机，刷完机还得配梯子，也挺折腾的。 我的网络是中继了学校的wifi过来的，于是我用手机开了个wifi，那就中继手机吧。试了一下，果然是移动网的问题，这个问题也就结了。  0x02 总结  移动网垃圾！  </description>
     </item>
     
   </channel>

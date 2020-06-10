@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ngrok on Sinowrt</title>
+    <link>http://blog.sinowrt.cn/tags/ngrok/</link>
+    <description>Recent content in ngrok on Sinowrt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 12 Apr 2020 23:33:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.sinowrt.cn/tags/ngrok/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[Ubuntu]将ngrok添加到supervisor守护进程</title>
+      <link>http://blog.sinowrt.cn/2020/2020-04-12t2330-ubuntuadd-ngrok-to-supervisor/</link>
+      <pubDate>Sun, 12 Apr 2020 23:33:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-04-12t2330-ubuntuadd-ngrok-to-supervisor/</guid>
+      <description>0x00 安装Supervis 直接执行以下命令即可安装Supervisor
+sudo apt-get install supervisor 0x01 添加ngrok的supervisor配置 进入supervisor配置目录,并新建ngrok.conf文件
+cd /etc/supervisor/conf.d vi ngrok.conf 输入以下内容：
+[program:ngrok] directory = /usr/local/ngrok/ command = ngrokd -domain=&amp;quot;ngrok.******.cn&amp;quot; -httpAddr=&amp;quot;:80&amp;quot; autostart = true ; 在 supervisord 启动的时候也自动启动 startsecs = 5 ; 启动 5 秒后没有异常退出，就当作已经正常启动了 autorestart = true ; 程序异常退出后自动重启 startretries = 3 ; 启动失败自动重试次数，默认是 3 user = root ; 用哪个用户启动 redirect_stderr = true ; 把 stderr 重定向到 stdout，默认 false stdout_logfile_maxbytes = 20MB ; stdout 日志文件大小，默认 50MB stdout_logfile_backups = 20 ; stdout 日志文件备份数 stdout_logfile = /var/log/supervisor/ngrok.</description>
+    </item>
+    
+  </channel>
+</rss>

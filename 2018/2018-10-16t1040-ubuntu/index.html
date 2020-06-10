@@ -46,7 +46,7 @@
     "articleSection" : "posts",
     "name" : "ubuntu 16.04部署ss",
     "headline" : "ubuntu 16.04部署ss",
-    "description" : " 2018\/04\/06  准备部署亚马逊云的ss服务端，无意中看到有一张8刀的未付账单 经过查看账单详情，发现美国的俄亥俄州的服务器还没关闭，导致东京和美国的服务器同时开启，当然超出了亚马逊云的免费范围，所以对于国外的云服务器还是要定时上去查看一下，以防意外扣费的发生\n 本篇主要是对ubuntu 16.04上部署ss服务端进行记录的的过程\n  准备工作  利用putty的puttygen对亚马逊云派发的秘钥文件*.pem转换为putty能识别的ppk文件 启动putty，在ssh的auth中浏览文件夹选中刚才转换出来的ppk文件 填写服务器地址以及默认用户名ubuntu@ip地址 填写ssh端口22 若要进行ping检测，则需要在安全组中添加icmp入站规则 对该配置进行保存以便日后维护  正式部署  首先在终端输入sudo apt-get update 更新源 接着安装pip3，输入sudo apt install python3-pip 安装ss，输入sudo pip3 install shadowsocks 配置ss，输入sudo vi \/etc\/shadowsocks 在vi中输入ss的配置如下所示：  { \x26quot;server\x26quot;:\x26quot;0.0.0.0\x26quot;, \x26quot;server_port\x26quot;:444, \x26quot;local_address\x26quot;:\x26quot;127.0.0.1\x26quot;, \x26quot;local_port\x26quot;:1080, \x26quot;password\x26quot;:\x26quot;mypasswd\x26quot;, \x26quot;timeout\x26quot;:300, \x26quot;method\x26quot;:\x26quot;aes-256-cfb\x26quot;, \x26quot;fast_open\x26quot;:false }  保存退出\n 如果ss不是安装在\/usr\/bin或\/usr\/local\/bin,要先查看ss的路径，输入whereis ssserver（故建议在安装ss前先cd \/usr\/bin）\n 将查询到的路径复制，输入sudo vi \/etc\/sudoers，粘贴到secure_path后面，以冒号分隔强制保存退出即可\n 最后输入sudo ssserver -c \/etc\/shadowsocks.json -d start \x26amp;启动ss 服务即可用客户端进行连接\n  ",
+    "description" : "2018\/04\/06   准备部署亚马逊云的ss服务端，无意中看到有一张8刀的未付账单\n  经过查看账单详情，发现美国的俄亥俄州的服务器还没关闭，导致东京和美国的服务器同时开启，当然超出了亚马逊云的免费范围，所以对于国外的云服务器还是要定时上去查看一下，以防意外扣费的发生\n  本篇主要是对ubuntu 16.04上部署ss服务端进行记录的的过程\n  准备工作  利用putty的puttygen对亚马逊云派发的秘钥文件*.pem转换为putty能识别的ppk文件 启动putty，在ssh的auth中浏览文件夹选中刚才转换出来的ppk文件 填写服务器地址以及默认用户名ubuntu@ip地址 填写ssh端口22 若要进行ping检测，则需要在安全组中添加icmp入站规则 对该配置进行保存以便日后维护  正式部署  首先在终端输入sudo apt-get update 更新源 接着安装pip3，输入sudo apt install python3-pip 安装ss，输入sudo pip3 install shadowsocks 配置ss，输入sudo vi \/etc\/shadowsocks 在vi中输入ss的配置如下所示：  { \x26#34;server\x26#34;:\x26#34;0.0.0.0\x26#34;, \x26#34;server_port\x26#34;:444, \x26#34;local_address\x26#34;:\x26#34;127.0.0.1\x26#34;, \x26#34;local_port\x26#34;:1080, \x26#34;password\x26#34;:\x26#34;mypasswd\x26#34;, \x26#34;timeout\x26#34;:300, \x26#34;method\x26#34;:\x26#34;aes-256-cfb\x26#34;, \x26#34;fast_open\x26#34;:false } 保存退出\n  如果ss不是安装在\/usr\/bin或\/usr\/local\/bin,要先查看ss的路径，输入whereis ssserver（故建议在安装ss前先cd \/usr\/bin）\n  将查询到的路径复制，输入sudo vi \/etc\/sudoers，粘贴到secure_path后面，以冒号分隔强制保存退出即可\n  最后输入sudo ssserver -c \/etc\/shadowsocks.json -d start \x26amp;启动ss 服务即可用客户端进行连接",
     "inLanguage" : "en-us",
     "author" : "SinoWRT",
     "creator" : "SinoWRT",
@@ -63,19 +63,6 @@
 </script>
 
 </head>
-
-<script async src="//cdn.busuanzi.ibruce.info/cdn/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?85719ea04c6401b98466dfdbc9399c78";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-
 
   
 
@@ -159,20 +146,19 @@ var _hmt = _hmt || [];
           
           
 
-          
-
-<h1 id="2018-04-06">2018/04/06</h1>
-
+          <h1 id="20180406">2018/04/06</h1>
 <ul>
-<li>准备部署亚马逊云的ss服务端，无意中看到有一张8刀的未付账单</li>
-
-<li><p>经过查看账单详情，发现美国的俄亥俄州的服务器还没关闭，导致东京和美国的服务器同时开启，当然超出了亚马逊云的免费范围，所以对于国外的云服务器还是要定时上去查看一下，以防意外扣费的发生</p></li>
-
-<li><p>本篇主要是对ubuntu 16.04上部署ss服务端进行记录的的过程</p></li>
+<li>
+<p>准备部署亚马逊云的ss服务端，无意中看到有一张8刀的未付账单</p>
+</li>
+<li>
+<p>经过查看账单详情，发现美国的俄亥俄州的服务器还没关闭，导致东京和美国的服务器同时开启，当然超出了亚马逊云的免费范围，所以对于国外的云服务器还是要定时上去查看一下，以防意外扣费的发生</p>
+</li>
+<li>
+<p>本篇主要是对ubuntu 16.04上部署ss服务端进行记录的的过程</p>
+</li>
 </ul>
-
 <h2 id="准备工作">准备工作</h2>
-
 <ul>
 <li>利用putty的puttygen对亚马逊云派发的秘钥文件*.pem转换为putty能识别的ppk文件</li>
 <li>启动putty，在ssh的auth中浏览文件夹选中刚才转换出来的ppk文件</li>
@@ -181,9 +167,7 @@ var _hmt = _hmt || [];
 <li>若要进行ping检测，则需要在安全组中添加icmp入站规则</li>
 <li>对该配置进行保存以便日后维护</li>
 </ul>
-
 <h2 id="正式部署">正式部署</h2>
-
 <ul>
 <li>首先在终端输入<code>sudo apt-get update</code>  更新源</li>
 <li>接着安装pip3，输入<code>sudo apt install python3-pip</code></li>
@@ -191,34 +175,33 @@ var _hmt = _hmt || [];
 <li>配置ss，输入<code>sudo vi /etc/shadowsocks</code></li>
 <li>在vi中输入ss的配置如下所示：</li>
 </ul>
-
-<pre><code class="language-json">{
-    &quot;server&quot;:&quot;0.0.0.0&quot;,
-    &quot;server_port&quot;:444,
-    &quot;local_address&quot;:&quot;127.0.0.1&quot;,
-    &quot;local_port&quot;:1080,
-    &quot;password&quot;:&quot;mypasswd&quot;,
-    &quot;timeout&quot;:300,
-    &quot;method&quot;:&quot;aes-256-cfb&quot;,
-    &quot;fast_open&quot;:false
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#f92672">&#34;server&#34;</span>:<span style="color:#e6db74">&#34;0.0.0.0&#34;</span>,
+    <span style="color:#f92672">&#34;server_port&#34;</span>:<span style="color:#ae81ff">444</span>,
+    <span style="color:#f92672">&#34;local_address&#34;</span>:<span style="color:#e6db74">&#34;127.0.0.1&#34;</span>,
+    <span style="color:#f92672">&#34;local_port&#34;</span>:<span style="color:#ae81ff">1080</span>,
+    <span style="color:#f92672">&#34;password&#34;</span>:<span style="color:#e6db74">&#34;mypasswd&#34;</span>,
+    <span style="color:#f92672">&#34;timeout&#34;</span>:<span style="color:#ae81ff">300</span>,
+    <span style="color:#f92672">&#34;method&#34;</span>:<span style="color:#e6db74">&#34;aes-256-cfb&#34;</span>,
+    <span style="color:#f92672">&#34;fast_open&#34;</span>:<span style="color:#66d9ef">false</span>
 }
-</code></pre>
-
-<p>保存退出</p>
-
+</code></pre></div><p>保存退出</p>
 <ul>
-<li><p>如果ss不是安装在/usr/bin或/usr/local/bin,要先查看ss的路径，输入<code>whereis ssserver</code>（故建议在安装ss前先<code>cd /usr/bin</code>）</p></li>
-
-<li><p>将查询到的路径复制，输入<code>sudo vi /etc/sudoers</code>，粘贴到secure_path后面，以冒号分隔强制保存退出即可</p></li>
-
-<li><p>最后输入<code>sudo ssserver -c /etc/shadowsocks.json -d start &amp;</code>启动ss 服务即可用客户端进行连接</p></li>
+<li>
+<p>如果ss不是安装在/usr/bin或/usr/local/bin,要先查看ss的路径，输入<code>whereis ssserver</code>（故建议在安装ss前先<code>cd /usr/bin</code>）</p>
+</li>
+<li>
+<p>将查询到的路径复制，输入<code>sudo vi /etc/sudoers</code>，粘贴到secure_path后面，以冒号分隔强制保存退出即可</p>
+</li>
+<li>
+<p>最后输入<code>sudo ssserver -c /etc/shadowsocks.json -d start &amp;</code>启动ss 服务即可用客户端进行连接</p>
+</li>
 </ul>
 
     </div>
-	
+
     <div class="post-copyright">
              
-			
             <p class="copyright-item">
                 <span>Author:</span>
                 <span>sinowrt </span>
@@ -230,12 +213,6 @@ var _hmt = _hmt || [];
                     <span>Link:</span>
                     <a href=http://blog.sinowrt.cn/2018/2018-10-16t1040-ubuntu/>http://blog.sinowrt.cn/2018/2018-10-16t1040-ubuntu/</span>
             </p>
-			
-			<p>
-				<span id="busuanzi_container_page_pv">
-					本文总阅读量：<span id="busuanzi_value_page_pv"></span>次
-				</span>
-			</p>
             
              
             <p class="copyright-item lincese">
@@ -286,15 +263,6 @@ var _hmt = _hmt || [];
          
 		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
     </div>
-	<p class="credits theme-by text-muted">
-        <span id="busuanzi_container_site_pv">
-            本站访问量：<span id="busuanzi_value_site_pv"></span>次
-        </span>
-        &nbsp;
-        <span id="busuanzi_container_site_uv">
-            您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
-        </span>
-    </p>
 </footer>
 
 

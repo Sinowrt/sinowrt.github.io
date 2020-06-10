@@ -4,11 +4,49 @@
     <url>
       <loc>http://blog.sinowrt.cn/categories/</loc>
       
-      <lastmod>2020-01-08T00:21:00+08:00</lastmod>
+      <lastmod>2020-06-10T14:27:00+08:00</lastmod>
       
       
       
-      <priority>0</priority>
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/categories/macbook/</loc>
+      
+      <lastmod>2020-06-10T14:27:00+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/macbook/</loc>
+      
+      <lastmod>2020-06-10T14:27:00+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/2020/2020-06-10t1511-the-using-feeling-of-mbp/</loc>
+      
+      <lastmod>2020-06-10T14:27:00+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/2020/2020-06-10t1427-how-to-query-the-information-of-battery-on-mac/</loc>
+      
+      <lastmod>2020-06-10T14:27:00+08:00</lastmod>
+      
+      
       
       
     </url>
@@ -16,11 +54,9 @@
     <url>
       <loc>http://blog.sinowrt.cn/posts/</loc>
       
-      <lastmod>2020-01-08T00:21:00+08:00</lastmod>
+      <lastmod>2020-06-10T14:27:00+08:00</lastmod>
       
       
-      
-      <priority>0</priority>
       
       
     </url>
@@ -28,11 +64,9 @@
     <url>
       <loc>http://blog.sinowrt.cn/</loc>
       
-      <lastmod>2020-01-08T00:21:00+08:00</lastmod>
+      <lastmod>2020-06-10T14:27:00+08:00</lastmod>
       
       
-      
-      <priority>0</priority>
       
       
     </url>
@@ -40,11 +74,319 @@
     <url>
       <loc>http://blog.sinowrt.cn/tags/</loc>
       
-      <lastmod>2020-01-08T00:21:00+08:00</lastmod>
+      <lastmod>2020-06-10T14:27:00+08:00</lastmod>
       
       
       
-      <priority>0</priority>
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/categories/flutter/</loc>
+      
+      <lastmod>2020-05-20T15:07:00+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/mac/</loc>
+      
+      <lastmod>2020-05-20T15:07:00+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/2020/2020-05-20t1507-javagorgeous-switch/</loc>
+      
+      <lastmod>2020-05-20T15:07:00+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/2020/2020-05-12t1531-how-to-install-flutter-on-mac/</loc>
+      
+      <lastmod>2020-05-12T15:07:00+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/categories/docker/</loc>
+      
+      <lastmod>2020-04-21T10:11:00+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/docker/</loc>
+      
+      <lastmod>2020-04-21T10:11:00+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/2020/2020-04-21t1011-date-query-error-in-product-environment/</loc>
+      
+      <lastmod>2020-04-21T10:11:00+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/2020/2020-04-20t1611-the-differences-of-docker-command-save-and-export/</loc>
+      
+      <lastmod>2020-04-20T15:07:00+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/network/</loc>
+      
+      <lastmod>2020-04-17T17:02:00+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/2020/2020-04-17t1702-can-not-access-the-nacos-service-in-docker-container/</loc>
+      
+      <lastmod>2020-04-17T17:02:00+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/2020/2020-04-16t1623-migrate-the-container-to-another-docker/</loc>
+      
+      <lastmod>2020-04-16T16:23:00+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/esxi/</loc>
+      
+      <lastmod>2020-04-16T16:19:00+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/categories/esxi/</loc>
+      
+      <lastmod>2020-04-16T16:19:00+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/2020/2020-04-16t1619-esxi-network-error-while-exporting-esxi-virtual-machine/</loc>
+      
+      <lastmod>2020-04-16T16:19:00+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/maven/</loc>
+      
+      <lastmod>2020-04-16T10:23:00+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/categories/maven/</loc>
+      
+      <lastmod>2020-04-16T10:23:00+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/2020/2020-04-16t1023-problems-i-meet-while-using-maven/</loc>
+      
+      <lastmod>2020-04-16T10:23:00+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/2020/2020-04-12t2330-ubuntuadd-ngrok-to-supervisor/</loc>
+      
+      <lastmod>2020-04-12T23:33:00+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/ngrok/</loc>
+      
+      <lastmod>2020-04-12T23:33:00+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/categories/ngrok/</loc>
+      
+      <lastmod>2020-04-12T23:33:00+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/categories/develope/</loc>
+      
+      <lastmod>2020-04-10T10:01:00+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/npm/</loc>
+      
+      <lastmod>2020-04-10T10:01:00+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/2020/2020-04-10t1001-npm-eperm-operation-not-permitted/</loc>
+      
+      <lastmod>2020-04-10T10:01:00+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/xxl-job/</loc>
+      
+      <lastmod>2020-04-03T08:53:27+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/2020/2020-04-03t0853-xxl-job-groovyclassloader-noclassdeffounderror-exception/</loc>
+      
+      <lastmod>2020-04-03T08:53:27+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/javascript/</loc>
+      
+      <lastmod>2020-03-05T16:18:00+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/categories/javascript/</loc>
+      
+      <lastmod>2020-03-05T16:18:00+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/2020/2020-03-05t1618-something-changed-while-java-long-parsing-to-javascript/</loc>
+      
+      <lastmod>2020-03-05T16:18:00+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/linux/</loc>
+      
+      <lastmod>2020-02-18T16:02:00+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/categories/linux/</loc>
+      
+      <lastmod>2020-02-18T16:02:00+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/2020/2020-02-18t1602-linux-mount-error-transport-endpoint-is-not-connected/</loc>
+      
+      <lastmod>2020-02-18T16:02:00+08:00</lastmod>
+      
+      
       
       
     </url>
@@ -56,8 +398,6 @@
       
       
       
-      <priority>0</priority>
-      
       
     </url>
   
@@ -67,8 +407,6 @@
       <lastmod>2020-01-08T00:21:00+08:00</lastmod>
       
       
-      
-      <priority>0</priority>
       
       
     </url>
@@ -90,8 +428,6 @@
       
       
       
-      <priority>0</priority>
-      
       
     </url>
   
@@ -102,8 +438,6 @@
       
       
       
-      <priority>0</priority>
-      
       
     </url>
   
@@ -113,8 +447,6 @@
       <lastmod>2019-11-30T12:14:00+08:00</lastmod>
       
       
-      
-      <priority>0</priority>
       
       
     </url>
@@ -136,8 +468,6 @@
       
       
       
-      <priority>0</priority>
-      
       
     </url>
   
@@ -158,8 +488,6 @@
       
       
       
-      <priority>0</priority>
-      
       
     </url>
   
@@ -170,8 +498,6 @@
       
       
       
-      <priority>0</priority>
-      
       
     </url>
   
@@ -181,8 +507,6 @@
       <lastmod>2019-10-31T12:00:00+08:00</lastmod>
       
       
-      
-      <priority>0</priority>
       
       
     </url>
@@ -204,8 +528,6 @@
       
       
       
-      <priority>0</priority>
-      
       
     </url>
   
@@ -216,8 +538,6 @@
       
       
       
-      <priority>0</priority>
-      
       
     </url>
   
@@ -227,8 +547,6 @@
       <lastmod>2019-09-08T15:59:08+08:00</lastmod>
       
       
-      
-      <priority>0</priority>
       
       
     </url>
@@ -250,8 +568,6 @@
       
       
       
-      <priority>0</priority>
-      
       
     </url>
   
@@ -261,20 +577,6 @@
       <lastmod>2019-09-08T15:59:08+08:00</lastmod>
       
       
-      
-      <priority>0</priority>
-      
-      
-    </url>
-  
-    <url>
-      <loc>http://blog.sinowrt.cn/categories/windows/</loc>
-      
-      <lastmod>2019-08-10T15:44:08+08:00</lastmod>
-      
-      
-      
-      <priority>0</priority>
       
       
     </url>
@@ -286,8 +588,6 @@
       
       
       
-      <priority>0</priority>
-      
       
     </url>
   
@@ -297,8 +597,6 @@
       <lastmod>2019-08-10T15:44:08+08:00</lastmod>
       
       
-      
-      <priority>0</priority>
       
       
     </url>
@@ -314,37 +612,21 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/tags/%E4%BB%BB%E5%8A%A1%E6%A0%8F/</loc>
+      <loc>http://blog.sinowrt.cn/categories/windows/</loc>
       
       <lastmod>2019-08-10T15:44:08+08:00</lastmod>
       
       
       
-      <priority>0</priority>
-      
       
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/docker/</loc>
+      <loc>http://blog.sinowrt.cn/tags/%E4%BB%BB%E5%8A%A1%E6%A0%8F/</loc>
       
-      <lastmod>2019-08-05T17:47:08+08:00</lastmod>
-      
-      
-      
-      <priority>0</priority>
+      <lastmod>2019-08-10T15:44:08+08:00</lastmod>
       
       
-    </url>
-  
-    <url>
-      <loc>http://blog.sinowrt.cn/tags/docker/</loc>
-      
-      <lastmod>2019-08-05T17:47:08+08:00</lastmod>
-      
-      
-      
-      <priority>0</priority>
       
       
     </url>
@@ -355,8 +637,6 @@
       <lastmod>2019-08-05T17:47:08+08:00</lastmod>
       
       
-      
-      <priority>0</priority>
       
       
     </url>
@@ -378,8 +658,6 @@
       
       
       
-      <priority>0</priority>
-      
       
     </url>
   
@@ -390,8 +668,6 @@
       
       
       
-      <priority>0</priority>
-      
       
     </url>
   
@@ -401,8 +677,6 @@
       <lastmod>2019-06-13T13:02:08+08:00</lastmod>
       
       
-      
-      <priority>0</priority>
       
       
     </url>
@@ -433,8 +707,6 @@
       <lastmod>2018-12-11T15:41:27+00:00</lastmod>
       
       
-      
-      <priority>0</priority>
       
       
     </url>
@@ -486,8 +758,6 @@
       
       
       
-      <priority>0</priority>
-      
       
     </url>
   
@@ -522,18 +792,6 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/%E7%BE%A4%E6%99%96/</loc>
-      
-      <lastmod>2018-11-06T02:07:21+00:00</lastmod>
-      
-      
-      
-      <priority>0</priority>
-      
-      
-    </url>
-  
-    <url>
       <loc>http://blog.sinowrt.cn/2018/2018-11-04t1218-synalogycustomize-boot-system/</loc>
       
       <lastmod>2018-11-04T12:18:36+00:00</lastmod>
@@ -560,8 +818,6 @@
       
       
       
-      <priority>0</priority>
-      
       
     </url>
   
@@ -571,18 +827,6 @@
       <lastmod>2018-10-20T10:37:42+00:00</lastmod>
       
       
-      
-      
-    </url>
-  
-    <url>
-      <loc>http://blog.sinowrt.cn/categories/linux/</loc>
-      
-      <lastmod>2018-10-19T02:56:07+00:00</lastmod>
-      
-      
-      
-      <priority>0</priority>
       
       
     </url>
@@ -614,8 +858,6 @@
       
       
       
-      <priority>0</priority>
-      
       
     </url>
   
@@ -643,6 +885,34 @@
       <loc>http://blog.sinowrt.cn/2018/2018-10-16t0811-smartlock/</loc>
       
       <lastmod>2018-10-16T08:11:56+00:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/temp/0513/</loc>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/temp/%E4%B8%AD%E6%A0%B8%E9%92%9B%E7%99%BD%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/</loc>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/temp/</loc>
       
       
       

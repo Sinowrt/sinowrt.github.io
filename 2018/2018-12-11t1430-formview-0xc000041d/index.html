@@ -46,7 +46,7 @@
     "articleSection" : "posts",
     "name" : "MFC Dialog中嵌入Formview 0XC000041D:用户回调期间遇到未经处理的异常",
     "headline" : "MFC Dialog中嵌入Formview 0XC000041D:用户回调期间遇到未经处理的异常",
-    "description" : "在填充Formview时，遇到0XC000041D:用户回调期间遇到未经处理的异常(已解决) 原因：HBRUSH hbr = OnCtlColor(pDC, pWnd, nCtlColor);这一句中应该在OnCtlColor前面添加命名空间:: 否则编译器会误解为递归函数 源码如下： #pragma once #include \x26quot;NormalBtn.h\x26quot; #include \x26quot;resource.h\x26quot; #include \x26lt;Gdiplus.h\x26gt; using namespace Gdiplus; \/\/ View_OnlineShopManagement 窗体视图 class View_OnlineShopManagement : public CFormView { DECLARE_DYNCREATE(View_OnlineShopManagement) protected: View_OnlineShopManagement(); \/\/ 动态创建所使用的受保护的构造函数 virtual ~View_OnlineShopManagement(); public: #ifdef AFX_DESIGN_TIME enum { IDD = IDD_FORMVIEW_OSM }; #endif #ifdef _DEBUG virtual void AssertValid() const; #ifndef _WIN32_WCE virtual void Dump(CDumpContext\x26amp; dc) const; #endif #endif protected: virtual void DoDataExchange(CDataExchange* pDX); \/\/ DDX\/DDV 支持 DECLARE_MESSAGE_MAP() public: virtual void OnInitialUpdate(); GdiplusStartupInput m_gdiplusStartupInput; ULONG_PTR m_gdiplusToken; afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor); virtual void OnDraw(CDC* \/*pDC*\/); };  \/\/ View_OnlineShopManagement.",
+    "description" : "在填充Formview时，遇到0XC000041D:用户回调期间遇到未经处理的异常(已解决) 原因：HBRUSH hbr = OnCtlColor(pDC, pWnd, nCtlColor);这一句中应该在OnCtlColor前面添加命名空间:: 否则编译器会误解为递归函数 源码如下： #pragma once#include \x26#34;NormalBtn.h\x26#34;#include \x26#34;resource.h\x26#34;#include \x26lt;Gdiplus.h\x26gt;using namespace Gdiplus; \/\/ View_OnlineShopManagement 窗体视图  class View_OnlineShopManagement : public CFormView { DECLARE_DYNCREATE(View_OnlineShopManagement) protected: View_OnlineShopManagement(); \/\/ 动态创建所使用的受保护的构造函数 \tvirtual ~View_OnlineShopManagement(); public: #ifdef AFX_DESIGN_TIME\tenum { IDD = IDD_FORMVIEW_OSM }; #endif#ifdef _DEBUG\tvirtual void AssertValid() const; #ifndef _WIN32_WCE\tvirtual void Dump(CDumpContext\x26amp; dc) const; #endif#endif protected: virtual void DoDataExchange(CDataExchange* pDX); \/\/ DDX\/DDV 支持 \tDECLARE_MESSAGE_MAP() public: virtual void OnInitialUpdate(); GdiplusStartupInput m_gdiplusStartupInput; ULONG_PTR m_gdiplusToken; afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor); virtual void OnDraw(CDC* \/*pDC*\/); }; \/\/ View_OnlineShopManagement.",
     "inLanguage" : "en-us",
     "author" : "SinoWRT",
     "creator" : "SinoWRT",
@@ -57,25 +57,12 @@
     "datePublished": "2018-12-11 14:30:47 \x2b0000 \x2b0000",
     "dateModified" : "2018-12-11 14:30:47 \x2b0000 \x2b0000",
     "url" : "http:\/\/blog.sinowrt.cn\/2018\/2018-12-11t1430-formview-0xc000041d\/",
-    "wordCount" : "240",
+    "wordCount" : "229",
     "keywords" : [  "Sinowrt"]
 }
 </script>
 
 </head>
-
-<script async src="//cdn.busuanzi.ibruce.info/cdn/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?85719ea04c6401b98466dfdbc9399c78";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-
 
   
 
@@ -159,160 +146,151 @@ var _hmt = _hmt || [];
           
           
 
-          
-
-<h3 id="在填充formview时-遇到0xc000041d-用户回调期间遇到未经处理的异常-已解决">在填充Formview时，遇到0XC000041D:用户回调期间遇到未经处理的异常(已解决)</h3>
-
-<h4 id="原因-hbrush-hbr-onctlcolor-pdc-pwnd-nctlcolor-这一句中应该在onctlcolor前面添加命名空间-否则编译器会误解为递归函数">原因：<code>HBRUSH hbr = OnCtlColor(pDC, pWnd, nCtlColor);</code>这一句中应该在OnCtlColor前面添加命名空间:: 否则编译器会误解为递归函数</h4>
-
+          <h3 id="在填充formview时遇到0xc000041d用户回调期间遇到未经处理的异常已解决">在填充Formview时，遇到0XC000041D:用户回调期间遇到未经处理的异常(已解决)</h3>
+<h4 id="原因hbrush-hbr--onctlcolorpdc-pwnd-nctlcolor这一句中应该在onctlcolor前面添加命名空间-否则编译器会误解为递归函数">原因：<code>HBRUSH hbr = OnCtlColor(pDC, pWnd, nCtlColor);</code>这一句中应该在OnCtlColor前面添加命名空间:: 否则编译器会误解为递归函数</h4>
 <h4 id="源码如下">源码如下：</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#</span><span style="color:#75715e">pragma once</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&#34;NormalBtn.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&#34;resource.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;Gdiplus.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> Gdiplus;
 
-<pre><code class="language-cpp">#pragma once
-#include &quot;NormalBtn.h&quot;
-#include &quot;resource.h&quot;
-#include &lt;Gdiplus.h&gt;
-using namespace Gdiplus;
-
-// View_OnlineShopManagement 窗体视图
-
-class View_OnlineShopManagement : public CFormView
+<span style="color:#75715e">// View_OnlineShopManagement 窗体视图
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">View_OnlineShopManagement</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">public</span> CFormView
 {
-    DECLARE_DYNCREATE(View_OnlineShopManagement)
+	DECLARE_DYNCREATE(View_OnlineShopManagement)
 
-protected:
-    View_OnlineShopManagement();           // 动态创建所使用的受保护的构造函数
-    virtual ~View_OnlineShopManagement();
+<span style="color:#66d9ef">protected</span><span style="color:#f92672">:</span>
+	View_OnlineShopManagement();           <span style="color:#75715e">// 动态创建所使用的受保护的构造函数
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">virtual</span> <span style="color:#f92672">~</span>View_OnlineShopManagement();
 
-public:
-#ifdef AFX_DESIGN_TIME
-    enum { IDD = IDD_FORMVIEW_OSM };
-#endif
-#ifdef _DEBUG
-    virtual void AssertValid() const;
-#ifndef _WIN32_WCE
-    virtual void Dump(CDumpContext&amp; dc) const;
-#endif
-#endif
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+<span style="color:#75715e">#</span><span style="color:#75715e">ifdef AFX_DESIGN_TIME</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">enum</span> { IDD <span style="color:#f92672">=</span> IDD_FORMVIEW_OSM };
+<span style="color:#75715e">#</span><span style="color:#75715e">endif</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">ifdef _DEBUG</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">AssertValid</span>() <span style="color:#66d9ef">const</span>;
+<span style="color:#75715e">#</span><span style="color:#75715e">ifndef _WIN32_WCE</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">Dump</span>(CDumpContext<span style="color:#f92672">&amp;</span> dc) <span style="color:#66d9ef">const</span>;
+<span style="color:#75715e">#</span><span style="color:#75715e">endif</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">endif</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">protected</span><span style="color:#f92672">:</span>
+	<span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> DoDataExchange(CDataExchange<span style="color:#f92672">*</span> pDX);    <span style="color:#75715e">// DDX/DDV 支持
+</span><span style="color:#75715e"></span>	DECLARE_MESSAGE_MAP()
 
-protected:
-    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
-    DECLARE_MESSAGE_MAP()
-
-public:
-    
-    virtual void OnInitialUpdate();
-    GdiplusStartupInput m_gdiplusStartupInput;
-    ULONG_PTR m_gdiplusToken;
-    afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
-    virtual void OnDraw(CDC* /*pDC*/);
+<span style="color:#66d9ef">public</span><span style="color:#f92672">:</span>
+	
+	<span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> OnInitialUpdate();
+	GdiplusStartupInput m_gdiplusStartupInput;
+	ULONG_PTR m_gdiplusToken;
+	afx_msg HBRUSH <span style="color:#a6e22e">OnCtlColor</span>(CDC<span style="color:#f92672">*</span> pDC, CWnd<span style="color:#f92672">*</span> pWnd, UINT nCtlColor);
+	<span style="color:#66d9ef">virtual</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">OnDraw</span>(CDC<span style="color:#f92672">*</span> <span style="color:#75715e">/*pDC*/</span>);
 };
 
 
 
-</code></pre>
-
-<pre><code class="language-cpp">// View_OnlineShopManagement.cpp : 实现文件
-//
-#include &quot;stdafx.h&quot;
-#include &quot;SD3000BAS.h&quot;
-#include &quot;View_OnlineShopManagement.h&quot;
-
-// View_OnlineShopManagement
-
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">// View_OnlineShopManagement.cpp : 实现文件
+</span><span style="color:#75715e"></span><span style="color:#75715e">//
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&#34;stdafx.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&#34;SD3000BAS.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&#34;View_OnlineShopManagement.h&#34;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">// View_OnlineShopManagement
+</span><span style="color:#75715e"></span>
 IMPLEMENT_DYNCREATE(View_OnlineShopManagement, CFormView)
 
-View_OnlineShopManagement::View_OnlineShopManagement()
-    : CFormView(IDD_FORMVIEW_OSM)
+View_OnlineShopManagement<span style="color:#f92672">:</span><span style="color:#f92672">:</span>View_OnlineShopManagement()
+	<span style="color:#f92672">:</span> CFormView(IDD_FORMVIEW_OSM)
 {
 }
 
-View_OnlineShopManagement::~View_OnlineShopManagement()
+View_OnlineShopManagement<span style="color:#f92672">:</span><span style="color:#f92672">:</span><span style="color:#f92672">~</span>View_OnlineShopManagement()
 {
 }
 
-void View_OnlineShopManagement::DoDataExchange(CDataExchange* pDX)
+<span style="color:#66d9ef">void</span> View_OnlineShopManagement<span style="color:#f92672">:</span><span style="color:#f92672">:</span>DoDataExchange(CDataExchange<span style="color:#f92672">*</span> pDX)
 {
-    CFormView::DoDataExchange(pDX);
-    //DDX_Control(pDX, IDC_BUTTON1, register_btn);
-}
+	CFormView<span style="color:#f92672">:</span><span style="color:#f92672">:</span>DoDataExchange(pDX);
+	<span style="color:#75715e">//DDX_Control(pDX, IDC_BUTTON1, register_btn);
+</span><span style="color:#75715e"></span>}
 
 BEGIN_MESSAGE_MAP(View_OnlineShopManagement, CFormView)
-    ON_WM_CTLCOLOR()
+	ON_WM_CTLCOLOR()
 END_MESSAGE_MAP()
 
 
-// View_OnlineShopManagement 诊断
-
-#ifdef _DEBUG
-void View_OnlineShopManagement::AssertValid() const
+<span style="color:#75715e">// View_OnlineShopManagement 诊断
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">#</span><span style="color:#75715e">ifdef _DEBUG</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> View_OnlineShopManagement<span style="color:#f92672">:</span><span style="color:#f92672">:</span>AssertValid() <span style="color:#66d9ef">const</span>
 {
-    CFormView::AssertValid();
+	CFormView<span style="color:#f92672">:</span><span style="color:#f92672">:</span>AssertValid();
 }
 
-#ifndef _WIN32_WCE
-void View_OnlineShopManagement::Dump(CDumpContext&amp; dc) const
+<span style="color:#75715e">#</span><span style="color:#75715e">ifndef _WIN32_WCE</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> View_OnlineShopManagement<span style="color:#f92672">:</span><span style="color:#f92672">:</span>Dump(CDumpContext<span style="color:#f92672">&amp;</span> dc) <span style="color:#66d9ef">const</span>
 {
-    CFormView::Dump(dc);
+	CFormView<span style="color:#f92672">:</span><span style="color:#f92672">:</span>Dump(dc);
 }
-#endif
-#endif //_DEBUG
+<span style="color:#75715e">#</span><span style="color:#75715e">endif</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span><span style="color:#75715e">#</span><span style="color:#75715e">endif </span><span style="color:#75715e">//_DEBUG
+</span><span style="color:#75715e"></span>
 
+<span style="color:#75715e">// View_OnlineShopManagement 消息处理程序
+</span><span style="color:#75715e"></span>
 
-// View_OnlineShopManagement 消息处理程序
-
-
-void View_OnlineShopManagement::OnInitialUpdate()
+<span style="color:#66d9ef">void</span> View_OnlineShopManagement<span style="color:#f92672">:</span><span style="color:#f92672">:</span>OnInitialUpdate()
 {
-    CFormView::OnInitialUpdate();
-    
-    // TODO: 在此添加专用代码和/或调用基类
-}
-
-HBRUSH View_OnlineShopManagement::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
-{
-    //HBRUSH hbr = OnCtlColor(pDC, pWnd, nCtlColor);    //问题出现在这里！！！！！
-    HBRUSH hbr = CFormView::CFormView(pDC, pWnd, nCtlColor); //改成这样问题解决
-    // TODO:  在此更改 DC 的任何特性
-    static CBrush gBr;
-    static bool isInited = false;
-    if (!isInited)
-    {
-        CBitmap bitmap;
-        bitmap.LoadBitmap(IDB_BITMAP1);
-        gBr.CreatePatternBrush(&amp;bitmap);
-        COLORREF clearColor = -1;
-        bitmap.DeleteObject();
-        isInited = true;
-    }
-    if (pWnd == this)
-    {
-        pDC-&gt;SetBkMode(TRANSPARENT);
-        return gBr; //主窗口背景使用这个背景刷
-    }
-    else
-    {
-        pDC-&gt;SetBkMode(TRANSPARENT);
-        return   (HBRUSH)::GetStockObject(NULL_BRUSH); //其他控件使用透明背景
-    }
-
-
-    // TODO:  如果默认的不是所需画笔，则返回另一个画笔
-    return hbr;
-}
-
-
-void View_OnlineShopManagement::OnDraw(CDC* /*pDC*/)
-{
-
-}
-
-</code></pre>
-
-    </div>
+	CFormView<span style="color:#f92672">:</span><span style="color:#f92672">:</span>OnInitialUpdate();
 	
+	<span style="color:#75715e">// TODO: 在此添加专用代码和/或调用基类
+</span><span style="color:#75715e"></span>}
+
+HBRUSH View_OnlineShopManagement<span style="color:#f92672">:</span><span style="color:#f92672">:</span>OnCtlColor(CDC<span style="color:#f92672">*</span> pDC, CWnd<span style="color:#f92672">*</span> pWnd, UINT nCtlColor)
+{
+	<span style="color:#75715e">//HBRUSH hbr = OnCtlColor(pDC, pWnd, nCtlColor); 	//问题出现在这里！！！！！
+</span><span style="color:#75715e"></span>	HBRUSH hbr <span style="color:#f92672">=</span> CFormView<span style="color:#f92672">:</span><span style="color:#f92672">:</span>CFormView(pDC, pWnd, nCtlColor); <span style="color:#75715e">//改成这样问题解决
+</span><span style="color:#75715e"></span>	<span style="color:#75715e">// TODO:  在此更改 DC 的任何特性
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">static</span> CBrush gBr;
+	<span style="color:#66d9ef">static</span> <span style="color:#66d9ef">bool</span> isInited <span style="color:#f92672">=</span> false;
+	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>isInited)
+	{
+		CBitmap bitmap;
+		bitmap.LoadBitmap(IDB_BITMAP1);
+		gBr.CreatePatternBrush(<span style="color:#f92672">&amp;</span>bitmap);
+		COLORREF clearColor <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>;
+		bitmap.DeleteObject();
+		isInited <span style="color:#f92672">=</span> true;
+	}
+	<span style="color:#66d9ef">if</span> (pWnd <span style="color:#f92672">=</span><span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>)
+	{
+		pDC<span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span>SetBkMode(TRANSPARENT);
+		<span style="color:#66d9ef">return</span> gBr; <span style="color:#75715e">//主窗口背景使用这个背景刷
+</span><span style="color:#75715e"></span>	}
+	<span style="color:#66d9ef">else</span>
+	{
+		pDC<span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span>SetBkMode(TRANSPARENT);
+		<span style="color:#66d9ef">return</span>   (HBRUSH)<span style="color:#f92672">:</span><span style="color:#f92672">:</span>GetStockObject(NULL_BRUSH); <span style="color:#75715e">//其他控件使用透明背景
+</span><span style="color:#75715e"></span>	}
+
+
+	<span style="color:#75715e">// TODO:  如果默认的不是所需画笔，则返回另一个画笔
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">return</span> hbr;
+}
+
+
+<span style="color:#66d9ef">void</span> View_OnlineShopManagement<span style="color:#f92672">:</span><span style="color:#f92672">:</span>OnDraw(CDC<span style="color:#f92672">*</span> <span style="color:#75715e">/*pDC*/</span>)
+{
+
+}
+
+</code></pre></div>
+    </div>
+
     <div class="post-copyright">
              
-			
             <p class="copyright-item">
                 <span>Author:</span>
                 <span>sinowrt </span>
@@ -324,12 +302,6 @@ void View_OnlineShopManagement::OnDraw(CDC* /*pDC*/)
                     <span>Link:</span>
                     <a href=http://blog.sinowrt.cn/2018/2018-12-11t1430-formview-0xc000041d/>http://blog.sinowrt.cn/2018/2018-12-11t1430-formview-0xc000041d/</span>
             </p>
-			
-			<p>
-				<span id="busuanzi_container_page_pv">
-					本文总阅读量：<span id="busuanzi_value_page_pv"></span>次
-				</span>
-			</p>
             
              
             <p class="copyright-item lincese">
@@ -380,15 +352,6 @@ void View_OnlineShopManagement::OnDraw(CDC* /*pDC*/)
          
 		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
     </div>
-	<p class="credits theme-by text-muted">
-        <span id="busuanzi_container_site_pv">
-            本站访问量：<span id="busuanzi_value_site_pv"></span>次
-        </span>
-        &nbsp;
-        <span id="busuanzi_container_site_uv">
-            您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
-        </span>
-    </p>
 </footer>
 
 

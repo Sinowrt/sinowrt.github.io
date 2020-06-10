@@ -46,7 +46,7 @@
     "articleSection" : "posts",
     "name" : "init.d 的 脚本中使用 kill 的怪事",
     "headline" : "init.d 的 脚本中使用 kill 的怪事",
-    "description" : "2018.08.20 使用自动安装drcom的shell脚本之后，打开配置界面，进行认证之后，想起昨晚有那么一瞬间发现，在drcom的luci界面配置以及apply之后，ps -w会出现两条python drcom的进程，于是再次打开putty查看，果然不出所料，于是就有了这篇文章 #!\/bin\/sh \/etc\/rc.common run_drcom() { local username local password config_get username $1 username config_get password $1 password python \/usr\/bin\/drcom -u $username -p $password \x26amp; } start() { config_load drcom config_foreach run_drcom login } stop() { ps w | grep \x26quot;.*drcom.*\x26quot; | grep -v \x27grep\x27 | cut -c 2-5 | xargs kill -9 echo \x26quot;Drcom Client for GDUFE has stoped.\x26quot; }   大二的时候，在写了drcom的luci界面之后，发现有时候使用drcom_client的stop命令会不奏效，经过查看代码，发现问题应该出在cut -c 2-5上\nfor example cut -c 2-5 是截取了第二到第五位的字符串 即4位pid 若pid大于4位之后便不再好使  我有印象当时已经改正了，这次出现的 drcom_client 脚本，便是原原本本的当年的模样，至于为什么会这样，可能当时我只改了路由器上的脚本，而没有更新本地脚本",
+    "description" : "2018.08.20 使用自动安装drcom的shell脚本之后，打开配置界面，进行认证之后，想起昨晚有那么一瞬间发现，在drcom的luci界面配置以及apply之后，ps -w会出现两条python drcom的进程，于是再次打开putty查看，果然不出所料，于是就有了这篇文章 #!\/bin\/sh \/etc\/rc.common run_drcom() { local username local password config_get username $1 username config_get password $1 password python \/usr\/bin\/drcom -u $username -p $password \x26amp; } start() { config_load drcom config_foreach run_drcom login } stop() { ps w | grep \x26#34;.*drcom.*\x26#34; | grep -v \x26#39;grep\x26#39; | cut -c 2-5 | xargs kill -9 echo \x26#34;Drcom Client for GDUFE has stoped.\x26#34; }  大二的时候，在写了drcom的luci界面之后，发现有时候使用drcom_client的stop命令会不奏效，经过查看代码，发现问题应该出在cut -c 2-5上  for example   cut -c 2-5 是截取了第二到第五位的字符串 即4位pid   若pid大于4位之后便不再好使   我有印象当时已经改正了，这次出现的 drcom_client 脚本，便是原原本本的当年的模样，至于为什么会这样，可能当时我只改了路由器上的脚本，而没有更新本地脚本",
     "inLanguage" : "en-us",
     "author" : "SinoWRT",
     "creator" : "SinoWRT",
@@ -57,25 +57,12 @@
     "datePublished": "2018-10-17 05:52:17 \x2b0000 \x2b0000",
     "dateModified" : "2018-10-17 05:52:17 \x2b0000 \x2b0000",
     "url" : "http:\/\/blog.sinowrt.cn\/2018\/2018-10-17t0552-init.dkill\/",
-    "wordCount" : "306",
+    "wordCount" : "307",
     "keywords" : [  "Sinowrt"]
 }
 </script>
 
 </head>
-
-<script async src="//cdn.busuanzi.ibruce.info/cdn/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?85719ea04c6401b98466dfdbc9399c78";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-
 
   
 
@@ -161,152 +148,149 @@ var _hmt = _hmt || [];
           
           
 
-          
-
-<h1 id="2018-08-20">2018.08.20</h1>
-
-<h4 id="使用自动安装drcom的shell脚本之后-打开配置界面-进行认证之后-想起昨晚有那么一瞬间发现-在drcom的luci界面配置以及apply之后-ps-w会出现两条python-drcom的进程-于是再次打开putty查看-果然不出所料-于是就有了这篇文章">使用自动安装drcom的shell脚本之后，打开配置界面，进行认证之后，想起昨晚有那么一瞬间发现，在drcom的luci界面配置以及apply之后，ps -w会出现两条python drcom的进程，于是再次打开putty查看，果然不出所料，于是就有了这篇文章</h4>
-
-<pre><code class="language-shell">#!/bin/sh /etc/rc.common
-run_drcom()
-{
+          <h1 id="20180820">2018.08.20</h1>
+<h4 id="使用自动安装drcom的shell脚本之后打开配置界面进行认证之后想起昨晚有那么一瞬间发现在drcom的luci界面配置以及apply之后ps--w会出现两条python-drcom的进程于是再次打开putty查看果然不出所料于是就有了这篇文章-">使用自动安装drcom的shell脚本之后，打开配置界面，进行认证之后，想起昨晚有那么一瞬间发现，在drcom的luci界面配置以及apply之后，ps -w会出现两条python drcom的进程，于是再次打开putty查看，果然不出所料，于是就有了这篇文章</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e">#!/bin/sh /etc/rc.common
+</span><span style="color:#75715e"></span>run_drcom<span style="color:#f92672">(</span><span style="color:#f92672">)</span>
+<span style="color:#f92672">{</span>
 local username
 local password
 config_get username $1 username
 config_get password $1 password
 python /usr/bin/drcom -u $username -p $password &amp;
-}
-start()
-{
+<span style="color:#f92672">}</span>
+start<span style="color:#f92672">(</span><span style="color:#f92672">)</span>
+<span style="color:#f92672">{</span>
 config_load drcom
 config_foreach run_drcom login
-}
-stop()
-{
-ps w | grep &quot;.*drcom.*&quot; | grep -v 'grep' | cut -c 2-5 | xargs kill -9
-echo &quot;Drcom Client for GDUFE has stoped.&quot;
-}
-</code></pre>
-
-<ul>
-<li><p>大二的时候，在写了drcom的luci界面之后，发现有时候使用drcom_client的stop命令会不奏效，经过查看代码，发现问题应该出在<code>cut -c 2-5</code>上</p>
-
-<h3 id="for-example">for example</h3></li>
-
-<li><h3 id="cut-c-2-5-是截取了第二到第五位的字符串-即4位pid"><code>cut -c 2-5 是截取了第二到第五位的字符串 即4位pid</code></h3></li>
-
-<li><h3 id="若pid大于4位之后便不再好使"><code>若pid大于4位之后便不再好使</code></h3></li>
+<span style="color:#f92672">}</span>
+stop<span style="color:#f92672">(</span><span style="color:#f92672">)</span>
+<span style="color:#f92672">{</span>
+ps w | grep <span style="color:#e6db74">&#34;.*drcom.*&#34;</span> | grep -v <span style="color:#e6db74">&#39;grep&#39;</span> | cut -c 2-5 | xargs kill -9
+echo <span style="color:#e6db74">&#34;Drcom Client for GDUFE has stoped.&#34;</span>
+<span style="color:#f92672">}</span>
+</code></pre></div><ul>
+<li>大二的时候，在写了drcom的luci界面之后，发现有时候使用drcom_client的stop命令会不奏效，经过查看代码，发现问题应该出在<code>cut -c 2-5</code>上</li>
 </ul>
-
+<h3 id="for-example">for example</h3>
+<ul>
+<li>
+<h3 id="cut--c-2-5-是截取了第二到第五位的字符串-即4位pid"><code>cut -c 2-5 是截取了第二到第五位的字符串 即4位pid</code></h3>
+</li>
+<li>
+<h3 id="若pid大于4位之后便不再好使"><code>若pid大于4位之后便不再好使</code></h3>
+</li>
+</ul>
 <p>我有印象当时已经改正了，这次出现的 drcom_client 脚本，便是原原本本的当年的模样，至于为什么会这样，可能当时我只改了路由器上的脚本，而没有更新本地脚本</p>
-
-<h4 id="不过-这次的问题不在这里-而是这次的问题-暴露了这个潜在的问题">不过，这次的问题不在这里，而是这次的问题，暴露了这个潜在的问题</h4>
-
+<h4 id="不过这次的问题不在这里而是这次的问题暴露了这个潜在的问题-">不过，这次的问题不在这里，而是这次的问题，暴露了这个潜在的问题</h4>
 <p>这次的问题的导火索是</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">local fs <span style="color:#f92672">=</span> require <span style="color:#e6db74">&#34;nixio.fs&#34;</span>
+local sys <span style="color:#f92672">=</span> require <span style="color:#e6db74">&#34;luci.sys&#34;</span>
+m <span style="color:#f92672">=</span> Map<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;drcom&#34;</span>,translate<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Dr.com configure&#34;</span><span style="color:#f92672">)</span>,translate<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;GDUFE Dr.com client configure&#34;</span><span style="color:#f92672">)</span><span style="color:#f92672">)</span>
+s <span style="color:#f92672">=</span> m:section<span style="color:#f92672">(</span>TypedSection,<span style="color:#e6db74">&#34;login&#34;</span><span style="color:#f92672">)</span>
+s.anonymous <span style="color:#f92672">=</span> true
 
-<pre><code class="language-shell">local fs = require &quot;nixio.fs&quot;
-local sys = require &quot;luci.sys&quot;
-m = Map(&quot;drcom&quot;,translate(&quot;Dr.com configure&quot;),translate(&quot;GDUFE Dr.com client configure&quot;))
-s = m:section(TypedSection,&quot;login&quot;)
-s.anonymous = true
 
+name <span style="color:#f92672">=</span> s:option<span style="color:#f92672">(</span>Value, <span style="color:#e6db74">&#34;username&#34;</span>, translate<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Username&#34;</span><span style="color:#f92672">)</span><span style="color:#f92672">)</span>
+pass <span style="color:#f92672">=</span> s:option<span style="color:#f92672">(</span>Value, <span style="color:#e6db74">&#34;password&#34;</span>, translate<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Password&#34;</span><span style="color:#f92672">)</span><span style="color:#f92672">)</span>
+pass.password <span style="color:#f92672">=</span> true
 
-name = s:option(Value, &quot;username&quot;, translate(&quot;Username&quot;))
-pass = s:option(Value, &quot;password&quot;, translate(&quot;Password&quot;))
-pass.password = true
-
-local apply = luci.http.formvalue(&quot;cbi.apply&quot;)
-if apply then
-    io.popen(&quot;/etc/init.d/drcom_client start&quot;)
+local apply <span style="color:#f92672">=</span> luci.http.formvalue<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;cbi.apply&#34;</span><span style="color:#f92672">)</span>
+<span style="color:#66d9ef">if</span> apply <span style="color:#66d9ef">then</span>
+    io.popen<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;/etc/init.d/drcom_client start&#34;</span><span style="color:#f92672">)</span>
 end
 
-return m
-</code></pre>
-
-<p>原来是apply这段，我记得当时也改过了，可是，这就是咸丰年的那一版。。。</p>
-
+<span style="color:#66d9ef">return</span> m
+</code></pre></div><p>原来是apply这段，我记得当时也改过了，可是，这就是咸丰年的那一版。。。</p>
 <ul>
-<li><p>我想在<code>io.popen(&quot;/etc/init.d/drcom_client start&quot;)</code>上面加上一段<code>io.popen(&quot;/etc/init.d/drcom_client stop&quot;)</code>就完事了，可是，完美主义并不允许我这么做。</p></li>
-
-<li><p>我想，在Drcom_AutoLink上也是一个 stop 一个 start 这样也太low了吧，为什么不给drcom_client写一个restart呢，像<code>service network restart</code>用的多顺手。</p></li>
-
-<li><p>二话不说，打开/etc/init.d/drcom_client 添上一段</p>
-
-<pre><code class="language-shell">restart(){
-stop
-sleep 1
-start
-}
-</code></pre>
-
-<p>可是每次执行<code>/etc/init.d/drcom_client restart</code>就只有一句Killed，就啥反应也没有了，就连<code>echo &quot;Drcom Client for GDUFE has stoped.&quot;</code>这句也没输出</p>
-
-<ul>
-<li>restart没反应对吧，一句一句来，先<code>/etc/init.d/drcom_client stop</code>,奇了怪了，<code>echo &quot;Drcom Client for GDUFE has stoped.&quot;</code>同样没输出，我就纳闷了</li>
-<li>难道是restart没重写成功？</li>
-
-<li><p>难道是stop没重写成功？</p></li>
-
-<li><h3 id="当我去掉-ps-w-grep-drcom-grep-v-grep-cut-c-2-5-xargs-kill-9-这一句后-echo-drcom-client-for-gdufe-has-stoped-竟然成功输出了">当我去掉<code>ps w | grep &quot;.*drcom.*&quot; | grep -v 'grep' | cut -c 2-5 | xargs kill -9</code>这一句后，<code>echo &quot;Drcom Client for GDUFE has stoped.&quot;</code>竟然成功输出了</h3></li>
-
-<li><p>于是想到，应该是这句把自己也kill掉了，于是去掉<code>| xargs kill -9</code>只留下<code>ps w | grep &quot;.*drcom.*&quot; | grep -v 'grep' | cut -c 2-5</code></p></li>
-
-<li><p>执行<code>/etc/init.d/drcom_client stop</code>，果然，出现了两个pid，在前面再加一句ps -w看看结果
-<figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-10-17T0552/1-1.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p></li>
+<li>
+<p>我想在<code>io.popen(&quot;/etc/init.d/drcom_client start&quot;)</code>上面加上一段<code>io.popen(&quot;/etc/init.d/drcom_client stop&quot;)</code>就完事了，可是，完美主义并不允许我这么做。</p>
+</li>
+<li>
+<p>我想，在Drcom_AutoLink上也是一个 stop 一个 start 这样也太low了吧，为什么不给drcom_client写一个restart呢，像<code>service network restart </code>用的多顺手。</p>
+</li>
+<li>
+<p>二话不说，打开/etc/init.d/drcom_client 添上一段</p>
+</li>
 </ul>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">restart<span style="color:#f92672">(</span><span style="color:#f92672">)</span><span style="color:#f92672">{</span>
+    stop
+    sleep <span style="color:#ae81ff">1</span>
+    start
+<span style="color:#f92672">}</span>
+</code></pre></div><p>可是每次执行<code>/etc/init.d/drcom_client restart</code>就只有一句Killed，就啥反应也没有了，就连<code>echo &quot;Drcom Client for GDUFE has stoped.&quot;</code>这句也没输出</p>
+<ul>
+<li>
+<p>restart没反应对吧，一句一句来，先<code>/etc/init.d/drcom_client stop</code>,奇了怪了，<code>echo &quot;Drcom Client for GDUFE has stoped.&quot;</code>同样没输出，我就纳闷了</p>
+</li>
+<li>
+<p>难道是restart没重写成功？</p>
+</li>
+<li>
+<p>难道是stop没重写成功？</p>
+</li>
+<li>
+<h3 id="当我去掉ps-w--grep-drcom--grep--v-grep--cut--c-2-5--xargs-kill--9这一句后echo-drcom-client-for-gdufe-has-stoped竟然成功输出了">当我去掉<code>ps w | grep &quot;.*drcom.*&quot; | grep -v 'grep' | cut -c 2-5 | xargs kill -9</code>这一句后，<code>echo &quot;Drcom Client for GDUFE has stoped.&quot;</code>竟然成功输出了</h3>
+</li>
+<li>
+<p>于是想到，应该是这句把自己也kill掉了，于是去掉<code>| xargs kill -9</code>只留下<code>ps w | grep &quot;.*drcom.*&quot; | grep -v 'grep' | cut -c 2-5 </code></p>
+</li>
+<li>
+<p>执行<code>/etc/init.d/drcom_client stop</code>，果然，出现了两个pid，在前面再加一句ps -w看看结果
+<img src="http://pic.sinowrt.cn/images/2018-10-17T0552/1-1.png" alt=""></p>
+</li>
+</ul>
 <h2 id="solution">Solution</h2>
-
 <ul>
-<li><h3 id="1-修复只截取4位pid">1.修复只截取4位pid</h3></li>
-
-<li><h3 id="2-精准匹配进程名称">2.精准匹配进程名称</h3></li>
-
-<li><p>修改<code>ps w | grep &quot;.*drcom.*&quot; | grep -v 'grep' | cut -c 2-5 | xargs kill -9</code>为</p></li>
-
-<li><p><code>ps w | grep &quot;python.*.drcom&quot; |grep -v 'grep'| awk '{print $1}'| xargs kill -9</code></p></li>
-
-<li><h3 id="3-测试restart是否成功">3.测试restart是否成功</h3>
-
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-10-17T0552/2.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p></li>
+<li>
+<h3 id="1修复只截取4位pid">1.修复只截取4位pid</h3>
+</li>
+<li>
+<h3 id="2精准匹配进程名称">2.精准匹配进程名称</h3>
+</li>
+<li>
+<p>修改<code>ps w | grep &quot;.*drcom.*&quot; | grep -v 'grep' | cut -c 2-5 | xargs kill -9</code>为</p>
+</li>
+<li>
+<p><code>ps w | grep &quot;python.*.drcom&quot; |grep -v 'grep'| awk '{print $1}'| xargs kill -9</code></p>
+</li>
+<li>
+<h3 id="3测试restart是否成功">3.测试restart是否成功</h3>
+</li>
 </ul>
-
+<p><img src="http://pic.sinowrt.cn/images/2018-10-17T0552/2.png" alt=""></p>
 <p>修改的drcom_client如下</p>
-
-<pre><code class="language-shell">#!/bin/sh /etc/rc.common
-START=10
-STOP=15
-run_drcom()
-{
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e">#!/bin/sh /etc/rc.common
+</span><span style="color:#75715e"></span>START<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>
+STOP<span style="color:#f92672">=</span><span style="color:#ae81ff">15</span>
+run_drcom<span style="color:#f92672">(</span><span style="color:#f92672">)</span>
+<span style="color:#f92672">{</span>
 local username
 local password
 config_get username $1 username
 config_get password $1 password
 python /usr/bin/drcom -u $username -p $password &amp;
-}
-start()
-{
+<span style="color:#f92672">}</span>
+start<span style="color:#f92672">(</span><span style="color:#f92672">)</span>
+<span style="color:#f92672">{</span>
 config_load drcom
 config_foreach run_drcom login
-}
-stop()
-{
-ps w | grep &quot;python.*.drcom&quot; |grep -v 'grep'| awk '{print $1}'| xargs kill -9
-echo &quot;Drcom Client for GDUFE has stoped.&quot;
-}
-restart(){
+<span style="color:#f92672">}</span>
+stop<span style="color:#f92672">(</span><span style="color:#f92672">)</span>
+<span style="color:#f92672">{</span>
+ps w | grep <span style="color:#e6db74">&#34;python.*.drcom&#34;</span> |grep -v <span style="color:#e6db74">&#39;grep&#39;</span>| awk <span style="color:#e6db74">&#39;{print $1}&#39;</span>| xargs kill -9
+echo <span style="color:#e6db74">&#34;Drcom Client for GDUFE has stoped.&#34;</span>
+<span style="color:#f92672">}</span>
+restart<span style="color:#f92672">(</span><span style="color:#f92672">)</span><span style="color:#f92672">{</span>
 stop
-sleep 1
+sleep <span style="color:#ae81ff">1</span>
 start
-}
-</code></pre></li>
-</ul>
-
+<span style="color:#f92672">}</span>
+</code></pre></div>
     </div>
-	
+
     <div class="post-copyright">
              
-			
             <p class="copyright-item">
                 <span>Author:</span>
                 <span>sinowrt </span>
@@ -318,12 +302,6 @@ start
                     <span>Link:</span>
                     <a href=http://blog.sinowrt.cn/2018/2018-10-17t0552-init.dkill/>http://blog.sinowrt.cn/2018/2018-10-17t0552-init.dkill/</span>
             </p>
-			
-			<p>
-				<span id="busuanzi_container_page_pv">
-					本文总阅读量：<span id="busuanzi_value_page_pv"></span>次
-				</span>
-			</p>
             
              
             <p class="copyright-item lincese">
@@ -374,15 +352,6 @@ start
          
 		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
     </div>
-	<p class="credits theme-by text-muted">
-        <span id="busuanzi_container_site_pv">
-            本站访问量：<span id="busuanzi_value_site_pv"></span>次
-        </span>
-        &nbsp;
-        <span id="busuanzi_container_site_uv">
-            您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
-        </span>
-    </p>
 </footer>
 
 

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>esxi on Sinowrt</title>
+    <link>http://blog.sinowrt.cn/categories/esxi/</link>
+    <description>Recent content in esxi on Sinowrt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 16 Apr 2020 16:19:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.sinowrt.cn/categories/esxi/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>esxi web client导出虚拟机 中断 报网络错误</title>
+      <link>http://blog.sinowrt.cn/2020/2020-04-16t1619-esxi-network-error-while-exporting-esxi-virtual-machine/</link>
+      <pubDate>Thu, 16 Apr 2020 16:19:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-04-16t1619-esxi-network-error-while-exporting-esxi-virtual-machine/</guid>
+      <description>今天使用esxi的web client导出虚拟机时，总是在导出到20G左右的时候中断，报网络异常，于是上vmware官网找有没有导出虚拟机的工具
+发现 OVFTOOL这个小工具，点击链接下载下来（需要注册账号才能下载），安装
+  打开cmd进入安装文件夹，执行ovftool.exe vi://用户名@esxi的ip/虚拟机名 K:/ovf
+  如果遇到 Fault cause: vim.fault.InvalidState 错误，请确认虚拟机为关机状态
+  运行结果如下所示
+C:\Program Files\VMware\VMware OVF Tool&amp;gt;ovftool.exe vi://root@***.***.***.***/docker K:/ovf Enter login information for source vi://***.***.***.***/ Username: root Password: *********** Opening VI source: vi://root@***.***.***.***:443/docker Opening VI source: vi://root@***.***.***.***:443/docker Opening OVF target: K:/ovf Writing OVF package: K:/ovf\docker\docker.ovf Disk progress: 3% 这个小工具效果非常好，不用担心网络错误问题，进度也能看到，可以打9分</description>
+    </item>
+    
+  </channel>
+</rss>

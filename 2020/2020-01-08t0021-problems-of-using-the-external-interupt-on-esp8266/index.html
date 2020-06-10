@@ -10,7 +10,7 @@
   
   
   <link rel="prev" href="http://blog.sinowrt.cn/2019/2019-11-30t1214-expose-synology-diskstation-to-the-internet/" />
-  
+  <link rel="next" href="http://blog.sinowrt.cn/2020/2020-02-18t1602-linux-mount-error-transport-endpoint-is-not-connected/" />
   <link rel="canonical" href="http://blog.sinowrt.cn/2020/2020-01-08t0021-problems-of-using-the-external-interupt-on-esp8266/" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -46,7 +46,7 @@
     "articleSection" : "posts",
     "name" : "在esp8266中使用外部中断作为按键输入",
     "headline" : "在esp8266中使用外部中断作为按键输入",
-    "description" : "0x00 起因 十月份使用esp8266，利用sonoff的源码做了个homekit小开关，虽然源码已经做得十分完善了，但是不符合我的需求：我需要使用ios的家庭开关灯（这个功能不用改动），还要将esp8266部署到墙上的86开关上，源码中的处理逻辑是在gpio0设置一个微动开关，长按清配置，短按开关灯。但我不可能将墙上原本就有的开关改成微动吧，一来不好操作，二来线路也太乱，于是我就想基于该源码的基础上，添加一个按键，io口电平发生变化即触发开关灯逻辑。 于是故事就开始了。。。\n0x01 过程 程序的编写十分简单，新建自定义的button头文件和源文件，根据原来的按钮照葫芦画瓢进行编码，然后引入到main中，一切都进行得十分顺利。然鹅，这才是噩梦的开始。。。\n0x02 遇到的问题 1. 接荧光灯，使用物理按键，开灯秒熄 主要原因：按键未消抖\n次要原因：荧光灯电磁干扰\n解决过程：更换荧光灯为led灯，发现问题依旧。随后关注到开关过程的信号抖动，下面贴出第一版代码:\nvoid realbtn_intr_callback(uint8_t gpio){ rcallback(gpio); }  软件硬件均无消抖，一旦遇到抖动，便触发n次开关逻辑，后来仔细研究了原作者的按键代码，发现消抖逻辑十分巧妙，于是在自定义按钮上也仿照着写了个消抖逻辑，如下为添加了按键消抖的代码：\nvoid realbtn_intr_callback(uint8_t gpio){ uint32_t now = xTaskGetTickCountFromISR(); if ((now - last_event_time)*portTICK_PERIOD_MS \x26lt; 200) { \/\/ debounce time, ignore events return; } rcallback(gpio); last_event_time = now; }  使用了这段代码之后，按键就基本上能用了，但是时不时会出现开关客厅的荧光灯也会触发中断。\n2. 接入用电器会触发中断，导致无故开关灯。 这个问题排查了很久，从电源，到板子再回到程序，都查了一个遍，期间也踩了很多坑。\n起初怀疑电源电压不稳，造成模块重启，但是回头一想，模块重启只会熄灯，而不会开灯，电源问题排除。\n再就是怀疑板子质量，之前被我拆焊过芯片，存在虚焊的风险，而手头上还有块nodemcu，于是将程序烧到nodemcu上，问题依旧。在调试原全io引出的模块和nodemcu的过程中，踩了最大的坑就是使用了陈年面包板和杜邦线，可能时时间长了，金属触点被氧化的原因，杜邦线电阻竟然有1-2欧，导致加到模块的电压存在0.2-0.3v的压降，这就要命了。烧好程序，一上电就飞，各种奇奇怪怪的现象都出来了。还一度以为烧写次数太多，把模块给烧烂了。。。后来使用了短杜邦线，板子突然又好用了，这才引起了我的怀疑。到网上一搜，同样是哀鸿遍野。总结为两点：面包板杜邦线这东西，要测过再用，电源的检查要上心。\n在这之前，我就怀疑是电磁干扰的问题，虽然手头上没有示波器，但是对于这个的怀疑还是一直有的。也尝试过很多办法，将导线进行绞合，将模块从86盒中拆出来，问题还是存在。直到前两天收拾桌子，在排插上插入台灯的插头，房间的灯就很有节奏地，插进去就关，再插一下就灭。于是就有了测试用例。后来，偶然地将连接按键的导线都拆了，再进行测试，问题就消失了，于是确定是电磁干扰再导线中形成了噪声，而外部中断的io口十分灵敏，一旦有电平的变化，以及会响应。于是上网搜索了软件消抖的例子，最简单也最好用的实属中断延时判断了。一开始使用vTaskDelay进行延时，但是每次触发中断都会导致模块重启，看了下看门狗的输出，再结合网上的搜索结果，原来是rtos系统在中断程序中不允许使用延时api。不使用也行，那我设置while循环用xTaskGetTickCountFromISR()获取节拍，减去now，乘上节拍周期，对该时间进行判断总行了把。结果还是一触发，模块就重启。后来将xTaskGetTickCountFromISR()和now都打印出来，才了解到xTaskGetTickCountFromISR()是从节拍寄存器中取节拍数的，当前都中断了，节拍寄存器的内容当然不会发生变化了。于是我把while段给删了，留下printf打印语句，只想看看触发的tick数和节拍周期的数值是怎样的。结果误打误撞，延时判断似乎生效了。很早之前就知道将数据打印到串口会花费一定的时间，但是怎么就没想到用到这里呢！突然茅塞顿开，下面贴出代码：\nvoid realbtn_intr_callback(uint8_t gpio){ uint32_t now = xTaskGetTickCountFromISR(); if ((now - last_event_time)*portTICK_PERIOD_MS \x26lt; 200) { \/\/ debounce time, ignore events return; } printf(\x26quot;interupted--[-%d--%d]\\n\x26quot;,(now - last_event_time),portTICK_PERIOD_MS); if(gpio_read(gpio)!",
+    "description" : "0x00 起因 十月份使用esp8266，利用sonoff的源码做了个homekit小开关，虽然源码已经做得十分完善了，但是不符合我的需求：我需要使用ios的家庭开关灯（这个功能不用改动），还要将esp8266部署到墙上的86开关上，源码中的处理逻辑是在gpio0设置一个微动开关，长按清配置，短按开关灯。但我不可能将墙上原本就有的开关改成微动吧，一来不好操作，二来线路也太乱，于是我就想基于该源码的基础上，添加一个按键，io口电平发生变化即触发开关灯逻辑。 于是故事就开始了。。。\n0x01 过程 程序的编写十分简单，新建自定义的button头文件和源文件，根据原来的按钮照葫芦画瓢进行编码，然后引入到main中，一切都进行得十分顺利。然鹅，这才是噩梦的开始。。。\n 0x02 遇到的问题 1. 接荧光灯，使用物理按键，开灯秒熄 主要原因：按键未消抖\n次要原因：荧光灯电磁干扰\n解决过程：更换荧光灯为led灯，发现问题依旧。随后关注到开关过程的信号抖动，下面贴出第一版代码:\nvoid realbtn_intr_callback(uint8_t gpio){ rcallback(gpio); } 软件硬件均无消抖，一旦遇到抖动，便触发n次开关逻辑，后来仔细研究了原作者的按键代码，发现消抖逻辑十分巧妙，于是在自定义按钮上也仿照着写了个消抖逻辑，如下为添加了按键消抖的代码：\nvoid realbtn_intr_callback(uint8_t gpio){ uint32_t now = xTaskGetTickCountFromISR(); if ((now - last_event_time)*portTICK_PERIOD_MS \x26lt; 200) { \/\/ debounce time, ignore events  return; } rcallback(gpio); last_event_time = now; } 使用了这段代码之后，按键就基本上能用了，但是时不时会出现开关客厅的荧光灯也会触发中断。\n2. 接入用电器会触发中断，导致无故开关灯。 这个问题排查了很久，从电源，到板子再回到程序，都查了一个遍，期间也踩了很多坑。\n起初怀疑电源电压不稳，造成模块重启，但是回头一想，模块重启只会熄灯，而不会开灯，电源问题排除。\n再就是怀疑板子质量，之前被我拆焊过芯片，存在虚焊的风险，而手头上还有块nodemcu，于是将程序烧到nodemcu上，问题依旧。在调试原全io引出的模块和nodemcu的过程中，踩了最大的坑就是使用了陈年面包板和杜邦线，可能时时间长了，金属触点被氧化的原因，杜邦线电阻竟然有1-2欧，导致加到模块的电压存在0.2-0.3v的压降，这就要命了。烧好程序，一上电就飞，各种奇奇怪怪的现象都出来了。还一度以为烧写次数太多，把模块给烧烂了。。。后来使用了短杜邦线，板子突然又好用了，这才引起了我的怀疑。到网上一搜，同样是哀鸿遍野。总结为两点：面包板杜邦线这东西，要测过再用，电源的检查要上心。\n在这之前，我就怀疑是电磁干扰的问题，虽然手头上没有示波器，但是对于这个的怀疑还是一直有的。也尝试过很多办法，将导线进行绞合，将模块从86盒中拆出来，问题还是存在。直到前两天收拾桌子，在排插上插入台灯的插头，房间的灯就很有节奏地，插进去就关，再插一下就灭。于是就有了测试用例。后来，偶然地将连接按键的导线都拆了，再进行测试，问题就消失了，于是确定是电磁干扰再导线中形成了噪声，而外部中断的io口十分灵敏，一旦有电平的变化，以及会响应。于是上网搜索了软件消抖的例子，最简单也最好用的实属中断延时判断了。一开始使用vTaskDelay进行延时，但是每次触发中断都会导致模块重启，看了下看门狗的输出，再结合网上的搜索结果，原来是rtos系统在中断程序中不允许使用延时api。不使用也行，那我设置while循环用xTaskGetTickCountFromISR()获取节拍，减去now，乘上节拍周期，对该时间进行判断总行了把。结果还是一触发，模块就重启。后来将xTaskGetTickCountFromISR()和now都打印出来，才了解到xTaskGetTickCountFromISR()是从节拍寄存器中取节拍数的，当前都中断了，节拍寄存器的内容当然不会发生变化了。于是我把while段给删了，留下printf打印语句，只想看看触发的tick数和节拍周期的数值是怎样的。结果误打误撞，延时判断似乎生效了。很早之前就知道将数据打印到串口会花费一定的时间，但是怎么就没想到用到这里呢！突然茅塞顿开，下面贴出代码：\nvoid realbtn_intr_callback(uint8_t gpio){ uint32_t now = xTaskGetTickCountFromISR(); if ((now - last_event_time)*portTICK_PERIOD_MS \x26lt; 200) { \/\/ debounce time, ignore events  return; } printf(\x26#34;interupted--[-%d--%d]\\n\x26#34;,(now - last_event_time),portTICK_PERIOD_MS); if(gpio_read(gpio)!",
     "inLanguage" : "en-us",
     "author" : "sinowrt",
     "creator" : "sinowrt",
@@ -63,19 +63,6 @@
 </script>
 
 </head>
-
-<script async src="//cdn.busuanzi.ibruce.info/cdn/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?85719ea04c6401b98466dfdbc9399c78";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-
 
   
 
@@ -161,91 +148,67 @@ var _hmt = _hmt || [];
           
           
 
-          
-
-<h2 id="0x00-起因">0x00 起因</h2>
-
+          <h2 id="0x00-起因">0x00 起因</h2>
 <p>十月份使用esp8266，利用sonoff的源码做了个homekit小开关，虽然源码已经做得十分完善了，但是不符合我的需求：我需要使用ios的家庭开关灯（这个功能不用改动），还要将esp8266部署到墙上的86开关上，源码中的处理逻辑是在gpio0设置一个微动开关，长按清配置，短按开关灯。但我不可能将墙上原本就有的开关改成微动吧，一来不好操作，二来线路也太乱，于是我就想基于该源码的基础上，添加一个按键，io口电平发生变化即触发开关灯逻辑。  于是故事就开始了。。。</p>
-
 <h2 id="0x01-过程">0x01 过程</h2>
-
 <p>程序的编写十分简单，新建自定义的button头文件和源文件，根据原来的按钮照葫芦画瓢进行编码，然后引入到main中，一切都进行得十分顺利。然鹅，这才是噩梦的开始。。。</p>
-
-<hr />
-
+<hr>
 <h2 id="0x02-遇到的问题">0x02 遇到的问题</h2>
-
-<h3 id="1-接荧光灯-使用物理按键-开灯秒熄">1. 接荧光灯，使用物理按键，开灯秒熄</h3>
-
-<p>主要原因：按键未消抖<br />
-次要原因：荧光灯电磁干扰<br />
+<h3 id="1-接荧光灯使用物理按键开灯秒熄">1. 接荧光灯，使用物理按键，开灯秒熄</h3>
+<p>主要原因：按键未消抖<br>
+次要原因：荧光灯电磁干扰<br>
 解决过程：更换荧光灯为led灯，发现问题依旧。随后关注到开关过程的信号抖动，下面贴出第一版代码:</p>
-
-<pre><code class="language-c">void realbtn_intr_callback(uint8_t gpio){
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">realbtn_intr_callback</span>(uint8_t gpio){
     rcallback(gpio);
  } 
-</code></pre>
-
-<p>软件硬件均无消抖，一旦遇到抖动，便触发n次开关逻辑，后来仔细研究了原作者的按键代码，发现消抖逻辑十分巧妙，于是在自定义按钮上也仿照着写了个消抖逻辑，如下为添加了按键消抖的代码：</p>
-
-<pre><code class="language-c">void realbtn_intr_callback(uint8_t gpio){
-    uint32_t now = xTaskGetTickCountFromISR();
-    if ((now - last_event_time)*portTICK_PERIOD_MS &lt; 200) {
-        // debounce time, ignore events
-        return;
+</code></pre></div><p>软件硬件均无消抖，一旦遇到抖动，便触发n次开关逻辑，后来仔细研究了原作者的按键代码，发现消抖逻辑十分巧妙，于是在自定义按钮上也仿照着写了个消抖逻辑，如下为添加了按键消抖的代码：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">realbtn_intr_callback</span>(uint8_t gpio){
+    uint32_t now <span style="color:#f92672">=</span> xTaskGetTickCountFromISR();
+    <span style="color:#66d9ef">if</span> ((now <span style="color:#f92672">-</span> last_event_time)<span style="color:#f92672">*</span>portTICK_PERIOD_MS <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">200</span>) {
+        <span style="color:#75715e">// debounce time, ignore events
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span>;
     }
     rcallback(gpio);
-    last_event_time = now;
+    last_event_time <span style="color:#f92672">=</span> now;
  } 
-</code></pre>
-
-<p>使用了这段代码之后，按键就基本上能用了，但是时不时会出现开关客厅的荧光灯也会触发中断。</p>
-
-<h3 id="2-接入用电器会触发中断-导致无故开关灯">2. 接入用电器会触发中断，导致无故开关灯。</h3>
-
-<p>这个问题排查了很久，从电源，到板子再回到程序，都查了一个遍，期间也踩了很多坑。<br />
-起初怀疑电源电压不稳，造成模块重启，但是回头一想，模块重启只会熄灯，而不会开灯，电源问题排除。<br />
+</code></pre></div><p>使用了这段代码之后，按键就基本上能用了，但是时不时会出现开关客厅的荧光灯也会触发中断。</p>
+<h3 id="2-接入用电器会触发中断导致无故开关灯">2. 接入用电器会触发中断，导致无故开关灯。</h3>
+<p>这个问题排查了很久，从电源，到板子再回到程序，都查了一个遍，期间也踩了很多坑。<br>
+起初怀疑电源电压不稳，造成模块重启，但是回头一想，模块重启只会熄灯，而不会开灯，电源问题排除。<br>
 再就是怀疑板子质量，之前被我拆焊过芯片，存在虚焊的风险，而手头上还有块nodemcu，于是将程序烧到nodemcu上，问题依旧。在调试原全io引出的模块和nodemcu的过程中，踩了最大的坑就是使用了陈年面包板和杜邦线，可能时时间长了，金属触点被氧化的原因，杜邦线电阻竟然有1-2欧，导致加到模块的电压存在0.2-0.3v的压降，这就要命了。烧好程序，一上电就飞，各种奇奇怪怪的现象都出来了。还一度以为烧写次数太多，把模块给烧烂了。。。后来使用了短杜邦线，板子突然又好用了，这才引起了我的怀疑。到网上一搜，同样是哀鸿遍野。总结为两点：面包板杜邦线这东西，要测过再用，电源的检查要上心。</p>
-
 <p>在这之前，我就怀疑是电磁干扰的问题，虽然手头上没有示波器，但是对于这个的怀疑还是一直有的。也尝试过很多办法，将导线进行绞合，将模块从86盒中拆出来，问题还是存在。直到前两天收拾桌子，在排插上插入台灯的插头，房间的灯就很有节奏地，插进去就关，再插一下就灭。于是就有了测试用例。后来，偶然地将连接按键的导线都拆了，再进行测试，问题就消失了，于是确定是电磁干扰再导线中形成了噪声，而外部中断的io口十分灵敏，一旦有电平的变化，以及会响应。于是上网搜索了软件消抖的例子，最简单也最好用的实属中断延时判断了。一开始使用vTaskDelay进行延时，但是每次触发中断都会导致模块重启，看了下看门狗的输出，再结合网上的搜索结果，原来是rtos系统在中断程序中不允许使用延时api。不使用也行，那我设置while循环用xTaskGetTickCountFromISR()获取节拍，减去now，乘上节拍周期，对该时间进行判断总行了把。结果还是一触发，模块就重启。后来将xTaskGetTickCountFromISR()和now都打印出来，才了解到xTaskGetTickCountFromISR()是从节拍寄存器中取节拍数的，当前都中断了，节拍寄存器的内容当然不会发生变化了。于是我把while段给删了，留下printf打印语句，只想看看触发的tick数和节拍周期的数值是怎样的。结果误打误撞，延时判断似乎生效了。很早之前就知道将数据打印到串口会花费一定的时间，但是怎么就没想到用到这里呢！突然茅塞顿开，下面贴出代码：</p>
-
-<pre><code class="language-c">void realbtn_intr_callback(uint8_t gpio){
-    uint32_t now = xTaskGetTickCountFromISR();
-    if ((now - last_event_time)*portTICK_PERIOD_MS &lt; 200) {
-        // debounce time, ignore events
-        return;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">realbtn_intr_callback</span>(uint8_t gpio){
+    uint32_t now <span style="color:#f92672">=</span> xTaskGetTickCountFromISR();
+    <span style="color:#66d9ef">if</span> ((now <span style="color:#f92672">-</span> last_event_time)<span style="color:#f92672">*</span>portTICK_PERIOD_MS <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">200</span>) {
+        <span style="color:#75715e">// debounce time, ignore events
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span>;
     }
-    printf(&quot;interupted--[-%d--%d]\n&quot;,(now - last_event_time),portTICK_PERIOD_MS);
-    if(gpio_read(gpio)!=preValue){
-        printf(&quot;[triggered 1]\n&quot;);
-        if(gpio_read(gpio)!=preValue){
-            printf(&quot;[triggered 2]\n&quot;);
-            preValue=!preValue;
-            rcallback(gpio);
-        }
+    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">interupted--[-%d--%d]</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,(now <span style="color:#f92672">-</span> last_event_time),portTICK_PERIOD_MS);
+    <span style="color:#66d9ef">if</span>(gpio_read(gpio)<span style="color:#f92672">!</span><span style="color:#f92672">=</span>preValue){
+	    printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">[triggered 1]</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+	    <span style="color:#66d9ef">if</span>(gpio_read(gpio)<span style="color:#f92672">!</span><span style="color:#f92672">=</span>preValue){
+	        printf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">[triggered 2]</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>);
+	        preValue<span style="color:#f92672">=</span><span style="color:#f92672">!</span>preValue;
+    	    rcallback(gpio);
+	    }
     }
-    last_event_time = now;
+    last_event_time <span style="color:#f92672">=</span> now;
 
  } 
-</code></pre>
-
-<p>这可能还不是最终代码，因为我发现有时候按下按钮，程序并没有判断到，可能是因为按键触发的抖动时间太长，以至于输出串口后还是会捕捉到电平一致的瞬间，导致误判。<br />
+</code></pre></div><p>这可能还不是最终代码，因为我发现有时候按下按钮，程序并没有判断到，可能是因为按键触发的抖动时间太长，以至于输出串口后还是会捕捉到电平一致的瞬间，导致误判。<br>
 后面改进需要从晶振频率触发，利用while或for循环进行更精确的延时。也可以计算printf占用的实际时间，扩充知识面。</p>
-
 <h2 id="0x03-有趣的发现">0x03 有趣的发现</h2>
-
-<p>自从得到printf加持，模块受到的干扰就变得十分直观了，下面贴出开启荧光灯时的干扰：<br />
-<figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/image/2020-01-08T0021/%E8%8D%A7%E5%85%89%E7%81%AF%E5%BD%B1%E5%93%8D.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure><br />
-<code>Relay Value:1</code>下面的四条interupted均是开启荧光灯触发的。<br />
-另外无意中发现，该程序在未配置wifi的情况下，会自行重启：<br />
-<figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/image/2020-01-08T0021/wifi%E6%9C%AA%E9%85%8D%E7%BD%AE%E8%87%AA%E5%8A%A8%E9%87%8D%E5%90%AF.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure><br />
+<p>自从得到printf加持，模块受到的干扰就变得十分直观了，下面贴出开启荧光灯时的干扰：<br>
+<img src="http://pic.sinowrt.cn/image/2020-01-08T0021/%E8%8D%A7%E5%85%89%E7%81%AF%E5%BD%B1%E5%93%8D.png" alt=""><br>
+<code>Relay Value:1</code>下面的四条interupted均是开启荧光灯触发的。<br>
+另外无意中发现，该程序在未配置wifi的情况下，会自行重启：<br>
+<img src="http://pic.sinowrt.cn/image/2020-01-08T0021/wifi%E6%9C%AA%E9%85%8D%E7%BD%AE%E8%87%AA%E5%8A%A8%E9%87%8D%E5%90%AF.png" alt=""><br>
 而重启后发生Task栈溢出，这又是什么操作？？？</p>
 
     </div>
-	
+
     <div class="post-copyright">
              
-			
             <p class="copyright-item">
                 <span>Author:</span>
                 <span>sinowrt </span>
@@ -257,12 +220,6 @@ var _hmt = _hmt || [];
                     <span>Link:</span>
                     <a href=http://blog.sinowrt.cn/2020/2020-01-08t0021-problems-of-using-the-external-interupt-on-esp8266/>http://blog.sinowrt.cn/2020/2020-01-08t0021-problems-of-using-the-external-interupt-on-esp8266/</span>
             </p>
-			
-			<p>
-				<span id="busuanzi_container_page_pv">
-					本文总阅读量：<span id="busuanzi_value_page_pv"></span>次
-				</span>
-			</p>
             
              
             <p class="copyright-item lincese">
@@ -296,6 +253,8 @@ var _hmt = _hmt || [];
         <a href="http://blog.sinowrt.cn/2019/2019-11-30t1214-expose-synology-diskstation-to-the-internet/" class="prev" rel="prev" title="如何将群晖Nas扔出外网"><i class="iconfont icon-left"></i>&nbsp;如何将群晖Nas扔出外网</a>
          
         
+        <a href="http://blog.sinowrt.cn/2020/2020-02-18t1602-linux-mount-error-transport-endpoint-is-not-connected/" class="next" rel="next" title="Linux 挂载错误 Transport endpoint is not connected">Linux 挂载错误 Transport endpoint is not connected&nbsp;<i class="iconfont icon-right"></i></a>
+        
     </div>
 
     <div class="post-comment">
@@ -322,15 +281,6 @@ var _hmt = _hmt || [];
          
 		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
     </div>
-	<p class="credits theme-by text-muted">
-        <span id="busuanzi_container_site_pv">
-            本站访问量：<span id="busuanzi_value_site_pv"></span>次
-        </span>
-        &nbsp;
-        <span id="busuanzi_container_site_uv">
-            您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
-        </span>
-    </p>
 </footer>
 
 

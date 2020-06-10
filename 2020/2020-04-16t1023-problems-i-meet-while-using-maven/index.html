@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="sinowrt">
+  
+  
+  
+  <link rel="prev" href="http://blog.sinowrt.cn/2020/2020-04-12t2330-ubuntuadd-ngrok-to-supervisor/" />
+  <link rel="next" href="http://blog.sinowrt.cn/2020/2020-04-16t1619-esxi-network-error-while-exporting-esxi-virtual-machine/" />
+  <link rel="canonical" href="http://blog.sinowrt.cn/2020/2020-04-16t1023-problems-i-meet-while-using-maven/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           maven问题汇总 | Sinowrt
+       
+  </title>
+  <meta name="title" content="maven问题汇总 | Sinowrt">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/blog.sinowrt.cn"
+    },
+    "articleSection" : "posts",
+    "name" : "maven问题汇总",
+    "headline" : "maven问题汇总",
+    "description" : "今天使用maven打包上传docker时，发现许多问题，就此记录一下： 1.maven打包报多个main方法的问题\n[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:2.1.12.RELEASE:repackage (default) on project blade-electronic-library: Execution default of goal org.springframework.boot:spring-boot-maven-plugin:2.1.12.RELEASE:repackage failed: Unable to find a single main class from the following candidates [org.springblade.library.ElectronicLibraryApplication, org.springblade.library.controller.BookUploadController, org.springblade.library.utils.BookmarksUtils, org.springblade.library.utils.KeyContextUtils, org.springblade.library.service.impl.BookReadRankServiceImpl] -\x26gt; [Help 1] [ERROR] [ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch. [ERROR] Re-run Maven using the -X switch to enable full debug logging. [ERROR] [ERROR] For more information about the errors and possible solutions, please read the following articles: [ERROR] [Help 1] http:\/\/cwiki.",
+    "inLanguage" : "en-us",
+    "author" : "sinowrt",
+    "creator" : "sinowrt",
+    "publisher": "sinowrt",
+    "accountablePerson" : "sinowrt",
+    "copyrightHolder" : "sinowrt",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-04-16 10:23:00 \x2b0800 CST",
+    "dateModified" : "2020-04-16 10:23:00 \x2b0800 CST",
+    "url" : "http:\/\/blog.sinowrt.cn\/2020\/2020-04-16t1023-problems-i-meet-while-using-maven\/",
+    "wordCount" : "126",
+    "keywords" : [ "maven", "Sinowrt"]
+}
+</script>
+
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">maven问题汇总</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2020-04-16 itemprop="datePublished">April 16, 2020</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="http://blog.sinowrt.cn/categories/maven/"> maven </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          <h3 id="今天使用maven打包上传docker时发现许多问题就此记录一下">今天使用maven打包上传docker时，发现许多问题，就此记录一下：</h3>
+<p>1.maven打包报多个main方法的问题</p>
+<pre><code>[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:2.1.12.RELEASE:repackage (default) on project blade-electronic-library: Execution default of goal org.springframework.boot:spring-boot-maven-plugin:2.1.12.RELEASE:repackage failed: Unable to find a single main class from the following candidates [org.springblade.library.ElectronicLibraryApplication, org.springblade.library.controller.BookUploadController, org.springblade.library.utils.BookmarksUtils, org.springblade.library.utils.KeyContextUtils, org.springblade.library.service.impl.BookReadRankServiceImpl] -&gt; [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/PluginExecutionException
+[ERROR] 
+[ERROR] After correcting the problems, you can resume the build with the command
+[ERROR]   mvn &lt;goals&gt; -rf :blade-electronic-library
+</code></pre><p>解决办法：注释掉除了启动类main方法的其余所有main方法</p>
+<hr>
+<p>2.打包某子模块的时候提示模块缺失</p>
+<p>将根模块依次进行clean compile package install后，再打包子模块</p>
+<hr>
+<p>3.工程中引入别的模块时，由于在别的模块中定义了版本号property，导致无法引入模块的错误<code>Maven: Failed to read artifact descriptor</code></p>
+<p>解决办法，在别的模块的工程中的pom.xml中找到该property，并在根模块添加该property，重新并打包</p>
+<hr>
+<p>4.package | install | deploy的区别</p>
+<ul>
+<li>package命令完成了项目编译、单元测试、打包功能，但没有把打好的可执行jar包（war包或其它形式的包）布署到本地maven仓库和远程maven私服仓库</li>
+<li>install命令完成了项目编译、单元测试、打包功能，同时把打好的可执行jar包（war包或其它形式的包）布署到本地maven仓库，但没有布署到远程maven私服仓库</li>
+<li>deploy命令完成了项目编译、单元测试、打包功能，同时把打好的可执行jar包（war包或其它形式的包）布署到本地maven仓库和远程maven私服仓库</li>
+</ul>
+
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>sinowrt </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://blog.sinowrt.cn/2020/2020-04-16t1023-problems-i-meet-while-using-maven/>http://blog.sinowrt.cn/2020/2020-04-16t1023-problems-i-meet-while-using-maven/</span>
+            </p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/maven/">
+                    #maven</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="http://blog.sinowrt.cn">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://blog.sinowrt.cn/2020/2020-04-12t2330-ubuntuadd-ngrok-to-supervisor/" class="prev" rel="prev" title="[Ubuntu]将ngrok添加到supervisor守护进程"><i class="iconfont icon-left"></i>&nbsp;[Ubuntu]将ngrok添加到supervisor守护进程</a>
+         
+        
+        <a href="http://blog.sinowrt.cn/2020/2020-04-16t1619-esxi-network-error-while-exporting-esxi-virtual-machine/" class="next" rel="next" title="esxi web client导出虚拟机 中断 报网络错误">esxi web client导出虚拟机 中断 报网络错误&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2020</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://blog.sinowrt.cn">sinowrt</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

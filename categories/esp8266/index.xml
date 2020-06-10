@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>esp8266 on Sinowrt</title>
@@ -19,16 +19,16 @@
       <guid>http://blog.sinowrt.cn/2020/2020-01-08t0021-problems-of-using-the-external-interupt-on-esp8266/</guid>
       <description>0x00 起因 十月份使用esp8266，利用sonoff的源码做了个homekit小开关，虽然源码已经做得十分完善了，但是不符合我的需求：我需要使用ios的家庭开关灯（这个功能不用改动），还要将esp8266部署到墙上的86开关上，源码中的处理逻辑是在gpio0设置一个微动开关，长按清配置，短按开关灯。但我不可能将墙上原本就有的开关改成微动吧，一来不好操作，二来线路也太乱，于是我就想基于该源码的基础上，添加一个按键，io口电平发生变化即触发开关灯逻辑。 于是故事就开始了。。。
 0x01 过程 程序的编写十分简单，新建自定义的button头文件和源文件，根据原来的按钮照葫芦画瓢进行编码，然后引入到main中，一切都进行得十分顺利。然鹅，这才是噩梦的开始。。。
-0x02 遇到的问题 1. 接荧光灯，使用物理按键，开灯秒熄 主要原因：按键未消抖
+ 0x02 遇到的问题 1. 接荧光灯，使用物理按键，开灯秒熄 主要原因：按键未消抖
 次要原因：荧光灯电磁干扰
 解决过程：更换荧光灯为led灯，发现问题依旧。随后关注到开关过程的信号抖动，下面贴出第一版代码:
-void realbtn_intr_callback(uint8_t gpio){ rcallback(gpio); }  软件硬件均无消抖，一旦遇到抖动，便触发n次开关逻辑，后来仔细研究了原作者的按键代码，发现消抖逻辑十分巧妙，于是在自定义按钮上也仿照着写了个消抖逻辑，如下为添加了按键消抖的代码：
-void realbtn_intr_callback(uint8_t gpio){ uint32_t now = xTaskGetTickCountFromISR(); if ((now - last_event_time)*portTICK_PERIOD_MS &amp;lt; 200) { // debounce time, ignore events return; } rcallback(gpio); last_event_time = now; }  使用了这段代码之后，按键就基本上能用了，但是时不时会出现开关客厅的荧光灯也会触发中断。
+void realbtn_intr_callback(uint8_t gpio){ rcallback(gpio); } 软件硬件均无消抖，一旦遇到抖动，便触发n次开关逻辑，后来仔细研究了原作者的按键代码，发现消抖逻辑十分巧妙，于是在自定义按钮上也仿照着写了个消抖逻辑，如下为添加了按键消抖的代码：
+void realbtn_intr_callback(uint8_t gpio){ uint32_t now = xTaskGetTickCountFromISR(); if ((now - last_event_time)*portTICK_PERIOD_MS &amp;lt; 200) { // debounce time, ignore events  return; } rcallback(gpio); last_event_time = now; } 使用了这段代码之后，按键就基本上能用了，但是时不时会出现开关客厅的荧光灯也会触发中断。
 2. 接入用电器会触发中断，导致无故开关灯。 这个问题排查了很久，从电源，到板子再回到程序，都查了一个遍，期间也踩了很多坑。
 起初怀疑电源电压不稳，造成模块重启，但是回头一想，模块重启只会熄灯，而不会开灯，电源问题排除。
 再就是怀疑板子质量，之前被我拆焊过芯片，存在虚焊的风险，而手头上还有块nodemcu，于是将程序烧到nodemcu上，问题依旧。在调试原全io引出的模块和nodemcu的过程中，踩了最大的坑就是使用了陈年面包板和杜邦线，可能时时间长了，金属触点被氧化的原因，杜邦线电阻竟然有1-2欧，导致加到模块的电压存在0.2-0.3v的压降，这就要命了。烧好程序，一上电就飞，各种奇奇怪怪的现象都出来了。还一度以为烧写次数太多，把模块给烧烂了。。。后来使用了短杜邦线，板子突然又好用了，这才引起了我的怀疑。到网上一搜，同样是哀鸿遍野。总结为两点：面包板杜邦线这东西，要测过再用，电源的检查要上心。
 在这之前，我就怀疑是电磁干扰的问题，虽然手头上没有示波器，但是对于这个的怀疑还是一直有的。也尝试过很多办法，将导线进行绞合，将模块从86盒中拆出来，问题还是存在。直到前两天收拾桌子，在排插上插入台灯的插头，房间的灯就很有节奏地，插进去就关，再插一下就灭。于是就有了测试用例。后来，偶然地将连接按键的导线都拆了，再进行测试，问题就消失了，于是确定是电磁干扰再导线中形成了噪声，而外部中断的io口十分灵敏，一旦有电平的变化，以及会响应。于是上网搜索了软件消抖的例子，最简单也最好用的实属中断延时判断了。一开始使用vTaskDelay进行延时，但是每次触发中断都会导致模块重启，看了下看门狗的输出，再结合网上的搜索结果，原来是rtos系统在中断程序中不允许使用延时api。不使用也行，那我设置while循环用xTaskGetTickCountFromISR()获取节拍，减去now，乘上节拍周期，对该时间进行判断总行了把。结果还是一触发，模块就重启。后来将xTaskGetTickCountFromISR()和now都打印出来，才了解到xTaskGetTickCountFromISR()是从节拍寄存器中取节拍数的，当前都中断了，节拍寄存器的内容当然不会发生变化了。于是我把while段给删了，留下printf打印语句，只想看看触发的tick数和节拍周期的数值是怎样的。结果误打误撞，延时判断似乎生效了。很早之前就知道将数据打印到串口会花费一定的时间，但是怎么就没想到用到这里呢！突然茅塞顿开，下面贴出代码：
-void realbtn_intr_callback(uint8_t gpio){ uint32_t now = xTaskGetTickCountFromISR(); if ((now - last_event_time)*portTICK_PERIOD_MS &amp;lt; 200) { // debounce time, ignore events return; } printf(&amp;quot;interupted--[-%d--%d]\n&amp;quot;,(now - last_event_time),portTICK_PERIOD_MS); if(gpio_read(gpio)!</description>
+void realbtn_intr_callback(uint8_t gpio){ uint32_t now = xTaskGetTickCountFromISR(); if ((now - last_event_time)*portTICK_PERIOD_MS &amp;lt; 200) { // debounce time, ignore events  return; } printf(&amp;#34;interupted--[-%d--%d]\n&amp;#34;,(now - last_event_time),portTICK_PERIOD_MS); if(gpio_read(gpio)!</description>
     </item>
     
   </channel>

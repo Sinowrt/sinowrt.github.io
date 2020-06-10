@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="sinowrt">
+  
+  
+  
+  <link rel="prev" href="http://blog.sinowrt.cn/2020/2020-03-05t1618-something-changed-while-java-long-parsing-to-javascript/" />
+  <link rel="next" href="http://blog.sinowrt.cn/2020/2020-04-10t1001-npm-eperm-operation-not-permitted/" />
+  <link rel="canonical" href="http://blog.sinowrt.cn/2020/2020-04-03t0853-xxl-job-groovyclassloader-noclassdeffounderror-exception/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           xxl-job 启动报异常 java.lang.NoClassDefFoundError: groovy/lang/GroovyClassLoader | Sinowrt
+       
+  </title>
+  <meta name="title" content="xxl-job 启动报异常 java.lang.NoClassDefFoundError: groovy/lang/GroovyClassLoader | Sinowrt">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/blog.sinowrt.cn"
+    },
+    "articleSection" : "posts",
+    "name" : "xxl-job 启动报异常 java.lang.NoClassDefFoundError: groovy\/lang\/GroovyClassLoader",
+    "headline" : "xxl-job 启动报异常 java.lang.NoClassDefFoundError: groovy\/lang\/GroovyClassLoader",
+    "description" : "今天负责交接xxl-job数据同步系统，首先当然是将项目跑起来啦\n但是项目拉下来后，配置好，运行抛了个NoClassDefFoundError异常：\norg.springframework.beans.factory.BeanCreationException: Error creating bean with name \x26#39;xxlJobExecutor\x26#39; defined in class path resource [org\/springblade\/job\/executor\/config\/XxlJobConfig.class]: Invocation of init method failed; nested exception is java.lang.NoClassDefFoundError: groovy\/lang\/GroovyClassLoader at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1771) at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:593) at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515) at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320) at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222) at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318) at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:847) at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:877) at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549) at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:141) at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:744) at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:391) at org.springframework.boot.SpringApplication.run(SpringApplication.java:312) at org.springframework.boot.builder.SpringApplicationBuilder.run(SpringApplicationBuilder.java:140) at org.springblade.core.launch.BladeApplication.run(BladeApplication.java:49) at org.springblade.job.executor.JobApplication.main(JobApplication.java:34) Caused by: java.lang.NoClassDefFoundError: groovy\/lang\/GroovyClassLoader at com.xxl.job.core.glue.GlueFactory.\x26lt;init\x26gt;(GlueFactory.java:36) at com.xxl.job.core.glue.GlueFactory.\x26lt;clinit\x26gt;(GlueFactory.java:20) at com.xxl.job.core.executor.impl.XxlJobSpringExecutor.afterPropertiesSet(XxlJobSpringExecutor.java:39) at org.",
+    "inLanguage" : "en-us",
+    "author" : "sinowrt",
+    "creator" : "sinowrt",
+    "publisher": "sinowrt",
+    "accountablePerson" : "sinowrt",
+    "copyrightHolder" : "sinowrt",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-04-03 08:53:27 \x2b0800 CST",
+    "dateModified" : "2020-04-03 08:53:27 \x2b0800 CST",
+    "url" : "http:\/\/blog.sinowrt.cn\/2020\/2020-04-03t0853-xxl-job-groovyclassloader-noclassdeffounderror-exception\/",
+    "wordCount" : "108",
+    "keywords" : [ "xxl-job", "Sinowrt"]
+}
+</script>
+
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">xxl-job 启动报异常 java.lang.NoClassDefFoundError: groovy/lang/GroovyClassLoader</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2020-04-03 itemprop="datePublished">April 3, 2020</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="http://blog.sinowrt.cn/categories/develope/"> develope </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          <p>今天负责交接xxl-job数据同步系统，首先当然是将项目跑起来啦</p>
+<p>但是项目拉下来后，配置好，运行抛了个NoClassDefFoundError异常：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java">org<span style="color:#f92672">.</span><span style="color:#a6e22e">springframework</span><span style="color:#f92672">.</span><span style="color:#a6e22e">beans</span><span style="color:#f92672">.</span><span style="color:#a6e22e">factory</span><span style="color:#f92672">.</span><span style="color:#a6e22e">BeanCreationException</span><span style="color:#f92672">:</span> Error creating bean with name <span style="color:#960050;background-color:#1e0010">&#39;</span>xxlJobExecutor<span style="color:#960050;background-color:#1e0010">&#39;</span> defined in <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">path</span> resource <span style="color:#f92672">[</span>org<span style="color:#f92672">/</span>springblade<span style="color:#f92672">/</span>job<span style="color:#f92672">/</span>executor<span style="color:#f92672">/</span>config<span style="color:#f92672">/</span>XxlJobConfig<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">]</span><span style="color:#f92672">:</span> Invocation of init method failed<span style="color:#f92672">;</span> nested exception is java<span style="color:#f92672">.</span><span style="color:#a6e22e">lang</span><span style="color:#f92672">.</span><span style="color:#a6e22e">NoClassDefFoundError</span><span style="color:#f92672">:</span> groovy<span style="color:#f92672">/</span>lang<span style="color:#f92672">/</span>GroovyClassLoader
+	at org<span style="color:#f92672">.</span><span style="color:#a6e22e">springframework</span><span style="color:#f92672">.</span><span style="color:#a6e22e">beans</span><span style="color:#f92672">.</span><span style="color:#a6e22e">factory</span><span style="color:#f92672">.</span><span style="color:#a6e22e">support</span><span style="color:#f92672">.</span><span style="color:#a6e22e">AbstractAutowireCapableBeanFactory</span><span style="color:#f92672">.</span><span style="color:#a6e22e">initializeBean</span><span style="color:#f92672">(</span>AbstractAutowireCapableBeanFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>1771<span style="color:#f92672">)</span>
+	at org<span style="color:#f92672">.</span><span style="color:#a6e22e">springframework</span><span style="color:#f92672">.</span><span style="color:#a6e22e">beans</span><span style="color:#f92672">.</span><span style="color:#a6e22e">factory</span><span style="color:#f92672">.</span><span style="color:#a6e22e">support</span><span style="color:#f92672">.</span><span style="color:#a6e22e">AbstractAutowireCapableBeanFactory</span><span style="color:#f92672">.</span><span style="color:#a6e22e">doCreateBean</span><span style="color:#f92672">(</span>AbstractAutowireCapableBeanFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>593<span style="color:#f92672">)</span>
+	at org<span style="color:#f92672">.</span><span style="color:#a6e22e">springframework</span><span style="color:#f92672">.</span><span style="color:#a6e22e">beans</span><span style="color:#f92672">.</span><span style="color:#a6e22e">factory</span><span style="color:#f92672">.</span><span style="color:#a6e22e">support</span><span style="color:#f92672">.</span><span style="color:#a6e22e">AbstractAutowireCapableBeanFactory</span><span style="color:#f92672">.</span><span style="color:#a6e22e">createBean</span><span style="color:#f92672">(</span>AbstractAutowireCapableBeanFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>515<span style="color:#f92672">)</span>
+	at org<span style="color:#f92672">.</span><span style="color:#a6e22e">springframework</span><span style="color:#f92672">.</span><span style="color:#a6e22e">beans</span><span style="color:#f92672">.</span><span style="color:#a6e22e">factory</span><span style="color:#f92672">.</span><span style="color:#a6e22e">support</span><span style="color:#f92672">.</span><span style="color:#a6e22e">AbstractBeanFactory</span><span style="color:#f92672">.</span><span style="color:#a6e22e">lambda$doGetBean$0</span><span style="color:#f92672">(</span>AbstractBeanFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>320<span style="color:#f92672">)</span>
+	at org<span style="color:#f92672">.</span><span style="color:#a6e22e">springframework</span><span style="color:#f92672">.</span><span style="color:#a6e22e">beans</span><span style="color:#f92672">.</span><span style="color:#a6e22e">factory</span><span style="color:#f92672">.</span><span style="color:#a6e22e">support</span><span style="color:#f92672">.</span><span style="color:#a6e22e">DefaultSingletonBeanRegistry</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getSingleton</span><span style="color:#f92672">(</span>DefaultSingletonBeanRegistry<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>222<span style="color:#f92672">)</span>
+	at org<span style="color:#f92672">.</span><span style="color:#a6e22e">springframework</span><span style="color:#f92672">.</span><span style="color:#a6e22e">beans</span><span style="color:#f92672">.</span><span style="color:#a6e22e">factory</span><span style="color:#f92672">.</span><span style="color:#a6e22e">support</span><span style="color:#f92672">.</span><span style="color:#a6e22e">AbstractBeanFactory</span><span style="color:#f92672">.</span><span style="color:#a6e22e">doGetBean</span><span style="color:#f92672">(</span>AbstractBeanFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>318<span style="color:#f92672">)</span>
+	at org<span style="color:#f92672">.</span><span style="color:#a6e22e">springframework</span><span style="color:#f92672">.</span><span style="color:#a6e22e">beans</span><span style="color:#f92672">.</span><span style="color:#a6e22e">factory</span><span style="color:#f92672">.</span><span style="color:#a6e22e">support</span><span style="color:#f92672">.</span><span style="color:#a6e22e">AbstractBeanFactory</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getBean</span><span style="color:#f92672">(</span>AbstractBeanFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>199<span style="color:#f92672">)</span>
+	at org<span style="color:#f92672">.</span><span style="color:#a6e22e">springframework</span><span style="color:#f92672">.</span><span style="color:#a6e22e">beans</span><span style="color:#f92672">.</span><span style="color:#a6e22e">factory</span><span style="color:#f92672">.</span><span style="color:#a6e22e">support</span><span style="color:#f92672">.</span><span style="color:#a6e22e">DefaultListableBeanFactory</span><span style="color:#f92672">.</span><span style="color:#a6e22e">preInstantiateSingletons</span><span style="color:#f92672">(</span>DefaultListableBeanFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>847<span style="color:#f92672">)</span>
+	at org<span style="color:#f92672">.</span><span style="color:#a6e22e">springframework</span><span style="color:#f92672">.</span><span style="color:#a6e22e">context</span><span style="color:#f92672">.</span><span style="color:#a6e22e">support</span><span style="color:#f92672">.</span><span style="color:#a6e22e">AbstractApplicationContext</span><span style="color:#f92672">.</span><span style="color:#a6e22e">finishBeanFactoryInitialization</span><span style="color:#f92672">(</span>AbstractApplicationContext<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>877<span style="color:#f92672">)</span>
+	at org<span style="color:#f92672">.</span><span style="color:#a6e22e">springframework</span><span style="color:#f92672">.</span><span style="color:#a6e22e">context</span><span style="color:#f92672">.</span><span style="color:#a6e22e">support</span><span style="color:#f92672">.</span><span style="color:#a6e22e">AbstractApplicationContext</span><span style="color:#f92672">.</span><span style="color:#a6e22e">refresh</span><span style="color:#f92672">(</span>AbstractApplicationContext<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>549<span style="color:#f92672">)</span>
+	at org<span style="color:#f92672">.</span><span style="color:#a6e22e">springframework</span><span style="color:#f92672">.</span><span style="color:#a6e22e">boot</span><span style="color:#f92672">.</span><span style="color:#a6e22e">web</span><span style="color:#f92672">.</span><span style="color:#a6e22e">servlet</span><span style="color:#f92672">.</span><span style="color:#a6e22e">context</span><span style="color:#f92672">.</span><span style="color:#a6e22e">ServletWebServerApplicationContext</span><span style="color:#f92672">.</span><span style="color:#a6e22e">refresh</span><span style="color:#f92672">(</span>ServletWebServerApplicationContext<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>141<span style="color:#f92672">)</span>
+	at org<span style="color:#f92672">.</span><span style="color:#a6e22e">springframework</span><span style="color:#f92672">.</span><span style="color:#a6e22e">boot</span><span style="color:#f92672">.</span><span style="color:#a6e22e">SpringApplication</span><span style="color:#f92672">.</span><span style="color:#a6e22e">refresh</span><span style="color:#f92672">(</span>SpringApplication<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>744<span style="color:#f92672">)</span>
+	at org<span style="color:#f92672">.</span><span style="color:#a6e22e">springframework</span><span style="color:#f92672">.</span><span style="color:#a6e22e">boot</span><span style="color:#f92672">.</span><span style="color:#a6e22e">SpringApplication</span><span style="color:#f92672">.</span><span style="color:#a6e22e">refreshContext</span><span style="color:#f92672">(</span>SpringApplication<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>391<span style="color:#f92672">)</span>
+	at org<span style="color:#f92672">.</span><span style="color:#a6e22e">springframework</span><span style="color:#f92672">.</span><span style="color:#a6e22e">boot</span><span style="color:#f92672">.</span><span style="color:#a6e22e">SpringApplication</span><span style="color:#f92672">.</span><span style="color:#a6e22e">run</span><span style="color:#f92672">(</span>SpringApplication<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>312<span style="color:#f92672">)</span>
+	at org<span style="color:#f92672">.</span><span style="color:#a6e22e">springframework</span><span style="color:#f92672">.</span><span style="color:#a6e22e">boot</span><span style="color:#f92672">.</span><span style="color:#a6e22e">builder</span><span style="color:#f92672">.</span><span style="color:#a6e22e">SpringApplicationBuilder</span><span style="color:#f92672">.</span><span style="color:#a6e22e">run</span><span style="color:#f92672">(</span>SpringApplicationBuilder<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>140<span style="color:#f92672">)</span>
+	at org<span style="color:#f92672">.</span><span style="color:#a6e22e">springblade</span><span style="color:#f92672">.</span><span style="color:#a6e22e">core</span><span style="color:#f92672">.</span><span style="color:#a6e22e">launch</span><span style="color:#f92672">.</span><span style="color:#a6e22e">BladeApplication</span><span style="color:#f92672">.</span><span style="color:#a6e22e">run</span><span style="color:#f92672">(</span>BladeApplication<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>49<span style="color:#f92672">)</span>
+	at org<span style="color:#f92672">.</span><span style="color:#a6e22e">springblade</span><span style="color:#f92672">.</span><span style="color:#a6e22e">job</span><span style="color:#f92672">.</span><span style="color:#a6e22e">executor</span><span style="color:#f92672">.</span><span style="color:#a6e22e">JobApplication</span><span style="color:#f92672">.</span><span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>JobApplication<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>34<span style="color:#f92672">)</span>
+Caused by<span style="color:#f92672">:</span> java<span style="color:#f92672">.</span><span style="color:#a6e22e">lang</span><span style="color:#f92672">.</span><span style="color:#a6e22e">NoClassDefFoundError</span><span style="color:#f92672">:</span> groovy<span style="color:#f92672">/</span>lang<span style="color:#f92672">/</span>GroovyClassLoader
+	at com<span style="color:#f92672">.</span><span style="color:#a6e22e">xxl</span><span style="color:#f92672">.</span><span style="color:#a6e22e">job</span><span style="color:#f92672">.</span><span style="color:#a6e22e">core</span><span style="color:#f92672">.</span><span style="color:#a6e22e">glue</span><span style="color:#f92672">.</span><span style="color:#a6e22e">GlueFactory</span><span style="color:#f92672">.</span><span style="color:#f92672">&lt;</span>init<span style="color:#f92672">&gt;</span><span style="color:#f92672">(</span>GlueFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>36<span style="color:#f92672">)</span>
+	at com<span style="color:#f92672">.</span><span style="color:#a6e22e">xxl</span><span style="color:#f92672">.</span><span style="color:#a6e22e">job</span><span style="color:#f92672">.</span><span style="color:#a6e22e">core</span><span style="color:#f92672">.</span><span style="color:#a6e22e">glue</span><span style="color:#f92672">.</span><span style="color:#a6e22e">GlueFactory</span><span style="color:#f92672">.</span><span style="color:#f92672">&lt;</span>clinit<span style="color:#f92672">&gt;</span><span style="color:#f92672">(</span>GlueFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>20<span style="color:#f92672">)</span>
+	at com<span style="color:#f92672">.</span><span style="color:#a6e22e">xxl</span><span style="color:#f92672">.</span><span style="color:#a6e22e">job</span><span style="color:#f92672">.</span><span style="color:#a6e22e">core</span><span style="color:#f92672">.</span><span style="color:#a6e22e">executor</span><span style="color:#f92672">.</span><span style="color:#a6e22e">impl</span><span style="color:#f92672">.</span><span style="color:#a6e22e">XxlJobSpringExecutor</span><span style="color:#f92672">.</span><span style="color:#a6e22e">afterPropertiesSet</span><span style="color:#f92672">(</span>XxlJobSpringExecutor<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>39<span style="color:#f92672">)</span>
+	at org<span style="color:#f92672">.</span><span style="color:#a6e22e">springframework</span><span style="color:#f92672">.</span><span style="color:#a6e22e">beans</span><span style="color:#f92672">.</span><span style="color:#a6e22e">factory</span><span style="color:#f92672">.</span><span style="color:#a6e22e">support</span><span style="color:#f92672">.</span><span style="color:#a6e22e">AbstractAutowireCapableBeanFactory</span><span style="color:#f92672">.</span><span style="color:#a6e22e">invokeInitMethods</span><span style="color:#f92672">(</span>AbstractAutowireCapableBeanFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>1830<span style="color:#f92672">)</span>
+	at org<span style="color:#f92672">.</span><span style="color:#a6e22e">springframework</span><span style="color:#f92672">.</span><span style="color:#a6e22e">beans</span><span style="color:#f92672">.</span><span style="color:#a6e22e">factory</span><span style="color:#f92672">.</span><span style="color:#a6e22e">support</span><span style="color:#f92672">.</span><span style="color:#a6e22e">AbstractAutowireCapableBeanFactory</span><span style="color:#f92672">.</span><span style="color:#a6e22e">initializeBean</span><span style="color:#f92672">(</span>AbstractAutowireCapableBeanFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>1767<span style="color:#f92672">)</span>
+	<span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span> 16 common frames omitted
+Caused by<span style="color:#f92672">:</span> java<span style="color:#f92672">.</span><span style="color:#a6e22e">lang</span><span style="color:#f92672">.</span><span style="color:#a6e22e">ClassNotFoundException</span><span style="color:#f92672">:</span> groovy<span style="color:#f92672">.</span><span style="color:#a6e22e">lang</span><span style="color:#f92672">.</span><span style="color:#a6e22e">GroovyClassLoader</span>
+	at java<span style="color:#f92672">.</span><span style="color:#a6e22e">net</span><span style="color:#f92672">.</span><span style="color:#a6e22e">URLClassLoader</span><span style="color:#f92672">.</span><span style="color:#a6e22e">findClass</span><span style="color:#f92672">(</span>URLClassLoader<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>381<span style="color:#f92672">)</span>
+	at java<span style="color:#f92672">.</span><span style="color:#a6e22e">lang</span><span style="color:#f92672">.</span><span style="color:#a6e22e">ClassLoader</span><span style="color:#f92672">.</span><span style="color:#a6e22e">loadClass</span><span style="color:#f92672">(</span>ClassLoader<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>424<span style="color:#f92672">)</span>
+	at sun<span style="color:#f92672">.</span><span style="color:#a6e22e">misc</span><span style="color:#f92672">.</span><span style="color:#a6e22e">Launcher$AppClassLoader</span><span style="color:#f92672">.</span><span style="color:#a6e22e">loadClass</span><span style="color:#f92672">(</span>Launcher<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>335<span style="color:#f92672">)</span>
+	at java<span style="color:#f92672">.</span><span style="color:#a6e22e">lang</span><span style="color:#f92672">.</span><span style="color:#a6e22e">ClassLoader</span><span style="color:#f92672">.</span><span style="color:#a6e22e">loadClass</span><span style="color:#f92672">(</span>ClassLoader<span style="color:#f92672">.</span><span style="color:#a6e22e">java</span><span style="color:#f92672">:</span>357<span style="color:#f92672">)</span>
+	<span style="color:#f92672">.</span><span style="color:#f92672">.</span><span style="color:#f92672">.</span> 21 common frames omitted
+
+
+Process finished with exit code 1
+</code></pre></div><p>添加如下依赖，问题解决</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;dependency</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&lt;groupId</span><span style="color:#f92672">&gt;</span>org.codehaus.groovy<span style="color:#f92672">&lt;/groupId&gt;</span>
+    <span style="color:#f92672">&lt;artifactId</span><span style="color:#f92672">&gt;</span>groovy-all<span style="color:#f92672">&lt;/artifactId&gt;</span>
+    <span style="color:#f92672">&lt;version</span><span style="color:#f92672">&gt;</span>2.5.2<span style="color:#f92672">&lt;/version&gt;</span>
+    <span style="color:#f92672">&lt;type</span><span style="color:#f92672">&gt;</span>pom<span style="color:#f92672">&lt;/type&gt;</span>
+<span style="color:#f92672">&lt;/dependency&gt;</span>
+</code></pre></div>
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>sinowrt </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://blog.sinowrt.cn/2020/2020-04-03t0853-xxl-job-groovyclassloader-noclassdeffounderror-exception/>http://blog.sinowrt.cn/2020/2020-04-03t0853-xxl-job-groovyclassloader-noclassdeffounderror-exception/</span>
+            </p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/xxl-job/">
+                    #xxl-job</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="http://blog.sinowrt.cn">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://blog.sinowrt.cn/2020/2020-03-05t1618-something-changed-while-java-long-parsing-to-javascript/" class="prev" rel="prev" title="js大整数精度导致前后端传参不一致问题"><i class="iconfont icon-left"></i>&nbsp;js大整数精度导致前后端传参不一致问题</a>
+         
+        
+        <a href="http://blog.sinowrt.cn/2020/2020-04-10t1001-npm-eperm-operation-not-permitted/" class="next" rel="next" title="npm 报错 EPERM: operation not permitted">npm 报错 EPERM: operation not permitted&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2020</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://blog.sinowrt.cn">sinowrt</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

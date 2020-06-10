@@ -46,7 +46,7 @@
     "articleSection" : "posts",
     "name" : "用prism为WordPress页面实现代码高亮",
     "headline" : "用prism为WordPress页面实现代码高亮",
-    "description" : " 0x01 下载prism的css与js文件  在prism官网下载prism的css与js文件  0x02 ssh方式登陆服务器  在路径\/wordpress\/htdocs\/wp-content\/themes\/你的主题名称\/路径下创建prism文件夹 将prism.css与prism.js两个文件上传到prism文件夹中  0x03 修改functions.php  在\/wordpress\/htdocs\/wp-content\/themes\/你的主题名称\/下找到functions.php vi修改文件，添加以下语句：  function add_prism() { wp_register_style( \x27prismCSS\x27, get_stylesheet_directory_uri() . \x27\/prism\/prism.css\x27 \/\/自定义路径 ); wp_register_script( \x27prismJS\x27, get_stylesheet_directory_uri() . \x27\/prism\/prism.js\x27 \/\/自定义路径 ); wp_enqueue_style(\x27prismCSS\x27); wp_enqueue_script(\x27prismJS\x27); } add_action(\x27wp_enqueue_scripts\x27, \x27add_prism\x27);  0x04注意  get_stylesheet_directory_uri()与get_parent_theme_file_path( \x27\/inc\/color-patterns.php\x27 )的区别 使用get_parent_theme_file_path( \x27\/prism\/prism.css\x27 )语句之后发现页面代码高亮没生效 通过chrome F12调试 发现prism.css与prism.js没加载成功 细看发现请求路径不对劲 修改成get_stylesheet_directory_uri().\x27\/prism\/prism.js\x27之后代码高亮生效  ",
+    "description" : "0x01 下载prism的css与js文件  在prism官网下载prism的css与js文件  0x02 ssh方式登陆服务器  在路径\/wordpress\/htdocs\/wp-content\/themes\/你的主题名称\/路径下创建prism文件夹 将prism.css与prism.js两个文件上传到prism文件夹中  0x03 修改functions.php  在\/wordpress\/htdocs\/wp-content\/themes\/你的主题名称\/下找到functions.php vi修改文件，添加以下语句：  function add_prism() { wp_register_style( \x26#39;prismCSS\x26#39;, get_stylesheet_directory_uri() . \x26#39;\/prism\/prism.css\x26#39; \/\/自定义路径  ); wp_register_script( \x26#39;prismJS\x26#39;, get_stylesheet_directory_uri() . \x26#39;\/prism\/prism.js\x26#39; \/\/自定义路径  ); wp_enqueue_style(\x26#39;prismCSS\x26#39;); wp_enqueue_script(\x26#39;prismJS\x26#39;); } add_action(\x26#39;wp_enqueue_scripts\x26#39;, \x26#39;add_prism\x26#39;); 0x04注意  get_stylesheet_directory_uri()与get_parent_theme_file_path( \x27\/inc\/color-patterns.php\x27 )的区别 使用get_parent_theme_file_path( \x27\/prism\/prism.css\x27 )语句之后发现页面代码高亮没生效 通过chrome F12调试 发现prism.css与prism.js没加载成功 细看发现请求路径不对劲 修改成get_stylesheet_directory_uri().\x27\/prism\/prism.js\x27之后代码高亮生效  ",
     "inLanguage" : "en-us",
     "author" : "SinoWRT",
     "creator" : "SinoWRT",
@@ -63,19 +63,6 @@
 </script>
 
 </head>
-
-<script async src="//cdn.busuanzi.ibruce.info/cdn/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?85719ea04c6401b98466dfdbc9399c78";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-
 
   
 
@@ -159,45 +146,34 @@ var _hmt = _hmt || [];
           
           
 
-          
-
-<h2 id="0x01-下载prism的css与js文件">0x01 下载prism的css与js文件</h2>
-
+          <h2 id="0x01-下载prism的css与js文件">0x01 下载prism的css与js文件</h2>
 <ul>
-<li>在<a href="https://prismjs.com/download.html" rel="nofollow noreferrer" target="_blank">prism官网</a>下载prism的css与js文件</li>
+<li>在<a href="https://prismjs.com/download.html">prism官网</a>下载prism的css与js文件</li>
 </ul>
-
 <h2 id="0x02-ssh方式登陆服务器">0x02 ssh方式登陆服务器</h2>
-
 <ul>
 <li>在路径<code>/wordpress/htdocs/wp-content/themes/你的主题名称/</code>路径下创建prism文件夹</li>
 <li>将prism.css与prism.js两个文件上传到prism文件夹中</li>
 </ul>
-
-<h2 id="0x03-修改functions-php">0x03 修改functions.php</h2>
-
+<h2 id="0x03-修改functionsphp">0x03 修改functions.php</h2>
 <ul>
 <li>在<code>/wordpress/htdocs/wp-content/themes/你的主题名称/</code>下找到functions.php</li>
 <li>vi修改文件，添加以下语句：</li>
 </ul>
-
-<pre><code class="language-js">function add_prism() {
-        wp_register_style(
-            'prismCSS', 
-            get_stylesheet_directory_uri() . '/prism/prism.css' //自定义路径          
-        );
-        wp_register_script(
-            'prismJS',
-            get_stylesheet_directory_uri() . '/prism/prism.js'   //自定义路径          
-        );
-        wp_enqueue_style('prismCSS');
-        wp_enqueue_script('prismJS');
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">add_prism</span>() {
+        <span style="color:#a6e22e">wp_register_style</span>(
+            <span style="color:#e6db74">&#39;prismCSS&#39;</span>, 
+            <span style="color:#a6e22e">get_stylesheet_directory_uri</span>() . <span style="color:#e6db74">&#39;/prism/prism.css&#39;</span> <span style="color:#75715e">//自定义路径          
+</span><span style="color:#75715e"></span>        );
+        <span style="color:#a6e22e">wp_register_script</span>(
+            <span style="color:#e6db74">&#39;prismJS&#39;</span>,
+            <span style="color:#a6e22e">get_stylesheet_directory_uri</span>() . <span style="color:#e6db74">&#39;/prism/prism.js&#39;</span>   <span style="color:#75715e">//自定义路径          
+</span><span style="color:#75715e"></span>        );
+        <span style="color:#a6e22e">wp_enqueue_style</span>(<span style="color:#e6db74">&#39;prismCSS&#39;</span>);
+        <span style="color:#a6e22e">wp_enqueue_script</span>(<span style="color:#e6db74">&#39;prismJS&#39;</span>);
     }
-add_action('wp_enqueue_scripts', 'add_prism');
-</code></pre>
-
-<h2 id="0x04注意">0x04注意</h2>
-
+<span style="color:#a6e22e">add_action</span>(<span style="color:#e6db74">&#39;wp_enqueue_scripts&#39;</span>, <span style="color:#e6db74">&#39;add_prism&#39;</span>);
+</code></pre></div><h2 id="0x04注意">0x04注意</h2>
 <ul>
 <li><code>get_stylesheet_directory_uri()</code>与<code>get_parent_theme_file_path( '/inc/color-patterns.php' )</code>的区别</li>
 <li>使用<code>get_parent_theme_file_path( '/prism/prism.css' )</code>语句之后发现页面代码高亮没生效</li>
@@ -207,10 +183,9 @@ add_action('wp_enqueue_scripts', 'add_prism');
 </ul>
 
     </div>
-	
+
     <div class="post-copyright">
              
-			
             <p class="copyright-item">
                 <span>Author:</span>
                 <span>sinowrt </span>
@@ -222,12 +197,6 @@ add_action('wp_enqueue_scripts', 'add_prism');
                     <span>Link:</span>
                     <a href=http://blog.sinowrt.cn/2018/2018-10-20t1037-wordpresscode-highlight-with-prism/>http://blog.sinowrt.cn/2018/2018-10-20t1037-wordpresscode-highlight-with-prism/</span>
             </p>
-			
-			<p>
-				<span id="busuanzi_container_page_pv">
-					本文总阅读量：<span id="busuanzi_value_page_pv"></span>次
-				</span>
-			</p>
             
              
             <p class="copyright-item lincese">
@@ -278,15 +247,6 @@ add_action('wp_enqueue_scripts', 'add_prism');
          
 		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
     </div>
-	<p class="credits theme-by text-muted">
-        <span id="busuanzi_container_site_pv">
-            本站访问量：<span id="busuanzi_value_site_pv"></span>次
-        </span>
-        &nbsp;
-        <span id="busuanzi_container_site_uv">
-            您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
-        </span>
-    </p>
 </footer>
 
 

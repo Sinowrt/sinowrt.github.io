@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>network on Sinowrt</title>
+    <link>http://blog.sinowrt.cn/tags/network/</link>
+    <description>Recent content in network on Sinowrt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 17 Apr 2020 17:02:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.sinowrt.cn/tags/network/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>宿主机转发未开启导致无法访问docker内部网络</title>
+      <link>http://blog.sinowrt.cn/2020/2020-04-17t1702-can-not-access-the-nacos-service-in-docker-container/</link>
+      <pubDate>Fri, 17 Apr 2020 17:02:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-04-17t1702-can-not-access-the-nacos-service-in-docker-container/</guid>
+      <description>今天迁移了虚拟机之后，准备上nacos改一下配置，可是登录http://...:8848/nacos却连接超时，telnet一下也不通，于是上部署了nacos的docker容器的宿主机上，curl http://docker内网ip:8848/nacos 却是有返回数据的，那就确定应该是转发出了问题，
+sysctl -a | grep net.ipv4.ip_forward
+显示
+net.ipv4.ip_forward = 0
+原来是转发没开启，于是
+echo 1 &amp;gt; /proc/sys/net/ipv4/ip_forward
+sysctl -p 重新加载内核参数
+再telnet一下，通了搞定
+上http://...:8848/nacos进行配置就行了</description>
+    </item>
+    
+  </channel>
+</rss>

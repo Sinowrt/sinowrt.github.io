@@ -46,7 +46,7 @@
     "articleSection" : "posts",
     "name" : "newifi mini安装drcom全攻略",
     "headline" : "newifi mini安装drcom全攻略",
-    "description" : "起始条件：  刷入breed的newifi mini一台 网线一根  后续部署  刷入pandorabox r355固件 配置无线名、密码 在\/etc\/opkg.conf后追加  arch all 100 arch ramips_24kec 200 arch ramips 300  离线安装python环境  分别下载  libgcc_4.8-linaro-1_ramips_24kec.ipk libc_0.9.33.2-1_ramips_24kec.ipk libpthread_0.9.33.2-1_ramips_24kec.ipk zlib_1.2.8-1_ramips_24kec.ipk libffi_3.0.13-1_ramips_24kec.ipk python-mini_2.7.3-2_ramips_24kec.ipk   将上述ipk放到tmp目录下 依次安装 安装完毕可以在putty中输入 python 以检验是否安装成功  安装drcom客户端  将drcom客户端的python脚本放入\/usr\/bin中（注意，此脚本为改动后的命令行脚本），将权限改为0755 输入python \/usr\/bin\/drcom -u 你的账号 -p 你的密码，回车，在浏览器验证是否能成功登录上网  安装drcom_client可视化配置界面  复制drcom(etc_config)到括号中的路径，并去掉括号以及括号中的路径 复制drcom.lua(usr_lib_lua_luci_controller)到括号中的路径，并去掉括号以及括号中的路径，更改为0755权限 复制drcom.lua(usr_lib_lua_luci_model_cbi)到括号中的路径，并去掉括号以及括号中的路径，更改为0755权限 复制drcom.lua(usr-lib-lua-luci-model-cbi-admin_services)到括号中的路径，并去掉括号以及括号中的路径，更改为0755权限 复制drcom_client(etc_init.d)到括号中的路径，并去掉括号以及括号中的路径，更改为0755权限 重启路由  配置drcom_client  进入luci管理界面 在服务中找到drcom_client单击进入 填入drcom的账号和密码 save\x26amp;apply 打开浏览器打开任意网页验证是否登录成功  配置自启动  在\/etc\/hotplut.",
+    "description" : "起始条件：  刷入breed的newifi mini一台 网线一根  后续部署  刷入pandorabox r355固件 配置无线名、密码 在\/etc\/opkg.conf后追加  arch all 100 arch ramips_24kec 200 arch ramips 300 离线安装python环境  分别下载  libgcc_4.8-linaro-1_ramips_24kec.ipk libc_0.9.33.2-1_ramips_24kec.ipk libpthread_0.9.33.2-1_ramips_24kec.ipk zlib_1.2.8-1_ramips_24kec.ipk libffi_3.0.13-1_ramips_24kec.ipk python-mini_2.7.3-2_ramips_24kec.ipk  将上述ipk放到tmp目录下 依次安装 安装完毕可以在putty中输入 python 以检验是否安装成功  安装drcom客户端  将drcom客户端的python脚本放入\/usr\/bin中（注意，此脚本为改动后的命令行脚本），将权限改为0755 输入python \/usr\/bin\/drcom -u 你的账号 -p 你的密码，回车，在浏览器验证是否能成功登录上网  安装drcom_client可视化配置界面  复制drcom(etc_config)到括号中的路径，并去掉括号以及括号中的路径 复制drcom.lua(usr_lib_lua_luci_controller)到括号中的路径，并去掉括号以及括号中的路径，更改为0755权限 复制drcom.lua(usr_lib_lua_luci_model_cbi)到括号中的路径，并去掉括号以及括号中的路径，更改为0755权限 复制drcom.lua(usr-lib-lua-luci-model-cbi-admin_services)到括号中的路径，并去掉括号以及括号中的路径，更改为0755权限 复制drcom_client(etc_init.d)到括号中的路径，并去掉括号以及括号中的路径，更改为0755权限 重启路由  配置drcom_client  进入luci管理界面 在服务中找到drcom_client单击进入 填入drcom的账号和密码 save\x26amp;apply 打开浏览器打开任意网页验证是否登录成功  配置自启动  在\/etc\/hotplut.d\/iface\/中新建99-drcom文件，授权0755权限，在文件中写入  #!",
     "inLanguage" : "en-us",
     "author" : "SinoWRT",
     "creator" : "SinoWRT",
@@ -57,25 +57,12 @@
     "datePublished": "2018-10-19 02:56:07 \x2b0000 \x2b0000",
     "dateModified" : "2018-10-19 02:56:07 \x2b0000 \x2b0000",
     "url" : "http:\/\/blog.sinowrt.cn\/2018\/2018-10-19t0256-drcom-setup-of-newifi_mini\/",
-    "wordCount" : "123",
+    "wordCount" : "119",
     "keywords" : [  "Sinowrt"]
 }
 </script>
 
 </head>
-
-<script async src="//cdn.busuanzi.ibruce.info/cdn/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?85719ea04c6401b98466dfdbc9399c78";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-
 
   
 
@@ -159,58 +146,42 @@ var _hmt = _hmt || [];
           
           
 
-          
-
-<h2 id="起始条件">起始条件：</h2>
-
+          <h2 id="起始条件">起始条件：</h2>
 <ul>
 <li>刷入breed的newifi mini一台</li>
 <li>网线一根</li>
 </ul>
-
 <h2 id="后续部署">后续部署</h2>
-
 <ul>
 <li>刷入pandorabox r355固件</li>
 <li>配置无线名、密码</li>
 <li>在/etc/opkg.conf后追加</li>
 </ul>
-
-<pre><code class="language-shell">arch all 100  
-arch ramips_24kec 200  
-arch ramips 300
-</code></pre>
-
-<h2 id="离线安装python环境">离线安装python环境</h2>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">arch all <span style="color:#ae81ff">100</span>  
+arch ramips_24kec <span style="color:#ae81ff">200</span>  
+arch ramips <span style="color:#ae81ff">300</span>
+</code></pre></div><h2 id="离线安装python环境-">离线安装python环境</h2>
 <ul>
 <li>分别下载</li>
 </ul>
-
-<pre><code class="language-python">libgcc_4.8-linaro-1_ramips_24kec.ipk  
-libc_0.9.33.2-1_ramips_24kec.ipk  
-libpthread_0.9.33.2-1_ramips_24kec.ipk  
-zlib_1.2.8-1_ramips_24kec.ipk  
-libffi_3.0.13-1_ramips_24kec.ipk  
-python-mini_2.7.3-2_ramips_24kec.ipk
-</code></pre>
-
-<ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">libgcc_4<span style="color:#f92672">.</span><span style="color:#ae81ff">8</span><span style="color:#f92672">-</span>linaro<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>_ramips_24kec<span style="color:#f92672">.</span>ipk  
+libc_0<span style="color:#f92672">.</span><span style="color:#ae81ff">9.33</span><span style="color:#f92672">.</span><span style="color:#ae81ff">2</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>_ramips_24kec<span style="color:#f92672">.</span>ipk  
+libpthread_0<span style="color:#f92672">.</span><span style="color:#ae81ff">9.33</span><span style="color:#f92672">.</span><span style="color:#ae81ff">2</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>_ramips_24kec<span style="color:#f92672">.</span>ipk  
+zlib_1<span style="color:#f92672">.</span><span style="color:#ae81ff">2.8</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>_ramips_24kec<span style="color:#f92672">.</span>ipk  
+libffi_3<span style="color:#f92672">.</span><span style="color:#ae81ff">0.13</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>_ramips_24kec<span style="color:#f92672">.</span>ipk  
+python<span style="color:#f92672">-</span>mini_2<span style="color:#f92672">.</span><span style="color:#ae81ff">7.3</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>_ramips_24kec<span style="color:#f92672">.</span>ipk
+</code></pre></div><ul>
 <li>将上述ipk放到tmp目录下</li>
 <li>依次安装</li>
 <li>安装完毕可以在putty中输入  <code>python</code>
 以检验是否安装成功</li>
 </ul>
-
 <h2 id="安装drcom客户端">安装drcom客户端</h2>
-
 <ul>
 <li>将drcom客户端的python脚本放入<code>/usr/bin</code>中（注意，此脚本为改动后的命令行脚本），将权限改为0755</li>
 <li>输入<code>python /usr/bin/drcom -u 你的账号 -p 你的密码</code>，回车，在浏览器验证是否能成功登录上网</li>
 </ul>
-
-<h2 id="安装drcom-client可视化配置界面">安装drcom_client可视化配置界面</h2>
-
+<h2 id="安装drcom_client可视化配置界面-">安装drcom_client可视化配置界面</h2>
 <ul>
 <li>复制drcom(etc_config)到括号中的路径，并去掉括号以及括号中的路径</li>
 <li>复制drcom.lua(usr_lib_lua_luci_controller)到括号中的路径，并去掉括号以及括号中的路径，更改为0755权限</li>
@@ -219,69 +190,56 @@ python-mini_2.7.3-2_ramips_24kec.ipk
 <li>复制drcom_client(etc_init.d)到括号中的路径，并去掉括号以及括号中的路径，更改为0755权限</li>
 <li>重启路由</li>
 </ul>
-
-<h2 id="配置drcom-client">配置drcom_client</h2>
-
+<h2 id="配置drcom_client-">配置drcom_client</h2>
 <ul>
 <li>进入luci管理界面</li>
 <li>在服务中找到drcom_client单击进入</li>
 <li>填入drcom的账号和密码 save&amp;apply</li>
 <li>打开浏览器打开任意网页验证是否登录成功</li>
 </ul>
-
-<h2 id="配置自启动">配置自启动</h2>
-
+<h2 id="配置自启动-">配置自启动</h2>
 <ul>
 <li>在/etc/hotplut.d/iface/中新建99-drcom文件，授权0755权限，在文件中写入</li>
 </ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e">#!/bin/sh
+</span><span style="color:#75715e"></span><span style="color:#75715e"># /etc/hotplug.d/iface/99-drcom</span>
 
-<pre><code class="language-shell">#!/bin/sh
-# /etc/hotplug.d/iface/99-drcom
-
-if [ &quot;$ACTION&quot; = ifup ]; then 
-    if [ &quot;${INTERFACE}&quot; = &quot;wan&quot; ]; then
-        sleep 10 &amp;&amp; /etc/init.d/drcom_client start
-    fi
-fi
-</code></pre>
-
-<ul>
+<span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span>$ACTION<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">=</span> ifup <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span> 
+    <span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>INTERFACE<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;wan&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+        sleep <span style="color:#ae81ff">10</span> <span style="color:#f92672">&amp;&amp;</span> /etc/init.d/drcom_client start
+    <span style="color:#66d9ef">fi</span>
+<span style="color:#66d9ef">fi</span>
+</code></pre></div><ul>
 <li>重启验证自启即可</li>
 </ul>
-
 <h2 id="配置断网重连">配置断网重连</h2>
-
 <ul>
 <li>在/etc/中新建Drcom_AutoLink文件，授权0755权限，在文件中写入</li>
 </ul>
-
-<pre><code class="language-shell">#! /bin/bash
-#检测网络连接
-ping -c 1 www.baidu.com &gt; /dev/null 2&gt;&amp;1
-if [ $? -eq 0 ];then
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e">#! /bin/bash
+</span><span style="color:#75715e"></span><span style="color:#75715e">#检测网络连接</span>
+ping -c <span style="color:#ae81ff">1</span> www.baidu.com &gt; /dev/null 2&gt;&amp;<span style="color:#ae81ff">1</span>
+<span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> $? -eq <span style="color:#ae81ff">0</span> <span style="color:#f92672">]</span>;<span style="color:#66d9ef">then</span>
     echo linkOk!!
-else
+<span style="color:#66d9ef">else</span>
     /etc/init.d/drcom_client stop
     /etc/init.d/drcom_client start
-fi
-</code></pre>
-
-<ul>
-<li>在putty中输入<code>crontab -e</code>编辑crontab文件，加入如下内容:
-<code>shell
-*/1 * * * * sh /etc/Drcom_AutoLink
-</code>
-* 表示每1分钟检测一次
-* 保存退出编辑
-* 在putty中输入/etc/init.d/cron restart
+<span style="color:#66d9ef">fi</span>
+</code></pre></div><ul>
+<li>在putty中输入<code>crontab -e</code>编辑crontab文件，加入如下内容:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">*/1 * * * * sh /etc/Drcom_AutoLink
+</code></pre></div><ul>
+<li>表示每1分钟检测一次</li>
+<li>保存退出编辑</li>
+<li>在putty中输入/etc/init.d/cron restart
 重启crontab即可立即应用刚才创建的计划任务</li>
 </ul>
 
     </div>
-	
+
     <div class="post-copyright">
              
-			
             <p class="copyright-item">
                 <span>Author:</span>
                 <span>sinowrt </span>
@@ -293,12 +251,6 @@ fi
                     <span>Link:</span>
                     <a href=http://blog.sinowrt.cn/2018/2018-10-19t0256-drcom-setup-of-newifi_mini/>http://blog.sinowrt.cn/2018/2018-10-19t0256-drcom-setup-of-newifi_mini/</span>
             </p>
-			
-			<p>
-				<span id="busuanzi_container_page_pv">
-					本文总阅读量：<span id="busuanzi_value_page_pv"></span>次
-				</span>
-			</p>
             
              
             <p class="copyright-item lincese">
@@ -349,15 +301,6 @@ fi
          
 		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
     </div>
-	<p class="credits theme-by text-muted">
-        <span id="busuanzi_container_site_pv">
-            本站访问量：<span id="busuanzi_value_site_pv"></span>次
-        </span>
-        &nbsp;
-        <span id="busuanzi_container_site_uv">
-            您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
-        </span>
-    </p>
 </footer>
 
 

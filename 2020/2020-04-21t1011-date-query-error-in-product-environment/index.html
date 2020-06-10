@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="sinowrt">
+  
+  
+  
+  <link rel="prev" href="http://blog.sinowrt.cn/2020/2020-04-20t1611-the-differences-of-docker-command-save-and-export/" />
+  <link rel="next" href="http://blog.sinowrt.cn/2020/2020-05-12t1531-how-to-install-flutter-on-mac/" />
+  <link rel="canonical" href="http://blog.sinowrt.cn/2020/2020-04-21t1011-date-query-error-in-product-environment/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           记一次生产环境 日期查询错误 | Sinowrt
+       
+  </title>
+  <meta name="title" content="记一次生产环境 日期查询错误 | Sinowrt">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/blog.sinowrt.cn"
+    },
+    "articleSection" : "posts",
+    "name" : "记一次生产环境 日期查询错误",
+    "headline" : "记一次生产环境 日期查询错误",
+    "description" : "如图\n想查询4月1日到21日的记录，可是却连着3月31日的记录都查到了\n到后端查看日志，显示查询开始日期为31日16时，那么基本断定是时区出了问题\n那么有几种可能，一是系统时区，一是数据库时区，三是docker容器内部的时区\n第一步，date -R查看系统时区输出Tue, 21 Apr 2020 09:31:18 \x2b0800,东八区，没问题\n那么第二步，查看数据库时区，登录mysql，show variables like \x26quot;%time_zone%\x26quot;;\nmysql\x26gt; show variables like \x26quot;%time_zone%\x26quot;; \x2b------------------\x2b--------\x2b | Variable_name | Value | \x2b------------------\x2b--------\x2b | system_time_zone | UTC | | time_zone | SYSTEM | \x2b------------------\x2b--------\x2b 2 rows in set (0.01 sec) 跟随系统，也没问题，需要注意的是，如果mysql是部署在docker中的话，就要进入容器内部更改容器内部的时区了\n保守起见，可以指定mysql的时区\nset global time_zone = \x27\x2b8:00\x27; set time_zone = \x27\x2b8:00\x27; set time_zone = \x27\x2b8:00\x27; 再次查看mysql时区，已经改变了\nmysql\x26gt; show variables like \x26quot;%time_zone%\x26quot;; \x2b------------------\x2b--------\x2b | Variable_name | Value | \x2b------------------\x2b--------\x2b | system_time_zone | UTC | | time_zone | \x2b08:00 | \x2b------------------\x2b--------\x2b 2 rows in set (0.",
+    "inLanguage" : "en-us",
+    "author" : "sinowrt",
+    "creator" : "sinowrt",
+    "publisher": "sinowrt",
+    "accountablePerson" : "sinowrt",
+    "copyrightHolder" : "sinowrt",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-04-21 10:11:00 \x2b0800 CST",
+    "dateModified" : "2020-04-21 10:11:00 \x2b0800 CST",
+    "url" : "http:\/\/blog.sinowrt.cn\/2020\/2020-04-21t1011-date-query-error-in-product-environment\/",
+    "wordCount" : "130",
+    "keywords" : [ "docker", "Sinowrt"]
+}
+</script>
+
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">记一次生产环境 日期查询错误</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2020-04-21 itemprop="datePublished">April 21, 2020</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="http://blog.sinowrt.cn/categories/docker/"> docker </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          <p>如图</p>
+<p>想查询4月1日到21日的记录，可是却连着3月31日的记录都查到了</p>
+<p>到后端查看日志，显示查询开始日期为31日16时，那么基本断定是时区出了问题</p>
+<p>那么有几种可能，一是系统时区，一是数据库时区，三是docker容器内部的时区</p>
+<p>第一步，<code>date -R</code>查看系统时区输出<code>Tue, 21 Apr 2020 09:31:18 +0800</code>,东八区，没问题</p>
+<p>那么第二步，查看数据库时区，登录mysql，<code>show variables like &quot;%time_zone%&quot;;</code></p>
+<pre><code>mysql&gt; show variables like &quot;%time_zone%&quot;;
++------------------+--------+
+| Variable_name    | Value  |
++------------------+--------+
+| system_time_zone | UTC    |
+| time_zone        | SYSTEM |
++------------------+--------+
+2 rows in set (0.01 sec)
+</code></pre><p>跟随系统，也没问题，需要注意的是，如果mysql是部署在docker中的话，就要进入容器内部更改容器内部的时区了</p>
+<p>保守起见，可以指定mysql的时区</p>
+<pre><code>set global time_zone = '+8:00';
+set time_zone = '+8:00';
+set time_zone = '+8:00';
+</code></pre><p>再次查看mysql时区，已经改变了</p>
+<pre><code>mysql&gt; show variables like &quot;%time_zone%&quot;;
++------------------+--------+
+| Variable_name    | Value  |
++------------------+--------+
+| system_time_zone | UTC    |
+| time_zone        | +08:00 |
++------------------+--------+
+2 rows in set (0.00 sec)
+</code></pre><p>一开始看了前面两个的时区后，发现都没问题，纳闷了好久，后来才想起服务是部署在docker的啊，于是输入<code>docker exec -it 容器ID bash</code>进入容器</p>
+<p>输入<code>date -R</code>,显示<code>Tue, 21 Apr 2020 01:40:28 +0000</code>,终于找到原因了</p>
+<p>于是输入<code>cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</code>,却提示
+<code>cp: can't stat '/usr/share/zoneinfo/Asia/Shanghai': No such file or directory</code>，容器内部是没有这些时区文件的，那么就要从宿主机上面拷贝一份进来</p>
+<p>首先<code>mkdir -p /usr/share/zoneinfo/Asia</code>创建文件夹</p>
+<p>再<code>ctrl+D</code>退出容器，执行<code>docker cp /usr/share/zoneinfo/Asia/Shanghai d2e85b301fae:/usr/share/zoneinfo/Asia</code>
+再次进入容器，执行<code>cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime</code>即可</p>
+<p>可以通过<code>date -R</code>进行验证，显示<code>Tue, 21 Apr 2020 01:42:18 +0800</code>,大功告成</p>
+
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>sinowrt </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://blog.sinowrt.cn/2020/2020-04-21t1011-date-query-error-in-product-environment/>http://blog.sinowrt.cn/2020/2020-04-21t1011-date-query-error-in-product-environment/</span>
+            </p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/docker/">
+                    #docker</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="http://blog.sinowrt.cn">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://blog.sinowrt.cn/2020/2020-04-20t1611-the-differences-of-docker-command-save-and-export/" class="prev" rel="prev" title="docker save 和 export 命令的区别"><i class="iconfont icon-left"></i>&nbsp;docker save 和 export 命令的区别</a>
+         
+        
+        <a href="http://blog.sinowrt.cn/2020/2020-05-12t1531-how-to-install-flutter-on-mac/" class="next" rel="next" title="mac 安装flutter">mac 安装flutter&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2020</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://blog.sinowrt.cn">sinowrt</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

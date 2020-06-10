@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="sinowrt">
+  
+  
+  
+  <link rel="prev" href="http://blog.sinowrt.cn/2020/2020-04-16t1619-esxi-network-error-while-exporting-esxi-virtual-machine/" />
+  <link rel="next" href="http://blog.sinowrt.cn/2020/2020-04-17t1702-can-not-access-the-nacos-service-in-docker-container/" />
+  <link rel="canonical" href="http://blog.sinowrt.cn/2020/2020-04-16t1623-migrate-the-container-to-another-docker/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           docker容器迁移 | Sinowrt
+       
+  </title>
+  <meta name="title" content="docker容器迁移 | Sinowrt">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/blog.sinowrt.cn"
+    },
+    "articleSection" : "posts",
+    "name" : "docker容器迁移",
+    "headline" : "docker容器迁移",
+    "description" : "在项目部署的时候，本来是部署两个esxi虚拟机，但是在部署测试过程中发现对象存储服务依赖了另一个虚拟机的minio服务，由于该虚拟机的minio服务是部署在docker上的，所以打算将该容器迁移到要部署的其中一个虚拟机的docker中\n步骤：\n 导出容器 docker export 容器ID \x26gt;minio.tar 将导出minio.tar放到要部署的虚拟机上面 将该容器导入镜像docker import minio.tar minio\/minio:lastest 新建容器并启动镜像  docker run -d -p 9000:9000 --name minio -d -e \x26#34;MINIO_ACCESS_KEY=AKIAIOSFODNN7EXAMPLE\x26#34; -e \x26#34;MINIO_SECRET_KEY=wJalrXUtnFEMI\/K7MDENG\/bPxRfiCYEXAMPLEKEY\x26#34; -v \/mnt\/data:\/data -v \/mnt\/config:\/root\/.minio minio\/minio:lastest \/usr\/bin\/docker-entrypoint.sh server \/data 启动命令可以在原宿主机上使用docker inspect 容器ID查看，并根据需求调整启动参数\n至此，容器的迁移工作顺利完成。",
+    "inLanguage" : "en-us",
+    "author" : "sinowrt",
+    "creator" : "sinowrt",
+    "publisher": "sinowrt",
+    "accountablePerson" : "sinowrt",
+    "copyrightHolder" : "sinowrt",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-04-16 16:23:00 \x2b0800 CST",
+    "dateModified" : "2020-04-16 16:23:00 \x2b0800 CST",
+    "url" : "http:\/\/blog.sinowrt.cn\/2020\/2020-04-16t1623-migrate-the-container-to-another-docker\/",
+    "wordCount" : "37",
+    "keywords" : [ "docker", "Sinowrt"]
+}
+</script>
+
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">docker容器迁移</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2020-04-16 itemprop="datePublished">April 16, 2020</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="http://blog.sinowrt.cn/categories/docker/"> docker </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          <p>在项目部署的时候，本来是部署两个esxi虚拟机，但是在部署测试过程中发现对象存储服务依赖了另一个虚拟机的minio服务，由于该虚拟机的minio服务是部署在docker上的，所以打算将该容器迁移到要部署的其中一个虚拟机的docker中</p>
+<p>步骤：</p>
+<ol>
+<li>导出容器 <code>docker export 容器ID &gt;minio.tar</code></li>
+<li>将导出minio.tar放到要部署的虚拟机上面</li>
+<li>将该容器导入镜像<code>docker import  minio.tar minio/minio:lastest</code></li>
+<li>新建容器并启动镜像</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">docker run -d -p 9000:9000 --name minio -d -e <span style="color:#e6db74">&#34;MINIO_ACCESS_KEY=AKIAIOSFODNN7EXAMPLE&#34;</span> -e <span style="color:#e6db74">&#34;MINIO_SECRET_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY&#34;</span> -v /mnt/data:/data -v /mnt/config:/root/.minio  minio/minio:lastest /usr/bin/docker-entrypoint.sh server /data
+</code></pre></div><p>启动命令可以在原宿主机上使用<code>docker inspect 容器ID</code>查看，并根据需求调整启动参数</p>
+<p>至此，容器的迁移工作顺利完成。</p>
+
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>sinowrt </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://blog.sinowrt.cn/2020/2020-04-16t1623-migrate-the-container-to-another-docker/>http://blog.sinowrt.cn/2020/2020-04-16t1623-migrate-the-container-to-another-docker/</span>
+            </p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/docker/">
+                    #docker</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="http://blog.sinowrt.cn">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://blog.sinowrt.cn/2020/2020-04-16t1619-esxi-network-error-while-exporting-esxi-virtual-machine/" class="prev" rel="prev" title="esxi web client导出虚拟机 中断 报网络错误"><i class="iconfont icon-left"></i>&nbsp;esxi web client导出虚拟机 中断 报网络错误</a>
+         
+        
+        <a href="http://blog.sinowrt.cn/2020/2020-04-17t1702-can-not-access-the-nacos-service-in-docker-container/" class="next" rel="next" title="宿主机转发未开启导致无法访问docker内部网络">宿主机转发未开启导致无法访问docker内部网络&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2020</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://blog.sinowrt.cn">sinowrt</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

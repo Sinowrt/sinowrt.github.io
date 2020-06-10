@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="sinowrt">
+  
+  
+  
+  <link rel="prev" href="http://blog.sinowrt.cn/2020/2020-04-03t0853-xxl-job-groovyclassloader-noclassdeffounderror-exception/" />
+  <link rel="next" href="http://blog.sinowrt.cn/2020/2020-04-12t2330-ubuntuadd-ngrok-to-supervisor/" />
+  <link rel="canonical" href="http://blog.sinowrt.cn/2020/2020-04-10t1001-npm-eperm-operation-not-permitted/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           npm 报错 EPERM: operation not permitted | Sinowrt
+       
+  </title>
+  <meta name="title" content="npm 报错 EPERM: operation not permitted | Sinowrt">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/blog.sinowrt.cn"
+    },
+    "articleSection" : "posts",
+    "name" : "npm 报错 EPERM: operation not permitted",
+    "headline" : "npm 报错 EPERM: operation not permitted",
+    "description" : "昨天从拉了个前端项目下来，用IDEA打开，例行npm install，安装到一般报错EPERM: operation not permitted\n按网上的删除package-lock.json后，情况依旧\n以为是管理员权限问题，于是win \x2b x再按a调出powershell，进入项目目录，执行npm install，报zlib: unexpected end of file，于是执行npm cache clean -force ，报错\nnpm ERR! The operation was rejected by your operating system. npm ERR! It\x27s possible that the file was already in use (by a text editor or antivirus), npm ERR! or that you lack permissions to access it. npm ERR! npm ERR! If you believe this might be a permissions issue, please double-check the npm ERR!",
+    "inLanguage" : "en-us",
+    "author" : "sinowrt",
+    "creator" : "sinowrt",
+    "publisher": "sinowrt",
+    "accountablePerson" : "sinowrt",
+    "copyrightHolder" : "sinowrt",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-04-10 10:01:00 \x2b0800 CST",
+    "dateModified" : "2020-04-10 10:01:00 \x2b0800 CST",
+    "url" : "http:\/\/blog.sinowrt.cn\/2020\/2020-04-10t1001-npm-eperm-operation-not-permitted\/",
+    "wordCount" : "111",
+    "keywords" : [ "npm", "Sinowrt"]
+}
+</script>
+
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">npm 报错 EPERM: operation not permitted</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2020-04-10 itemprop="datePublished">April 10, 2020</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="http://blog.sinowrt.cn/categories/develope/"> develope </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          <p>昨天从拉了个前端项目下来，用IDEA打开，例行npm install，安装到一般报错<code>EPERM: operation not permitted</code></p>
+<p>按网上的删除package-lock.json后，情况依旧</p>
+<p>以为是管理员权限问题，于是<code>win + x</code>再按<code>a</code>调出powershell，进入项目目录，执行npm install，报<code>zlib: unexpected end of file</code>，于是执行npm cache clean -force ，报错</p>
+<pre><code>npm ERR! The operation was rejected by your operating system.
+npm ERR! It's possible that the file was already in use (by a text editor or antivirus),
+npm ERR! or that you lack permissions to access it.
+npm ERR!
+npm ERR! If you believe this might be a permissions issue, please double-check the
+npm ERR! permissions of the file and its containing directories, or try running
+npm ERR! the command again as root/Administrator (though this is not recommended).
+</code></pre><p>那我直接打开资源管理器，删除这个文件不就好了，可是删不掉啊，Access is denied，查看文件属性-安全-高级，Unable to display current owner. 连文件所属用户都看不到啊！</p>
+<p>后来我甚至登录Administrator账户，都删不了</p>
+<p>后来想了想，会不会是IDEA占用的问题呢，直接把IDEA关了，再<code>npm cache clean -force</code>，提示npm-cache文件夹busy，命令提示行退出该目录，再执行一次，竟然好了？！</p>
+<p>然后<code>npm install</code>，竟然一切正常？！跟我闹着玩呢？</p>
+
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>sinowrt </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://blog.sinowrt.cn/2020/2020-04-10t1001-npm-eperm-operation-not-permitted/>http://blog.sinowrt.cn/2020/2020-04-10t1001-npm-eperm-operation-not-permitted/</span>
+            </p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/npm/">
+                    #npm</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="http://blog.sinowrt.cn">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://blog.sinowrt.cn/2020/2020-04-03t0853-xxl-job-groovyclassloader-noclassdeffounderror-exception/" class="prev" rel="prev" title="xxl-job 启动报异常 java.lang.NoClassDefFoundError: groovy/lang/GroovyClassLoader"><i class="iconfont icon-left"></i>&nbsp;xxl-job 启动报异常 java.lang.NoClassDefFoundError: groovy/lang/GroovyClassLoader</a>
+         
+        
+        <a href="http://blog.sinowrt.cn/2020/2020-04-12t2330-ubuntuadd-ngrok-to-supervisor/" class="next" rel="next" title="[Ubuntu]将ngrok添加到supervisor守护进程">[Ubuntu]将ngrok添加到supervisor守护进程&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2020</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://blog.sinowrt.cn">sinowrt</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

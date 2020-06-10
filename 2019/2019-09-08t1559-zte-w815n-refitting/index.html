@@ -46,7 +46,7 @@
     "articleSection" : "posts",
     "name" : "中兴W815N V3 500mw网桥改ubnt",
     "headline" : "中兴W815N V3 500mw网桥改ubnt",
-    "description" : " 0x00 状况描述  毕业租房子后，一直在整网络。因为是出租屋，想着租一年就搬了，就把学校的热点桥接过来将就着用就算了。这两个月，桥接用过newifi mini，TP的340G\x2b，信号一直不理想，就想着搞个正版ubnt。看着看着，就觉得吧，这个ubnt的水也深，也不便宜，看到无线论坛上有坛友说用运营级别的大功率网桥，深入了解，其中还真的不乏好设备。看过烽火2400、中兴W815，想着大品牌折腾的人应该不少，最后入手了中兴W815。  0x01 设备描述  中兴W815拥有双功放，无线功率最高可达500mw，基于7240\x2b9283方案，改ubnt的教程也不少，但是资料较为零散，需要取百家所长。  0x02 改装过程  首先是备份原厂固件，用风枪将flash取下，焊到编程器上面，我用的是ch341普通的绿板编程器，备份过程挺久的，毕竟固件有16m。 固件备份完成后，直接擦除芯片，将breed写入flash，我用的是h大的将gpio12作为reset键的版本breed-ar724x-reset12-r1163.bin，烧录好就将flash焊回去。 烧好breed，就要改reset键了。这里参考的是坛友的改装方案 用漆包线将7240的第89脚用漆包线引出，焊到空车位上，在旁边补上10k上拉电阻  翻到后面同样用漆包线引到直连reset键的C70电容右脚。  很奇怪，我按照坛友的方法改好后，开机却一直重启。用万用表测量gpio12的对地电压，开机时很稳定的2.5v但是开机完成后马上跳回0.1v，导致机器无限重启。于是我尝试将电阻换为2.2k甚至1k，问题依旧，最后直接不要电阻，将电阻两脚直接点上，没再出现重启的现象。最后还是接上了20欧的电阻，电流能减少一点是一点，开机一切正常。  0x03 提取art  art在原厂固件的最后64KB，直接用winhex备份出来即可  0x04 刷入ubnt固件与art  由于我找不到适用的ubnt固件，最后还是用了坛友的编程器固件，最后刷入art正常使用  0x05 外接天线  由于原机的天线接头比较特别，是N型母头，要和sma接头的八木天线连接，还得买个N型公头转sma外螺内针的转接头  0x06 使用效果  用原机的5dbi天线伸出窗外效果还行，信号在-60db左右，但是这机子不防水啊，常年这样用也不是办法，但是把机子放在室内，再外接八木天线或者6dbi的全向天线效果都不理想！ 总结：翻车了！  ",
+    "description" : "0x00 状况描述  毕业租房子后，一直在整网络。因为是出租屋，想着租一年就搬了，就把学校的热点桥接过来将就着用就算了。这两个月，桥接用过newifi mini，TP的340G\x2b，信号一直不理想，就想着搞个正版ubnt。看着看着，就觉得吧，这个ubnt的水也深，也不便宜，看到无线论坛上有坛友说用运营级别的大功率网桥，深入了解，其中还真的不乏好设备。看过烽火2400、中兴W815，想着大品牌折腾的人应该不少，最后入手了中兴W815。  0x01 设备描述  中兴W815拥有双功放，无线功率最高可达500mw，基于7240\x2b9283方案，改ubnt的教程也不少，但是资料较为零散，需要取百家所长。  0x02 改装过程  首先是备份原厂固件，用风枪将flash取下，焊到编程器上面，我用的是ch341普通的绿板编程器，备份过程挺久的，毕竟固件有16m。 固件备份完成后，直接擦除芯片，将breed写入flash，我用的是h大的将gpio12作为reset键的版本breed-ar724x-reset12-r1163.bin，烧录好就将flash焊回去。 烧好breed，就要改reset键了。这里参考的是坛友的改装方案 用漆包线将7240的第89脚用漆包线引出，焊到空车位上，在旁边补上10k上拉电阻  翻到后面同样用漆包线引到直连reset键的C70电容右脚。  很奇怪，我按照坛友的方法改好后，开机却一直重启。用万用表测量gpio12的对地电压，开机时很稳定的2.5v但是开机完成后马上跳回0.1v，导致机器无限重启。于是我尝试将电阻换为2.2k甚至1k，问题依旧，最后直接不要电阻，将电阻两脚直接点上，没再出现重启的现象。最后还是接上了20欧的电阻，电流能减少一点是一点，开机一切正常。  0x03 提取art  art在原厂固件的最后64KB，直接用winhex备份出来即可  0x04 刷入ubnt固件与art  由于我找不到适用的ubnt固件，最后还是用了坛友的编程器固件，最后刷入art正常使用  0x05 外接天线  由于原机的天线接头比较特别，是N型母头，要和sma接头的八木天线连接，还得买个N型公头转sma外螺内针的转接头  0x06 使用效果  用原机的5dbi天线伸出窗外效果还行，信号在-60db左右，但是这机子不防水啊，常年这样用也不是办法，但是把机子放在室内，再外接八木天线或者6dbi的全向天线效果都不理想！ 总结：翻车了！  ",
     "inLanguage" : "en-us",
     "author" : "sinowrt",
     "creator" : "sinowrt",
@@ -63,19 +63,6 @@
 </script>
 
 </head>
-
-<script async src="//cdn.busuanzi.ibruce.info/cdn/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?85719ea04c6401b98466dfdbc9399c78";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-
 
   
 
@@ -161,63 +148,47 @@ var _hmt = _hmt || [];
           
           
 
-          
-
-<h2 id="0x00-状况描述">0x00 状况描述</h2>
-
+          <h2 id="0x00-状况描述">0x00 状况描述</h2>
 <ul>
 <li>毕业租房子后，一直在整网络。因为是出租屋，想着租一年就搬了，就把学校的热点桥接过来将就着用就算了。这两个月，桥接用过newifi mini，TP的340G+，信号一直不理想，就想着搞个正版ubnt。看着看着，就觉得吧，这个ubnt的水也深，也不便宜，看到无线论坛上有坛友说用运营级别的大功率网桥，深入了解，其中还真的不乏好设备。看过烽火2400、中兴W815，想着大品牌折腾的人应该不少，最后入手了中兴W815。</li>
 </ul>
-
 <h2 id="0x01-设备描述">0x01 设备描述</h2>
-
 <ul>
 <li>中兴W815拥有双功放，无线功率最高可达500mw，基于7240+9283方案，改ubnt的教程也不少，但是资料较为零散，需要取百家所长。</li>
 </ul>
-
 <h2 id="0x02-改装过程">0x02 改装过程</h2>
-
 <ul>
 <li>首先是备份原厂固件，用风枪将flash取下，焊到编程器上面，我用的是ch341普通的绿板编程器，备份过程挺久的，毕竟固件有16m。</li>
 <li>固件备份完成后，直接擦除芯片，将breed写入flash，我用的是h大的将gpio12作为reset键的版本<code>breed-ar724x-reset12-r1163.bin</code>，烧录好就将flash焊回去。</li>
-<li>烧好breed，就要改reset键了。这里参考的是坛友的<a href="https://www.anywlan.com/thread-258718-1-1.html" rel="nofollow noreferrer" target="_blank">改装方案</a> 用漆包线将7240的第89脚用漆包线引出，焊到空车位上，在旁边补上10k上拉电阻
-<figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20190908165043.jpg" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></li>
+<li>烧好breed，就要改reset键了。这里参考的是坛友的<a href="https://www.anywlan.com/thread-258718-1-1.html">改装方案</a> 用漆包线将7240的第89脚用漆包线引出，焊到空车位上，在旁边补上10k上拉电阻
+<img src="http://pic.sinowrt.cn/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20190908165043.jpg" alt=""></li>
 <li>翻到后面同样用漆包线引到直连reset键的C70电容右脚。
-<figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_201909081650432.jpg" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure>
-<figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_201909081650431.jpg" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></li>
+<img src="http://pic.sinowrt.cn/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_201909081650432.jpg" alt="">
+<img src="http://pic.sinowrt.cn/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_201909081650431.jpg" alt=""></li>
 <li>很奇怪，我按照坛友的方法改好后，开机却一直重启。用万用表测量gpio12的对地电压，开机时很稳定的2.5v但是开机完成后马上跳回0.1v，导致机器无限重启。于是我尝试将电阻换为2.2k甚至1k，问题依旧，最后直接不要电阻，将电阻两脚直接点上，没再出现重启的现象。最后还是接上了20欧的电阻，电流能减少一点是一点，开机一切正常。</li>
 </ul>
-
 <h2 id="0x03-提取art">0x03 提取art</h2>
-
 <ul>
 <li>art在原厂固件的最后64KB，直接用winhex备份出来即可</li>
 </ul>
-
 <h2 id="0x04-刷入ubnt固件与art">0x04 刷入ubnt固件与art</h2>
-
 <ul>
 <li>由于我找不到适用的ubnt固件，最后还是用了坛友的编程器固件，最后刷入art正常使用</li>
 </ul>
-
 <h2 id="0x05-外接天线">0x05 外接天线</h2>
-
 <ul>
 <li>由于原机的天线接头比较特别，是N型母头，要和sma接头的八木天线连接，还得买个N型公头转sma外螺内针的转接头</li>
 </ul>
-
 <h2 id="0x06-使用效果">0x06 使用效果</h2>
-
 <ul>
 <li>用原机的5dbi天线伸出窗外效果还行，信号在-60db左右，但是这机子不防水啊，常年这样用也不是办法，但是把机子放在室内，再外接八木天线或者6dbi的全向天线效果都不理想！</li>
 <li>总结：翻车了！</li>
 </ul>
 
     </div>
-	
+
     <div class="post-copyright">
              
-			
             <p class="copyright-item">
                 <span>Author:</span>
                 <span>sinowrt </span>
@@ -229,12 +200,6 @@ var _hmt = _hmt || [];
                     <span>Link:</span>
                     <a href=http://blog.sinowrt.cn/2019/2019-09-08t1559-zte-w815n-refitting/>http://blog.sinowrt.cn/2019/2019-09-08t1559-zte-w815n-refitting/</span>
             </p>
-			
-			<p>
-				<span id="busuanzi_container_page_pv">
-					本文总阅读量：<span id="busuanzi_value_page_pv"></span>次
-				</span>
-			</p>
             
              
             <p class="copyright-item lincese">
@@ -299,15 +264,6 @@ var _hmt = _hmt || [];
          
 		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
     </div>
-	<p class="credits theme-by text-muted">
-        <span id="busuanzi_container_site_pv">
-            本站访问量：<span id="busuanzi_value_site_pv"></span>次
-        </span>
-        &nbsp;
-        <span id="busuanzi_container_site_uv">
-            您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
-        </span>
-    </p>
 </footer>
 
 

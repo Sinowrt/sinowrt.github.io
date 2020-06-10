@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Qt on Sinowrt</title>
@@ -17,7 +17,7 @@
       <pubDate>Sat, 17 Nov 2018 15:16:56 +0000</pubDate>
       
       <guid>http://blog.sinowrt.cn/2018/2018-11-17t1516-qt5compile-error/</guid>
-      <description> 编译过程中连接错误 尝试删除build文件夹，问题解决 </description>
+      <description>编译过程中连接错误 尝试删除build文件夹，问题解决 </description>
     </item>
     
     <item>
@@ -26,7 +26,7 @@
       <pubDate>Sat, 17 Nov 2018 15:13:11 +0000</pubDate>
       
       <guid>http://blog.sinowrt.cn/2018/2018-11-17t1513-install-qt5-in-win10/</guid>
-      <description> 0x00背景 信管作业要求用C++实现进销存系统用户交互界面以及业务逻辑 0x01 必备安装包 1.qt-opensource-windows-x86-5.11.2.exe 2.Windows SDK 0x02 下载与安装 1.Qt下载与安装  上Qt下载页面下载你系统对应的安装包  我的是Windoes 10,直接下载qt-opensource-windows-x86-5.11.2.exe 直接打开qt-opensource-windows-x86-5.11.2.exe安装程序 在第一个界面直接下一步 填写账号这一块，如果没有事先申请也可以先跳过这一步  选择安装文件夹 选择编译器，由于我的电脑装了vs2015，所以直接选了MSVC 2015 64-bit（若未安装任何编译器可以直接选择MinGW 5.3.0 32bit）  接下来一路下一步即可  2.Windows SDK下载与安装  上Microsoft开发者下载站 我的系统是Windows 10，还是按自己的系统版本进行下载  下载之后得到这样一个exe，打开按步骤安装   0x03 配置Qt 1.配置Debugger  工具——选项——kits——Debuggers——Add 填写Debugger的名称 浏览WindowsSKD的安装路径，找到你所需要的Debugger，这里我设置了Windows 10的x64的和x86的cdb.exe 2.配置kit 按根据截图按需配置就可以了   到了这步配置基本完成，但是我在编译程序的过程中遇到error link1158 无法运行rc.exe的报错 error link1158 无法运行rc.exe问题解决方法  到C:\Program Files (x86)\Windows Kits\10\bin\10.0.17763.0下的文件夹找到rc.dll和rc.exe复制到qmake文件夹下 qmake的路径可以参考截图   </description>
+      <description>0x00背景 信管作业要求用C++实现进销存系统用户交互界面以及业务逻辑 0x01 必备安装包 1.qt-opensource-windows-x86-5.11.2.exe 2.Windows SDK 0x02 下载与安装 1.Qt下载与安装  上Qt下载页面下载你系统对应的安装包  我的是Windoes 10,直接下载qt-opensource-windows-x86-5.11.2.exe 直接打开qt-opensource-windows-x86-5.11.2.exe安装程序 在第一个界面直接下一步 填写账号这一块，如果没有事先申请也可以先跳过这一步  选择安装文件夹 选择编译器，由于我的电脑装了vs2015，所以直接选了MSVC 2015 64-bit（若未安装任何编译器可以直接选择MinGW 5.3.0 32bit）  接下来一路下一步即可  2.Windows SDK下载与安装  上Microsoft开发者下载站 我的系统是Windows 10，还是按自己的系统版本进行下载  下载之后得到这样一个exe，打开按步骤安装   0x03 配置Qt 1.配置Debugger  工具——选项——kits——Debuggers——Add 填写Debugger的名称 浏览WindowsSKD的安装路径，找到你所需要的Debugger，这里我设置了Windows 10的x64的和x86的cdb.exe   2.配置kit  按根据截图按需配置就可以了   到了这步配置基本完成，但是我在编译程序的过程中遇到error link1158 无法运行rc.exe的报错 error link1158 无法运行rc.exe问题解决方法  到C:\Program Files (x86)\Windows Kits\10\bin\10.0.17763.0下的文件夹找到rc.dll和rc.exe复制到qmake文件夹下 qmake的路径可以参考截图   </description>
     </item>
     
   </channel>

@@ -46,7 +46,7 @@
     "articleSection" : "posts",
     "name" : "MFC FormView中的OnInitialUpdate不调用",
     "headline" : "MFC FormView中的OnInitialUpdate不调用",
-    "description" : " 0x00 在Formview中的OnInitialUpdate中初始化了个自定义的按钮，但是运行无任何样式效果 0x01 在OnInitialUpdate里打了个断点再次运行，发现此方法根本未调用 0x02 在FormView Create后，手动调用OnInitialUpdate解决，如下所示 CWnd* pFrameWnd = this; CCreateContext pContext; pContext.m_pCurrentDoc = 0; pContext.m_pNewViewClass = RUNTIME_CLASS(View_OnlineShopManagement); View_OnlineShopManagement* pView = (View_OnlineShopManagement*)((CFrameWnd*)pFrameWnd)-\x26gt;CreateView(\x26amp;pContext); pView-\x26gt;ShowWindow(SW_NORMAL); pView-\x26gt;OnInitialUpdate(); \/\/手动调用  ",
+    "description" : "0x00 在Formview中的OnInitialUpdate中初始化了个自定义的按钮，但是运行无任何样式效果 0x01 在OnInitialUpdate里打了个断点再次运行，发现此方法根本未调用 0x02 在FormView Create后，手动调用OnInitialUpdate解决，如下所示 CWnd* pFrameWnd = this; CCreateContext pContext; pContext.m_pCurrentDoc = 0; pContext.m_pNewViewClass = RUNTIME_CLASS(View_OnlineShopManagement); View_OnlineShopManagement* pView = (View_OnlineShopManagement*)((CFrameWnd*)pFrameWnd)-\x26gt;CreateView(\x26amp;pContext); pView-\x26gt;ShowWindow(SW_NORMAL); pView-\x26gt;OnInitialUpdate(); \/\/手动调用 ",
     "inLanguage" : "en-us",
     "author" : "SinoWRT",
     "creator" : "SinoWRT",
@@ -63,19 +63,6 @@
 </script>
 
 </head>
-
-<script async src="//cdn.busuanzi.ibruce.info/cdn/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?85719ea04c6401b98466dfdbc9399c78";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-
 
   
 
@@ -159,29 +146,22 @@ var _hmt = _hmt || [];
           
           
 
-          
+          <h4 id="0x00-在formview中的oninitialupdate中初始化了个自定义的按钮但是运行无任何样式效果">0x00 在Formview中的OnInitialUpdate中初始化了个自定义的按钮，但是运行无任何样式效果</h4>
+<h4 id="0x01-在oninitialupdate里打了个断点再次运行发现此方法根本未调用">0x01 在OnInitialUpdate里打了个断点再次运行，发现此方法根本未调用</h4>
+<h4 id="0x02-在formview-create后手动调用oninitialupdate解决如下所示">0x02 在FormView Create后，手动调用OnInitialUpdate解决，如下所示</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">	CWnd<span style="color:#f92672">*</span> pFrameWnd <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>;
+	CCreateContext pContext;
+	pContext.m_pCurrentDoc <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+	pContext.m_pNewViewClass <span style="color:#f92672">=</span> RUNTIME_CLASS(View_OnlineShopManagement); 
+	View_OnlineShopManagement<span style="color:#f92672">*</span> pView <span style="color:#f92672">=</span> (View_OnlineShopManagement<span style="color:#f92672">*</span>)((CFrameWnd<span style="color:#f92672">*</span>)pFrameWnd)<span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span>CreateView(<span style="color:#f92672">&amp;</span>pContext);
+	pView<span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span>ShowWindow(SW_NORMAL);
 
-<h4 id="0x00-在formview中的oninitialupdate中初始化了个自定义的按钮-但是运行无任何样式效果">0x00 在Formview中的OnInitialUpdate中初始化了个自定义的按钮，但是运行无任何样式效果</h4>
-
-<h4 id="0x01-在oninitialupdate里打了个断点再次运行-发现此方法根本未调用">0x01 在OnInitialUpdate里打了个断点再次运行，发现此方法根本未调用</h4>
-
-<h4 id="0x02-在formview-create后-手动调用oninitialupdate解决-如下所示">0x02 在FormView Create后，手动调用OnInitialUpdate解决，如下所示</h4>
-
-<pre><code class="language-cpp">    CWnd* pFrameWnd = this;
-    CCreateContext pContext;
-    pContext.m_pCurrentDoc = 0;
-    pContext.m_pNewViewClass = RUNTIME_CLASS(View_OnlineShopManagement); 
-    View_OnlineShopManagement* pView = (View_OnlineShopManagement*)((CFrameWnd*)pFrameWnd)-&gt;CreateView(&amp;pContext);
-    pView-&gt;ShowWindow(SW_NORMAL);
-
-    pView-&gt;OnInitialUpdate();  //手动调用
-</code></pre>
-
+	pView<span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span>OnInitialUpdate();  <span style="color:#75715e">//手动调用
+</span></code></pre></div>
     </div>
-	
+
     <div class="post-copyright">
              
-			
             <p class="copyright-item">
                 <span>Author:</span>
                 <span>sinowrt </span>
@@ -193,12 +173,6 @@ var _hmt = _hmt || [];
                     <span>Link:</span>
                     <a href=http://blog.sinowrt.cn/2018/2018-12-11t1541-formview-oninitialupdate/>http://blog.sinowrt.cn/2018/2018-12-11t1541-formview-oninitialupdate/</span>
             </p>
-			
-			<p>
-				<span id="busuanzi_container_page_pv">
-					本文总阅读量：<span id="busuanzi_value_page_pv"></span>次
-				</span>
-			</p>
             
              
             <p class="copyright-item lincese">
@@ -249,15 +223,6 @@ var _hmt = _hmt || [];
          
 		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
     </div>
-	<p class="credits theme-by text-muted">
-        <span id="busuanzi_container_site_pv">
-            本站访问量：<span id="busuanzi_value_site_pv"></span>次
-        </span>
-        &nbsp;
-        <span id="busuanzi_container_site_uv">
-            您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
-        </span>
-    </p>
 </footer>
 
 

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Sinowrt</title>
@@ -6,10 +6,204 @@
     <description>Recent content in Posts on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 08 Jan 2020 00:21:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 10 Jun 2020 14:27:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Macbook Pro 2019使用感受</title>
+      <link>http://blog.sinowrt.cn/2020/2020-06-10t1511-the-using-feeling-of-mbp/</link>
+      <pubDate>Wed, 10 Jun 2020 14:27:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-06-10t1511-the-using-feeling-of-mbp/</guid>
+      <description>机器是今年年初买的，当时不想用公司的电脑，我就把神船带到公司当主力机。
+神船的性能是没得说的，但是这个重量(5kg)要背着上班通勤的话，我相信非习武之人绝对是承受不住的。
+于是我就打算将神船留在公司，可是回家就没电脑用了呀，而且身为IT人无论身在何处，随身携带电脑是我们光荣的使命。所以就萌发了购置macbook pro的想法。
+作为开发人员，16g内存是必选的，硬盘如果有条件还是建议512起步。但由于当时手头拮据，只选配了256的。新macbook pro在今年五月发布了，cpu 键盘 内存 硬盘 全线升级，如果上天再给我一次机会的话，我一定会等这四个月。
+使用macbook最直接的感受就是它超长的续航了，正常办公使用5h+没问题。而且随用随关，不用时只要把盖合上实属省心。
+现在我日常都是本地mac+远程win双端办公，只要有网络的地方都可以双端无缝切换，省心得很。
+macbook使用到现在也有小半年了，大问题没有，小问题比如说finder的远程服务器连接实属蹩脚，系统偶尔也会开小猜，不过重启都能解决问题。但是我这个人就是不喜欢重启电脑，只要不出问题，我宁愿它7x24不间断服务。
+前段时间还遇到了 macbook pro 2019 siri无法找到麦克风的问题，重启电脑即可解决。</description>
+    </item>
+    
+    <item>
+      <title>Macbook Pro查看电池信息</title>
+      <link>http://blog.sinowrt.cn/2020/2020-06-10t1427-how-to-query-the-information-of-battery-on-mac/</link>
+      <pubDate>Wed, 10 Jun 2020 14:27:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-06-10t1427-how-to-query-the-information-of-battery-on-mac/</guid>
+      <description>在终端输入以下命令：
+ioreg -rn AppleSmartBattery | grep -i capacity &amp;#34;AppleRawCurrentCapacity&amp;#34; = 4867 &amp;#34;AppleRawMaxCapacity&amp;#34; = 5084 &amp;#34;MaxCapacity&amp;#34; = 5084 &amp;#34;CurrentCapacity&amp;#34; = 4867 &amp;#34;LegacyBatteryInfo&amp;#34; = {&amp;#34;Amperage&amp;#34;=18446744073709551214,&amp;#34;Flags&amp;#34;=4,&amp;#34;Capacity&amp;#34;=5084,&amp;#34;Current&amp;#34;=4867,&amp;#34;Voltage&amp;#34;=12729,&amp;#34;Cycle Count&amp;#34;=46} &amp;#34;DesignCapacity&amp;#34; = 5088 &amp;#34;BatteryData&amp;#34; = {&amp;#34;StateOfCharge&amp;#34;=96,&amp;#34;PMUConfigured&amp;#34;=0,&amp;#34;Voltage&amp;#34;=12699,&amp;#34;QmaxCell1&amp;#34;=5358,&amp;#34;AdapterPower&amp;#34;=839469241,&amp;#34;SystemPower&amp;#34;=1087516262,&amp;#34;ResScale&amp;#34;=117,&amp;#34;QmaxCell2&amp;#34;=5302,&amp;#34;QmaxCell0&amp;#34;=5341,&amp;#34;CycleCount&amp;#34;=46,&amp;#34;DesignCapacity&amp;#34;=5088} </description>
+    </item>
+    
+    <item>
+      <title>优美的switch</title>
+      <link>http://blog.sinowrt.cn/2020/2020-05-20t1507-javagorgeous-switch/</link>
+      <pubDate>Wed, 20 May 2020 15:07:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-05-20t1507-javagorgeous-switch/</guid>
+      <description>相信大家都有这种体会，工作以来一直都是自己写代码，感觉自己的代码总是平平无奇，运行倒是能运行，就是没有那种让人眼前一亮的感觉。而每次阅读别人的源码，心里一直再默念，卧槽，还能这样写，天哪，太精辟了！
+于是，我就想，把这些让人眼前一亮的代码都摘录下来。一方面，自己能学习留痕，二来也能把这些知识分享给大家。
+private static String createPlayer(PlayerTypes playerType) { return switch (playerType) { case TENNIS -&amp;gt; &amp;#34;网球运动员费德勒&amp;#34;; case FOOTBALL -&amp;gt; &amp;#34;足球运动员C罗&amp;#34;; case BASKETBALL,PINGPANG -&amp;gt; &amp;#34;牛逼运动员&amp;#34;; case UNKNOWN -&amp;gt; throw new IllegalArgumentException(&amp;#34;未知&amp;#34;); }; } 另外，代码的优化应该在保证业务正常运行的前提下进行，下面我讲一个有隐患的代码优化例子：
+Map map=new HashMap(){{ put(&amp;#34;key&amp;#34;,&amp;#34;value&amp;#34;); }}; 这种写法，比起新建HashMap对象后再一个个put值，虽然是提高了代码的整体性，但是却存在着致命的缺陷，这也是我在搭地铁刷掘金时在一篇文章上看到的
+首先给出结论：这种写法会导致抛出OOM异常
+因为在new HashMap时，是调用了一个匿名内部类的put方法，而根据引用计数法，这个对象一直持有外部类的引用，导致该对象在GC时无法清除，埋下了OOM的隐患。</description>
+    </item>
+    
+    <item>
+      <title>mac 安装flutter</title>
+      <link>http://blog.sinowrt.cn/2020/2020-05-12t1531-how-to-install-flutter-on-mac/</link>
+      <pubDate>Tue, 12 May 2020 15:07:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-05-12t1531-how-to-install-flutter-on-mac/</guid>
+      <description>首先从官网将flutter稳定版的压缩包下载下来，然后解压到一个目录中， vi ~/.zshrc 添加以下一行 export PATH=/(解压flutter的路径)/flutter/bin:$PATH 保存然后source ~/.zshrc
+接下来flutter -h，却提示 无法打开“Dart”，因为apple无法检查其是否包含恶意软件
+输入以下命令回车（会提示输入密码）即可解决： sudo spctl &amp;ndash;master-disable
+再次输入flutter -h验证是否生效</description>
+    </item>
+    
+    <item>
+      <title>记一次生产环境 日期查询错误</title>
+      <link>http://blog.sinowrt.cn/2020/2020-04-21t1011-date-query-error-in-product-environment/</link>
+      <pubDate>Tue, 21 Apr 2020 10:11:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-04-21t1011-date-query-error-in-product-environment/</guid>
+      <description>如图
+想查询4月1日到21日的记录，可是却连着3月31日的记录都查到了
+到后端查看日志，显示查询开始日期为31日16时，那么基本断定是时区出了问题
+那么有几种可能，一是系统时区，一是数据库时区，三是docker容器内部的时区
+第一步，date -R查看系统时区输出Tue, 21 Apr 2020 09:31:18 +0800,东八区，没问题
+那么第二步，查看数据库时区，登录mysql，show variables like &amp;quot;%time_zone%&amp;quot;;
+mysql&amp;gt; show variables like &amp;quot;%time_zone%&amp;quot;; +------------------+--------+ | Variable_name | Value | +------------------+--------+ | system_time_zone | UTC | | time_zone | SYSTEM | +------------------+--------+ 2 rows in set (0.01 sec) 跟随系统，也没问题，需要注意的是，如果mysql是部署在docker中的话，就要进入容器内部更改容器内部的时区了
+保守起见，可以指定mysql的时区
+set global time_zone = &#39;+8:00&#39;; set time_zone = &#39;+8:00&#39;; set time_zone = &#39;+8:00&#39;; 再次查看mysql时区，已经改变了
+mysql&amp;gt; show variables like &amp;quot;%time_zone%&amp;quot;; +------------------+--------+ | Variable_name | Value | +------------------+--------+ | system_time_zone | UTC | | time_zone | +08:00 | +------------------+--------+ 2 rows in set (0.</description>
+    </item>
+    
+    <item>
+      <title>docker save 和 export 命令的区别</title>
+      <link>http://blog.sinowrt.cn/2020/2020-04-20t1611-the-differences-of-docker-command-save-and-export/</link>
+      <pubDate>Mon, 20 Apr 2020 15:07:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-04-20t1611-the-differences-of-docker-command-save-and-export/</guid>
+      <description>在一次生产环境 docker 微服务更新 中 深刻意识到docker save 和 export 的区别
+0x00 背景 上次使用虚拟机镜像部署了三个子系统，但是测试过程中还是发现了不少问题，所以这次需要过去更新几个微服务
+于是就在公司虚拟机里面用export命令把几个容器导出来，放到生产环境中再import进去，然后run，结果死活运行不起来，提示run缺少参数。为了防止这种情况，我还把公司测试环境中的完整的容器启动命令都拍了下来，然后尝试构造命令，没有参数是吧，我用inspect命令把参数都找出来。接下来参数是不缺了，就是提示在工作目录中找不到文件。
+0x01 分析： 在公司里面的容器，我是直接通过2375端口直接上传到docker镜像库的，在上传完毕后，还会执行dockerfile里面的命令，其中包含创建工作目录等命令。但是我将容器导入生产环境后，似乎是因为没有运行这些命令而造成找不到文件。
+那么就可以推理出，我只是将docker的容器导出来了，但是容器里面的数据却没有导出。
+怎样才能连同数据一起导出呢，那么就要用到save命令而不是export命令了。
+0x02 解决： 最后只能让同事再帮忙将这几个微服务的容器重新导出一下
+然后我这边再使用load命令将容器加载为镜像，微服务才得以成功更新。</description>
+    </item>
+    
+    <item>
+      <title>宿主机转发未开启导致无法访问docker内部网络</title>
+      <link>http://blog.sinowrt.cn/2020/2020-04-17t1702-can-not-access-the-nacos-service-in-docker-container/</link>
+      <pubDate>Fri, 17 Apr 2020 17:02:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-04-17t1702-can-not-access-the-nacos-service-in-docker-container/</guid>
+      <description>今天迁移了虚拟机之后，准备上nacos改一下配置，可是登录http://...:8848/nacos却连接超时，telnet一下也不通，于是上部署了nacos的docker容器的宿主机上，curl http://docker内网ip:8848/nacos 却是有返回数据的，那就确定应该是转发出了问题，
+sysctl -a | grep net.ipv4.ip_forward
+显示
+net.ipv4.ip_forward = 0
+原来是转发没开启，于是
+echo 1 &amp;gt; /proc/sys/net/ipv4/ip_forward
+sysctl -p 重新加载内核参数
+再telnet一下，通了搞定
+上http://...:8848/nacos进行配置就行了</description>
+    </item>
+    
+    <item>
+      <title>docker容器迁移</title>
+      <link>http://blog.sinowrt.cn/2020/2020-04-16t1623-migrate-the-container-to-another-docker/</link>
+      <pubDate>Thu, 16 Apr 2020 16:23:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-04-16t1623-migrate-the-container-to-another-docker/</guid>
+      <description>在项目部署的时候，本来是部署两个esxi虚拟机，但是在部署测试过程中发现对象存储服务依赖了另一个虚拟机的minio服务，由于该虚拟机的minio服务是部署在docker上的，所以打算将该容器迁移到要部署的其中一个虚拟机的docker中
+步骤：
+ 导出容器 docker export 容器ID &amp;gt;minio.tar 将导出minio.tar放到要部署的虚拟机上面 将该容器导入镜像docker import minio.tar minio/minio:lastest 新建容器并启动镜像  docker run -d -p 9000:9000 --name minio -d -e &amp;#34;MINIO_ACCESS_KEY=AKIAIOSFODNN7EXAMPLE&amp;#34; -e &amp;#34;MINIO_SECRET_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY&amp;#34; -v /mnt/data:/data -v /mnt/config:/root/.minio minio/minio:lastest /usr/bin/docker-entrypoint.sh server /data 启动命令可以在原宿主机上使用docker inspect 容器ID查看，并根据需求调整启动参数
+至此，容器的迁移工作顺利完成。</description>
+    </item>
+    
+    <item>
+      <title>esxi web client导出虚拟机 中断 报网络错误</title>
+      <link>http://blog.sinowrt.cn/2020/2020-04-16t1619-esxi-network-error-while-exporting-esxi-virtual-machine/</link>
+      <pubDate>Thu, 16 Apr 2020 16:19:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-04-16t1619-esxi-network-error-while-exporting-esxi-virtual-machine/</guid>
+      <description>今天使用esxi的web client导出虚拟机时，总是在导出到20G左右的时候中断，报网络异常，于是上vmware官网找有没有导出虚拟机的工具
+发现 OVFTOOL这个小工具，点击链接下载下来（需要注册账号才能下载），安装
+  打开cmd进入安装文件夹，执行ovftool.exe vi://用户名@esxi的ip/虚拟机名 K:/ovf
+  如果遇到 Fault cause: vim.fault.InvalidState 错误，请确认虚拟机为关机状态
+  运行结果如下所示
+C:\Program Files\VMware\VMware OVF Tool&amp;gt;ovftool.exe vi://root@***.***.***.***/docker K:/ovf Enter login information for source vi://***.***.***.***/ Username: root Password: *********** Opening VI source: vi://root@***.***.***.***:443/docker Opening VI source: vi://root@***.***.***.***:443/docker Opening OVF target: K:/ovf Writing OVF package: K:/ovf\docker\docker.ovf Disk progress: 3% 这个小工具效果非常好，不用担心网络错误问题，进度也能看到，可以打9分</description>
+    </item>
+    
+    <item>
+      <title>maven问题汇总</title>
+      <link>http://blog.sinowrt.cn/2020/2020-04-16t1023-problems-i-meet-while-using-maven/</link>
+      <pubDate>Thu, 16 Apr 2020 10:23:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-04-16t1023-problems-i-meet-while-using-maven/</guid>
+      <description>今天使用maven打包上传docker时，发现许多问题，就此记录一下： 1.maven打包报多个main方法的问题
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:2.1.12.RELEASE:repackage (default) on project blade-electronic-library: Execution default of goal org.springframework.boot:spring-boot-maven-plugin:2.1.12.RELEASE:repackage failed: Unable to find a single main class from the following candidates [org.springblade.library.ElectronicLibraryApplication, org.springblade.library.controller.BookUploadController, org.springblade.library.utils.BookmarksUtils, org.springblade.library.utils.KeyContextUtils, org.springblade.library.service.impl.BookReadRankServiceImpl] -&amp;gt; [Help 1] [ERROR] [ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch. [ERROR] Re-run Maven using the -X switch to enable full debug logging. [ERROR] [ERROR] For more information about the errors and possible solutions, please read the following articles: [ERROR] [Help 1] http://cwiki.</description>
+    </item>
+    
+    <item>
+      <title>[Ubuntu]将ngrok添加到supervisor守护进程</title>
+      <link>http://blog.sinowrt.cn/2020/2020-04-12t2330-ubuntuadd-ngrok-to-supervisor/</link>
+      <pubDate>Sun, 12 Apr 2020 23:33:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-04-12t2330-ubuntuadd-ngrok-to-supervisor/</guid>
+      <description>0x00 安装Supervis 直接执行以下命令即可安装Supervisor
+sudo apt-get install supervisor 0x01 添加ngrok的supervisor配置 进入supervisor配置目录,并新建ngrok.conf文件
+cd /etc/supervisor/conf.d vi ngrok.conf 输入以下内容：
+[program:ngrok] directory = /usr/local/ngrok/ command = ngrokd -domain=&amp;quot;ngrok.******.cn&amp;quot; -httpAddr=&amp;quot;:80&amp;quot; autostart = true ; 在 supervisord 启动的时候也自动启动 startsecs = 5 ; 启动 5 秒后没有异常退出，就当作已经正常启动了 autorestart = true ; 程序异常退出后自动重启 startretries = 3 ; 启动失败自动重试次数，默认是 3 user = root ; 用哪个用户启动 redirect_stderr = true ; 把 stderr 重定向到 stdout，默认 false stdout_logfile_maxbytes = 20MB ; stdout 日志文件大小，默认 50MB stdout_logfile_backups = 20 ; stdout 日志文件备份数 stdout_logfile = /var/log/supervisor/ngrok.</description>
+    </item>
+    
+    <item>
+      <title>npm 报错 EPERM: operation not permitted</title>
+      <link>http://blog.sinowrt.cn/2020/2020-04-10t1001-npm-eperm-operation-not-permitted/</link>
+      <pubDate>Fri, 10 Apr 2020 10:01:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-04-10t1001-npm-eperm-operation-not-permitted/</guid>
+      <description>昨天从拉了个前端项目下来，用IDEA打开，例行npm install，安装到一般报错EPERM: operation not permitted
+按网上的删除package-lock.json后，情况依旧
+以为是管理员权限问题，于是win + x再按a调出powershell，进入项目目录，执行npm install，报zlib: unexpected end of file，于是执行npm cache clean -force ，报错
+npm ERR! The operation was rejected by your operating system. npm ERR! It&#39;s possible that the file was already in use (by a text editor or antivirus), npm ERR! or that you lack permissions to access it. npm ERR! npm ERR! If you believe this might be a permissions issue, please double-check the npm ERR!</description>
+    </item>
+    
+    <item>
+      <title>xxl-job 启动报异常 java.lang.NoClassDefFoundError: groovy/lang/GroovyClassLoader</title>
+      <link>http://blog.sinowrt.cn/2020/2020-04-03t0853-xxl-job-groovyclassloader-noclassdeffounderror-exception/</link>
+      <pubDate>Fri, 03 Apr 2020 08:53:27 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-04-03t0853-xxl-job-groovyclassloader-noclassdeffounderror-exception/</guid>
+      <description>今天负责交接xxl-job数据同步系统，首先当然是将项目跑起来啦
+但是项目拉下来后，配置好，运行抛了个NoClassDefFoundError异常：
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name &amp;#39;xxlJobExecutor&amp;#39; defined in class path resource [org/springblade/job/executor/config/XxlJobConfig.class]: Invocation of init method failed; nested exception is java.lang.NoClassDefFoundError: groovy/lang/GroovyClassLoader at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1771) at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:593) at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515) at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320) at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222) at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318) at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:847) at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:877) at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549) at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:141) at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:744) at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:391) at org.springframework.boot.SpringApplication.run(SpringApplication.java:312) at org.springframework.boot.builder.SpringApplicationBuilder.run(SpringApplicationBuilder.java:140) at org.springblade.core.launch.BladeApplication.run(BladeApplication.java:49) at org.springblade.job.executor.JobApplication.main(JobApplication.java:34) Caused by: java.lang.NoClassDefFoundError: groovy/lang/GroovyClassLoader at com.xxl.job.core.glue.GlueFactory.&amp;lt;init&amp;gt;(GlueFactory.java:36) at com.xxl.job.core.glue.GlueFactory.&amp;lt;clinit&amp;gt;(GlueFactory.java:20) at com.xxl.job.core.executor.impl.XxlJobSpringExecutor.afterPropertiesSet(XxlJobSpringExecutor.java:39) at org.</description>
+    </item>
+    
+    <item>
+      <title>js大整数精度导致前后端传参不一致问题</title>
+      <link>http://blog.sinowrt.cn/2020/2020-03-05t1618-something-changed-while-java-long-parsing-to-javascript/</link>
+      <pubDate>Thu, 05 Mar 2020 16:18:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-03-05t1618-something-changed-while-java-long-parsing-to-javascript/</guid>
+      <description>js中规定安全整数的范围是-2^53~2^53，而后端传过去的记录id为64位，所以会导致参数精度丢失的问题。
+windows查看进程启动时间，run-&amp;gt;msinfo32，在打开的系统信息窗口中点击“软件环境→正在运行任务”，即可看到所有进程的相关信息包括启动时间</description>
+    </item>
+    
+    <item>
+      <title>Linux 挂载错误 Transport endpoint is not connected</title>
+      <link>http://blog.sinowrt.cn/2020/2020-02-18t1602-linux-mount-error-transport-endpoint-is-not-connected/</link>
+      <pubDate>Tue, 18 Feb 2020 16:02:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-02-18t1602-linux-mount-error-transport-endpoint-is-not-connected/</guid>
+      <description>0x00 前因 想在三毛鸡上挂载gd，于是就在189的三毛鸡上面安装了rclone，并尝试挂载，但是没到挂载的那一步都会卡住，后来偶然掉线了，于是再次登陆上去，发现挂载还在进行中，于是kill掉该进程重新挂载。但在重新挂载的过程中报错了，提示&#39;failed to mount FUSE&amp;rsquo;,起初以为没装FUSE，尝试了apt-get install fuse提示fuse已安装。而每次ls以及df -h都会提示Transport endpoint is not conneted。
+0x01 解决办法 kill进程后，对rclone尝试mount的本地文件夹进行umount，最后再重新挂载。</description>
+    </item>
     
     <item>
       <title>在esp8266中使用外部中断作为按键输入</title>
@@ -19,16 +213,16 @@
       <guid>http://blog.sinowrt.cn/2020/2020-01-08t0021-problems-of-using-the-external-interupt-on-esp8266/</guid>
       <description>0x00 起因 十月份使用esp8266，利用sonoff的源码做了个homekit小开关，虽然源码已经做得十分完善了，但是不符合我的需求：我需要使用ios的家庭开关灯（这个功能不用改动），还要将esp8266部署到墙上的86开关上，源码中的处理逻辑是在gpio0设置一个微动开关，长按清配置，短按开关灯。但我不可能将墙上原本就有的开关改成微动吧，一来不好操作，二来线路也太乱，于是我就想基于该源码的基础上，添加一个按键，io口电平发生变化即触发开关灯逻辑。 于是故事就开始了。。。
 0x01 过程 程序的编写十分简单，新建自定义的button头文件和源文件，根据原来的按钮照葫芦画瓢进行编码，然后引入到main中，一切都进行得十分顺利。然鹅，这才是噩梦的开始。。。
-0x02 遇到的问题 1. 接荧光灯，使用物理按键，开灯秒熄 主要原因：按键未消抖
+ 0x02 遇到的问题 1. 接荧光灯，使用物理按键，开灯秒熄 主要原因：按键未消抖
 次要原因：荧光灯电磁干扰
 解决过程：更换荧光灯为led灯，发现问题依旧。随后关注到开关过程的信号抖动，下面贴出第一版代码:
-void realbtn_intr_callback(uint8_t gpio){ rcallback(gpio); }  软件硬件均无消抖，一旦遇到抖动，便触发n次开关逻辑，后来仔细研究了原作者的按键代码，发现消抖逻辑十分巧妙，于是在自定义按钮上也仿照着写了个消抖逻辑，如下为添加了按键消抖的代码：
-void realbtn_intr_callback(uint8_t gpio){ uint32_t now = xTaskGetTickCountFromISR(); if ((now - last_event_time)*portTICK_PERIOD_MS &amp;lt; 200) { // debounce time, ignore events return; } rcallback(gpio); last_event_time = now; }  使用了这段代码之后，按键就基本上能用了，但是时不时会出现开关客厅的荧光灯也会触发中断。
+void realbtn_intr_callback(uint8_t gpio){ rcallback(gpio); } 软件硬件均无消抖，一旦遇到抖动，便触发n次开关逻辑，后来仔细研究了原作者的按键代码，发现消抖逻辑十分巧妙，于是在自定义按钮上也仿照着写了个消抖逻辑，如下为添加了按键消抖的代码：
+void realbtn_intr_callback(uint8_t gpio){ uint32_t now = xTaskGetTickCountFromISR(); if ((now - last_event_time)*portTICK_PERIOD_MS &amp;lt; 200) { // debounce time, ignore events  return; } rcallback(gpio); last_event_time = now; } 使用了这段代码之后，按键就基本上能用了，但是时不时会出现开关客厅的荧光灯也会触发中断。
 2. 接入用电器会触发中断，导致无故开关灯。 这个问题排查了很久，从电源，到板子再回到程序，都查了一个遍，期间也踩了很多坑。
 起初怀疑电源电压不稳，造成模块重启，但是回头一想，模块重启只会熄灯，而不会开灯，电源问题排除。
 再就是怀疑板子质量，之前被我拆焊过芯片，存在虚焊的风险，而手头上还有块nodemcu，于是将程序烧到nodemcu上，问题依旧。在调试原全io引出的模块和nodemcu的过程中，踩了最大的坑就是使用了陈年面包板和杜邦线，可能时时间长了，金属触点被氧化的原因，杜邦线电阻竟然有1-2欧，导致加到模块的电压存在0.2-0.3v的压降，这就要命了。烧好程序，一上电就飞，各种奇奇怪怪的现象都出来了。还一度以为烧写次数太多，把模块给烧烂了。。。后来使用了短杜邦线，板子突然又好用了，这才引起了我的怀疑。到网上一搜，同样是哀鸿遍野。总结为两点：面包板杜邦线这东西，要测过再用，电源的检查要上心。
 在这之前，我就怀疑是电磁干扰的问题，虽然手头上没有示波器，但是对于这个的怀疑还是一直有的。也尝试过很多办法，将导线进行绞合，将模块从86盒中拆出来，问题还是存在。直到前两天收拾桌子，在排插上插入台灯的插头，房间的灯就很有节奏地，插进去就关，再插一下就灭。于是就有了测试用例。后来，偶然地将连接按键的导线都拆了，再进行测试，问题就消失了，于是确定是电磁干扰再导线中形成了噪声，而外部中断的io口十分灵敏，一旦有电平的变化，以及会响应。于是上网搜索了软件消抖的例子，最简单也最好用的实属中断延时判断了。一开始使用vTaskDelay进行延时，但是每次触发中断都会导致模块重启，看了下看门狗的输出，再结合网上的搜索结果，原来是rtos系统在中断程序中不允许使用延时api。不使用也行，那我设置while循环用xTaskGetTickCountFromISR()获取节拍，减去now，乘上节拍周期，对该时间进行判断总行了把。结果还是一触发，模块就重启。后来将xTaskGetTickCountFromISR()和now都打印出来，才了解到xTaskGetTickCountFromISR()是从节拍寄存器中取节拍数的，当前都中断了，节拍寄存器的内容当然不会发生变化了。于是我把while段给删了，留下printf打印语句，只想看看触发的tick数和节拍周期的数值是怎样的。结果误打误撞，延时判断似乎生效了。很早之前就知道将数据打印到串口会花费一定的时间，但是怎么就没想到用到这里呢！突然茅塞顿开，下面贴出代码：
-void realbtn_intr_callback(uint8_t gpio){ uint32_t now = xTaskGetTickCountFromISR(); if ((now - last_event_time)*portTICK_PERIOD_MS &amp;lt; 200) { // debounce time, ignore events return; } printf(&amp;quot;interupted--[-%d--%d]\n&amp;quot;,(now - last_event_time),portTICK_PERIOD_MS); if(gpio_read(gpio)!</description>
+void realbtn_intr_callback(uint8_t gpio){ uint32_t now = xTaskGetTickCountFromISR(); if ((now - last_event_time)*portTICK_PERIOD_MS &amp;lt; 200) { // debounce time, ignore events  return; } printf(&amp;#34;interupted--[-%d--%d]\n&amp;#34;,(now - last_event_time),portTICK_PERIOD_MS); if(gpio_read(gpio)!</description>
     </item>
     
     <item>
@@ -38,14 +232,13 @@ void realbtn_intr_callback(uint8_t gpio){ uint32_t now = xTaskGetTickCountFromIS
       
       <guid>http://blog.sinowrt.cn/2019/2019-11-30t1214-expose-synology-diskstation-to-the-internet/</guid>
       <description>0x00 思路 分别在vps和路由端部署ngrok服务端与客户端，客户端在线时主动向服务端发起请求建立隧道，外部设备可直接向服务端请求相应的隧道，从而实现内网穿透。
-0x01 在vps上部署ngrok服务端 良心云和套路云的学生套餐用来做内网穿透的服务端还是相当香的，由于ngrok需要用到域名，而我的域名只在良心北了岸，要是用套路云的话会截断提示未备案，无法访问，所以这次就直接用良心云的vps搭建服务端。 * 安装ngrok服务端
-网上大部分教程都是从安装go环境开始，再编译ngrok客户端，过程很复杂。而我只要简单的穿透服务，不需要tls啥的，其实安装过程很简单，只需要两条命令
-apt-get update apt-get install ngrok-server   启动ngrok服务端
-  一条命令就搞定，监听80、443、4443端口，如果vps有防火墙请放行这几个入站端口。如果需要指定证书还有端口什么的可以自行添加启动参数，这里不再赘述。
-ngrokd -domain=ngrok.example.com  0x02 添加域名解析 添加两条域名解析记录
+0x01 在vps上部署ngrok服务端 良心云和套路云的学生套餐用来做内网穿透的服务端还是相当香的，由于ngrok需要用到域名，而我的域名只在良心北了岸，要是用套路云的话会截断提示未备案，无法访问，所以这次就直接用良心云的vps搭建服务端。
+ 安装ngrok服务端  网上大部分教程都是从安装go环境开始，再编译ngrok客户端，过程很复杂。而我只要简单的穿透服务，不需要tls啥的，其实安装过程很简单，只需要两条命令
+apt-get update apt-get install ngrok-server  启动ngrok服务端  一条命令就搞定，监听80、443、4443端口，如果vps有防火墙请放行这几个入站端口。如果需要指定证书还有端口什么的可以自行添加启动参数，这里不再赘述。
+ngrokd -domain=ngrok.example.com 0x02 添加域名解析 添加两条域名解析记录
 类型 | Name | Content -|-|- A记录 | *.ngrok | ngrok服务器ip A记录 | ngrok | ngrok服务器ip
-0x03 ngrok客户端配置  在本地，我使用刷了padavan固件的newifi3路由，内置了1.4版本的ngrok客户端。服务端是1.6版本的，经测试能通用。
- 客户端配置很简单   0x04 结语 到这里，群晖已经暴露在外网了，请设置强大的登录密码防止数据泄露。</description>
+0x03 ngrok客户端配置   在本地，我使用刷了padavan固件的newifi3路由，内置了1.4版本的ngrok客户端。服务端是1.6版本的，经测试能通用。
+  客户端配置很简单   0x04 结语 到这里，群晖已经暴露在外网了，请设置强大的登录密码防止数据泄露。</description>
     </item>
     
     <item>
@@ -54,10 +247,7 @@ ngrokd -domain=ngrok.example.com  0x02 添加域名解析 添加两条域名解�
       <pubDate>Fri, 29 Nov 2019 00:28:00 +0800</pubDate>
       
       <guid>http://blog.sinowrt.cn/2019/2019-11-29t0028-newifi-mini-dialing-setting/</guid>
-      <description> 0x00 线缆连接 * 将路由器接入电源 * 用一根网线，一端接入路由器的任意蓝色端口，另一端接入主机 * 将用于拨号的网线接入路由器的黄色端口
-0x01 登录路由器管理界面 * 打开浏览器，在地址栏输入192.168.123.1,回车 * 在弹出来的登录窗口输入用户名admin,密码admin258
-0x02 拨号设置 * 点击外部网络 * 选择外网连接类型为PPPoE拨号 * 在用户名称处填入拨号账号 * 在用户密码处填入拨号密码 * 最后滑到页面底部，点击应用本页面设置
-0x03 设置好了就网上冲浪吧！ </description>
+      <description>0x00 线缆连接  将路由器接入电源 用一根网线，一端接入路由器的任意蓝色端口，另一端接入主机 将用于拨号的网线接入路由器的黄色端口  0x01 登录路由器管理界面  打开浏览器，在地址栏输入192.168.123.1,回车 在弹出来的登录窗口输入用户名admin,密码admin258  0x02 拨号设置  点击外部网络 选择外网连接类型为PPPoE拨号 在用户名称处填入拨号账号 在用户密码处填入拨号密码 最后滑到页面底部，点击应用本页面设置  0x03 设置好了就网上冲浪吧！ </description>
     </item>
     
     <item>
@@ -66,8 +256,7 @@ ngrokd -domain=ngrok.example.com  0x02 添加域名解析 添加两条域名解�
       <pubDate>Thu, 31 Oct 2019 12:00:00 +0800</pubDate>
       
       <guid>http://blog.sinowrt.cn/2019/2019-10-31t1200-dy-interview/</guid>
-      <description>0x00 面试通知  自从笔试通过后被晾了差不多半个月，30号晚突然收到多益的面试通知，面试时间为31号早上11:40，woc这么快，赶紧吃了饭回来准备一下  0x01 面试过程  早上九点多，hr突然打电话过来说面试提前到了10点，我赶紧登陆了战盟，发送了面试确认 大概10:19，面试官通知面试，但是战盟不识别摄像头，改为qq视频 面试开始了，整个过程持续了整整有30分钟，问题（不完整）整理了一下，贴在下面   自我介绍 做过什么项目，觉得特别有成就感的是哪个，用了什么技术，有没有做过web服务端项目，用了什么技术？ 有没有做过什么项目使用了缓存机制的？ 谈谈对消息队列的理解 堆和栈的区别，哪个快些？ 引用类型和值类型的概念与区别？ 接口和抽象类的区别？为什么使用接口和抽象类？ 进程与线程？ 使用线程的优点是什么？在什么情况下使用？ 手机APP消息推送的机制？ 有没有使用过Redis或MongoDB？ TCP三次握手，四次挥手？为什么要三次握手？服务器断开与客户端断开有什么区别？ 使用过什么中间件？ 对事务的理解？ 非关系型数据库与关系型数据库的区别？ MySql中，select * from table where field=null 为什么无法匹配空值？ varchar 与 char 的区别，哪个比较长，varchar(32)代表什么？ cookie与session的区别，通过什么将cookie与session进行匹配？ 如何在多线程中共享变量？ Web中有哪些漏洞攻击方法需要防范？ 对加班的看法？ 最近了解什么新技术？ 编程题：实现一个函数, 输入两个版本号（随机输入二位到四位），比较两个版本号的大小。 输入示例： 1.2.1 1.10.2.0(下面贴我的烂代码，考点主要有正则表达式，字符串转Integer)
-  public static int comp(String a,String b) { String[] k=a.split(&amp;quot;\\.&amp;quot;); String[] g=b.split(&amp;quot;\\.&amp;quot;); int min=k.length&amp;gt;g.length?g.length:k.length; for(int i=0;i&amp;lt;min;i++) { int kn=Integer.parseInt(k[i]); int gn=Integer.</description>
+      <description>0x00 面试通知  自从笔试通过后被晾了差不多半个月，30号晚突然收到多益的面试通知，面试时间为31号早上11:40，woc这么快，赶紧吃了饭回来准备一下  0x01 面试过程  早上九点多，hr突然打电话过来说面试提前到了10点，我赶紧登陆了战盟，发送了面试确认 大概10:19，面试官通知面试，但是战盟不识别摄像头，改为qq视频 面试开始了，整个过程持续了整整有30分钟，问题（不完整）整理了一下，贴在下面   自我介绍 做过什么项目，觉得特别有成就感的是哪个，用了什么技术，有没有做过web服务端项目，用了什么技术？ 有没有做过什么项目使用了缓存机制的？ 谈谈对消息队列的理解 堆和栈的区别，哪个快些？ 引用类型和值类型的概念与区别？ 接口和抽象类的区别？为什么使用接口和抽象类？ 进程与线程？ 使用线程的优点是什么？在什么情况下使用？ 手机APP消息推送的机制？ 有没有使用过Redis或MongoDB？ TCP三次握手，四次挥手？为什么要三次握手？服务器断开与客户端断开有什么区别？ 使用过什么中间件？ 对事务的理解？ 非关系型数据库与关系型数据库的区别？ MySql中，select * from table where field=null 为什么无法匹配空值？ varchar 与 char 的区别，哪个比较长，varchar(32)代表什么？ cookie与session的区别，通过什么将cookie与session进行匹配？ 如何在多线程中共享变量？ Web中有哪些漏洞攻击方法需要防范？ 对加班的看法？ 最近了解什么新技术？ 编程题：实现一个函数, 输入两个版本号（随机输入二位到四位），比较两个版本号的大小。 输入示例： 1.2.1 1.10.2.0(下面贴我的烂代码，考点主要有正则表达式，字符串转Integer)  public static int comp(String a,String b) { String[] k=a.split(&amp;#34;\\.&amp;#34;); String[] g=b.split(&amp;#34;\\.&amp;#34;); int min=k.length&amp;gt;g.length?g.length:k.length; for(int i=0;i&amp;lt;min;i++) { int kn=Integer.parseInt(k[i]); int gn=Integer.parseInt(g[i]); if(kn!</description>
     </item>
     
     <item>
@@ -76,7 +265,7 @@ ngrokd -domain=ngrok.example.com  0x02 添加域名解析 添加两条域名解�
       <pubDate>Sun, 08 Sep 2019 15:59:08 +0800</pubDate>
       
       <guid>http://blog.sinowrt.cn/2019/2019-09-08t1559-zte-w815n-refitting/</guid>
-      <description> 0x00 状况描述  毕业租房子后，一直在整网络。因为是出租屋，想着租一年就搬了，就把学校的热点桥接过来将就着用就算了。这两个月，桥接用过newifi mini，TP的340G+，信号一直不理想，就想着搞个正版ubnt。看着看着，就觉得吧，这个ubnt的水也深，也不便宜，看到无线论坛上有坛友说用运营级别的大功率网桥，深入了解，其中还真的不乏好设备。看过烽火2400、中兴W815，想着大品牌折腾的人应该不少，最后入手了中兴W815。  0x01 设备描述  中兴W815拥有双功放，无线功率最高可达500mw，基于7240+9283方案，改ubnt的教程也不少，但是资料较为零散，需要取百家所长。  0x02 改装过程  首先是备份原厂固件，用风枪将flash取下，焊到编程器上面，我用的是ch341普通的绿板编程器，备份过程挺久的，毕竟固件有16m。 固件备份完成后，直接擦除芯片，将breed写入flash，我用的是h大的将gpio12作为reset键的版本breed-ar724x-reset12-r1163.bin，烧录好就将flash焊回去。 烧好breed，就要改reset键了。这里参考的是坛友的改装方案 用漆包线将7240的第89脚用漆包线引出，焊到空车位上，在旁边补上10k上拉电阻  翻到后面同样用漆包线引到直连reset键的C70电容右脚。  很奇怪，我按照坛友的方法改好后，开机却一直重启。用万用表测量gpio12的对地电压，开机时很稳定的2.5v但是开机完成后马上跳回0.1v，导致机器无限重启。于是我尝试将电阻换为2.2k甚至1k，问题依旧，最后直接不要电阻，将电阻两脚直接点上，没再出现重启的现象。最后还是接上了20欧的电阻，电流能减少一点是一点，开机一切正常。  0x03 提取art  art在原厂固件的最后64KB，直接用winhex备份出来即可  0x04 刷入ubnt固件与art  由于我找不到适用的ubnt固件，最后还是用了坛友的编程器固件，最后刷入art正常使用  0x05 外接天线  由于原机的天线接头比较特别，是N型母头，要和sma接头的八木天线连接，还得买个N型公头转sma外螺内针的转接头  0x06 使用效果  用原机的5dbi天线伸出窗外效果还行，信号在-60db左右，但是这机子不防水啊，常年这样用也不是办法，但是把机子放在室内，再外接八木天线或者6dbi的全向天线效果都不理想！ 总结：翻车了！  </description>
+      <description>0x00 状况描述  毕业租房子后，一直在整网络。因为是出租屋，想着租一年就搬了，就把学校的热点桥接过来将就着用就算了。这两个月，桥接用过newifi mini，TP的340G+，信号一直不理想，就想着搞个正版ubnt。看着看着，就觉得吧，这个ubnt的水也深，也不便宜，看到无线论坛上有坛友说用运营级别的大功率网桥，深入了解，其中还真的不乏好设备。看过烽火2400、中兴W815，想着大品牌折腾的人应该不少，最后入手了中兴W815。  0x01 设备描述  中兴W815拥有双功放，无线功率最高可达500mw，基于7240+9283方案，改ubnt的教程也不少，但是资料较为零散，需要取百家所长。  0x02 改装过程  首先是备份原厂固件，用风枪将flash取下，焊到编程器上面，我用的是ch341普通的绿板编程器，备份过程挺久的，毕竟固件有16m。 固件备份完成后，直接擦除芯片，将breed写入flash，我用的是h大的将gpio12作为reset键的版本breed-ar724x-reset12-r1163.bin，烧录好就将flash焊回去。 烧好breed，就要改reset键了。这里参考的是坛友的改装方案 用漆包线将7240的第89脚用漆包线引出，焊到空车位上，在旁边补上10k上拉电阻  翻到后面同样用漆包线引到直连reset键的C70电容右脚。  很奇怪，我按照坛友的方法改好后，开机却一直重启。用万用表测量gpio12的对地电压，开机时很稳定的2.5v但是开机完成后马上跳回0.1v，导致机器无限重启。于是我尝试将电阻换为2.2k甚至1k，问题依旧，最后直接不要电阻，将电阻两脚直接点上，没再出现重启的现象。最后还是接上了20欧的电阻，电流能减少一点是一点，开机一切正常。  0x03 提取art  art在原厂固件的最后64KB，直接用winhex备份出来即可  0x04 刷入ubnt固件与art  由于我找不到适用的ubnt固件，最后还是用了坛友的编程器固件，最后刷入art正常使用  0x05 外接天线  由于原机的天线接头比较特别，是N型母头，要和sma接头的八木天线连接，还得买个N型公头转sma外螺内针的转接头  0x06 使用效果  用原机的5dbi天线伸出窗外效果还行，信号在-60db左右，但是这机子不防水啊，常年这样用也不是办法，但是把机子放在室内，再外接八木天线或者6dbi的全向天线效果都不理想！ 总结：翻车了！  </description>
     </item>
     
     <item>
@@ -85,26 +274,24 @@ ngrokd -domain=ngrok.example.com  0x02 添加域名解析 添加两条域名解�
       <pubDate>Sat, 10 Aug 2019 15:44:08 +0800</pubDate>
       
       <guid>http://blog.sinowrt.cn/2019/2019-08-10t1544-clicking-windows10-taskbar-preview-notworking/</guid>
-      <description> 0x00 状况描述  在某应用上面操作一段时间之后，将鼠标悬停在任务栏的某已打开多个窗口的应用程序上面时，其上方的预览窗口一闪而过。需要点击任务栏，使任务栏获得焦点后，再将鼠标悬停在该多窗口应用程序上方，才会显示预览窗口。此时，再将光标悬停在某预览窗口上方，单击，奇迹出现了——该窗口并不会恢复，而是一闪而过，点击之前的桌面是啥样就是啥样。
- 正常健康的win10系统，在鼠标悬停在任务栏的应用图标上面，加入该页面打开了多个窗口（如chrome以及windows的资源管理器）图标上方会出现预览窗口，然后鼠标悬停在某个窗口上方并单击即可打开该窗口。
- 这是一个间歇性的问题
- 这个问题应该在很久之前就出现了，但是一直使用win+tab快捷键能够解决，就一直没当回事
- 最近键盘放在一个不太方便的位置，每次需要切换窗口都需要另一只手够到键盘，win+tab切换，才发现问题大条了
-  0x01 问题排查过程  上百度搜索 win10 无法切换窗口，发现较多的是2015年的一个bug。对于该bug的描述是————某应用程序打开了多个窗口，若需要从其中一个窗口切换到另一个窗口，需要将当前窗口最小化，需要切换的窗口才能显示在最前端。该问题看似很像我的问题，但是其实不是一回事。于是我继续查找，还有大部分是快捷键alt+tab都不生效的，这个问题似乎已经有了解决方案，只要将注册表中的“AltTabSettings”项修改为1就行了。但是我的问题也不是这样啊，算了还是请出谷歌吧。
- 在谷歌上搜索win10 无法切换窗口，发现了挺多在microsoft support上的提问，有好几个类似我的情形，但是得到的回复都是
- 1.在启动项中隐藏所有windows自带的服务，把其他服务全部关闭自启动并重启（对我无效）
- 2.将系统文件与镜像文件进行对比，检查是否存在缺陷文件，并修复重启（对我无效）
- 当然，也有很多大神朋友说是BING输入法或者BING词典的问题，导致焦点丢失，卸载了就好了。（我的系统中也没有折玩意儿啊）
- 在microsoft support中发现一个回复挺有意思的，说到国外似乎没有这种情况发生？？？
- 于是我推测是不是系统自带的中文输入法有问题，我甚至将系统语言修改为英文，但是问题如故。
- 我开始在谷歌上面利用clicking windows10 taskbar preview not working，了解到在外国友人手中的电脑也存在该问题，于是我就放心了，这应该是windows10的一个bug。
- 经过众多方法都无果之后，我似乎放弃了，甚至一度想要恢复到win7，但是我并没有备份，当然这也只能是想想了。
- 后来我来到了国外版的知乎Reddit中，简简单单地搜索windows10 taskbar期望找到一个同病相怜的“友人”。
- 没想到我真的找到了，顿时内牛满面，该网友还用一段youtube的视频完美复现了这种情况，他提到它也到microsoft support上提问过，但是都是得到万金油式的回答（类似重启啊，修改注册表啊。。。），并在最后着重提到他也重装了多次系统，以及另外一个他遇到的bug（在开始菜单中右键也会一闪而过，但这个问题我倒没有遇到过）。唉！是windows的bug石锤了。我的心情有所平复，但是我依旧没有得到一个满意的答案。
- 贴出该问题的地址，有兴趣的朋友可以看一下跟你遇到的问题是不是一样鸭！
- 在我不死心的时候，我想到会不会是跟我之前安装的SynTPEnh.exe，触摸板辅助软件有关呢。二话不说，先用任务管理器杀掉再说吧。但是十分巧合，我按错按键了，想按ctrl+shift+esc，竟然按了win+r，更巧合的是r也没按出来。这时我就发现，外接键盘的win键按了竟然没弹出开始菜单？？？我反复按，只有极少部分时候会弹出开始菜单的界面。会不会是我的键盘失灵了？我此时又按了一下笔记本自带键盘的win键，发现似乎桌面刷新了一下，开始菜单也出现了。我也顾不上那么多，打开任务管理器把SynTPEnh.exe杀了。此时我再用鼠标悬停到chrome上面，发现竟然好了？？？好了？？？那这到底是跟外接键盘还是SynTPEnh.exe有关呢。于是我利用控制变量法，进行了一系列的实验，发现与谁都无关！！！
- 也不能说一无所获吧，我还是找到了解决问题的方法。当问题出现的时候，只要按一下笔记本自带键盘的win键，弹出开始菜单，一切又开始正常工作了。
-  更新！！！问题已解决！！！  我私信了Reddit上面的这位友人，询问是否解决了该问题。他回复说，是他的罗技键盘上面的媒体键坏了的原因，把坏的键修复后问题就解决了。此时我突然想起我的笔记本自带键盘上的esc键也坏了，是不是这个原因呢？于是我把自带键盘拆了，问题也迎刃而解！！！然后我实验了一下，按住外接键盘的esc键，再按win键，问题重现了!esc键的锅石锤了！  0x02 总结  windows10 还是会存在一定的小问题，其实也不小了，至少影响到了工作效率嘛。 我甚是想念windows7的稳定，并且强烈建议强迫症患者还是留在win7吧，windows10虽然相对于刚面世时少了很多问题，但是小问题依旧存在。 win7与win10就像心头的朱砂痣与床前明月光，win7稳定而强大，虽然用户界面做的差了点，但是经过多年的沉淀，很多小问题都被发现并被开发者或用户解决了，无论大小问题，在网上都能搜到解决方案。而win10，外观非常惊艳，但是小问题依旧存在，由于面世的时间并不久，很多小问题都没有受到开发者的关注，并且用户也没有摸索到解决方案，导致强迫症患者非常头疼。 一句话总结：macos真香！  总结的话就当我放了个屁吧: ) </description>
+      <description>0x00 状况描述   在某应用上面操作一段时间之后，将鼠标悬停在任务栏的某已打开多个窗口的应用程序上面时，其上方的预览窗口一闪而过。需要点击任务栏，使任务栏获得焦点后，再将鼠标悬停在该多窗口应用程序上方，才会显示预览窗口。此时，再将光标悬停在某预览窗口上方，单击，奇迹出现了——该窗口并不会恢复，而是一闪而过，点击之前的桌面是啥样就是啥样。
+  正常健康的win10系统，在鼠标悬停在任务栏的应用图标上面，加入该页面打开了多个窗口（如chrome以及windows的资源管理器）图标上方会出现预览窗口，然后鼠标悬停在某个窗口上方并单击即可打开该窗口。
+  这是一个间歇性的问题
+  这个问题应该在很久之前就出现了，但是一直使用win+tab快捷键能够解决，就一直没当回事
+  最近键盘放在一个不太方便的位置，每次需要切换窗口都需要另一只手够到键盘，win+tab切换，才发现问题大条了
+  0x01 问题排查过程   上百度搜索 win10 无法切换窗口，发现较多的是2015年的一个bug。对于该bug的描述是————某应用程序打开了多个窗口，若需要从其中一个窗口切换到另一个窗口，需要将当前窗口最小化，需要切换的窗口才能显示在最前端。该问题看似很像我的问题，但是其实不是一回事。于是我继续查找，还有大部分是快捷键alt+tab都不生效的，这个问题似乎已经有了解决方案，只要将注册表中的“AltTabSettings”项修改为1就行了。但是我的问题也不是这样啊，算了还是请出谷歌吧。
+  在谷歌上搜索win10 无法切换窗口，发现了挺多在microsoft support上的提问，有好几个类似我的情形，但是得到的回复都是
+  1.在启动项中隐藏所有windows自带的服务，把其他服务全部关闭自启动并重启（对我无效）
+  2.将系统文件与镜像文件进行对比，检查是否存在缺陷文件，并修复重启（对我无效）
+  当然，也有很多大神朋友说是BING输入法或者BING词典的问题，导致焦点丢失，卸载了就好了。（我的系统中也没有折玩意儿啊）
+  在microsoft support中发现一个回复挺有意思的，说到国外似乎没有这种情况发生？？？
+  于是我推测是不是系统自带的中文输入法有问题，我甚至将系统语言修改为英文，但是问题如故。
+  我开始在谷歌上面利用clicking windows10 taskbar preview not working，了解到在外国友人手中的电脑也存在该问题，于是我就放心了，这应该是windows10的一个bug。
+  经过众多方法都无果之后，我似乎放弃了，甚至一度想要恢复到win7，但是我并没有备份，当然这也只能是想想了。
+  后来我来到了国外版的知乎Reddit中，简简单单地搜索windows10 taskbar期望找到一个同病相怜的“友人”。
+  没想到我真的找到了，顿时内牛满面，该网友还用一段youtube的视频完美复现了这种情况，他提到它也到microsoft support上提问过，但是都是得到万金油式的回答（类似重启啊，修改注册表啊。。。），并在最后着重提到他也重装了多次系统，以及另外一个他遇到的bug（在开始菜单中右键也会一闪而过，但这个问题我倒没有遇到过）。唉！是windows的bug石锤了。我的心情有所平复，但是我依旧没有得到一个满意的答案。
+  贴出该问题的地址，有兴趣的朋友可以看一下跟你遇到的问题是不是一样鸭！
+  在我不死心的时候，我想到会不会是跟我之前安装的SynTPEnh.</description>
     </item>
     
     <item>
@@ -113,7 +300,7 @@ ngrokd -domain=ngrok.example.com  0x02 添加域名解析 添加两条域名解�
       <pubDate>Mon, 05 Aug 2019 17:47:08 +0800</pubDate>
       
       <guid>http://blog.sinowrt.cn/2019/2019-08-05t1747-the-fucking-china-mobile/</guid>
-      <description> 0x00 起因  舍友淘汰了一台笔记本电脑，被水泡了，也经过我的手修过，最后硬盘还是回天乏术。毕业了，也就扔给我了，由于手头上没有多余的硬盘，于是拆掉了群晖上的120G的东芝硬盘安上去。但是在转移资料的时候，只转移了盘内的文件，没有留意到群晖的package也需要转移。就这样，配置好在docker上的aria2也GG了。群晖没有了离线下载，就如烧烤没有孜然，失去了灵魂。 学校上个月换了运营商，换成了稀巴烂的移动网。 今天恰好有空，就重装一下aria2。  0x01 经过  docker安装挺顺利的，接下来就找一下aria2的镜像呗，输入aria2查找了半天，却弹了个failed to query registry的提示出来。我寻思着，是不是注册表源失效了，换成阿里云的源，结果直接not found。 这就奇怪了，以前安装的时候一切挺顺利的，没遇到过这种情况。于是google了一番，有让改dns的，改了n多个也没见效果。后来发现挺多回帖说是移动网的问题，用代理下吧，newifi3刚拿回来还没空刷机，刷完机还得配梯子，也挺折腾的。 我的网络是中继了学校的wifi过来的，于是我用手机开了个wifi，那就中继手机吧。试了一下，果然是移动网的问题，这个问题也就结了。  0x02 总结  移动网垃圾！  </description>
+      <description>0x00 起因  舍友淘汰了一台笔记本电脑，被水泡了，也经过我的手修过，最后硬盘还是回天乏术。毕业了，也就扔给我了，由于手头上没有多余的硬盘，于是拆掉了群晖上的120G的东芝硬盘安上去。但是在转移资料的时候，只转移了盘内的文件，没有留意到群晖的package也需要转移。就这样，配置好在docker上的aria2也GG了。群晖没有了离线下载，就如烧烤没有孜然，失去了灵魂。 学校上个月换了运营商，换成了稀巴烂的移动网。 今天恰好有空，就重装一下aria2。  0x01 经过  docker安装挺顺利的，接下来就找一下aria2的镜像呗，输入aria2查找了半天，却弹了个failed to query registry的提示出来。我寻思着，是不是注册表源失效了，换成阿里云的源，结果直接not found。 这就奇怪了，以前安装的时候一切挺顺利的，没遇到过这种情况。于是google了一番，有让改dns的，改了n多个也没见效果。后来发现挺多回帖说是移动网的问题，用代理下吧，newifi3刚拿回来还没空刷机，刷完机还得配梯子，也挺折腾的。 我的网络是中继了学校的wifi过来的，于是我用手机开了个wifi，那就中继手机吧。试了一下，果然是移动网的问题，这个问题也就结了。  0x02 总结  移动网垃圾！  </description>
     </item>
     
     <item>
@@ -122,7 +309,7 @@ ngrokd -domain=ngrok.example.com  0x02 添加域名解析 添加两条域名解�
       <pubDate>Thu, 13 Jun 2019 13:02:08 +0800</pubDate>
       
       <guid>http://blog.sinowrt.cn/2019/2019-06-13t1300-how-to-save-the-baned-ip/</guid>
-      <description>0x00 事件起因  2019年儿童节中午，google搜索超时，ss服务器尚可ping通，但端口连接异常。 13:00 更换端口，仍无法使用，ping检测IP被墙  0x01 解决方案  有消息称等待数天即可解封 等待无果，更换v2ray+cdn+ws代理方案  0x02 bandwagonhost服务器安装v2ray  我的搬瓦工vps是3.99传家宝套餐，64M运行内存，2G磁盘空间，100G流量 需要在kvm面板上安装debian或ubuntu系统 需要注意的是我的vps在安装了debian-8.0-x86_64-minimal后，使用v2ray的官方go.sh脚本安装时，swap空间爆掉了，导致安装意外终止。根据网上的教程调整swap分区无果，于是更换ubuntu-16.04-x86_64系统，安装才得以顺利进行。  环境 临时梯子（用于连接ip被ban的vps） 工具 PuTTy  sudo su 获取root权限 在控制台输入bash &amp;lt;(curl -L -s https://install.direct/go.sh)，此命令主要下载go.sh脚本并运行自动安装 控制台提示V2Ray v4.19.1 is installed.即为安装成功 记下控制台中的PORT和UUID的值  配置v2ray服务端  v2ray使用脚本安装完成后，默认启动服务就可以使用的了，但我们为了使用websock协议，还需要配置一下 打开v2ray的配置文件（/etc/v2ray/config.json）参照下面的进行配置。 只需在port和id这两个属性中填入你之前安装v2ray时记下来的值即可。（若需要CloudeFlare进行CDN转发，port则需要配置成CloudFlare支持的端口，在CloudFlare配置部分有详细说明） log配置是我后来加上的，不需要打日志的可以去掉。  { &amp;quot;log&amp;quot;: { &amp;quot;loglevel&amp;quot;: &amp;quot;debug&amp;quot;, &amp;quot;access&amp;quot;: &amp;quot;/var/log/v2ray/access.log&amp;quot;, &amp;quot;error&amp;quot;: &amp;quot;/var/log/v2ray/error.log&amp;quot; }, &amp;quot;inbounds&amp;quot;: [{ &amp;quot;port&amp;quot;: port, &amp;quot;protocol&amp;quot;: &amp;quot;vmess&amp;quot;, &amp;quot;settings&amp;quot;: { &amp;quot;clients&amp;quot;: [ { &amp;quot;id&amp;quot;: &amp;quot;UUID&amp;quot;, &amp;quot;level&amp;quot;: 1, &amp;quot;alterId&amp;quot;: 64 } ] }, &amp;quot;streamSettings&amp;quot;:{ &amp;quot;wsSettings&amp;quot;:{ &amp;quot;path&amp;quot;:&amp;quot;/&amp;quot;, &amp;quot;headers&amp;quot;:{} }, &amp;quot;network&amp;quot;:&amp;quot;ws&amp;quot; } }], &amp;quot;outbounds&amp;quot;: [{ &amp;quot;protocol&amp;quot;: &amp;quot;freedom&amp;quot;, &amp;quot;settings&amp;quot;: {} },{ &amp;quot;protocol&amp;quot;: &amp;quot;blackhole&amp;quot;, &amp;quot;settings&amp;quot;: {}, &amp;quot;tag&amp;quot;: &amp;quot;blocked&amp;quot; }], &amp;quot;routing&amp;quot;: { &amp;quot;rules&amp;quot;: [ { &amp;quot;type&amp;quot;: &amp;quot;field&amp;quot;, &amp;quot;ip&amp;quot;: [&amp;quot;geoip:private&amp;quot;], &amp;quot;outboundTag&amp;quot;: &amp;quot;blocked&amp;quot; } ] } }  启动v2ray服务端  在控制台输入service v2ray start启动服务即可 v2ray服务端的配置到此完成，需要注意的是，如果是谷歌云、亚马逊云或者其他服务商的需要在防火墙放行v2ray服务的端口。  0x03 配置CloudFlare CDN 准备个人邮箱以及域名  上CloudFlare注册账号，添加域名，选择免费的套餐（每个CloudeFlare仅对一个域名提供免费服务） 将域名的DNS服务器修改为CloudFlare提供的DNS服务器（DNS服务器修改生效最长需要72小时） 在CloudFlare的DNS中添加解析记录（CDN解析生效需要稍等片刻）  需要注意的是：CloudFlare的端口转发仅限于以下端口（Cloudflare支持的 HTTP 端口为：80，8080，8880，2052，2082，2086，2095；Cloudflare 支持的 HTTPs 端口为：443，2053，2083，2087，2096，8443），所以v2ray服务端需要将端口修改成上面支持的端口。 另外，为了提高安全性，建议将Crypto的SSL选择为Full(Strict)模式。 有效性验证 在cmd中nslookup你的域名如(abc.</description>
+      <description>0x00 事件起因  2019年儿童节中午，google搜索超时，ss服务器尚可ping通，但端口连接异常。 13:00 更换端口，仍无法使用，ping检测IP被墙  0x01 解决方案  有消息称等待数天即可解封 等待无果，更换v2ray+cdn+ws代理方案  0x02 bandwagonhost服务器安装v2ray  我的搬瓦工vps是3.99传家宝套餐，64M运行内存，2G磁盘空间，100G流量 需要在kvm面板上安装debian或ubuntu系统 需要注意的是我的vps在安装了debian-8.0-x86_64-minimal后，使用v2ray的官方go.sh脚本安装时，swap空间爆掉了，导致安装意外终止。根据网上的教程调整swap分区无果，于是更换ubuntu-16.04-x86_64系统，安装才得以顺利进行。  环境 临时梯子（用于连接ip被ban的vps） 工具 PuTTy  sudo su 获取root权限 在控制台输入bash &amp;lt;(curl -L -s https://install.direct/go.sh)，此命令主要下载go.sh脚本并运行自动安装 控制台提示V2Ray v4.19.1 is installed.即为安装成功 记下控制台中的PORT和UUID的值  配置v2ray服务端  v2ray使用脚本安装完成后，默认启动服务就可以使用的了，但我们为了使用websock协议，还需要配置一下 打开v2ray的配置文件（/etc/v2ray/config.json）参照下面的进行配置。 只需在port和id这两个属性中填入你之前安装v2ray时记下来的值即可。（若需要CloudeFlare进行CDN转发，port则需要配置成CloudFlare支持的端口，在CloudFlare配置部分有详细说明） log配置是我后来加上的，不需要打日志的可以去掉。  { &amp;#34;log&amp;#34;: { &amp;#34;loglevel&amp;#34;: &amp;#34;debug&amp;#34;, &amp;#34;access&amp;#34;: &amp;#34;/var/log/v2ray/access.log&amp;#34;, &amp;#34;error&amp;#34;: &amp;#34;/var/log/v2ray/error.log&amp;#34; }, &amp;#34;inbounds&amp;#34;: [{ &amp;#34;port&amp;#34;: port, &amp;#34;protocol&amp;#34;: &amp;#34;vmess&amp;#34;, &amp;#34;settings&amp;#34;: { &amp;#34;clients&amp;#34;: [ { &amp;#34;id&amp;#34;: &amp;#34;UUID&amp;#34;, &amp;#34;level&amp;#34;: 1, &amp;#34;alterId&amp;#34;: 64 } ] }, &amp;#34;streamSettings&amp;#34;:{ &amp;#34;wsSettings&amp;#34;:{ &amp;#34;path&amp;#34;:&amp;#34;/&amp;#34;, &amp;#34;headers&amp;#34;:{} }, &amp;#34;network&amp;#34;:&amp;#34;ws&amp;#34; } }], &amp;#34;outbounds&amp;#34;: [{ &amp;#34;protocol&amp;#34;: &amp;#34;freedom&amp;#34;, &amp;#34;settings&amp;#34;: {} },{ &amp;#34;protocol&amp;#34;: &amp;#34;blackhole&amp;#34;, &amp;#34;settings&amp;#34;: {}, &amp;#34;tag&amp;#34;: &amp;#34;blocked&amp;#34; }], &amp;#34;routing&amp;#34;: { &amp;#34;rules&amp;#34;: [ { &amp;#34;type&amp;#34;: &amp;#34;field&amp;#34;, &amp;#34;ip&amp;#34;: [&amp;#34;geoip:private&amp;#34;], &amp;#34;outboundTag&amp;#34;: &amp;#34;blocked&amp;#34; } ] } } 启动v2ray服务端  在控制台输入service v2ray start启动服务即可 v2ray服务端的配置到此完成，需要注意的是，如果是谷歌云、亚马逊云或者其他服务商的需要在防火墙放行v2ray服务的端口。  0x03 配置CloudFlare CDN 准备个人邮箱以及域名  上CloudFlare注册账号，添加域名，选择免费的套餐（每个CloudeFlare仅对一个域名提供免费服务） 将域名的DNS服务器修改为CloudFlare提供的DNS服务器（DNS服务器修改生效最长需要72小时） 在CloudFlare的DNS中添加解析记录（CDN解析生效需要稍等片刻）  需要注意的是：CloudFlare的端口转发仅限于以下端口（Cloudflare支持的 HTTP 端口为：80，8080，8880，2052，2082，2086，2095；Cloudflare 支持的 HTTPs 端口为：443，2053，2083，2087，2096，8443），所以v2ray服务端需要将端口修改成上面支持的端口。 另外，为了提高安全性，建议将Crypto的SSL选择为Full(Strict)模式。   有效性验证  在cmd中nslookup你的域名如(abc.</description>
     </item>
     
     <item>
@@ -131,7 +318,7 @@ ngrokd -domain=ngrok.example.com  0x02 添加域名解析 添加两条域名解�
       <pubDate>Tue, 11 Dec 2018 15:41:27 +0000</pubDate>
       
       <guid>http://blog.sinowrt.cn/2018/2018-12-11t1541-formview-oninitialupdate/</guid>
-      <description> 0x00 在Formview中的OnInitialUpdate中初始化了个自定义的按钮，但是运行无任何样式效果 0x01 在OnInitialUpdate里打了个断点再次运行，发现此方法根本未调用 0x02 在FormView Create后，手动调用OnInitialUpdate解决，如下所示 CWnd* pFrameWnd = this; CCreateContext pContext; pContext.m_pCurrentDoc = 0; pContext.m_pNewViewClass = RUNTIME_CLASS(View_OnlineShopManagement); View_OnlineShopManagement* pView = (View_OnlineShopManagement*)((CFrameWnd*)pFrameWnd)-&amp;gt;CreateView(&amp;amp;pContext); pView-&amp;gt;ShowWindow(SW_NORMAL); pView-&amp;gt;OnInitialUpdate(); //手动调用  </description>
+      <description>0x00 在Formview中的OnInitialUpdate中初始化了个自定义的按钮，但是运行无任何样式效果 0x01 在OnInitialUpdate里打了个断点再次运行，发现此方法根本未调用 0x02 在FormView Create后，手动调用OnInitialUpdate解决，如下所示 CWnd* pFrameWnd = this; CCreateContext pContext; pContext.m_pCurrentDoc = 0; pContext.m_pNewViewClass = RUNTIME_CLASS(View_OnlineShopManagement); View_OnlineShopManagement* pView = (View_OnlineShopManagement*)((CFrameWnd*)pFrameWnd)-&amp;gt;CreateView(&amp;amp;pContext); pView-&amp;gt;ShowWindow(SW_NORMAL); pView-&amp;gt;OnInitialUpdate(); //手动调用 </description>
     </item>
     
     <item>
@@ -140,7 +327,7 @@ ngrokd -domain=ngrok.example.com  0x02 添加域名解析 添加两条域名解�
       <pubDate>Tue, 11 Dec 2018 14:35:00 +0000</pubDate>
       
       <guid>http://blog.sinowrt.cn/2018/2018-12-11t1435-formview-m_hwnd/</guid>
-      <description> 原因：在构造函数中进行控件的初始化 解决方法：Formview中，控件的初始化应该放在OnInitialUpdate中 </description>
+      <description>原因：在构造函数中进行控件的初始化 解决方法：Formview中，控件的初始化应该放在OnInitialUpdate中 </description>
     </item>
     
     <item>
@@ -149,7 +336,7 @@ ngrokd -domain=ngrok.example.com  0x02 添加域名解析 添加两条域名解�
       <pubDate>Tue, 11 Dec 2018 14:30:47 +0000</pubDate>
       
       <guid>http://blog.sinowrt.cn/2018/2018-12-11t1430-formview-0xc000041d/</guid>
-      <description>在填充Formview时，遇到0XC000041D:用户回调期间遇到未经处理的异常(已解决) 原因：HBRUSH hbr = OnCtlColor(pDC, pWnd, nCtlColor);这一句中应该在OnCtlColor前面添加命名空间:: 否则编译器会误解为递归函数 源码如下： #pragma once #include &amp;quot;NormalBtn.h&amp;quot; #include &amp;quot;resource.h&amp;quot; #include &amp;lt;Gdiplus.h&amp;gt; using namespace Gdiplus; // View_OnlineShopManagement 窗体视图 class View_OnlineShopManagement : public CFormView { DECLARE_DYNCREATE(View_OnlineShopManagement) protected: View_OnlineShopManagement(); // 动态创建所使用的受保护的构造函数 virtual ~View_OnlineShopManagement(); public: #ifdef AFX_DESIGN_TIME enum { IDD = IDD_FORMVIEW_OSM }; #endif #ifdef _DEBUG virtual void AssertValid() const; #ifndef _WIN32_WCE virtual void Dump(CDumpContext&amp;amp; dc) const; #endif #endif protected: virtual void DoDataExchange(CDataExchange* pDX); // DDX/DDV 支持 DECLARE_MESSAGE_MAP() public: virtual void OnInitialUpdate(); GdiplusStartupInput m_gdiplusStartupInput; ULONG_PTR m_gdiplusToken; afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor); virtual void OnDraw(CDC* /*pDC*/); };  // View_OnlineShopManagement.</description>
+      <description>在填充Formview时，遇到0XC000041D:用户回调期间遇到未经处理的异常(已解决) 原因：HBRUSH hbr = OnCtlColor(pDC, pWnd, nCtlColor);这一句中应该在OnCtlColor前面添加命名空间:: 否则编译器会误解为递归函数 源码如下： #pragma once#include &amp;#34;NormalBtn.h&amp;#34;#include &amp;#34;resource.h&amp;#34;#include &amp;lt;Gdiplus.h&amp;gt;using namespace Gdiplus; // View_OnlineShopManagement 窗体视图  class View_OnlineShopManagement : public CFormView { DECLARE_DYNCREATE(View_OnlineShopManagement) protected: View_OnlineShopManagement(); // 动态创建所使用的受保护的构造函数 	virtual ~View_OnlineShopManagement(); public: #ifdef AFX_DESIGN_TIME	enum { IDD = IDD_FORMVIEW_OSM }; #endif#ifdef _DEBUG	virtual void AssertValid() const; #ifndef _WIN32_WCE	virtual void Dump(CDumpContext&amp;amp; dc) const; #endif#endif protected: virtual void DoDataExchange(CDataExchange* pDX); // DDX/DDV 支持 	DECLARE_MESSAGE_MAP() public: virtual void OnInitialUpdate(); GdiplusStartupInput m_gdiplusStartupInput; ULONG_PTR m_gdiplusToken; afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor); virtual void OnDraw(CDC* /*pDC*/); }; // View_OnlineShopManagement.</description>
     </item>
     
     <item>
@@ -158,7 +345,7 @@ ngrokd -domain=ngrok.example.com  0x02 添加域名解析 添加两条域名解�
       <pubDate>Mon, 03 Dec 2018 12:58:57 +0000</pubDate>
       
       <guid>http://blog.sinowrt.cn/2018/2018-12-03t1258-hard-disk-parttion-unview/</guid>
-      <description> 0x00 前阵子用旧电脑装了个群晖nas，无奈用的120G硬盘，完全不够用，看手上还有个500G的三星机械盘，就买了个光驱硬盘盒，到手后插上电脑没显示分区？不兼容？盘坏了？ 0x01 打开设备管理器，扫描硬件更新，可以看到三星机械盘，盘和架子应该没问题 0x02 打开partition wizard,可以看到硬盘基本信息都在，就是没有盘符 0x03 分配盘符后，可以看到电脑显示分区正常，应该是没有挂载 0x04 也可以利用diskpart对卷进行挂载 0x05 Z盘挂载成功 </description>
+      <description>0x00 前阵子用旧电脑装了个群晖nas，无奈用的120G硬盘，完全不够用，看手上还有个500G的三星机械盘，就买了个光驱硬盘盒，到手后插上电脑没显示分区？不兼容？盘坏了？ 0x01 打开设备管理器，扫描硬件更新，可以看到三星机械盘，盘和架子应该没问题 0x02 打开partition wizard,可以看到硬盘基本信息都在，就是没有盘符 0x03 分配盘符后，可以看到电脑显示分区正常，应该是没有挂载 0x04 也可以利用diskpart对卷进行挂载 0x05 Z盘挂载成功 </description>
     </item>
     
     <item>
@@ -167,7 +354,7 @@ ngrokd -domain=ngrok.example.com  0x02 添加域名解析 添加两条域名解�
       <pubDate>Sat, 17 Nov 2018 15:16:56 +0000</pubDate>
       
       <guid>http://blog.sinowrt.cn/2018/2018-11-17t1516-qt5compile-error/</guid>
-      <description> 编译过程中连接错误 尝试删除build文件夹，问题解决 </description>
+      <description>编译过程中连接错误 尝试删除build文件夹，问题解决 </description>
     </item>
     
     <item>
@@ -176,7 +363,7 @@ ngrokd -domain=ngrok.example.com  0x02 添加域名解析 添加两条域名解�
       <pubDate>Sat, 17 Nov 2018 15:13:11 +0000</pubDate>
       
       <guid>http://blog.sinowrt.cn/2018/2018-11-17t1513-install-qt5-in-win10/</guid>
-      <description> 0x00背景 信管作业要求用C++实现进销存系统用户交互界面以及业务逻辑 0x01 必备安装包 1.qt-opensource-windows-x86-5.11.2.exe 2.Windows SDK 0x02 下载与安装 1.Qt下载与安装  上Qt下载页面下载你系统对应的安装包  我的是Windoes 10,直接下载qt-opensource-windows-x86-5.11.2.exe 直接打开qt-opensource-windows-x86-5.11.2.exe安装程序 在第一个界面直接下一步 填写账号这一块，如果没有事先申请也可以先跳过这一步  选择安装文件夹 选择编译器，由于我的电脑装了vs2015，所以直接选了MSVC 2015 64-bit（若未安装任何编译器可以直接选择MinGW 5.3.0 32bit）  接下来一路下一步即可  2.Windows SDK下载与安装  上Microsoft开发者下载站 我的系统是Windows 10，还是按自己的系统版本进行下载  下载之后得到这样一个exe，打开按步骤安装   0x03 配置Qt 1.配置Debugger  工具——选项——kits——Debuggers——Add 填写Debugger的名称 浏览WindowsSKD的安装路径，找到你所需要的Debugger，这里我设置了Windows 10的x64的和x86的cdb.exe 2.配置kit 按根据截图按需配置就可以了   到了这步配置基本完成，但是我在编译程序的过程中遇到error link1158 无法运行rc.exe的报错 error link1158 无法运行rc.exe问题解决方法  到C:\Program Files (x86)\Windows Kits\10\bin\10.0.17763.0下的文件夹找到rc.dll和rc.exe复制到qmake文件夹下 qmake的路径可以参考截图   </description>
+      <description>0x00背景 信管作业要求用C++实现进销存系统用户交互界面以及业务逻辑 0x01 必备安装包 1.qt-opensource-windows-x86-5.11.2.exe 2.Windows SDK 0x02 下载与安装 1.Qt下载与安装  上Qt下载页面下载你系统对应的安装包  我的是Windoes 10,直接下载qt-opensource-windows-x86-5.11.2.exe 直接打开qt-opensource-windows-x86-5.11.2.exe安装程序 在第一个界面直接下一步 填写账号这一块，如果没有事先申请也可以先跳过这一步  选择安装文件夹 选择编译器，由于我的电脑装了vs2015，所以直接选了MSVC 2015 64-bit（若未安装任何编译器可以直接选择MinGW 5.3.0 32bit）  接下来一路下一步即可  2.Windows SDK下载与安装  上Microsoft开发者下载站 我的系统是Windows 10，还是按自己的系统版本进行下载  下载之后得到这样一个exe，打开按步骤安装   0x03 配置Qt 1.配置Debugger  工具——选项——kits——Debuggers——Add 填写Debugger的名称 浏览WindowsSKD的安装路径，找到你所需要的Debugger，这里我设置了Windows 10的x64的和x86的cdb.exe   2.配置kit  按根据截图按需配置就可以了   到了这步配置基本完成，但是我在编译程序的过程中遇到error link1158 无法运行rc.exe的报错 error link1158 无法运行rc.exe问题解决方法  到C:\Program Files (x86)\Windows Kits\10\bin\10.0.17763.0下的文件夹找到rc.dll和rc.exe复制到qmake文件夹下 qmake的路径可以参考截图   </description>
     </item>
     
     <item>
@@ -185,12 +372,7 @@ ngrokd -domain=ngrok.example.com  0x02 添加域名解析 添加两条域名解�
       <pubDate>Tue, 06 Nov 2018 02:07:21 +0000</pubDate>
       
       <guid>http://blog.sinowrt.cn/2018/2018-11-06t0207-synologysetup-aria2-with-docker/</guid>
-      <description> 0x00 安装docker  在package center中的Third party找到docker 直接点击install进行安装  安装完毕，点击open即可打开docker
-0x01 下载aria2映像 点击Registry选项卡，搜索aria2
- 找到xujinkai那个下载下来 0x02 启动容器 点击image选项卡，点击launch进行启动 0x03 启动设置 点击Advance 1）Advance Setting 打上这两个√，设置开机自启动以及创建桌面快捷方式 2）Volume设置，添加这两项，前面的文件夹随便选，圈起来的位置务必一样 3）Port设置，为了方便使用，local port修改成您想要的端口 第一项为下载端口
- 第二项为webui端口
- 第三项为下载文件目录端口
-  4）Environment设置 如图添加这两项，否则webui会报错，分别填写你的用户名和密码，ok 5）完成高级设置后，next 6）最后apply 7）打开浏览器，输入服务器地址以及你设置的webui端口，即可访问aria2 webui </description>
+      <description>0x00 安装docker  在package center中的Third party找到docker 直接点击install进行安装  安装完毕，点击open即可打开docker  0x01 下载aria2映像  点击Registry选项卡，搜索aria2 找到xujinkai那个下载下来   0x02 启动容器  点击image选项卡，点击launch进行启动   0x03 启动设置 点击Advance 1）Advance Setting 打上这两个√，设置开机自启动以及创建桌面快捷方式 2）Volume设置，添加这两项，前面的文件夹随便选，圈起来的位置务必一样 3）Port设置，为了方便使用，local port修改成您想要的端口  第一项为下载端口 第二项为webui端口 第三项为下载文件目录端口  4）Environment设置 如图添加这两项，否则webui会报错，分别填写你的用户名和密码，ok 5）完成高级设置后，next 6）最后apply 7）打开浏览器，输入服务器地址以及你设置的webui端口，即可访问aria2 webui </description>
     </item>
     
     <item>
@@ -199,7 +381,7 @@ ngrokd -domain=ngrok.example.com  0x02 添加域名解析 添加两条域名解�
       <pubDate>Sun, 04 Nov 2018 12:18:36 +0000</pubDate>
       
       <guid>http://blog.sinowrt.cn/2018/2018-11-04t1218-synalogycustomize-boot-system/</guid>
-      <description> 0x00 打开osfmount 0x01 挂载引导文件  选择img文件 填写offset为16MBytes 去掉read—only前面的勾 点击ok进行挂载   0x02 解压目标系统文件  将xxxxxxx.pat的后缀改成rar 解压 从解压得到的文件夹里面找到rd.gz和zlmage 复制这两个文件到虚拟磁盘根目录下替换原文件  0x03 卸载虚拟磁盘 0x04 将img文件通过Win32DiskImager写入U盘即可 </description>
+      <description>0x00 打开osfmount 0x01 挂载引导文件  选择img文件 填写offset为16MBytes 去掉read—only前面的勾 点击ok进行挂载   0x02 解压目标系统文件  将xxxxxxx.pat的后缀改成rar 解压 从解压得到的文件夹里面找到rd.gz和zlmage 复制这两个文件到虚拟磁盘根目录下替换原文件  0x03 卸载虚拟磁盘 0x04 将img文件通过Win32DiskImager写入U盘即可 </description>
     </item>
     
     <item>
@@ -208,9 +390,10 @@ ngrokd -domain=ngrok.example.com  0x02 添加域名解析 添加两条域名解�
       <pubDate>Sun, 04 Nov 2018 11:48:41 +0000</pubDate>
       
       <guid>http://blog.sinowrt.cn/2018/2018-11-04t1148-synologynas-diy/</guid>
-      <description>0x00 硬件条件 1.废旧的三星rv415笔记本电脑  CPU AMD Fusion APU E-450 RAM DDR3 2G 800MHz
-2.SANDISK U盘 32G 一个  0x02 软件条件 1.群晖6.x.x引导文件 2.OSFmount 用于挂载引导镜像便于修改 3.Win32DiskImager 将引导文件写入U盘 4.群晖6.1-15047系统文件 5.群晖助手 0x03 网络拓扑 0x04 安装过程 1.安装之前建议先把硬盘格了再进行全新安装 2.制作引导系统 1）挂载img文件  安装osfmount 打开osfmount，对img文件进行挂载，如下所示   选择img文件 填写offset如图所示，选择单位KBytes 去掉read-only前面的勾 点击OK即挂载成功  2）查看U盘vid与pid  打开设备管理器，找到你的U盘  双击打开 打开详细信息选项卡，属性下拉选择硬件id，就可以直接看到vid与pid  3）修改img文件里的vid与pid  打开刚刚挂载成功的磁盘 用notepad++打开grub文件夹下的grub.cfg文件 修改第22行和23行的vid、pid为你U盘对应的数值  修改保存之后即可卸载刚刚挂载的设备
-  4）打开Win32DiskImager将img文件写入U盘  选择刚刚修改好的img文件 点击写入即可  5）用网线将准备安装群晖系统的电脑连入局域网内 6）进入bios将你的电脑启动首选项设置为U盘启动  每台机器都不一样，大家可以google一下 要注意的是，这步很重要，到安装完成重启的过程中，没有选择U盘启动，而由硬盘启动的话，将会引导失败，出现联机失败的错误  7）打开群晖助手搜索局域网内的准备安装群晖系统的机器 * 右键安装，注意一定要选择跟版本号以及型号都一致的pat，否则会出错 * PS:6.</description>
+      <description>0x00 硬件条件 1.废旧的三星rv415笔记本电脑  CPU AMD Fusion APU E-450 RAM DDR3 2G 800MHz  2.SANDISK U盘 32G 一个 0x02 软件条件 1.群晖6.x.x引导文件 2.OSFmount 用于挂载引导镜像便于修改 3.Win32DiskImager 将引导文件写入U盘 4.群晖6.1-15047系统文件 5.群晖助手 0x03 网络拓扑 0x04 安装过程 1.安装之前建议先把硬盘格了再进行全新安装 2.制作引导系统 1）挂载img文件  安装osfmount 打开osfmount，对img文件进行挂载，如下所示   选择img文件 填写offset如图所示，选择单位KBytes 去掉read-only前面的勾 点击OK即挂载成功  2）查看U盘vid与pid  打开设备管理器，找到你的U盘  双击打开 打开详细信息选项卡，属性下拉选择硬件id，就可以直接看到vid与pid  3）修改img文件里的vid与pid   打开刚刚挂载成功的磁盘
+  用notepad++打开grub文件夹下的grub.cfg文件
+  修改第22行和23行的vid、pid为你U盘对应的数值   修改保存之后即可卸载刚刚挂载的设备
+  4）打开Win32DiskImager将img文件写入U盘  选择刚刚修改好的img文件 点击写入即可  5）用网线将准备安装群晖系统的电脑连入局域网内 6）进入bios将你的电脑启动首选项设置为U盘启动  每台机器都不一样，大家可以google一下 要注意的是，这步很重要，到安装完成重启的过程中，没有选择U盘启动，而由硬盘启动的话，将会引导失败，出现联机失败的错误  7）打开群晖助手搜索局域网内的准备安装群晖系统的机器  右键安装，注意一定要选择跟版本号以及型号都一致的pat，否则会出错 PS:6.</description>
     </item>
     
     <item>
@@ -219,7 +402,7 @@ ngrokd -domain=ngrok.example.com  0x02 添加域名解析 添加两条域名解�
       <pubDate>Sat, 20 Oct 2018 10:37:42 +0000</pubDate>
       
       <guid>http://blog.sinowrt.cn/2018/2018-10-20t1037-wordpresscode-highlight-with-prism/</guid>
-      <description> 0x01 下载prism的css与js文件  在prism官网下载prism的css与js文件  0x02 ssh方式登陆服务器  在路径/wordpress/htdocs/wp-content/themes/你的主题名称/路径下创建prism文件夹 将prism.css与prism.js两个文件上传到prism文件夹中  0x03 修改functions.php  在/wordpress/htdocs/wp-content/themes/你的主题名称/下找到functions.php vi修改文件，添加以下语句：  function add_prism() { wp_register_style( &#39;prismCSS&#39;, get_stylesheet_directory_uri() . &#39;/prism/prism.css&#39; //自定义路径 ); wp_register_script( &#39;prismJS&#39;, get_stylesheet_directory_uri() . &#39;/prism/prism.js&#39; //自定义路径 ); wp_enqueue_style(&#39;prismCSS&#39;); wp_enqueue_script(&#39;prismJS&#39;); } add_action(&#39;wp_enqueue_scripts&#39;, &#39;add_prism&#39;);  0x04注意  get_stylesheet_directory_uri()与get_parent_theme_file_path( &#39;/inc/color-patterns.php&#39; )的区别 使用get_parent_theme_file_path( &#39;/prism/prism.css&#39; )语句之后发现页面代码高亮没生效 通过chrome F12调试 发现prism.css与prism.js没加载成功 细看发现请求路径不对劲 修改成get_stylesheet_directory_uri().&#39;/prism/prism.js&#39;之后代码高亮生效  </description>
+      <description>0x01 下载prism的css与js文件  在prism官网下载prism的css与js文件  0x02 ssh方式登陆服务器  在路径/wordpress/htdocs/wp-content/themes/你的主题名称/路径下创建prism文件夹 将prism.css与prism.js两个文件上传到prism文件夹中  0x03 修改functions.php  在/wordpress/htdocs/wp-content/themes/你的主题名称/下找到functions.php vi修改文件，添加以下语句：  function add_prism() { wp_register_style( &amp;#39;prismCSS&amp;#39;, get_stylesheet_directory_uri() . &amp;#39;/prism/prism.css&amp;#39; //自定义路径  ); wp_register_script( &amp;#39;prismJS&amp;#39;, get_stylesheet_directory_uri() . &amp;#39;/prism/prism.js&amp;#39; //自定义路径  ); wp_enqueue_style(&amp;#39;prismCSS&amp;#39;); wp_enqueue_script(&amp;#39;prismJS&amp;#39;); } add_action(&amp;#39;wp_enqueue_scripts&amp;#39;, &amp;#39;add_prism&amp;#39;); 0x04注意  get_stylesheet_directory_uri()与get_parent_theme_file_path( &#39;/inc/color-patterns.php&#39; )的区别 使用get_parent_theme_file_path( &#39;/prism/prism.css&#39; )语句之后发现页面代码高亮没生效 通过chrome F12调试 发现prism.css与prism.js没加载成功 细看发现请求路径不对劲 修改成get_stylesheet_directory_uri().&#39;/prism/prism.js&#39;之后代码高亮生效  </description>
     </item>
     
     <item>
@@ -228,7 +411,7 @@ ngrokd -domain=ngrok.example.com  0x02 添加域名解析 添加两条域名解�
       <pubDate>Fri, 19 Oct 2018 02:56:07 +0000</pubDate>
       
       <guid>http://blog.sinowrt.cn/2018/2018-10-19t0256-drcom-setup-of-newifi_mini/</guid>
-      <description>起始条件：  刷入breed的newifi mini一台 网线一根  后续部署  刷入pandorabox r355固件 配置无线名、密码 在/etc/opkg.conf后追加  arch all 100 arch ramips_24kec 200 arch ramips 300  离线安装python环境  分别下载  libgcc_4.8-linaro-1_ramips_24kec.ipk libc_0.9.33.2-1_ramips_24kec.ipk libpthread_0.9.33.2-1_ramips_24kec.ipk zlib_1.2.8-1_ramips_24kec.ipk libffi_3.0.13-1_ramips_24kec.ipk python-mini_2.7.3-2_ramips_24kec.ipk   将上述ipk放到tmp目录下 依次安装 安装完毕可以在putty中输入 python 以检验是否安装成功  安装drcom客户端  将drcom客户端的python脚本放入/usr/bin中（注意，此脚本为改动后的命令行脚本），将权限改为0755 输入python /usr/bin/drcom -u 你的账号 -p 你的密码，回车，在浏览器验证是否能成功登录上网  安装drcom_client可视化配置界面  复制drcom(etc_config)到括号中的路径，并去掉括号以及括号中的路径 复制drcom.lua(usr_lib_lua_luci_controller)到括号中的路径，并去掉括号以及括号中的路径，更改为0755权限 复制drcom.lua(usr_lib_lua_luci_model_cbi)到括号中的路径，并去掉括号以及括号中的路径，更改为0755权限 复制drcom.lua(usr-lib-lua-luci-model-cbi-admin_services)到括号中的路径，并去掉括号以及括号中的路径，更改为0755权限 复制drcom_client(etc_init.d)到括号中的路径，并去掉括号以及括号中的路径，更改为0755权限 重启路由  配置drcom_client  进入luci管理界面 在服务中找到drcom_client单击进入 填入drcom的账号和密码 save&amp;amp;apply 打开浏览器打开任意网页验证是否登录成功  配置自启动  在/etc/hotplut.</description>
+      <description>起始条件：  刷入breed的newifi mini一台 网线一根  后续部署  刷入pandorabox r355固件 配置无线名、密码 在/etc/opkg.conf后追加  arch all 100 arch ramips_24kec 200 arch ramips 300 离线安装python环境  分别下载  libgcc_4.8-linaro-1_ramips_24kec.ipk libc_0.9.33.2-1_ramips_24kec.ipk libpthread_0.9.33.2-1_ramips_24kec.ipk zlib_1.2.8-1_ramips_24kec.ipk libffi_3.0.13-1_ramips_24kec.ipk python-mini_2.7.3-2_ramips_24kec.ipk  将上述ipk放到tmp目录下 依次安装 安装完毕可以在putty中输入 python 以检验是否安装成功  安装drcom客户端  将drcom客户端的python脚本放入/usr/bin中（注意，此脚本为改动后的命令行脚本），将权限改为0755 输入python /usr/bin/drcom -u 你的账号 -p 你的密码，回车，在浏览器验证是否能成功登录上网  安装drcom_client可视化配置界面  复制drcom(etc_config)到括号中的路径，并去掉括号以及括号中的路径 复制drcom.lua(usr_lib_lua_luci_controller)到括号中的路径，并去掉括号以及括号中的路径，更改为0755权限 复制drcom.lua(usr_lib_lua_luci_model_cbi)到括号中的路径，并去掉括号以及括号中的路径，更改为0755权限 复制drcom.lua(usr-lib-lua-luci-model-cbi-admin_services)到括号中的路径，并去掉括号以及括号中的路径，更改为0755权限 复制drcom_client(etc_init.d)到括号中的路径，并去掉括号以及括号中的路径，更改为0755权限 重启路由  配置drcom_client  进入luci管理界面 在服务中找到drcom_client单击进入 填入drcom的账号和密码 save&amp;amp;apply 打开浏览器打开任意网页验证是否登录成功  配置自启动  在/etc/hotplut.d/iface/中新建99-drcom文件，授权0755权限，在文件中写入  #!</description>
     </item>
     
     <item>
@@ -237,8 +420,7 @@ ngrokd -domain=ngrok.example.com  0x02 添加域名解析 添加两条域名解�
       <pubDate>Wed, 17 Oct 2018 05:52:17 +0000</pubDate>
       
       <guid>http://blog.sinowrt.cn/2018/2018-10-17t0552-init.dkill/</guid>
-      <description>2018.08.20 使用自动安装drcom的shell脚本之后，打开配置界面，进行认证之后，想起昨晚有那么一瞬间发现，在drcom的luci界面配置以及apply之后，ps -w会出现两条python drcom的进程，于是再次打开putty查看，果然不出所料，于是就有了这篇文章 #!/bin/sh /etc/rc.common run_drcom() { local username local password config_get username $1 username config_get password $1 password python /usr/bin/drcom -u $username -p $password &amp;amp; } start() { config_load drcom config_foreach run_drcom login } stop() { ps w | grep &amp;quot;.*drcom.*&amp;quot; | grep -v &#39;grep&#39; | cut -c 2-5 | xargs kill -9 echo &amp;quot;Drcom Client for GDUFE has stoped.&amp;quot; }   大二的时候，在写了drcom的luci界面之后，发现有时候使用drcom_client的stop命令会不奏效，经过查看代码，发现问题应该出在cut -c 2-5上
-for example cut -c 2-5 是截取了第二到第五位的字符串 即4位pid 若pid大于4位之后便不再好使  我有印象当时已经改正了，这次出现的 drcom_client 脚本，便是原原本本的当年的模样，至于为什么会这样，可能当时我只改了路由器上的脚本，而没有更新本地脚本</description>
+      <description>2018.08.20 使用自动安装drcom的shell脚本之后，打开配置界面，进行认证之后，想起昨晚有那么一瞬间发现，在drcom的luci界面配置以及apply之后，ps -w会出现两条python drcom的进程，于是再次打开putty查看，果然不出所料，于是就有了这篇文章 #!/bin/sh /etc/rc.common run_drcom() { local username local password config_get username $1 username config_get password $1 password python /usr/bin/drcom -u $username -p $password &amp;amp; } start() { config_load drcom config_foreach run_drcom login } stop() { ps w | grep &amp;#34;.*drcom.*&amp;#34; | grep -v &amp;#39;grep&amp;#39; | cut -c 2-5 | xargs kill -9 echo &amp;#34;Drcom Client for GDUFE has stoped.&amp;#34; }  大二的时候，在写了drcom的luci界面之后，发现有时候使用drcom_client的stop命令会不奏效，经过查看代码，发现问题应该出在cut -c 2-5上  for example   cut -c 2-5 是截取了第二到第五位的字符串 即4位pid   若pid大于4位之后便不再好使   我有印象当时已经改正了，这次出现的 drcom_client 脚本，便是原原本本的当年的模样，至于为什么会这样，可能当时我只改了路由器上的脚本，而没有更新本地脚本</description>
     </item>
     
     <item>
@@ -247,9 +429,7 @@ for example cut -c 2-5 是截取了第二到第五位的字符串 即4位pid 若
       <pubDate>Wed, 17 Oct 2018 03:48:52 +0000</pubDate>
       
       <guid>http://blog.sinowrt.cn/2018/2018-10-17t0348-smartlock2/</guid>
-      <description>2018/3/13  星期二晚上到货 取开发资料 浏览用户手册  2018/3/14  根据用户手册进行模块接线 接入串口，利用开发包中的上位机对指纹模块进行操作 用串口调试软件，输入相应的指令，进行指纹采集等操作，但进行相应的操作总是无法实现 原因：对原有指令进行了改造，而校验码并没有改变 对上位机软件进行改造，使其输出相应操作流程的指令
-在OEMHostDlg.cpp中查找对应的按钮执行的内容 1.找到void COEMHostDlg::OnBtnVerify()
-  void COEMHostDlg::OnBtnVerify() { int w_nRet, w_nTmplNo, w_nFpStatus, w_nLearned; DWORD w_dwTime; CString w_strTmp; UpdateData(TRUE); if (!CheckUserID()) return; EnableControl(FALSE); GetDlgItem(IDC_BTN_DISCONNECT)-&amp;gt;EnableWindow(FALSE); GetDlgItem(IDC_BTN_STOP)-&amp;gt;EnableWindow(TRUE); m_bCancel = FALSE; w_nTmplNo = m_nUserID; //. Check if fp is exist w_nRet = m_clsCommu.Run_GetStatus(w_nTmplNo, &amp;amp;w_nFpStatus); if( w_nRet != ERR_SUCCESS ) { m_strCmdResult = GetErrorMsg(w_nRet); goto l_exit; } if( w_nRet == ERR_SUCCESS &amp;amp;&amp;amp; w_nFpStatus == GD_TEMPLATE_EMPTY ) { m_strCmdResult = _T(&amp;quot;Template is empty&amp;quot;); goto l_exit; } m_clsCommu.</description>
+      <description>2018/3/13  星期二晚上到货 取开发资料 浏览用户手册  2018/3/14  根据用户手册进行模块接线 接入串口，利用开发包中的上位机对指纹模块进行操作 用串口调试软件，输入相应的指令，进行指纹采集等操作，但进行相应的操作总是无法实现 原因：对原有指令进行了改造，而校验码并没有改变 对上位机软件进行改造，使其输出相应操作流程的指令  在OEMHostDlg.cpp中查找对应的按钮执行的内容  1.找到void COEMHostDlg::OnBtnVerify()  void COEMHostDlg::OnBtnVerify() { int	w_nRet, w_nTmplNo, w_nFpStatus, w_nLearned; DWORD	w_dwTime; CString	w_strTmp; UpdateData(TRUE); if (!CheckUserID()) return; EnableControl(FALSE); GetDlgItem(IDC_BTN_DISCONNECT)-&amp;gt;EnableWindow(FALSE); GetDlgItem(IDC_BTN_STOP)-&amp;gt;EnableWindow(TRUE); m_bCancel = FALSE; w_nTmplNo = m_nUserID; //. Check if fp is exist 	w_nRet = m_clsCommu.Run_GetStatus(w_nTmplNo, &amp;amp;w_nFpStatus); if( w_nRet != ERR_SUCCESS ) { m_strCmdResult = GetErrorMsg(w_nRet); goto l_exit; } if( w_nRet == ERR_SUCCESS &amp;amp;&amp;amp; w_nFpStatus == GD_TEMPLATE_EMPTY ) { m_strCmdResult = _T(&amp;#34;Template is empty&amp;#34;); goto l_exit; } m_clsCommu.</description>
     </item>
     
     <item>
@@ -258,13 +438,13 @@ for example cut -c 2-5 是截取了第二到第五位的字符串 即4位pid 若
       <pubDate>Tue, 16 Oct 2018 10:40:36 +0000</pubDate>
       
       <guid>http://blog.sinowrt.cn/2018/2018-10-16t1040-ubuntu/</guid>
-      <description> 2018/04/06  准备部署亚马逊云的ss服务端，无意中看到有一张8刀的未付账单 经过查看账单详情，发现美国的俄亥俄州的服务器还没关闭，导致东京和美国的服务器同时开启，当然超出了亚马逊云的免费范围，所以对于国外的云服务器还是要定时上去查看一下，以防意外扣费的发生
- 本篇主要是对ubuntu 16.04上部署ss服务端进行记录的的过程
-  准备工作  利用putty的puttygen对亚马逊云派发的秘钥文件*.pem转换为putty能识别的ppk文件 启动putty，在ssh的auth中浏览文件夹选中刚才转换出来的ppk文件 填写服务器地址以及默认用户名ubuntu@ip地址 填写ssh端口22 若要进行ping检测，则需要在安全组中添加icmp入站规则 对该配置进行保存以便日后维护  正式部署  首先在终端输入sudo apt-get update 更新源 接着安装pip3，输入sudo apt install python3-pip 安装ss，输入sudo pip3 install shadowsocks 配置ss，输入sudo vi /etc/shadowsocks 在vi中输入ss的配置如下所示：  { &amp;quot;server&amp;quot;:&amp;quot;0.0.0.0&amp;quot;, &amp;quot;server_port&amp;quot;:444, &amp;quot;local_address&amp;quot;:&amp;quot;127.0.0.1&amp;quot;, &amp;quot;local_port&amp;quot;:1080, &amp;quot;password&amp;quot;:&amp;quot;mypasswd&amp;quot;, &amp;quot;timeout&amp;quot;:300, &amp;quot;method&amp;quot;:&amp;quot;aes-256-cfb&amp;quot;, &amp;quot;fast_open&amp;quot;:false }  保存退出
- 如果ss不是安装在/usr/bin或/usr/local/bin,要先查看ss的路径，输入whereis ssserver（故建议在安装ss前先cd /usr/bin）
- 将查询到的路径复制，输入sudo vi /etc/sudoers，粘贴到secure_path后面，以冒号分隔强制保存退出即可
- 最后输入sudo ssserver -c /etc/shadowsocks.json -d start &amp;amp;启动ss 服务即可用客户端进行连接
-  </description>
+      <description>2018/04/06   准备部署亚马逊云的ss服务端，无意中看到有一张8刀的未付账单
+  经过查看账单详情，发现美国的俄亥俄州的服务器还没关闭，导致东京和美国的服务器同时开启，当然超出了亚马逊云的免费范围，所以对于国外的云服务器还是要定时上去查看一下，以防意外扣费的发生
+  本篇主要是对ubuntu 16.04上部署ss服务端进行记录的的过程
+  准备工作  利用putty的puttygen对亚马逊云派发的秘钥文件*.pem转换为putty能识别的ppk文件 启动putty，在ssh的auth中浏览文件夹选中刚才转换出来的ppk文件 填写服务器地址以及默认用户名ubuntu@ip地址 填写ssh端口22 若要进行ping检测，则需要在安全组中添加icmp入站规则 对该配置进行保存以便日后维护  正式部署  首先在终端输入sudo apt-get update 更新源 接着安装pip3，输入sudo apt install python3-pip 安装ss，输入sudo pip3 install shadowsocks 配置ss，输入sudo vi /etc/shadowsocks 在vi中输入ss的配置如下所示：  { &amp;#34;server&amp;#34;:&amp;#34;0.0.0.0&amp;#34;, &amp;#34;server_port&amp;#34;:444, &amp;#34;local_address&amp;#34;:&amp;#34;127.0.0.1&amp;#34;, &amp;#34;local_port&amp;#34;:1080, &amp;#34;password&amp;#34;:&amp;#34;mypasswd&amp;#34;, &amp;#34;timeout&amp;#34;:300, &amp;#34;method&amp;#34;:&amp;#34;aes-256-cfb&amp;#34;, &amp;#34;fast_open&amp;#34;:false } 保存退出
+  如果ss不是安装在/usr/bin或/usr/local/bin,要先查看ss的路径，输入whereis ssserver（故建议在安装ss前先cd /usr/bin）
+  将查询到的路径复制，输入sudo vi /etc/sudoers，粘贴到secure_path后面，以冒号分隔强制保存退出即可
+  最后输入sudo ssserver -c /etc/shadowsocks.json -d start &amp;amp;启动ss 服务即可用客户端进行连接</description>
     </item>
     
     <item>
@@ -273,13 +453,11 @@ for example cut -c 2-5 是截取了第二到第五位的字符串 即4位pid 若
       <pubDate>Tue, 16 Oct 2018 08:11:56 +0000</pubDate>
       
       <guid>http://blog.sinowrt.cn/2018/2018-10-16t0811-smartlock/</guid>
-      <description>初步部署 2018.1.27  舵机安装，用热熔胶将SG92R 9g小型舵机粘到门锁旁，舵机牵扯尼龙绳实现开锁动作 利用原有的papersignals固件对舵机开门的可行性进行测试，发现舵机在门锁有阻力的情况下，在舵机通电一刻仍能高效开锁 对该项目的架构进行构思  1.借鉴papersignals项目：  esp8266充当客户端，定时请求服务端获取json数据
- 手机端发送请求到达服务端，服务端解析请求并修改本地json数据
- 从而达到伪装实时开锁的目的  工作与过年原因项目搁置许久 2.构思内网穿透方案  利用pandorabox的可扩展性，安装内网穿透客户端ngrok
- 在搬瓦工vps上安装ngrokd服务端
- 抛弃papersignals的类似方式，将esp8266作为服务端，手机作为客户端 鉴于小程序的跨平台特性，决定采用小程序的方式进行手机端开发  在搬瓦工vps搭建ngrok服务端的过程  参考这篇博客在vps上进行ngrok的编译
- 该博客中遇到的问题，我全都遇到了，按照相应的步骤操作即可解决 另外在go1.4安装操作步骤混乱的时候，造成goroot路径的错乱，从而无法安装上go1.4和go1.6，只需要unset GOROOT即可 一切安装就绪，卡在ngrok的go编译上，在编译过程中报错：go build project/test: signal: killed 查阅资料，发现是vps内存太小导致的无法编译 改用centos进行编译，但是只有visualbox的centos镜像，而visualbox复制文件上面完全比不上vmware方便，所以改用ubuntu进行ngrok编译。 在ubuntu中部署ngrok编译环境的时候，使用yum命令，发现yum是centos专用的安装命令，在ubuntu上使用会导致很多问题的发生，例如yum的源不知如何配置，所以用回apt命令 由于无法使用yum，造成很多依赖包无法安装上，所以无法安装上官网下载的go1.10包 查找资料发现可以使用sudo apt-get install go-lang命令直接安装go环境，若找不到直接apt update更新源即可 开启sslocal，把ngrok项目从git中拉下来 对ngrok项目进行编译 其中最重要的是$NGROK_DOMAIN的设置，在该教程中直接关系到openssl证书的生成 编译出ngrokd服务端 丢进vps中跑一下 问题：80端口和443端口的占用 解决：启动ngrok命令中修改-httpAddr以及httpsAddr 以更改监听端口，4443为透传接入端口，更改之后直接启动即可，在浏览器中输入www.sinowrt.cn:81 出现trunnel&amp;hellip;的即表示启动成功 编译出windows的客户端，windows的客户端必须要在cmd中才能运行，新建ngrok.cfg,将内容  server_addr: &amp;quot;www.sinowrt.cn:4443&amp;quot; trust_host_root_certs: false  写入该文件中，在cmd进入该目录，敲入命令
-ngrok.exe -config=&amp;quot;ngrok.cfg&amp;quot; -subdomain=&amp;quot;abc&amp;quot; 80  连接上ngrok服务端即可将本地的80端口暴露出外网</description>
+      <description>初步部署 2018.1.27  舵机安装，用热熔胶将SG92R 9g小型舵机粘到门锁旁，舵机牵扯尼龙绳实现开锁动作 利用原有的papersignals固件对舵机开门的可行性进行测试，发现舵机在门锁有阻力的情况下，在舵机通电一刻仍能高效开锁 对该项目的架构进行构思  1.借鉴papersignals项目：  esp8266充当客户端，定时请求服务端获取json数据 手机端发送请求到达服务端，服务端解析请求并修改本地json数据 从而达到伪装实时开锁的目的  工作与过年原因项目搁置许久 2.构思内网穿透方案  利用pandorabox的可扩展性，安装内网穿透客户端ngrok 在搬瓦工vps上安装ngrokd服务端 抛弃papersignals的类似方式，将esp8266作为服务端，手机作为客户端 鉴于小程序的跨平台特性，决定采用小程序的方式进行手机端开发  在搬瓦工vps搭建ngrok服务端的过程  参考这篇博客在vps上进行ngrok的编译 该博客中遇到的问题，我全都遇到了，按照相应的步骤操作即可解决 另外在go1.4安装操作步骤混乱的时候，造成goroot路径的错乱，从而无法安装上go1.4和go1.6，只需要unset GOROOT即可 一切安装就绪，卡在ngrok的go编译上，在编译过程中报错：go build project/test: signal: killed 查阅资料，发现是vps内存太小导致的无法编译 改用centos进行编译，但是只有visualbox的centos镜像，而visualbox复制文件上面完全比不上vmware方便，所以改用ubuntu进行ngrok编译。 在ubuntu中部署ngrok编译环境的时候，使用yum命令，发现yum是centos专用的安装命令，在ubuntu上使用会导致很多问题的发生，例如yum的源不知如何配置，所以用回apt命令 由于无法使用yum，造成很多依赖包无法安装上，所以无法安装上官网下载的go1.10包 查找资料发现可以使用sudo apt-get install go-lang命令直接安装go环境，若找不到直接apt update更新源即可 开启sslocal，把ngrok项目从git中拉下来 对ngrok项目进行编译 其中最重要的是$NGROK_DOMAIN的设置，在该教程中直接关系到openssl证书的生成 编译出ngrokd服务端 丢进vps中跑一下 问题：80端口和443端口的占用 解决：启动ngrok命令中修改-httpAddr以及httpsAddr 以更改监听端口，4443为透传接入端口，更改之后直接启动即可，在浏览器中输入www.sinowrt.cn:81 出现trunnel&amp;hellip;的即表示启动成功 编译出windows的客户端，windows的客户端必须要在cmd中才能运行，新建ngrok.cfg,将内容  server_addr: &amp;#34;www.sinowrt.cn:4443&amp;#34; trust_host_root_certs: false 写入该文件中，在cmd进入该目录，敲入命令
+ngrok.exe -config=&amp;#34;ngrok.cfg&amp;#34; -subdomain=&amp;#34;abc&amp;#34; 80 连接上ngrok服务端即可将本地的80端口暴露出外网
+  问题：一开始死活连接不上，出现fail
+  原因：abc.www.sinowrt.cn没有配置解析，dns无法解析该url所以造成无法连接上服务器，在腾讯云中添加*.www的泛解析，问题解决
+  问题：出现reconnecting</description>
     </item>
     
   </channel>

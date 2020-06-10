@@ -46,7 +46,7 @@
     "articleSection" : "posts",
     "name" : "救救bandwagonhost被禁的IP吧",
     "headline" : "救救bandwagonhost被禁的IP吧",
-    "description" : "0x00 事件起因  2019年儿童节中午，google搜索超时，ss服务器尚可ping通，但端口连接异常。 13:00 更换端口，仍无法使用，ping检测IP被墙  0x01 解决方案  有消息称等待数天即可解封 等待无果，更换v2ray\x2bcdn\x2bws代理方案  0x02 bandwagonhost服务器安装v2ray  我的搬瓦工vps是3.99传家宝套餐，64M运行内存，2G磁盘空间，100G流量 需要在kvm面板上安装debian或ubuntu系统 需要注意的是我的vps在安装了debian-8.0-x86_64-minimal后，使用v2ray的官方go.sh脚本安装时，swap空间爆掉了，导致安装意外终止。根据网上的教程调整swap分区无果，于是更换ubuntu-16.04-x86_64系统，安装才得以顺利进行。  环境 临时梯子（用于连接ip被ban的vps） 工具 PuTTy  sudo su 获取root权限 在控制台输入bash \x26lt;(curl -L -s https:\/\/install.direct\/go.sh)，此命令主要下载go.sh脚本并运行自动安装 控制台提示V2Ray v4.19.1 is installed.即为安装成功 记下控制台中的PORT和UUID的值  配置v2ray服务端  v2ray使用脚本安装完成后，默认启动服务就可以使用的了，但我们为了使用websock协议，还需要配置一下 打开v2ray的配置文件（\/etc\/v2ray\/config.json）参照下面的进行配置。 只需在port和id这两个属性中填入你之前安装v2ray时记下来的值即可。（若需要CloudeFlare进行CDN转发，port则需要配置成CloudFlare支持的端口，在CloudFlare配置部分有详细说明） log配置是我后来加上的，不需要打日志的可以去掉。  { \x26quot;log\x26quot;: { \x26quot;loglevel\x26quot;: \x26quot;debug\x26quot;, \x26quot;access\x26quot;: \x26quot;\/var\/log\/v2ray\/access.log\x26quot;, \x26quot;error\x26quot;: \x26quot;\/var\/log\/v2ray\/error.log\x26quot; }, \x26quot;inbounds\x26quot;: [{ \x26quot;port\x26quot;: port, \x26quot;protocol\x26quot;: \x26quot;vmess\x26quot;, \x26quot;settings\x26quot;: { \x26quot;clients\x26quot;: [ { \x26quot;id\x26quot;: \x26quot;UUID\x26quot;, \x26quot;level\x26quot;: 1, \x26quot;alterId\x26quot;: 64 } ] }, \x26quot;streamSettings\x26quot;:{ \x26quot;wsSettings\x26quot;:{ \x26quot;path\x26quot;:\x26quot;\/\x26quot;, \x26quot;headers\x26quot;:{} }, \x26quot;network\x26quot;:\x26quot;ws\x26quot; } }], \x26quot;outbounds\x26quot;: [{ \x26quot;protocol\x26quot;: \x26quot;freedom\x26quot;, \x26quot;settings\x26quot;: {} },{ \x26quot;protocol\x26quot;: \x26quot;blackhole\x26quot;, \x26quot;settings\x26quot;: {}, \x26quot;tag\x26quot;: \x26quot;blocked\x26quot; }], \x26quot;routing\x26quot;: { \x26quot;rules\x26quot;: [ { \x26quot;type\x26quot;: \x26quot;field\x26quot;, \x26quot;ip\x26quot;: [\x26quot;geoip:private\x26quot;], \x26quot;outboundTag\x26quot;: \x26quot;blocked\x26quot; } ] } }  启动v2ray服务端  在控制台输入service v2ray start启动服务即可 v2ray服务端的配置到此完成，需要注意的是，如果是谷歌云、亚马逊云或者其他服务商的需要在防火墙放行v2ray服务的端口。  0x03 配置CloudFlare CDN 准备个人邮箱以及域名  上CloudFlare注册账号，添加域名，选择免费的套餐（每个CloudeFlare仅对一个域名提供免费服务） 将域名的DNS服务器修改为CloudFlare提供的DNS服务器（DNS服务器修改生效最长需要72小时） 在CloudFlare的DNS中添加解析记录（CDN解析生效需要稍等片刻）  需要注意的是：CloudFlare的端口转发仅限于以下端口（Cloudflare支持的 HTTP 端口为：80，8080，8880，2052，2082，2086，2095；Cloudflare 支持的 HTTPs 端口为：443，2053，2083，2087，2096，8443），所以v2ray服务端需要将端口修改成上面支持的端口。 另外，为了提高安全性，建议将Crypto的SSL选择为Full(Strict)模式。 有效性验证 在cmd中nslookup你的域名如(abc.",
+    "description" : "0x00 事件起因  2019年儿童节中午，google搜索超时，ss服务器尚可ping通，但端口连接异常。 13:00 更换端口，仍无法使用，ping检测IP被墙  0x01 解决方案  有消息称等待数天即可解封 等待无果，更换v2ray\x2bcdn\x2bws代理方案  0x02 bandwagonhost服务器安装v2ray  我的搬瓦工vps是3.99传家宝套餐，64M运行内存，2G磁盘空间，100G流量 需要在kvm面板上安装debian或ubuntu系统 需要注意的是我的vps在安装了debian-8.0-x86_64-minimal后，使用v2ray的官方go.sh脚本安装时，swap空间爆掉了，导致安装意外终止。根据网上的教程调整swap分区无果，于是更换ubuntu-16.04-x86_64系统，安装才得以顺利进行。  环境 临时梯子（用于连接ip被ban的vps） 工具 PuTTy  sudo su 获取root权限 在控制台输入bash \x26lt;(curl -L -s https:\/\/install.direct\/go.sh)，此命令主要下载go.sh脚本并运行自动安装 控制台提示V2Ray v4.19.1 is installed.即为安装成功 记下控制台中的PORT和UUID的值  配置v2ray服务端  v2ray使用脚本安装完成后，默认启动服务就可以使用的了，但我们为了使用websock协议，还需要配置一下 打开v2ray的配置文件（\/etc\/v2ray\/config.json）参照下面的进行配置。 只需在port和id这两个属性中填入你之前安装v2ray时记下来的值即可。（若需要CloudeFlare进行CDN转发，port则需要配置成CloudFlare支持的端口，在CloudFlare配置部分有详细说明） log配置是我后来加上的，不需要打日志的可以去掉。  { \x26#34;log\x26#34;: { \x26#34;loglevel\x26#34;: \x26#34;debug\x26#34;, \x26#34;access\x26#34;: \x26#34;\/var\/log\/v2ray\/access.log\x26#34;, \x26#34;error\x26#34;: \x26#34;\/var\/log\/v2ray\/error.log\x26#34; }, \x26#34;inbounds\x26#34;: [{ \x26#34;port\x26#34;: port, \x26#34;protocol\x26#34;: \x26#34;vmess\x26#34;, \x26#34;settings\x26#34;: { \x26#34;clients\x26#34;: [ { \x26#34;id\x26#34;: \x26#34;UUID\x26#34;, \x26#34;level\x26#34;: 1, \x26#34;alterId\x26#34;: 64 } ] }, \x26#34;streamSettings\x26#34;:{ \x26#34;wsSettings\x26#34;:{ \x26#34;path\x26#34;:\x26#34;\/\x26#34;, \x26#34;headers\x26#34;:{} }, \x26#34;network\x26#34;:\x26#34;ws\x26#34; } }], \x26#34;outbounds\x26#34;: [{ \x26#34;protocol\x26#34;: \x26#34;freedom\x26#34;, \x26#34;settings\x26#34;: {} },{ \x26#34;protocol\x26#34;: \x26#34;blackhole\x26#34;, \x26#34;settings\x26#34;: {}, \x26#34;tag\x26#34;: \x26#34;blocked\x26#34; }], \x26#34;routing\x26#34;: { \x26#34;rules\x26#34;: [ { \x26#34;type\x26#34;: \x26#34;field\x26#34;, \x26#34;ip\x26#34;: [\x26#34;geoip:private\x26#34;], \x26#34;outboundTag\x26#34;: \x26#34;blocked\x26#34; } ] } } 启动v2ray服务端  在控制台输入service v2ray start启动服务即可 v2ray服务端的配置到此完成，需要注意的是，如果是谷歌云、亚马逊云或者其他服务商的需要在防火墙放行v2ray服务的端口。  0x03 配置CloudFlare CDN 准备个人邮箱以及域名  上CloudFlare注册账号，添加域名，选择免费的套餐（每个CloudeFlare仅对一个域名提供免费服务） 将域名的DNS服务器修改为CloudFlare提供的DNS服务器（DNS服务器修改生效最长需要72小时） 在CloudFlare的DNS中添加解析记录（CDN解析生效需要稍等片刻）  需要注意的是：CloudFlare的端口转发仅限于以下端口（Cloudflare支持的 HTTP 端口为：80，8080，8880，2052，2082，2086，2095；Cloudflare 支持的 HTTPs 端口为：443，2053，2083，2087，2096，8443），所以v2ray服务端需要将端口修改成上面支持的端口。 另外，为了提高安全性，建议将Crypto的SSL选择为Full(Strict)模式。   有效性验证  在cmd中nslookup你的域名如(abc.",
     "inLanguage" : "en-us",
     "author" : "sinowrt",
     "creator" : "sinowrt",
@@ -63,19 +63,6 @@
 </script>
 
 </head>
-
-<script async src="//cdn.busuanzi.ibruce.info/cdn/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?85719ea04c6401b98466dfdbc9399c78";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-
 
   
 
@@ -161,143 +148,119 @@ var _hmt = _hmt || [];
           
           
 
-          
-
-<h2 id="0x00-事件起因">0x00 事件起因</h2>
-
+          <h2 id="0x00-事件起因">0x00 事件起因</h2>
 <ul>
 <li>2019年儿童节中午，google搜索超时，ss服务器尚可ping通，但端口连接异常。</li>
 <li>13:00 更换端口，仍无法使用，ping检测IP被墙</li>
 </ul>
-
 <h2 id="0x01-解决方案">0x01 解决方案</h2>
-
 <ul>
 <li>有消息称等待数天即可解封</li>
 <li>等待无果，更换v2ray+cdn+ws代理方案</li>
 </ul>
-
 <h2 id="0x02-bandwagonhost服务器安装v2ray">0x02 bandwagonhost服务器安装v2ray</h2>
-
 <ul>
 <li>我的搬瓦工vps是3.99传家宝套餐，64M运行内存，2G磁盘空间，100G流量</li>
 <li>需要在kvm面板上安装debian或ubuntu系统</li>
 <li>需要注意的是我的vps在安装了debian-8.0-x86_64-minimal后，使用v2ray的官方go.sh脚本安装时，swap空间爆掉了，导致安装意外终止。根据网上的教程调整swap分区无果，于是更换ubuntu-16.04-x86_64系统，安装才得以顺利进行。</li>
 </ul>
-
-<h3 id="环境-临时梯子-用于连接ip被ban的vps">环境 临时梯子（用于连接ip被ban的vps）</h3>
-
+<h3 id="环境-临时梯子用于连接ip被ban的vps">环境 临时梯子（用于连接ip被ban的vps）</h3>
 <h3 id="工具-putty">工具 PuTTy</h3>
-
 <ul>
 <li>sudo su 获取root权限</li>
 <li>在控制台输入<code>bash &lt;(curl -L -s https://install.direct/go.sh)</code>，此命令主要下载go.sh脚本并运行自动安装</li>
 <li>控制台提示V2Ray v4.19.1 is installed.即为安装成功</li>
 <li>记下控制台中的PORT和UUID的值</li>
 </ul>
-
 <h3 id="配置v2ray服务端">配置v2ray服务端</h3>
-
 <ul>
 <li>v2ray使用脚本安装完成后，默认启动服务就可以使用的了，但我们为了使用websock协议，还需要配置一下</li>
 <li>打开v2ray的配置文件（/etc/v2ray/config.json）参照下面的进行配置。</li>
 <li>只需在port和id这两个属性中填入你之前安装v2ray时记下来的值即可。（若需要CloudeFlare进行CDN转发，port则需要配置成CloudFlare支持的端口，在CloudFlare配置部分有详细说明）</li>
 <li>log配置是我后来加上的，不需要打日志的可以去掉。</li>
 </ul>
-
-<pre><code class="language-json">{
-&quot;log&quot;: {
-    &quot;loglevel&quot;: &quot;debug&quot;,
-    &quot;access&quot;: &quot;/var/log/v2ray/access.log&quot;,
-    &quot;error&quot;: &quot;/var/log/v2ray/error.log&quot;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+<span style="color:#f92672">&#34;log&#34;</span>: {
+    <span style="color:#f92672">&#34;loglevel&#34;</span>: <span style="color:#e6db74">&#34;debug&#34;</span>,
+    <span style="color:#f92672">&#34;access&#34;</span>: <span style="color:#e6db74">&#34;/var/log/v2ray/access.log&#34;</span>,
+    <span style="color:#f92672">&#34;error&#34;</span>: <span style="color:#e6db74">&#34;/var/log/v2ray/error.log&#34;</span>
   },
-  &quot;inbounds&quot;: [{
-    &quot;port&quot;: port,
-    &quot;protocol&quot;: &quot;vmess&quot;,
-    &quot;settings&quot;: {
-      &quot;clients&quot;: [
+  <span style="color:#f92672">&#34;inbounds&#34;</span>: [{
+    <span style="color:#f92672">&#34;port&#34;</span>: <span style="color:#960050;background-color:#1e0010">p</span><span style="color:#960050;background-color:#1e0010">o</span><span style="color:#960050;background-color:#1e0010">r</span><span style="color:#960050;background-color:#1e0010">t</span>,
+    <span style="color:#f92672">&#34;protocol&#34;</span>: <span style="color:#e6db74">&#34;vmess&#34;</span>,
+    <span style="color:#f92672">&#34;settings&#34;</span>: {
+      <span style="color:#f92672">&#34;clients&#34;</span>: [
         {
-          &quot;id&quot;: &quot;UUID&quot;,
-          &quot;level&quot;: 1,
-          &quot;alterId&quot;: 64
+          <span style="color:#f92672">&#34;id&#34;</span>: <span style="color:#e6db74">&#34;UUID&#34;</span>,
+          <span style="color:#f92672">&#34;level&#34;</span>: <span style="color:#ae81ff">1</span>,
+          <span style="color:#f92672">&#34;alterId&#34;</span>: <span style="color:#ae81ff">64</span>
         }
       ]
     },
-&quot;streamSettings&quot;:{
-&quot;wsSettings&quot;:{
-&quot;path&quot;:&quot;/&quot;,
-&quot;headers&quot;:{}
+<span style="color:#f92672">&#34;streamSettings&#34;</span>:{
+<span style="color:#f92672">&#34;wsSettings&#34;</span>:{
+<span style="color:#f92672">&#34;path&#34;</span>:<span style="color:#e6db74">&#34;/&#34;</span>,
+<span style="color:#f92672">&#34;headers&#34;</span>:{}
 },
-&quot;network&quot;:&quot;ws&quot;
+<span style="color:#f92672">&#34;network&#34;</span>:<span style="color:#e6db74">&#34;ws&#34;</span>
 }
   }],
-  &quot;outbounds&quot;: [{
-    &quot;protocol&quot;: &quot;freedom&quot;,
-    &quot;settings&quot;: {}
+  <span style="color:#f92672">&#34;outbounds&#34;</span>: [{
+    <span style="color:#f92672">&#34;protocol&#34;</span>: <span style="color:#e6db74">&#34;freedom&#34;</span>,
+    <span style="color:#f92672">&#34;settings&#34;</span>: {}
   },{
-    &quot;protocol&quot;: &quot;blackhole&quot;,
-    &quot;settings&quot;: {},
-    &quot;tag&quot;: &quot;blocked&quot;
+    <span style="color:#f92672">&#34;protocol&#34;</span>: <span style="color:#e6db74">&#34;blackhole&#34;</span>,
+    <span style="color:#f92672">&#34;settings&#34;</span>: {},
+    <span style="color:#f92672">&#34;tag&#34;</span>: <span style="color:#e6db74">&#34;blocked&#34;</span>
   }],
-  &quot;routing&quot;: {
-    &quot;rules&quot;: [
+  <span style="color:#f92672">&#34;routing&#34;</span>: {
+    <span style="color:#f92672">&#34;rules&#34;</span>: [
       {
-        &quot;type&quot;: &quot;field&quot;,
-        &quot;ip&quot;: [&quot;geoip:private&quot;],
-        &quot;outboundTag&quot;: &quot;blocked&quot;
+        <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;field&#34;</span>,
+        <span style="color:#f92672">&#34;ip&#34;</span>: [<span style="color:#e6db74">&#34;geoip:private&#34;</span>],
+        <span style="color:#f92672">&#34;outboundTag&#34;</span>: <span style="color:#e6db74">&#34;blocked&#34;</span>
       }
     ]
   }
 }
-</code></pre>
-
-<h3 id="启动v2ray服务端">启动v2ray服务端</h3>
-
+</code></pre></div><h3 id="启动v2ray服务端">启动v2ray服务端</h3>
 <ul>
 <li>在控制台输入service v2ray start启动服务即可</li>
 <li>v2ray服务端的配置到此完成，需要注意的是，如果是谷歌云、亚马逊云或者其他服务商的需要在防火墙放行v2ray服务的端口。</li>
 </ul>
-
 <h2 id="0x03-配置cloudflare-cdn">0x03 配置CloudFlare CDN</h2>
-
 <h3 id="准备个人邮箱以及域名">准备个人邮箱以及域名</h3>
-
 <ul>
 <li>上CloudFlare注册账号，添加域名，选择免费的套餐（每个CloudeFlare仅对一个域名提供免费服务）</li>
 <li>将域名的DNS服务器修改为CloudFlare提供的DNS服务器（DNS服务器修改生效最长需要72小时）</li>
 <li>在CloudFlare的DNS中添加解析记录（CDN解析生效需要稍等片刻）
-<figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2019-06-13T1300/4.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></li>
+<img src="http://pic.sinowrt.cn/images/2019-06-13T1300/4.png" alt="image"></li>
 <li>需要注意的是：CloudFlare的端口转发仅限于以下端口（Cloudflare支持的 HTTP 端口为：80，8080，8880，2052，2082，2086，2095；Cloudflare 支持的 HTTPs 端口为：443，2053，2083，2087，2096，8443），所以v2ray服务端需要将端口修改成上面支持的端口。</li>
-
-<li><p>另外，为了提高安全性，建议将Crypto的SSL选择为Full(Strict)模式。
-<figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2019-06-13T1300/5.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
-
-<h3 id="有效性验证">有效性验证</h3></li>
-
-<li><p>在cmd中nslookup你的域名如(abc.domain.cn),可以正常解析</p></li>
-
-<li><p>在cmd中telnet你的域名和端口，连通性正常即可</p></li>
+<li>另外，为了提高安全性，建议将Crypto的SSL选择为Full(Strict)模式。
+<img src="http://pic.sinowrt.cn/images/2019-06-13T1300/5.png" alt="image"></li>
 </ul>
-
-<h2 id="0x04-下载winddows的v2ray客户端v2rayw">0x04 下载winddows的V2ray客户端V2rayW</h2>
-
+<h3 id="有效性验证">有效性验证</h3>
 <ul>
-<li>根据系统情况下载<a href="https://github.com/Cenmrev/V2RayW/releases" rel="nofollow noreferrer" target="_blank">V2rayW</a></li>
+<li>在cmd中nslookup你的域名如(abc.domain.cn),可以正常解析</li>
+<li>在cmd中telnet你的域名和端口，连通性正常即可</li>
+</ul>
+<h2 id="0x04-下载winddows的v2ray客户端v2rayw">0x04 下载winddows的V2ray客户端V2rayW</h2>
+<ul>
+<li>根据系统情况下载<a href="https://github.com/Cenmrev/V2RayW/releases">V2rayW</a></li>
 <li>将文件解压到指定文件夹后（一定要解压！不能打开解压文件就直接进行下一步操作！！！），双击V2RayW.exe</li>
 <li>打开V2RayW.exe后，会自动下载v2ray-core的相关文件，等待片刻即可</li>
 <li>打开V2RayW.exe，在通知栏的“W”形图标上，点击右键-配置</li>
 <li>将域名(或IP地址)、端口、UUID、ALTERID、LEVEL填入图中相应位置，选择ws网络类型
-<figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2019-06-13T1300/6.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></li>
+<img src="http://pic.sinowrt.cn/images/2019-06-13T1300/6.png" alt="image"></li>
 <li>打开传输设置，在webSocket选项卡中填入前面配置文件中的路径
-<figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2019-06-13T1300/3.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></li>
+<img src="http://pic.sinowrt.cn/images/2019-06-13T1300/3.png" alt="image"></li>
 <li>设置完毕后，在W图标上右键-加载V2ray,并选择代理模式，就可以畅游网络啦:)</li>
 </ul>
 
     </div>
-	
+
     <div class="post-copyright">
              
-			
             <p class="copyright-item">
                 <span>Author:</span>
                 <span>sinowrt </span>
@@ -309,12 +272,6 @@ var _hmt = _hmt || [];
                     <span>Link:</span>
                     <a href=http://blog.sinowrt.cn/2019/2019-06-13t1300-how-to-save-the-baned-ip/>http://blog.sinowrt.cn/2019/2019-06-13t1300-how-to-save-the-baned-ip/</span>
             </p>
-			
-			<p>
-				<span id="busuanzi_container_page_pv">
-					本文总阅读量：<span id="busuanzi_value_page_pv"></span>次
-				</span>
-			</p>
             
              
             <p class="copyright-item lincese">
@@ -376,15 +333,6 @@ var _hmt = _hmt || [];
          
 		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
     </div>
-	<p class="credits theme-by text-muted">
-        <span id="busuanzi_container_site_pv">
-            本站访问量：<span id="busuanzi_value_site_pv"></span>次
-        </span>
-        &nbsp;
-        <span id="busuanzi_container_site_uv">
-            您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
-        </span>
-    </p>
 </footer>
 
 

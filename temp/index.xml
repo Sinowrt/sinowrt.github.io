@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Temps on Sinowrt</title>
+    <link>http://blog.sinowrt.cn/temp/</link>
+    <description>Recent content in Temps on Sinowrt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="http://blog.sinowrt.cn/temp/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title></title>
+      <link>http://blog.sinowrt.cn/temp/0513/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/temp/0513/</guid>
+      <description>战略合作协议 深圳15 行动计划  合并报表 内部交易 编码体系梳理 供应链优化 服务器诊断/升级 灾难备份诊断 工作流审批 新增 整合到云之家 费用报销/报销扫描发票 新增 财务共享
+一期 一阶段 二阶段 三阶段 二期 三期
+三年每期一年
+安徽工信厅
+竞争性谈判
+应用软件对比 金蝶 用友 Sap
+技术优势 面向客户 价格 补材料
+会议总结 安排培训 范围以确定 拿出方案与报价 选型问题 以我为主 金蝶叶经理配合
+经费估算 采购方式
+方案 下周三之前
+选型 前期有投入 对比其他产品的优势 软件使用</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://blog.sinowrt.cn/temp/%E4%B8%AD%E6%A0%B8%E9%92%9B%E7%99%BD%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/temp/%E4%B8%AD%E6%A0%B8%E9%92%9B%E7%99%BD%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/</guid>
+      <description>2020/05/09  安装flutter开发环境 学习kotlin开发技术栈 研究powerbi可视化处理 重拾android studio开发  2020/05/11  使用flutter编写demo程序，熟悉flutter开发流程 解决国内无法访问flutter源的造成卡在creating flutter project  </description>
+    </item>
+    
+  </channel>
+</rss>

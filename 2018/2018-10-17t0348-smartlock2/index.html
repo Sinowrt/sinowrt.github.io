@@ -46,7 +46,7 @@
     "articleSection" : "posts",
     "name" : "给宿舍装个智能锁吧（二）——指纹篇",
     "headline" : "给宿舍装个智能锁吧（二）——指纹篇",
-    "description" : "2018\/3\/13  星期二晚上到货 取开发资料 浏览用户手册  2018\/3\/14  根据用户手册进行模块接线 接入串口，利用开发包中的上位机对指纹模块进行操作 用串口调试软件，输入相应的指令，进行指纹采集等操作，但进行相应的操作总是无法实现 原因：对原有指令进行了改造，而校验码并没有改变 对上位机软件进行改造，使其输出相应操作流程的指令\n在OEMHostDlg.cpp中查找对应的按钮执行的内容 1.找到void COEMHostDlg::OnBtnVerify()\n  void COEMHostDlg::OnBtnVerify() { int w_nRet, w_nTmplNo, w_nFpStatus, w_nLearned; DWORD w_dwTime; CString w_strTmp; UpdateData(TRUE); if (!CheckUserID()) return; EnableControl(FALSE); GetDlgItem(IDC_BTN_DISCONNECT)-\x26gt;EnableWindow(FALSE); GetDlgItem(IDC_BTN_STOP)-\x26gt;EnableWindow(TRUE); m_bCancel = FALSE; w_nTmplNo = m_nUserID; \/\/. Check if fp is exist w_nRet = m_clsCommu.Run_GetStatus(w_nTmplNo, \x26amp;w_nFpStatus); if( w_nRet != ERR_SUCCESS ) { m_strCmdResult = GetErrorMsg(w_nRet); goto l_exit; } if( w_nRet == ERR_SUCCESS \x26amp;\x26amp; w_nFpStatus == GD_TEMPLATE_EMPTY ) { m_strCmdResult = _T(\x26quot;Template is empty\x26quot;); goto l_exit; } m_clsCommu.",
+    "description" : "2018\/3\/13  星期二晚上到货 取开发资料 浏览用户手册  2018\/3\/14  根据用户手册进行模块接线 接入串口，利用开发包中的上位机对指纹模块进行操作 用串口调试软件，输入相应的指令，进行指纹采集等操作，但进行相应的操作总是无法实现 原因：对原有指令进行了改造，而校验码并没有改变 对上位机软件进行改造，使其输出相应操作流程的指令  在OEMHostDlg.cpp中查找对应的按钮执行的内容  1.找到void COEMHostDlg::OnBtnVerify()  void COEMHostDlg::OnBtnVerify() { int\tw_nRet, w_nTmplNo, w_nFpStatus, w_nLearned; DWORD\tw_dwTime; CString\tw_strTmp; UpdateData(TRUE); if (!CheckUserID()) return; EnableControl(FALSE); GetDlgItem(IDC_BTN_DISCONNECT)-\x26gt;EnableWindow(FALSE); GetDlgItem(IDC_BTN_STOP)-\x26gt;EnableWindow(TRUE); m_bCancel = FALSE; w_nTmplNo = m_nUserID; \/\/. Check if fp is exist \tw_nRet = m_clsCommu.Run_GetStatus(w_nTmplNo, \x26amp;w_nFpStatus); if( w_nRet != ERR_SUCCESS ) { m_strCmdResult = GetErrorMsg(w_nRet); goto l_exit; } if( w_nRet == ERR_SUCCESS \x26amp;\x26amp; w_nFpStatus == GD_TEMPLATE_EMPTY ) { m_strCmdResult = _T(\x26#34;Template is empty\x26#34;); goto l_exit; } m_clsCommu.",
     "inLanguage" : "en-us",
     "author" : "SinoWRT",
     "creator" : "SinoWRT",
@@ -57,25 +57,12 @@
     "datePublished": "2018-10-17 03:48:52 \x2b0000 \x2b0000",
     "dateModified" : "2018-10-17 03:48:52 \x2b0000 \x2b0000",
     "url" : "http:\/\/blog.sinowrt.cn\/2018\/2018-10-17t0348-smartlock2\/",
-    "wordCount" : "708",
+    "wordCount" : "705",
     "keywords" : [  "Sinowrt"]
 }
 </script>
 
 </head>
-
-<script async src="//cdn.busuanzi.ibruce.info/cdn/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?85719ea04c6401b98466dfdbc9399c78";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-
 
   
 
@@ -159,433 +146,390 @@ var _hmt = _hmt || [];
           
           
 
-          
-
-<h2 id="2018-3-13">2018/3/13</h2>
-
+          <h2 id="2018313-">2018/3/13</h2>
 <ul>
 <li>星期二晚上到货</li>
 <li>取开发资料</li>
 <li>浏览用户手册</li>
 </ul>
-
-<h2 id="2018-3-14">2018/3/14</h2>
-
+<h2 id="2018314-">2018/3/14</h2>
 <ul>
 <li>根据用户手册进行模块接线</li>
 <li>接入串口，利用开发包中的上位机对指纹模块进行操作</li>
 <li>用串口调试软件，输入相应的指令，进行指纹采集等操作，但进行相应的操作总是无法实现</li>
 <li>原因：对原有指令进行了改造，而校验码并没有改变</li>
-
-<li><p>对上位机软件进行改造，使其输出相应操作流程的指令</p>
-
-<h4 id="在oemhostdlg-cpp中查找对应的按钮执行的内容">在OEMHostDlg.cpp中查找对应的按钮执行的内容</h4></li>
-
-<li><p>1.找到void COEMHostDlg::OnBtnVerify()</p></li>
+<li>对上位机软件进行改造，使其输出相应操作流程的指令</li>
 </ul>
-
-<pre><code class="language-csharp">void COEMHostDlg::OnBtnVerify() 
+<h4 id="在oemhostdlgcpp中查找对应的按钮执行的内容-">在OEMHostDlg.cpp中查找对应的按钮执行的内容</h4>
+<ul>
+<li>1.找到void COEMHostDlg::OnBtnVerify()</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">void</span> COEMHostDlg::OnBtnVerify() 
 {
-    int     w_nRet, w_nTmplNo, w_nFpStatus, w_nLearned;
-    DWORD   w_dwTime;
-    CString w_strTmp;
+	<span style="color:#66d9ef">int</span>		w_nRet, w_nTmplNo, w_nFpStatus, w_nLearned;
+	DWORD	w_dwTime;
+	CString	w_strTmp;
 
-    UpdateData(TRUE);
+	UpdateData(TRUE);
 
-    if (!CheckUserID())
-        return;
+	<span style="color:#66d9ef">if</span> (!CheckUserID())
+		<span style="color:#66d9ef">return</span>;
 
-    EnableControl(FALSE);
-    GetDlgItem(IDC_BTN_DISCONNECT)-&gt;EnableWindow(FALSE);
-    GetDlgItem(IDC_BTN_STOP)-&gt;EnableWindow(TRUE);
-    
-    m_bCancel = FALSE;
+	EnableControl(FALSE);
+	GetDlgItem(IDC_BTN_DISCONNECT)-&gt;EnableWindow(FALSE);
+	GetDlgItem(IDC_BTN_STOP)-&gt;EnableWindow(TRUE);
+	
+	m_bCancel = FALSE;
 
-    w_nTmplNo = m_nUserID;
+	w_nTmplNo = m_nUserID;
 
-    //. Check if fp is exist
-    w_nRet = m_clsCommu.Run_GetStatus(w_nTmplNo, &amp;w_nFpStatus);
-    
-    if( w_nRet != ERR_SUCCESS )
-    {
-        m_strCmdResult = GetErrorMsg(w_nRet);
-        goto l_exit;
-    }
-    
-    if( w_nRet == ERR_SUCCESS &amp;&amp; w_nFpStatus == GD_TEMPLATE_EMPTY )
-    {
-        m_strCmdResult = _T(&quot;Template is empty&quot;);
-        goto l_exit;
-    }
-    
-    m_clsCommu.Run_SLEDControl(1);
+	<span style="color:#75715e">//. Check if fp is exist
+</span><span style="color:#75715e"></span>	w_nRet = m_clsCommu.Run_GetStatus(w_nTmplNo, &amp;w_nFpStatus);
+	
+	<span style="color:#66d9ef">if</span>( w_nRet != ERR_SUCCESS )
+	{
+		m_strCmdResult = GetErrorMsg(w_nRet);
+		<span style="color:#66d9ef">goto</span> l_exit;
+	}
+	
+	<span style="color:#66d9ef">if</span>( w_nRet == ERR_SUCCESS &amp;&amp; w_nFpStatus == GD_TEMPLATE_EMPTY )
+	{
+		m_strCmdResult = _T(<span style="color:#e6db74">&#34;Template is empty&#34;</span>);
+		<span style="color:#66d9ef">goto</span> l_exit;
+	}
+	
+	m_clsCommu.Run_SLEDControl(<span style="color:#ae81ff">1</span>);
 
-    m_strCmdResult = _T(&quot;Input your finger.&quot;);
-    UpdateData(FALSE);
-    
-    w_dwTime = GetTickCount();
-    
-    //. Get Image
-    while (1)
-    {
-        DoEvents();
+	m_strCmdResult = _T(<span style="color:#e6db74">&#34;Input your finger.&#34;</span>);
+	UpdateData(FALSE);
+	
+	w_dwTime = GetTickCount();
+	
+	<span style="color:#75715e">//. Get Image
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">while</span> (<span style="color:#ae81ff">1</span>)
+	{
+		DoEvents();
 
-        if(m_bCancel)
-        {
-            m_strCmdResult = _T(&quot;Operation Canceled&quot;);
-            goto l_exit;
-        }
+		<span style="color:#66d9ef">if</span>(m_bCancel)
+		{
+			m_strCmdResult = _T(<span style="color:#e6db74">&#34;Operation Canceled&#34;</span>);
+			<span style="color:#66d9ef">goto</span> l_exit;
+		}
 
-        //. Get Image
-        w_nRet = m_clsCommu.Run_GetImage();
-        
-        if(w_nRet == ERR_SUCCESS)
-            break;
-        else if(w_nRet == ERR_CONNECTION)
-        {
-            m_strCmdResult = GetErrorMsg(w_nRet);
-            goto l_exit;
-        }                   
-    }
-    
-    m_strCmdResult = &quot;Release your finger&quot;;
-    UpdateData(FALSE);
-    DoEvents();
+		<span style="color:#75715e">//. Get Image
+</span><span style="color:#75715e"></span>		w_nRet = m_clsCommu.Run_GetImage();
+		
+		<span style="color:#66d9ef">if</span>(w_nRet == ERR_SUCCESS)
+			<span style="color:#66d9ef">break</span>;
+		<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span>(w_nRet == ERR_CONNECTION)
+		{
+			m_strCmdResult = GetErrorMsg(w_nRet);
+			<span style="color:#66d9ef">goto</span> l_exit;
+		}					
+	}
+	
+	m_strCmdResult = <span style="color:#e6db74">&#34;Release your finger&#34;</span>;
+	UpdateData(FALSE);
+	DoEvents();
 
-    //. Up Image
-    if (m_chkShowImage.GetCheck())
-    {
-        m_strCmdResult = _T(&quot;Uploading image...&quot;);
-        UpdateData(FALSE);
-        DoEvents();
+	<span style="color:#75715e">//. Up Image
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> (m_chkShowImage.GetCheck())
+	{
+		m_strCmdResult = _T(<span style="color:#e6db74">&#34;Uploading image...&#34;</span>);
+		UpdateData(FALSE);
+		DoEvents();
 
-        w_nRet = m_clsCommu.Run_UpImage(0, g_FpImageBuf, &amp;g_nImageWidth, &amp;g_nImageHeight);
+		w_nRet = m_clsCommu.Run_UpImage(<span style="color:#ae81ff">0</span>, g_FpImageBuf, &amp;g_nImageWidth, &amp;g_nImageHeight);
 
-        if(w_nRet != ERR_SUCCESS)
-        {
-            m_strCmdResult = GetErrorMsg(w_nRet);
-            goto l_exit;
-        }   
+		<span style="color:#66d9ef">if</span>(w_nRet != ERR_SUCCESS)
+		{
+			m_strCmdResult = GetErrorMsg(w_nRet);
+			<span style="color:#66d9ef">goto</span> l_exit;
+		}	
 
-        m_wndFinger.SetImage(g_FpImageBuf, g_nImageWidth, g_nImageHeight);
+		m_wndFinger.SetImage(g_FpImageBuf, g_nImageWidth, g_nImageHeight);
 
-        m_strCmdResult = _T(&quot;Uploading image is successed.&quot;);
-        UpdateData(FALSE);
-        DoEvents();
-    }
+		m_strCmdResult = _T(<span style="color:#e6db74">&#34;Uploading image is successed.&#34;</span>);
+		UpdateData(FALSE);
+		DoEvents();
+	}
 
-    w_dwTime = GetTickCount();
+	w_dwTime = GetTickCount();
 
-    //. Create Template
-    w_nRet = m_clsCommu.Run_Generate(0);
-    
-    if (w_nRet != ERR_SUCCESS)
-    {
-        m_strCmdResult = GetErrorMsg(w_nRet);
-        goto l_exit;
-    }
+	<span style="color:#75715e">//. Create Template
+</span><span style="color:#75715e"></span>	w_nRet = m_clsCommu.Run_Generate(<span style="color:#ae81ff">0</span>);
+	
+	<span style="color:#66d9ef">if</span> (w_nRet != ERR_SUCCESS)
+	{
+		m_strCmdResult = GetErrorMsg(w_nRet);
+		<span style="color:#66d9ef">goto</span> l_exit;
+	}
 
-    //. Verify 
-    w_nRet = m_clsCommu.Run_Verify(w_nTmplNo, 0, &amp;w_nLearned);
-    
-    w_dwTime = GetTickCount() - w_dwTime;
+	<span style="color:#75715e">//. Verify 
+</span><span style="color:#75715e"></span>	w_nRet = m_clsCommu.Run_Verify(w_nTmplNo, <span style="color:#ae81ff">0</span>, &amp;w_nLearned);
+	
+	w_dwTime = GetTickCount() - w_dwTime;
 
-    if (w_nRet == ERR_SUCCESS)
-    {
-        m_strCmdResult.Format(_T(&quot;Result : Success\r\nTemplate No : %d, Learn Result : %d\r\nMatch Time : %dms&quot;), w_nTmplNo, w_nLearned, w_dwTime );
-    }
-    else
-    {
-        m_strCmdResult = GetErrorMsg(w_nRet);
-    }
-    
+	<span style="color:#66d9ef">if</span> (w_nRet == ERR_SUCCESS)
+	{
+		m_strCmdResult.Format(_T(<span style="color:#e6db74">&#34;Result : Success\r\nTemplate No : %d, Learn Result : %d\r\nMatch Time : %dms&#34;</span>), w_nTmplNo, w_nLearned, w_dwTime );
+	}
+	<span style="color:#66d9ef">else</span>
+	{
+		m_strCmdResult = GetErrorMsg(w_nRet);
+	}
+	
 l_exit:
-    m_clsCommu.Run_SLEDControl(0);
-    UpdateData(FALSE);  
-    EnableControl(TRUE);
-    GetDlgItem(IDC_BTN_DISCONNECT)-&gt;EnableWindow(TRUE);
+	m_clsCommu.Run_SLEDControl(<span style="color:#ae81ff">0</span>);
+	UpdateData(FALSE);	
+	EnableControl(TRUE);
+	GetDlgItem(IDC_BTN_DISCONNECT)-&gt;EnableWindow(TRUE);
 }
-</code></pre>
-
-<p><strong>2.查看m_clsCommu.Run_SLEDControl(0)，跳转到Communication.cpp</strong></p>
-
-<pre><code class="language-csharp">int CCommunication::Run_SLEDControl(int p_nState)
+</code></pre></div><p><strong>2.查看m_clsCommu.Run_SLEDControl(0)，跳转到Communication.cpp</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">int</span>	CCommunication::Run_SLEDControl(<span style="color:#66d9ef">int</span> p_nState)
 {
-    BOOL    w_bRet;
-    BYTE    w_abyData[2];
-    
-    w_abyData[0] = LOBYTE(p_nState);
-    w_abyData[1] = HIBYTE(p_nState);
-    
-    InitCmdPacket(CMD_SLED_CTRL, m_bySrcDeviceID, m_byDstDeviceID, (BYTE*)&amp;w_abyData, 2);
-    
-    SEND_COMMAND(CMD_SLED_CTRL, w_bRet, m_bySrcDeviceID, m_byDstDeviceID);
-    
-    if(!w_bRet)
-        return ERR_CONNECTION;
-    
-    return RESPONSE_RET;
+	BOOL	w_bRet;
+	BYTE	w_abyData[<span style="color:#ae81ff">2</span>];
+	
+	w_abyData[<span style="color:#ae81ff">0</span>] = LOBYTE(p_nState);
+	w_abyData[<span style="color:#ae81ff">1</span>] = HIBYTE(p_nState);
+	
+	InitCmdPacket(CMD_SLED_CTRL, m_bySrcDeviceID, m_byDstDeviceID, (BYTE*)&amp;w_abyData, <span style="color:#ae81ff">2</span>);
+	
+	SEND_COMMAND(CMD_SLED_CTRL, w_bRet, m_bySrcDeviceID, m_byDstDeviceID);
+	
+	<span style="color:#66d9ef">if</span>(!w_bRet)
+		<span style="color:#66d9ef">return</span> ERR_CONNECTION;
+	
+	<span style="color:#66d9ef">return</span> RESPONSE_RET;
 }
-</code></pre>
-
-<p>3.查看SEND_COMMAND定义，跳转到Command.cpp</p>
-
-<pre><code class="language-csharp">BOOL SendCommand(WORD p_wCMDCode, BYTE p_bySrcDeviceID, BYTE p_byDstDeviceID)
+</code></pre></div><p>3.查看SEND_COMMAND定义，跳转到Command.cpp</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp">BOOL SendCommand(WORD p_wCMDCode, BYTE p_bySrcDeviceID, BYTE p_byDstDeviceID)
 {
-    DWORD   w_nSendCnt = 0;
-    LONG    w_nResult = 0;
+	DWORD	w_nSendCnt = <span style="color:#ae81ff">0</span>;
+	LONG	w_nResult = <span style="color:#ae81ff">0</span>;
 
-    g_Serial.Purge();   
+	g_Serial.Purge();	
 
-    ::SendMessage(g_hMainWnd, WM_CMD_PACKET_HOOK, 0, 0);
+	::SendMessage(g_hMainWnd, WM_CMD_PACKET_HOOK, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>);
 
-    w_nResult = g_Serial.Write(g_Packet, g_dwPacketSize , &amp;w_nSendCnt, NULL, COMM_TIMEOUT);
+	w_nResult = g_Serial.Write(g_Packet, g_dwPacketSize , &amp;w_nSendCnt, NULL, COMM_TIMEOUT);
 
-    if(ERROR_SUCCESS != w_nResult)
-    {
-        return FALSE;
-    }
+	<span style="color:#66d9ef">if</span>(ERROR_SUCCESS != w_nResult)
+	{
+		<span style="color:#66d9ef">return</span> FALSE;
+	}
 
-    return ReceiveAck(p_wCMDCode, p_bySrcDeviceID, p_byDstDeviceID);
+	<span style="color:#66d9ef">return</span> ReceiveAck(p_wCMDCode, p_bySrcDeviceID, p_byDstDeviceID);
 }
-</code></pre>
-
-<p>4.可以看到串口输出函数g_Serial.Write,g_packet应该为输出的内容，现在要做的就是将g_packet打印出来
+</code></pre></div><p>4.可以看到串口输出函数g_Serial.Write,g_packet应该为输出的内容，现在要做的就是将g_packet打印出来
 5.顺势根据<code>return ReceiveAck(p_wCMDCode, p_bySrcDeviceID, p_byDstDeviceID)</code>语句找到ReceiveAck函数，分析可知发送了消息通过ReceiveAck函数接收响应内容，则在此也添加Print_gPacket(false)以打印接收的内容</p>
-
-<pre><code class="language-csharp">BOOL ReceiveAck(WORD p_wCMDCode, BYTE p_bySrcDeviceID, BYTE p_byDstDeviceID)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp">BOOL ReceiveAck(WORD p_wCMDCode, BYTE p_bySrcDeviceID, BYTE p_byDstDeviceID)
 {
-    Print_gPacket(true);
-    DWORD   w_nAckCnt = 0;
-    LONG    w_nResult = 0;
-    DWORD   w_dwTimeOut = COMM_TIMEOUT;
+	Print_gPacket(<span style="color:#66d9ef">true</span>);
+	DWORD	w_nAckCnt = <span style="color:#ae81ff">0</span>;
+	LONG	w_nResult = <span style="color:#ae81ff">0</span>;
+	DWORD	w_dwTimeOut = COMM_TIMEOUT;
 
-    if (p_wCMDCode == CMD_TEST_CONNECTION)
-        w_dwTimeOut = 2000;
-    else if (p_wCMDCode == CMD_ADJUST_SENSOR)
-        w_dwTimeOut = 30000;
-    
+	<span style="color:#66d9ef">if</span> (p_wCMDCode == CMD_TEST_CONNECTION)
+		w_dwTimeOut = <span style="color:#ae81ff">2</span><span style="color:#ae81ff">0</span><span style="color:#ae81ff">0</span><span style="color:#ae81ff">0</span>;
+	<span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (p_wCMDCode == CMD_ADJUST_SENSOR)
+		w_dwTimeOut = <span style="color:#ae81ff">3</span><span style="color:#ae81ff">0</span><span style="color:#ae81ff">0</span><span style="color:#ae81ff">0</span><span style="color:#ae81ff">0</span>;
+	
 l_read_packet:
 
-    //w_nResult = g_Serial.Read(g_Packet, sizeof(ST_RCM_PACKET), &amp;w_nAckCnt, NULL, w_dwTimeOut);    
-    if (!ReadDataN(g_Packet, sizeof(ST_RCM_PACKET), w_dwTimeOut))
-    {
-        return FALSE;
-    }
+	<span style="color:#75715e">//w_nResult = g_Serial.Read(g_Packet, sizeof(ST_RCM_PACKET), &amp;w_nAckCnt, NULL, w_dwTimeOut);	
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span> (!ReadDataN(g_Packet, <span style="color:#66d9ef">sizeof</span>(ST_RCM_PACKET), w_dwTimeOut))
+	{
+		<span style="color:#66d9ef">return</span> FALSE;
+	}
 
-    g_dwPacketSize = sizeof(ST_RCM_PACKET); 
+	g_dwPacketSize = <span style="color:#66d9ef">sizeof</span>(ST_RCM_PACKET);	
 
-    ::SendMessage(g_hMainWnd, WM_RCM_PACKET_HOOK, 0, 0);
+	::SendMessage(g_hMainWnd, WM_RCM_PACKET_HOOK, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>);
 
-    if (!CheckReceive(g_Packet, sizeof(ST_RCM_PACKET), RCM_PREFIX_CODE, p_wCMDCode))
-        return FALSE;
-    
-    if (g_pCmdPacket-&gt;m_byDstDeviceID != p_bySrcDeviceID)
-    {
-        goto l_read_packet;
-    }
+	<span style="color:#66d9ef">if</span> (!CheckReceive(g_Packet, <span style="color:#66d9ef">sizeof</span>(ST_RCM_PACKET), RCM_PREFIX_CODE, p_wCMDCode))
+		<span style="color:#66d9ef">return</span> FALSE;
+	
+	<span style="color:#66d9ef">if</span> (g_pCmdPacket-&gt;m_byDstDeviceID != p_bySrcDeviceID)
+	{
+		<span style="color:#66d9ef">goto</span> l_read_packet;
+	}
 
-    Print_gPacket(false);
-    return TRUE;
+	Print_gPacket(<span style="color:#66d9ef">false</span>);
+	<span style="color:#66d9ef">return</span> TRUE;
 }
-</code></pre>
+</code></pre></div><p>6.由于该软件为mfc程序，所以在command添加如下代码，在输出的debug内容中显示相应的内容</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#960050;background-color:#1e0010">#</span>include <span style="color:#e6db74">&#34;windows.h&#34;</span>
+<span style="color:#960050;background-color:#1e0010">#</span>ifdef _DEBUG    
 
-<p>6.由于该软件为mfc程序，所以在command添加如下代码，在输出的debug内容中显示相应的内容</p>
-
-<pre><code class="language-csharp">#include &quot;windows.h&quot;
-#ifdef _DEBUG    
-
-#define DP0(fmt) {TCHAR sOut[256];_stprintf_s(sOut,_T(fmt));OutputDebugString(sOut);}    
-#define DP1(fmt,var) {TCHAR sOut[256];_stprintf_s(sOut,_T(fmt),var);OutputDebugString(sOut);}    
-#define DP2(fmt,var1,var2) {TCHAR sOut[256];_stprintf_s(sOut,_T(fmt),var1,var2);OutputDebugString(sOut);}    
-#define DP3(fmt,var1,var2,var3) {TCHAR sOut[256];_stprintf_s(sOut,_T(fmt),var1,var2,var3);OutputDebugString(sOut);}    
-
-#endif
-</code></pre>
-
-<p>7.添加一个函数，用于打印g_packet,</p>
-
-<pre><code class="language-csharp">/******************************
- create by Jacky  2018/3/14
- To print command
- type true  for send
-      false for recive
-*******************************/
-void Print_gPacket(bool type) {
-    if (type) {
-        DP0(&quot;发送的数据：&quot;);
-    }
-    else {
-        DP0(&quot;接收的数据：&quot;);
-    }
-    for (int i = 0; i &lt; 26; i++) {
-        DP1(&quot;%02x&quot;, g_Packet[i]);
-    }
-    DP0(&quot;\n&quot;);
+<span style="color:#75715e">#define DP0(fmt) {TCHAR sOut[256];_stprintf_s(sOut,_T(fmt));OutputDebugString(sOut);}    
+</span><span style="color:#75715e"></span><span style="color:#75715e">#define DP1(fmt,var) {TCHAR sOut[256];_stprintf_s(sOut,_T(fmt),var);OutputDebugString(sOut);}    
+</span><span style="color:#75715e"></span><span style="color:#75715e">#define DP2(fmt,var1,var2) {TCHAR sOut[256];_stprintf_s(sOut,_T(fmt),var1,var2);OutputDebugString(sOut);}    
+</span><span style="color:#75715e"></span><span style="color:#75715e">#define DP3(fmt,var1,var2,var3) {TCHAR sOut[256];_stprintf_s(sOut,_T(fmt),var1,var2,var3);OutputDebugString(sOut);}    
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">#endif
+</span></code></pre></div><p>7.添加一个函数，用于打印g_packet,</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#75715e">/******************************
+</span><span style="color:#75715e"> create by Jacky  2018/3/14
+</span><span style="color:#75715e"> To print command
+</span><span style="color:#75715e"> type true  for send
+</span><span style="color:#75715e">      false for recive
+</span><span style="color:#75715e">*******************************/</span>
+<span style="color:#66d9ef">void</span> Print_gPacket(<span style="color:#66d9ef">bool</span> type) {
+	<span style="color:#66d9ef">if</span> (type) {
+		DP0(<span style="color:#e6db74">&#34;发送的数据：&#34;</span>);
+	}
+	<span style="color:#66d9ef">else</span> {
+		DP0(<span style="color:#e6db74">&#34;接收的数据：&#34;</span>);
+	}
+	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i = <span style="color:#ae81ff">0</span>; i &lt; <span style="color:#ae81ff">2</span><span style="color:#ae81ff">6</span>; i++) {
+		DP1(<span style="color:#e6db74">&#34;%02x&#34;</span>, g_Packet[i]);
+	}
+	DP0(<span style="color:#e6db74">&#34;\n&#34;</span>);
 }
-</code></pre>
-
-<ul>
+</code></pre></div><ul>
 <li>总结出采集验证指纹的过程总共有以下几条指令</li>
 </ul>
-
-<pre><code class="language-csharp">*****************************
-*    指纹模块一次指纹比对 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp">*****************************
+*    <span style="color:#960050;background-color:#1e0010">指</span><span style="color:#960050;background-color:#1e0010">纹</span><span style="color:#960050;background-color:#1e0010">模</span><span style="color:#960050;background-color:#1e0010">块</span><span style="color:#960050;background-color:#1e0010">一</span><span style="color:#960050;background-color:#1e0010">次</span><span style="color:#960050;background-color:#1e0010">指</span><span style="color:#960050;background-color:#1e0010">纹</span><span style="color:#960050;background-color:#1e0010">比</span><span style="color:#960050;background-color:#1e0010">对</span> 
 *    host命令
 *****************************
-// 采集指纹
-55aa000020000000000000000000000000000000000000001f01
+<span style="color:#75715e">// 采集指纹
+</span><span style="color:#75715e"></span><span style="color:#ae81ff">5</span><span style="color:#ae81ff">5</span>aa000020000000000000000000000000000000000000001f01
 
-// 模板生成到rambuffer0
-55aa000060000200000000000000000000000000000000006101
+<span style="color:#75715e">// 模板生成到rambuffer0
+</span><span style="color:#75715e"></span><span style="color:#ae81ff">5</span><span style="color:#ae81ff">5</span>aa000060000200000000000000000000000000000000006101
 
-// 1:N对比
-55aa00006300060000000100f401000000000000000000005e02
+<span style="color:#75715e">// 1:N对比
+</span><span style="color:#75715e"></span><span style="color:#ae81ff">5</span><span style="color:#ae81ff">5</span>aa00006300060000000100f401000000000000000000005e02
 
-// 关灯
-55aa000024000200000000000000000000000000000000002501
-</code></pre>
-
-<h2 id="2018-3-15">2018/3/15</h2>
-
+<span style="color:#75715e">// 关灯
+</span><span style="color:#75715e"></span><span style="color:#ae81ff">5</span><span style="color:#ae81ff">5</span>aa000024000200000000000000000000000000000000002501
+</code></pre></div><h2 id="2018315-">2018/3/15</h2>
 <ul>
 <li>由于esp8266与指纹模块通讯的过程中串口的数据交换并不可见，所以想到透传</li>
 <li>上午上完课回来，进行透传程序Transmission的编写</li>
 </ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#960050;background-color:#1e0010">#</span>include &lt;ESP8266WiFi.h&gt;
 
-<pre><code class="language-csharp">#include &lt;ESP8266WiFi.h&gt;
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> *ssid = <span style="color:#e6db74">&#34;&#34;</span>;
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> *password = <span style="color:#e6db74">&#34;&#34;</span>;
 
-const char *ssid = &quot;&quot;;
-const char *password = &quot;&quot;;
-
-const int tcpPort = 80;//要建立的TCP服务的端口号
-
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> tcpPort = <span style="color:#ae81ff">8</span><span style="color:#ae81ff">0</span>;<span style="color:#75715e">//要建立的TCP服务的端口号
+</span><span style="color:#75715e"></span>
 WiFiServer server(tcpPort);
 
 
-void setup()
+<span style="color:#66d9ef">void</span> setup()
 {
-    Serial.begin(115200);
-    delay(10);
-    Serial.println();
-    Serial.println();
-    Serial.print(&quot;Connecting to &quot;);
-    Serial.println(ssid);
+	Serial.begin(<span style="color:#ae81ff">1</span><span style="color:#ae81ff">1</span><span style="color:#ae81ff">5</span><span style="color:#ae81ff">2</span><span style="color:#ae81ff">0</span><span style="color:#ae81ff">0</span>);
+	delay(<span style="color:#ae81ff">1</span><span style="color:#ae81ff">0</span>);
+	Serial.println();
+	Serial.println();
+	Serial.print(<span style="color:#e6db74">&#34;Connecting to &#34;</span>);
+	Serial.println(ssid);
 
-    WiFi.begin(ssid, password);
+	WiFi.begin(ssid, password);
 
-    while (WiFi.status() != WL_CONNECTED)
-    {
-        delay(500);
-        Serial.print(&quot;.&quot;);
-    }
+	<span style="color:#66d9ef">while</span> (WiFi.status() != WL_CONNECTED)
+	{
+		delay(<span style="color:#ae81ff">5</span><span style="color:#ae81ff">0</span><span style="color:#ae81ff">0</span>);
+		Serial.print(<span style="color:#e6db74">&#34;.&#34;</span>);
+	}
 
-    Serial.println(&quot;&quot;);
-    Serial.println(&quot;WiFi connected&quot;);
-    Serial.println(&quot;IP address: &quot;);
-    Serial.println(WiFi.localIP());
-    server.begin();
+	Serial.println(<span style="color:#e6db74">&#34;&#34;</span>);
+	Serial.println(<span style="color:#e6db74">&#34;WiFi connected&#34;</span>);
+	Serial.println(<span style="color:#e6db74">&#34;IP address: &#34;</span>);
+	Serial.println(WiFi.localIP());
+	server.begin();
 }
 
 
-void loop()
+<span style="color:#66d9ef">void</span> loop()
 {
-    WiFiClient client = server.available();
-    if (client) {
-        while (client.connected()) {
-            /*while (client.available()) {
-            char c = client.read();
-            Serial.write(c);
-            }*/
+	WiFiClient client = server.available();
+	<span style="color:#66d9ef">if</span> (client) {
+		<span style="color:#66d9ef">while</span> (client.connected()) {
+			<span style="color:#75715e">/*while (client.available()) {
+</span><span style="color:#75715e">			char c = client.read();
+</span><span style="color:#75715e">			Serial.write(c);
+</span><span style="color:#75715e">			}*/</span>
 
-            if(client.available()){
-            size_t counti=client.available();
-            uint8_t *buf=new uint8_t[counti];
-            Serial.write((const uint8_t*)buf,counti);
-            delete(buf);
-            }
+			<span style="color:#66d9ef">if</span>(client.available()){
+			size_t counti=client.available();
+			uint8_t *buf=<span style="color:#66d9ef">new</span> uint8_t[counti];
+			Serial.write((<span style="color:#66d9ef">const</span> uint8_t*)buf,counti);
+			delete(buf);
+			}
 
-            delay(1000);   //由于指纹模块是首先发送响应头再发响应数据，若不加这句，响应数据会分两次读取
+			delay(<span style="color:#ae81ff">1</span><span style="color:#ae81ff">0</span><span style="color:#ae81ff">0</span><span style="color:#ae81ff">0</span>);   <span style="color:#75715e">//由于指纹模块是首先发送响应头再发响应数据，若不加这句，响应数据会分两次读取
+</span><span style="color:#75715e"></span>
+			<span style="color:#66d9ef">if</span> (Serial.available())
+			{
+				size_t counti = Serial.available();
+				uint8_t *sbuf = <span style="color:#66d9ef">new</span> uint8_t[counti];
+				Serial.readBytes(sbuf, counti);
+				client.write((<span style="color:#66d9ef">const</span> uint8_t*)sbuf, counti);
 
-            if (Serial.available())
-            {
-                size_t counti = Serial.available();
-                uint8_t *sbuf = new uint8_t[counti];
-                Serial.readBytes(sbuf, counti);
-                client.write((const uint8_t*)sbuf, counti);
-
-                delete(sbuf);
-            }
-        }
-        client.stop();
-    }
+				delete(sbuf);
+			}
+		}
+		client.stop();
+	}
 
 }
-</code></pre>
-
-<ul>
+</code></pre></div><ul>
 <li>注：</li>
 <li>1.有坑，请看注释</li>
 <li>2.遇到下列报错：</li>
 </ul>
-
-<pre><code class="language-csharp">Compiling debug version of 'Transmission' for 'NodeMCU 1.0 (ESP-12E Module)'
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp">Compiling debug version of <span style="color:#960050;background-color:#1e0010">&#39;</span>Transmission<span style="color:#960050;background-color:#1e0010">&#39;</span> <span style="color:#66d9ef">for</span> <span style="color:#960050;background-color:#1e0010">&#39;</span>NodeMCU <span style="color:#ae81ff">1.0</span> (ESP-<span style="color:#ae81ff">1</span><span style="color:#ae81ff">2</span>E Module)<span style="color:#960050;background-color:#1e0010">&#39;</span>
  
 Error compiling project sources
-Debug build failed for project 'Transmission'
-ESP8266WiFi.h:39: In file included from
-Transmission.ino: from
-WiFiClient.h: In instantiation of size_t WiFiClient::write(T&amp;, size_t) [with T = unsigned char*; size_t = unsigned int]
-Transmission.ino:60: required from here
+Debug build failed <span style="color:#66d9ef">for</span> project <span style="color:#960050;background-color:#1e0010">&#39;</span>Transmission<span style="color:#960050;background-color:#1e0010">&#39;</span>
+ESP8266WiFi.h:<span style="color:#ae81ff">3</span><span style="color:#ae81ff">9</span>: In file included <span style="color:#66d9ef">from</span>
+Transmission.ino: <span style="color:#66d9ef">from</span>
+WiFiClient.h: In instantiation of size_t WiFiClient::write(T&amp;, size_t) [with T = unsigned <span style="color:#66d9ef">char</span>*; size_t = unsigned <span style="color:#66d9ef">int</span>]
+Transmission.ino:<span style="color:#ae81ff">6</span><span style="color:#ae81ff">0</span>: required <span style="color:#66d9ef">from</span> here
  
-WiFiClient.h: 123:36: error: request for member 'available' in 'source', which is of non-class type 'unsigned char*
+WiFiClient.h: <span style="color:#ae81ff">1</span><span style="color:#ae81ff">2</span><span style="color:#ae81ff">3</span>:<span style="color:#ae81ff">3</span><span style="color:#ae81ff">6</span>: error: request <span style="color:#66d9ef">for</span> member <span style="color:#960050;background-color:#1e0010">&#39;</span>available<span style="color:#960050;background-color:#1e0010">&#39;</span> <span style="color:#66d9ef">in</span> <span style="color:#960050;background-color:#1e0010">&#39;</span>source<span style="color:#960050;background-color:#1e0010">&#39;</span>, which <span style="color:#66d9ef">is</span> of non-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">type</span> <span style="color:#960050;background-color:#1e0010">&#39;</span>unsigned <span style="color:#66d9ef">char</span>*
    size_t left = source.available()
  
-WiFiClient.h: 127:5: error: request for member 'read' in 'source', which is of non-class type 'unsigned char*
-   source.read(buffer.get(), will_send)
-</code></pre>
-
-<p>原因是client的write函数必须传入一个buffer，但是通过网上查找解决方案，发现在第一个参数前加上(const uint8_t*)进行强制转换也可以编译通过</p>
-
-<h1 id="2018-3-16">2018/3/16</h1>
-
-<h4 id="透传实现了-那么就开始改造原有的mysmartlock-ino-首先第一版的程序构思为">透传实现了，那么就开始改造原有的mySmartLock.ino，首先第一版的程序构思为：</h4>
-
-<p>循环
-* 1.读取指纹模块的手指感应信号（有信号就逐条发送指纹验证指令）
-* 2.读取网络端是否传来请求（有就判断请求url是否包含指定的字符串）
-* 3.读取透传客户端是否已连接（若已连接且传入debug()就更改标志，（考虑到指令录指纹时会造成录指纹和验证指纹指令的冲突）停止1的指纹验证，并允许串口穿透输入与输出，若为exit()就修改标志，重新启用1的指纹验证，只输出串口通讯的信息）</p>
-
-<h3 id="第一版的编程实现-采用的串行处理模式">第一版的编程实现，采用的串行处理模式</h3>
-
+WiFiClient.h: <span style="color:#ae81ff">1</span><span style="color:#ae81ff">2</span><span style="color:#ae81ff">7</span>:<span style="color:#ae81ff">5</span>: error: request <span style="color:#66d9ef">for</span> member <span style="color:#960050;background-color:#1e0010">&#39;</span>read<span style="color:#960050;background-color:#1e0010">&#39;</span> <span style="color:#66d9ef">in</span> <span style="color:#960050;background-color:#1e0010">&#39;</span>source<span style="color:#960050;background-color:#1e0010">&#39;</span>, which <span style="color:#66d9ef">is</span> of non-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">type</span> <span style="color:#960050;background-color:#1e0010">&#39;</span>unsigned <span style="color:#66d9ef">char</span>*
+   source.read(buffer.<span style="color:#66d9ef">get</span>(), will_send)
+</code></pre></div><p>原因是client的write函数必须传入一个buffer，但是通过网上查找解决方案，发现在第一个参数前加上(const uint8_t*)进行强制转换也可以编译通过</p>
+<h1 id="2018316">2018/3/16</h1>
+<h4 id="透传实现了那么就开始改造原有的mysmartlockino首先第一版的程序构思为-">透传实现了，那么就开始改造原有的mySmartLock.ino，首先第一版的程序构思为：</h4>
+<p>循环</p>
 <ul>
-<li>坑1：在判断串口传入数据是否为debug()或exit()的过程中，用到了strcmp()函数，但是貌似读取出来的unsigned char*类型的字节流是不带结束符的而&rdquo;debug()&ldquo;是带结束符的长度为8的char数组，所以一直判断不等，经过查阅资料，发现还有一个函数就是strncmp()可以进行一定长度字符串的比较，所以改用 <code>strncmp((const char*)command, &quot;debug()&quot;, counti)</code>语句进行判断，经测试完全可行！！</li>
+<li>1.读取指纹模块的手指感应信号（有信号就逐条发送指纹验证指令）</li>
+<li>2.读取网络端是否传来请求（有就判断请求url是否包含指定的字符串）</li>
+<li>3.读取透传客户端是否已连接（若已连接且传入debug()就更改标志，（考虑到指令录指纹时会造成录指纹和验证指纹指令的冲突）停止1的指纹验证，并允许串口穿透输入与输出，若为exit()就修改标志，重新启用1的指纹验证，只输出串口通讯的信息）</li>
 </ul>
-
-<h4 id="但是问题来了-在arduino的loop-函数中-是循环执行的-当透传客户端连接上之后-除非用-while-client-connected-语句进行连接的保持-否则当前的transclient实例会在一次循环后被销毁-但是若保持连接又无法输出当前指纹模块与esp8266的通讯交互信息">但是问题来了，在arduino的loop()函数中，是循环执行的，当透传客户端连接上之后，除非用<code>while (client.connected())</code>语句进行连接的保持，否则当前的transclient实例会在一次循环后被销毁，但是若保持连接又无法输出当前指纹模块与esp8266的通讯交互信息</h4>
-
-<h3 id="发现还是程序的状态图没分清楚-构思总结出改进的三个状态">发现还是程序的状态图没分清楚，构思总结出改进的三个状态</h3>
-
+<h3 id="第一版的编程实现采用的串行处理模式">第一版的编程实现，采用的串行处理模式</h3>
+<ul>
+<li>坑1：在判断串口传入数据是否为debug()或exit()的过程中，用到了strcmp()函数，但是貌似读取出来的unsigned char*类型的字节流是不带结束符的而&quot;debug()&ldquo;是带结束符的长度为8的char数组，所以一直判断不等，经过查阅资料，发现还有一个函数就是strncmp()可以进行一定长度字符串的比较，所以改用 <code>strncmp((const char*)command, &quot;debug()&quot;, counti)</code>语句进行判断，经测试完全可行！！</li>
+</ul>
+<h4 id="但是问题来了在arduino的loop函数中是循环执行的当透传客户端连接上之后除非用while-clientconnected语句进行连接的保持否则当前的transclient实例会在一次循环后被销毁但是若保持连接又无法输出当前指纹模块与esp8266的通讯交互信息-">但是问题来了，在arduino的loop()函数中，是循环执行的，当透传客户端连接上之后，除非用<code>while (client.connected())</code>语句进行连接的保持，否则当前的transclient实例会在一次循环后被销毁，但是若保持连接又无法输出当前指纹模块与esp8266的通讯交互信息</h4>
+<h3 id="发现还是程序的状态图没分清楚构思总结出改进的三个状态">发现还是程序的状态图没分清楚，构思总结出改进的三个状态</h3>
 <ul>
 <li>1.透传连接，并通过debug()进入debug模式</li>
 <li>2.透传连接，保持默认状态，或在debug模式下通过exit()退出调试模式的，就只输出esp8266与指纹通讯的信息</li>
 <li>3.串口没有连接，esp8266与指纹模块正常通讯</li>
 </ul>
-
 <h3 id="编程实现">编程实现</h3>
-
 <ul>
 <li>1.将指纹验证和读取网络请求两部分封装成loopBody(bool modeSwitch)</li>
 <li>2.用modeSwitch标记是否进入了debug模式，通过判断modeSwitch来判断是否进行透传输出，modeSwitch通过是否传入debug()和exit()命令进行切换</li>
 <li>3.在transclient可用时进入while(client.connected())的循环，可以进行回话的保持，返回当前串口通讯的数据</li>
-<li>4.源码见<a href="https://github.com/sinowrt/mySmartLock" rel="nofollow noreferrer" target="_blank">github</a></li>
+<li>4.源码见<a href="https://github.com/sinowrt/mySmartLock">github</a></li>
 </ul>
 
     </div>
-	
+
     <div class="post-copyright">
              
-			
             <p class="copyright-item">
                 <span>Author:</span>
                 <span>sinowrt </span>
@@ -597,12 +541,6 @@ WiFiClient.h: 127:5: error: request for member 'read' in 'source', which is of n
                     <span>Link:</span>
                     <a href=http://blog.sinowrt.cn/2018/2018-10-17t0348-smartlock2/>http://blog.sinowrt.cn/2018/2018-10-17t0348-smartlock2/</span>
             </p>
-			
-			<p>
-				<span id="busuanzi_container_page_pv">
-					本文总阅读量：<span id="busuanzi_value_page_pv"></span>次
-				</span>
-			</p>
             
              
             <p class="copyright-item lincese">
@@ -653,15 +591,6 @@ WiFiClient.h: 127:5: error: request for member 'read' in 'source', which is of n
          
 		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
     </div>
-	<p class="credits theme-by text-muted">
-        <span id="busuanzi_container_site_pv">
-            本站访问量：<span id="busuanzi_value_site_pv"></span>次
-        </span>
-        &nbsp;
-        <span id="busuanzi_container_site_uv">
-            您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
-        </span>
-    </p>
 </footer>
 
 

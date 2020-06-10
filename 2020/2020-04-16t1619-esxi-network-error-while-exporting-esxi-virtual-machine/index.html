@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="sinowrt">
+  
+  
+  
+  <link rel="prev" href="http://blog.sinowrt.cn/2020/2020-04-16t1023-problems-i-meet-while-using-maven/" />
+  <link rel="next" href="http://blog.sinowrt.cn/2020/2020-04-16t1623-migrate-the-container-to-another-docker/" />
+  <link rel="canonical" href="http://blog.sinowrt.cn/2020/2020-04-16t1619-esxi-network-error-while-exporting-esxi-virtual-machine/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           esxi web client导出虚拟机 中断 报网络错误 | Sinowrt
+       
+  </title>
+  <meta name="title" content="esxi web client导出虚拟机 中断 报网络错误 | Sinowrt">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/blog.sinowrt.cn"
+    },
+    "articleSection" : "posts",
+    "name" : "esxi web client导出虚拟机 中断 报网络错误",
+    "headline" : "esxi web client导出虚拟机 中断 报网络错误",
+    "description" : "今天使用esxi的web client导出虚拟机时，总是在导出到20G左右的时候中断，报网络异常，于是上vmware官网找有没有导出虚拟机的工具\n发现 OVFTOOL这个小工具，点击链接下载下来（需要注册账号才能下载），安装\n  打开cmd进入安装文件夹，执行ovftool.exe vi:\/\/用户名@esxi的ip\/虚拟机名 K:\/ovf\n  如果遇到 Fault cause: vim.fault.InvalidState 错误，请确认虚拟机为关机状态\n  运行结果如下所示\nC:\\Program Files\\VMware\\VMware OVF Tool\x26gt;ovftool.exe vi:\/\/root@***.***.***.***\/docker K:\/ovf Enter login information for source vi:\/\/***.***.***.***\/ Username: root Password: *********** Opening VI source: vi:\/\/root@***.***.***.***:443\/docker Opening VI source: vi:\/\/root@***.***.***.***:443\/docker Opening OVF target: K:\/ovf Writing OVF package: K:\/ovf\\docker\\docker.ovf Disk progress: 3% 这个小工具效果非常好，不用担心网络错误问题，进度也能看到，可以打9分",
+    "inLanguage" : "en-us",
+    "author" : "sinowrt",
+    "creator" : "sinowrt",
+    "publisher": "sinowrt",
+    "accountablePerson" : "sinowrt",
+    "copyrightHolder" : "sinowrt",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-04-16 16:19:00 \x2b0800 CST",
+    "dateModified" : "2020-04-16 16:19:00 \x2b0800 CST",
+    "url" : "http:\/\/blog.sinowrt.cn\/2020\/2020-04-16t1619-esxi-network-error-while-exporting-esxi-virtual-machine\/",
+    "wordCount" : "49",
+    "keywords" : [ "esxi", "Sinowrt"]
+}
+</script>
+
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">esxi web client导出虚拟机 中断 报网络错误</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2020-04-16 itemprop="datePublished">April 16, 2020</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="http://blog.sinowrt.cn/categories/esxi/"> esxi </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          <p>今天使用esxi的web client导出虚拟机时，总是在导出到20G左右的时候中断，报网络异常，于是上vmware官网找有没有导出虚拟机的工具</p>
+<p>发现 <a href="https://my.vmware.com/cn/web/vmware/details?downloadGroup=OVFTOOL430U2&amp;productId=614">OVFTOOL</a>这个小工具，点击链接下载下来（需要注册账号才能下载），安装</p>
+<ul>
+<li>
+<p>打开cmd进入安装文件夹，执行<code>ovftool.exe vi://用户名@esxi的ip/虚拟机名 K:/ovf</code></p>
+</li>
+<li>
+<p>如果遇到 <code>Fault cause: vim.fault.InvalidState</code> 错误，请确认虚拟机为关机状态</p>
+</li>
+</ul>
+<p>运行结果如下所示</p>
+<pre><code class="language-dos" data-lang="dos">C:\Program Files\VMware\VMware OVF Tool&gt;ovftool.exe vi://root@***.***.***.***/docker K:/ovf
+Enter login information for source vi://***.***.***.***/
+Username: root
+Password: ***********
+Opening VI source: vi://root@***.***.***.***:443/docker
+Opening VI source: vi://root@***.***.***.***:443/docker
+Opening OVF target: K:/ovf
+Writing OVF package: K:/ovf\docker\docker.ovf
+Disk progress: 3%
+</code></pre><p>这个小工具效果非常好，不用担心网络错误问题，进度也能看到，可以打9分</p>
+
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>sinowrt </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://blog.sinowrt.cn/2020/2020-04-16t1619-esxi-network-error-while-exporting-esxi-virtual-machine/>http://blog.sinowrt.cn/2020/2020-04-16t1619-esxi-network-error-while-exporting-esxi-virtual-machine/</span>
+            </p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/esxi/">
+                    #esxi</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="http://blog.sinowrt.cn">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://blog.sinowrt.cn/2020/2020-04-16t1023-problems-i-meet-while-using-maven/" class="prev" rel="prev" title="maven问题汇总"><i class="iconfont icon-left"></i>&nbsp;maven问题汇总</a>
+         
+        
+        <a href="http://blog.sinowrt.cn/2020/2020-04-16t1623-migrate-the-container-to-another-docker/" class="next" rel="next" title="docker容器迁移">docker容器迁移&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2020</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://blog.sinowrt.cn">sinowrt</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

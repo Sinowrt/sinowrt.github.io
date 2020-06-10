@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>javascript on Sinowrt</title>
+    <link>http://blog.sinowrt.cn/categories/javascript/</link>
+    <description>Recent content in javascript on Sinowrt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 05 Mar 2020 16:18:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.sinowrt.cn/categories/javascript/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>js大整数精度导致前后端传参不一致问题</title>
+      <link>http://blog.sinowrt.cn/2020/2020-03-05t1618-something-changed-while-java-long-parsing-to-javascript/</link>
+      <pubDate>Thu, 05 Mar 2020 16:18:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-03-05t1618-something-changed-while-java-long-parsing-to-javascript/</guid>
+      <description>js中规定安全整数的范围是-2^53~2^53，而后端传过去的记录id为64位，所以会导致参数精度丢失的问题。
+windows查看进程启动时间，run-&amp;gt;msinfo32，在打开的系统信息窗口中点击“软件环境→正在运行任务”，即可看到所有进程的相关信息包括启动时间</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -46,7 +46,7 @@
     "articleSection" : "posts",
     "name" : "如何将群晖Nas扔出外网",
     "headline" : "如何将群晖Nas扔出外网",
-    "description" : "0x00 思路 分别在vps和路由端部署ngrok服务端与客户端，客户端在线时主动向服务端发起请求建立隧道，外部设备可直接向服务端请求相应的隧道，从而实现内网穿透。\n0x01 在vps上部署ngrok服务端 良心云和套路云的学生套餐用来做内网穿透的服务端还是相当香的，由于ngrok需要用到域名，而我的域名只在良心北了岸，要是用套路云的话会截断提示未备案，无法访问，所以这次就直接用良心云的vps搭建服务端。 * 安装ngrok服务端\n网上大部分教程都是从安装go环境开始，再编译ngrok客户端，过程很复杂。而我只要简单的穿透服务，不需要tls啥的，其实安装过程很简单，只需要两条命令\napt-get update apt-get install ngrok-server   启动ngrok服务端\n  一条命令就搞定，监听80、443、4443端口，如果vps有防火墙请放行这几个入站端口。如果需要指定证书还有端口什么的可以自行添加启动参数，这里不再赘述。\nngrokd -domain=ngrok.example.com  0x02 添加域名解析 添加两条域名解析记录\n类型 | Name | Content -|-|- A记录 | *.ngrok | ngrok服务器ip A记录 | ngrok | ngrok服务器ip\n0x03 ngrok客户端配置  在本地，我使用刷了padavan固件的newifi3路由，内置了1.4版本的ngrok客户端。服务端是1.6版本的，经测试能通用。\n 客户端配置很简单   0x04 结语 到这里，群晖已经暴露在外网了，请设置强大的登录密码防止数据泄露。",
+    "description" : "0x00 思路 分别在vps和路由端部署ngrok服务端与客户端，客户端在线时主动向服务端发起请求建立隧道，外部设备可直接向服务端请求相应的隧道，从而实现内网穿透。\n0x01 在vps上部署ngrok服务端 良心云和套路云的学生套餐用来做内网穿透的服务端还是相当香的，由于ngrok需要用到域名，而我的域名只在良心北了岸，要是用套路云的话会截断提示未备案，无法访问，所以这次就直接用良心云的vps搭建服务端。\n 安装ngrok服务端  网上大部分教程都是从安装go环境开始，再编译ngrok客户端，过程很复杂。而我只要简单的穿透服务，不需要tls啥的，其实安装过程很简单，只需要两条命令\napt-get update apt-get install ngrok-server  启动ngrok服务端  一条命令就搞定，监听80、443、4443端口，如果vps有防火墙请放行这几个入站端口。如果需要指定证书还有端口什么的可以自行添加启动参数，这里不再赘述。\nngrokd -domain=ngrok.example.com 0x02 添加域名解析 添加两条域名解析记录\n类型 | Name | Content -|-|- A记录 | *.ngrok | ngrok服务器ip A记录 | ngrok | ngrok服务器ip\n0x03 ngrok客户端配置   在本地，我使用刷了padavan固件的newifi3路由，内置了1.4版本的ngrok客户端。服务端是1.6版本的，经测试能通用。\n  客户端配置很简单   0x04 结语 到这里，群晖已经暴露在外网了，请设置强大的登录密码防止数据泄露。",
     "inLanguage" : "en-us",
     "author" : "sinowrt",
     "creator" : "sinowrt",
@@ -57,25 +57,12 @@
     "datePublished": "2019-11-30 12:14:00 \x2b0800 CST",
     "dateModified" : "2019-11-30 12:14:00 \x2b0800 CST",
     "url" : "http:\/\/blog.sinowrt.cn\/2019\/2019-11-30t1214-expose-synology-diskstation-to-the-internet\/",
-    "wordCount" : "44",
+    "wordCount" : "43",
     "keywords" : [ "群晖","内网穿透", "Sinowrt"]
 }
 </script>
 
 </head>
-
-<script async src="//cdn.busuanzi.ibruce.info/cdn/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?85719ea04c6401b98466dfdbc9399c78";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-
 
   
 
@@ -161,58 +148,44 @@ var _hmt = _hmt || [];
           
           
 
-          
-
-<h2 id="0x00-思路">0x00 思路</h2>
-
+          <h2 id="0x00-思路">0x00 思路</h2>
 <p>分别在vps和路由端部署ngrok服务端与客户端，客户端在线时主动向服务端发起请求建立隧道，外部设备可直接向服务端请求相应的隧道，从而实现内网穿透。</p>
-
 <h2 id="0x01-在vps上部署ngrok服务端">0x01 在vps上部署ngrok服务端</h2>
-
-<p>良心云和套路云的学生套餐用来做内网穿透的服务端还是相当香的，由于ngrok需要用到域名，而我的域名只在良心北了岸，要是用套路云的话会截断提示未备案，无法访问，所以这次就直接用良心云的vps搭建服务端。
-* 安装ngrok服务端</p>
-
-<p>网上大部分教程都是从安装go环境开始，再编译ngrok客户端，过程很复杂。而我只要简单的穿透服务，不需要tls啥的，其实安装过程很简单，只需要两条命令</p>
-
-<pre><code class="language-shell">apt-get update
-apt-get install ngrok-server
-</code></pre>
-
+<p>良心云和套路云的学生套餐用来做内网穿透的服务端还是相当香的，由于ngrok需要用到域名，而我的域名只在良心北了岸，要是用套路云的话会截断提示未备案，无法访问，所以这次就直接用良心云的vps搭建服务端。</p>
 <ul>
-<li>启动ngrok服务端<br /></li>
+<li>安装ngrok服务端</li>
 </ul>
-
+<p>网上大部分教程都是从安装go环境开始，再编译ngrok客户端，过程很复杂。而我只要简单的穿透服务，不需要tls啥的，其实安装过程很简单，只需要两条命令</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">apt-get update
+apt-get install ngrok-server
+</code></pre></div><ul>
+<li>启动ngrok服务端</li>
+</ul>
 <p>一条命令就搞定，监听80、443、4443端口，如果vps有防火墙请放行这几个入站端口。如果需要指定证书还有端口什么的可以自行添加启动参数，这里不再赘述。</p>
-
-<pre><code class="language-shell">ngrokd -domain=ngrok.example.com
-</code></pre>
-
-<h2 id="0x02-添加域名解析">0x02 添加域名解析</h2>
-
-<p>添加两条域名解析记录<br />
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">ngrokd -domain<span style="color:#f92672">=</span>ngrok.example.com
+</code></pre></div><h2 id="0x02-添加域名解析">0x02 添加域名解析</h2>
+<p>添加两条域名解析记录<br>
 类型 | Name | Content
 -|-|-
 A记录 | *.ngrok | ngrok服务器ip
 A记录 | ngrok | ngrok服务器ip</p>
-
 <h2 id="0x03-ngrok客户端配置">0x03 ngrok客户端配置</h2>
-
 <ul>
-<li><p>在本地，我使用刷了padavan固件的newifi3路由，内置了1.4版本的ngrok客户端。服务端是1.6版本的，经测试能通用。</p></li>
-
-<li><p>客户端配置很简单
-<figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/image/2019-11-30T1214/router%20setting.png" alt="客户端配置" class="lazyload"><figcaption class="image-caption">客户端配置</figcaption></figure></p></li>
+<li>
+<p>在本地，我使用刷了padavan固件的newifi3路由，内置了1.4版本的ngrok客户端。服务端是1.6版本的，经测试能通用。</p>
+</li>
+<li>
+<p>客户端配置很简单
+<img src="http://pic.sinowrt.cn/image/2019-11-30T1214/router%20setting.png" alt="客户端配置"></p>
+</li>
 </ul>
-
 <h2 id="0x04-结语">0x04 结语</h2>
-
 <p>到这里，群晖已经暴露在外网了，请设置强大的登录密码防止数据泄露。</p>
 
     </div>
-	
+
     <div class="post-copyright">
              
-			
             <p class="copyright-item">
                 <span>Author:</span>
                 <span>sinowrt </span>
@@ -224,12 +197,6 @@ A记录 | ngrok | ngrok服务器ip</p>
                     <span>Link:</span>
                     <a href=http://blog.sinowrt.cn/2019/2019-11-30t1214-expose-synology-diskstation-to-the-internet/>http://blog.sinowrt.cn/2019/2019-11-30t1214-expose-synology-diskstation-to-the-internet/</span>
             </p>
-			
-			<p>
-				<span id="busuanzi_container_page_pv">
-					本文总阅读量：<span id="busuanzi_value_page_pv"></span>次
-				</span>
-			</p>
             
              
             <p class="copyright-item lincese">
@@ -291,15 +258,6 @@ A记录 | ngrok | ngrok服务器ip</p>
          
 		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
     </div>
-	<p class="credits theme-by text-muted">
-        <span id="busuanzi_container_site_pv">
-            本站访问量：<span id="busuanzi_value_site_pv"></span>次
-        </span>
-        &nbsp;
-        <span id="busuanzi_container_site_uv">
-            您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
-        </span>
-    </p>
 </footer>
 
 

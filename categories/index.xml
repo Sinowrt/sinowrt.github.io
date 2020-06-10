@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Sinowrt</title>
@@ -6,10 +6,91 @@
     <description>Recent content in Categories on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 08 Jan 2020 00:21:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 10 Jun 2020 14:27:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>macbook</title>
+      <link>http://blog.sinowrt.cn/categories/macbook/</link>
+      <pubDate>Wed, 10 Jun 2020 14:27:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/macbook/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>flutter</title>
+      <link>http://blog.sinowrt.cn/categories/flutter/</link>
+      <pubDate>Wed, 20 May 2020 15:07:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/flutter/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>docker</title>
+      <link>http://blog.sinowrt.cn/categories/docker/</link>
+      <pubDate>Tue, 21 Apr 2020 10:11:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>esxi</title>
+      <link>http://blog.sinowrt.cn/categories/esxi/</link>
+      <pubDate>Thu, 16 Apr 2020 16:19:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/esxi/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>maven</title>
+      <link>http://blog.sinowrt.cn/categories/maven/</link>
+      <pubDate>Thu, 16 Apr 2020 10:23:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/maven/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ngrok</title>
+      <link>http://blog.sinowrt.cn/categories/ngrok/</link>
+      <pubDate>Sun, 12 Apr 2020 23:33:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/ngrok/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>develope</title>
+      <link>http://blog.sinowrt.cn/categories/develope/</link>
+      <pubDate>Fri, 10 Apr 2020 10:01:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/develope/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>javascript</title>
+      <link>http://blog.sinowrt.cn/categories/javascript/</link>
+      <pubDate>Thu, 05 Mar 2020 16:18:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/javascript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>http://blog.sinowrt.cn/categories/linux/</link>
+      <pubDate>Tue, 18 Feb 2020 16:02:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/linux/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>esp8266</title>
@@ -21,7 +102,7 @@
     </item>
     
     <item>
-      <title>NAS</title>
+      <title>Nas</title>
       <link>http://blog.sinowrt.cn/categories/nas/</link>
       <pubDate>Sat, 30 Nov 2019 12:14:00 +0800</pubDate>
       
@@ -57,15 +138,6 @@
     </item>
     
     <item>
-      <title>docker</title>
-      <link>http://blog.sinowrt.cn/categories/docker/</link>
-      <pubDate>Mon, 05 Aug 2019 17:47:08 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/categories/docker/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>vpn</title>
       <link>http://blog.sinowrt.cn/categories/vpn/</link>
       <pubDate>Thu, 13 Jun 2019 13:02:08 +0800</pubDate>
@@ -93,29 +165,11 @@
     </item>
     
     <item>
-      <title>群晖</title>
-      <link>http://blog.sinowrt.cn/categories/%E7%BE%A4%E6%99%96/</link>
-      <pubDate>Tue, 06 Nov 2018 02:07:21 +0000</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/categories/%E7%BE%A4%E6%99%96/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Wordpress</title>
       <link>http://blog.sinowrt.cn/categories/wordpress/</link>
       <pubDate>Sat, 20 Oct 2018 10:37:42 +0000</pubDate>
       
       <guid>http://blog.sinowrt.cn/categories/wordpress/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Linux</title>
-      <link>http://blog.sinowrt.cn/categories/linux/</link>
-      <pubDate>Fri, 19 Oct 2018 02:56:07 +0000</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/categories/linux/</guid>
       <description></description>
     </item>
     

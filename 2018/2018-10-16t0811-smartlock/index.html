@@ -46,7 +46,7 @@
     "articleSection" : "posts",
     "name" : "给宿舍装个智能门锁吧（一）",
     "headline" : "给宿舍装个智能门锁吧（一）",
-    "description" : "初步部署 2018.1.27  舵机安装，用热熔胶将SG92R 9g小型舵机粘到门锁旁，舵机牵扯尼龙绳实现开锁动作 利用原有的papersignals固件对舵机开门的可行性进行测试，发现舵机在门锁有阻力的情况下，在舵机通电一刻仍能高效开锁 对该项目的架构进行构思  1.借鉴papersignals项目：  esp8266充当客户端，定时请求服务端获取json数据\n 手机端发送请求到达服务端，服务端解析请求并修改本地json数据\n 从而达到伪装实时开锁的目的  工作与过年原因项目搁置许久 2.构思内网穿透方案  利用pandorabox的可扩展性，安装内网穿透客户端ngrok\n 在搬瓦工vps上安装ngrokd服务端\n 抛弃papersignals的类似方式，将esp8266作为服务端，手机作为客户端 鉴于小程序的跨平台特性，决定采用小程序的方式进行手机端开发  在搬瓦工vps搭建ngrok服务端的过程  参考这篇博客在vps上进行ngrok的编译\n 该博客中遇到的问题，我全都遇到了，按照相应的步骤操作即可解决 另外在go1.4安装操作步骤混乱的时候，造成goroot路径的错乱，从而无法安装上go1.4和go1.6，只需要unset GOROOT即可 一切安装就绪，卡在ngrok的go编译上，在编译过程中报错：go build project\/test: signal: killed 查阅资料，发现是vps内存太小导致的无法编译 改用centos进行编译，但是只有visualbox的centos镜像，而visualbox复制文件上面完全比不上vmware方便，所以改用ubuntu进行ngrok编译。 在ubuntu中部署ngrok编译环境的时候，使用yum命令，发现yum是centos专用的安装命令，在ubuntu上使用会导致很多问题的发生，例如yum的源不知如何配置，所以用回apt命令 由于无法使用yum，造成很多依赖包无法安装上，所以无法安装上官网下载的go1.10包 查找资料发现可以使用sudo apt-get install go-lang命令直接安装go环境，若找不到直接apt update更新源即可 开启sslocal，把ngrok项目从git中拉下来 对ngrok项目进行编译 其中最重要的是$NGROK_DOMAIN的设置，在该教程中直接关系到openssl证书的生成 编译出ngrokd服务端 丢进vps中跑一下 问题：80端口和443端口的占用 解决：启动ngrok命令中修改-httpAddr以及httpsAddr 以更改监听端口，4443为透传接入端口，更改之后直接启动即可，在浏览器中输入www.sinowrt.cn:81 出现trunnel\x26hellip;的即表示启动成功 编译出windows的客户端，windows的客户端必须要在cmd中才能运行，新建ngrok.cfg,将内容  server_addr: \x26quot;www.sinowrt.cn:4443\x26quot; trust_host_root_certs: false  写入该文件中，在cmd进入该目录，敲入命令\nngrok.exe -config=\x26quot;ngrok.cfg\x26quot; -subdomain=\x26quot;abc\x26quot; 80  连接上ngrok服务端即可将本地的80端口暴露出外网",
+    "description" : "初步部署 2018.1.27  舵机安装，用热熔胶将SG92R 9g小型舵机粘到门锁旁，舵机牵扯尼龙绳实现开锁动作 利用原有的papersignals固件对舵机开门的可行性进行测试，发现舵机在门锁有阻力的情况下，在舵机通电一刻仍能高效开锁 对该项目的架构进行构思  1.借鉴papersignals项目：  esp8266充当客户端，定时请求服务端获取json数据 手机端发送请求到达服务端，服务端解析请求并修改本地json数据 从而达到伪装实时开锁的目的  工作与过年原因项目搁置许久 2.构思内网穿透方案  利用pandorabox的可扩展性，安装内网穿透客户端ngrok 在搬瓦工vps上安装ngrokd服务端 抛弃papersignals的类似方式，将esp8266作为服务端，手机作为客户端 鉴于小程序的跨平台特性，决定采用小程序的方式进行手机端开发  在搬瓦工vps搭建ngrok服务端的过程  参考这篇博客在vps上进行ngrok的编译 该博客中遇到的问题，我全都遇到了，按照相应的步骤操作即可解决 另外在go1.4安装操作步骤混乱的时候，造成goroot路径的错乱，从而无法安装上go1.4和go1.6，只需要unset GOROOT即可 一切安装就绪，卡在ngrok的go编译上，在编译过程中报错：go build project\/test: signal: killed 查阅资料，发现是vps内存太小导致的无法编译 改用centos进行编译，但是只有visualbox的centos镜像，而visualbox复制文件上面完全比不上vmware方便，所以改用ubuntu进行ngrok编译。 在ubuntu中部署ngrok编译环境的时候，使用yum命令，发现yum是centos专用的安装命令，在ubuntu上使用会导致很多问题的发生，例如yum的源不知如何配置，所以用回apt命令 由于无法使用yum，造成很多依赖包无法安装上，所以无法安装上官网下载的go1.10包 查找资料发现可以使用sudo apt-get install go-lang命令直接安装go环境，若找不到直接apt update更新源即可 开启sslocal，把ngrok项目从git中拉下来 对ngrok项目进行编译 其中最重要的是$NGROK_DOMAIN的设置，在该教程中直接关系到openssl证书的生成 编译出ngrokd服务端 丢进vps中跑一下 问题：80端口和443端口的占用 解决：启动ngrok命令中修改-httpAddr以及httpsAddr 以更改监听端口，4443为透传接入端口，更改之后直接启动即可，在浏览器中输入www.sinowrt.cn:81 出现trunnel\x26hellip;的即表示启动成功 编译出windows的客户端，windows的客户端必须要在cmd中才能运行，新建ngrok.cfg,将内容  server_addr: \x26#34;www.sinowrt.cn:4443\x26#34; trust_host_root_certs: false 写入该文件中，在cmd进入该目录，敲入命令\nngrok.exe -config=\x26#34;ngrok.cfg\x26#34; -subdomain=\x26#34;abc\x26#34; 80 连接上ngrok服务端即可将本地的80端口暴露出外网\n  问题：一开始死活连接不上，出现fail\n  原因：abc.www.sinowrt.cn没有配置解析，dns无法解析该url所以造成无法连接上服务器，在腾讯云中添加*.www的泛解析，问题解决\n  问题：出现reconnecting",
     "inLanguage" : "en-us",
     "author" : "SinoWRT",
     "creator" : "SinoWRT",
@@ -63,19 +63,6 @@
 </script>
 
 </head>
-
-<script async src="//cdn.busuanzi.ibruce.info/cdn/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?85719ea04c6401b98466dfdbc9399c78";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-
 
   
 
@@ -159,44 +146,33 @@ var _hmt = _hmt || [];
           
           
 
-          
-
-<h2 id="初步部署">初步部署</h2>
-
-<h4 id="2018-1-27">2018.1.27</h4>
-
+          <h2 id="初步部署">初步部署</h2>
+<h4 id="2018127">2018.1.27</h4>
 <ul>
 <li>舵机安装，用热熔胶将SG92R 9g小型舵机粘到门锁旁，舵机牵扯尼龙绳实现开锁动作</li>
 <li>利用原有的papersignals固件对舵机开门的可行性进行测试，发现舵机在门锁有阻力的情况下，在舵机通电一刻仍能高效开锁</li>
 <li>对该项目的架构进行构思</li>
 </ul>
-
-<h3 id="1-借鉴papersignals项目"><strong>1.借鉴papersignals项目：</strong></h3>
-
+<h3 id="1借鉴papersignals项目"><strong>1.借鉴papersignals项目：</strong></h3>
 <ul>
-<li>esp8266充当客户端，定时请求服务端获取json数据<br /></li>
-<li>手机端发送请求到达服务端，服务端解析请求并修改本地json数据<br /></li>
+<li>esp8266充当客户端，定时请求服务端获取json数据</li>
+<li>手机端发送请求到达服务端，服务端解析请求并修改本地json数据</li>
 <li>从而达到伪装实时开锁的目的</li>
 </ul>
-
-<h2 id="工作与过年原因项目搁置许久">工作与过年原因项目搁置许久</h2>
-
-<h3 id="2-构思内网穿透方案"><strong>2.构思内网穿透方案</strong></h3>
-
+<h2 id="工作与过年原因项目搁置许久-">工作与过年原因项目搁置许久</h2>
+<h3 id="2构思内网穿透方案"><strong>2.构思内网穿透方案</strong></h3>
 <ul>
-<li>利用pandorabox的可扩展性，安装内网穿透客户端ngrok<br /></li>
-<li>在搬瓦工vps上安装ngrokd服务端<br /></li>
+<li>利用pandorabox的可扩展性，安装内网穿透客户端ngrok</li>
+<li>在搬瓦工vps上安装ngrokd服务端</li>
 <li>抛弃papersignals的类似方式，将esp8266作为服务端，手机作为客户端</li>
 <li>鉴于小程序的跨平台特性，决定采用小程序的方式进行手机端开发</li>
 </ul>
-
-<h3 id="在搬瓦工vps搭建ngrok服务端的过程">在搬瓦工vps搭建ngrok服务端的过程</h3>
-
+<h3 id="在搬瓦工vps搭建ngrok服务端的过程-">在搬瓦工vps搭建ngrok服务端的过程</h3>
 <ul>
-<li>参考<a href="https://www.leocode.net/article/index/19.html" rel="nofollow noreferrer" target="_blank">这篇博客</a>在vps上进行ngrok的编译<br /></li>
+<li>参考<a href="https://www.leocode.net/article/index/19.html">这篇博客</a>在vps上进行ngrok的编译</li>
 <li>该博客中遇到的问题，我全都遇到了，按照相应的步骤操作即可解决</li>
 <li>另外在go1.4安装操作步骤混乱的时候，造成goroot路径的错乱，从而无法安装上go1.4和go1.6，只需要unset GOROOT即可</li>
-<li>一切安装就绪，卡在ngrok的go编译上，在编译过程中报错：go build project/test: signal: killed 查阅<a href="https://segmentfault.com/q/1010000000486445" rel="nofollow noreferrer" target="_blank">资料</a>，发现是vps内存太小导致的无法编译</li>
+<li>一切安装就绪，卡在ngrok的go编译上，在编译过程中报错：go build project/test: signal: killed 查阅<a href="https://segmentfault.com/q/1010000000486445">资料</a>，发现是vps内存太小导致的无法编译</li>
 <li>改用centos进行编译，但是只有visualbox的centos镜像，而visualbox复制文件上面完全比不上vmware方便，所以改用ubuntu进行ngrok编译。</li>
 <li>在ubuntu中部署ngrok编译环境的时候，使用yum命令，发现yum是centos专用的安装命令，在ubuntu上使用会导致很多问题的发生，例如yum的源不知如何配置，所以用回apt命令</li>
 <li>由于无法使用yum，造成很多依赖包无法安装上，所以无法安装上官网下载的go1.10包</li>
@@ -210,38 +186,38 @@ var _hmt = _hmt || [];
 <li>解决：启动ngrok命令中修改-httpAddr以及httpsAddr 以更改监听端口，4443为透传接入端口，更改之后直接启动即可，在浏览器中输入www.sinowrt.cn:81 出现trunnel&hellip;的即表示启动成功</li>
 <li>编译出windows的客户端，windows的客户端必须要在cmd中才能运行，新建ngrok.cfg,将内容</li>
 </ul>
-
-<pre><code class="language-json">server_addr: &quot;www.sinowrt.cn:4443&quot;
-trust_host_root_certs: false
-</code></pre>
-
-<p>写入该文件中，在cmd进入该目录，敲入命令</p>
-
-<pre><code class="language-shell">ngrok.exe -config=&quot;ngrok.cfg&quot; -subdomain=&quot;abc&quot; 80
-</code></pre>
-
-<p>连接上ngrok服务端即可将本地的80端口暴露出外网</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#960050;background-color:#1e0010">s</span><span style="color:#960050;background-color:#1e0010">e</span><span style="color:#960050;background-color:#1e0010">r</span><span style="color:#960050;background-color:#1e0010">v</span><span style="color:#960050;background-color:#1e0010">e</span><span style="color:#960050;background-color:#1e0010">r</span><span style="color:#960050;background-color:#1e0010">_</span><span style="color:#960050;background-color:#1e0010">a</span><span style="color:#960050;background-color:#1e0010">d</span><span style="color:#960050;background-color:#1e0010">d</span><span style="color:#960050;background-color:#1e0010">r</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;www.sinowrt.cn:4443&#34;</span>
+<span style="color:#960050;background-color:#1e0010">t</span><span style="color:#960050;background-color:#1e0010">r</span><span style="color:#960050;background-color:#1e0010">u</span><span style="color:#960050;background-color:#1e0010">s</span><span style="color:#960050;background-color:#1e0010">t</span><span style="color:#960050;background-color:#1e0010">_</span><span style="color:#960050;background-color:#1e0010">h</span><span style="color:#960050;background-color:#1e0010">o</span><span style="color:#960050;background-color:#1e0010">s</span><span style="color:#960050;background-color:#1e0010">t</span><span style="color:#960050;background-color:#1e0010">_</span><span style="color:#960050;background-color:#1e0010">r</span><span style="color:#960050;background-color:#1e0010">o</span><span style="color:#960050;background-color:#1e0010">o</span><span style="color:#960050;background-color:#1e0010">t</span><span style="color:#960050;background-color:#1e0010">_</span><span style="color:#960050;background-color:#1e0010">c</span><span style="color:#960050;background-color:#1e0010">e</span><span style="color:#960050;background-color:#1e0010">r</span><span style="color:#960050;background-color:#1e0010">t</span><span style="color:#960050;background-color:#1e0010">s</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#66d9ef">false</span>
+</code></pre></div><p>写入该文件中，在cmd进入该目录，敲入命令</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">ngrok.exe -config<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ngrok.cfg&#34;</span> -subdomain<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;abc&#34;</span> <span style="color:#ae81ff">80</span>
+</code></pre></div><p>连接上ngrok服务端即可将本地的80端口暴露出外网</p>
 <ul>
-<li>问题：一开始死活连接不上，出现fail</li>
-<li>原因：abc.www.sinowrt.cn没有配置解析，dns无法解析该url所以造成无法连接上服务器，在腾讯云中添加*.www的泛解析，问题解决</li>
-<li>问题：出现reconnecting</li>
-<li>原因：server_addr后面的内容必须跟证书生成过程中的地址完全匹配，重新填写该参数或重新生成证书而重新编译即可解决问题</li>
-<li>至此，服务器端部署告一段落
-直接敲入命令</li>
-
-<li><p>以上部署在应用到小程序中会有坑，请看小程序中的分析</p></li>
-
-<li><p>最终版的命令</p></li>
+<li>
+<p>问题：一开始死活连接不上，出现fail</p>
+</li>
+<li>
+<p>原因：abc.www.sinowrt.cn没有配置解析，dns无法解析该url所以造成无法连接上服务器，在腾讯云中添加*.www的泛解析，问题解决</p>
+</li>
+<li>
+<p>问题：出现reconnecting</p>
+</li>
+<li>
+<p>原因：server_addr后面的内容必须跟证书生成过程中的地址完全匹配，重新填写该参数或重新生成证书而重新编译即可解决问题</p>
+</li>
+<li>
+<p>至此，服务器端部署告一段落
+直接敲入命令</p>
+</li>
+<li>
+<p>以上部署在应用到小程序中会有坑，请看小程序中的分析</p>
+</li>
+<li>
+<p>最终版的命令</p>
+</li>
 </ul>
-
-<pre><code class="language-shell">./ngrokd -domain=ngrok.sinowrt.cn -httpAddr=:80 -httpsAddr=:443 -tlsCrt /etc/ngrok_ssl/server.crt -tlsKey /etc/ngrok_ssl/server.key&amp;
-</code></pre>
-
-<p>即可启动ngrok服务端</p>
-
-<h3 id="小程序-我只是个开门的玩意儿-开发的过程">小程序“我只是个开门的玩意儿”开发的过程</h3>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">./ngrokd -domain<span style="color:#f92672">=</span>ngrok.sinowrt.cn -httpAddr<span style="color:#f92672">=</span>:80 -httpsAddr<span style="color:#f92672">=</span>:443 -tlsCrt /etc/ngrok_ssl/server.crt -tlsKey /etc/ngrok_ssl/server.key&amp;
+</code></pre></div><p>即可启动ngrok服务端</p>
+<h3 id="小程序我只是个开门的玩意儿开发的过程-">小程序“我只是个开门的玩意儿”开发的过程</h3>
 <ul>
 <li>小程序账号的申请</li>
 <li>基本信息的填写</li>
@@ -250,11 +226,9 @@ trust_host_root_certs: false
 <li>由于wx.request会对url进行安全校验，根据网上资料指示，在开发工具中关闭校验</li>
 <li>问题：发现wx.request不能加端口号</li>
 <li>解决: 修改vps的apache监听端口为81，ngrokd的监听端口为80</li>
-<li>添加toast对开门过程进行文字弹幕展示<br /></li>
+<li>添加toast对开门过程进行文字弹幕展示</li>
 </ul>
-
-<h2 id="以上部署在应用到小程序中会有坑-请看后续分析">以上部署在应用到小程序中会有坑，请看后续分析</h2>
-
+<h2 id="以上部署在应用到小程序中会有坑请看后续分析">以上部署在应用到小程序中会有坑，请看后续分析</h2>
 <ul>
 <li>2018.3.2进行了体验版本的发布，回来想试用一下app进行开门，发现竟然无响应</li>
 <li>无意中开启调试模式，竟然又可以了（此事用的是http协议）</li>
@@ -271,202 +245,180 @@ trust_host_root_certs: false
 <li>按上述的方法指定该证书，重启ngrokd，成功</li>
 <li>但是小程序似乎仍然毫无反应，而改回http之后才有反应，判断应该是请求的时候被拦截了</li>
 <li>查看服务器端的tls支持情况，发现服务器端是支持tls1.2以下版本的</li>
-<li>再查阅<a href="https://www.jianshu.com/p/082ba2965a88" rel="nofollow noreferrer" target="_blank">资料1</a>以及<a href="http://blog.csdn.net/hgg923/article/details/73897011" rel="nofollow noreferrer" target="_blank">资料2</a>,按照相应步骤配置中间证书后，小程序请求问题终于解决了，一切正常使用</li>
+<li>再查阅<a href="https://www.jianshu.com/p/082ba2965a88">资料1</a>以及<a href="http://blog.csdn.net/hgg923/article/details/73897011">资料2</a>,按照相应步骤配置中间证书后，小程序请求问题终于解决了，一切正常使用</li>
 <li>在使用过程中，点下按钮由于服务端会有延时操作，所以过了几秒才有开锁成功，所以添加“正在开锁”的toast</li>
 </ul>
-
-<h3 id="esp8266服务端的搭建">esp8266服务端的搭建</h3>
-
+<h3 id="esp8266服务端的搭建-">esp8266服务端的搭建</h3>
 <ul>
-<li>参考网上<a href="http://www.yfrobot.com/thread-11874-1-1.html" rel="nofollow noreferrer" target="_blank">资料</a></li>
+<li>参考网上<a href="http://www.yfrobot.com/thread-11874-1-1.html">资料</a></li>
 <li>将如下源码进行改写</li>
 </ul>
-
-<pre><code class="language-cpp">/*
-    This sketch demonstrates how to set up a simple HTTP-like server.
-    The server will set a GPIO pin depending on the request
-      http://server_ip/gpio/0 will set the GPIO2 low,
-      http://server_ip/gpio/1 will set the GPIO2 high
-    server_ip is the IP address of the ESP8266 module, will be
-    printed to Serial when the module is connected.
-*/
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">/*
+</span><span style="color:#75715e">    This sketch demonstrates how to set up a simple HTTP-like server.
+</span><span style="color:#75715e">    The server will set a GPIO pin depending on the request
+</span><span style="color:#75715e">      http://server_ip/gpio/0 will set the GPIO2 low,
+</span><span style="color:#75715e">      http://server_ip/gpio/1 will set the GPIO2 high
+</span><span style="color:#75715e">    server_ip is the IP address of the ESP8266 module, will be
+</span><span style="color:#75715e">    printed to Serial when the module is connected.
+</span><span style="color:#75715e">*/</span>
  
-#include &lt;ESP8266WiFi.h&gt;
+<span style="color:#75715e">#</span><span style="color:#75715e">include</span> <span style="color:#75715e">&lt;ESP8266WiFi.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span> 
+<span style="color:#75715e">#</span><span style="color:#75715e">define LED 2</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span> 
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> ssid <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">YFROBOT</span><span style="color:#e6db74">&#34;</span>;
+<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> password <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">yfrobot2016</span><span style="color:#e6db74">&#34;</span>;
  
-#define LED 2
+<span style="color:#75715e">// Create an instance of the server
+</span><span style="color:#75715e"></span><span style="color:#75715e">// specify the port to listen on as an argument
+</span><span style="color:#75715e"></span>WiFiServer <span style="color:#a6e22e">server</span>(<span style="color:#ae81ff">80</span>);
  
-const char* ssid = &quot;YFROBOT&quot;;
-const char* password = &quot;yfrobot2016&quot;;
- 
-// Create an instance of the server
-// specify the port to listen on as an argument
-WiFiServer server(80);
- 
-void setup() {
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setup</span>() {
   WiFi.mode(WIFI_STA);
-  Serial.begin(115200);
-  delay(10);
+  Serial.begin(<span style="color:#ae81ff">115200</span>);
+  delay(<span style="color:#ae81ff">10</span>);
  
-  // prepare GPIO2
-  pinMode(LED, OUTPUT);
+  <span style="color:#75715e">// prepare GPIO2
+</span><span style="color:#75715e"></span>  pinMode(LED, OUTPUT);
  
-  // Connect to WiFi network
+  <span style="color:#75715e">// Connect to WiFi network
+</span><span style="color:#75715e"></span>  Serial.println();
   Serial.println();
-  Serial.println();
-  Serial.print(&quot;Connecting to &quot;);
+  Serial.print(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Connecting to </span><span style="color:#e6db74">&#34;</span>);
   Serial.println(ssid);
  
   WiFi.begin(ssid, password);
  
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    Serial.print(&quot;.&quot;);
+  <span style="color:#66d9ef">while</span> (WiFi.status() <span style="color:#f92672">!</span><span style="color:#f92672">=</span> WL_CONNECTED) {
+    delay(<span style="color:#ae81ff">500</span>);
+    Serial.print(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">.</span><span style="color:#e6db74">&#34;</span>);
   }
-  Serial.println(&quot;&quot;);
-  Serial.println(&quot;WiFi connected&quot;);
+  Serial.println(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">&#34;</span>);
+  Serial.println(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">WiFi connected</span><span style="color:#e6db74">&#34;</span>);
  
-  // Start the server
-  server.begin();
-  Serial.println(&quot;Server started&quot;);
+  <span style="color:#75715e">// Start the server
+</span><span style="color:#75715e"></span>  server.begin();
+  Serial.println(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Server started</span><span style="color:#e6db74">&#34;</span>);
  
-  // Print the IP address
-  Serial.println(WiFi.localIP());
+  <span style="color:#75715e">// Print the IP address
+</span><span style="color:#75715e"></span>  Serial.println(WiFi.localIP());
  
-  digitalWrite(LED, 1); // LOW 
-}
+  digitalWrite(LED, <span style="color:#ae81ff">1</span>); <span style="color:#75715e">// LOW 
+</span><span style="color:#75715e"></span>}
  
-void loop() {
-  // Check if a client has connected
-  WiFiClient client = server.available();
-  if (!client) {
-    return;
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">loop</span>() {
+  <span style="color:#75715e">// Check if a client has connected
+</span><span style="color:#75715e"></span>  WiFiClient client <span style="color:#f92672">=</span> server.available();
+  <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>client) {
+    <span style="color:#66d9ef">return</span>;
   }
  
-  // Read the first line of the request
-  String req = client.readStringUntil('\r');
+  <span style="color:#75715e">// Read the first line of the request
+</span><span style="color:#75715e"></span>  String req <span style="color:#f92672">=</span> client.readStringUntil(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">\r</span><span style="color:#e6db74">&#39;</span>);
   Serial.println(req);
   client.flush();
-  delay(10);
+  delay(<span style="color:#ae81ff">10</span>);
  
-  // Match the request
-  int val = 1;
-  if (req.indexOf(&quot;/gpio/0&quot;) != -1)
-    val = 1;
-  else if (req.indexOf(&quot;/gpio/1&quot;) != -1)
-    val = 0;
-  else {
-    Serial.println(&quot;invalid request&quot;);
+  <span style="color:#75715e">// Match the request
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">int</span> val <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+  <span style="color:#66d9ef">if</span> (req.indexOf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">/gpio/0</span><span style="color:#e6db74">&#34;</span>) <span style="color:#f92672">!</span><span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+    val <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+  <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (req.indexOf(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">/gpio/1</span><span style="color:#e6db74">&#34;</span>) <span style="color:#f92672">!</span><span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+    val <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+  <span style="color:#66d9ef">else</span> {
+    Serial.println(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">invalid request</span><span style="color:#e6db74">&#34;</span>);
     client.stop();
-    return;
+    <span style="color:#66d9ef">return</span>;
   }
  
-  // Set GPIO2 according to the request
-  digitalWrite(LED, val);
+  <span style="color:#75715e">// Set GPIO2 according to the request
+</span><span style="color:#75715e"></span>  digitalWrite(LED, val);
  
-  // Prepare the response
-  String s = &quot;HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n&lt;!DOCTYPE HTML&gt;\r\n&lt;html&gt;\r\nGPIO is now &quot;;
-  s += (val) ? &quot;low&quot; : &quot;high&quot;;
-  s += &quot;&lt;/html&gt;\n&quot;;
-  // Send the response to the client
-  client.print(s);
-  delay(1);
+  <span style="color:#75715e">// Prepare the response
+</span><span style="color:#75715e"></span>  String s <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">HTTP/1.1 200 OK</span><span style="color:#ae81ff">\r</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Content-Type: text/html</span><span style="color:#ae81ff">\r</span><span style="color:#ae81ff">\n</span><span style="color:#ae81ff">\r</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&lt;!DOCTYPE HTML&gt;</span><span style="color:#ae81ff">\r</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&lt;html&gt;</span><span style="color:#ae81ff">\r</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">GPIO is now </span><span style="color:#e6db74">&#34;</span>;
+  s <span style="color:#f92672">+</span><span style="color:#f92672">=</span> (val) <span style="color:#f92672">?</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">low</span><span style="color:#e6db74">&#34;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">high</span><span style="color:#e6db74">&#34;</span>;
+  s <span style="color:#f92672">+</span><span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">&lt;/html&gt;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>;
+  <span style="color:#75715e">// Send the response to the client
+</span><span style="color:#75715e"></span>  client.print(s);
+  delay(<span style="color:#ae81ff">1</span>);
    
-  Serial.println(&quot;Client disonnected&quot;);
-  // The client will actually be disconnected
-  // when the function returns and 'client' object is detroyed
-}
-</code></pre>
-
-<ul>
+  Serial.println(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">Client disonnected</span><span style="color:#e6db74">&#34;</span>);
+  <span style="color:#75715e">// The client will actually be disconnected
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">// when the function returns and &#39;client&#39; object is detroyed
+</span><span style="color:#75715e"></span>}
+</code></pre></div><ul>
 <li>添加servo控制，以及相应的请求解析即可完成舵机的控制</li>
 <li>将改写好的ino文件烧录进esp8266即可</li>
-<li>烧写接线与正常运行接线区别只在于gpio0<br />
-gpio15 -&gt; -<br />
-ch_en  -&gt; +<br />
-vcc -&gt; +<br />
-gnd -&gt;-<br />
+<li>烧写接线与正常运行接线区别只在于gpio0<br>
+gpio15 -&gt; -<br>
+ch_en  -&gt; +<br>
+vcc -&gt; +<br>
+gnd -&gt;-<br>
 烧录：gpio -&gt; -
 运行：gpio -&gt; + 或 置空+</li>
 </ul>
-
-<h3 id="pandorabox的ngrok客户端部署">pandorabox的ngrok客户端部署</h3>
-
+<h3 id="pandorabox的ngrok客户端部署-">pandorabox的ngrok客户端部署</h3>
 <ul>
 <li>查阅资料发现openwrt上的ngrok客户端为c编写的ngrokc</li>
-<li>ngrokc的github地址：<a href="https://github.com/dosgo/ngrok-c" rel="nofollow noreferrer" target="_blank">https://github.com/dosgo/ngrok-c</a></li>
-<li>无意中又发现python版本的ngrok：<a href="https://github.com/hauntek/python-ngrok" rel="nofollow noreferrer" target="_blank">https://github.com/hauntek/python-ngrok</a></li>
+<li>ngrokc的github地址：https://github.com/dosgo/ngrok-c</li>
+<li>无意中又发现python版本的ngrok：https://github.com/hauntek/python-ngrok</li>
 <li>正好我的路由配置了python环境，为了省事，直接用python版本的</li>
 <li>将ngrok客户端的py文件扔进/usr/bin中，运行发现缺少ssl.py模块，安装完整版的python以及openssl也无法解决，最后配置源，安装了python-openssl问题才解决</li>
-
-<li><p>python版本的ngrok客户端由于我在windows中已经配置好它的配置文件，放到路由中直接运行即可，下面贴出配置文件：</p>
-
-<pre><code class="language-json">{
-&quot;server&quot;: {
-    &quot;host&quot;: &quot;ngrok.sinowrt.cn&quot;,
-    &quot;port&quot;: 4443,
-    &quot;bufsize&quot;: 1024
-},
-&quot;client&quot;: [
-    {
-        &quot;protocol&quot;: &quot;http&quot;,
-        &quot;hostname&quot;: &quot;&quot;,
-        &quot;subdomain&quot;: &quot;abc&quot;,
-        &quot;rport&quot;: 0,
-        &quot;lhost&quot;: &quot;127.0.0.1&quot;,
-        &quot;lport&quot;: 8080
-    }
-]
+<li>python版本的ngrok客户端由于我在windows中已经配置好它的配置文件，放到路由中直接运行即可，下面贴出配置文件：</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#f92672">&#34;server&#34;</span>: {
+        <span style="color:#f92672">&#34;host&#34;</span>: <span style="color:#e6db74">&#34;ngrok.sinowrt.cn&#34;</span>,
+        <span style="color:#f92672">&#34;port&#34;</span>: <span style="color:#ae81ff">4443</span>,
+        <span style="color:#f92672">&#34;bufsize&#34;</span>: <span style="color:#ae81ff">1024</span>
+    },
+    <span style="color:#f92672">&#34;client&#34;</span>: [
+        {
+            <span style="color:#f92672">&#34;protocol&#34;</span>: <span style="color:#e6db74">&#34;http&#34;</span>,
+            <span style="color:#f92672">&#34;hostname&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+            <span style="color:#f92672">&#34;subdomain&#34;</span>: <span style="color:#e6db74">&#34;abc&#34;</span>,
+            <span style="color:#f92672">&#34;rport&#34;</span>: <span style="color:#ae81ff">0</span>,
+            <span style="color:#f92672">&#34;lhost&#34;</span>: <span style="color:#e6db74">&#34;127.0.0.1&#34;</span>,
+            <span style="color:#f92672">&#34;lport&#34;</span>: <span style="color:#ae81ff">8080</span>
+        }
+    ]
 }
-</code></pre>
-
-<p>直接运行命令：</p>
-
-<pre><code class="language-shell">python ./ngrok /etc/config/ngrok.config&amp;
-</code></pre>
-
-<p>即可启动客户端</p></li>
-
-<li><p>以上部署在应用小程序的时候会有坑，请看小程序中的分析</p></li>
-
-<li><p>最终版的ngrok.config:</p>
-
-<pre><code class="language-json">{
-&quot;server&quot;: {
-    &quot;host&quot;: &quot;ngrok.sinowrt.cn&quot;,
-    &quot;port&quot;: 4443,
-    &quot;bufsize&quot;: 1024
-},
-&quot;client&quot;: [
-    {
-        &quot;protocol&quot;: &quot;https&quot;,
-        &quot;hostname&quot;: &quot;&quot;,
-        &quot;subdomain&quot;: &quot;abc&quot;,
-        &quot;rport&quot;: 0,
-        &quot;lhost&quot;: &quot;192.168.1.121&quot;,
-        &quot;lport&quot;: 80
-    }
-]
+</code></pre></div><p>直接运行命令：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">python ./ngrok /etc/config/ngrok.config&amp;
+</code></pre></div><p>即可启动客户端</p>
+<ul>
+<li>以上部署在应用小程序的时候会有坑，请看小程序中的分析</li>
+<li>最终版的ngrok.config:</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#f92672">&#34;server&#34;</span>: {
+        <span style="color:#f92672">&#34;host&#34;</span>: <span style="color:#e6db74">&#34;ngrok.sinowrt.cn&#34;</span>,
+        <span style="color:#f92672">&#34;port&#34;</span>: <span style="color:#ae81ff">4443</span>,
+        <span style="color:#f92672">&#34;bufsize&#34;</span>: <span style="color:#ae81ff">1024</span>
+    },
+    <span style="color:#f92672">&#34;client&#34;</span>: [
+        {
+            <span style="color:#f92672">&#34;protocol&#34;</span>: <span style="color:#e6db74">&#34;https&#34;</span>,
+            <span style="color:#f92672">&#34;hostname&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+            <span style="color:#f92672">&#34;subdomain&#34;</span>: <span style="color:#e6db74">&#34;abc&#34;</span>,
+            <span style="color:#f92672">&#34;rport&#34;</span>: <span style="color:#ae81ff">0</span>,
+            <span style="color:#f92672">&#34;lhost&#34;</span>: <span style="color:#e6db74">&#34;192.168.1.121&#34;</span>,
+            <span style="color:#f92672">&#34;lport&#34;</span>: <span style="color:#ae81ff">80</span>
+        }
+    ]
 }
-</code></pre>
-
-<h2 id="startssl-https-segmentfault-com-a-1190000007547179"><a href="https://segmentfault.com/a/1190000007547179" rel="nofollow noreferrer" target="_blank">StartSSL</a></h2>
-
-<h1 id="2018-3-7">2018/3/7</h1>
-
+</code></pre></div><h2 id="startsslhttpssegmentfaultcoma1190000007547179"><a href="https://segmentfault.com/a/1190000007547179">StartSSL</a></h2>
+<h1 id="201837">2018/3/7</h1>
 <ul>
 <li>晚上发现舵机扫齿了，果然，塑料齿轮还是太脆了</li>
 </ul>
-
-<h1 id="2018-3-8">2018/3/8</h1>
-
+<h1 id="201838">2018/3/8</h1>
 <ul>
 <li>早上淘了一个金属齿轮的国产舵机MG945，看了店家描述,总结下</li>
 <li>MG996和MG995优点在于响应快，扭力相对小</li>
 <li>MG945优点在于扭力大，相应相对较慢</li>
 </ul>
-
-<h1 id="2018-3-10">2018/3/10</h1>
-
+<h1 id="2018310">2018/3/10</h1>
 <ul>
 <li>下午拿了舵机装上直接点亮</li>
 <li>修复发现很久的bug</li>
@@ -474,14 +426,12 @@ gnd -&gt;-<br />
 <li>更改为初始化currentposition角度为RESTPOSTION</li>
 <li>更改unlockposition为0</li>
 <li>更改resetposition为90</li>
-</ul></li>
 </ul>
 
     </div>
-	
+
     <div class="post-copyright">
              
-			
             <p class="copyright-item">
                 <span>Author:</span>
                 <span>sinowrt </span>
@@ -493,12 +443,6 @@ gnd -&gt;-<br />
                     <span>Link:</span>
                     <a href=http://blog.sinowrt.cn/2018/2018-10-16t0811-smartlock/>http://blog.sinowrt.cn/2018/2018-10-16t0811-smartlock/</span>
             </p>
-			
-			<p>
-				<span id="busuanzi_container_page_pv">
-					本文总阅读量：<span id="busuanzi_value_page_pv"></span>次
-				</span>
-			</p>
             
              
             <p class="copyright-item lincese">
@@ -547,15 +491,6 @@ gnd -&gt;-<br />
          
 		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
     </div>
-	<p class="credits theme-by text-muted">
-        <span id="busuanzi_container_site_pv">
-            本站访问量：<span id="busuanzi_value_site_pv"></span>次
-        </span>
-        &nbsp;
-        <span id="busuanzi_container_site_uv">
-            您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
-        </span>
-    </p>
 </footer>
 
 
