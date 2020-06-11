@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mysql on Sinowrt</title>
+    <link>http://blog.sinowrt.cn/categories/mysql/</link>
+    <description>Recent content in mysql on Sinowrt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 28 Mar 2020 10:23:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.sinowrt.cn/categories/mysql/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>docker安装的mysql:5.7服务 关闭大小写敏感选项</title>
+      <link>http://blog.sinowrt.cn/2020/2020-03-28t1023-mysql-disable-case-sensitive/</link>
+      <pubDate>Sat, 28 Mar 2020 10:23:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-03-28t1023-mysql-disable-case-sensitive/</guid>
+      <description>0x00 事由 日志系统开发完成了，服务已经部署到服务器上，也该把本地数据库上传上去了，于是就在docker上面安装了mysql:5.7，但是在开发环境中mysql是不区分大小写的，而docker上面的确实默认区分大小写，所以需要关闭大小写敏感这个选项。
+0x01 步骤 首先进入容器内部
+docker exec -it 容器ID /bin/bash cd /etc/mysql/mysql.conf.d vi mysqld.cnf 发现没有vi，那就装一下吧
+apt-get update apt-get install vim vi mysqld.cnf
+在结尾追加一行
+lower_case_table_names=1
+变成
+# Copyright (c) 2014, 2016, Oracle and/or its affiliates. All rights reserved. # # This program is free software; you can redistribute it and/or modify # it under the terms of the GNU General Public License, version 2.0, # as published by the Free Software Foundation.</description>
+    </item>
+    
+  </channel>
+</rss>

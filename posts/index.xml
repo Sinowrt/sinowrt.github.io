@@ -186,6 +186,22 @@ org.springframework.beans.factory.BeanCreationException: Error creating bean wit
     </item>
     
     <item>
+      <title>docker安装的mysql:5.7服务 关闭大小写敏感选项</title>
+      <link>http://blog.sinowrt.cn/2020/2020-03-28t1023-mysql-disable-case-sensitive/</link>
+      <pubDate>Sat, 28 Mar 2020 10:23:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-03-28t1023-mysql-disable-case-sensitive/</guid>
+      <description>0x00 事由 日志系统开发完成了，服务已经部署到服务器上，也该把本地数据库上传上去了，于是就在docker上面安装了mysql:5.7，但是在开发环境中mysql是不区分大小写的，而docker上面的确实默认区分大小写，所以需要关闭大小写敏感这个选项。
+0x01 步骤 首先进入容器内部
+docker exec -it 容器ID /bin/bash cd /etc/mysql/mysql.conf.d vi mysqld.cnf 发现没有vi，那就装一下吧
+apt-get update apt-get install vim vi mysqld.cnf
+在结尾追加一行
+lower_case_table_names=1
+变成
+# Copyright (c) 2014, 2016, Oracle and/or its affiliates. All rights reserved. # # This program is free software; you can redistribute it and/or modify # it under the terms of the GNU General Public License, version 2.0, # as published by the Free Software Foundation.</description>
+    </item>
+    
+    <item>
       <title>js大整数精度导致前后端传参不一致问题</title>
       <link>http://blog.sinowrt.cn/2020/2020-03-05t1618-something-changed-while-java-long-parsing-to-javascript/</link>
       <pubDate>Thu, 05 Mar 2020 16:18:00 +0800</pubDate>
@@ -359,10 +375,10 @@ ngrokd -domain=ngrok.example.com 0x02 添加域名解析 添加两条域名解�
     
     <item>
       <title>Windows 10安装Qt5.11.2</title>
-      <link>http://blog.sinowrt.cn/2018/2018-11-17t1513-install-qt5-in-win10/</link>
+      <link>http://blog.sinowrt.cn/2018/2018-11-17t1513-install-qt5-on-win10/</link>
       <pubDate>Sat, 17 Nov 2018 15:13:11 +0000</pubDate>
       
-      <guid>http://blog.sinowrt.cn/2018/2018-11-17t1513-install-qt5-in-win10/</guid>
+      <guid>http://blog.sinowrt.cn/2018/2018-11-17t1513-install-qt5-on-win10/</guid>
       <description>0x00背景 信管作业要求用C++实现进销存系统用户交互界面以及业务逻辑 0x01 必备安装包 1.qt-opensource-windows-x86-5.11.2.exe 2.Windows SDK 0x02 下载与安装 1.Qt下载与安装  上Qt下载页面下载你系统对应的安装包  我的是Windoes 10,直接下载qt-opensource-windows-x86-5.11.2.exe 直接打开qt-opensource-windows-x86-5.11.2.exe安装程序 在第一个界面直接下一步 填写账号这一块，如果没有事先申请也可以先跳过这一步  选择安装文件夹 选择编译器，由于我的电脑装了vs2015，所以直接选了MSVC 2015 64-bit（若未安装任何编译器可以直接选择MinGW 5.3.0 32bit）  接下来一路下一步即可  2.Windows SDK下载与安装  上Microsoft开发者下载站 我的系统是Windows 10，还是按自己的系统版本进行下载  下载之后得到这样一个exe，打开按步骤安装   0x03 配置Qt 1.配置Debugger  工具——选项——kits——Debuggers——Add 填写Debugger的名称 浏览WindowsSKD的安装路径，找到你所需要的Debugger，这里我设置了Windows 10的x64的和x86的cdb.exe   2.配置kit  按根据截图按需配置就可以了   到了这步配置基本完成，但是我在编译程序的过程中遇到error link1158 无法运行rc.exe的报错 error link1158 无法运行rc.exe问题解决方法  到C:\Program Files (x86)\Windows Kits\10\bin\10.0.17763.0下的文件夹找到rc.dll和rc.exe复制到qmake文件夹下 qmake的路径可以参考截图   </description>
     </item>
     
