@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>macbook on Sinowrt</title>
+    <link>http://blog.sinowrt.cn/tags/macbook/</link>
+    <description>Recent content in macbook on Sinowrt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 10 Jun 2020 14:27:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.sinowrt.cn/tags/macbook/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Macbook Pro 2019使用感受</title>
+      <link>http://blog.sinowrt.cn/2020/2020-06-10t1511-the-using-feeling-of-mbp/</link>
+      <pubDate>Wed, 10 Jun 2020 14:27:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-06-10t1511-the-using-feeling-of-mbp/</guid>
+      <description>机器是今年年初买的，当时不想用公司的电脑，我就把神船带到公司当主力机。
+神船的性能是没得说的，但是这个重量(5kg)要背着上班通勤的话，我相信非习武之人绝对是承受不住的。
+于是我就打算将神船留在公司，可是回家就没电脑用了呀，而且身为IT人无论身在何处，随身携带电脑是我们光荣的使命。所以就萌发了购置macbook pro的想法。
+作为开发人员，16g内存是必选的，硬盘如果有条件还是建议512起步。但由于当时手头拮据，只选配了256的。新macbook pro在今年五月发布了，cpu 键盘 内存 硬盘 全线升级，如果上天再给我一次机会的话，我一定会等这四个月。
+使用macbook最直接的感受就是它超长的续航了，正常办公使用5h+没问题。而且随用随关，不用时只要把盖合上实属省心。
+现在我日常都是本地mac+远程win双端办公，只要有网络的地方都可以双端无缝切换，省心得很。
+macbook使用到现在也有小半年了，大问题没有，小问题比如说finder的远程服务器连接实属蹩脚，系统偶尔也会开小猜，不过重启都能解决问题。但是我这个人就是不喜欢重启电脑，只要不出问题，我宁愿它7x24不间断服务。
+前段时间还遇到了 macbook pro 2019 siri无法找到麦克风的问题，重启电脑即可解决。</description>
+    </item>
+    
+    <item>
+      <title>Macbook Pro查看电池信息</title>
+      <link>http://blog.sinowrt.cn/2020/2020-06-10t1427-how-to-query-the-information-of-battery-on-mac/</link>
+      <pubDate>Wed, 10 Jun 2020 14:27:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-06-10t1427-how-to-query-the-information-of-battery-on-mac/</guid>
+      <description>在终端输入以下命令：
+ioreg -rn AppleSmartBattery | grep -i capacity  &amp;quot;AppleRawCurrentCapacity&amp;quot; = 4867 &amp;quot;AppleRawMaxCapacity&amp;quot; = 5084 &amp;quot;MaxCapacity&amp;quot; = 5084 &amp;quot;CurrentCapacity&amp;quot; = 4867 &amp;quot;LegacyBatteryInfo&amp;quot; = {&amp;quot;Amperage&amp;quot;=18446744073709551214,&amp;quot;Flags&amp;quot;=4,&amp;quot;Capacity&amp;quot;=5084,&amp;quot;Current&amp;quot;=4867,&amp;quot;Voltage&amp;quot;=12729,&amp;quot;Cycle Count&amp;quot;=46} &amp;quot;DesignCapacity&amp;quot; = 5088 &amp;quot;BatteryData&amp;quot; = {&amp;quot;StateOfCharge&amp;quot;=96,&amp;quot;PMUConfigured&amp;quot;=0,&amp;quot;Voltage&amp;quot;=12699,&amp;quot;QmaxCell1&amp;quot;=5358,&amp;quot;AdapterPower&amp;quot;=839469241,&amp;quot;SystemPower&amp;quot;=1087516262,&amp;quot;ResScale&amp;quot;=117,&amp;quot;QmaxCell2&amp;quot;=5302,&amp;quot;QmaxCell0&amp;quot;=5341,&amp;quot;CycleCount&amp;quot;=46,&amp;quot;DesignCapacity&amp;quot;=5088}  </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -5,8 +5,234 @@
     <description>Recent content in Sinowrt on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 16 Apr 2020 16:23:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 10 Jun 2020 14:27:00 +0800</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Macbook Pro 2019使用感受</title>
+      <link>http://blog.sinowrt.cn/2020/2020-06-10t1511-the-using-feeling-of-mbp/</link>
+      <pubDate>Wed, 10 Jun 2020 14:27:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-06-10t1511-the-using-feeling-of-mbp/</guid>
+      <description>&lt;p&gt;机器是今年年初买的，当时不想用公司的电脑，我就把神船带到公司当主力机。&lt;/p&gt;
+
+&lt;p&gt;神船的性能是没得说的，但是这个重量(5kg)要背着上班通勤的话，我相信非习武之人绝对是承受不住的。&lt;/p&gt;
+
+&lt;p&gt;于是我就打算将神船留在公司，可是回家就没电脑用了呀，而且身为IT人无论身在何处，随身携带电脑是我们光荣的使命。所以就萌发了购置macbook pro的想法。&lt;/p&gt;
+
+&lt;p&gt;作为开发人员，16g内存是必选的，硬盘如果有条件还是建议512起步。但由于当时手头拮据，只选配了256的。新macbook pro在今年五月发布了，cpu 键盘 内存 硬盘 全线升级，如果上天再给我一次机会的话，我一定会等这四个月。&lt;/p&gt;
+
+&lt;p&gt;使用macbook最直接的感受就是它超长的续航了，正常办公使用5h+没问题。而且随用随关，不用时只要把盖合上实属省心。&lt;/p&gt;
+
+&lt;p&gt;现在我日常都是本地mac+远程win双端办公，只要有网络的地方都可以双端无缝切换，省心得很。&lt;/p&gt;
+
+&lt;p&gt;macbook使用到现在也有小半年了，大问题没有，小问题比如说finder的远程服务器连接实属蹩脚，系统偶尔也会开小猜，不过重启都能解决问题。但是我这个人就是不喜欢重启电脑，只要不出问题，我宁愿它7x24不间断服务。&lt;/p&gt;
+
+&lt;p&gt;前段时间还遇到了 macbook pro 2019 siri无法找到麦克风的问题，重启电脑即可解决。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Macbook Pro查看电池信息</title>
+      <link>http://blog.sinowrt.cn/2020/2020-06-10t1427-how-to-query-the-information-of-battery-on-mac/</link>
+      <pubDate>Wed, 10 Jun 2020 14:27:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-06-10t1427-how-to-query-the-information-of-battery-on-mac/</guid>
+      <description>&lt;p&gt;在终端输入以下命令：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;ioreg -rn AppleSmartBattery | grep -i capacity
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;&amp;quot;AppleRawCurrentCapacity&amp;quot; = 4867
+&amp;quot;AppleRawMaxCapacity&amp;quot; = 5084
+&amp;quot;MaxCapacity&amp;quot; = 5084
+&amp;quot;CurrentCapacity&amp;quot; = 4867
+&amp;quot;LegacyBatteryInfo&amp;quot; = {&amp;quot;Amperage&amp;quot;=18446744073709551214,&amp;quot;Flags&amp;quot;=4,&amp;quot;Capacity&amp;quot;=5084,&amp;quot;Current&amp;quot;=4867,&amp;quot;Voltage&amp;quot;=12729,&amp;quot;Cycle Count&amp;quot;=46}
+&amp;quot;DesignCapacity&amp;quot; = 5088
+&amp;quot;BatteryData&amp;quot; = {&amp;quot;StateOfCharge&amp;quot;=96,&amp;quot;PMUConfigured&amp;quot;=0,&amp;quot;Voltage&amp;quot;=12699,&amp;quot;QmaxCell1&amp;quot;=5358,&amp;quot;AdapterPower&amp;quot;=839469241,&amp;quot;SystemPower&amp;quot;=1087516262,&amp;quot;ResScale&amp;quot;=117,&amp;quot;QmaxCell2&amp;quot;=5302,&amp;quot;QmaxCell0&amp;quot;=5341,&amp;quot;CycleCount&amp;quot;=46,&amp;quot;DesignCapacity&amp;quot;=5088}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>优美的switch</title>
+      <link>http://blog.sinowrt.cn/2020/2020-05-20t1507-javagorgeous-switch/</link>
+      <pubDate>Wed, 20 May 2020 15:07:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-05-20t1507-javagorgeous-switch/</guid>
+      <description>&lt;p&gt;相信大家都有这种体会，工作以来一直都是自己写代码，感觉自己的代码总是平平无奇，运行倒是能运行，就是没有那种让人眼前一亮的感觉。而每次阅读别人的源码，心里一直再默念，卧槽，还能这样写，天哪，太精辟了！&lt;/p&gt;
+
+&lt;p&gt;于是，我就想，把这些让人眼前一亮的代码都摘录下来。一方面，自己能学习留痕，二来也能把这些知识分享给大家。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;private static String createPlayer(PlayerTypes playerType) {
+    return switch (playerType) {
+        case TENNIS -&amp;gt; &amp;quot;网球运动员费德勒&amp;quot;;
+        case FOOTBALL -&amp;gt; &amp;quot;足球运动员C罗&amp;quot;;
+        case BASKETBALL,PINGPANG -&amp;gt; &amp;quot;牛逼运动员&amp;quot;;
+        case UNKNOWN -&amp;gt; throw new IllegalArgumentException(&amp;quot;未知&amp;quot;);
+    };
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;另外，代码的优化应该在保证业务正常运行的前提下进行，下面我讲一个有隐患的代码优化例子：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;Map map=new HashMap(){{
+    put(&amp;quot;key&amp;quot;,&amp;quot;value&amp;quot;);
+}};
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这种写法，比起新建HashMap对象后再一个个put值，虽然是提高了代码的整体性，但是却存在着致命的缺陷，这也是我在搭地铁刷掘金时在一篇文章上看到的&lt;/p&gt;
+
+&lt;p&gt;首先给出结论：这种写法会导致抛出OOM异常&lt;/p&gt;
+
+&lt;p&gt;因为在new HashMap时，是调用了一个匿名内部类的put方法，而根据引用计数法，这个对象一直持有外部类的引用，导致该对象在GC时无法清除，埋下了OOM的隐患。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>mac 安装flutter</title>
+      <link>http://blog.sinowrt.cn/2020/2020-05-12t1531-how-to-install-flutter-on-mac/</link>
+      <pubDate>Tue, 12 May 2020 15:07:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-05-12t1531-how-to-install-flutter-on-mac/</guid>
+      <description>&lt;p&gt;首先从官网将flutter稳定版的压缩包下载下来，然后解压到一个目录中，
+vi ~/.zshrc
+添加以下一行
+export PATH=/(解压flutter的路径)/flutter/bin:$PATH
+保存然后source ~/.zshrc&lt;/p&gt;
+
+&lt;p&gt;接下来flutter -h，却提示
+&lt;code&gt;无法打开“Dart”，因为apple无法检查其是否包含恶意软件&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;输入以下命令回车（会提示输入密码）即可解决：
+sudo spctl &amp;ndash;master-disable&lt;/p&gt;
+
+&lt;p&gt;再次输入flutter -h验证是否生效&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>记一次生产环境 日期查询错误</title>
+      <link>http://blog.sinowrt.cn/2020/2020-04-21t1011-date-query-error-in-product-environment/</link>
+      <pubDate>Tue, 21 Apr 2020 10:11:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-04-21t1011-date-query-error-in-product-environment/</guid>
+      <description>&lt;p&gt;如图&lt;/p&gt;
+
+&lt;p&gt;想查询4月1日到21日的记录，可是却连着3月31日的记录都查到了&lt;/p&gt;
+
+&lt;p&gt;到后端查看日志，显示查询开始日期为31日16时，那么基本断定是时区出了问题&lt;/p&gt;
+
+&lt;p&gt;那么有几种可能，一是系统时区，一是数据库时区，三是docker容器内部的时区&lt;/p&gt;
+
+&lt;p&gt;第一步，&lt;code&gt;date -R&lt;/code&gt;查看系统时区输出&lt;code&gt;Tue, 21 Apr 2020 09:31:18 +0800&lt;/code&gt;,东八区，没问题&lt;/p&gt;
+
+&lt;p&gt;那么第二步，查看数据库时区，登录mysql，&lt;code&gt;show variables like &amp;quot;%time_zone%&amp;quot;;&lt;/code&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mysql&amp;gt; show variables like &amp;quot;%time_zone%&amp;quot;;
++------------------+--------+
+| Variable_name    | Value  |
++------------------+--------+
+| system_time_zone | UTC    |
+| time_zone        | SYSTEM |
++------------------+--------+
+2 rows in set (0.01 sec)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;跟随系统，也没问题，需要注意的是，如果mysql是部署在docker中的话，就要进入容器内部更改容器内部的时区了&lt;/p&gt;
+
+&lt;p&gt;保守起见，可以指定mysql的时区&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set global time_zone = &#39;+8:00&#39;;
+set time_zone = &#39;+8:00&#39;;
+set time_zone = &#39;+8:00&#39;;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;再次查看mysql时区，已经改变了&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mysql&amp;gt; show variables like &amp;quot;%time_zone%&amp;quot;;
++------------------+--------+
+| Variable_name    | Value  |
++------------------+--------+
+| system_time_zone | UTC    |
+| time_zone        | +08:00 |
++------------------+--------+
+2 rows in set (0.00 sec)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;一开始看了前面两个的时区后，发现都没问题，纳闷了好久，后来才想起服务是部署在docker的啊，于是输入&lt;code&gt;docker exec -it 容器ID bash&lt;/code&gt;进入容器&lt;/p&gt;
+
+&lt;p&gt;输入&lt;code&gt;date -R&lt;/code&gt;,显示&lt;code&gt;Tue, 21 Apr 2020 01:40:28 +0000&lt;/code&gt;,终于找到原因了&lt;/p&gt;
+
+&lt;p&gt;于是输入&lt;code&gt;cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime&lt;/code&gt;,却提示
+&lt;code&gt;cp: can&#39;t stat &#39;/usr/share/zoneinfo/Asia/Shanghai&#39;: No such file or directory&lt;/code&gt;，容器内部是没有这些时区文件的，那么就要从宿主机上面拷贝一份进来&lt;/p&gt;
+
+&lt;p&gt;首先&lt;code&gt;mkdir -p /usr/share/zoneinfo/Asia&lt;/code&gt;创建文件夹&lt;/p&gt;
+
+&lt;p&gt;再&lt;code&gt;ctrl+D&lt;/code&gt;退出容器，执行&lt;code&gt;docker cp /usr/share/zoneinfo/Asia/Shanghai d2e85b301fae:/usr/share/zoneinfo/Asia&lt;/code&gt;
+再次进入容器，执行&lt;code&gt;cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime&lt;/code&gt;即可&lt;/p&gt;
+
+&lt;p&gt;可以通过&lt;code&gt;date -R&lt;/code&gt;进行验证，显示&lt;code&gt;Tue, 21 Apr 2020 01:42:18 +0800&lt;/code&gt;,大功告成&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>docker save 和 export 命令的区别</title>
+      <link>http://blog.sinowrt.cn/2020/2020-04-20t1611-the-differences-of-docker-command-save-and-export/</link>
+      <pubDate>Mon, 20 Apr 2020 15:07:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-04-20t1611-the-differences-of-docker-command-save-and-export/</guid>
+      <description>
+
+&lt;p&gt;在一次生产环境 docker 微服务更新 中 深刻意识到docker save 和 export 的区别&lt;/p&gt;
+
+&lt;h3 id=&#34;0x00-背景&#34;&gt;0x00 背景&lt;/h3&gt;
+
+&lt;p&gt;上次使用虚拟机镜像部署了三个子系统，但是测试过程中还是发现了不少问题，所以这次需要过去更新几个微服务&lt;/p&gt;
+
+&lt;p&gt;于是就在公司虚拟机里面用export命令把几个容器导出来，放到生产环境中再import进去，然后run，结果死活运行不起来，提示run缺少参数。为了防止这种情况，我还把公司测试环境中的完整的容器启动命令都拍了下来，然后尝试构造命令，没有参数是吧，我用inspect命令把参数都找出来。接下来参数是不缺了，就是提示在工作目录中找不到文件。&lt;/p&gt;
+
+&lt;h3 id=&#34;0x01-分析&#34;&gt;0x01 分析：&lt;/h3&gt;
+
+&lt;p&gt;在公司里面的容器，我是直接通过2375端口直接上传到docker镜像库的，在上传完毕后，还会执行dockerfile里面的命令，其中包含创建工作目录等命令。但是我将容器导入生产环境后，似乎是因为没有运行这些命令而造成找不到文件。&lt;/p&gt;
+
+&lt;p&gt;那么就可以推理出，我只是将docker的容器导出来了，但是容器里面的数据却没有导出。&lt;/p&gt;
+
+&lt;p&gt;怎样才能连同数据一起导出呢，那么就要用到save命令而不是export命令了。&lt;/p&gt;
+
+&lt;h3 id=&#34;0x02-解决&#34;&gt;0x02 解决：&lt;/h3&gt;
+
+&lt;p&gt;最后只能让同事再帮忙将这几个微服务的容器重新导出一下&lt;/p&gt;
+
+&lt;p&gt;然后我这边再使用load命令将容器加载为镜像，微服务才得以成功更新。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>宿主机转发未开启导致无法访问docker内部网络</title>
+      <link>http://blog.sinowrt.cn/2020/2020-04-17t1702-can-not-access-the-nacos-service-in-docker-container/</link>
+      <pubDate>Fri, 17 Apr 2020 17:02:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-04-17t1702-can-not-access-the-nacos-service-in-docker-container/</guid>
+      <description>&lt;p&gt;今天迁移了虚拟机之后，准备上nacos改一下配置，可是登录http://&lt;strong&gt;&lt;em&gt;.&lt;/em&gt;&lt;/strong&gt;.&lt;strong&gt;&lt;em&gt;.&lt;/em&gt;&lt;/strong&gt;:8848/nacos却连接超时，telnet一下也不通，于是上部署了nacos的docker容器的宿主机上，curl &lt;a href=&#34;http://docker内网ip:8848/nacos&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;http://docker内网ip:8848/nacos&lt;/a&gt; 却是有返回数据的，那就确定应该是转发出了问题，&lt;/p&gt;
+
+&lt;p&gt;sysctl -a | grep net.ipv4.ip_forward&lt;/p&gt;
+
+&lt;p&gt;显示&lt;/p&gt;
+
+&lt;p&gt;net.ipv4.ip_forward = 0&lt;/p&gt;
+
+&lt;p&gt;原来是转发没开启，于是&lt;/p&gt;
+
+&lt;p&gt;echo 1 &amp;gt; /proc/sys/net/ipv4/ip_forward&lt;/p&gt;
+
+&lt;p&gt;sysctl -p 重新加载内核参数&lt;/p&gt;
+
+&lt;p&gt;再telnet一下，通了搞定&lt;/p&gt;
+
+&lt;p&gt;上http://&lt;strong&gt;&lt;em&gt;.&lt;/em&gt;&lt;/strong&gt;.&lt;strong&gt;&lt;em&gt;.&lt;/em&gt;&lt;/strong&gt;:8848/nacos进行配置就行了&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>docker容器迁移</title>
@@ -16,10 +242,10 @@
       <guid>http://blog.sinowrt.cn/2020/2020-04-16t1623-migrate-the-container-to-another-docker/</guid>
       <description>&lt;p&gt;在项目部署的时候，本来是部署两个esxi虚拟机，但是在部署测试过程中发现对象存储服务依赖了另一个虚拟机的minio服务，由于该虚拟机的minio服务是部署在docker上的，所以打算将该容器迁移到要部署的其中一个虚拟机的docker中&lt;/p&gt;
 
-&lt;p&gt;步骤：
-1. 导出容器 &lt;code&gt;docker export 容器ID &amp;gt;minio.tar&lt;/code&gt;
-2. 将导出minio.tar放到要部署的虚拟机上面
-3. 将该容器导入镜像&lt;code&gt;docker import  minio.tar minio/minio:lastest&lt;/code&gt;
+&lt;p&gt;步骤：&lt;br /&gt;
+1. 导出容器 &lt;code&gt;docker export 容器ID &amp;gt;minio.tar&lt;/code&gt;&lt;br /&gt;
+2. 将导出minio.tar放到要部署的虚拟机上面&lt;br /&gt;
+3. 将该容器导入镜像&lt;code&gt;docker import  minio.tar minio/minio:lastest&lt;/code&gt;&lt;br /&gt;
 4. 新建容器并启动镜像&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;docker run -d -p 9000:9000 --name minio -d -e &amp;quot;MINIO_ACCESS_KEY=AKIAIOSFODNN7EXAMPLE&amp;quot; -e &amp;quot;MINIO_SECRET_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY&amp;quot; -v /mnt/data:/data -v /mnt/config:/root/.minio  minio/minio:lastest /usr/bin/docker-entrypoint.sh server /data
@@ -39,11 +265,13 @@
       <guid>http://blog.sinowrt.cn/2020/2020-04-16t1619-esxi-network-error-while-exporting-esxi-virtual-machine/</guid>
       <description>&lt;p&gt;今天使用esxi的web client导出虚拟机时，总是在导出到20G左右的时候中断，报网络异常，于是上vmware官网找有没有导出虚拟机的工具&lt;/p&gt;
 
-&lt;p&gt;发现 &lt;a href=&#34;https://my.vmware.com/cn/web/vmware/details?downloadGroup=OVFTOOL430U2&amp;amp;productId=614&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;OVFTOOL&lt;/a&gt;这个小工具，点击连接下载下来（需要注册账号才能下载），安装&lt;/p&gt;
+&lt;p&gt;发现 &lt;a href=&#34;https://my.vmware.com/cn/web/vmware/details?downloadGroup=OVFTOOL430U2&amp;amp;productId=614&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;OVFTOOL&lt;/a&gt;这个小工具，点击链接下载下来（需要注册账号才能下载），安装&lt;/p&gt;
 
-&lt;p&gt;打开cmd进入安装文件夹，执行&lt;code&gt;ovftool.exe vi://用户名@esxi的ip/虚拟机名 K:/ovf&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;打开cmd进入安装文件夹，执行&lt;code&gt;ovftool.exe vi://用户名@esxi的ip/虚拟机名 K:/ovf&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
 
-&lt;p&gt;如果遇到 &lt;code&gt;Fault cause: vim.fault.InvalidState&lt;/code&gt; 错误，请确认虚拟机为关机状态&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;如果遇到 &lt;code&gt;Fault cause: vim.fault.InvalidState&lt;/code&gt; 错误，请确认虚拟机为关机状态&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;运行结果如下所示&lt;/p&gt;
 
@@ -74,16 +302,17 @@ Disk progress: 3%
 
 &lt;p&gt;1.maven打包报多个main方法的问题&lt;/p&gt;
 
-&lt;p&gt;[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:2.1.12.RELEASE:repackage (default) on project blade-electronic-library: Execution default of goal org.springframework.boot:spring-boot-maven-plugin:2.1.12.RELEASE:repackage failed: Unable to find a single main class from the following candidates [org.springblade.library.ElectronicLibraryApplication, org.springblade.library.controller.BookUploadController, org.springblade.library.utils.BookmarksUtils, org.springblade.library.utils.KeyContextUtils, org.springblade.library.service.impl.BookReadRankServiceImpl] -&amp;gt; [Help 1]
-[ERROR]
+&lt;pre&gt;&lt;code&gt;[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:2.1.12.RELEASE:repackage (default) on project blade-electronic-library: Execution default of goal org.springframework.boot:spring-boot-maven-plugin:2.1.12.RELEASE:repackage failed: Unable to find a single main class from the following candidates [org.springblade.library.ElectronicLibraryApplication, org.springblade.library.controller.BookUploadController, org.springblade.library.utils.BookmarksUtils, org.springblade.library.utils.KeyContextUtils, org.springblade.library.service.impl.BookReadRankServiceImpl] -&amp;gt; [Help 1]
+[ERROR] 
 [ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
 [ERROR] Re-run Maven using the -X switch to enable full debug logging.
-[ERROR]
+[ERROR] 
 [ERROR] For more information about the errors and possible solutions, please read the following articles:
-[ERROR] [Help 1] &lt;a href=&#34;http://cwiki.apache.org/confluence/display/MAVEN/PluginExecutionException&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;http://cwiki.apache.org/confluence/display/MAVEN/PluginExecutionException&lt;/a&gt;
-[ERROR]
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/PluginExecutionException
+[ERROR] 
 [ERROR] After correcting the problems, you can resume the build with the command
-[ERROR]   mvn &lt;goals&gt; -rf :blade-electronic-library&lt;/p&gt;
+[ERROR]   mvn &amp;lt;goals&amp;gt; -rf :blade-electronic-library
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;解决办法：注释掉除了启动类main方法的其余所有main方法&lt;/p&gt;
 
@@ -101,9 +330,9 @@ Disk progress: 3%
 
 &lt;hr /&gt;
 
-&lt;p&gt;4.package|install|deploy的区别
+&lt;p&gt;4.package | install | deploy的区别&lt;br /&gt;
 * package命令完成了项目编译、单元测试、打包功能，但没有把打好的可执行jar包（war包或其它形式的包）布署到本地maven仓库和远程maven私服仓库&lt;br /&gt;
-* install命令完成了项目编译、单元测试、打包功能，同时把打好的可执行jar包（war包或其它形式的包）布署到本地maven仓库，但没有布署到远程maven私服仓库
+* install命令完成了项目编译、单元测试、打包功能，同时把打好的可执行jar包（war包或其它形式的包）布署到本地maven仓库，但没有布署到远程maven私服仓库&lt;br /&gt;
 * deploy命令完成了项目编译、单元测试、打包功能，同时把打好的可执行jar包（war包或其它形式的包）布署到本地maven仓库和远程maven私服仓库&lt;/p&gt;
 </description>
     </item>
@@ -251,573 +480,32 @@ Process finished with exit code 1
     </item>
     
     <item>
-      <title>在esp8266中使用外部中断作为按键输入</title>
-      <link>http://blog.sinowrt.cn/2020/2020-01-08t0021-problems-of-using-the-external-interupt-on-esp8266/</link>
-      <pubDate>Wed, 08 Jan 2020 00:21:00 +0800</pubDate>
+      <title>js大整数精度导致前后端传参不一致问题</title>
+      <link>http://blog.sinowrt.cn/2020/2020-03-05t1618-something-changed-while-java-long-parsing-to-javascript/</link>
+      <pubDate>Thu, 05 Mar 2020 16:18:00 +0800</pubDate>
       
-      <guid>http://blog.sinowrt.cn/2020/2020-01-08t0021-problems-of-using-the-external-interupt-on-esp8266/</guid>
-      <description>
+      <guid>http://blog.sinowrt.cn/2020/2020-03-05t1618-something-changed-while-java-long-parsing-to-javascript/</guid>
+      <description>&lt;p&gt;js中规定安全整数的范围是-2^53~2^53，而后端传过去的记录id为64位，所以会导致参数精度丢失的问题。&lt;/p&gt;
 
-&lt;h2 id=&#34;0x00-起因&#34;&gt;0x00 起因&lt;/h2&gt;
-
-&lt;p&gt;十月份使用esp8266，利用sonoff的源码做了个homekit小开关，虽然源码已经做得十分完善了，但是不符合我的需求：我需要使用ios的家庭开关灯（这个功能不用改动），还要将esp8266部署到墙上的86开关上，源码中的处理逻辑是在gpio0设置一个微动开关，长按清配置，短按开关灯。但我不可能将墙上原本就有的开关改成微动吧，一来不好操作，二来线路也太乱，于是我就想基于该源码的基础上，添加一个按键，io口电平发生变化即触发开关灯逻辑。  于是故事就开始了。。。&lt;/p&gt;
-
-&lt;h2 id=&#34;0x01-过程&#34;&gt;0x01 过程&lt;/h2&gt;
-
-&lt;p&gt;程序的编写十分简单，新建自定义的button头文件和源文件，根据原来的按钮照葫芦画瓢进行编码，然后引入到main中，一切都进行得十分顺利。然鹅，这才是噩梦的开始。。。&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&#34;0x02-遇到的问题&#34;&gt;0x02 遇到的问题&lt;/h2&gt;
-
-&lt;h3 id=&#34;1-接荧光灯-使用物理按键-开灯秒熄&#34;&gt;1. 接荧光灯，使用物理按键，开灯秒熄&lt;/h3&gt;
-
-&lt;p&gt;主要原因：按键未消抖&lt;br /&gt;
-次要原因：荧光灯电磁干扰&lt;br /&gt;
-解决过程：更换荧光灯为led灯，发现问题依旧。随后关注到开关过程的信号抖动，下面贴出第一版代码:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;void realbtn_intr_callback(uint8_t gpio){
-    rcallback(gpio);
- } 
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;软件硬件均无消抖，一旦遇到抖动，便触发n次开关逻辑，后来仔细研究了原作者的按键代码，发现消抖逻辑十分巧妙，于是在自定义按钮上也仿照着写了个消抖逻辑，如下为添加了按键消抖的代码：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;void realbtn_intr_callback(uint8_t gpio){
-    uint32_t now = xTaskGetTickCountFromISR();
-    if ((now - last_event_time)*portTICK_PERIOD_MS &amp;lt; 200) {
-        // debounce time, ignore events
-        return;
-    }
-    rcallback(gpio);
-    last_event_time = now;
- } 
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;使用了这段代码之后，按键就基本上能用了，但是时不时会出现开关客厅的荧光灯也会触发中断。&lt;/p&gt;
-
-&lt;h3 id=&#34;2-接入用电器会触发中断-导致无故开关灯&#34;&gt;2. 接入用电器会触发中断，导致无故开关灯。&lt;/h3&gt;
-
-&lt;p&gt;这个问题排查了很久，从电源，到板子再回到程序，都查了一个遍，期间也踩了很多坑。&lt;br /&gt;
-起初怀疑电源电压不稳，造成模块重启，但是回头一想，模块重启只会熄灯，而不会开灯，电源问题排除。&lt;br /&gt;
-再就是怀疑板子质量，之前被我拆焊过芯片，存在虚焊的风险，而手头上还有块nodemcu，于是将程序烧到nodemcu上，问题依旧。在调试原全io引出的模块和nodemcu的过程中，踩了最大的坑就是使用了陈年面包板和杜邦线，可能时时间长了，金属触点被氧化的原因，杜邦线电阻竟然有1-2欧，导致加到模块的电压存在0.2-0.3v的压降，这就要命了。烧好程序，一上电就飞，各种奇奇怪怪的现象都出来了。还一度以为烧写次数太多，把模块给烧烂了。。。后来使用了短杜邦线，板子突然又好用了，这才引起了我的怀疑。到网上一搜，同样是哀鸿遍野。总结为两点：面包板杜邦线这东西，要测过再用，电源的检查要上心。&lt;/p&gt;
-
-&lt;p&gt;在这之前，我就怀疑是电磁干扰的问题，虽然手头上没有示波器，但是对于这个的怀疑还是一直有的。也尝试过很多办法，将导线进行绞合，将模块从86盒中拆出来，问题还是存在。直到前两天收拾桌子，在排插上插入台灯的插头，房间的灯就很有节奏地，插进去就关，再插一下就灭。于是就有了测试用例。后来，偶然地将连接按键的导线都拆了，再进行测试，问题就消失了，于是确定是电磁干扰再导线中形成了噪声，而外部中断的io口十分灵敏，一旦有电平的变化，以及会响应。于是上网搜索了软件消抖的例子，最简单也最好用的实属中断延时判断了。一开始使用vTaskDelay进行延时，但是每次触发中断都会导致模块重启，看了下看门狗的输出，再结合网上的搜索结果，原来是rtos系统在中断程序中不允许使用延时api。不使用也行，那我设置while循环用xTaskGetTickCountFromISR()获取节拍，减去now，乘上节拍周期，对该时间进行判断总行了把。结果还是一触发，模块就重启。后来将xTaskGetTickCountFromISR()和now都打印出来，才了解到xTaskGetTickCountFromISR()是从节拍寄存器中取节拍数的，当前都中断了，节拍寄存器的内容当然不会发生变化了。于是我把while段给删了，留下printf打印语句，只想看看触发的tick数和节拍周期的数值是怎样的。结果误打误撞，延时判断似乎生效了。很早之前就知道将数据打印到串口会花费一定的时间，但是怎么就没想到用到这里呢！突然茅塞顿开，下面贴出代码：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;void realbtn_intr_callback(uint8_t gpio){
-    uint32_t now = xTaskGetTickCountFromISR();
-    if ((now - last_event_time)*portTICK_PERIOD_MS &amp;lt; 200) {
-        // debounce time, ignore events
-        return;
-    }
-    printf(&amp;quot;interupted--[-%d--%d]\n&amp;quot;,(now - last_event_time),portTICK_PERIOD_MS);
-    if(gpio_read(gpio)!=preValue){
-        printf(&amp;quot;[triggered 1]\n&amp;quot;);
-        if(gpio_read(gpio)!=preValue){
-            printf(&amp;quot;[triggered 2]\n&amp;quot;);
-            preValue=!preValue;
-            rcallback(gpio);
-        }
-    }
-    last_event_time = now;
-
- } 
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;这可能还不是最终代码，因为我发现有时候按下按钮，程序并没有判断到，可能是因为按键触发的抖动时间太长，以至于输出串口后还是会捕捉到电平一致的瞬间，导致误判。&lt;br /&gt;
-后面改进需要从晶振频率触发，利用while或for循环进行更精确的延时。也可以计算printf占用的实际时间，扩充知识面。&lt;/p&gt;
-
-&lt;h2 id=&#34;0x03-有趣的发现&#34;&gt;0x03 有趣的发现&lt;/h2&gt;
-
-&lt;p&gt;自从得到printf加持，模块受到的干扰就变得十分直观了，下面贴出开启荧光灯时的干扰：&lt;br /&gt;
-&lt;img src=&#34;http://pic.sinowrt.cn/image/2020-01-08T0021/%E8%8D%A7%E5%85%89%E7%81%AF%E5%BD%B1%E5%93%8D.png&#34; alt=&#34;&#34; /&gt;&lt;br /&gt;
-&lt;code&gt;Relay Value:1&lt;/code&gt;下面的四条interupted均是开启荧光灯触发的。&lt;br /&gt;
-另外无意中发现，该程序在未配置wifi的情况下，会自行重启：&lt;br /&gt;
-&lt;img src=&#34;http://pic.sinowrt.cn/image/2020-01-08T0021/wifi%E6%9C%AA%E9%85%8D%E7%BD%AE%E8%87%AA%E5%8A%A8%E9%87%8D%E5%90%AF.png&#34; alt=&#34;&#34; /&gt;&lt;br /&gt;
-而重启后发生Task栈溢出，这又是什么操作？？？&lt;/p&gt;
+&lt;p&gt;windows查看进程启动时间，run-&amp;gt;msinfo32，在打开的系统信息窗口中点击“软件环境→正在运行任务”，即可看到所有进程的相关信息包括启动时间&lt;/p&gt;
 </description>
     </item>
     
     <item>
-      <title>如何将群晖Nas扔出外网</title>
-      <link>http://blog.sinowrt.cn/2019/2019-11-30t1214-expose-synology-diskstation-to-the-internet/</link>
-      <pubDate>Sat, 30 Nov 2019 12:14:00 +0800</pubDate>
+      <title>Linux 挂载错误 Transport endpoint is not connected</title>
+      <link>http://blog.sinowrt.cn/2020/2020-02-18t1602-linux-mount-error-transport-endpoint-is-not-connected/</link>
+      <pubDate>Tue, 18 Feb 2020 16:02:00 +0800</pubDate>
       
-      <guid>http://blog.sinowrt.cn/2019/2019-11-30t1214-expose-synology-diskstation-to-the-internet/</guid>
+      <guid>http://blog.sinowrt.cn/2020/2020-02-18t1602-linux-mount-error-transport-endpoint-is-not-connected/</guid>
       <description>
 
-&lt;h2 id=&#34;0x00-思路&#34;&gt;0x00 思路&lt;/h2&gt;
+&lt;h2 id=&#34;0x00-前因&#34;&gt;0x00 前因&lt;/h2&gt;
 
-&lt;p&gt;分别在vps和路由端部署ngrok服务端与客户端，客户端在线时主动向服务端发起请求建立隧道，外部设备可直接向服务端请求相应的隧道，从而实现内网穿透。&lt;/p&gt;
+&lt;p&gt;想在三毛鸡上挂载gd，于是就在189的三毛鸡上面安装了rclone，并尝试挂载，但是没到挂载的那一步都会卡住，后来偶然掉线了，于是再次登陆上去，发现挂载还在进行中，于是kill掉该进程重新挂载。但在重新挂载的过程中报错了，提示&amp;rsquo;failed to mount FUSE&amp;rsquo;,起初以为没装FUSE，尝试了apt-get install fuse提示fuse已安装。而每次ls以及df -h都会提示Transport endpoint is not conneted。&lt;/p&gt;
 
-&lt;h2 id=&#34;0x01-在vps上部署ngrok服务端&#34;&gt;0x01 在vps上部署ngrok服务端&lt;/h2&gt;
+&lt;h2 id=&#34;0x01-解决办法&#34;&gt;0x01 解决办法&lt;/h2&gt;
 
-&lt;p&gt;良心云和套路云的学生套餐用来做内网穿透的服务端还是相当香的，由于ngrok需要用到域名，而我的域名只在良心北了岸，要是用套路云的话会截断提示未备案，无法访问，所以这次就直接用良心云的vps搭建服务端。
-* 安装ngrok服务端&lt;/p&gt;
-
-&lt;p&gt;网上大部分教程都是从安装go环境开始，再编译ngrok客户端，过程很复杂。而我只要简单的穿透服务，不需要tls啥的，其实安装过程很简单，只需要两条命令&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;apt-get update
-apt-get install ngrok-server
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
-&lt;li&gt;启动ngrok服务端&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;一条命令就搞定，监听80、443、4443端口，如果vps有防火墙请放行这几个入站端口。如果需要指定证书还有端口什么的可以自行添加启动参数，这里不再赘述。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;ngrokd -domain=ngrok.example.com
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;0x02-添加域名解析&#34;&gt;0x02 添加域名解析&lt;/h2&gt;
-
-&lt;p&gt;添加两条域名解析记录&lt;br /&gt;
-类型 | Name | Content
--|-|-
-A记录 | *.ngrok | ngrok服务器ip
-A记录 | ngrok | ngrok服务器ip&lt;/p&gt;
-
-&lt;h2 id=&#34;0x03-ngrok客户端配置&#34;&gt;0x03 ngrok客户端配置&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;在本地，我使用刷了padavan固件的newifi3路由，内置了1.4版本的ngrok客户端。服务端是1.6版本的，经测试能通用。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;客户端配置很简单
-&lt;img src=&#34;http://pic.sinowrt.cn/image/2019-11-30T1214/router%20setting.png&#34; alt=&#34;客户端配置&#34; /&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;0x04-结语&#34;&gt;0x04 结语&lt;/h2&gt;
-
-&lt;p&gt;到这里，群晖已经暴露在外网了，请设置强大的登录密码防止数据泄露。&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>newifi mini 拨号设置</title>
-      <link>http://blog.sinowrt.cn/2019/2019-11-29t0028-newifi-mini-dialing-setting/</link>
-      <pubDate>Fri, 29 Nov 2019 00:28:00 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2019/2019-11-29t0028-newifi-mini-dialing-setting/</guid>
-      <description>
-
-&lt;h2 id=&#34;0x00-线缆连接&#34;&gt;0x00 线缆连接&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/image/2019-11-29T0028/back.jpg&#34; alt=&#34;背面接口&#34; /&gt;
-* 将路由器接入电源
-* 用一根网线，一端接入路由器的任意蓝色端口，另一端接入主机
-* 将用于拨号的网线接入路由器的黄色端口&lt;/p&gt;
-
-&lt;h2 id=&#34;0x01-登录路由器管理界面&#34;&gt;0x01 登录路由器管理界面&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/image/2019-11-29T0028/login.png&#34; alt=&#34;登录&#34; /&gt;
-* 打开浏览器，在地址栏输入&lt;code&gt;192.168.123.1&lt;/code&gt;,回车
-* 在弹出来的登录窗口输入用户名&lt;code&gt;admin&lt;/code&gt;,密码&lt;code&gt;admin258&lt;/code&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;0x02-拨号设置&#34;&gt;0x02 拨号设置&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/image/2019-11-29T0028/dial.PNG&#34; alt=&#34;拨号设置&#34; /&gt;
-* 点击&lt;code&gt;外部网络&lt;/code&gt;
-* 选择外网连接类型为&lt;code&gt;PPPoE拨号&lt;/code&gt;
-* 在用户名称处填入&lt;code&gt;拨号账号&lt;/code&gt;
-* 在用户密码处填入&lt;code&gt;拨号密码&lt;/code&gt;
-* 最后滑到页面底部，点击&lt;code&gt;应用本页面设置&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;http://pic.sinowrt.cn/image/2019-11-29T0028/save.png&#34; alt=&#34;保存配置&#34; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;0x03-设置好了就网上冲浪吧&#34;&gt;0x03 设置好了就网上冲浪吧！&lt;/h2&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>记多益面试</title>
-      <link>http://blog.sinowrt.cn/2019/2019-10-31t1200-dy-interview/</link>
-      <pubDate>Thu, 31 Oct 2019 12:00:00 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2019/2019-10-31t1200-dy-interview/</guid>
-      <description>
-
-&lt;h1 id=&#34;0x00-面试通知&#34;&gt;0x00 面试通知&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;自从笔试通过后被晾了差不多半个月，30号晚突然收到多益的面试通知，面试时间为31号早上11:40，woc这么快，赶紧吃了饭回来准备一下&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;0x01-面试过程&#34;&gt;0x01 面试过程&lt;/h1&gt;
-
-&lt;ul&gt;
-&lt;li&gt;早上九点多，hr突然打电话过来说面试提前到了10点，我赶紧登陆了战盟，发送了面试确认&lt;/li&gt;
-&lt;li&gt;大概10:19，面试官通知面试，但是战盟不识别摄像头，改为qq视频&lt;/li&gt;
-&lt;li&gt;面试开始了，整个过程持续了整整有30分钟，问题（不完整）整理了一下，贴在下面&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;ol&gt;
-&lt;li&gt;自我介绍&lt;/li&gt;
-&lt;li&gt;做过什么项目，觉得特别有成就感的是哪个，用了什么技术，有没有做过web服务端项目，用了什么技术？&lt;/li&gt;
-&lt;li&gt;有没有做过什么项目使用了缓存机制的？&lt;/li&gt;
-&lt;li&gt;谈谈对消息队列的理解&lt;/li&gt;
-&lt;li&gt;堆和栈的区别，哪个快些？&lt;/li&gt;
-&lt;li&gt;引用类型和值类型的概念与区别？&lt;/li&gt;
-&lt;li&gt;接口和抽象类的区别？为什么使用接口和抽象类？&lt;/li&gt;
-&lt;li&gt;进程与线程？&lt;/li&gt;
-&lt;li&gt;使用线程的优点是什么？在什么情况下使用？&lt;/li&gt;
-&lt;li&gt;手机APP消息推送的机制？&lt;/li&gt;
-&lt;li&gt;有没有使用过Redis或MongoDB？&lt;/li&gt;
-&lt;li&gt;TCP三次握手，四次挥手？为什么要三次握手？服务器断开与客户端断开有什么区别？&lt;/li&gt;
-&lt;li&gt;使用过什么中间件？&lt;/li&gt;
-&lt;li&gt;对事务的理解？&lt;/li&gt;
-&lt;li&gt;非关系型数据库与关系型数据库的区别？&lt;/li&gt;
-&lt;li&gt;MySql中，select * from table where field=null 为什么无法匹配空值？&lt;/li&gt;
-&lt;li&gt;varchar 与 char 的区别，哪个比较长，varchar(32)代表什么？&lt;/li&gt;
-&lt;li&gt;cookie与session的区别，通过什么将cookie与session进行匹配？&lt;/li&gt;
-&lt;li&gt;如何在多线程中共享变量？&lt;/li&gt;
-&lt;li&gt;Web中有哪些漏洞攻击方法需要防范？&lt;/li&gt;
-&lt;li&gt;对加班的看法？&lt;/li&gt;
-&lt;li&gt;最近了解什么新技术？&lt;/li&gt;
-&lt;li&gt;编程题：实现一个函数, 输入两个版本号（随机输入二位到四位），比较两个版本号的大小。
-输入示例： 1.2.1 1.10.2.0(下面贴我的烂代码，考点主要有正则表达式，字符串转Integer)&lt;br /&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;    public static int comp(String a,String b) {
-        String[] k=a.split(&amp;quot;\\.&amp;quot;);
-        String[] g=b.split(&amp;quot;\\.&amp;quot;);
-        
-        int min=k.length&amp;gt;g.length?g.length:k.length;
-        
-        for(int i=0;i&amp;lt;min;i++) {
-            int kn=Integer.parseInt(k[i]);
-            int gn=Integer.parseInt(g[i]);
-            if(kn!=gn) {
-                return kn-gn;
-            }
-        }
-        
-        if(k.length==g.length) {
-            return 0;
-        }else if(k.length&amp;lt;g.length) {
-            return -Integer.parseInt(g[min]);
-        }else{
-            return Integer.parseInt(k[min]);
-        }
-    }
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>中兴W815N V3 500mw网桥改ubnt</title>
-      <link>http://blog.sinowrt.cn/2019/2019-09-08t1559-zte-w815n-refitting/</link>
-      <pubDate>Sun, 08 Sep 2019 15:59:08 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2019/2019-09-08t1559-zte-w815n-refitting/</guid>
-      <description>
-
-&lt;h2 id=&#34;0x00-状况描述&#34;&gt;0x00 状况描述&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;毕业租房子后，一直在整网络。因为是出租屋，想着租一年就搬了，就把学校的热点桥接过来将就着用就算了。这两个月，桥接用过newifi mini，TP的340G+，信号一直不理想，就想着搞个正版ubnt。看着看着，就觉得吧，这个ubnt的水也深，也不便宜，看到无线论坛上有坛友说用运营级别的大功率网桥，深入了解，其中还真的不乏好设备。看过烽火2400、中兴W815，想着大品牌折腾的人应该不少，最后入手了中兴W815。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;0x01-设备描述&#34;&gt;0x01 设备描述&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;中兴W815拥有双功放，无线功率最高可达500mw，基于7240+9283方案，改ubnt的教程也不少，但是资料较为零散，需要取百家所长。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;0x02-改装过程&#34;&gt;0x02 改装过程&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;首先是备份原厂固件，用风枪将flash取下，焊到编程器上面，我用的是ch341普通的绿板编程器，备份过程挺久的，毕竟固件有16m。&lt;/li&gt;
-&lt;li&gt;固件备份完成后，直接擦除芯片，将breed写入flash，我用的是h大的将gpio12作为reset键的版本&lt;code&gt;breed-ar724x-reset12-r1163.bin&lt;/code&gt;，烧录好就将flash焊回去。&lt;/li&gt;
-&lt;li&gt;烧好breed，就要改reset键了。这里参考的是坛友的&lt;a href=&#34;https://www.anywlan.com/thread-258718-1-1.html&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;改装方案&lt;/a&gt; 用漆包线将7240的第89脚用漆包线引出，焊到空车位上，在旁边补上10k上拉电阻
-&lt;img src=&#34;http://pic.sinowrt.cn/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20190908165043.jpg&#34; alt=&#34;&#34; /&gt;&lt;/li&gt;
-&lt;li&gt;翻到后面同样用漆包线引到直连reset键的C70电容右脚。
-&lt;img src=&#34;http://pic.sinowrt.cn/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_201909081650432.jpg&#34; alt=&#34;&#34; /&gt;
-&lt;img src=&#34;http://pic.sinowrt.cn/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_201909081650431.jpg&#34; alt=&#34;&#34; /&gt;&lt;/li&gt;
-&lt;li&gt;很奇怪，我按照坛友的方法改好后，开机却一直重启。用万用表测量gpio12的对地电压，开机时很稳定的2.5v但是开机完成后马上跳回0.1v，导致机器无限重启。于是我尝试将电阻换为2.2k甚至1k，问题依旧，最后直接不要电阻，将电阻两脚直接点上，没再出现重启的现象。最后还是接上了20欧的电阻，电流能减少一点是一点，开机一切正常。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;0x03-提取art&#34;&gt;0x03 提取art&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;art在原厂固件的最后64KB，直接用winhex备份出来即可&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;0x04-刷入ubnt固件与art&#34;&gt;0x04 刷入ubnt固件与art&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;由于我找不到适用的ubnt固件，最后还是用了坛友的编程器固件，最后刷入art正常使用&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;0x05-外接天线&#34;&gt;0x05 外接天线&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;由于原机的天线接头比较特别，是N型母头，要和sma接头的八木天线连接，还得买个N型公头转sma外螺内针的转接头&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;0x06-使用效果&#34;&gt;0x06 使用效果&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;用原机的5dbi天线伸出窗外效果还行，信号在-60db左右，但是这机子不防水啊，常年这样用也不是办法，但是把机子放在室内，再外接八木天线或者6dbi的全向天线效果都不理想！&lt;/li&gt;
-&lt;li&gt;总结：翻车了！&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>win10任务栏单程序多窗口无法切换的问题(已解决)</title>
-      <link>http://blog.sinowrt.cn/2019/2019-08-10t1544-clicking-windows10-taskbar-preview-notworking/</link>
-      <pubDate>Sat, 10 Aug 2019 15:44:08 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2019/2019-08-10t1544-clicking-windows10-taskbar-preview-notworking/</guid>
-      <description>
-
-&lt;h2 id=&#34;0x00-状况描述&#34;&gt;0x00 状况描述&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;在某应用上面操作一段时间之后，将鼠标悬停在任务栏的某已打开多个窗口的应用程序上面时，其上方的预览窗口一闪而过。需要点击任务栏，使任务栏获得焦点后，再将鼠标悬停在该多窗口应用程序上方，才会显示预览窗口。此时，再将光标悬停在某预览窗口上方，单击，奇迹出现了——该窗口并不会恢复，而是一闪而过，点击之前的桌面是啥样就是啥样。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;正常健康的win10系统，在鼠标悬停在任务栏的应用图标上面，加入该页面打开了多个窗口（如chrome以及windows的资源管理器）图标上方会出现预览窗口，然后鼠标悬停在某个窗口上方并单击即可打开该窗口。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;这是一个间歇性的问题&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;这个问题应该在很久之前就出现了，但是一直使用win+tab快捷键能够解决，就一直没当回事&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;最近键盘放在一个不太方便的位置，每次需要切换窗口都需要另一只手够到键盘，win+tab切换，才发现问题大条了&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;0x01-问题排查过程&#34;&gt;0x01 问题排查过程&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;上百度搜索 win10 无法切换窗口，发现较多的是2015年的一个bug。对于该bug的描述是————某应用程序打开了多个窗口，若需要从其中一个窗口切换到另一个窗口，需要将当前窗口最小化，需要切换的窗口才能显示在最前端。该问题看似很像我的问题，但是其实不是一回事。于是我继续查找，还有大部分是快捷键alt+tab都不生效的，这个问题似乎已经有了解决方案，只要将注册表中的“AltTabSettings”项修改为1就行了。但是我的问题也不是这样啊，算了还是请出谷歌吧。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;在谷歌上搜索win10 无法切换窗口，发现了挺多在microsoft support上的提问，有好几个类似我的情形，但是得到的回复都是&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;1.在启动项中隐藏所有windows自带的服务，把其他服务全部关闭自启动并重启（对我无效）&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;2.将系统文件与镜像文件进行对比，检查是否存在缺陷文件，并修复重启（对我无效）&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;当然，也有很多大神朋友说是BING输入法或者BING词典的问题，导致焦点丢失，卸载了就好了。（我的系统中也没有折玩意儿啊）&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;在microsoft support中发现一个回复挺有意思的，说到国外似乎没有这种情况发生？？？&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;于是我推测是不是系统自带的中文输入法有问题，我甚至将系统语言修改为英文，但是问题如故。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;我开始在谷歌上面利用clicking windows10 taskbar preview not working，了解到在外国友人手中的电脑也存在该问题，于是我就放心了，这应该是windows10的一个bug。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;经过众多方法都无果之后，我似乎放弃了，甚至一度想要恢复到win7，但是我并没有备份，当然这也只能是想想了。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;后来我来到了国外版的知乎Reddit中，简简单单地搜索windows10 taskbar期望找到一个同病相怜的“友人”。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;没想到我真的找到了，顿时内牛满面，该网友还用一段youtube的视频完美复现了这种情况，他提到它也到microsoft support上提问过，但是都是得到万金油式的回答（类似重启啊，修改注册表啊。。。），并在最后着重提到他也重装了多次系统，以及另外一个他遇到的bug（在开始菜单中右键也会一闪而过，但这个问题我倒没有遇到过）。唉！是windows的bug石锤了。我的心情有所平复，但是我依旧没有得到一个满意的答案。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;贴出该问题的&lt;a href=&#34;https://www.reddit.com/r/techsupport/comments/8qlqcx/windows_10_taskbar_thumbnail_preview_not_working/&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;地址&lt;/a&gt;，有兴趣的朋友可以看一下跟你遇到的问题是不是一样鸭！&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;在我不死心的时候，我想到会不会是跟我之前安装的SynTPEnh.exe，触摸板辅助软件有关呢。二话不说，先用任务管理器杀掉再说吧。但是十分巧合，我按错按键了，想按ctrl+shift+esc，竟然按了win+r，更巧合的是r也没按出来。这时我就发现，外接键盘的win键按了竟然没弹出开始菜单？？？我反复按，只有极少部分时候会弹出开始菜单的界面。会不会是我的键盘失灵了？我此时又按了一下笔记本自带键盘的win键，发现似乎桌面刷新了一下，开始菜单也出现了。我也顾不上那么多，打开任务管理器把SynTPEnh.exe杀了。此时我再用鼠标悬停到chrome上面，发现竟然好了？？？好了？？？那这到底是跟外接键盘还是SynTPEnh.exe有关呢。于是我利用控制变量法，进行了一系列的实验，发现与谁都无关！！！&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;也不能说一无所获吧，我还是找到了解决问题的方法。当问题出现的时候，只要按一下笔记本自带键盘的win键，弹出开始菜单，一切又开始正常工作了。&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;更新-问题已解决&#34;&gt;更新！！！问题已解决！！！&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;我私信了Reddit上面的这位友人，询问是否解决了该问题。他回复说，是他的罗技键盘上面的媒体键坏了的原因，把坏的键修复后问题就解决了。此时我突然想起我的笔记本自带键盘上的esc键也坏了，是不是这个原因呢？于是我把自带键盘拆了，问题也迎刃而解！！！然后我实验了一下，按住外接键盘的esc键，再按win键，问题重现了!esc键的锅石锤了！&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;0x02-总结&#34;&gt;0x02 总结&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;del&gt;windows10 还是会存在一定的小问题，其实也不小了，至少影响到了工作效率嘛。&lt;/del&gt;&lt;/li&gt;
-&lt;li&gt;&lt;del&gt;我甚是想念windows7的稳定，并且强烈建议强迫症患者还是留在win7吧，windows10虽然相对于刚面世时少了很多问题，但是小问题依旧存在。&lt;/del&gt;&lt;/li&gt;
-&lt;li&gt;&lt;del&gt;win7与win10就像心头的朱砂痣与床前明月光，win7稳定而强大，虽然用户界面做的差了点，但是经过多年的沉淀，很多小问题都被发现并被开发者或用户解决了，无论大小问题，在网上都能搜到解决方案。而win10，外观非常惊艳，但是小问题依旧存在，由于面世的时间并不久，很多小问题都没有受到开发者的关注，并且用户也没有摸索到解决方案，导致强迫症患者非常头疼。&lt;/del&gt;&lt;/li&gt;
-&lt;li&gt;&lt;del&gt;一句话总结：macos真香！&lt;/del&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;总结的话就当我放了个屁吧&#34;&gt;总结的话就当我放了个屁吧: )&lt;/h2&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>群晖docker与移动网络的恩怨情仇</title>
-      <link>http://blog.sinowrt.cn/2019/2019-08-05t1747-the-fucking-china-mobile/</link>
-      <pubDate>Mon, 05 Aug 2019 17:47:08 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2019/2019-08-05t1747-the-fucking-china-mobile/</guid>
-      <description>
-
-&lt;h2 id=&#34;0x00-起因&#34;&gt;0x00 起因&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;舍友淘汰了一台笔记本电脑，被水泡了，也经过我的手修过，最后硬盘还是回天乏术。毕业了，也就扔给我了，由于手头上没有多余的硬盘，于是拆掉了群晖上的120G的东芝硬盘安上去。但是在转移资料的时候，只转移了盘内的文件，没有留意到群晖的package也需要转移。就这样，配置好在docker上的aria2也GG了。群晖没有了离线下载，就如烧烤没有孜然，失去了灵魂。&lt;/li&gt;
-&lt;li&gt;学校上个月换了运营商，换成了稀巴烂的移动网。&lt;/li&gt;
-&lt;li&gt;今天恰好有空，就重装一下aria2。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;0x01-经过&#34;&gt;0x01 经过&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;docker安装挺顺利的，接下来就找一下aria2的镜像呗，输入aria2查找了半天，却弹了个failed to query registry的提示出来。我寻思着，是不是注册表源失效了，换成阿里云的源，结果直接not found。&lt;/li&gt;
-&lt;li&gt;这就奇怪了，以前安装的时候一切挺顺利的，没遇到过这种情况。于是google了一番，有让改dns的，改了n多个也没见效果。后来发现挺多回帖说是移动网的问题，用代理下吧，newifi3刚拿回来还没空刷机，刷完机还得配梯子，也挺折腾的。&lt;/li&gt;
-&lt;li&gt;我的网络是中继了学校的wifi过来的，于是我用手机开了个wifi，那就中继手机吧。试了一下，果然是移动网的问题，这个问题也就结了。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;0x02-总结&#34;&gt;0x02 总结&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;移动网垃圾！&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>救救bandwagonhost被禁的IP吧</title>
-      <link>http://blog.sinowrt.cn/2019/2019-06-13t1300-how-to-save-the-baned-ip/</link>
-      <pubDate>Thu, 13 Jun 2019 13:02:08 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2019/2019-06-13t1300-how-to-save-the-baned-ip/</guid>
-      <description>
-
-&lt;h2 id=&#34;0x00-事件起因&#34;&gt;0x00 事件起因&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;2019年儿童节中午，google搜索超时，ss服务器尚可ping通，但端口连接异常。&lt;/li&gt;
-&lt;li&gt;13:00 更换端口，仍无法使用，ping检测IP被墙&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;0x01-解决方案&#34;&gt;0x01 解决方案&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;有消息称等待数天即可解封&lt;/li&gt;
-&lt;li&gt;等待无果，更换v2ray+cdn+ws代理方案&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;0x02-bandwagonhost服务器安装v2ray&#34;&gt;0x02 bandwagonhost服务器安装v2ray&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;我的搬瓦工vps是3.99传家宝套餐，64M运行内存，2G磁盘空间，100G流量&lt;/li&gt;
-&lt;li&gt;需要在kvm面板上安装debian或ubuntu系统&lt;/li&gt;
-&lt;li&gt;需要注意的是我的vps在安装了debian-8.0-x86_64-minimal后，使用v2ray的官方go.sh脚本安装时，swap空间爆掉了，导致安装意外终止。根据网上的教程调整swap分区无果，于是更换ubuntu-16.04-x86_64系统，安装才得以顺利进行。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;环境-临时梯子-用于连接ip被ban的vps&#34;&gt;环境 临时梯子（用于连接ip被ban的vps）&lt;/h3&gt;
-
-&lt;h3 id=&#34;工具-putty&#34;&gt;工具 PuTTy&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;sudo su 获取root权限&lt;/li&gt;
-&lt;li&gt;在控制台输入&lt;code&gt;bash &amp;lt;(curl -L -s https://install.direct/go.sh)&lt;/code&gt;，此命令主要下载go.sh脚本并运行自动安装&lt;/li&gt;
-&lt;li&gt;控制台提示V2Ray v4.19.1 is installed.即为安装成功&lt;/li&gt;
-&lt;li&gt;记下控制台中的PORT和UUID的值&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;配置v2ray服务端&#34;&gt;配置v2ray服务端&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;v2ray使用脚本安装完成后，默认启动服务就可以使用的了，但我们为了使用websock协议，还需要配置一下&lt;/li&gt;
-&lt;li&gt;打开v2ray的配置文件（/etc/v2ray/config.json）参照下面的进行配置。&lt;/li&gt;
-&lt;li&gt;只需在port和id这两个属性中填入你之前安装v2ray时记下来的值即可。（若需要CloudeFlare进行CDN转发，port则需要配置成CloudFlare支持的端口，在CloudFlare配置部分有详细说明）&lt;/li&gt;
-&lt;li&gt;log配置是我后来加上的，不需要打日志的可以去掉。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
-&amp;quot;log&amp;quot;: {
-    &amp;quot;loglevel&amp;quot;: &amp;quot;debug&amp;quot;,
-    &amp;quot;access&amp;quot;: &amp;quot;/var/log/v2ray/access.log&amp;quot;,
-    &amp;quot;error&amp;quot;: &amp;quot;/var/log/v2ray/error.log&amp;quot;
-  },
-  &amp;quot;inbounds&amp;quot;: [{
-    &amp;quot;port&amp;quot;: port,
-    &amp;quot;protocol&amp;quot;: &amp;quot;vmess&amp;quot;,
-    &amp;quot;settings&amp;quot;: {
-      &amp;quot;clients&amp;quot;: [
-        {
-          &amp;quot;id&amp;quot;: &amp;quot;UUID&amp;quot;,
-          &amp;quot;level&amp;quot;: 1,
-          &amp;quot;alterId&amp;quot;: 64
-        }
-      ]
-    },
-&amp;quot;streamSettings&amp;quot;:{
-&amp;quot;wsSettings&amp;quot;:{
-&amp;quot;path&amp;quot;:&amp;quot;/&amp;quot;,
-&amp;quot;headers&amp;quot;:{}
-},
-&amp;quot;network&amp;quot;:&amp;quot;ws&amp;quot;
-}
-  }],
-  &amp;quot;outbounds&amp;quot;: [{
-    &amp;quot;protocol&amp;quot;: &amp;quot;freedom&amp;quot;,
-    &amp;quot;settings&amp;quot;: {}
-  },{
-    &amp;quot;protocol&amp;quot;: &amp;quot;blackhole&amp;quot;,
-    &amp;quot;settings&amp;quot;: {},
-    &amp;quot;tag&amp;quot;: &amp;quot;blocked&amp;quot;
-  }],
-  &amp;quot;routing&amp;quot;: {
-    &amp;quot;rules&amp;quot;: [
-      {
-        &amp;quot;type&amp;quot;: &amp;quot;field&amp;quot;,
-        &amp;quot;ip&amp;quot;: [&amp;quot;geoip:private&amp;quot;],
-        &amp;quot;outboundTag&amp;quot;: &amp;quot;blocked&amp;quot;
-      }
-    ]
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;启动v2ray服务端&#34;&gt;启动v2ray服务端&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;在控制台输入service v2ray start启动服务即可&lt;/li&gt;
-&lt;li&gt;v2ray服务端的配置到此完成，需要注意的是，如果是谷歌云、亚马逊云或者其他服务商的需要在防火墙放行v2ray服务的端口。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;0x03-配置cloudflare-cdn&#34;&gt;0x03 配置CloudFlare CDN&lt;/h2&gt;
-
-&lt;h3 id=&#34;准备个人邮箱以及域名&#34;&gt;准备个人邮箱以及域名&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;上CloudFlare注册账号，添加域名，选择免费的套餐（每个CloudeFlare仅对一个域名提供免费服务）&lt;/li&gt;
-&lt;li&gt;将域名的DNS服务器修改为CloudFlare提供的DNS服务器（DNS服务器修改生效最长需要72小时）&lt;/li&gt;
-&lt;li&gt;在CloudFlare的DNS中添加解析记录（CDN解析生效需要稍等片刻）
-&lt;img src=&#34;http://pic.sinowrt.cn/images/2019-06-13T1300/4.png&#34; alt=&#34;image&#34; /&gt;&lt;/li&gt;
-&lt;li&gt;需要注意的是：CloudFlare的端口转发仅限于以下端口（Cloudflare支持的 HTTP 端口为：80，8080，8880，2052，2082，2086，2095；Cloudflare 支持的 HTTPs 端口为：443，2053，2083，2087，2096，8443），所以v2ray服务端需要将端口修改成上面支持的端口。&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;另外，为了提高安全性，建议将Crypto的SSL选择为Full(Strict)模式。
-&lt;img src=&#34;http://pic.sinowrt.cn/images/2019-06-13T1300/5.png&#34; alt=&#34;image&#34; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;有效性验证&#34;&gt;有效性验证&lt;/h3&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;在cmd中nslookup你的域名如(abc.domain.cn),可以正常解析&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;在cmd中telnet你的域名和端口，连通性正常即可&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;0x04-下载winddows的v2ray客户端v2rayw&#34;&gt;0x04 下载winddows的V2ray客户端V2rayW&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;根据系统情况下载&lt;a href=&#34;https://github.com/Cenmrev/V2RayW/releases&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;V2rayW&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;将文件解压到指定文件夹后（一定要解压！不能打开解压文件就直接进行下一步操作！！！），双击V2RayW.exe&lt;/li&gt;
-&lt;li&gt;打开V2RayW.exe后，会自动下载v2ray-core的相关文件，等待片刻即可&lt;/li&gt;
-&lt;li&gt;打开V2RayW.exe，在通知栏的“W”形图标上，点击右键-配置&lt;/li&gt;
-&lt;li&gt;将域名(或IP地址)、端口、UUID、ALTERID、LEVEL填入图中相应位置，选择ws网络类型
-&lt;img src=&#34;http://pic.sinowrt.cn/images/2019-06-13T1300/6.png&#34; alt=&#34;image&#34; /&gt;&lt;/li&gt;
-&lt;li&gt;打开传输设置，在webSocket选项卡中填入前面配置文件中的路径
-&lt;img src=&#34;http://pic.sinowrt.cn/images/2019-06-13T1300/3.png&#34; alt=&#34;image&#34; /&gt;&lt;/li&gt;
-&lt;li&gt;设置完毕后，在W图标上右键-加载V2ray,并选择代理模式，就可以畅游网络啦:)&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>http://blog.sinowrt.cn/about/</link>
-      <pubDate>Wed, 12 Jun 2019 22:41:27 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/about/</guid>
-      <description>
-
-&lt;h1 id=&#34;fuck-the-god-dame-world&#34;&gt;Fuck the god dame world:)&lt;/h1&gt;
+&lt;p&gt;kill进程后，对rclone尝试mount的本地文件夹进行umount，最后再重新挂载。&lt;/p&gt;
 </description>
     </item>
     

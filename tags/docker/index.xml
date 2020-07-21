@@ -6,10 +6,61 @@
     <description>Recent content in docker on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 16 Apr 2020 16:23:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 21 Apr 2020 10:11:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/tags/docker/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>记一次生产环境 日期查询错误</title>
+      <link>http://blog.sinowrt.cn/2020/2020-04-21t1011-date-query-error-in-product-environment/</link>
+      <pubDate>Tue, 21 Apr 2020 10:11:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-04-21t1011-date-query-error-in-product-environment/</guid>
+      <description>如图
+想查询4月1日到21日的记录，可是却连着3月31日的记录都查到了
+到后端查看日志，显示查询开始日期为31日16时，那么基本断定是时区出了问题
+那么有几种可能，一是系统时区，一是数据库时区，三是docker容器内部的时区
+第一步，date -R查看系统时区输出Tue, 21 Apr 2020 09:31:18 +0800,东八区，没问题
+那么第二步，查看数据库时区，登录mysql，show variables like &amp;quot;%time_zone%&amp;quot;;
+mysql&amp;gt; show variables like &amp;quot;%time_zone%&amp;quot;; +------------------+--------+ | Variable_name | Value | +------------------+--------+ | system_time_zone | UTC | | time_zone | SYSTEM | +------------------+--------+ 2 rows in set (0.01 sec)  跟随系统，也没问题，需要注意的是，如果mysql是部署在docker中的话，就要进入容器内部更改容器内部的时区了
+保守起见，可以指定mysql的时区
+set global time_zone = &#39;+8:00&#39;; set time_zone = &#39;+8:00&#39;; set time_zone = &#39;+8:00&#39;;  再次查看mysql时区，已经改变了
+mysql&amp;gt; show variables like &amp;quot;%time_zone%&amp;quot;; +------------------+--------+ | Variable_name | Value | +------------------+--------+ | system_time_zone | UTC | | time_zone | +08:00 | +------------------+--------+ 2 rows in set (0.</description>
+    </item>
+    
+    <item>
+      <title>docker save 和 export 命令的区别</title>
+      <link>http://blog.sinowrt.cn/2020/2020-04-20t1611-the-differences-of-docker-command-save-and-export/</link>
+      <pubDate>Mon, 20 Apr 2020 15:07:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-04-20t1611-the-differences-of-docker-command-save-and-export/</guid>
+      <description>在一次生产环境 docker 微服务更新 中 深刻意识到docker save 和 export 的区别
+0x00 背景 上次使用虚拟机镜像部署了三个子系统，但是测试过程中还是发现了不少问题，所以这次需要过去更新几个微服务
+于是就在公司虚拟机里面用export命令把几个容器导出来，放到生产环境中再import进去，然后run，结果死活运行不起来，提示run缺少参数。为了防止这种情况，我还把公司测试环境中的完整的容器启动命令都拍了下来，然后尝试构造命令，没有参数是吧，我用inspect命令把参数都找出来。接下来参数是不缺了，就是提示在工作目录中找不到文件。
+0x01 分析： 在公司里面的容器，我是直接通过2375端口直接上传到docker镜像库的，在上传完毕后，还会执行dockerfile里面的命令，其中包含创建工作目录等命令。但是我将容器导入生产环境后，似乎是因为没有运行这些命令而造成找不到文件。
+那么就可以推理出，我只是将docker的容器导出来了，但是容器里面的数据却没有导出。
+怎样才能连同数据一起导出呢，那么就要用到save命令而不是export命令了。
+0x02 解决： 最后只能让同事再帮忙将这几个微服务的容器重新导出一下
+然后我这边再使用load命令将容器加载为镜像，微服务才得以成功更新。</description>
+    </item>
+    
+    <item>
+      <title>宿主机转发未开启导致无法访问docker内部网络</title>
+      <link>http://blog.sinowrt.cn/2020/2020-04-17t1702-can-not-access-the-nacos-service-in-docker-container/</link>
+      <pubDate>Fri, 17 Apr 2020 17:02:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-04-17t1702-can-not-access-the-nacos-service-in-docker-container/</guid>
+      <description>今天迁移了虚拟机之后，准备上nacos改一下配置，可是登录http://...:8848/nacos却连接超时，telnet一下也不通，于是上部署了nacos的docker容器的宿主机上，curl http://docker内网ip:8848/nacos 却是有返回数据的，那就确定应该是转发出了问题，
+sysctl -a | grep net.ipv4.ip_forward
+显示
+net.ipv4.ip_forward = 0
+原来是转发没开启，于是
+echo 1 &amp;gt; /proc/sys/net/ipv4/ip_forward
+sysctl -p 重新加载内核参数
+再telnet一下，通了搞定
+上http://...:8848/nacos进行配置就行了</description>
+    </item>
     
     <item>
       <title>docker容器迁移</title>
@@ -18,7 +69,11 @@
       
       <guid>http://blog.sinowrt.cn/2020/2020-04-16t1623-migrate-the-container-to-another-docker/</guid>
       <description>在项目部署的时候，本来是部署两个esxi虚拟机，但是在部署测试过程中发现对象存储服务依赖了另一个虚拟机的minio服务，由于该虚拟机的minio服务是部署在docker上的，所以打算将该容器迁移到要部署的其中一个虚拟机的docker中
-步骤： 1. 导出容器 docker export 容器ID &amp;gt;minio.tar 2. 将导出minio.tar放到要部署的虚拟机上面 3. 将该容器导入镜像docker import minio.tar minio/minio:lastest 4. 新建容器并启动镜像
+步骤：
+1. 导出容器 docker export 容器ID &amp;gt;minio.tar
+2. 将导出minio.tar放到要部署的虚拟机上面
+3. 将该容器导入镜像docker import minio.tar minio/minio:lastest
+4. 新建容器并启动镜像
 docker run -d -p 9000:9000 --name minio -d -e &amp;quot;MINIO_ACCESS_KEY=AKIAIOSFODNN7EXAMPLE&amp;quot; -e &amp;quot;MINIO_SECRET_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY&amp;quot; -v /mnt/data:/data -v /mnt/config:/root/.minio minio/minio:lastest /usr/bin/docker-entrypoint.sh server /data  启动命令可以在原宿主机上使用docker inspect 容器ID查看，并根据需求调整启动参数
 至此，容器的迁移工作顺利完成。</description>
     </item>

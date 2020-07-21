@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>flutter on Sinowrt</title>
+    <link>http://blog.sinowrt.cn/categories/flutter/</link>
+    <description>Recent content in flutter on Sinowrt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 20 May 2020 15:07:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.sinowrt.cn/categories/flutter/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>优美的switch</title>
+      <link>http://blog.sinowrt.cn/2020/2020-05-20t1507-javagorgeous-switch/</link>
+      <pubDate>Wed, 20 May 2020 15:07:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-05-20t1507-javagorgeous-switch/</guid>
+      <description>相信大家都有这种体会，工作以来一直都是自己写代码，感觉自己的代码总是平平无奇，运行倒是能运行，就是没有那种让人眼前一亮的感觉。而每次阅读别人的源码，心里一直再默念，卧槽，还能这样写，天哪，太精辟了！
+于是，我就想，把这些让人眼前一亮的代码都摘录下来。一方面，自己能学习留痕，二来也能把这些知识分享给大家。
+private static String createPlayer(PlayerTypes playerType) { return switch (playerType) { case TENNIS -&amp;gt; &amp;quot;网球运动员费德勒&amp;quot;; case FOOTBALL -&amp;gt; &amp;quot;足球运动员C罗&amp;quot;; case BASKETBALL,PINGPANG -&amp;gt; &amp;quot;牛逼运动员&amp;quot;; case UNKNOWN -&amp;gt; throw new IllegalArgumentException(&amp;quot;未知&amp;quot;); }; }  另外，代码的优化应该在保证业务正常运行的前提下进行，下面我讲一个有隐患的代码优化例子：
+Map map=new HashMap(){{ put(&amp;quot;key&amp;quot;,&amp;quot;value&amp;quot;); }};  这种写法，比起新建HashMap对象后再一个个put值，虽然是提高了代码的整体性，但是却存在着致命的缺陷，这也是我在搭地铁刷掘金时在一篇文章上看到的
+首先给出结论：这种写法会导致抛出OOM异常
+因为在new HashMap时，是调用了一个匿名内部类的put方法，而根据引用计数法，这个对象一直持有外部类的引用，导致该对象在GC时无法清除，埋下了OOM的隐患。</description>
+    </item>
+    
+    <item>
+      <title>mac 安装flutter</title>
+      <link>http://blog.sinowrt.cn/2020/2020-05-12t1531-how-to-install-flutter-on-mac/</link>
+      <pubDate>Tue, 12 May 2020 15:07:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-05-12t1531-how-to-install-flutter-on-mac/</guid>
+      <description>首先从官网将flutter稳定版的压缩包下载下来，然后解压到一个目录中， vi ~/.zshrc 添加以下一行 export PATH=/(解压flutter的路径)/flutter/bin:$PATH 保存然后source ~/.zshrc
+接下来flutter -h，却提示 无法打开“Dart”，因为apple无法检查其是否包含恶意软件
+输入以下命令回车（会提示输入密码）即可解决： sudo spctl &amp;ndash;master-disable
+再次输入flutter -h验证是否生效</description>
+    </item>
+    
+  </channel>
+</rss>

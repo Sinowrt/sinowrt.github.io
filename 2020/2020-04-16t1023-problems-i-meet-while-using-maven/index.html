@@ -57,7 +57,7 @@
     "datePublished": "2020-04-16 10:23:00 \x2b0800 CST",
     "dateModified" : "2020-04-16 10:23:00 \x2b0800 CST",
     "url" : "http:\/\/blog.sinowrt.cn\/2020\/2020-04-16t1023-problems-i-meet-while-using-maven\/",
-    "wordCount" : "124",
+    "wordCount" : "129",
     "keywords" : [ "maven", "Sinowrt"]
 }
 </script>
@@ -165,16 +165,17 @@ var _hmt = _hmt || [];
 
 <p>1.maven打包报多个main方法的问题</p>
 
-<p>[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:2.1.12.RELEASE:repackage (default) on project blade-electronic-library: Execution default of goal org.springframework.boot:spring-boot-maven-plugin:2.1.12.RELEASE:repackage failed: Unable to find a single main class from the following candidates [org.springblade.library.ElectronicLibraryApplication, org.springblade.library.controller.BookUploadController, org.springblade.library.utils.BookmarksUtils, org.springblade.library.utils.KeyContextUtils, org.springblade.library.service.impl.BookReadRankServiceImpl] -&gt; [Help 1]
-[ERROR]
+<pre><code>[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:2.1.12.RELEASE:repackage (default) on project blade-electronic-library: Execution default of goal org.springframework.boot:spring-boot-maven-plugin:2.1.12.RELEASE:repackage failed: Unable to find a single main class from the following candidates [org.springblade.library.ElectronicLibraryApplication, org.springblade.library.controller.BookUploadController, org.springblade.library.utils.BookmarksUtils, org.springblade.library.utils.KeyContextUtils, org.springblade.library.service.impl.BookReadRankServiceImpl] -&gt; [Help 1]
+[ERROR] 
 [ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
 [ERROR] Re-run Maven using the -X switch to enable full debug logging.
-[ERROR]
+[ERROR] 
 [ERROR] For more information about the errors and possible solutions, please read the following articles:
-[ERROR] [Help 1] <a href="http://cwiki.apache.org/confluence/display/MAVEN/PluginExecutionException" rel="nofollow noreferrer" target="_blank">http://cwiki.apache.org/confluence/display/MAVEN/PluginExecutionException</a>
-[ERROR]
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/PluginExecutionException
+[ERROR] 
 [ERROR] After correcting the problems, you can resume the build with the command
-[ERROR]   mvn <goals> -rf :blade-electronic-library</p>
+[ERROR]   mvn &lt;goals&gt; -rf :blade-electronic-library
+</code></pre>
 
 <p>解决办法：注释掉除了启动类main方法的其余所有main方法</p>
 
@@ -192,9 +193,9 @@ var _hmt = _hmt || [];
 
 <hr />
 
-<p>4.package|install|deploy的区别
+<p>4.package | install | deploy的区别<br />
 * package命令完成了项目编译、单元测试、打包功能，但没有把打好的可执行jar包（war包或其它形式的包）布署到本地maven仓库和远程maven私服仓库<br />
-* install命令完成了项目编译、单元测试、打包功能，同时把打好的可执行jar包（war包或其它形式的包）布署到本地maven仓库，但没有布署到远程maven私服仓库
+* install命令完成了项目编译、单元测试、打包功能，同时把打好的可执行jar包（war包或其它形式的包）布署到本地maven仓库，但没有布署到远程maven私服仓库<br />
 * deploy命令完成了项目编译、单元测试、打包功能，同时把打好的可执行jar包（war包或其它形式的包）布署到本地maven仓库和远程maven私服仓库</p>
 
     </div>

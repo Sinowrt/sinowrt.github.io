@@ -6,10 +6,20 @@
     <description>Recent content in Linux on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 19 Oct 2018 02:56:07 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 18 Feb 2020 16:02:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/categories/linux/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Linux 挂载错误 Transport endpoint is not connected</title>
+      <link>http://blog.sinowrt.cn/2020/2020-02-18t1602-linux-mount-error-transport-endpoint-is-not-connected/</link>
+      <pubDate>Tue, 18 Feb 2020 16:02:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-02-18t1602-linux-mount-error-transport-endpoint-is-not-connected/</guid>
+      <description>0x00 前因 想在三毛鸡上挂载gd，于是就在189的三毛鸡上面安装了rclone，并尝试挂载，但是没到挂载的那一步都会卡住，后来偶然掉线了，于是再次登陆上去，发现挂载还在进行中，于是kill掉该进程重新挂载。但在重新挂载的过程中报错了，提示&amp;rsquo;failed to mount FUSE&amp;rsquo;,起初以为没装FUSE，尝试了apt-get install fuse提示fuse已安装。而每次ls以及df -h都会提示Transport endpoint is not conneted。
+0x01 解决办法 kill进程后，对rclone尝试mount的本地文件夹进行umount，最后再重新挂载。</description>
+    </item>
     
     <item>
       <title>newifi mini安装drcom全攻略</title>

@@ -6,10 +6,113 @@
     <description>Recent content in Posts on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 16 Apr 2020 16:23:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 10 Jun 2020 14:27:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Macbook Pro 2019使用感受</title>
+      <link>http://blog.sinowrt.cn/2020/2020-06-10t1511-the-using-feeling-of-mbp/</link>
+      <pubDate>Wed, 10 Jun 2020 14:27:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-06-10t1511-the-using-feeling-of-mbp/</guid>
+      <description>机器是今年年初买的，当时不想用公司的电脑，我就把神船带到公司当主力机。
+神船的性能是没得说的，但是这个重量(5kg)要背着上班通勤的话，我相信非习武之人绝对是承受不住的。
+于是我就打算将神船留在公司，可是回家就没电脑用了呀，而且身为IT人无论身在何处，随身携带电脑是我们光荣的使命。所以就萌发了购置macbook pro的想法。
+作为开发人员，16g内存是必选的，硬盘如果有条件还是建议512起步。但由于当时手头拮据，只选配了256的。新macbook pro在今年五月发布了，cpu 键盘 内存 硬盘 全线升级，如果上天再给我一次机会的话，我一定会等这四个月。
+使用macbook最直接的感受就是它超长的续航了，正常办公使用5h+没问题。而且随用随关，不用时只要把盖合上实属省心。
+现在我日常都是本地mac+远程win双端办公，只要有网络的地方都可以双端无缝切换，省心得很。
+macbook使用到现在也有小半年了，大问题没有，小问题比如说finder的远程服务器连接实属蹩脚，系统偶尔也会开小猜，不过重启都能解决问题。但是我这个人就是不喜欢重启电脑，只要不出问题，我宁愿它7x24不间断服务。
+前段时间还遇到了 macbook pro 2019 siri无法找到麦克风的问题，重启电脑即可解决。</description>
+    </item>
+    
+    <item>
+      <title>Macbook Pro查看电池信息</title>
+      <link>http://blog.sinowrt.cn/2020/2020-06-10t1427-how-to-query-the-information-of-battery-on-mac/</link>
+      <pubDate>Wed, 10 Jun 2020 14:27:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-06-10t1427-how-to-query-the-information-of-battery-on-mac/</guid>
+      <description>在终端输入以下命令：
+ioreg -rn AppleSmartBattery | grep -i capacity  &amp;quot;AppleRawCurrentCapacity&amp;quot; = 4867 &amp;quot;AppleRawMaxCapacity&amp;quot; = 5084 &amp;quot;MaxCapacity&amp;quot; = 5084 &amp;quot;CurrentCapacity&amp;quot; = 4867 &amp;quot;LegacyBatteryInfo&amp;quot; = {&amp;quot;Amperage&amp;quot;=18446744073709551214,&amp;quot;Flags&amp;quot;=4,&amp;quot;Capacity&amp;quot;=5084,&amp;quot;Current&amp;quot;=4867,&amp;quot;Voltage&amp;quot;=12729,&amp;quot;Cycle Count&amp;quot;=46} &amp;quot;DesignCapacity&amp;quot; = 5088 &amp;quot;BatteryData&amp;quot; = {&amp;quot;StateOfCharge&amp;quot;=96,&amp;quot;PMUConfigured&amp;quot;=0,&amp;quot;Voltage&amp;quot;=12699,&amp;quot;QmaxCell1&amp;quot;=5358,&amp;quot;AdapterPower&amp;quot;=839469241,&amp;quot;SystemPower&amp;quot;=1087516262,&amp;quot;ResScale&amp;quot;=117,&amp;quot;QmaxCell2&amp;quot;=5302,&amp;quot;QmaxCell0&amp;quot;=5341,&amp;quot;CycleCount&amp;quot;=46,&amp;quot;DesignCapacity&amp;quot;=5088}  </description>
+    </item>
+    
+    <item>
+      <title>优美的switch</title>
+      <link>http://blog.sinowrt.cn/2020/2020-05-20t1507-javagorgeous-switch/</link>
+      <pubDate>Wed, 20 May 2020 15:07:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-05-20t1507-javagorgeous-switch/</guid>
+      <description>相信大家都有这种体会，工作以来一直都是自己写代码，感觉自己的代码总是平平无奇，运行倒是能运行，就是没有那种让人眼前一亮的感觉。而每次阅读别人的源码，心里一直再默念，卧槽，还能这样写，天哪，太精辟了！
+于是，我就想，把这些让人眼前一亮的代码都摘录下来。一方面，自己能学习留痕，二来也能把这些知识分享给大家。
+private static String createPlayer(PlayerTypes playerType) { return switch (playerType) { case TENNIS -&amp;gt; &amp;quot;网球运动员费德勒&amp;quot;; case FOOTBALL -&amp;gt; &amp;quot;足球运动员C罗&amp;quot;; case BASKETBALL,PINGPANG -&amp;gt; &amp;quot;牛逼运动员&amp;quot;; case UNKNOWN -&amp;gt; throw new IllegalArgumentException(&amp;quot;未知&amp;quot;); }; }  另外，代码的优化应该在保证业务正常运行的前提下进行，下面我讲一个有隐患的代码优化例子：
+Map map=new HashMap(){{ put(&amp;quot;key&amp;quot;,&amp;quot;value&amp;quot;); }};  这种写法，比起新建HashMap对象后再一个个put值，虽然是提高了代码的整体性，但是却存在着致命的缺陷，这也是我在搭地铁刷掘金时在一篇文章上看到的
+首先给出结论：这种写法会导致抛出OOM异常
+因为在new HashMap时，是调用了一个匿名内部类的put方法，而根据引用计数法，这个对象一直持有外部类的引用，导致该对象在GC时无法清除，埋下了OOM的隐患。</description>
+    </item>
+    
+    <item>
+      <title>mac 安装flutter</title>
+      <link>http://blog.sinowrt.cn/2020/2020-05-12t1531-how-to-install-flutter-on-mac/</link>
+      <pubDate>Tue, 12 May 2020 15:07:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-05-12t1531-how-to-install-flutter-on-mac/</guid>
+      <description>首先从官网将flutter稳定版的压缩包下载下来，然后解压到一个目录中， vi ~/.zshrc 添加以下一行 export PATH=/(解压flutter的路径)/flutter/bin:$PATH 保存然后source ~/.zshrc
+接下来flutter -h，却提示 无法打开“Dart”，因为apple无法检查其是否包含恶意软件
+输入以下命令回车（会提示输入密码）即可解决： sudo spctl &amp;ndash;master-disable
+再次输入flutter -h验证是否生效</description>
+    </item>
+    
+    <item>
+      <title>记一次生产环境 日期查询错误</title>
+      <link>http://blog.sinowrt.cn/2020/2020-04-21t1011-date-query-error-in-product-environment/</link>
+      <pubDate>Tue, 21 Apr 2020 10:11:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-04-21t1011-date-query-error-in-product-environment/</guid>
+      <description>如图
+想查询4月1日到21日的记录，可是却连着3月31日的记录都查到了
+到后端查看日志，显示查询开始日期为31日16时，那么基本断定是时区出了问题
+那么有几种可能，一是系统时区，一是数据库时区，三是docker容器内部的时区
+第一步，date -R查看系统时区输出Tue, 21 Apr 2020 09:31:18 +0800,东八区，没问题
+那么第二步，查看数据库时区，登录mysql，show variables like &amp;quot;%time_zone%&amp;quot;;
+mysql&amp;gt; show variables like &amp;quot;%time_zone%&amp;quot;; +------------------+--------+ | Variable_name | Value | +------------------+--------+ | system_time_zone | UTC | | time_zone | SYSTEM | +------------------+--------+ 2 rows in set (0.01 sec)  跟随系统，也没问题，需要注意的是，如果mysql是部署在docker中的话，就要进入容器内部更改容器内部的时区了
+保守起见，可以指定mysql的时区
+set global time_zone = &#39;+8:00&#39;; set time_zone = &#39;+8:00&#39;; set time_zone = &#39;+8:00&#39;;  再次查看mysql时区，已经改变了
+mysql&amp;gt; show variables like &amp;quot;%time_zone%&amp;quot;; +------------------+--------+ | Variable_name | Value | +------------------+--------+ | system_time_zone | UTC | | time_zone | +08:00 | +------------------+--------+ 2 rows in set (0.</description>
+    </item>
+    
+    <item>
+      <title>docker save 和 export 命令的区别</title>
+      <link>http://blog.sinowrt.cn/2020/2020-04-20t1611-the-differences-of-docker-command-save-and-export/</link>
+      <pubDate>Mon, 20 Apr 2020 15:07:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-04-20t1611-the-differences-of-docker-command-save-and-export/</guid>
+      <description>在一次生产环境 docker 微服务更新 中 深刻意识到docker save 和 export 的区别
+0x00 背景 上次使用虚拟机镜像部署了三个子系统，但是测试过程中还是发现了不少问题，所以这次需要过去更新几个微服务
+于是就在公司虚拟机里面用export命令把几个容器导出来，放到生产环境中再import进去，然后run，结果死活运行不起来，提示run缺少参数。为了防止这种情况，我还把公司测试环境中的完整的容器启动命令都拍了下来，然后尝试构造命令，没有参数是吧，我用inspect命令把参数都找出来。接下来参数是不缺了，就是提示在工作目录中找不到文件。
+0x01 分析： 在公司里面的容器，我是直接通过2375端口直接上传到docker镜像库的，在上传完毕后，还会执行dockerfile里面的命令，其中包含创建工作目录等命令。但是我将容器导入生产环境后，似乎是因为没有运行这些命令而造成找不到文件。
+那么就可以推理出，我只是将docker的容器导出来了，但是容器里面的数据却没有导出。
+怎样才能连同数据一起导出呢，那么就要用到save命令而不是export命令了。
+0x02 解决： 最后只能让同事再帮忙将这几个微服务的容器重新导出一下
+然后我这边再使用load命令将容器加载为镜像，微服务才得以成功更新。</description>
+    </item>
+    
+    <item>
+      <title>宿主机转发未开启导致无法访问docker内部网络</title>
+      <link>http://blog.sinowrt.cn/2020/2020-04-17t1702-can-not-access-the-nacos-service-in-docker-container/</link>
+      <pubDate>Fri, 17 Apr 2020 17:02:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-04-17t1702-can-not-access-the-nacos-service-in-docker-container/</guid>
+      <description>今天迁移了虚拟机之后，准备上nacos改一下配置，可是登录http://...:8848/nacos却连接超时，telnet一下也不通，于是上部署了nacos的docker容器的宿主机上，curl http://docker内网ip:8848/nacos 却是有返回数据的，那就确定应该是转发出了问题，
+sysctl -a | grep net.ipv4.ip_forward
+显示
+net.ipv4.ip_forward = 0
+原来是转发没开启，于是
+echo 1 &amp;gt; /proc/sys/net/ipv4/ip_forward
+sysctl -p 重新加载内核参数
+再telnet一下，通了搞定
+上http://...:8848/nacos进行配置就行了</description>
+    </item>
     
     <item>
       <title>docker容器迁移</title>
@@ -18,7 +121,11 @@
       
       <guid>http://blog.sinowrt.cn/2020/2020-04-16t1623-migrate-the-container-to-another-docker/</guid>
       <description>在项目部署的时候，本来是部署两个esxi虚拟机，但是在部署测试过程中发现对象存储服务依赖了另一个虚拟机的minio服务，由于该虚拟机的minio服务是部署在docker上的，所以打算将该容器迁移到要部署的其中一个虚拟机的docker中
-步骤： 1. 导出容器 docker export 容器ID &amp;gt;minio.tar 2. 将导出minio.tar放到要部署的虚拟机上面 3. 将该容器导入镜像docker import minio.tar minio/minio:lastest 4. 新建容器并启动镜像
+步骤：
+1. 导出容器 docker export 容器ID &amp;gt;minio.tar
+2. 将导出minio.tar放到要部署的虚拟机上面
+3. 将该容器导入镜像docker import minio.tar minio/minio:lastest
+4. 新建容器并启动镜像
 docker run -d -p 9000:9000 --name minio -d -e &amp;quot;MINIO_ACCESS_KEY=AKIAIOSFODNN7EXAMPLE&amp;quot; -e &amp;quot;MINIO_SECRET_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY&amp;quot; -v /mnt/data:/data -v /mnt/config:/root/.minio minio/minio:lastest /usr/bin/docker-entrypoint.sh server /data  启动命令可以在原宿主机上使用docker inspect 容器ID查看，并根据需求调整启动参数
 至此，容器的迁移工作顺利完成。</description>
     </item>
@@ -30,10 +137,10 @@ docker run -d -p 9000:9000 --name minio -d -e &amp;quot;MINIO_ACCESS_KEY=AKIAIOS
       
       <guid>http://blog.sinowrt.cn/2020/2020-04-16t1619-esxi-network-error-while-exporting-esxi-virtual-machine/</guid>
       <description>今天使用esxi的web client导出虚拟机时，总是在导出到20G左右的时候中断，报网络异常，于是上vmware官网找有没有导出虚拟机的工具
-发现 OVFTOOL这个小工具，点击连接下载下来（需要注册账号才能下载），安装
-打开cmd进入安装文件夹，执行ovftool.exe vi://用户名@esxi的ip/虚拟机名 K:/ovf
-如果遇到 Fault cause: vim.fault.InvalidState 错误，请确认虚拟机为关机状态
-运行结果如下所示
+发现 OVFTOOL这个小工具，点击链接下载下来（需要注册账号才能下载），安装
+ 打开cmd进入安装文件夹，执行ovftool.exe vi://用户名@esxi的ip/虚拟机名 K:/ovf
+ 如果遇到 Fault cause: vim.fault.InvalidState 错误，请确认虚拟机为关机状态
+  运行结果如下所示
 C:\Program Files\VMware\VMware OVF Tool&amp;gt;ovftool.exe vi://root@***.***.***.***/docker K:/ovf Enter login information for source vi://***.***.***.***/ Username: root Password: *********** Opening VI source: vi://root@***.***.***.***:443/docker Opening VI source: vi://root@***.***.***.***:443/docker Opening OVF target: K:/ovf Writing OVF package: K:/ovf\docker\docker.ovf Disk progress: 3%  这个小工具效果非常好，不用担心网络错误问题，进度也能看到，可以打9分</description>
     </item>
     
@@ -80,6 +187,26 @@ npm ERR! The operation was rejected by your operating system. npm ERR! It&#39;s 
       <description>今天负责交接xxl-job数据同步系统，首先当然是将项目跑起来啦
 但是项目拉下来后，配置好，运行抛了个NoClassDefFoundError异常：
 org.springframework.beans.factory.BeanCreationException: Error creating bean with name &#39;xxlJobExecutor&#39; defined in class path resource [org/springblade/job/executor/config/XxlJobConfig.class]: Invocation of init method failed; nested exception is java.lang.NoClassDefFoundError: groovy/lang/GroovyClassLoader at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1771) at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:593) at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515) at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320) at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222) at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318) at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:847) at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:877) at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549) at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:141) at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:744) at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:391) at org.springframework.boot.SpringApplication.run(SpringApplication.java:312) at org.springframework.boot.builder.SpringApplicationBuilder.run(SpringApplicationBuilder.java:140) at org.springblade.core.launch.BladeApplication.run(BladeApplication.java:49) at org.springblade.job.executor.JobApplication.main(JobApplication.java:34) Caused by: java.lang.NoClassDefFoundError: groovy/lang/GroovyClassLoader at com.xxl.job.core.glue.GlueFactory.&amp;lt;init&amp;gt;(GlueFactory.java:36) at com.xxl.job.core.glue.GlueFactory.&amp;lt;clinit&amp;gt;(GlueFactory.java:20) at com.xxl.job.core.executor.impl.XxlJobSpringExecutor.afterPropertiesSet(XxlJobSpringExecutor.java:39) at org.</description>
+    </item>
+    
+    <item>
+      <title>js大整数精度导致前后端传参不一致问题</title>
+      <link>http://blog.sinowrt.cn/2020/2020-03-05t1618-something-changed-while-java-long-parsing-to-javascript/</link>
+      <pubDate>Thu, 05 Mar 2020 16:18:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-03-05t1618-something-changed-while-java-long-parsing-to-javascript/</guid>
+      <description>js中规定安全整数的范围是-2^53~2^53，而后端传过去的记录id为64位，所以会导致参数精度丢失的问题。
+windows查看进程启动时间，run-&amp;gt;msinfo32，在打开的系统信息窗口中点击“软件环境→正在运行任务”，即可看到所有进程的相关信息包括启动时间</description>
+    </item>
+    
+    <item>
+      <title>Linux 挂载错误 Transport endpoint is not connected</title>
+      <link>http://blog.sinowrt.cn/2020/2020-02-18t1602-linux-mount-error-transport-endpoint-is-not-connected/</link>
+      <pubDate>Tue, 18 Feb 2020 16:02:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-02-18t1602-linux-mount-error-transport-endpoint-is-not-connected/</guid>
+      <description>0x00 前因 想在三毛鸡上挂载gd，于是就在189的三毛鸡上面安装了rclone，并尝试挂载，但是没到挂载的那一步都会卡住，后来偶然掉线了，于是再次登陆上去，发现挂载还在进行中，于是kill掉该进程重新挂载。但在重新挂载的过程中报错了，提示&amp;rsquo;failed to mount FUSE&amp;rsquo;,起初以为没装FUSE，尝试了apt-get install fuse提示fuse已安装。而每次ls以及df -h都会提示Transport endpoint is not conneted。
+0x01 解决办法 kill进程后，对rclone尝试mount的本地文件夹进行umount，最后再重新挂载。</description>
     </item>
     
     <item>
@@ -351,6 +478,15 @@ for example cut -c 2-5 是截取了第二到第五位的字符串 即4位pid 若
  抛弃papersignals的类似方式，将esp8266作为服务端，手机作为客户端 鉴于小程序的跨平台特性，决定采用小程序的方式进行手机端开发  在搬瓦工vps搭建ngrok服务端的过程  参考这篇博客在vps上进行ngrok的编译
  该博客中遇到的问题，我全都遇到了，按照相应的步骤操作即可解决 另外在go1.4安装操作步骤混乱的时候，造成goroot路径的错乱，从而无法安装上go1.4和go1.6，只需要unset GOROOT即可 一切安装就绪，卡在ngrok的go编译上，在编译过程中报错：go build project/test: signal: killed 查阅资料，发现是vps内存太小导致的无法编译 改用centos进行编译，但是只有visualbox的centos镜像，而visualbox复制文件上面完全比不上vmware方便，所以改用ubuntu进行ngrok编译。 在ubuntu中部署ngrok编译环境的时候，使用yum命令，发现yum是centos专用的安装命令，在ubuntu上使用会导致很多问题的发生，例如yum的源不知如何配置，所以用回apt命令 由于无法使用yum，造成很多依赖包无法安装上，所以无法安装上官网下载的go1.10包 查找资料发现可以使用sudo apt-get install go-lang命令直接安装go环境，若找不到直接apt update更新源即可 开启sslocal，把ngrok项目从git中拉下来 对ngrok项目进行编译 其中最重要的是$NGROK_DOMAIN的设置，在该教程中直接关系到openssl证书的生成 编译出ngrokd服务端 丢进vps中跑一下 问题：80端口和443端口的占用 解决：启动ngrok命令中修改-httpAddr以及httpsAddr 以更改监听端口，4443为透传接入端口，更改之后直接启动即可，在浏览器中输入www.sinowrt.cn:81 出现trunnel&amp;hellip;的即表示启动成功 编译出windows的客户端，windows的客户端必须要在cmd中才能运行，新建ngrok.cfg,将内容  server_addr: &amp;quot;www.sinowrt.cn:4443&amp;quot; trust_host_root_certs: false  写入该文件中，在cmd进入该目录，敲入命令
 ngrok.exe -config=&amp;quot;ngrok.cfg&amp;quot; -subdomain=&amp;quot;abc&amp;quot; 80  连接上ngrok服务端即可将本地的80端口暴露出外网</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://blog.sinowrt.cn/1/new123/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/1/new123/</guid>
+      <description>之前用google进行调研的时候，点进去了一个网站，迫于打开心切 [图片] 就点击了允许，之后时不时就会出现Bestdealfor10.life的弹窗，想要禁用，百度无果，使用google发现很多解决方法，挑一个https://malwaretips.com/blogs/remove-bestdealfor10-life/，按步骤，在chrome的设置-隐私和安全-网站设置-通知里面将https://bestdealfor10.life移除即可</description>
     </item>
     
   </channel>

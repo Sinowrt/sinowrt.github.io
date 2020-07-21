@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="sinowrt">
+  
+  
+  
+  <link rel="prev" href="http://blog.sinowrt.cn/2020/2020-05-20t1507-javagorgeous-switch/" />
+  <link rel="next" href="http://blog.sinowrt.cn/2020/2020-06-10t1511-the-using-feeling-of-mbp/" />
+  <link rel="canonical" href="http://blog.sinowrt.cn/2020/2020-06-10t1427-how-to-query-the-information-of-battery-on-mac/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           Macbook Pro查看电池信息 | Sinowrt
+       
+  </title>
+  <meta name="title" content="Macbook Pro查看电池信息 | Sinowrt">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/blog.sinowrt.cn"
+    },
+    "articleSection" : "posts",
+    "name" : "Macbook Pro查看电池信息",
+    "headline" : "Macbook Pro查看电池信息",
+    "description" : "在终端输入以下命令：\nioreg -rn AppleSmartBattery | grep -i capacity  \x26quot;AppleRawCurrentCapacity\x26quot; = 4867 \x26quot;AppleRawMaxCapacity\x26quot; = 5084 \x26quot;MaxCapacity\x26quot; = 5084 \x26quot;CurrentCapacity\x26quot; = 4867 \x26quot;LegacyBatteryInfo\x26quot; = {\x26quot;Amperage\x26quot;=18446744073709551214,\x26quot;Flags\x26quot;=4,\x26quot;Capacity\x26quot;=5084,\x26quot;Current\x26quot;=4867,\x26quot;Voltage\x26quot;=12729,\x26quot;Cycle Count\x26quot;=46} \x26quot;DesignCapacity\x26quot; = 5088 \x26quot;BatteryData\x26quot; = {\x26quot;StateOfCharge\x26quot;=96,\x26quot;PMUConfigured\x26quot;=0,\x26quot;Voltage\x26quot;=12699,\x26quot;QmaxCell1\x26quot;=5358,\x26quot;AdapterPower\x26quot;=839469241,\x26quot;SystemPower\x26quot;=1087516262,\x26quot;ResScale\x26quot;=117,\x26quot;QmaxCell2\x26quot;=5302,\x26quot;QmaxCell0\x26quot;=5341,\x26quot;CycleCount\x26quot;=46,\x26quot;DesignCapacity\x26quot;=5088}  ",
+    "inLanguage" : "en-us",
+    "author" : "sinowrt",
+    "creator" : "sinowrt",
+    "publisher": "sinowrt",
+    "accountablePerson" : "sinowrt",
+    "copyrightHolder" : "sinowrt",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-06-10 14:27:00 \x2b0800 CST",
+    "dateModified" : "2020-06-10 14:27:00 \x2b0800 CST",
+    "url" : "http:\/\/blog.sinowrt.cn\/2020\/2020-06-10t1427-how-to-query-the-information-of-battery-on-mac\/",
+    "wordCount" : "30",
+    "keywords" : [ "macbook", "Sinowrt"]
+}
+</script>
+
+</head>
+
+<script async src="//cdn.busuanzi.ibruce.info/cdn/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?85719ea04c6401b98466dfdbc9399c78";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Macbook Pro查看电池信息</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2020-06-10 itemprop="datePublished">June 10, 2020</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="http://blog.sinowrt.cn/categories/macbook/"> macbook </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          <p>在终端输入以下命令：</p>
+
+<pre><code class="language-shell">ioreg -rn AppleSmartBattery | grep -i capacity
+</code></pre>
+
+<pre><code class="language-shell">&quot;AppleRawCurrentCapacity&quot; = 4867
+&quot;AppleRawMaxCapacity&quot; = 5084
+&quot;MaxCapacity&quot; = 5084
+&quot;CurrentCapacity&quot; = 4867
+&quot;LegacyBatteryInfo&quot; = {&quot;Amperage&quot;=18446744073709551214,&quot;Flags&quot;=4,&quot;Capacity&quot;=5084,&quot;Current&quot;=4867,&quot;Voltage&quot;=12729,&quot;Cycle Count&quot;=46}
+&quot;DesignCapacity&quot; = 5088
+&quot;BatteryData&quot; = {&quot;StateOfCharge&quot;=96,&quot;PMUConfigured&quot;=0,&quot;Voltage&quot;=12699,&quot;QmaxCell1&quot;=5358,&quot;AdapterPower&quot;=839469241,&quot;SystemPower&quot;=1087516262,&quot;ResScale&quot;=117,&quot;QmaxCell2&quot;=5302,&quot;QmaxCell0&quot;=5341,&quot;CycleCount&quot;=46,&quot;DesignCapacity&quot;=5088}
+</code></pre>
+
+    </div>
+	
+    <div class="post-copyright">
+             
+			
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>sinowrt </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://blog.sinowrt.cn/2020/2020-06-10t1427-how-to-query-the-information-of-battery-on-mac/>http://blog.sinowrt.cn/2020/2020-06-10t1427-how-to-query-the-information-of-battery-on-mac/</span>
+            </p>
+			
+			<p>
+				<span id="busuanzi_container_page_pv">
+					本文总阅读量：<span id="busuanzi_value_page_pv"></span>次
+				</span>
+			</p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/macbook/">
+                    #macbook</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="http://blog.sinowrt.cn">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://blog.sinowrt.cn/2020/2020-05-20t1507-javagorgeous-switch/" class="prev" rel="prev" title="优美的switch"><i class="iconfont icon-left"></i>&nbsp;优美的switch</a>
+         
+        
+        <a href="http://blog.sinowrt.cn/2020/2020-06-10t1511-the-using-feeling-of-mbp/" class="next" rel="next" title="Macbook Pro 2019使用感受">Macbook Pro 2019使用感受&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2020</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://blog.sinowrt.cn">sinowrt</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+	<p class="credits theme-by text-muted">
+        <span id="busuanzi_container_site_pv">
+            本站访问量：<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        &nbsp;
+        <span id="busuanzi_container_site_uv">
+            您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+        </span>
+    </p>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

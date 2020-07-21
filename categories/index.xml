@@ -6,15 +6,33 @@
     <description>Recent content in Categories on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 16 Apr 2020 16:23:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 10 Jun 2020 14:27:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>macbook</title>
+      <link>http://blog.sinowrt.cn/categories/macbook/</link>
+      <pubDate>Wed, 10 Jun 2020 14:27:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/macbook/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>flutter</title>
+      <link>http://blog.sinowrt.cn/categories/flutter/</link>
+      <pubDate>Wed, 20 May 2020 15:07:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/flutter/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>docker</title>
       <link>http://blog.sinowrt.cn/categories/docker/</link>
-      <pubDate>Thu, 16 Apr 2020 16:23:00 +0800</pubDate>
+      <pubDate>Tue, 21 Apr 2020 10:11:00 +0800</pubDate>
       
       <guid>http://blog.sinowrt.cn/categories/docker/</guid>
       <description></description>
@@ -57,6 +75,24 @@
     </item>
     
     <item>
+      <title>javascript</title>
+      <link>http://blog.sinowrt.cn/categories/javascript/</link>
+      <pubDate>Thu, 05 Mar 2020 16:18:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/javascript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>http://blog.sinowrt.cn/categories/linux/</link>
+      <pubDate>Tue, 18 Feb 2020 16:02:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>esp8266</title>
       <link>http://blog.sinowrt.cn/categories/esp8266/</link>
       <pubDate>Wed, 08 Jan 2020 00:21:00 +0800</pubDate>
@@ -66,7 +102,7 @@
     </item>
     
     <item>
-      <title>NAS</title>
+      <title>Nas</title>
       <link>http://blog.sinowrt.cn/categories/nas/</link>
       <pubDate>Sat, 30 Nov 2019 12:14:00 +0800</pubDate>
       
@@ -134,15 +170,6 @@
       <pubDate>Sat, 20 Oct 2018 10:37:42 +0000</pubDate>
       
       <guid>http://blog.sinowrt.cn/categories/wordpress/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Linux</title>
-      <link>http://blog.sinowrt.cn/categories/linux/</link>
-      <pubDate>Fri, 19 Oct 2018 02:56:07 +0000</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/categories/linux/</guid>
       <description></description>
     </item>
     
