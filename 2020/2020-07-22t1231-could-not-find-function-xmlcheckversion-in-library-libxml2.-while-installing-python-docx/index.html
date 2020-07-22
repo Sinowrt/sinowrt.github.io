@@ -22,10 +22,10 @@
   <title>
        
        
-           python3.8 在安装 python-docx 时报错 Could not find function xmlCheckVersion in library libxml2. Is libxml2 installed? | Sinowrt
+           python3.8 在安装 python-docx 时提示未安装libxml2 | Sinowrt
        
   </title>
-  <meta name="title" content="python3.8 在安装 python-docx 时报错 Could not find function xmlCheckVersion in library libxml2. Is libxml2 installed? | Sinowrt">
+  <meta name="title" content="python3.8 在安装 python-docx 时提示未安装libxml2 | Sinowrt">
     
   
   <link rel="stylesheet" href="/font/iconfont.css">
@@ -44,8 +44,8 @@
          "@id": "http:\/\/blog.sinowrt.cn"
     },
     "articleSection" : "posts",
-    "name" : "python3.8 在安装 python-docx 时报错 Could not find function xmlCheckVersion in library libxml2. Is libxml2 installed?",
-    "headline" : "python3.8 在安装 python-docx 时报错 Could not find function xmlCheckVersion in library libxml2. Is libxml2 installed?",
+    "name" : "python3.8 在安装 python-docx 时提示未安装libxml2",
+    "headline" : "python3.8 在安装 python-docx 时提示未安装libxml2",
     "description" : "因为Anaconda3的python环境在pyinstaller打包的时候，会把整个数学运算库打包进来，使整个程序体积达到300M以上，在分析程序运行时加载的动态链接库时，发现这些库在运行过程中都没有使用，虽然可以手动删除这些库，但是每次打包好了都要手动删除未免过于繁琐，所以打算把python切换一下，由于电脑里面之前已经安装了python3.8，所以只需要吧Anaconda3的环境取消激活就可以了。\n但是项目中所用到的一些包，都要重新安装一遍了。其中就包括python-docx这个模块，在安装的过程中报了Could not find function xmlCheckVersion in library libxml2. Is libxml2 installed?这个错误。百度了一下，是缺少lxml引起的，需要到https:\/\/www.lfd.uci.edu\/~gohlke\/pythonlibs\/#lxml下载你所安装python版本的对应whl包，由于我的python是windows下的64位版本，于是我就下载了lxml‑4.5.2‑cp38‑cp38‑win_amd64.whl。\n下载完成后，只需cd到该whl包的路径上，执行pip install lxml‑4.5.2‑cp38‑cp38‑win_amd64.whl就可以了。但是在安装的过程中却又出了点状况，提示lxml-4.5.2-cp38-cp38-win32.whl is not a supported wheel on this platform.，百度发现是包名有问题，在python控制台中输入import pip._internal; print(pip._internal.pep425tags.get_supported())\n可以看到\n[(\x27cp38\x27, \x27cp38m\x27, \x27win_amd64\x27), (\x27cp38\x27, \x27none\x27, \x27win_amd64\x27), (\x27py3\x27, \x27none\x27, \x27win_amd64\x27), (\x27cp38\x27, \x27none\x27, \x27any\x27), (\x27cp3\x27, \x27none\x27, \x27any\x27), (\x27py38\x27, \x27none\x27, \x27any\x27), (\x27py3\x27, \x27none\x27, \x27any\x27), (\x27py37\x27, \x27none\x27, \x27any\x27), (\x27py36\x27, \x27none\x27, \x27any\x27), (\x27py35\x27, \x27none\x27, \x27any\x27), (\x27py34\x27, \x27none\x27, \x27any\x27), (\x27py33\x27, \x27none\x27, \x27any\x27), (\x27py32\x27, \x27none\x27, \x27any\x27), (\x27py31\x27, \x27none\x27, \x27any\x27), (\x27py30\x27, \x27none\x27, \x27any\x27)]  按照第一个参数可知，将文件名修改为lxml‑4.",
     "inLanguage" : "en-us",
     "author" : "sinowrt",
@@ -129,7 +129,7 @@ var _hmt = _hmt || [];
       		
 <article class="post-warp" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">python3.8 在安装 python-docx 时报错 Could not find function xmlCheckVersion in library libxml2. Is libxml2 installed?</h1>
+        <h1 class="post-title" itemprop="name headline">python3.8 在安装 python-docx 时提示未安装libxml2</h1>
         <div class="post-meta">
                 Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
                 <span class="post-time">

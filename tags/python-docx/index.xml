@@ -12,7 +12,7 @@
     
     
     <item>
-      <title>python3.8 在安装 python-docx 时报错 Could not find function xmlCheckVersion in library libxml2. Is libxml2 installed?</title>
+      <title>python3.8 在安装 python-docx 时提示未安装libxml2</title>
       <link>http://blog.sinowrt.cn/2020/2020-07-22t1231-could-not-find-function-xmlcheckversion-in-library-libxml2.-while-installing-python-docx/</link>
       <pubDate>Wed, 22 Jul 2020 12:31:00 +0800</pubDate>
       
