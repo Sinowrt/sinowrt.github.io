@@ -6,10 +6,19 @@
     <description>Recent content in Categories on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 10 Jun 2020 14:27:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 22 Jul 2020 12:31:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>python</title>
+      <link>http://blog.sinowrt.cn/categories/python/</link>
+      <pubDate>Wed, 22 Jul 2020 12:31:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/python/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>macbook</title>
@@ -17,6 +26,15 @@
       <pubDate>Wed, 10 Jun 2020 14:27:00 +0800</pubDate>
       
       <guid>http://blog.sinowrt.cn/categories/macbook/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>chrome</title>
+      <link>http://blog.sinowrt.cn/categories/chrome/</link>
+      <pubDate>Wed, 27 May 2020 13:34:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/chrome/</guid>
       <description></description>
     </item>
     
@@ -102,7 +120,7 @@
     </item>
     
     <item>
-      <title>Nas</title>
+      <title>NAS</title>
       <link>http://blog.sinowrt.cn/categories/nas/</link>
       <pubDate>Sat, 30 Nov 2019 12:14:00 +0800</pubDate>
       

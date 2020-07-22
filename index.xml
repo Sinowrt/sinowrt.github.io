@@ -5,8 +5,42 @@
     <description>Recent content in Sinowrt on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 10 Jun 2020 14:27:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 22 Jul 2020 12:31:00 +0800</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>python3.8 在安装 python-docx 时报错 Could not find function xmlCheckVersion in library libxml2. Is libxml2 installed?</title>
+      <link>http://blog.sinowrt.cn/2020/2020-07-22t1231-could-not-find-function-xmlcheckversion-in-library-libxml2.-while-installing-python-docx/</link>
+      <pubDate>Wed, 22 Jul 2020 12:31:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-07-22t1231-could-not-find-function-xmlcheckversion-in-library-libxml2.-while-installing-python-docx/</guid>
+      <description>&lt;p&gt;因为Anaconda3的python环境在pyinstaller打包的时候，会把整个数学运算库打包进来，使整个程序体积达到300M以上，在分析程序运行时加载的动态链接库时，发现这些库在运行过程中都没有使用，虽然可以手动删除这些库，但是每次打包好了都要手动删除未免过于繁琐，所以打算把python切换一下，由于电脑里面之前已经安装了python3.8，所以只需要吧Anaconda3的环境取消激活就可以了。&lt;/p&gt;
+
+&lt;p&gt;但是项目中所用到的一些包，都要重新安装一遍了。其中就包括python-docx这个模块，在安装的过程中报了&lt;code&gt;Could not find function xmlCheckVersion in library libxml2. Is libxml2 installed?&lt;/code&gt;这个错误。百度了一下，是缺少lxml引起的，需要到&lt;code&gt;https://www.lfd.uci.edu/~gohlke/pythonlibs/#lxml&lt;/code&gt;下载你所安装python版本的对应whl包，由于我的python是windows下的64位版本，于是我就下载了&lt;code&gt;lxml‑4.5.2‑cp38‑cp38‑win_amd64.whl&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;下载完成后，只需cd到该whl包的路径上，执行&lt;code&gt;pip install lxml‑4.5.2‑cp38‑cp38‑win_amd64.whl&lt;/code&gt;就可以了。但是在安装的过程中却又出了点状况，提示&lt;code&gt;lxml-4.5.2-cp38-cp38-win32.whl is not a supported wheel on this platform.&lt;/code&gt;，百度发现是包名有问题，在python控制台中输入&lt;code&gt;import pip._internal; print(pip._internal.pep425tags.get_supported())&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;可以看到&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[(&#39;cp38&#39;, &#39;cp38m&#39;, &#39;win_amd64&#39;), (&#39;cp38&#39;, &#39;none&#39;, &#39;win_amd64&#39;), (&#39;py3&#39;, &#39;none&#39;, &#39;win_amd64&#39;), (&#39;cp38&#39;, &#39;none&#39;, &#39;any&#39;), (&#39;cp3&#39;, &#39;none&#39;, &#39;any&#39;), (&#39;py38&#39;, &#39;none&#39;, &#39;any&#39;), (&#39;py3&#39;, &#39;none&#39;, &#39;any&#39;), (&#39;py37&#39;, &#39;none&#39;,
+ &#39;any&#39;), (&#39;py36&#39;, &#39;none&#39;, &#39;any&#39;), (&#39;py35&#39;, &#39;none&#39;, &#39;any&#39;), (&#39;py34&#39;, &#39;none&#39;, &#39;any&#39;), (&#39;py33&#39;, &#39;none&#39;, &#39;any&#39;), (&#39;py32&#39;, &#39;none&#39;, &#39;any&#39;), (&#39;py31&#39;, &#39;none&#39;, &#39;any&#39;), (&#39;py30&#39;, &#39;none&#39;, &#39;any&#39;)]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;按照第一个参数可知，将文件名修改为&lt;code&gt;lxml‑4.5.2‑cp38‑cp38m‑win_amd64.whl&lt;/code&gt;即可&lt;/p&gt;
+
+&lt;p&gt;修改后，在该包对应的路径中执行&lt;code&gt;pip install lxml‑4.5.2‑cp38‑cp38m‑win_amd64.whl&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;可以看到&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;(newvenv) E:\checkDuplicate&amp;gt;pip install lxml-4.5.2-cp38-cp38m-win_amd64.whl
+Processing e:\checkduplicate\lxml-4.5.2-cp38-cp38m-win_amd64.whl
+Installing collected packages: lxml
+Successfully installed lxml-4.5.2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;安装成功。&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Macbook Pro 2019使用感受</title>
@@ -51,6 +85,22 @@
 &amp;quot;DesignCapacity&amp;quot; = 5088
 &amp;quot;BatteryData&amp;quot; = {&amp;quot;StateOfCharge&amp;quot;=96,&amp;quot;PMUConfigured&amp;quot;=0,&amp;quot;Voltage&amp;quot;=12699,&amp;quot;QmaxCell1&amp;quot;=5358,&amp;quot;AdapterPower&amp;quot;=839469241,&amp;quot;SystemPower&amp;quot;=1087516262,&amp;quot;ResScale&amp;quot;=117,&amp;quot;QmaxCell2&amp;quot;=5302,&amp;quot;QmaxCell0&amp;quot;=5341,&amp;quot;CycleCount&amp;quot;=46,&amp;quot;DesignCapacity&amp;quot;=5088}
 &lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>关闭chrome浏览器广告弹窗</title>
+      <link>http://blog.sinowrt.cn/2020/2020-05-27t1334-remove-the-ad-windows-of-chrome/</link>
+      <pubDate>Wed, 27 May 2020 13:34:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-05-27t1334-remove-the-ad-windows-of-chrome/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;之前用google进行调研的时候，点进去了一个网站
+![]()
+迫于打开心切，就点击了允许，之后时不时就会出现Bestdealfor10.life的弹窗，想要禁用，百度无果，使用google发现很多解决方法&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;随便挑一个&lt;a href=&#34;https://malwaretips.com/blogs/remove-bestdealfor10-life/&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;https://malwaretips.com/blogs/remove-bestdealfor10-life/&lt;/a&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;按步骤，在chrome的设置-隐私和安全-网站设置-通知里面将&lt;a href=&#34;https://bestdealfor10.life&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;https://bestdealfor10.life&lt;/a&gt; 移除即可&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     
@@ -476,36 +526,6 @@ Process finished with exit code 1
     &amp;lt;type&amp;gt;pom&amp;lt;/type&amp;gt;
 &amp;lt;/dependency&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>js大整数精度导致前后端传参不一致问题</title>
-      <link>http://blog.sinowrt.cn/2020/2020-03-05t1618-something-changed-while-java-long-parsing-to-javascript/</link>
-      <pubDate>Thu, 05 Mar 2020 16:18:00 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2020/2020-03-05t1618-something-changed-while-java-long-parsing-to-javascript/</guid>
-      <description>&lt;p&gt;js中规定安全整数的范围是-2^53~2^53，而后端传过去的记录id为64位，所以会导致参数精度丢失的问题。&lt;/p&gt;
-
-&lt;p&gt;windows查看进程启动时间，run-&amp;gt;msinfo32，在打开的系统信息窗口中点击“软件环境→正在运行任务”，即可看到所有进程的相关信息包括启动时间&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Linux 挂载错误 Transport endpoint is not connected</title>
-      <link>http://blog.sinowrt.cn/2020/2020-02-18t1602-linux-mount-error-transport-endpoint-is-not-connected/</link>
-      <pubDate>Tue, 18 Feb 2020 16:02:00 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2020/2020-02-18t1602-linux-mount-error-transport-endpoint-is-not-connected/</guid>
-      <description>
-
-&lt;h2 id=&#34;0x00-前因&#34;&gt;0x00 前因&lt;/h2&gt;
-
-&lt;p&gt;想在三毛鸡上挂载gd，于是就在189的三毛鸡上面安装了rclone，并尝试挂载，但是没到挂载的那一步都会卡住，后来偶然掉线了，于是再次登陆上去，发现挂载还在进行中，于是kill掉该进程重新挂载。但在重新挂载的过程中报错了，提示&amp;rsquo;failed to mount FUSE&amp;rsquo;,起初以为没装FUSE，尝试了apt-get install fuse提示fuse已安装。而每次ls以及df -h都会提示Transport endpoint is not conneted。&lt;/p&gt;
-
-&lt;h2 id=&#34;0x01-解决办法&#34;&gt;0x01 解决办法&lt;/h2&gt;
-
-&lt;p&gt;kill进程后，对rclone尝试mount的本地文件夹进行umount，最后再重新挂载。&lt;/p&gt;
 </description>
     </item>
     

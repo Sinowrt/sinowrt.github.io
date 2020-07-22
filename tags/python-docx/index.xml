@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>python-docx on Sinowrt</title>
+    <link>http://blog.sinowrt.cn/tags/python-docx/</link>
+    <description>Recent content in python-docx on Sinowrt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 22 Jul 2020 12:31:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.sinowrt.cn/tags/python-docx/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>python3.8 在安装 python-docx 时报错 Could not find function xmlCheckVersion in library libxml2. Is libxml2 installed?</title>
+      <link>http://blog.sinowrt.cn/2020/2020-07-22t1231-could-not-find-function-xmlcheckversion-in-library-libxml2.-while-installing-python-docx/</link>
+      <pubDate>Wed, 22 Jul 2020 12:31:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-07-22t1231-could-not-find-function-xmlcheckversion-in-library-libxml2.-while-installing-python-docx/</guid>
+      <description>因为Anaconda3的python环境在pyinstaller打包的时候，会把整个数学运算库打包进来，使整个程序体积达到300M以上，在分析程序运行时加载的动态链接库时，发现这些库在运行过程中都没有使用，虽然可以手动删除这些库，但是每次打包好了都要手动删除未免过于繁琐，所以打算把python切换一下，由于电脑里面之前已经安装了python3.8，所以只需要吧Anaconda3的环境取消激活就可以了。
+但是项目中所用到的一些包，都要重新安装一遍了。其中就包括python-docx这个模块，在安装的过程中报了Could not find function xmlCheckVersion in library libxml2. Is libxml2 installed?这个错误。百度了一下，是缺少lxml引起的，需要到https://www.lfd.uci.edu/~gohlke/pythonlibs/#lxml下载你所安装python版本的对应whl包，由于我的python是windows下的64位版本，于是我就下载了lxml‑4.5.2‑cp38‑cp38‑win_amd64.whl。
+下载完成后，只需cd到该whl包的路径上，执行pip install lxml‑4.5.2‑cp38‑cp38‑win_amd64.whl就可以了。但是在安装的过程中却又出了点状况，提示lxml-4.5.2-cp38-cp38-win32.whl is not a supported wheel on this platform.，百度发现是包名有问题，在python控制台中输入import pip._internal; print(pip._internal.pep425tags.get_supported())
+可以看到
+[(&#39;cp38&#39;, &#39;cp38m&#39;, &#39;win_amd64&#39;), (&#39;cp38&#39;, &#39;none&#39;, &#39;win_amd64&#39;), (&#39;py3&#39;, &#39;none&#39;, &#39;win_amd64&#39;), (&#39;cp38&#39;, &#39;none&#39;, &#39;any&#39;), (&#39;cp3&#39;, &#39;none&#39;, &#39;any&#39;), (&#39;py38&#39;, &#39;none&#39;, &#39;any&#39;), (&#39;py3&#39;, &#39;none&#39;, &#39;any&#39;), (&#39;py37&#39;, &#39;none&#39;, &#39;any&#39;), (&#39;py36&#39;, &#39;none&#39;, &#39;any&#39;), (&#39;py35&#39;, &#39;none&#39;, &#39;any&#39;), (&#39;py34&#39;, &#39;none&#39;, &#39;any&#39;), (&#39;py33&#39;, &#39;none&#39;, &#39;any&#39;), (&#39;py32&#39;, &#39;none&#39;, &#39;any&#39;), (&#39;py31&#39;, &#39;none&#39;, &#39;any&#39;), (&#39;py30&#39;, &#39;none&#39;, &#39;any&#39;)]  按照第一个参数可知，将文件名修改为lxml‑4.</description>
+    </item>
+    
+  </channel>
+</rss>

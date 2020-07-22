@@ -6,10 +6,23 @@
     <description>Recent content in Posts on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 10 Jun 2020 14:27:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 22 Jul 2020 12:31:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>python3.8 在安装 python-docx 时报错 Could not find function xmlCheckVersion in library libxml2. Is libxml2 installed?</title>
+      <link>http://blog.sinowrt.cn/2020/2020-07-22t1231-could-not-find-function-xmlcheckversion-in-library-libxml2.-while-installing-python-docx/</link>
+      <pubDate>Wed, 22 Jul 2020 12:31:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-07-22t1231-could-not-find-function-xmlcheckversion-in-library-libxml2.-while-installing-python-docx/</guid>
+      <description>因为Anaconda3的python环境在pyinstaller打包的时候，会把整个数学运算库打包进来，使整个程序体积达到300M以上，在分析程序运行时加载的动态链接库时，发现这些库在运行过程中都没有使用，虽然可以手动删除这些库，但是每次打包好了都要手动删除未免过于繁琐，所以打算把python切换一下，由于电脑里面之前已经安装了python3.8，所以只需要吧Anaconda3的环境取消激活就可以了。
+但是项目中所用到的一些包，都要重新安装一遍了。其中就包括python-docx这个模块，在安装的过程中报了Could not find function xmlCheckVersion in library libxml2. Is libxml2 installed?这个错误。百度了一下，是缺少lxml引起的，需要到https://www.lfd.uci.edu/~gohlke/pythonlibs/#lxml下载你所安装python版本的对应whl包，由于我的python是windows下的64位版本，于是我就下载了lxml‑4.5.2‑cp38‑cp38‑win_amd64.whl。
+下载完成后，只需cd到该whl包的路径上，执行pip install lxml‑4.5.2‑cp38‑cp38‑win_amd64.whl就可以了。但是在安装的过程中却又出了点状况，提示lxml-4.5.2-cp38-cp38-win32.whl is not a supported wheel on this platform.，百度发现是包名有问题，在python控制台中输入import pip._internal; print(pip._internal.pep425tags.get_supported())
+可以看到
+[(&#39;cp38&#39;, &#39;cp38m&#39;, &#39;win_amd64&#39;), (&#39;cp38&#39;, &#39;none&#39;, &#39;win_amd64&#39;), (&#39;py3&#39;, &#39;none&#39;, &#39;win_amd64&#39;), (&#39;cp38&#39;, &#39;none&#39;, &#39;any&#39;), (&#39;cp3&#39;, &#39;none&#39;, &#39;any&#39;), (&#39;py38&#39;, &#39;none&#39;, &#39;any&#39;), (&#39;py3&#39;, &#39;none&#39;, &#39;any&#39;), (&#39;py37&#39;, &#39;none&#39;, &#39;any&#39;), (&#39;py36&#39;, &#39;none&#39;, &#39;any&#39;), (&#39;py35&#39;, &#39;none&#39;, &#39;any&#39;), (&#39;py34&#39;, &#39;none&#39;, &#39;any&#39;), (&#39;py33&#39;, &#39;none&#39;, &#39;any&#39;), (&#39;py32&#39;, &#39;none&#39;, &#39;any&#39;), (&#39;py31&#39;, &#39;none&#39;, &#39;any&#39;), (&#39;py30&#39;, &#39;none&#39;, &#39;any&#39;)]  按照第一个参数可知，将文件名修改为lxml‑4.</description>
+    </item>
     
     <item>
       <title>Macbook Pro 2019使用感受</title>
@@ -35,6 +48,17 @@ macbook使用到现在也有小半年了，大问题没有，小问题比如说f
       <guid>http://blog.sinowrt.cn/2020/2020-06-10t1427-how-to-query-the-information-of-battery-on-mac/</guid>
       <description>在终端输入以下命令：
 ioreg -rn AppleSmartBattery | grep -i capacity  &amp;quot;AppleRawCurrentCapacity&amp;quot; = 4867 &amp;quot;AppleRawMaxCapacity&amp;quot; = 5084 &amp;quot;MaxCapacity&amp;quot; = 5084 &amp;quot;CurrentCapacity&amp;quot; = 4867 &amp;quot;LegacyBatteryInfo&amp;quot; = {&amp;quot;Amperage&amp;quot;=18446744073709551214,&amp;quot;Flags&amp;quot;=4,&amp;quot;Capacity&amp;quot;=5084,&amp;quot;Current&amp;quot;=4867,&amp;quot;Voltage&amp;quot;=12729,&amp;quot;Cycle Count&amp;quot;=46} &amp;quot;DesignCapacity&amp;quot; = 5088 &amp;quot;BatteryData&amp;quot; = {&amp;quot;StateOfCharge&amp;quot;=96,&amp;quot;PMUConfigured&amp;quot;=0,&amp;quot;Voltage&amp;quot;=12699,&amp;quot;QmaxCell1&amp;quot;=5358,&amp;quot;AdapterPower&amp;quot;=839469241,&amp;quot;SystemPower&amp;quot;=1087516262,&amp;quot;ResScale&amp;quot;=117,&amp;quot;QmaxCell2&amp;quot;=5302,&amp;quot;QmaxCell0&amp;quot;=5341,&amp;quot;CycleCount&amp;quot;=46,&amp;quot;DesignCapacity&amp;quot;=5088}  </description>
+    </item>
+    
+    <item>
+      <title>关闭chrome浏览器广告弹窗</title>
+      <link>http://blog.sinowrt.cn/2020/2020-05-27t1334-remove-the-ad-windows-of-chrome/</link>
+      <pubDate>Wed, 27 May 2020 13:34:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-05-27t1334-remove-the-ad-windows-of-chrome/</guid>
+      <description> 之前用google进行调研的时候，点进去了一个网站 ![]() 迫于打开心切，就点击了允许，之后时不时就会出现Bestdealfor10.life的弹窗，想要禁用，百度无果，使用google发现很多解决方法
+ 随便挑一个https://malwaretips.com/blogs/remove-bestdealfor10-life/
+ 按步骤，在chrome的设置-隐私和安全-网站设置-通知里面将https://bestdealfor10.life 移除即可  </description>
     </item>
     
     <item>
@@ -478,15 +502,6 @@ for example cut -c 2-5 是截取了第二到第五位的字符串 即4位pid 若
  抛弃papersignals的类似方式，将esp8266作为服务端，手机作为客户端 鉴于小程序的跨平台特性，决定采用小程序的方式进行手机端开发  在搬瓦工vps搭建ngrok服务端的过程  参考这篇博客在vps上进行ngrok的编译
  该博客中遇到的问题，我全都遇到了，按照相应的步骤操作即可解决 另外在go1.4安装操作步骤混乱的时候，造成goroot路径的错乱，从而无法安装上go1.4和go1.6，只需要unset GOROOT即可 一切安装就绪，卡在ngrok的go编译上，在编译过程中报错：go build project/test: signal: killed 查阅资料，发现是vps内存太小导致的无法编译 改用centos进行编译，但是只有visualbox的centos镜像，而visualbox复制文件上面完全比不上vmware方便，所以改用ubuntu进行ngrok编译。 在ubuntu中部署ngrok编译环境的时候，使用yum命令，发现yum是centos专用的安装命令，在ubuntu上使用会导致很多问题的发生，例如yum的源不知如何配置，所以用回apt命令 由于无法使用yum，造成很多依赖包无法安装上，所以无法安装上官网下载的go1.10包 查找资料发现可以使用sudo apt-get install go-lang命令直接安装go环境，若找不到直接apt update更新源即可 开启sslocal，把ngrok项目从git中拉下来 对ngrok项目进行编译 其中最重要的是$NGROK_DOMAIN的设置，在该教程中直接关系到openssl证书的生成 编译出ngrokd服务端 丢进vps中跑一下 问题：80端口和443端口的占用 解决：启动ngrok命令中修改-httpAddr以及httpsAddr 以更改监听端口，4443为透传接入端口，更改之后直接启动即可，在浏览器中输入www.sinowrt.cn:81 出现trunnel&amp;hellip;的即表示启动成功 编译出windows的客户端，windows的客户端必须要在cmd中才能运行，新建ngrok.cfg,将内容  server_addr: &amp;quot;www.sinowrt.cn:4443&amp;quot; trust_host_root_certs: false  写入该文件中，在cmd进入该目录，敲入命令
 ngrok.exe -config=&amp;quot;ngrok.cfg&amp;quot; -subdomain=&amp;quot;abc&amp;quot; 80  连接上ngrok服务端即可将本地的80端口暴露出外网</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>http://blog.sinowrt.cn/1/new123/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/1/new123/</guid>
-      <description>之前用google进行调研的时候，点进去了一个网站，迫于打开心切 [图片] 就点击了允许，之后时不时就会出现Bestdealfor10.life的弹窗，想要禁用，百度无果，使用google发现很多解决方法，挑一个https://malwaretips.com/blogs/remove-bestdealfor10-life/，按步骤，在chrome的设置-隐私和安全-网站设置-通知里面将https://bestdealfor10.life移除即可</description>
     </item>
     
   </channel>

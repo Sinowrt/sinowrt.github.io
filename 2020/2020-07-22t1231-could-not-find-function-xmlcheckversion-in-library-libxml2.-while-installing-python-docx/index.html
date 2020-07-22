@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="sinowrt">
+  
+  
+  
+  <link rel="prev" href="http://blog.sinowrt.cn/2020/2020-06-10t1511-the-using-feeling-of-mbp/" />
+  
+  <link rel="canonical" href="http://blog.sinowrt.cn/2020/2020-07-22t1231-could-not-find-function-xmlcheckversion-in-library-libxml2.-while-installing-python-docx/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           python3.8 在安装 python-docx 时报错 Could not find function xmlCheckVersion in library libxml2. Is libxml2 installed? | Sinowrt
+       
+  </title>
+  <meta name="title" content="python3.8 在安装 python-docx 时报错 Could not find function xmlCheckVersion in library libxml2. Is libxml2 installed? | Sinowrt">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/blog.sinowrt.cn"
+    },
+    "articleSection" : "posts",
+    "name" : "python3.8 在安装 python-docx 时报错 Could not find function xmlCheckVersion in library libxml2. Is libxml2 installed?",
+    "headline" : "python3.8 在安装 python-docx 时报错 Could not find function xmlCheckVersion in library libxml2. Is libxml2 installed?",
+    "description" : "因为Anaconda3的python环境在pyinstaller打包的时候，会把整个数学运算库打包进来，使整个程序体积达到300M以上，在分析程序运行时加载的动态链接库时，发现这些库在运行过程中都没有使用，虽然可以手动删除这些库，但是每次打包好了都要手动删除未免过于繁琐，所以打算把python切换一下，由于电脑里面之前已经安装了python3.8，所以只需要吧Anaconda3的环境取消激活就可以了。\n但是项目中所用到的一些包，都要重新安装一遍了。其中就包括python-docx这个模块，在安装的过程中报了Could not find function xmlCheckVersion in library libxml2. Is libxml2 installed?这个错误。百度了一下，是缺少lxml引起的，需要到https:\/\/www.lfd.uci.edu\/~gohlke\/pythonlibs\/#lxml下载你所安装python版本的对应whl包，由于我的python是windows下的64位版本，于是我就下载了lxml‑4.5.2‑cp38‑cp38‑win_amd64.whl。\n下载完成后，只需cd到该whl包的路径上，执行pip install lxml‑4.5.2‑cp38‑cp38‑win_amd64.whl就可以了。但是在安装的过程中却又出了点状况，提示lxml-4.5.2-cp38-cp38-win32.whl is not a supported wheel on this platform.，百度发现是包名有问题，在python控制台中输入import pip._internal; print(pip._internal.pep425tags.get_supported())\n可以看到\n[(\x27cp38\x27, \x27cp38m\x27, \x27win_amd64\x27), (\x27cp38\x27, \x27none\x27, \x27win_amd64\x27), (\x27py3\x27, \x27none\x27, \x27win_amd64\x27), (\x27cp38\x27, \x27none\x27, \x27any\x27), (\x27cp3\x27, \x27none\x27, \x27any\x27), (\x27py38\x27, \x27none\x27, \x27any\x27), (\x27py3\x27, \x27none\x27, \x27any\x27), (\x27py37\x27, \x27none\x27, \x27any\x27), (\x27py36\x27, \x27none\x27, \x27any\x27), (\x27py35\x27, \x27none\x27, \x27any\x27), (\x27py34\x27, \x27none\x27, \x27any\x27), (\x27py33\x27, \x27none\x27, \x27any\x27), (\x27py32\x27, \x27none\x27, \x27any\x27), (\x27py31\x27, \x27none\x27, \x27any\x27), (\x27py30\x27, \x27none\x27, \x27any\x27)]  按照第一个参数可知，将文件名修改为lxml‑4.",
+    "inLanguage" : "en-us",
+    "author" : "sinowrt",
+    "creator" : "sinowrt",
+    "publisher": "sinowrt",
+    "accountablePerson" : "sinowrt",
+    "copyrightHolder" : "sinowrt",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-07-22 12:31:00 \x2b0800 CST",
+    "dateModified" : "2020-07-22 12:31:00 \x2b0800 CST",
+    "url" : "http:\/\/blog.sinowrt.cn\/2020\/2020-07-22t1231-could-not-find-function-xmlcheckversion-in-library-libxml2.-while-installing-python-docx\/",
+    "wordCount" : "90",
+    "keywords" : [ "python-docx","lxml", "Sinowrt"]
+}
+</script>
+
+</head>
+
+<script async src="//cdn.busuanzi.ibruce.info/cdn/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?85719ea04c6401b98466dfdbc9399c78";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">python3.8 在安装 python-docx 时报错 Could not find function xmlCheckVersion in library libxml2. Is libxml2 installed?</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2020-07-22 itemprop="datePublished">July 22, 2020</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="http://blog.sinowrt.cn/categories/python/"> python </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          <p>因为Anaconda3的python环境在pyinstaller打包的时候，会把整个数学运算库打包进来，使整个程序体积达到300M以上，在分析程序运行时加载的动态链接库时，发现这些库在运行过程中都没有使用，虽然可以手动删除这些库，但是每次打包好了都要手动删除未免过于繁琐，所以打算把python切换一下，由于电脑里面之前已经安装了python3.8，所以只需要吧Anaconda3的环境取消激活就可以了。</p>
+
+<p>但是项目中所用到的一些包，都要重新安装一遍了。其中就包括python-docx这个模块，在安装的过程中报了<code>Could not find function xmlCheckVersion in library libxml2. Is libxml2 installed?</code>这个错误。百度了一下，是缺少lxml引起的，需要到<code>https://www.lfd.uci.edu/~gohlke/pythonlibs/#lxml</code>下载你所安装python版本的对应whl包，由于我的python是windows下的64位版本，于是我就下载了<code>lxml‑4.5.2‑cp38‑cp38‑win_amd64.whl</code>。</p>
+
+<p>下载完成后，只需cd到该whl包的路径上，执行<code>pip install lxml‑4.5.2‑cp38‑cp38‑win_amd64.whl</code>就可以了。但是在安装的过程中却又出了点状况，提示<code>lxml-4.5.2-cp38-cp38-win32.whl is not a supported wheel on this platform.</code>，百度发现是包名有问题，在python控制台中输入<code>import pip._internal; print(pip._internal.pep425tags.get_supported())</code></p>
+
+<p>可以看到</p>
+
+<pre><code>[('cp38', 'cp38m', 'win_amd64'), ('cp38', 'none', 'win_amd64'), ('py3', 'none', 'win_amd64'), ('cp38', 'none', 'any'), ('cp3', 'none', 'any'), ('py38', 'none', 'any'), ('py3', 'none', 'any'), ('py37', 'none',
+ 'any'), ('py36', 'none', 'any'), ('py35', 'none', 'any'), ('py34', 'none', 'any'), ('py33', 'none', 'any'), ('py32', 'none', 'any'), ('py31', 'none', 'any'), ('py30', 'none', 'any')]
+</code></pre>
+
+<p>按照第一个参数可知，将文件名修改为<code>lxml‑4.5.2‑cp38‑cp38m‑win_amd64.whl</code>即可</p>
+
+<p>修改后，在该包对应的路径中执行<code>pip install lxml‑4.5.2‑cp38‑cp38m‑win_amd64.whl</code></p>
+
+<p>可以看到</p>
+
+<pre><code>(newvenv) E:\checkDuplicate&gt;pip install lxml-4.5.2-cp38-cp38m-win_amd64.whl
+Processing e:\checkduplicate\lxml-4.5.2-cp38-cp38m-win_amd64.whl
+Installing collected packages: lxml
+Successfully installed lxml-4.5.2
+</code></pre>
+
+<p>安装成功。</p>
+
+    </div>
+	
+    <div class="post-copyright">
+             
+			
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>sinowrt </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://blog.sinowrt.cn/2020/2020-07-22t1231-could-not-find-function-xmlcheckversion-in-library-libxml2.-while-installing-python-docx/>http://blog.sinowrt.cn/2020/2020-07-22t1231-could-not-find-function-xmlcheckversion-in-library-libxml2.-while-installing-python-docx/</span>
+            </p>
+			
+			<p>
+				<span id="busuanzi_container_page_pv">
+					本文总阅读量：<span id="busuanzi_value_page_pv"></span>次
+				</span>
+			</p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/python-docx/">
+                    #python-docx</a></span>
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/lxml/">
+                    #lxml</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="http://blog.sinowrt.cn">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://blog.sinowrt.cn/2020/2020-06-10t1511-the-using-feeling-of-mbp/" class="prev" rel="prev" title="Macbook Pro 2019使用感受"><i class="iconfont icon-left"></i>&nbsp;Macbook Pro 2019使用感受</a>
+         
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2020</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://blog.sinowrt.cn">sinowrt</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+	<p class="credits theme-by text-muted">
+        <span id="busuanzi_container_site_pv">
+            本站访问量：<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        &nbsp;
+        <span id="busuanzi_container_site_uv">
+            您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+        </span>
+    </p>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>
