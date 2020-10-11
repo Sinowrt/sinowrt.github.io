@@ -46,7 +46,7 @@
     "articleSection" : "posts",
     "name" : "docker安装的mysql:5.7服务 关闭大小写敏感选项",
     "headline" : "docker安装的mysql:5.7服务 关闭大小写敏感选项",
-    "description" : "0x00 事由 日志系统开发完成了，服务已经部署到服务器上，也该把本地数据库上传上去了，于是就在docker上面安装了mysql:5.7，但是在开发环境中mysql是不区分大小写的，而docker上面的确实默认区分大小写，所以需要关闭大小写敏感这个选项。\n0x01 步骤 首先进入容器内部\ndocker exec -it 容器ID \/bin\/bash cd \/etc\/mysql\/mysql.conf.d vi mysqld.cnf 发现没有vi，那就装一下吧\napt-get update apt-get install vim vi mysqld.cnf\n在结尾追加一行\nlower_case_table_names=1\n变成\n# Copyright (c) 2014, 2016, Oracle and\/or its affiliates. All rights reserved. # # This program is free software; you can redistribute it and\/or modify # it under the terms of the GNU General Public License, version 2.0, # as published by the Free Software Foundation.",
+    "description" : "0x00 事由 日志系统开发完成了，服务已经部署到服务器上，也该把本地数据库上传上去了，于是就在docker上面安装了mysql:5.7，但是在开发环境中mysql是不区分大小写的，而docker上面的确实默认区分大小写，所以需要关闭大小写敏感这个选项。\n0x01 步骤 首先进入容器内部\ndocker exec -it 容器ID \/bin\/bash cd \/etc\/mysql\/mysql.conf.d vi mysqld.cnf  发现没有vi，那就装一下吧\napt-get update apt-get install vim  vi mysqld.cnf\n在结尾追加一行\nlower_case_table_names=1\n变成\n# Copyright (c) 2014, 2016, Oracle and\/or its affiliates. All rights reserved. # # This program is free software; you can redistribute it and\/or modify # it under the terms of the GNU General Public License, version 2.0, # as published by the Free Software Foundation.",
     "inLanguage" : "en-us",
     "author" : "sinowrt",
     "creator" : "sinowrt",
@@ -63,6 +63,19 @@
 </script>
 
 </head>
+
+<script async src="//cdn.busuanzi.ibruce.info/cdn/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?85719ea04c6401b98466dfdbc9399c78";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
 
   
 
@@ -146,64 +159,82 @@
           
           
 
-          <h3 id="0x00-事由">0x00 事由</h3>
+          
+
+<h3 id="0x00-事由">0x00 事由</h3>
+
 <p>日志系统开发完成了，服务已经部署到服务器上，也该把本地数据库上传上去了，于是就在docker上面安装了mysql:5.7，但是在开发环境中mysql是不区分大小写的，而docker上面的确实默认区分大小写，所以需要关闭大小写敏感这个选项。</p>
+
 <h3 id="0x01-步骤">0x01 步骤</h3>
+
 <p>首先进入容器内部</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">docker exec -it 容器ID /bin/bash
+
+<pre><code class="language-shell">docker exec -it 容器ID /bin/bash
 cd /etc/mysql/mysql.conf.d  
 vi mysqld.cnf
-</code></pre></div><p>发现没有vi，那就装一下吧</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">apt-get update  
+</code></pre>
+
+<p>发现没有vi，那就装一下吧</p>
+
+<pre><code class="language-shell">apt-get update  
 apt-get install vim
-</code></pre></div><p><code>vi mysqld.cnf</code><br>
-在结尾追加一行<br>
-<code>lower_case_table_names=1</code></p>
+</code></pre>
+
+<p><code>vi mysqld.cnf</code></p>
+
+<p>在结尾追加一行</p>
+
+<p><code>lower_case_table_names=1</code></p>
+
 <p>变成</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># Copyright (c) 2014, 2016, Oracle and/or its affiliates. All rights reserved.</span>
+
+<pre><code class="language-shell"># Copyright (c) 2014, 2016, Oracle and/or its affiliates. All rights reserved.
 #
-<span style="color:#75715e"># This program is free software; you can redistribute it and/or modify</span>
-<span style="color:#75715e"># it under the terms of the GNU General Public License, version 2.0,</span>
-<span style="color:#75715e"># as published by the Free Software Foundation.</span>
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License, version 2.0,
+# as published by the Free Software Foundation.
 #
-<span style="color:#75715e"># This program is also distributed with certain software (including</span>
-<span style="color:#75715e"># but not limited to OpenSSL) that is licensed under separate terms,</span>
-<span style="color:#75715e"># as designated in a particular file or component or in included license</span>
-<span style="color:#75715e"># documentation.  The authors of MySQL hereby grant you an additional</span>
-<span style="color:#75715e"># permission to link the program and your derivative works with the</span>
-<span style="color:#75715e"># separately licensed software that they have included with MySQL.</span>
+# This program is also distributed with certain software (including
+# but not limited to OpenSSL) that is licensed under separate terms,
+# as designated in a particular file or component or in included license
+# documentation.  The authors of MySQL hereby grant you an additional
+# permission to link the program and your derivative works with the
+# separately licensed software that they have included with MySQL.
 #
-<span style="color:#75715e"># This program is distributed in the hope that it will be useful,</span>
-<span style="color:#75715e"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
-<span style="color:#75715e"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
-<span style="color:#75715e"># GNU General Public License, version 2.0, for more details.</span>
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License, version 2.0, for more details.
 #
-<span style="color:#75715e"># You should have received a copy of the GNU General Public License</span>
-<span style="color:#75715e"># along with this program; if not, write to the Free Software</span>
-<span style="color:#75715e"># Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA</span>
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
 
 #
-<span style="color:#75715e"># The MySQL  Server configuration file.</span>
+# The MySQL  Server configuration file.
 #
-<span style="color:#75715e"># For explanations see</span>
-<span style="color:#75715e"># http://dev.mysql.com/doc/mysql/en/server-system-variables.html</span>
+# For explanations see
+# http://dev.mysql.com/doc/mysql/en/server-system-variables.html
 
-<span style="color:#f92672">[</span>mysqld<span style="color:#f92672">]</span>
-pid-file	<span style="color:#f92672">=</span> /var/run/mysqld/mysqld.pid
-socket		<span style="color:#f92672">=</span> /var/run/mysqld/mysqld.sock
-datadir		<span style="color:#f92672">=</span> /var/lib/mysql
-<span style="color:#75715e">#log-error	= /var/log/mysql/error.log</span>
-<span style="color:#75715e"># By default we only accept connections from localhost</span>
-<span style="color:#75715e">#bind-address	= 127.0.0.1</span>
-<span style="color:#75715e"># Disabling symbolic-links is recommended to prevent assorted security risks</span>
-symbolic-links<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
-lower_case_table_names<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
-</code></pre></div><p>wq保存后，ctrl d退出容器，重启容器即可生效</p>
+[mysqld]
+pid-file    = /var/run/mysqld/mysqld.pid
+socket      = /var/run/mysqld/mysqld.sock
+datadir     = /var/lib/mysql
+#log-error  = /var/log/mysql/error.log
+# By default we only accept connections from localhost
+#bind-address   = 127.0.0.1
+# Disabling symbolic-links is recommended to prevent assorted security risks
+symbolic-links=0
+lower_case_table_names=1
+</code></pre>
+
+<p>wq保存后，ctrl d退出容器，重启容器即可生效</p>
 
     </div>
-
+	
     <div class="post-copyright">
              
+			
             <p class="copyright-item">
                 <span>Author:</span>
                 <span>sinowrt </span>
@@ -215,6 +246,12 @@ lower_case_table_names<span style="color:#f92672">=</span><span style="color:#ae
                     <span>Link:</span>
                     <a href=http://blog.sinowrt.cn/2020/2020-03-28t1023-mysql-disable-case-sensitive/>http://blog.sinowrt.cn/2020/2020-03-28t1023-mysql-disable-case-sensitive/</span>
             </p>
+			
+			<p>
+				<span id="busuanzi_container_page_pv">
+					本文总阅读量：<span id="busuanzi_value_page_pv"></span>次
+				</span>
+			</p>
             
              
             <p class="copyright-item lincese">
@@ -273,6 +310,15 @@ lower_case_table_names<span style="color:#f92672">=</span><span style="color:#ae
          
 		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
     </div>
+	<p class="credits theme-by text-muted">
+        <span id="busuanzi_container_site_pv">
+            本站访问量：<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        &nbsp;
+        <span id="busuanzi_container_site_uv">
+            您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+        </span>
+    </p>
 </footer>
 
 

@@ -28,7 +28,7 @@ Map map=new HashMap(){{ put(&amp;quot;key&amp;quot;,&amp;quot;value&amp;quot;); 
     <item>
       <title>mac 安装flutter</title>
       <link>http://blog.sinowrt.cn/2020/2020-05-12t1531-how-to-install-flutter-on-mac/</link>
-      <pubDate>Tue, 12 May 2020 15:07:00 +0800</pubDate>
+      <pubDate>Tue, 12 May 2020 15:31:00 +0800</pubDate>
       
       <guid>http://blog.sinowrt.cn/2020/2020-05-12t1531-how-to-install-flutter-on-mac/</guid>
       <description>首先从官网将flutter稳定版的压缩包下载下来，然后解压到一个目录中， vi ~/.zshrc 添加以下一行 export PATH=/(解压flutter的路径)/flutter/bin:$PATH 保存然后source ~/.zshrc

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>interview on Sinowrt</title>
+    <link>http://blog.sinowrt.cn/categories/interview/</link>
+    <description>Recent content in interview on Sinowrt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 04 Aug 2020 12:30:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.sinowrt.cn/categories/interview/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>新浪爱问一面凉经</title>
+      <link>http://blog.sinowrt.cn/2020/2020-08-04t1230-sina-iask-interview/</link>
+      <pubDate>Tue, 04 Aug 2020 12:30:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-08-04t1230-sina-iask-interview/</guid>
+      <description>新浪爱问一面凉经  早上九点多就到超多维大厦了，还好一楼有个星巴克，抓紧时间复习了垃圾回收算法，三次握手，NIO相关知识，把自我介绍排了一遍。
+ 10:21上楼，首先在前台填了面试信息表，等了十几分钟后，被一个看发量就知道是一个资深技术的小哥带进去会议室了
+ 照例自我介绍了一波，然后小哥开始问问题：现在有一个新闻推送系统，每天由专人不定时录入新闻，现在需要将这些消息推送给用户，设计一个推送模块，在用户每次刷新的时候，用户都能收到固定数量的新闻，当然新闻可能有些是最新的，有些是比较旧的，如何保证用户在每次刷新的时候都能收到一部分新闻并且保证这些新闻不重复？
+  答：先是把数据库里面的新闻存储结构描述了一下，将每次查询到的新闻id，用户id关联存到redis，用户查询的时候，现在redis查询该用户所查询过的新闻id，然后再到数据库里面将redis查询的结果作为查询条件，排除掉已查询过的新闻，再返回新闻列表。
+问：这样的话又一个问题，redis里面的数据要持久化，并且随着用户查询的次数增多，数据量也越来越大，这样要怎样处理呢。
+答：这样的话可以在数据库里面新建一个表，将每次的查询的新闻id以及用户id关联一下，然后每次再进行连表查询。
+问：这样还是没有从根本上解决问题，随着用户的请求越来越多，该表的数据量也越来越大，性能也越来越慢。
+答：可以引入消息队列，将用户归类，并且对每一类用户的请求，将这一批请求放到消息队列，用户可对这些消息进行重复消费。
+问：这样处理确实可以缓解性能压力，但是还是不是最优方案。
+ 算了，我再问你一些问题吧，在redis高并发的情况下，缓存失效应该怎么处理呢？（不好意思没了解过）
+ 你做的系统最大的并发量有多少（最多应该是光大的，并发量大概在一千左右）
+ hashmap是线程安全的还是线程不安全的？为什么线程不安全？
+  答：线程不安全，因为hashmap不具备可见性，当一个线程在hashmap插入了一个数据之后，但这个更新只在cpu高速缓存中体现，而并未即使更新到内存中，所以这就导致另一个线程在访问hashmap的时候读不到该值，所以是线程不安全的。
+ 使用过事务吗，事务有哪几种传播方式（7种，具体名称记不住了）
+ 给了两个程序段，问testA方法调用会不会导致事务回滚，testB调用会不会导致事务回滚？ ```java @Service public class PersonService{ @trasactional() public int save(String id){ Person person=new Person(); person.setId(id); dao.save(person); throw new Exception(&amp;ldquo;&amp;rdquo;); }
+//这个不会导致事务回滚，因为没用加入到spring的AOP public void testA(){ this.save(&amp;ldquo;000&amp;rdquo;); } }
+  public class testB{ @Autowire PersonService personService;
+//这个会导致回滚 public void testB(){ personService.save(&amp;quot;000&amp;quot;); }  } ```</description>
+    </item>
+    
+  </channel>
+</rss>

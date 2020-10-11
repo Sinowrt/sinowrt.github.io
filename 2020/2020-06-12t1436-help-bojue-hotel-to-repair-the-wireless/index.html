@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="sinowrt">
+  
+  
+  
+  <link rel="prev" href="http://blog.sinowrt.cn/2020/2020-06-10t1511-the-using-feeling-of-mbp/" />
+  <link rel="next" href="http://blog.sinowrt.cn/2020/2020-06-28t1610-find-out-the-attacker-who-attacked-your-vps/" />
+  <link rel="canonical" href="http://blog.sinowrt.cn/2020/2020-06-12t1436-help-bojue-hotel-to-repair-the-wireless/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           帮酒店修复网络 | Sinowrt
+       
+  </title>
+  <meta name="title" content="帮酒店修复网络 | Sinowrt">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/blog.sinowrt.cn"
+    },
+    "articleSection" : "posts",
+    "name" : "帮酒店修复网络",
+    "headline" : "帮酒店修复网络",
+    "description" : "0x00 事由 最近在外地出差，我住的酒店环境还不错，就是我这个房间的网络down了，提示宽带密码错误。 于是我就连了楼上相同房间号的wifi。但是始终是隔着一层水泥板，信号不怎么好。于是我就想，那就进后台找一下宽带密码，修复一下我房间的wifi吧。\n0x01 步骤 首先route -n get default查看默认网关，一般这种盒子的网关就是路由的管理后台地址，得到网关地址为192.168.125.1\nsh-3.2# route -n get default route to: default destination: default mask: default gateway: 192.168.125.1 interface: en0 flags: \x26lt;UP,GATEWAY,DONE,STATIC,PRCLONING\x26gt; recvpipe sendpipe ssthresh rtt,msec rttvar hopcount mtu expire 0 0 0 0 0 0 1500 0  然后在浏览器输入地址192.168.125.1，打开后台登陆界面，还要输入用户名和密码\n根据经验输入最常见的用户名admin 密码admin，回车，进去了\n找到wan口设置，账户名直接能看到，密码用点号隐藏了，于是使出F12大法找到密码\n然后连到我房间这个路由器,进入后台把密码填进去就可以了，跟前面是一样的步骤，就不赘述了\n设置完保存\x26amp;应用，等待设置生效后，ping一下看看网络通不通\n搞定！",
+    "inLanguage" : "en-us",
+    "author" : "sinowrt",
+    "creator" : "sinowrt",
+    "publisher": "sinowrt",
+    "accountablePerson" : "sinowrt",
+    "copyrightHolder" : "sinowrt",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-06-12 14:36:00 \x2b0800 CST",
+    "dateModified" : "2020-06-12 14:36:00 \x2b0800 CST",
+    "url" : "http:\/\/blog.sinowrt.cn\/2020\/2020-06-12t1436-help-bojue-hotel-to-repair-the-wireless\/",
+    "wordCount" : "51",
+    "keywords" : [ "wifi", "Sinowrt"]
+}
+</script>
+
+</head>
+
+<script async src="//cdn.busuanzi.ibruce.info/cdn/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?85719ea04c6401b98466dfdbc9399c78";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">帮酒店修复网络</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2020-06-12 itemprop="datePublished">June 12, 2020</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="http://blog.sinowrt.cn/categories/wifi/"> wifi </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+            
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          
+
+<h3 id="0x00-事由">0x00 事由</h3>
+
+<p>最近在外地出差，我住的酒店环境还不错，就是我这个房间的网络down了，提示宽带密码错误。
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/image/2020-06-14T1436/wrong%20password.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure>
+于是我就连了楼上相同房间号的wifi。但是始终是隔着一层水泥板，信号不怎么好。于是我就想，那就进后台找一下宽带密码，修复一下我房间的wifi吧。</p>
+
+<h3 id="0x01-步骤">0x01 步骤</h3>
+
+<p>首先route -n get default查看默认网关，一般这种盒子的网关就是路由的管理后台地址，得到网关地址为192.168.125.1</p>
+
+<pre><code class="language-shell">sh-3.2# route -n get default 
+   route to: default
+destination: default
+       mask: default
+    gateway: 192.168.125.1
+  interface: en0
+      flags: &lt;UP,GATEWAY,DONE,STATIC,PRCLONING&gt;
+ recvpipe  sendpipe  ssthresh  rtt,msec    rttvar  hopcount      mtu     expire
+       0         0         0         0         0         0      1500         0
+</code></pre>
+
+<p>然后在浏览器输入地址192.168.125.1，打开后台登陆界面，还要输入用户名和密码</p>
+
+<p>根据经验输入最常见的用户名admin 密码admin，回车，进去了</p>
+
+<p>找到wan口设置，账户名直接能看到，密码用点号隐藏了，于是使出F12大法找到密码</p>
+
+<p>然后连到我房间这个路由器,进入后台把密码填进去就可以了，跟前面是一样的步骤，就不赘述了</p>
+
+<p>设置完保存&amp;应用，等待设置生效后，ping一下看看网络通不通</p>
+
+<p>搞定！</p>
+
+    </div>
+	
+    <div class="post-copyright">
+             
+			
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>sinowrt </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://blog.sinowrt.cn/2020/2020-06-12t1436-help-bojue-hotel-to-repair-the-wireless/>http://blog.sinowrt.cn/2020/2020-06-12t1436-help-bojue-hotel-to-repair-the-wireless/</span>
+            </p>
+			
+			<p>
+				<span id="busuanzi_container_page_pv">
+					本文总阅读量：<span id="busuanzi_value_page_pv"></span>次
+				</span>
+			</p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/wifi/">
+                    #wifi</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="http://blog.sinowrt.cn">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://blog.sinowrt.cn/2020/2020-06-10t1511-the-using-feeling-of-mbp/" class="prev" rel="prev" title="Macbook Pro 2019使用感受"><i class="iconfont icon-left"></i>&nbsp;Macbook Pro 2019使用感受</a>
+         
+        
+        <a href="http://blog.sinowrt.cn/2020/2020-06-28t1610-find-out-the-attacker-who-attacked-your-vps/" class="next" rel="next" title="一条命令｜康康谁动了我的vps">一条命令｜康康谁动了我的vps&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2020</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://blog.sinowrt.cn">sinowrt</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+	<p class="credits theme-by text-muted">
+        <span id="busuanzi_container_site_pv">
+            本站访问量：<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        &nbsp;
+        <span id="busuanzi_container_site_uv">
+            您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+        </span>
+    </p>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+     <link href="//lib.baomitu.com/lightgallery/1.6.11/css/lightgallery.min.css" rel="stylesheet">  
+      
+     <script src="/js/vendor_gallery.min.js" async="" ></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

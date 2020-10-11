@@ -4,7 +4,19 @@
     <url>
       <loc>http://blog.sinowrt.cn/categories/</loc>
       
-      <lastmod>2020-07-22T12:31:00+08:00</lastmod>
+      <lastmod>2020-09-15T23:14:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/categories/linux/</loc>
+      
+      <lastmod>2020-09-15T23:14:00+08:00</lastmod>
       
       
       
@@ -16,7 +28,7 @@
     <url>
       <loc>http://blog.sinowrt.cn/posts/</loc>
       
-      <lastmod>2020-07-22T12:31:00+08:00</lastmod>
+      <lastmod>2020-09-15T23:14:00+08:00</lastmod>
       
       
       
@@ -28,7 +40,7 @@
     <url>
       <loc>http://blog.sinowrt.cn/</loc>
       
-      <lastmod>2020-07-22T12:31:00+08:00</lastmod>
+      <lastmod>2020-09-15T23:14:00+08:00</lastmod>
       
       
       
@@ -40,11 +52,77 @@
     <url>
       <loc>http://blog.sinowrt.cn/tags/</loc>
       
-      <lastmod>2020-07-22T12:31:00+08:00</lastmod>
+      <lastmod>2020-09-15T23:14:00+08:00</lastmod>
       
       
       
       <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/ubuntu/</loc>
+      
+      <lastmod>2020-09-15T23:14:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/2020/2020-09-15t2314-how-to-install-the-updated-v2ray-on-ubuntu-16.04/</loc>
+      
+      <lastmod>2020-09-15T23:14:00+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/categories/interview/</loc>
+      
+      <lastmod>2020-08-04T12:30:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/interview/</loc>
+      
+      <lastmod>2020-08-04T12:30:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/2020/2020-08-04t1230-sina-iask-interview/</loc>
+      
+      <lastmod>2020-08-04T12:30:00+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/2020/2020-07-21t1039-setup-vsftpd-on-centos7/</loc>
+      
+      <lastmod>2020-07-22T12:31:00+08:00</lastmod>
+      
+      
       
       
     </url>
@@ -89,6 +167,62 @@
       <loc>http://blog.sinowrt.cn/2020/2020-07-22t1231-could-not-find-function-xmlcheckversion-in-library-libxml2.-while-installing-python-docx/</loc>
       
       <lastmod>2020-07-22T12:31:00+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/linux/</loc>
+      
+      <lastmod>2020-06-28T16:10:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/2020/2020-06-28t1610-find-out-the-attacker-who-attacked-your-vps/</loc>
+      
+      <lastmod>2020-06-28T16:10:00+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/categories/wifi/</loc>
+      
+      <lastmod>2020-06-12T14:36:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/wifi/</loc>
+      
+      <lastmod>2020-06-12T14:36:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/2020/2020-06-12t1436-help-bojue-hotel-to-repair-the-wireless/</loc>
+      
+      <lastmod>2020-06-12T14:36:00+08:00</lastmod>
       
       
       
@@ -210,7 +344,7 @@
     <url>
       <loc>http://blog.sinowrt.cn/2020/2020-05-12t1531-how-to-install-flutter-on-mac/</loc>
       
-      <lastmod>2020-05-12T15:07:00+08:00</lastmod>
+      <lastmod>2020-05-12T15:31:00+08:00</lastmod>
       
       
       
@@ -254,7 +388,7 @@
     <url>
       <loc>http://blog.sinowrt.cn/2020/2020-04-20t1611-the-differences-of-docker-command-save-and-export/</loc>
       
-      <lastmod>2020-04-20T15:07:00+08:00</lastmod>
+      <lastmod>2020-04-20T16:11:00+08:00</lastmod>
       
       
       
@@ -396,7 +530,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/develope/</loc>
+      <loc>http://blog.sinowrt.cn/categories/develop/</loc>
       
       <lastmod>2020-04-10T10:01:00+08:00</lastmod>
       
@@ -452,6 +586,40 @@
     </url>
   
     <url>
+      <loc>http://blog.sinowrt.cn/2020/2020-03-28t1023-mysql-disable-case-sensitive/</loc>
+      
+      <lastmod>2020-03-28T10:23:00+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/categories/mysql/</loc>
+      
+      <lastmod>2020-03-28T10:23:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/mysql/</loc>
+      
+      <lastmod>2020-03-28T10:23:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
       <loc>http://blog.sinowrt.cn/categories/javascript/</loc>
       
       <lastmod>2020-03-05T16:18:00+08:00</lastmod>
@@ -481,30 +649,6 @@
       <lastmod>2020-03-05T16:18:00+08:00</lastmod>
       
       
-      
-      
-    </url>
-  
-    <url>
-      <loc>http://blog.sinowrt.cn/categories/linux/</loc>
-      
-      <lastmod>2020-02-18T16:02:00+08:00</lastmod>
-      
-      
-      
-      <priority>0</priority>
-      
-      
-    </url>
-  
-    <url>
-      <loc>http://blog.sinowrt.cn/tags/linux/</loc>
-      
-      <lastmod>2020-02-18T16:02:00+08:00</lastmod>
-      
-      
-      
-      <priority>0</priority>
       
       
     </url>
@@ -948,7 +1092,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/2018/2018-11-17t1513-install-qt5-in-win10/</loc>
+      <loc>http://blog.sinowrt.cn/2018/2018-11-17t1513-install-qt5-on-win10/</loc>
       
       <lastmod>2018-11-17T15:13:11+00:00</lastmod>
       
@@ -1072,27 +1216,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/temp/0513/</loc>
-      
-      
-      
-      <priority>0</priority>
-      
-      
-    </url>
-  
-    <url>
-      <loc>http://blog.sinowrt.cn/temp/%E4%B8%AD%E6%A0%B8%E9%92%9B%E7%99%BD%E5%B7%A5%E4%BD%9C%E6%97%A5%E5%BF%97/</loc>
-      
-      
-      
-      <priority>0</priority>
-      
-      
-    </url>
-  
-    <url>
-      <loc>http://blog.sinowrt.cn/temp/</loc>
+      <loc>http://blog.sinowrt.cn/1/2020-08-16t2053-synology-moments-preview-pictures-of-videos-was-damaged/</loc>
       
       
       

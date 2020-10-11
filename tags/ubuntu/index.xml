@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ubuntu on Sinowrt</title>
+    <link>http://blog.sinowrt.cn/tags/ubuntu/</link>
+    <description>Recent content in ubuntu on Sinowrt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 15 Sep 2020 23:14:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.sinowrt.cn/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>在ubuntu 16.04上安装新版v2ray服务端</title>
+      <link>http://blog.sinowrt.cn/2020/2020-09-15t2314-how-to-install-the-updated-v2ray-on-ubuntu-16.04/</link>
+      <pubDate>Tue, 15 Sep 2020 23:14:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-09-15t2314-how-to-install-the-updated-v2ray-on-ubuntu-16.04/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

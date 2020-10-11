@@ -32,7 +32,7 @@ mysql&amp;gt; show variables like &amp;quot;%time_zone%&amp;quot;; +------------
     <item>
       <title>docker save 和 export 命令的区别</title>
       <link>http://blog.sinowrt.cn/2020/2020-04-20t1611-the-differences-of-docker-command-save-and-export/</link>
-      <pubDate>Mon, 20 Apr 2020 15:07:00 +0800</pubDate>
+      <pubDate>Mon, 20 Apr 2020 16:11:00 +0800</pubDate>
       
       <guid>http://blog.sinowrt.cn/2020/2020-04-20t1611-the-differences-of-docker-command-save-and-export/</guid>
       <description>在一次生产环境 docker 微服务更新 中 深刻意识到docker save 和 export 的区别

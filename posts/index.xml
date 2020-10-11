@@ -6,10 +6,54 @@
     <description>Recent content in Posts on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 22 Jul 2020 12:31:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 15 Sep 2020 23:14:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>在ubuntu 16.04上安装新版v2ray服务端</title>
+      <link>http://blog.sinowrt.cn/2020/2020-09-15t2314-how-to-install-the-updated-v2ray-on-ubuntu-16.04/</link>
+      <pubDate>Tue, 15 Sep 2020 23:14:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-09-15t2314-how-to-install-the-updated-v2ray-on-ubuntu-16.04/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>新浪爱问一面凉经</title>
+      <link>http://blog.sinowrt.cn/2020/2020-08-04t1230-sina-iask-interview/</link>
+      <pubDate>Tue, 04 Aug 2020 12:30:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-08-04t1230-sina-iask-interview/</guid>
+      <description>新浪爱问一面凉经  早上九点多就到超多维大厦了，还好一楼有个星巴克，抓紧时间复习了垃圾回收算法，三次握手，NIO相关知识，把自我介绍排了一遍。
+ 10:21上楼，首先在前台填了面试信息表，等了十几分钟后，被一个看发量就知道是一个资深技术的小哥带进去会议室了
+ 照例自我介绍了一波，然后小哥开始问问题：现在有一个新闻推送系统，每天由专人不定时录入新闻，现在需要将这些消息推送给用户，设计一个推送模块，在用户每次刷新的时候，用户都能收到固定数量的新闻，当然新闻可能有些是最新的，有些是比较旧的，如何保证用户在每次刷新的时候都能收到一部分新闻并且保证这些新闻不重复？
+  答：先是把数据库里面的新闻存储结构描述了一下，将每次查询到的新闻id，用户id关联存到redis，用户查询的时候，现在redis查询该用户所查询过的新闻id，然后再到数据库里面将redis查询的结果作为查询条件，排除掉已查询过的新闻，再返回新闻列表。
+问：这样的话又一个问题，redis里面的数据要持久化，并且随着用户查询的次数增多，数据量也越来越大，这样要怎样处理呢。
+答：这样的话可以在数据库里面新建一个表，将每次的查询的新闻id以及用户id关联一下，然后每次再进行连表查询。
+问：这样还是没有从根本上解决问题，随着用户的请求越来越多，该表的数据量也越来越大，性能也越来越慢。
+答：可以引入消息队列，将用户归类，并且对每一类用户的请求，将这一批请求放到消息队列，用户可对这些消息进行重复消费。
+问：这样处理确实可以缓解性能压力，但是还是不是最优方案。
+ 算了，我再问你一些问题吧，在redis高并发的情况下，缓存失效应该怎么处理呢？（不好意思没了解过）
+ 你做的系统最大的并发量有多少（最多应该是光大的，并发量大概在一千左右）
+ hashmap是线程安全的还是线程不安全的？为什么线程不安全？
+  答：线程不安全，因为hashmap不具备可见性，当一个线程在hashmap插入了一个数据之后，但这个更新只在cpu高速缓存中体现，而并未即使更新到内存中，所以这就导致另一个线程在访问hashmap的时候读不到该值，所以是线程不安全的。
+ 使用过事务吗，事务有哪几种传播方式（7种，具体名称记不住了）
+ 给了两个程序段，问testA方法调用会不会导致事务回滚，testB调用会不会导致事务回滚？ ```java @Service public class PersonService{ @trasactional() public int save(String id){ Person person=new Person(); person.setId(id); dao.save(person); throw new Exception(&amp;ldquo;&amp;rdquo;); }
+//这个不会导致事务回滚，因为没用加入到spring的AOP public void testA(){ this.save(&amp;ldquo;000&amp;rdquo;); } }
+  public class testB{ @Autowire PersonService personService;
+//这个会导致回滚 public void testB(){ personService.save(&amp;quot;000&amp;quot;); }  } ```</description>
+    </item>
+    
+    <item>
+      <title>centos7 安装 ftp 服务 vsftpd</title>
+      <link>http://blog.sinowrt.cn/2020/2020-07-21t1039-setup-vsftpd-on-centos7/</link>
+      <pubDate>Wed, 22 Jul 2020 12:31:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-07-21t1039-setup-vsftpd-on-centos7/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>python3.8 在安装 python-docx 时提示未安装libxml2</title>
@@ -22,6 +66,31 @@
 下载完成后，只需cd到该whl包的路径上，执行pip install lxml‑4.5.2‑cp38‑cp38‑win_amd64.whl就可以了。但是在安装的过程中却又出了点状况，提示lxml-4.5.2-cp38-cp38-win32.whl is not a supported wheel on this platform.，百度发现是包名有问题，在python控制台中输入import pip._internal; print(pip._internal.pep425tags.get_supported())
 可以看到
 [(&#39;cp38&#39;, &#39;cp38m&#39;, &#39;win_amd64&#39;), (&#39;cp38&#39;, &#39;none&#39;, &#39;win_amd64&#39;), (&#39;py3&#39;, &#39;none&#39;, &#39;win_amd64&#39;), (&#39;cp38&#39;, &#39;none&#39;, &#39;any&#39;), (&#39;cp3&#39;, &#39;none&#39;, &#39;any&#39;), (&#39;py38&#39;, &#39;none&#39;, &#39;any&#39;), (&#39;py3&#39;, &#39;none&#39;, &#39;any&#39;), (&#39;py37&#39;, &#39;none&#39;, &#39;any&#39;), (&#39;py36&#39;, &#39;none&#39;, &#39;any&#39;), (&#39;py35&#39;, &#39;none&#39;, &#39;any&#39;), (&#39;py34&#39;, &#39;none&#39;, &#39;any&#39;), (&#39;py33&#39;, &#39;none&#39;, &#39;any&#39;), (&#39;py32&#39;, &#39;none&#39;, &#39;any&#39;), (&#39;py31&#39;, &#39;none&#39;, &#39;any&#39;), (&#39;py30&#39;, &#39;none&#39;, &#39;any&#39;)]  按照第一个参数可知，将文件名修改为lxml‑4.</description>
+    </item>
+    
+    <item>
+      <title>一条命令｜康康谁动了我的vps</title>
+      <link>http://blog.sinowrt.cn/2020/2020-06-28t1610-find-out-the-attacker-who-attacked-your-vps/</link>
+      <pubDate>Sun, 28 Jun 2020 16:10:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-06-28t1610-find-out-the-attacker-who-attacked-your-vps/</guid>
+      <description>今天无意中发现了一个非常有用的命令  lastb ss -t</description>
+    </item>
+    
+    <item>
+      <title>帮酒店修复网络</title>
+      <link>http://blog.sinowrt.cn/2020/2020-06-12t1436-help-bojue-hotel-to-repair-the-wireless/</link>
+      <pubDate>Fri, 12 Jun 2020 14:36:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-06-12t1436-help-bojue-hotel-to-repair-the-wireless/</guid>
+      <description>0x00 事由 最近在外地出差，我住的酒店环境还不错，就是我这个房间的网络down了，提示宽带密码错误。 于是我就连了楼上相同房间号的wifi。但是始终是隔着一层水泥板，信号不怎么好。于是我就想，那就进后台找一下宽带密码，修复一下我房间的wifi吧。
+0x01 步骤 首先route -n get default查看默认网关，一般这种盒子的网关就是路由的管理后台地址，得到网关地址为192.168.125.1
+sh-3.2# route -n get default route to: default destination: default mask: default gateway: 192.168.125.1 interface: en0 flags: &amp;lt;UP,GATEWAY,DONE,STATIC,PRCLONING&amp;gt; recvpipe sendpipe ssthresh rtt,msec rttvar hopcount mtu expire 0 0 0 0 0 0 1500 0  然后在浏览器输入地址192.168.125.1，打开后台登陆界面，还要输入用户名和密码
+根据经验输入最常见的用户名admin 密码admin，回车，进去了
+找到wan口设置，账户名直接能看到，密码用点号隐藏了，于是使出F12大法找到密码
+然后连到我房间这个路由器,进入后台把密码填进去就可以了，跟前面是一样的步骤，就不赘述了
+设置完保存&amp;amp;应用，等待设置生效后，ping一下看看网络通不通
+搞定！</description>
     </item>
     
     <item>
@@ -78,7 +147,7 @@ Map map=new HashMap(){{ put(&amp;quot;key&amp;quot;,&amp;quot;value&amp;quot;); 
     <item>
       <title>mac 安装flutter</title>
       <link>http://blog.sinowrt.cn/2020/2020-05-12t1531-how-to-install-flutter-on-mac/</link>
-      <pubDate>Tue, 12 May 2020 15:07:00 +0800</pubDate>
+      <pubDate>Tue, 12 May 2020 15:31:00 +0800</pubDate>
       
       <guid>http://blog.sinowrt.cn/2020/2020-05-12t1531-how-to-install-flutter-on-mac/</guid>
       <description>首先从官网将flutter稳定版的压缩包下载下来，然后解压到一个目录中， vi ~/.zshrc 添加以下一行 export PATH=/(解压flutter的路径)/flutter/bin:$PATH 保存然后source ~/.zshrc
@@ -108,7 +177,7 @@ mysql&amp;gt; show variables like &amp;quot;%time_zone%&amp;quot;; +------------
     <item>
       <title>docker save 和 export 命令的区别</title>
       <link>http://blog.sinowrt.cn/2020/2020-04-20t1611-the-differences-of-docker-command-save-and-export/</link>
-      <pubDate>Mon, 20 Apr 2020 15:07:00 +0800</pubDate>
+      <pubDate>Mon, 20 Apr 2020 16:11:00 +0800</pubDate>
       
       <guid>http://blog.sinowrt.cn/2020/2020-04-20t1611-the-differences-of-docker-command-save-and-export/</guid>
       <description>在一次生产环境 docker 微服务更新 中 深刻意识到docker save 和 export 的区别
@@ -184,7 +253,7 @@ C:\Program Files\VMware\VMware OVF Tool&amp;gt;ovftool.exe vi://root@***.***.***
       <pubDate>Sun, 12 Apr 2020 23:33:00 +0800</pubDate>
       
       <guid>http://blog.sinowrt.cn/2020/2020-04-12t2330-ubuntuadd-ngrok-to-supervisor/</guid>
-      <description>0x00 安装Supervis 直接执行以下命令即可安装Supervisor
+      <description>0x00 安装Supervisor 直接执行以下命令即可安装Supervisor
 sudo apt-get install supervisor  0x01 添加ngrok的supervisor配置 进入supervisor配置目录,并新建ngrok.conf文件
 cd /etc/supervisor/conf.d vi ngrok.conf  输入以下内容：
 [program:ngrok] directory = /usr/local/ngrok/ command = ngrokd -domain=&amp;quot;ngrok.******.cn&amp;quot; -httpAddr=&amp;quot;:80&amp;quot; autostart = true ; 在 supervisord 启动的时候也自动启动 startsecs = 5 ; 启动 5 秒后没有异常退出，就当作已经正常启动了 autorestart = true ; 程序异常退出后自动重启 startretries = 3 ; 启动失败自动重试次数，默认是 3 user = root ; 用哪个用户启动 redirect_stderr = true ; 把 stderr 重定向到 stdout，默认 false stdout_logfile_maxbytes = 20MB ; stdout 日志文件大小，默认 50MB stdout_logfile_backups = 20 ; stdout 日志文件备份数 stdout_logfile = /var/log/supervisor/ngrok.</description>
@@ -211,6 +280,22 @@ npm ERR! The operation was rejected by your operating system. npm ERR! It&#39;s 
       <description>今天负责交接xxl-job数据同步系统，首先当然是将项目跑起来啦
 但是项目拉下来后，配置好，运行抛了个NoClassDefFoundError异常：
 org.springframework.beans.factory.BeanCreationException: Error creating bean with name &#39;xxlJobExecutor&#39; defined in class path resource [org/springblade/job/executor/config/XxlJobConfig.class]: Invocation of init method failed; nested exception is java.lang.NoClassDefFoundError: groovy/lang/GroovyClassLoader at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1771) at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:593) at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515) at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320) at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222) at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318) at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:847) at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:877) at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549) at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:141) at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:744) at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:391) at org.springframework.boot.SpringApplication.run(SpringApplication.java:312) at org.springframework.boot.builder.SpringApplicationBuilder.run(SpringApplicationBuilder.java:140) at org.springblade.core.launch.BladeApplication.run(BladeApplication.java:49) at org.springblade.job.executor.JobApplication.main(JobApplication.java:34) Caused by: java.lang.NoClassDefFoundError: groovy/lang/GroovyClassLoader at com.xxl.job.core.glue.GlueFactory.&amp;lt;init&amp;gt;(GlueFactory.java:36) at com.xxl.job.core.glue.GlueFactory.&amp;lt;clinit&amp;gt;(GlueFactory.java:20) at com.xxl.job.core.executor.impl.XxlJobSpringExecutor.afterPropertiesSet(XxlJobSpringExecutor.java:39) at org.</description>
+    </item>
+    
+    <item>
+      <title>docker安装的mysql:5.7服务 关闭大小写敏感选项</title>
+      <link>http://blog.sinowrt.cn/2020/2020-03-28t1023-mysql-disable-case-sensitive/</link>
+      <pubDate>Sat, 28 Mar 2020 10:23:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-03-28t1023-mysql-disable-case-sensitive/</guid>
+      <description>0x00 事由 日志系统开发完成了，服务已经部署到服务器上，也该把本地数据库上传上去了，于是就在docker上面安装了mysql:5.7，但是在开发环境中mysql是不区分大小写的，而docker上面的确实默认区分大小写，所以需要关闭大小写敏感这个选项。
+0x01 步骤 首先进入容器内部
+docker exec -it 容器ID /bin/bash cd /etc/mysql/mysql.conf.d vi mysqld.cnf  发现没有vi，那就装一下吧
+apt-get update apt-get install vim  vi mysqld.cnf
+在结尾追加一行
+lower_case_table_names=1
+变成
+# Copyright (c) 2014, 2016, Oracle and/or its affiliates. All rights reserved. # # This program is free software; you can redistribute it and/or modify # it under the terms of the GNU General Public License, version 2.0, # as published by the Free Software Foundation.</description>
     </item>
     
     <item>
@@ -248,7 +333,7 @@ void realbtn_intr_callback(uint8_t gpio){ rcallback(gpio); }  软件硬件均无
 void realbtn_intr_callback(uint8_t gpio){ uint32_t now = xTaskGetTickCountFromISR(); if ((now - last_event_time)*portTICK_PERIOD_MS &amp;lt; 200) { // debounce time, ignore events return; } rcallback(gpio); last_event_time = now; }  使用了这段代码之后，按键就基本上能用了，但是时不时会出现开关客厅的荧光灯也会触发中断。
 2. 接入用电器会触发中断，导致无故开关灯。 这个问题排查了很久，从电源，到板子再回到程序，都查了一个遍，期间也踩了很多坑。
 起初怀疑电源电压不稳，造成模块重启，但是回头一想，模块重启只会熄灯，而不会开灯，电源问题排除。
-再就是怀疑板子质量，之前被我拆焊过芯片，存在虚焊的风险，而手头上还有块nodemcu，于是将程序烧到nodemcu上，问题依旧。在调试原全io引出的模块和nodemcu的过程中，踩了最大的坑就是使用了陈年面包板和杜邦线，可能时时间长了，金属触点被氧化的原因，杜邦线电阻竟然有1-2欧，导致加到模块的电压存在0.2-0.3v的压降，这就要命了。烧好程序，一上电就飞，各种奇奇怪怪的现象都出来了。还一度以为烧写次数太多，把模块给烧烂了。。。后来使用了短杜邦线，板子突然又好用了，这才引起了我的怀疑。到网上一搜，同样是哀鸿遍野。总结为两点：面包板杜邦线这东西，要测过再用，电源的检查要上心。
+再就是怀疑板子质量，之前被我拆焊过芯片，存在虚焊的风险，而手头上还有块nodemcu，于是将程序烧到nodemcu上，问题依旧。在调试原全io引出的模块和nodemcu的过程中，踩了最大的坑就是使用了陈年面包板和杜邦线，可能时时间长了，金属触点被氧化的原因，杜邦线电阻竟然有1-2欧，导致加到模块的电压存在0.2-0.3v的压降，这就要命了。烧好程序，一上电就飞，各种奇奇怪怪的现象都出来了。还一度以为烧写次数太多，把模块给烧烂了。。。后来使用了短杜邦线，板子突然又好用了，这才引起了我的怀疑。到网上一搜，同样是哀鸿遍野。总结为两点：面包板杜邦线这东西，要测过再用，电源的检查更要上心。
 在这之前，我就怀疑是电磁干扰的问题，虽然手头上没有示波器，但是对于这个的怀疑还是一直有的。也尝试过很多办法，将导线进行绞合，将模块从86盒中拆出来，问题还是存在。直到前两天收拾桌子，在排插上插入台灯的插头，房间的灯就很有节奏地，插进去就关，再插一下就灭。于是就有了测试用例。后来，偶然地将连接按键的导线都拆了，再进行测试，问题就消失了，于是确定是电磁干扰再导线中形成了噪声，而外部中断的io口十分灵敏，一旦有电平的变化，以及会响应。于是上网搜索了软件消抖的例子，最简单也最好用的实属中断延时判断了。一开始使用vTaskDelay进行延时，但是每次触发中断都会导致模块重启，看了下看门狗的输出，再结合网上的搜索结果，原来是rtos系统在中断程序中不允许使用延时api。不使用也行，那我设置while循环用xTaskGetTickCountFromISR()获取节拍，减去now，乘上节拍周期，对该时间进行判断总行了把。结果还是一触发，模块就重启。后来将xTaskGetTickCountFromISR()和now都打印出来，才了解到xTaskGetTickCountFromISR()是从节拍寄存器中取节拍数的，当前都中断了，节拍寄存器的内容当然不会发生变化了。于是我把while段给删了，留下printf打印语句，只想看看触发的tick数和节拍周期的数值是怎样的。结果误打误撞，延时判断似乎生效了。很早之前就知道将数据打印到串口会花费一定的时间，但是怎么就没想到用到这里呢！突然茅塞顿开，下面贴出代码：
 void realbtn_intr_callback(uint8_t gpio){ uint32_t now = xTaskGetTickCountFromISR(); if ((now - last_event_time)*portTICK_PERIOD_MS &amp;lt; 200) { // debounce time, ignore events return; } printf(&amp;quot;interupted--[-%d--%d]\n&amp;quot;,(now - last_event_time),portTICK_PERIOD_MS); if(gpio_read(gpio)!</description>
     </item>
@@ -394,10 +479,10 @@ ngrokd -domain=ngrok.example.com  0x02 添加域名解析 添加两条域名解�
     
     <item>
       <title>Windows 10安装Qt5.11.2</title>
-      <link>http://blog.sinowrt.cn/2018/2018-11-17t1513-install-qt5-in-win10/</link>
+      <link>http://blog.sinowrt.cn/2018/2018-11-17t1513-install-qt5-on-win10/</link>
       <pubDate>Sat, 17 Nov 2018 15:13:11 +0000</pubDate>
       
-      <guid>http://blog.sinowrt.cn/2018/2018-11-17t1513-install-qt5-in-win10/</guid>
+      <guid>http://blog.sinowrt.cn/2018/2018-11-17t1513-install-qt5-on-win10/</guid>
       <description> 0x00背景 信管作业要求用C++实现进销存系统用户交互界面以及业务逻辑 0x01 必备安装包 1.qt-opensource-windows-x86-5.11.2.exe 2.Windows SDK 0x02 下载与安装 1.Qt下载与安装  上Qt下载页面下载你系统对应的安装包  我的是Windoes 10,直接下载qt-opensource-windows-x86-5.11.2.exe 直接打开qt-opensource-windows-x86-5.11.2.exe安装程序 在第一个界面直接下一步 填写账号这一块，如果没有事先申请也可以先跳过这一步  选择安装文件夹 选择编译器，由于我的电脑装了vs2015，所以直接选了MSVC 2015 64-bit（若未安装任何编译器可以直接选择MinGW 5.3.0 32bit）  接下来一路下一步即可  2.Windows SDK下载与安装  上Microsoft开发者下载站 我的系统是Windows 10，还是按自己的系统版本进行下载  下载之后得到这样一个exe，打开按步骤安装   0x03 配置Qt 1.配置Debugger  工具——选项——kits——Debuggers——Add 填写Debugger的名称 浏览WindowsSKD的安装路径，找到你所需要的Debugger，这里我设置了Windows 10的x64的和x86的cdb.exe 2.配置kit 按根据截图按需配置就可以了   到了这步配置基本完成，但是我在编译程序的过程中遇到error link1158 无法运行rc.exe的报错 error link1158 无法运行rc.exe问题解决方法  到C:\Program Files (x86)\Windows Kits\10\bin\10.0.17763.0下的文件夹找到rc.dll和rc.exe复制到qmake文件夹下 qmake的路径可以参考截图   </description>
     </item>
     
@@ -502,6 +587,15 @@ for example cut -c 2-5 是截取了第二到第五位的字符串 即4位pid 若
  抛弃papersignals的类似方式，将esp8266作为服务端，手机作为客户端 鉴于小程序的跨平台特性，决定采用小程序的方式进行手机端开发  在搬瓦工vps搭建ngrok服务端的过程  参考这篇博客在vps上进行ngrok的编译
  该博客中遇到的问题，我全都遇到了，按照相应的步骤操作即可解决 另外在go1.4安装操作步骤混乱的时候，造成goroot路径的错乱，从而无法安装上go1.4和go1.6，只需要unset GOROOT即可 一切安装就绪，卡在ngrok的go编译上，在编译过程中报错：go build project/test: signal: killed 查阅资料，发现是vps内存太小导致的无法编译 改用centos进行编译，但是只有visualbox的centos镜像，而visualbox复制文件上面完全比不上vmware方便，所以改用ubuntu进行ngrok编译。 在ubuntu中部署ngrok编译环境的时候，使用yum命令，发现yum是centos专用的安装命令，在ubuntu上使用会导致很多问题的发生，例如yum的源不知如何配置，所以用回apt命令 由于无法使用yum，造成很多依赖包无法安装上，所以无法安装上官网下载的go1.10包 查找资料发现可以使用sudo apt-get install go-lang命令直接安装go环境，若找不到直接apt update更新源即可 开启sslocal，把ngrok项目从git中拉下来 对ngrok项目进行编译 其中最重要的是$NGROK_DOMAIN的设置，在该教程中直接关系到openssl证书的生成 编译出ngrokd服务端 丢进vps中跑一下 问题：80端口和443端口的占用 解决：启动ngrok命令中修改-httpAddr以及httpsAddr 以更改监听端口，4443为透传接入端口，更改之后直接启动即可，在浏览器中输入www.sinowrt.cn:81 出现trunnel&amp;hellip;的即表示启动成功 编译出windows的客户端，windows的客户端必须要在cmd中才能运行，新建ngrok.cfg,将内容  server_addr: &amp;quot;www.sinowrt.cn:4443&amp;quot; trust_host_root_certs: false  写入该文件中，在cmd进入该目录，敲入命令
 ngrok.exe -config=&amp;quot;ngrok.cfg&amp;quot; -subdomain=&amp;quot;abc&amp;quot; 80  连接上ngrok服务端即可将本地的80端口暴露出外网</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://blog.sinowrt.cn/1/2020-08-16t2053-synology-moments-preview-pictures-of-videos-was-damaged/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/1/2020-08-16t2053-synology-moments-preview-pictures-of-videos-was-damaged/</guid>
+      <description></description>
     </item>
     
   </channel>

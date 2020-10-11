@@ -46,7 +46,7 @@
     "articleSection" : "posts",
     "name" : "[Ubuntu]将ngrok添加到supervisor守护进程",
     "headline" : "[Ubuntu]将ngrok添加到supervisor守护进程",
-    "description" : "0x00 安装Supervis 直接执行以下命令即可安装Supervisor\nsudo apt-get install supervisor  0x01 添加ngrok的supervisor配置 进入supervisor配置目录,并新建ngrok.conf文件\ncd \/etc\/supervisor\/conf.d vi ngrok.conf  输入以下内容：\n[program:ngrok] directory = \/usr\/local\/ngrok\/ command = ngrokd -domain=\x26quot;ngrok.******.cn\x26quot; -httpAddr=\x26quot;:80\x26quot; autostart = true ; 在 supervisord 启动的时候也自动启动 startsecs = 5 ; 启动 5 秒后没有异常退出，就当作已经正常启动了 autorestart = true ; 程序异常退出后自动重启 startretries = 3 ; 启动失败自动重试次数，默认是 3 user = root ; 用哪个用户启动 redirect_stderr = true ; 把 stderr 重定向到 stdout，默认 false stdout_logfile_maxbytes = 20MB ; stdout 日志文件大小，默认 50MB stdout_logfile_backups = 20 ; stdout 日志文件备份数 stdout_logfile = \/var\/log\/supervisor\/ngrok.",
+    "description" : "0x00 安装Supervisor 直接执行以下命令即可安装Supervisor\nsudo apt-get install supervisor  0x01 添加ngrok的supervisor配置 进入supervisor配置目录,并新建ngrok.conf文件\ncd \/etc\/supervisor\/conf.d vi ngrok.conf  输入以下内容：\n[program:ngrok] directory = \/usr\/local\/ngrok\/ command = ngrokd -domain=\x26quot;ngrok.******.cn\x26quot; -httpAddr=\x26quot;:80\x26quot; autostart = true ; 在 supervisord 启动的时候也自动启动 startsecs = 5 ; 启动 5 秒后没有异常退出，就当作已经正常启动了 autorestart = true ; 程序异常退出后自动重启 startretries = 3 ; 启动失败自动重试次数，默认是 3 user = root ; 用哪个用户启动 redirect_stderr = true ; 把 stderr 重定向到 stdout，默认 false stdout_logfile_maxbytes = 20MB ; stdout 日志文件大小，默认 50MB stdout_logfile_backups = 20 ; stdout 日志文件备份数 stdout_logfile = \/var\/log\/supervisor\/ngrok.",
     "inLanguage" : "en-us",
     "author" : "sinowrt",
     "creator" : "sinowrt",
@@ -161,7 +161,7 @@ var _hmt = _hmt || [];
 
           
 
-<h2 id="0x00-安装supervis">0x00 安装Supervis</h2>
+<h2 id="0x00-安装supervisor">0x00 安装Supervisor</h2>
 
 <p>直接执行以下命令即可安装Supervisor</p>
 
@@ -201,7 +201,7 @@ stdout_logfile = /var/log/supervisor/ngrok.log
 
 <p>查看supervisor状态</p>
 
-<pre><code class="language-shell"> supervisor status
+<pre><code class="language-shell"> supervisorctl reload
 </code></pre>
 
     </div>

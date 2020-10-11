@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>wifi on Sinowrt</title>
+    <link>http://blog.sinowrt.cn/categories/wifi/</link>
+    <description>Recent content in wifi on Sinowrt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 12 Jun 2020 14:36:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.sinowrt.cn/categories/wifi/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>帮酒店修复网络</title>
+      <link>http://blog.sinowrt.cn/2020/2020-06-12t1436-help-bojue-hotel-to-repair-the-wireless/</link>
+      <pubDate>Fri, 12 Jun 2020 14:36:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-06-12t1436-help-bojue-hotel-to-repair-the-wireless/</guid>
+      <description>0x00 事由 最近在外地出差，我住的酒店环境还不错，就是我这个房间的网络down了，提示宽带密码错误。 于是我就连了楼上相同房间号的wifi。但是始终是隔着一层水泥板，信号不怎么好。于是我就想，那就进后台找一下宽带密码，修复一下我房间的wifi吧。
+0x01 步骤 首先route -n get default查看默认网关，一般这种盒子的网关就是路由的管理后台地址，得到网关地址为192.168.125.1
+sh-3.2# route -n get default route to: default destination: default mask: default gateway: 192.168.125.1 interface: en0 flags: &amp;lt;UP,GATEWAY,DONE,STATIC,PRCLONING&amp;gt; recvpipe sendpipe ssthresh rtt,msec rttvar hopcount mtu expire 0 0 0 0 0 0 1500 0  然后在浏览器输入地址192.168.125.1，打开后台登陆界面，还要输入用户名和密码
+根据经验输入最常见的用户名admin 密码admin，回车，进去了
+找到wan口设置，账户名直接能看到，密码用点号隐藏了，于是使出F12大法找到密码
+然后连到我房间这个路由器,进入后台把密码填进去就可以了，跟前面是一样的步骤，就不赘述了
+设置完保存&amp;amp;应用，等待设置生效后，ping一下看看网络通不通
+搞定！</description>
+    </item>
+    
+  </channel>
+</rss>

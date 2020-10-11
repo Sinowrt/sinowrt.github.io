@@ -46,7 +46,7 @@
     "articleSection" : "posts",
     "name" : "Windows 10安装Qt5.11.2",
     "headline" : "Windows 10安装Qt5.11.2",
-    "description" : "0x00背景 信管作业要求用C\x2b\x2b实现进销存系统用户交互界面以及业务逻辑 0x01 必备安装包 1.qt-opensource-windows-x86-5.11.2.exe 2.Windows SDK 0x02 下载与安装 1.Qt下载与安装  上Qt下载页面下载你系统对应的安装包  我的是Windoes 10,直接下载qt-opensource-windows-x86-5.11.2.exe 直接打开qt-opensource-windows-x86-5.11.2.exe安装程序 在第一个界面直接下一步 填写账号这一块，如果没有事先申请也可以先跳过这一步  选择安装文件夹 选择编译器，由于我的电脑装了vs2015，所以直接选了MSVC 2015 64-bit（若未安装任何编译器可以直接选择MinGW 5.3.0 32bit）  接下来一路下一步即可  2.Windows SDK下载与安装  上Microsoft开发者下载站 我的系统是Windows 10，还是按自己的系统版本进行下载  下载之后得到这样一个exe，打开按步骤安装   0x03 配置Qt 1.配置Debugger  工具——选项——kits——Debuggers——Add 填写Debugger的名称 浏览WindowsSKD的安装路径，找到你所需要的Debugger，这里我设置了Windows 10的x64的和x86的cdb.exe   2.配置kit  按根据截图按需配置就可以了   到了这步配置基本完成，但是我在编译程序的过程中遇到error link1158 无法运行rc.exe的报错 error link1158 无法运行rc.exe问题解决方法  到C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.17763.0下的文件夹找到rc.dll和rc.exe复制到qmake文件夹下 qmake的路径可以参考截图   ",
+    "description" : " 0x00背景 信管作业要求用C\x2b\x2b实现进销存系统用户交互界面以及业务逻辑 0x01 必备安装包 1.qt-opensource-windows-x86-5.11.2.exe 2.Windows SDK 0x02 下载与安装 1.Qt下载与安装  上Qt下载页面下载你系统对应的安装包  我的是Windoes 10,直接下载qt-opensource-windows-x86-5.11.2.exe 直接打开qt-opensource-windows-x86-5.11.2.exe安装程序 在第一个界面直接下一步 填写账号这一块，如果没有事先申请也可以先跳过这一步  选择安装文件夹 选择编译器，由于我的电脑装了vs2015，所以直接选了MSVC 2015 64-bit（若未安装任何编译器可以直接选择MinGW 5.3.0 32bit）  接下来一路下一步即可  2.Windows SDK下载与安装  上Microsoft开发者下载站 我的系统是Windows 10，还是按自己的系统版本进行下载  下载之后得到这样一个exe，打开按步骤安装   0x03 配置Qt 1.配置Debugger  工具——选项——kits——Debuggers——Add 填写Debugger的名称 浏览WindowsSKD的安装路径，找到你所需要的Debugger，这里我设置了Windows 10的x64的和x86的cdb.exe 2.配置kit 按根据截图按需配置就可以了   到了这步配置基本完成，但是我在编译程序的过程中遇到error link1158 无法运行rc.exe的报错 error link1158 无法运行rc.exe问题解决方法  到C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.17763.0下的文件夹找到rc.dll和rc.exe复制到qmake文件夹下 qmake的路径可以参考截图   ",
     "inLanguage" : "en-us",
     "author" : "SinoWRT",
     "creator" : "SinoWRT",
@@ -63,6 +63,19 @@
 </script>
 
 </head>
+
+<script async src="//cdn.busuanzi.ibruce.info/cdn/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?85719ea04c6401b98466dfdbc9399c78";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
 
   
 
@@ -148,59 +161,78 @@
           
           
 
-          <h2 id="0x00背景">0x00背景</h2>
-<h4 id="信管作业要求用c实现进销存系统用户交互界面以及业务逻辑">信管作业要求用C++实现进销存系统用户交互界面以及业务逻辑</h4>
+          
+
+<h2 id="0x00背景">0x00背景</h2>
+
+<h4 id="信管作业要求用c-实现进销存系统用户交互界面以及业务逻辑">信管作业要求用C++实现进销存系统用户交互界面以及业务逻辑</h4>
+
 <h2 id="0x01-必备安装包">0x01 必备安装包</h2>
-<h4 id="1qt-opensource-windows-x86-5112exe">1.qt-opensource-windows-x86-5.11.2.exe</h4>
-<h4 id="2windows-sdk">2.Windows SDK</h4>
+
+<h4 id="1-qt-opensource-windows-x86-5-11-2-exe">1.qt-opensource-windows-x86-5.11.2.exe</h4>
+
+<h4 id="2-windows-sdk">2.Windows SDK</h4>
+
 <h2 id="0x02-下载与安装">0x02 下载与安装</h2>
-<h4 id="1qt下载与安装">1.Qt下载与安装</h4>
+
+<h4 id="1-qt下载与安装">1.Qt下载与安装</h4>
+
 <ul>
-<li>上<a href="http://download.qt.io/archive/qt/5.11/5.11.2/" title="Qt下载页面">Qt下载页面</a>下载你系统对应的安装包
-<img src="http://pic.sinowrt.cn/images/2018-11-17T1513/1.png" alt="image"></li>
+<li>上<a href="http://download.qt.io/archive/qt/5.11/5.11.2/" title="Qt下载页面" rel="nofollow noreferrer" target="_blank">Qt下载页面</a>下载你系统对应的安装包
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-11-17T1513/1.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></li>
 <li>我的是Windoes 10,直接下载qt-opensource-windows-x86-5.11.2.exe</li>
 <li>直接打开qt-opensource-windows-x86-5.11.2.exe安装程序</li>
 <li>在第一个界面直接下一步</li>
 <li>填写账号这一块，如果没有事先申请也可以先跳过这一步
-<img src="http://pic.sinowrt.cn/images/2018-11-17T1513/2.png" alt="image"> <img src="http://pic.sinowrt.cn/images/2018-11-17T1513/3.png" alt=""></li>
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-11-17T1513/2.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure> <figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-11-17T1513/3.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></li>
 <li>选择安装文件夹</li>
 <li>选择编译器，由于我的电脑装了vs2015，所以直接选了MSVC 2015 64-bit（若未安装任何编译器可以直接选择MinGW 5.3.0 32bit）
-<img src="http://pic.sinowrt.cn/images/2018-11-17T1513/4.png" alt="image"> <img src="http://pic.sinowrt.cn/images/2018-11-17T1513/5.png" alt=""></li>
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-11-17T1513/4.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure> <figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-11-17T1513/5.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></li>
 <li>接下来一路下一步即可</li>
 </ul>
-<h4 id="2windows-sdk下载与安装">2.Windows SDK下载与安装</h4>
+
+<h4 id="2-windows-sdk下载与安装">2.Windows SDK下载与安装</h4>
+
 <ul>
-<li>上<a href="https://developer.microsoft.com/zh-cn/windows/downloads/sdk-archive">Microsoft开发者下载站</a></li>
+<li>上<a href="https://developer.microsoft.com/zh-cn/windows/downloads/sdk-archive" rel="nofollow noreferrer" target="_blank">Microsoft开发者下载站</a></li>
 <li>我的系统是Windows 10，还是按自己的系统版本进行下载
-<img src="http://pic.sinowrt.cn/images/2018-11-17T1513/6.png" alt="image"></li>
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-11-17T1513/6.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></li>
 <li>下载之后得到这样一个exe，打开按步骤安装
-<img src="http://pic.sinowrt.cn/images/2018-11-17T1513/7.png" alt=""></li>
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-11-17T1513/7.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></li>
 </ul>
+
 <h2 id="0x03-配置qt">0x03 配置Qt</h2>
-<h4 id="1配置debugger">1.配置Debugger</h4>
+
+<h4 id="1-配置debugger">1.配置Debugger</h4>
+
 <ul>
 <li>工具——选项——kits——Debuggers——Add</li>
 <li>填写Debugger的名称</li>
-<li>浏览WindowsSKD的安装路径，找到你所需要的Debugger，这里我设置了Windows 10的x64的和x86的cdb.exe
-<img src="http://pic.sinowrt.cn/images/2018-11-17T1513/8.png" alt="image"></li>
+
+<li><p>浏览WindowsSKD的安装路径，找到你所需要的Debugger，这里我设置了Windows 10的x64的和x86的cdb.exe
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-11-17T1513/8.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
+
+<h4 id="2-配置kit">2.配置kit</h4></li>
+
+<li><p>按根据截图按需配置就可以了
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-11-17T1513/10.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p></li>
 </ul>
-<h4 id="2配置kit">2.配置kit</h4>
-<ul>
-<li>按根据截图按需配置就可以了
-<img src="http://pic.sinowrt.cn/images/2018-11-17T1513/10.png" alt="image"></li>
-</ul>
-<h4 id="到了这步配置基本完成但是我在编译程序的过程中遇到error-link1158-无法运行rcexe的报错">到了这步配置基本完成，但是我在编译程序的过程中遇到error link1158 无法运行rc.exe的报错</h4>
-<h4 id="error-link1158-无法运行rcexe问题解决方法">error link1158 无法运行rc.exe问题解决方法</h4>
+
+<h4 id="到了这步配置基本完成-但是我在编译程序的过程中遇到error-link1158-无法运行rc-exe的报错">到了这步配置基本完成，但是我在编译程序的过程中遇到error link1158 无法运行rc.exe的报错</h4>
+
+<h4 id="error-link1158-无法运行rc-exe问题解决方法">error link1158 无法运行rc.exe问题解决方法</h4>
+
 <ul>
 <li>到<code>C:\Program Files (x86)\Windows Kits\10\bin\10.0.17763.0</code>下的文件夹找到rc.dll和rc.exe复制到qmake文件夹下</li>
 <li>qmake的路径可以参考截图
-<img src="http://pic.sinowrt.cn/images/2018-11-17T1513/9.png" alt="image"></li>
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-11-17T1513/9.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></li>
 </ul>
 
     </div>
-
+	
     <div class="post-copyright">
              
+			
             <p class="copyright-item">
                 <span>Author:</span>
                 <span>sinowrt </span>
@@ -212,6 +244,12 @@
                     <span>Link:</span>
                     <a href=http://blog.sinowrt.cn/2018/2018-11-17t1513-install-qt5-on-win10/>http://blog.sinowrt.cn/2018/2018-11-17t1513-install-qt5-on-win10/</span>
             </p>
+			
+			<p>
+				<span id="busuanzi_container_page_pv">
+					本文总阅读量：<span id="busuanzi_value_page_pv"></span>次
+				</span>
+			</p>
             
              
             <p class="copyright-item lincese">
@@ -262,6 +300,15 @@
          
 		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
     </div>
+	<p class="credits theme-by text-muted">
+        <span id="busuanzi_container_site_pv">
+            本站访问量：<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        &nbsp;
+        <span id="busuanzi_container_site_uv">
+            您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+        </span>
+    </p>
 </footer>
 
 

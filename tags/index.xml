@@ -6,10 +6,28 @@
     <description>Recent content in Tags on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 22 Jul 2020 12:31:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 15 Sep 2020 23:14:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ubuntu</title>
+      <link>http://blog.sinowrt.cn/tags/ubuntu/</link>
+      <pubDate>Tue, 15 Sep 2020 23:14:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/tags/ubuntu/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>interview</title>
+      <link>http://blog.sinowrt.cn/tags/interview/</link>
+      <pubDate>Tue, 04 Aug 2020 12:30:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/tags/interview/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>lxml</title>
@@ -26,6 +44,24 @@
       <pubDate>Wed, 22 Jul 2020 12:31:00 +0800</pubDate>
       
       <guid>http://blog.sinowrt.cn/tags/python-docx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>http://blog.sinowrt.cn/tags/linux/</link>
+      <pubDate>Sun, 28 Jun 2020 16:10:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>wifi</title>
+      <link>http://blog.sinowrt.cn/tags/wifi/</link>
+      <pubDate>Fri, 12 Jun 2020 14:36:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/tags/wifi/</guid>
       <description></description>
     </item>
     
@@ -120,20 +156,20 @@
     </item>
     
     <item>
+      <title>mysql</title>
+      <link>http://blog.sinowrt.cn/tags/mysql/</link>
+      <pubDate>Sat, 28 Mar 2020 10:23:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/tags/mysql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>javascript</title>
       <link>http://blog.sinowrt.cn/tags/javascript/</link>
       <pubDate>Thu, 05 Mar 2020 16:18:00 +0800</pubDate>
       
       <guid>http://blog.sinowrt.cn/tags/javascript/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Linux</title>
-      <link>http://blog.sinowrt.cn/tags/linux/</link>
-      <pubDate>Tue, 18 Feb 2020 16:02:00 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/tags/linux/</guid>
       <description></description>
     </item>
     

@@ -5,8 +5,109 @@
     <description>Recent content in Sinowrt on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 22 Jul 2020 12:31:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 15 Sep 2020 23:14:00 +0800</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>在ubuntu 16.04上安装新版v2ray服务端</title>
+      <link>http://blog.sinowrt.cn/2020/2020-09-15t2314-how-to-install-the-updated-v2ray-on-ubuntu-16.04/</link>
+      <pubDate>Tue, 15 Sep 2020 23:14:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-09-15t2314-how-to-install-the-updated-v2ray-on-ubuntu-16.04/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>新浪爱问一面凉经</title>
+      <link>http://blog.sinowrt.cn/2020/2020-08-04t1230-sina-iask-interview/</link>
+      <pubDate>Tue, 04 Aug 2020 12:30:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-08-04t1230-sina-iask-interview/</guid>
+      <description>
+
+&lt;h2 id=&#34;新浪爱问一面凉经&#34;&gt;新浪爱问一面凉经&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;早上九点多就到超多维大厦了，还好一楼有个星巴克，抓紧时间复习了垃圾回收算法，三次握手，NIO相关知识，把自我介绍排了一遍。&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;10:21上楼，首先在前台填了面试信息表，等了十几分钟后，被一个看发量就知道是一个资深技术的小哥带进去会议室了&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;照例自我介绍了一波，然后小哥开始问问题：现在有一个新闻推送系统，每天由专人不定时录入新闻，现在需要将这些消息推送给用户，设计一个推送模块，在用户每次刷新的时候，用户都能收到固定数量的新闻，当然新闻可能有些是最新的，有些是比较旧的，如何保证用户在每次刷新的时候都能收到一部分新闻并且保证这些新闻不重复？&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;答：先是把数据库里面的新闻存储结构描述了一下，将每次查询到的新闻id，用户id关联存到redis，用户查询的时候，现在redis查询该用户所查询过的新闻id，然后再到数据库里面将redis查询的结果作为查询条件，排除掉已查询过的新闻，再返回新闻列表。&lt;/p&gt;
+
+&lt;p&gt;问：这样的话又一个问题，redis里面的数据要持久化，并且随着用户查询的次数增多，数据量也越来越大，这样要怎样处理呢。&lt;/p&gt;
+
+&lt;p&gt;答：这样的话可以在数据库里面新建一个表，将每次的查询的新闻id以及用户id关联一下，然后每次再进行连表查询。&lt;/p&gt;
+
+&lt;p&gt;问：这样还是没有从根本上解决问题，随着用户的请求越来越多，该表的数据量也越来越大，性能也越来越慢。&lt;/p&gt;
+
+&lt;p&gt;答：可以引入消息队列，将用户归类，并且对每一类用户的请求，将这一批请求放到消息队列，用户可对这些消息进行重复消费。&lt;/p&gt;
+
+&lt;p&gt;问：这样处理确实可以缓解性能压力，但是还是不是最优方案。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;算了，我再问你一些问题吧，在redis高并发的情况下，缓存失效应该怎么处理呢？（不好意思没了解过）&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;你做的系统最大的并发量有多少（最多应该是光大的，并发量大概在一千左右）&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;hashmap是线程安全的还是线程不安全的？为什么线程不安全？&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;答：线程不安全，因为hashmap不具备可见性，当一个线程在hashmap插入了一个数据之后，但这个更新只在cpu高速缓存中体现，而并未即使更新到内存中，所以这就导致另一个线程在访问hashmap的时候读不到该值，所以是线程不安全的。&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;使用过事务吗，事务有哪几种传播方式（7种，具体名称记不住了）&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;给了两个程序段，问testA方法调用会不会导致事务回滚，testB调用会不会导致事务回滚？
+```java
+@Service
+public class PersonService{
+@trasactional()
+public int save(String id){
+    Person person=new Person();
+    person.setId(id);
+    dao.save(person);
+    throw new Exception(&amp;ldquo;&amp;rdquo;);
+}&lt;/p&gt;
+
+&lt;p&gt;//这个不会导致事务回滚，因为没用加入到spring的AOP
+public void testA(){
+    this.save(&amp;ldquo;000&amp;rdquo;);
+}
+}&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;public class testB{
+    @Autowire
+    PersonService personService;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;//这个会导致回滚
+public void testB(){
+    personService.save(&amp;quot;000&amp;quot;);
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;}
+```&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;我说如果trasactional的rollback为true的话，两个都会回滚，否则两个都不回滚。(面试官有解释，见注释，解释完之后，就完了。。。)&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;我还是tyts了 :(&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>centos7 安装 ftp 服务 vsftpd</title>
+      <link>http://blog.sinowrt.cn/2020/2020-07-21t1039-setup-vsftpd-on-centos7/</link>
+      <pubDate>Wed, 22 Jul 2020 12:31:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-07-21t1039-setup-vsftpd-on-centos7/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>python3.8 在安装 python-docx 时提示未安装libxml2</title>
@@ -39,6 +140,63 @@ Successfully installed lxml-4.5.2
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;安装成功。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>一条命令｜康康谁动了我的vps</title>
+      <link>http://blog.sinowrt.cn/2020/2020-06-28t1610-find-out-the-attacker-who-attacked-your-vps/</link>
+      <pubDate>Sun, 28 Jun 2020 16:10:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-06-28t1610-find-out-the-attacker-who-attacked-your-vps/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;今天无意中发现了一个非常有用的命令&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code&gt;lastb ss -t&lt;/code&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>帮酒店修复网络</title>
+      <link>http://blog.sinowrt.cn/2020/2020-06-12t1436-help-bojue-hotel-to-repair-the-wireless/</link>
+      <pubDate>Fri, 12 Jun 2020 14:36:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-06-12t1436-help-bojue-hotel-to-repair-the-wireless/</guid>
+      <description>
+
+&lt;h3 id=&#34;0x00-事由&#34;&gt;0x00 事由&lt;/h3&gt;
+
+&lt;p&gt;最近在外地出差，我住的酒店环境还不错，就是我这个房间的网络down了，提示宽带密码错误。
+&lt;img src=&#34;http://pic.sinowrt.cn/image/2020-06-14T1436/wrong%20password.png&#34; alt=&#34;image&#34; /&gt;
+于是我就连了楼上相同房间号的wifi。但是始终是隔着一层水泥板，信号不怎么好。于是我就想，那就进后台找一下宽带密码，修复一下我房间的wifi吧。&lt;/p&gt;
+
+&lt;h3 id=&#34;0x01-步骤&#34;&gt;0x01 步骤&lt;/h3&gt;
+
+&lt;p&gt;首先route -n get default查看默认网关，一般这种盒子的网关就是路由的管理后台地址，得到网关地址为192.168.125.1&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;sh-3.2# route -n get default 
+   route to: default
+destination: default
+       mask: default
+    gateway: 192.168.125.1
+  interface: en0
+      flags: &amp;lt;UP,GATEWAY,DONE,STATIC,PRCLONING&amp;gt;
+ recvpipe  sendpipe  ssthresh  rtt,msec    rttvar  hopcount      mtu     expire
+       0         0         0         0         0         0      1500         0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;然后在浏览器输入地址192.168.125.1，打开后台登陆界面，还要输入用户名和密码&lt;/p&gt;
+
+&lt;p&gt;根据经验输入最常见的用户名admin 密码admin，回车，进去了&lt;/p&gt;
+
+&lt;p&gt;找到wan口设置，账户名直接能看到，密码用点号隐藏了，于是使出F12大法找到密码&lt;/p&gt;
+
+&lt;p&gt;然后连到我房间这个路由器,进入后台把密码填进去就可以了，跟前面是一样的步骤，就不赘述了&lt;/p&gt;
+
+&lt;p&gt;设置完保存&amp;amp;应用，等待设置生效后，ping一下看看网络通不通&lt;/p&gt;
+
+&lt;p&gt;搞定！&lt;/p&gt;
 </description>
     </item>
     
@@ -142,7 +300,7 @@ Successfully installed lxml-4.5.2
     <item>
       <title>mac 安装flutter</title>
       <link>http://blog.sinowrt.cn/2020/2020-05-12t1531-how-to-install-flutter-on-mac/</link>
-      <pubDate>Tue, 12 May 2020 15:07:00 +0800</pubDate>
+      <pubDate>Tue, 12 May 2020 15:31:00 +0800</pubDate>
       
       <guid>http://blog.sinowrt.cn/2020/2020-05-12t1531-how-to-install-flutter-on-mac/</guid>
       <description>&lt;p&gt;首先从官网将flutter稳定版的压缩包下载下来，然后解压到一个目录中，
@@ -229,7 +387,7 @@ set time_zone = &#39;+8:00&#39;;
     <item>
       <title>docker save 和 export 命令的区别</title>
       <link>http://blog.sinowrt.cn/2020/2020-04-20t1611-the-differences-of-docker-command-save-and-export/</link>
-      <pubDate>Mon, 20 Apr 2020 15:07:00 +0800</pubDate>
+      <pubDate>Mon, 20 Apr 2020 16:11:00 +0800</pubDate>
       
       <guid>http://blog.sinowrt.cn/2020/2020-04-20t1611-the-differences-of-docker-command-save-and-export/</guid>
       <description>
@@ -304,228 +462,6 @@ set time_zone = &#39;+8:00&#39;;
 &lt;p&gt;启动命令可以在原宿主机上使用&lt;code&gt;docker inspect 容器ID&lt;/code&gt;查看，并根据需求调整启动参数&lt;/p&gt;
 
 &lt;p&gt;至此，容器的迁移工作顺利完成。&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>esxi web client导出虚拟机 中断 报网络错误</title>
-      <link>http://blog.sinowrt.cn/2020/2020-04-16t1619-esxi-network-error-while-exporting-esxi-virtual-machine/</link>
-      <pubDate>Thu, 16 Apr 2020 16:19:00 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2020/2020-04-16t1619-esxi-network-error-while-exporting-esxi-virtual-machine/</guid>
-      <description>&lt;p&gt;今天使用esxi的web client导出虚拟机时，总是在导出到20G左右的时候中断，报网络异常，于是上vmware官网找有没有导出虚拟机的工具&lt;/p&gt;
-
-&lt;p&gt;发现 &lt;a href=&#34;https://my.vmware.com/cn/web/vmware/details?downloadGroup=OVFTOOL430U2&amp;amp;productId=614&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;OVFTOOL&lt;/a&gt;这个小工具，点击链接下载下来（需要注册账号才能下载），安装&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;打开cmd进入安装文件夹，执行&lt;code&gt;ovftool.exe vi://用户名@esxi的ip/虚拟机名 K:/ovf&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;如果遇到 &lt;code&gt;Fault cause: vim.fault.InvalidState&lt;/code&gt; 错误，请确认虚拟机为关机状态&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;运行结果如下所示&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-dos&#34;&gt;C:\Program Files\VMware\VMware OVF Tool&amp;gt;ovftool.exe vi://root@***.***.***.***/docker K:/ovf
-Enter login information for source vi://***.***.***.***/
-Username: root
-Password: ***********
-Opening VI source: vi://root@***.***.***.***:443/docker
-Opening VI source: vi://root@***.***.***.***:443/docker
-Opening OVF target: K:/ovf
-Writing OVF package: K:/ovf\docker\docker.ovf
-Disk progress: 3%
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;这个小工具效果非常好，不用担心网络错误问题，进度也能看到，可以打9分&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>maven问题汇总</title>
-      <link>http://blog.sinowrt.cn/2020/2020-04-16t1023-problems-i-meet-while-using-maven/</link>
-      <pubDate>Thu, 16 Apr 2020 10:23:00 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2020/2020-04-16t1023-problems-i-meet-while-using-maven/</guid>
-      <description>
-
-&lt;h3 id=&#34;今天使用maven打包上传docker时-发现许多问题-就此记录一下&#34;&gt;今天使用maven打包上传docker时，发现许多问题，就此记录一下：&lt;/h3&gt;
-
-&lt;p&gt;1.maven打包报多个main方法的问题&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:2.1.12.RELEASE:repackage (default) on project blade-electronic-library: Execution default of goal org.springframework.boot:spring-boot-maven-plugin:2.1.12.RELEASE:repackage failed: Unable to find a single main class from the following candidates [org.springblade.library.ElectronicLibraryApplication, org.springblade.library.controller.BookUploadController, org.springblade.library.utils.BookmarksUtils, org.springblade.library.utils.KeyContextUtils, org.springblade.library.service.impl.BookReadRankServiceImpl] -&amp;gt; [Help 1]
-[ERROR] 
-[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
-[ERROR] Re-run Maven using the -X switch to enable full debug logging.
-[ERROR] 
-[ERROR] For more information about the errors and possible solutions, please read the following articles:
-[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/PluginExecutionException
-[ERROR] 
-[ERROR] After correcting the problems, you can resume the build with the command
-[ERROR]   mvn &amp;lt;goals&amp;gt; -rf :blade-electronic-library
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;解决办法：注释掉除了启动类main方法的其余所有main方法&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;2.打包某子模块的时候提示模块缺失&lt;/p&gt;
-
-&lt;p&gt;将根模块依次进行clean compile package install后，再打包子模块&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;3.工程中引入别的模块时，由于在别的模块中定义了版本号property，导致无法引入模块的错误&lt;code&gt;Maven: Failed to read artifact descriptor&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;解决办法，在别的模块的工程中的pom.xml中找到该property，并在根模块添加该property，重新并打包&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;4.package | install | deploy的区别&lt;br /&gt;
-* package命令完成了项目编译、单元测试、打包功能，但没有把打好的可执行jar包（war包或其它形式的包）布署到本地maven仓库和远程maven私服仓库&lt;br /&gt;
-* install命令完成了项目编译、单元测试、打包功能，同时把打好的可执行jar包（war包或其它形式的包）布署到本地maven仓库，但没有布署到远程maven私服仓库&lt;br /&gt;
-* deploy命令完成了项目编译、单元测试、打包功能，同时把打好的可执行jar包（war包或其它形式的包）布署到本地maven仓库和远程maven私服仓库&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>[Ubuntu]将ngrok添加到supervisor守护进程</title>
-      <link>http://blog.sinowrt.cn/2020/2020-04-12t2330-ubuntuadd-ngrok-to-supervisor/</link>
-      <pubDate>Sun, 12 Apr 2020 23:33:00 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2020/2020-04-12t2330-ubuntuadd-ngrok-to-supervisor/</guid>
-      <description>
-
-&lt;h2 id=&#34;0x00-安装supervis&#34;&gt;0x00 安装Supervis&lt;/h2&gt;
-
-&lt;p&gt;直接执行以下命令即可安装Supervisor&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;sudo apt-get install supervisor 
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;0x01-添加ngrok的supervisor配置&#34;&gt;0x01 添加ngrok的supervisor配置&lt;/h2&gt;
-
-&lt;p&gt;进入supervisor配置目录,并新建ngrok.conf文件&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;cd /etc/supervisor/conf.d
-vi ngrok.conf
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;输入以下内容：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-conf&#34;&gt;[program:ngrok]
-directory = /usr/local/ngrok/
-command = ngrokd -domain=&amp;quot;ngrok.******.cn&amp;quot; -httpAddr=&amp;quot;:80&amp;quot;
-autostart = true     ; 在 supervisord 启动的时候也自动启动
-startsecs = 5        ; 启动 5 秒后没有异常退出，就当作已经正常启动了
-autorestart = true   ; 程序异常退出后自动重启
-startretries = 3     ; 启动失败自动重试次数，默认是 3
-user = root          ; 用哪个用户启动
-redirect_stderr = true  ; 把 stderr 重定向到 stdout，默认 false
-stdout_logfile_maxbytes = 20MB  ; stdout 日志文件大小，默认 50MB
-stdout_logfile_backups = 20     ; stdout 日志文件备份数
-stdout_logfile = /var/log/supervisor/ngrok.log
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;0x02-启动supervisor&#34;&gt;0x02 启动supervisor&lt;/h2&gt;
-
-&lt;p&gt;重新加载配置，即可启动supervisor&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt; supervisor reload
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;查看supervisor状态&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt; supervisor status
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>npm 报错 EPERM: operation not permitted</title>
-      <link>http://blog.sinowrt.cn/2020/2020-04-10t1001-npm-eperm-operation-not-permitted/</link>
-      <pubDate>Fri, 10 Apr 2020 10:01:00 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2020/2020-04-10t1001-npm-eperm-operation-not-permitted/</guid>
-      <description>&lt;p&gt;昨天从拉了个前端项目下来，用IDEA打开，例行npm install，安装到一般报错&lt;code&gt;EPERM: operation not permitted&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;按网上的删除package-lock.json后，情况依旧&lt;/p&gt;
-
-&lt;p&gt;以为是管理员权限问题，于是&lt;code&gt;win + x&lt;/code&gt;再按&lt;code&gt;a&lt;/code&gt;调出powershell，进入项目目录，执行npm install，报&lt;code&gt;zlib: unexpected end of file&lt;/code&gt;，于是执行npm cache clean -force ，报错&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;npm ERR! The operation was rejected by your operating system.
-npm ERR! It&#39;s possible that the file was already in use (by a text editor or antivirus),
-npm ERR! or that you lack permissions to access it.
-npm ERR!
-npm ERR! If you believe this might be a permissions issue, please double-check the
-npm ERR! permissions of the file and its containing directories, or try running
-npm ERR! the command again as root/Administrator (though this is not recommended).
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;那我直接打开资源管理器，删除这个文件不就好了，可是删不掉啊，Access is denied，查看文件属性-安全-高级，Unable to display current owner. 连文件所属用户都看不到啊！&lt;/p&gt;
-
-&lt;p&gt;后来我甚至登录Administrator账户，都删不了&lt;/p&gt;
-
-&lt;p&gt;后来想了想，会不会是IDEA占用的问题呢，直接把IDEA关了，再&lt;code&gt;npm cache clean -force&lt;/code&gt;，提示npm-cache文件夹busy，命令提示行退出该目录，再执行一次，竟然好了？！&lt;/p&gt;
-
-&lt;p&gt;然后&lt;code&gt;npm install&lt;/code&gt;，竟然一切正常？！跟我闹着玩呢？&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>xxl-job 启动报异常 java.lang.NoClassDefFoundError: groovy/lang/GroovyClassLoader</title>
-      <link>http://blog.sinowrt.cn/2020/2020-04-03t0853-xxl-job-groovyclassloader-noclassdeffounderror-exception/</link>
-      <pubDate>Fri, 03 Apr 2020 08:53:27 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2020/2020-04-03t0853-xxl-job-groovyclassloader-noclassdeffounderror-exception/</guid>
-      <description>&lt;p&gt;今天负责交接xxl-job数据同步系统，首先当然是将项目跑起来啦&lt;/p&gt;
-
-&lt;p&gt;但是项目拉下来后，配置好，运行抛了个NoClassDefFoundError异常：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;org.springframework.beans.factory.BeanCreationException: Error creating bean with name &#39;xxlJobExecutor&#39; defined in class path resource [org/springblade/job/executor/config/XxlJobConfig.class]: Invocation of init method failed; nested exception is java.lang.NoClassDefFoundError: groovy/lang/GroovyClassLoader
-    at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1771)
-    at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:593)
-    at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
-    at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
-    at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
-    at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
-    at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
-    at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:847)
-    at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:877)
-    at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:549)
-    at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:141)
-    at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:744)
-    at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:391)
-    at org.springframework.boot.SpringApplication.run(SpringApplication.java:312)
-    at org.springframework.boot.builder.SpringApplicationBuilder.run(SpringApplicationBuilder.java:140)
-    at org.springblade.core.launch.BladeApplication.run(BladeApplication.java:49)
-    at org.springblade.job.executor.JobApplication.main(JobApplication.java:34)
-Caused by: java.lang.NoClassDefFoundError: groovy/lang/GroovyClassLoader
-    at com.xxl.job.core.glue.GlueFactory.&amp;lt;init&amp;gt;(GlueFactory.java:36)
-    at com.xxl.job.core.glue.GlueFactory.&amp;lt;clinit&amp;gt;(GlueFactory.java:20)
-    at com.xxl.job.core.executor.impl.XxlJobSpringExecutor.afterPropertiesSet(XxlJobSpringExecutor.java:39)
-    at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1830)
-    at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1767)
-    ... 16 common frames omitted
-Caused by: java.lang.ClassNotFoundException: groovy.lang.GroovyClassLoader
-    at java.net.URLClassLoader.findClass(URLClassLoader.java:381)
-    at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
-    at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:335)
-    at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
-    ... 21 common frames omitted
-
-
-Process finished with exit code 1
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;添加如下依赖，问题解决&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-xml&#34;&gt;&amp;lt;dependency&amp;gt;
-    &amp;lt;groupId&amp;gt;org.codehaus.groovy&amp;lt;/groupId&amp;gt;
-    &amp;lt;artifactId&amp;gt;groovy-all&amp;lt;/artifactId&amp;gt;
-    &amp;lt;version&amp;gt;2.5.2&amp;lt;/version&amp;gt;
-    &amp;lt;type&amp;gt;pom&amp;lt;/type&amp;gt;
-&amp;lt;/dependency&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
