@@ -12,12 +12,18 @@
     
     
     <item>
-      <title>在ubuntu 16.04上安装新版v2ray服务端</title>
-      <link>http://blog.sinowrt.cn/2020/2020-09-15t2314-how-to-install-the-updated-v2ray-on-ubuntu-16.04/</link>
+      <title>安装新版v2ray服务端</title>
+      <link>http://blog.sinowrt.cn/2020/2020-09-15t2314-how-to-install-the-lasted-v2ray/</link>
       <pubDate>Tue, 15 Sep 2020 23:14:00 +0800</pubDate>
       
-      <guid>http://blog.sinowrt.cn/2020/2020-09-15t2314-how-to-install-the-updated-v2ray-on-ubuntu-16.04/</guid>
-      <description></description>
+      <guid>http://blog.sinowrt.cn/2020/2020-09-15t2314-how-to-install-the-lasted-v2ray/</guid>
+      <description>0x00 问题 在使用旧教程安装v2ray的时候，出现如下错误提示
+ERROR: This script has been DISCARDED, please switch to fhs-install-v2ray project. HOW TO USE: https://github.com/v2fly/fhs-install-v2ray TO MIGRATE: https://github.com/v2fly/fhs-install-v2ray/wiki/Migrate-from-the-old-script-to-this  意思是旧版的安装脚本已经停止使用，可以到https://github.com/v2fly/fhs-install-v2ray查看新脚本的使用说明
+0x01 安装步骤 1.使用新脚本安装v2ray bash &amp;lt;(curl -L https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh)
+2.配置config.json文件 需要注意的是，新版的config.json文件默认路径从\etc\v2ray\config.json换到了\usr\local\etc\v2ray\config.json
+由于我在本地备份又config.json，就不再重复配置了
+将自带的config.json重命名为config.json.bak，留个备份，然后用xftp把本地的config.json上传到服务器对应目录中
+要了解如何配置config.json的可以参考旧教程里面的服务端配置模板</description>
     </item>
     
     <item>

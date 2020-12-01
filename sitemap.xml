@@ -4,19 +4,7 @@
     <url>
       <loc>http://blog.sinowrt.cn/categories/</loc>
       
-      <lastmod>2020-09-15T23:14:00+08:00</lastmod>
-      
-      
-      
-      <priority>0</priority>
-      
-      
-    </url>
-  
-    <url>
-      <loc>http://blog.sinowrt.cn/categories/linux/</loc>
-      
-      <lastmod>2020-09-15T23:14:00+08:00</lastmod>
+      <lastmod>2020-12-01T22:02:00+08:00</lastmod>
       
       
       
@@ -28,7 +16,7 @@
     <url>
       <loc>http://blog.sinowrt.cn/posts/</loc>
       
-      <lastmod>2020-09-15T23:14:00+08:00</lastmod>
+      <lastmod>2020-12-01T22:02:00+08:00</lastmod>
       
       
       
@@ -40,7 +28,7 @@
     <url>
       <loc>http://blog.sinowrt.cn/</loc>
       
-      <lastmod>2020-09-15T23:14:00+08:00</lastmod>
+      <lastmod>2020-12-01T22:02:00+08:00</lastmod>
       
       
       
@@ -51,6 +39,52 @@
   
     <url>
       <loc>http://blog.sinowrt.cn/tags/</loc>
+      
+      <lastmod>2020-12-01T22:02:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/v2ray/</loc>
+      
+      <lastmod>2020-12-01T22:02:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/categories/v2ray/</loc>
+      
+      <lastmod>2020-12-01T22:02:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/2020/2020-12-01t2202-how-to-generate-vmess-urls-and-public-as-subscription/</loc>
+      
+      <lastmod>2020-12-01T22:02:00+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/categories/linux/</loc>
       
       <lastmod>2020-09-15T23:14:00+08:00</lastmod>
       
@@ -74,7 +108,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/2020/2020-09-15t2314-how-to-install-the-updated-v2ray-on-ubuntu-16.04/</loc>
+      <loc>http://blog.sinowrt.cn/2020/2020-09-15t2314-how-to-install-the-lasted-v2ray/</loc>
       
       <lastmod>2020-09-15T23:14:00+08:00</lastmod>
       
@@ -84,13 +118,35 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/interview/</loc>
+      <loc>http://blog.sinowrt.cn/tags/synology/</loc>
       
-      <lastmod>2020-08-04T12:30:00+08:00</lastmod>
+      <lastmod>2020-08-16T14:27:00+08:00</lastmod>
       
       
       
       <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/categories/synology/</loc>
+      
+      <lastmod>2020-08-16T14:27:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/2020/2020-08-16t2053-synology-moments-preview-pictures-of-videos-was-damaged/</loc>
+      
+      <lastmod>2020-08-16T14:27:00+08:00</lastmod>
+      
+      
       
       
     </url>
@@ -108,19 +164,21 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/2020/2020-08-04t1230-sina-iask-interview/</loc>
+      <loc>http://blog.sinowrt.cn/categories/interview/</loc>
       
       <lastmod>2020-08-04T12:30:00+08:00</lastmod>
       
       
       
+      <priority>0</priority>
+      
       
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/2020/2020-07-21t1039-setup-vsftpd-on-centos7/</loc>
+      <loc>http://blog.sinowrt.cn/2020/2020-08-04t1230-sina-iask-interview/</loc>
       
-      <lastmod>2020-07-22T12:31:00+08:00</lastmod>
+      <lastmod>2020-08-04T12:30:00+08:00</lastmod>
       
       
       
@@ -196,7 +254,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/wifi/</loc>
+      <loc>http://blog.sinowrt.cn/tags/wifi/</loc>
       
       <lastmod>2020-06-12T14:36:00+08:00</lastmod>
       
@@ -208,7 +266,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/tags/wifi/</loc>
+      <loc>http://blog.sinowrt.cn/categories/wifi/</loc>
       
       <lastmod>2020-06-12T14:36:00+08:00</lastmod>
       
@@ -250,18 +308,6 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/macbook/</loc>
-      
-      <lastmod>2020-06-10T14:27:00+08:00</lastmod>
-      
-      
-      
-      <priority>0</priority>
-      
-      
-    </url>
-  
-    <url>
       <loc>http://blog.sinowrt.cn/tags/macbook/</loc>
       
       <lastmod>2020-06-10T14:27:00+08:00</lastmod>
@@ -274,7 +320,19 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/chrome/</loc>
+      <loc>http://blog.sinowrt.cn/categories/macbook/</loc>
+      
+      <lastmod>2020-06-10T14:27:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/chrome/</loc>
       
       <lastmod>2020-05-27T13:34:00+08:00</lastmod>
       
@@ -286,7 +344,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/tags/chrome/</loc>
+      <loc>http://blog.sinowrt.cn/categories/chrome/</loc>
       
       <lastmod>2020-05-27T13:34:00+08:00</lastmod>
       
@@ -352,7 +410,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/docker/</loc>
+      <loc>http://blog.sinowrt.cn/tags/docker/</loc>
       
       <lastmod>2020-04-21T10:11:00+08:00</lastmod>
       
@@ -364,7 +422,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/tags/docker/</loc>
+      <loc>http://blog.sinowrt.cn/categories/docker/</loc>
       
       <lastmod>2020-04-21T10:11:00+08:00</lastmod>
       
@@ -428,7 +486,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/esxi/</loc>
+      <loc>http://blog.sinowrt.cn/tags/esxi/</loc>
       
       <lastmod>2020-04-16T16:19:00+08:00</lastmod>
       
@@ -440,7 +498,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/tags/esxi/</loc>
+      <loc>http://blog.sinowrt.cn/categories/esxi/</loc>
       
       <lastmod>2020-04-16T16:19:00+08:00</lastmod>
       
@@ -462,7 +520,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/maven/</loc>
+      <loc>http://blog.sinowrt.cn/tags/maven/</loc>
       
       <lastmod>2020-04-16T10:23:00+08:00</lastmod>
       
@@ -474,7 +532,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/tags/maven/</loc>
+      <loc>http://blog.sinowrt.cn/categories/maven/</loc>
       
       <lastmod>2020-04-16T10:23:00+08:00</lastmod>
       
@@ -506,7 +564,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/ngrok/</loc>
+      <loc>http://blog.sinowrt.cn/tags/ngrok/</loc>
       
       <lastmod>2020-04-12T23:33:00+08:00</lastmod>
       
@@ -518,7 +576,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/tags/ngrok/</loc>
+      <loc>http://blog.sinowrt.cn/categories/ngrok/</loc>
       
       <lastmod>2020-04-12T23:33:00+08:00</lastmod>
       
@@ -596,18 +654,6 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/mysql/</loc>
-      
-      <lastmod>2020-03-28T10:23:00+08:00</lastmod>
-      
-      
-      
-      <priority>0</priority>
-      
-      
-    </url>
-  
-    <url>
       <loc>http://blog.sinowrt.cn/tags/mysql/</loc>
       
       <lastmod>2020-03-28T10:23:00+08:00</lastmod>
@@ -620,7 +666,19 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/javascript/</loc>
+      <loc>http://blog.sinowrt.cn/categories/mysql/</loc>
+      
+      <lastmod>2020-03-28T10:23:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/javascript/</loc>
       
       <lastmod>2020-03-05T16:18:00+08:00</lastmod>
       
@@ -632,7 +690,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/tags/javascript/</loc>
+      <loc>http://blog.sinowrt.cn/categories/javascript/</loc>
       
       <lastmod>2020-03-05T16:18:00+08:00</lastmod>
       
@@ -766,7 +824,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/%E8%B7%AF%E7%94%B1/</loc>
+      <loc>http://blog.sinowrt.cn/tags/%E8%B7%AF%E7%94%B1/</loc>
       
       <lastmod>2019-11-29T00:28:00+08:00</lastmod>
       
@@ -778,7 +836,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/tags/%E8%B7%AF%E7%94%B1/</loc>
+      <loc>http://blog.sinowrt.cn/categories/%E8%B7%AF%E7%94%B1/</loc>
       
       <lastmod>2019-11-29T00:28:00+08:00</lastmod>
       
@@ -962,7 +1020,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/vpn/</loc>
+      <loc>http://blog.sinowrt.cn/tags/vpn/</loc>
       
       <lastmod>2019-06-13T13:02:08+08:00</lastmod>
       
@@ -974,7 +1032,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/tags/vpn/</loc>
+      <loc>http://blog.sinowrt.cn/categories/vpn/</loc>
       
       <lastmod>2019-06-13T13:02:08+08:00</lastmod>
       
@@ -1211,16 +1269,6 @@
       <lastmod>2018-10-16T08:11:56+00:00</lastmod>
       
       
-      
-      
-    </url>
-  
-    <url>
-      <loc>http://blog.sinowrt.cn/1/2020-08-16t2053-synology-moments-preview-pictures-of-videos-was-damaged/</loc>
-      
-      
-      
-      <priority>0</priority>
       
       
     </url>

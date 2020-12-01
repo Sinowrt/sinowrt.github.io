@@ -6,10 +6,19 @@
     <description>Recent content in Tags on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 15 Sep 2020 23:14:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 01 Dec 2020 22:02:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>v2ray</title>
+      <link>http://blog.sinowrt.cn/tags/v2ray/</link>
+      <pubDate>Tue, 01 Dec 2020 22:02:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/tags/v2ray/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>ubuntu</title>
@@ -17,6 +26,15 @@
       <pubDate>Tue, 15 Sep 2020 23:14:00 +0800</pubDate>
       
       <guid>http://blog.sinowrt.cn/tags/ubuntu/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>synology</title>
+      <link>http://blog.sinowrt.cn/tags/synology/</link>
+      <pubDate>Sun, 16 Aug 2020 14:27:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/tags/synology/</guid>
       <description></description>
     </item>
     

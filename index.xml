@@ -5,16 +5,155 @@
     <description>Recent content in Sinowrt on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 15 Sep 2020 23:14:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 01 Dec 2020 22:02:00 +0800</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>在ubuntu 16.04上安装新版v2ray服务端</title>
-      <link>http://blog.sinowrt.cn/2020/2020-09-15t2314-how-to-install-the-updated-v2ray-on-ubuntu-16.04/</link>
+      <title>如何生成VMESS URL并发布订阅</title>
+      <link>http://blog.sinowrt.cn/2020/2020-12-01t2202-how-to-generate-vmess-urls-and-public-as-subscription/</link>
+      <pubDate>Tue, 01 Dec 2020 22:02:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-12-01t2202-how-to-generate-vmess-urls-and-public-as-subscription/</guid>
+      <description>
+
+&lt;h2 id=&#34;0x00-获得vmess-url&#34;&gt;0x00 获得VMESS URL&lt;/h2&gt;
+
+&lt;p&gt;我使用的是V2rayN客户端，直接全选所有节点，然后&lt;code&gt;批量导出分享URL到剪切板&lt;/code&gt;即可&lt;/p&gt;
+
+&lt;h2 id=&#34;0x01-发布订阅信息&#34;&gt;0x01 发布订阅信息&lt;/h2&gt;
+
+&lt;p&gt;订阅信息实际上就是将VMESS URL（每个URL以回车符分隔）进行Base64加密，得到密文做成纯text网页，随便丢到一个安装了apache或nginx服务的服务器即可&lt;/p&gt;
+
+&lt;p&gt;测试方法：在浏览器输入该订阅的网址，能访问到完整的Base64密文即可&lt;/p&gt;
+
+&lt;h2 id=&#34;0x02-发布quantumult订阅信息&#34;&gt;0x02 发布quantumult订阅信息&lt;/h2&gt;
+
+&lt;p&gt;quantumult的订阅信息格式跟V2rayN的不太一样，在这里我还踩了一个小坑，且听我详细道来&lt;/p&gt;
+
+&lt;p&gt;这里要用到一个&lt;a href=&#34;https://quan.eicky.com/&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;小工具&lt;/a&gt;，将V2rayN的vmess url转成符合Quantumult格式的vmess url&lt;/p&gt;
+
+&lt;p&gt;这是示例的vmess url
+&lt;code&gt;vmess://ew0KICAidiI6ICIyIiwNCiAgInBzIjogIuekuuS+iyIsDQogICJhZGQiOiAiMTkyLjE2OC4xLjEiLA0KICAicG9ydCI6ICI0MzIxIiwNCiAgImlkIjogImQ3NzFkODlhLTliZWQtNDc2Ny1hNjlkLTE5NjJkY2MyZTY3YyIsDQogICJhaWQiOiAiNjQiLA0KICAibmV0IjogIndzIiwNCiAgInR5cGUiOiAibm9uZSIsDQogICJob3N0IjogIiIsDQogICJwYXRoIjogIi9leGFtcGxlIiwNCiAgInRscyI6ICIiDQp9&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;使用小工具转换之后的Quantumult vmess url为&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;vmess://56S65L6LID0gdm1lc3MsMTkyLjE2OC4xLjEsNDMyMSxub25lLCJkNzcxZDg5YS05YmVkLTQ3NjctYTY5ZC0xOTYyZGNjMmU2N2MiLG92ZXItdGxzPWZhbHNlLHRscy1ob3N0PSxjZXJ0aWZpY2F0ZT0xLG9iZnM9d3Msb2Jmcy1wYXRoPSIvZXhhbXBsZSJvYmZzLWhlYWRlcj0iSG9zdDoi&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;首先，比较一下V2rayN和Quantumult的vmess url,两者看似非常相似，除了&lt;code&gt;vmess://&lt;/code&gt;相同之外完全不一样。可是你说它不一样吧，它也没个规律比较啥也无从下手&lt;/p&gt;
+
+&lt;p&gt;既然订阅密文是将vmess url 通过base64加密之后得到的，那么vmess://后面这一串东西是不是也是通过base64加密得到的密文呢，那就解密试试吧&lt;/p&gt;
+
+&lt;p&gt;这是V2rayN的Vmess://后一串密文解密的结果&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{
+  &amp;quot;v&amp;quot;: &amp;quot;2&amp;quot;,
+  &amp;quot;ps&amp;quot;: &amp;quot;示例&amp;quot;,
+  &amp;quot;add&amp;quot;: &amp;quot;192.168.1.1&amp;quot;,
+  &amp;quot;port&amp;quot;: &amp;quot;4321&amp;quot;,
+  &amp;quot;id&amp;quot;: &amp;quot;d771d89a-9bed-4767-a69d-1962dcc2e67c&amp;quot;,
+  &amp;quot;aid&amp;quot;: &amp;quot;64&amp;quot;,
+  &amp;quot;net&amp;quot;: &amp;quot;ws&amp;quot;,
+  &amp;quot;type&amp;quot;: &amp;quot;none&amp;quot;,
+  &amp;quot;host&amp;quot;: &amp;quot;&amp;quot;,
+  &amp;quot;path&amp;quot;: &amp;quot;/example&amp;quot;,
+  &amp;quot;tls&amp;quot;: &amp;quot;&amp;quot;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这是Quantumult的Vmess://后一串密文解密的结果&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;示例 = vmess,192.168.1.1,4321,none,&amp;quot;d771d89a-9bed-4767-a69d-1962dcc2e67c&amp;quot;,over-tls=false,tls-host=,certificate=1,obfs=ws,obfs-path=&amp;quot;/example&amp;quot;obfs-header=&amp;quot;Host:&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;通过比较，vmess://后面是base64加密的密文实锤了&lt;/p&gt;
+
+&lt;p&gt;可是将这个vmess url追加到原有的url列表时，Quantumult却只能识别先前的url，而这个追加的无论是单独设为订阅，或是与原来的url一起设为订阅，都无法识别&lt;/p&gt;
+
+&lt;p&gt;更神奇的是，小工具生成Quantumult订阅url时，会同时生成二维码，使用Quantumult应用扫描这个二维码，或者复制这个url通过剪贴板导入的方式，都可以成功识别并添加该服务器&lt;/p&gt;
+
+&lt;p&gt;既然如此，那我们就看看这个Quantumult与原有的url列表中的服务器有什么不一样&lt;/p&gt;
+
+&lt;p&gt;新的Quantumult vmess url&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;示例 = vmess,192.168.1.1,4321,none,&amp;quot;d771d89a-9bed-4767-a69d-1962dcc2e67c&amp;quot;,over-tls=false,tls-host=,certificate=1,obfs=ws,obfs-path=&amp;quot;/example&amp;quot;obfs-header=&amp;quot;Host:&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;旧列表中的Quantumult vmess url&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;示例 = vmess,192.168.1.1,4321,none,&amp;quot;d771d89a-9bed-4767-a69d-1962dcc2e67c&amp;quot;,group=Fndroid,over-tls=false,tls-host=,certificate=1,obfs=ws,obfs-path=&amp;quot;/example&amp;quot;obfs-header=&amp;quot;Host:&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;可以看到，只是多了一个group字段，于是将原来的url添加上group字段，然后base64加密这段字符串追加到vmess://后面&lt;/p&gt;
+
+&lt;p&gt;将这个vmess url追加到原有的vmess url列表中，并将列表进行base64加密，就可以发布订阅了&lt;/p&gt;
+
+&lt;p&gt;当然这次是能够识别并添加成功了&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>安装新版v2ray服务端</title>
+      <link>http://blog.sinowrt.cn/2020/2020-09-15t2314-how-to-install-the-lasted-v2ray/</link>
       <pubDate>Tue, 15 Sep 2020 23:14:00 +0800</pubDate>
       
-      <guid>http://blog.sinowrt.cn/2020/2020-09-15t2314-how-to-install-the-updated-v2ray-on-ubuntu-16.04/</guid>
-      <description></description>
+      <guid>http://blog.sinowrt.cn/2020/2020-09-15t2314-how-to-install-the-lasted-v2ray/</guid>
+      <description>
+
+&lt;h2 id=&#34;0x00-问题&#34;&gt;0x00 问题&lt;/h2&gt;
+
+&lt;p&gt;在使用旧教程安装v2ray的时候，出现如下错误提示&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ERROR: This script has been DISCARDED, please switch to fhs-install-v2ray project.
+HOW TO USE: https://github.com/v2fly/fhs-install-v2ray
+TO MIGRATE: https://github.com/v2fly/fhs-install-v2ray/wiki/Migrate-from-the-old-script-to-this
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;意思是旧版的安装脚本已经停止使用，可以到&lt;code&gt;https://github.com/v2fly/fhs-install-v2ray&lt;/code&gt;查看新脚本的使用说明&lt;/p&gt;
+
+&lt;h2 id=&#34;0x01-安装步骤&#34;&gt;0x01 安装步骤&lt;/h2&gt;
+
+&lt;h3 id=&#34;1-使用新脚本安装v2ray&#34;&gt;1.使用新脚本安装v2ray&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;bash &amp;lt;(curl -L https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh)&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;2-配置config-json文件&#34;&gt;2.配置config.json文件&lt;/h3&gt;
+
+&lt;p&gt;需要注意的是，新版的config.json文件默认路径从&lt;code&gt;\etc\v2ray\config.json&lt;/code&gt;换到了&lt;code&gt;\usr\local\etc\v2ray\config.json&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;由于我在本地备份又config.json，就不再重复配置了&lt;/p&gt;
+
+&lt;p&gt;将自带的config.json重命名为config.json.bak，留个备份，然后用xftp把本地的config.json上传到服务器对应目录中&lt;/p&gt;
+
+&lt;p&gt;要了解如何配置config.json的可以参考&lt;a href=&#34;https://blog.sinowrt.cn/2019/2019-06-13t1300-how-to-save-the-baned-ip/&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;旧教程&lt;/a&gt;里面的服务端配置模板&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>群晖 moments 中的视频不显示缩略图</title>
+      <link>http://blog.sinowrt.cn/2020/2020-08-16t2053-synology-moments-preview-pictures-of-videos-was-damaged/</link>
+      <pubDate>Sun, 16 Aug 2020 14:27:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-08-16t2053-synology-moments-preview-pictures-of-videos-was-damaged/</guid>
+      <description>
+
+&lt;h2 id=&#34;0x00-问题描述&#34;&gt;0x00 问题描述&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;为了解决照片备份的问题，我在群晖上安装了moments，但是一直以来都有一个问题，就是备份的所有视频在moments里面的缩略图都是显示损坏的，看着很不是滋味，就上网查了一下是什么原因。一圈下来，都说要看到缩略图的话，需要半洗白，那就洗白吧。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;0x01-半洗白-其实根本不能解决问题&#34;&gt;0x01 半洗白（其实根本不能解决问题）&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;根据网上的资料，半洗白一共有两种方法：&lt;/li&gt;
+&lt;li&gt;一是通过算号，算出该型号的sn码，然后修改引导配置中的sn，从而达到半洗白&lt;/li&gt;
+&lt;li&gt;二是通过再docker中安装DDSM，进入虚拟的群晖系统，获取体验的sn号，然后跟方法一同样的，将该SN填入引导配置中&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;而新版的docker中已经将DDSM功能去掉了，所以使用方法二的话，需要卸载重装旧版的docker，再下载pat安装体验版的系统。整个过程过于繁琐，就不考虑方法二了。&lt;/p&gt;
+
+&lt;p&gt;所以下面就详细描述方法一的操作过程：&lt;/p&gt;
+</description>
     </item>
     
     <item>
@@ -98,15 +237,6 @@ public void testB(){
 &lt;li&gt;&lt;p&gt;我还是tyts了 :(&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
-    </item>
-    
-    <item>
-      <title>centos7 安装 ftp 服务 vsftpd</title>
-      <link>http://blog.sinowrt.cn/2020/2020-07-21t1039-setup-vsftpd-on-centos7/</link>
-      <pubDate>Wed, 22 Jul 2020 12:31:00 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2020/2020-07-21t1039-setup-vsftpd-on-centos7/</guid>
-      <description></description>
     </item>
     
     <item>
@@ -439,29 +569,6 @@ set time_zone = &#39;+8:00&#39;;
 &lt;p&gt;再telnet一下，通了搞定&lt;/p&gt;
 
 &lt;p&gt;上http://&lt;strong&gt;&lt;em&gt;.&lt;/em&gt;&lt;/strong&gt;.&lt;strong&gt;&lt;em&gt;.&lt;/em&gt;&lt;/strong&gt;:8848/nacos进行配置就行了&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>docker容器迁移</title>
-      <link>http://blog.sinowrt.cn/2020/2020-04-16t1623-migrate-the-container-to-another-docker/</link>
-      <pubDate>Thu, 16 Apr 2020 16:23:00 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2020/2020-04-16t1623-migrate-the-container-to-another-docker/</guid>
-      <description>&lt;p&gt;在项目部署的时候，本来是部署两个esxi虚拟机，但是在部署测试过程中发现对象存储服务依赖了另一个虚拟机的minio服务，由于该虚拟机的minio服务是部署在docker上的，所以打算将该容器迁移到要部署的其中一个虚拟机的docker中&lt;/p&gt;
-
-&lt;p&gt;步骤：&lt;br /&gt;
-1. 导出容器 &lt;code&gt;docker export 容器ID &amp;gt;minio.tar&lt;/code&gt;&lt;br /&gt;
-2. 将导出minio.tar放到要部署的虚拟机上面&lt;br /&gt;
-3. 将该容器导入镜像&lt;code&gt;docker import  minio.tar minio/minio:lastest&lt;/code&gt;&lt;br /&gt;
-4. 新建容器并启动镜像&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;docker run -d -p 9000:9000 --name minio -d -e &amp;quot;MINIO_ACCESS_KEY=AKIAIOSFODNN7EXAMPLE&amp;quot; -e &amp;quot;MINIO_SECRET_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY&amp;quot; -v /mnt/data:/data -v /mnt/config:/root/.minio  minio/minio:lastest /usr/bin/docker-entrypoint.sh server /data
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;启动命令可以在原宿主机上使用&lt;code&gt;docker inspect 容器ID&lt;/code&gt;查看，并根据需求调整启动参数&lt;/p&gt;
-
-&lt;p&gt;至此，容器的迁移工作顺利完成。&lt;/p&gt;
 </description>
     </item>
     

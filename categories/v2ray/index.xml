@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>v2ray on Sinowrt</title>
+    <link>http://blog.sinowrt.cn/categories/v2ray/</link>
+    <description>Recent content in v2ray on Sinowrt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 01 Dec 2020 22:02:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.sinowrt.cn/categories/v2ray/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>如何生成VMESS URL并发布订阅</title>
+      <link>http://blog.sinowrt.cn/2020/2020-12-01t2202-how-to-generate-vmess-urls-and-public-as-subscription/</link>
+      <pubDate>Tue, 01 Dec 2020 22:02:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-12-01t2202-how-to-generate-vmess-urls-and-public-as-subscription/</guid>
+      <description>0x00 获得VMESS URL 我使用的是V2rayN客户端，直接全选所有节点，然后批量导出分享URL到剪切板即可
+0x01 发布订阅信息 订阅信息实际上就是将VMESS URL（每个URL以回车符分隔）进行Base64加密，得到密文做成纯text网页，随便丢到一个安装了apache或nginx服务的服务器即可
+测试方法：在浏览器输入该订阅的网址，能访问到完整的Base64密文即可
+0x02 发布quantumult订阅信息 quantumult的订阅信息格式跟V2rayN的不太一样，在这里我还踩了一个小坑，且听我详细道来
+这里要用到一个小工具，将V2rayN的vmess url转成符合Quantumult格式的vmess url
+这是示例的vmess url vmess://ew0KICAidiI6ICIyIiwNCiAgInBzIjogIuekuuS+iyIsDQogICJhZGQiOiAiMTkyLjE2OC4xLjEiLA0KICAicG9ydCI6ICI0MzIxIiwNCiAgImlkIjogImQ3NzFkODlhLTliZWQtNDc2Ny1hNjlkLTE5NjJkY2MyZTY3YyIsDQogICJhaWQiOiAiNjQiLA0KICAibmV0IjogIndzIiwNCiAgInR5cGUiOiAibm9uZSIsDQogICJob3N0IjogIiIsDQogICJwYXRoIjogIi9leGFtcGxlIiwNCiAgInRscyI6ICIiDQp9
+使用小工具转换之后的Quantumult vmess url为
+vmess://56S65L6LID0gdm1lc3MsMTkyLjE2OC4xLjEsNDMyMSxub25lLCJkNzcxZDg5YS05YmVkLTQ3NjctYTY5ZC0xOTYyZGNjMmU2N2MiLG92ZXItdGxzPWZhbHNlLHRscy1ob3N0PSxjZXJ0aWZpY2F0ZT0xLG9iZnM9d3Msb2Jmcy1wYXRoPSIvZXhhbXBsZSJvYmZzLWhlYWRlcj0iSG9zdDoi
+首先，比较一下V2rayN和Quantumult的vmess url,两者看似非常相似，除了vmess://相同之外完全不一样。可是你说它不一样吧，它也没个规律比较啥也无从下手
+既然订阅密文是将vmess url 通过base64加密之后得到的，那么vmess://后面这一串东西是不是也是通过base64加密得到的密文呢，那就解密试试吧
+这是V2rayN的Vmess://后一串密文解密的结果
+{ &amp;quot;v&amp;quot;: &amp;quot;2&amp;quot;, &amp;quot;ps&amp;quot;: &amp;quot;示例&amp;quot;, &amp;quot;add&amp;quot;: &amp;quot;192.168.1.1&amp;quot;, &amp;quot;port&amp;quot;: &amp;quot;4321&amp;quot;, &amp;quot;id&amp;quot;: &amp;quot;d771d89a-9bed-4767-a69d-1962dcc2e67c&amp;quot;, &amp;quot;aid&amp;quot;: &amp;quot;64&amp;quot;, &amp;quot;net&amp;quot;: &amp;quot;ws&amp;quot;, &amp;quot;type&amp;quot;: &amp;quot;none&amp;quot;, &amp;quot;host&amp;quot;: &amp;quot;&amp;quot;, &amp;quot;path&amp;quot;: &amp;quot;/example&amp;quot;, &amp;quot;tls&amp;quot;: &amp;quot;&amp;quot; }  这是Quantumult的Vmess://后一串密文解密的结果
+示例 = vmess,192.168.1.1,4321,none,&amp;quot;d771d89a-9bed-4767-a69d-1962dcc2e67c&amp;quot;,over-tls=false,tls-host=,certificate=1,obfs=ws,obfs-path=&amp;quot;/example&amp;quot;obfs-header=&amp;quot;Host:&amp;quot;  通过比较，vmess://后面是base64加密的密文实锤了
+可是将这个vmess url追加到原有的url列表时，Quantumult却只能识别先前的url，而这个追加的无论是单独设为订阅，或是与原来的url一起设为订阅，都无法识别
+更神奇的是，小工具生成Quantumult订阅url时，会同时生成二维码，使用Quantumult应用扫描这个二维码，或者复制这个url通过剪贴板导入的方式，都可以成功识别并添加该服务器
+既然如此，那我们就看看这个Quantumult与原有的url列表中的服务器有什么不一样
+新的Quantumult vmess url
+示例 = vmess,192.168.1.1,4321,none,&amp;quot;d771d89a-9bed-4767-a69d-1962dcc2e67c&amp;quot;,over-tls=false,tls-host=,certificate=1,obfs=ws,obfs-path=&amp;quot;/example&amp;quot;obfs-header=&amp;quot;Host:&amp;quot;  旧列表中的Quantumult vmess url</description>
+    </item>
+    
+  </channel>
+</rss>

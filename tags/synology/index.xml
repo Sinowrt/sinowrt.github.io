@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>synology on Sinowrt</title>
+    <link>http://blog.sinowrt.cn/tags/synology/</link>
+    <description>Recent content in synology on Sinowrt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 16 Aug 2020 14:27:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.sinowrt.cn/tags/synology/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>群晖 moments 中的视频不显示缩略图</title>
+      <link>http://blog.sinowrt.cn/2020/2020-08-16t2053-synology-moments-preview-pictures-of-videos-was-damaged/</link>
+      <pubDate>Sun, 16 Aug 2020 14:27:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-08-16t2053-synology-moments-preview-pictures-of-videos-was-damaged/</guid>
+      <description>0x00 问题描述  为了解决照片备份的问题，我在群晖上安装了moments，但是一直以来都有一个问题，就是备份的所有视频在moments里面的缩略图都是显示损坏的，看着很不是滋味，就上网查了一下是什么原因。一圈下来，都说要看到缩略图的话，需要半洗白，那就洗白吧。  0x01 半洗白（其实根本不能解决问题）  根据网上的资料，半洗白一共有两种方法： 一是通过算号，算出该型号的sn码，然后修改引导配置中的sn，从而达到半洗白 二是通过再docker中安装DDSM，进入虚拟的群晖系统，获取体验的sn号，然后跟方法一同样的，将该SN填入引导配置中  而新版的docker中已经将DDSM功能去掉了，所以使用方法二的话，需要卸载重装旧版的docker，再下载pat安装体验版的系统。整个过程过于繁琐，就不考虑方法二了。
+所以下面就详细描述方法一的操作过程：</description>
+    </item>
+    
+  </channel>
+</rss>

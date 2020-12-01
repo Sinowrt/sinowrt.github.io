@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="sinowrt">
+  
+  
+  
+  <link rel="prev" href="http://blog.sinowrt.cn/2020/2020-08-16t2053-synology-moments-preview-pictures-of-videos-was-damaged/" />
+  <link rel="next" href="http://blog.sinowrt.cn/2020/2020-12-01t2202-how-to-generate-vmess-urls-and-public-as-subscription/" />
+  <link rel="canonical" href="http://blog.sinowrt.cn/2020/2020-09-15t2314-how-to-install-the-lasted-v2ray/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           安装新版v2ray服务端 | Sinowrt
+       
+  </title>
+  <meta name="title" content="安装新版v2ray服务端 | Sinowrt">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/blog.sinowrt.cn"
+    },
+    "articleSection" : "posts",
+    "name" : "安装新版v2ray服务端",
+    "headline" : "安装新版v2ray服务端",
+    "description" : "0x00 问题 在使用旧教程安装v2ray的时候，出现如下错误提示\nERROR: This script has been DISCARDED, please switch to fhs-install-v2ray project. HOW TO USE: https:\/\/github.com\/v2fly\/fhs-install-v2ray TO MIGRATE: https:\/\/github.com\/v2fly\/fhs-install-v2ray\/wiki\/Migrate-from-the-old-script-to-this  意思是旧版的安装脚本已经停止使用，可以到https:\/\/github.com\/v2fly\/fhs-install-v2ray查看新脚本的使用说明\n0x01 安装步骤 1.使用新脚本安装v2ray bash \x26lt;(curl -L https:\/\/raw.githubusercontent.com\/v2fly\/fhs-install-v2ray\/master\/install-release.sh)\n2.配置config.json文件 需要注意的是，新版的config.json文件默认路径从\\etc\\v2ray\\config.json换到了\\usr\\local\\etc\\v2ray\\config.json\n由于我在本地备份又config.json，就不再重复配置了\n将自带的config.json重命名为config.json.bak，留个备份，然后用xftp把本地的config.json上传到服务器对应目录中\n要了解如何配置config.json的可以参考旧教程里面的服务端配置模板",
+    "inLanguage" : "en-us",
+    "author" : "sinowrt",
+    "creator" : "sinowrt",
+    "publisher": "sinowrt",
+    "accountablePerson" : "sinowrt",
+    "copyrightHolder" : "sinowrt",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-09-15 23:14:00 \x2b0800 CST",
+    "dateModified" : "2020-09-15 23:14:00 \x2b0800 CST",
+    "url" : "http:\/\/blog.sinowrt.cn\/2020\/2020-09-15t2314-how-to-install-the-lasted-v2ray\/",
+    "wordCount" : "34",
+    "keywords" : [ "ubuntu", "Sinowrt"]
+}
+</script>
+
+</head>
+
+<script async src="//cdn.busuanzi.ibruce.info/cdn/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?85719ea04c6401b98466dfdbc9399c78";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">安装新版v2ray服务端</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2020-09-15 itemprop="datePublished">September 15, 2020</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="http://blog.sinowrt.cn/categories/linux/"> linux </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          
+
+<h2 id="0x00-问题">0x00 问题</h2>
+
+<p>在使用旧教程安装v2ray的时候，出现如下错误提示</p>
+
+<pre><code>ERROR: This script has been DISCARDED, please switch to fhs-install-v2ray project.
+HOW TO USE: https://github.com/v2fly/fhs-install-v2ray
+TO MIGRATE: https://github.com/v2fly/fhs-install-v2ray/wiki/Migrate-from-the-old-script-to-this
+</code></pre>
+
+<p>意思是旧版的安装脚本已经停止使用，可以到<code>https://github.com/v2fly/fhs-install-v2ray</code>查看新脚本的使用说明</p>
+
+<h2 id="0x01-安装步骤">0x01 安装步骤</h2>
+
+<h3 id="1-使用新脚本安装v2ray">1.使用新脚本安装v2ray</h3>
+
+<p><code>bash &lt;(curl -L https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh)</code></p>
+
+<h3 id="2-配置config-json文件">2.配置config.json文件</h3>
+
+<p>需要注意的是，新版的config.json文件默认路径从<code>\etc\v2ray\config.json</code>换到了<code>\usr\local\etc\v2ray\config.json</code></p>
+
+<p>由于我在本地备份又config.json，就不再重复配置了</p>
+
+<p>将自带的config.json重命名为config.json.bak，留个备份，然后用xftp把本地的config.json上传到服务器对应目录中</p>
+
+<p>要了解如何配置config.json的可以参考<a href="https://blog.sinowrt.cn/2019/2019-06-13t1300-how-to-save-the-baned-ip/" rel="nofollow noreferrer" target="_blank">旧教程</a>里面的服务端配置模板</p>
+
+    </div>
+	
+    <div class="post-copyright">
+             
+			
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>sinowrt </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://blog.sinowrt.cn/2020/2020-09-15t2314-how-to-install-the-lasted-v2ray/>http://blog.sinowrt.cn/2020/2020-09-15t2314-how-to-install-the-lasted-v2ray/</span>
+            </p>
+			
+			<p>
+				<span id="busuanzi_container_page_pv">
+					本文总阅读量：<span id="busuanzi_value_page_pv"></span>次
+				</span>
+			</p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/ubuntu/">
+                    #ubuntu</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="http://blog.sinowrt.cn">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://blog.sinowrt.cn/2020/2020-08-16t2053-synology-moments-preview-pictures-of-videos-was-damaged/" class="prev" rel="prev" title="群晖 moments 中的视频不显示缩略图"><i class="iconfont icon-left"></i>&nbsp;群晖 moments 中的视频不显示缩略图</a>
+         
+        
+        <a href="http://blog.sinowrt.cn/2020/2020-12-01t2202-how-to-generate-vmess-urls-and-public-as-subscription/" class="next" rel="next" title="如何生成VMESS URL并发布订阅">如何生成VMESS URL并发布订阅&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2020</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://blog.sinowrt.cn">sinowrt</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+	<p class="credits theme-by text-muted">
+        <span id="busuanzi_container_site_pv">
+            本站访问量：<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        &nbsp;
+        <span id="busuanzi_container_site_uv">
+            您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+        </span>
+    </p>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="sinowrt">
+  
+  
+  
+  <link rel="prev" href="http://blog.sinowrt.cn/2020/2020-09-15t2314-how-to-install-the-lasted-v2ray/" />
+  
+  <link rel="canonical" href="http://blog.sinowrt.cn/2020/2020-12-01t2202-how-to-generate-vmess-urls-and-public-as-subscription/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           如何生成VMESS URL并发布订阅 | Sinowrt
+       
+  </title>
+  <meta name="title" content="如何生成VMESS URL并发布订阅 | Sinowrt">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/blog.sinowrt.cn"
+    },
+    "articleSection" : "posts",
+    "name" : "如何生成VMESS URL并发布订阅",
+    "headline" : "如何生成VMESS URL并发布订阅",
+    "description" : "0x00 获得VMESS URL 我使用的是V2rayN客户端，直接全选所有节点，然后批量导出分享URL到剪切板即可\n0x01 发布订阅信息 订阅信息实际上就是将VMESS URL（每个URL以回车符分隔）进行Base64加密，得到密文做成纯text网页，随便丢到一个安装了apache或nginx服务的服务器即可\n测试方法：在浏览器输入该订阅的网址，能访问到完整的Base64密文即可\n0x02 发布quantumult订阅信息 quantumult的订阅信息格式跟V2rayN的不太一样，在这里我还踩了一个小坑，且听我详细道来\n这里要用到一个小工具，将V2rayN的vmess url转成符合Quantumult格式的vmess url\n这是示例的vmess url vmess:\/\/ew0KICAidiI6ICIyIiwNCiAgInBzIjogIuekuuS\x2biyIsDQogICJhZGQiOiAiMTkyLjE2OC4xLjEiLA0KICAicG9ydCI6ICI0MzIxIiwNCiAgImlkIjogImQ3NzFkODlhLTliZWQtNDc2Ny1hNjlkLTE5NjJkY2MyZTY3YyIsDQogICJhaWQiOiAiNjQiLA0KICAibmV0IjogIndzIiwNCiAgInR5cGUiOiAibm9uZSIsDQogICJob3N0IjogIiIsDQogICJwYXRoIjogIi9leGFtcGxlIiwNCiAgInRscyI6ICIiDQp9\n使用小工具转换之后的Quantumult vmess url为\nvmess:\/\/56S65L6LID0gdm1lc3MsMTkyLjE2OC4xLjEsNDMyMSxub25lLCJkNzcxZDg5YS05YmVkLTQ3NjctYTY5ZC0xOTYyZGNjMmU2N2MiLG92ZXItdGxzPWZhbHNlLHRscy1ob3N0PSxjZXJ0aWZpY2F0ZT0xLG9iZnM9d3Msb2Jmcy1wYXRoPSIvZXhhbXBsZSJvYmZzLWhlYWRlcj0iSG9zdDoi\n首先，比较一下V2rayN和Quantumult的vmess url,两者看似非常相似，除了vmess:\/\/相同之外完全不一样。可是你说它不一样吧，它也没个规律比较啥也无从下手\n既然订阅密文是将vmess url 通过base64加密之后得到的，那么vmess:\/\/后面这一串东西是不是也是通过base64加密得到的密文呢，那就解密试试吧\n这是V2rayN的Vmess:\/\/后一串密文解密的结果\n{ \x26quot;v\x26quot;: \x26quot;2\x26quot;, \x26quot;ps\x26quot;: \x26quot;示例\x26quot;, \x26quot;add\x26quot;: \x26quot;192.168.1.1\x26quot;, \x26quot;port\x26quot;: \x26quot;4321\x26quot;, \x26quot;id\x26quot;: \x26quot;d771d89a-9bed-4767-a69d-1962dcc2e67c\x26quot;, \x26quot;aid\x26quot;: \x26quot;64\x26quot;, \x26quot;net\x26quot;: \x26quot;ws\x26quot;, \x26quot;type\x26quot;: \x26quot;none\x26quot;, \x26quot;host\x26quot;: \x26quot;\x26quot;, \x26quot;path\x26quot;: \x26quot;\/example\x26quot;, \x26quot;tls\x26quot;: \x26quot;\x26quot; }  这是Quantumult的Vmess:\/\/后一串密文解密的结果\n示例 = vmess,192.168.1.1,4321,none,\x26quot;d771d89a-9bed-4767-a69d-1962dcc2e67c\x26quot;,over-tls=false,tls-host=,certificate=1,obfs=ws,obfs-path=\x26quot;\/example\x26quot;obfs-header=\x26quot;Host:\x26quot;  通过比较，vmess:\/\/后面是base64加密的密文实锤了\n可是将这个vmess url追加到原有的url列表时，Quantumult却只能识别先前的url，而这个追加的无论是单独设为订阅，或是与原来的url一起设为订阅，都无法识别\n更神奇的是，小工具生成Quantumult订阅url时，会同时生成二维码，使用Quantumult应用扫描这个二维码，或者复制这个url通过剪贴板导入的方式，都可以成功识别并添加该服务器\n既然如此，那我们就看看这个Quantumult与原有的url列表中的服务器有什么不一样\n新的Quantumult vmess url\n示例 = vmess,192.168.1.1,4321,none,\x26quot;d771d89a-9bed-4767-a69d-1962dcc2e67c\x26quot;,over-tls=false,tls-host=,certificate=1,obfs=ws,obfs-path=\x26quot;\/example\x26quot;obfs-header=\x26quot;Host:\x26quot;  旧列表中的Quantumult vmess url",
+    "inLanguage" : "en-us",
+    "author" : "sinowrt",
+    "creator" : "sinowrt",
+    "publisher": "sinowrt",
+    "accountablePerson" : "sinowrt",
+    "copyrightHolder" : "sinowrt",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-12-01 22:02:00 \x2b0800 CST",
+    "dateModified" : "2020-12-01 22:02:00 \x2b0800 CST",
+    "url" : "http:\/\/blog.sinowrt.cn\/2020\/2020-12-01t2202-how-to-generate-vmess-urls-and-public-as-subscription\/",
+    "wordCount" : "78",
+    "keywords" : [ "v2ray", "Sinowrt"]
+}
+</script>
+
+</head>
+
+<script async src="//cdn.busuanzi.ibruce.info/cdn/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?85719ea04c6401b98466dfdbc9399c78";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">如何生成VMESS URL并发布订阅</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2020-12-01 itemprop="datePublished">December 1, 2020</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="http://blog.sinowrt.cn/categories/v2ray/"> v2ray </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          
+
+<h2 id="0x00-获得vmess-url">0x00 获得VMESS URL</h2>
+
+<p>我使用的是V2rayN客户端，直接全选所有节点，然后<code>批量导出分享URL到剪切板</code>即可</p>
+
+<h2 id="0x01-发布订阅信息">0x01 发布订阅信息</h2>
+
+<p>订阅信息实际上就是将VMESS URL（每个URL以回车符分隔）进行Base64加密，得到密文做成纯text网页，随便丢到一个安装了apache或nginx服务的服务器即可</p>
+
+<p>测试方法：在浏览器输入该订阅的网址，能访问到完整的Base64密文即可</p>
+
+<h2 id="0x02-发布quantumult订阅信息">0x02 发布quantumult订阅信息</h2>
+
+<p>quantumult的订阅信息格式跟V2rayN的不太一样，在这里我还踩了一个小坑，且听我详细道来</p>
+
+<p>这里要用到一个<a href="https://quan.eicky.com/" rel="nofollow noreferrer" target="_blank">小工具</a>，将V2rayN的vmess url转成符合Quantumult格式的vmess url</p>
+
+<p>这是示例的vmess url
+<code>vmess://ew0KICAidiI6ICIyIiwNCiAgInBzIjogIuekuuS+iyIsDQogICJhZGQiOiAiMTkyLjE2OC4xLjEiLA0KICAicG9ydCI6ICI0MzIxIiwNCiAgImlkIjogImQ3NzFkODlhLTliZWQtNDc2Ny1hNjlkLTE5NjJkY2MyZTY3YyIsDQogICJhaWQiOiAiNjQiLA0KICAibmV0IjogIndzIiwNCiAgInR5cGUiOiAibm9uZSIsDQogICJob3N0IjogIiIsDQogICJwYXRoIjogIi9leGFtcGxlIiwNCiAgInRscyI6ICIiDQp9</code></p>
+
+<p>使用小工具转换之后的Quantumult vmess url为</p>
+
+<p><code>vmess://56S65L6LID0gdm1lc3MsMTkyLjE2OC4xLjEsNDMyMSxub25lLCJkNzcxZDg5YS05YmVkLTQ3NjctYTY5ZC0xOTYyZGNjMmU2N2MiLG92ZXItdGxzPWZhbHNlLHRscy1ob3N0PSxjZXJ0aWZpY2F0ZT0xLG9iZnM9d3Msb2Jmcy1wYXRoPSIvZXhhbXBsZSJvYmZzLWhlYWRlcj0iSG9zdDoi</code></p>
+
+<p>首先，比较一下V2rayN和Quantumult的vmess url,两者看似非常相似，除了<code>vmess://</code>相同之外完全不一样。可是你说它不一样吧，它也没个规律比较啥也无从下手</p>
+
+<p>既然订阅密文是将vmess url 通过base64加密之后得到的，那么vmess://后面这一串东西是不是也是通过base64加密得到的密文呢，那就解密试试吧</p>
+
+<p>这是V2rayN的Vmess://后一串密文解密的结果</p>
+
+<pre><code>{
+  &quot;v&quot;: &quot;2&quot;,
+  &quot;ps&quot;: &quot;示例&quot;,
+  &quot;add&quot;: &quot;192.168.1.1&quot;,
+  &quot;port&quot;: &quot;4321&quot;,
+  &quot;id&quot;: &quot;d771d89a-9bed-4767-a69d-1962dcc2e67c&quot;,
+  &quot;aid&quot;: &quot;64&quot;,
+  &quot;net&quot;: &quot;ws&quot;,
+  &quot;type&quot;: &quot;none&quot;,
+  &quot;host&quot;: &quot;&quot;,
+  &quot;path&quot;: &quot;/example&quot;,
+  &quot;tls&quot;: &quot;&quot;
+}
+</code></pre>
+
+<p>这是Quantumult的Vmess://后一串密文解密的结果</p>
+
+<pre><code>示例 = vmess,192.168.1.1,4321,none,&quot;d771d89a-9bed-4767-a69d-1962dcc2e67c&quot;,over-tls=false,tls-host=,certificate=1,obfs=ws,obfs-path=&quot;/example&quot;obfs-header=&quot;Host:&quot;
+</code></pre>
+
+<p>通过比较，vmess://后面是base64加密的密文实锤了</p>
+
+<p>可是将这个vmess url追加到原有的url列表时，Quantumult却只能识别先前的url，而这个追加的无论是单独设为订阅，或是与原来的url一起设为订阅，都无法识别</p>
+
+<p>更神奇的是，小工具生成Quantumult订阅url时，会同时生成二维码，使用Quantumult应用扫描这个二维码，或者复制这个url通过剪贴板导入的方式，都可以成功识别并添加该服务器</p>
+
+<p>既然如此，那我们就看看这个Quantumult与原有的url列表中的服务器有什么不一样</p>
+
+<p>新的Quantumult vmess url</p>
+
+<pre><code>示例 = vmess,192.168.1.1,4321,none,&quot;d771d89a-9bed-4767-a69d-1962dcc2e67c&quot;,over-tls=false,tls-host=,certificate=1,obfs=ws,obfs-path=&quot;/example&quot;obfs-header=&quot;Host:&quot;
+</code></pre>
+
+<p>旧列表中的Quantumult vmess url</p>
+
+<pre><code>示例 = vmess,192.168.1.1,4321,none,&quot;d771d89a-9bed-4767-a69d-1962dcc2e67c&quot;,group=Fndroid,over-tls=false,tls-host=,certificate=1,obfs=ws,obfs-path=&quot;/example&quot;obfs-header=&quot;Host:&quot;
+</code></pre>
+
+<p>可以看到，只是多了一个group字段，于是将原来的url添加上group字段，然后base64加密这段字符串追加到vmess://后面</p>
+
+<p>将这个vmess url追加到原有的vmess url列表中，并将列表进行base64加密，就可以发布订阅了</p>
+
+<p>当然这次是能够识别并添加成功了</p>
+
+    </div>
+	
+    <div class="post-copyright">
+             
+			
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>sinowrt </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://blog.sinowrt.cn/2020/2020-12-01t2202-how-to-generate-vmess-urls-and-public-as-subscription/>http://blog.sinowrt.cn/2020/2020-12-01t2202-how-to-generate-vmess-urls-and-public-as-subscription/</span>
+            </p>
+			
+			<p>
+				<span id="busuanzi_container_page_pv">
+					本文总阅读量：<span id="busuanzi_value_page_pv"></span>次
+				</span>
+			</p>
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/v2ray/">
+                    #v2ray</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="http://blog.sinowrt.cn">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://blog.sinowrt.cn/2020/2020-09-15t2314-how-to-install-the-lasted-v2ray/" class="prev" rel="prev" title="安装新版v2ray服务端"><i class="iconfont icon-left"></i>&nbsp;安装新版v2ray服务端</a>
+         
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2020</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://blog.sinowrt.cn">sinowrt</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+	<p class="credits theme-by text-muted">
+        <span id="busuanzi_container_site_pv">
+            本站访问量：<span id="busuanzi_value_site_pv"></span>次
+        </span>
+        &nbsp;
+        <span id="busuanzi_container_site_uv">
+            您是本站第 <span id="busuanzi_value_site_uv"></span> 位访问者
+        </span>
+    </p>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

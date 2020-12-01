@@ -6,18 +6,60 @@
     <description>Recent content in Posts on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 15 Sep 2020 23:14:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 01 Dec 2020 22:02:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>在ubuntu 16.04上安装新版v2ray服务端</title>
-      <link>http://blog.sinowrt.cn/2020/2020-09-15t2314-how-to-install-the-updated-v2ray-on-ubuntu-16.04/</link>
+      <title>如何生成VMESS URL并发布订阅</title>
+      <link>http://blog.sinowrt.cn/2020/2020-12-01t2202-how-to-generate-vmess-urls-and-public-as-subscription/</link>
+      <pubDate>Tue, 01 Dec 2020 22:02:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-12-01t2202-how-to-generate-vmess-urls-and-public-as-subscription/</guid>
+      <description>0x00 获得VMESS URL 我使用的是V2rayN客户端，直接全选所有节点，然后批量导出分享URL到剪切板即可
+0x01 发布订阅信息 订阅信息实际上就是将VMESS URL（每个URL以回车符分隔）进行Base64加密，得到密文做成纯text网页，随便丢到一个安装了apache或nginx服务的服务器即可
+测试方法：在浏览器输入该订阅的网址，能访问到完整的Base64密文即可
+0x02 发布quantumult订阅信息 quantumult的订阅信息格式跟V2rayN的不太一样，在这里我还踩了一个小坑，且听我详细道来
+这里要用到一个小工具，将V2rayN的vmess url转成符合Quantumult格式的vmess url
+这是示例的vmess url vmess://ew0KICAidiI6ICIyIiwNCiAgInBzIjogIuekuuS+iyIsDQogICJhZGQiOiAiMTkyLjE2OC4xLjEiLA0KICAicG9ydCI6ICI0MzIxIiwNCiAgImlkIjogImQ3NzFkODlhLTliZWQtNDc2Ny1hNjlkLTE5NjJkY2MyZTY3YyIsDQogICJhaWQiOiAiNjQiLA0KICAibmV0IjogIndzIiwNCiAgInR5cGUiOiAibm9uZSIsDQogICJob3N0IjogIiIsDQogICJwYXRoIjogIi9leGFtcGxlIiwNCiAgInRscyI6ICIiDQp9
+使用小工具转换之后的Quantumult vmess url为
+vmess://56S65L6LID0gdm1lc3MsMTkyLjE2OC4xLjEsNDMyMSxub25lLCJkNzcxZDg5YS05YmVkLTQ3NjctYTY5ZC0xOTYyZGNjMmU2N2MiLG92ZXItdGxzPWZhbHNlLHRscy1ob3N0PSxjZXJ0aWZpY2F0ZT0xLG9iZnM9d3Msb2Jmcy1wYXRoPSIvZXhhbXBsZSJvYmZzLWhlYWRlcj0iSG9zdDoi
+首先，比较一下V2rayN和Quantumult的vmess url,两者看似非常相似，除了vmess://相同之外完全不一样。可是你说它不一样吧，它也没个规律比较啥也无从下手
+既然订阅密文是将vmess url 通过base64加密之后得到的，那么vmess://后面这一串东西是不是也是通过base64加密得到的密文呢，那就解密试试吧
+这是V2rayN的Vmess://后一串密文解密的结果
+{ &amp;quot;v&amp;quot;: &amp;quot;2&amp;quot;, &amp;quot;ps&amp;quot;: &amp;quot;示例&amp;quot;, &amp;quot;add&amp;quot;: &amp;quot;192.168.1.1&amp;quot;, &amp;quot;port&amp;quot;: &amp;quot;4321&amp;quot;, &amp;quot;id&amp;quot;: &amp;quot;d771d89a-9bed-4767-a69d-1962dcc2e67c&amp;quot;, &amp;quot;aid&amp;quot;: &amp;quot;64&amp;quot;, &amp;quot;net&amp;quot;: &amp;quot;ws&amp;quot;, &amp;quot;type&amp;quot;: &amp;quot;none&amp;quot;, &amp;quot;host&amp;quot;: &amp;quot;&amp;quot;, &amp;quot;path&amp;quot;: &amp;quot;/example&amp;quot;, &amp;quot;tls&amp;quot;: &amp;quot;&amp;quot; }  这是Quantumult的Vmess://后一串密文解密的结果
+示例 = vmess,192.168.1.1,4321,none,&amp;quot;d771d89a-9bed-4767-a69d-1962dcc2e67c&amp;quot;,over-tls=false,tls-host=,certificate=1,obfs=ws,obfs-path=&amp;quot;/example&amp;quot;obfs-header=&amp;quot;Host:&amp;quot;  通过比较，vmess://后面是base64加密的密文实锤了
+可是将这个vmess url追加到原有的url列表时，Quantumult却只能识别先前的url，而这个追加的无论是单独设为订阅，或是与原来的url一起设为订阅，都无法识别
+更神奇的是，小工具生成Quantumult订阅url时，会同时生成二维码，使用Quantumult应用扫描这个二维码，或者复制这个url通过剪贴板导入的方式，都可以成功识别并添加该服务器
+既然如此，那我们就看看这个Quantumult与原有的url列表中的服务器有什么不一样
+新的Quantumult vmess url
+示例 = vmess,192.168.1.1,4321,none,&amp;quot;d771d89a-9bed-4767-a69d-1962dcc2e67c&amp;quot;,over-tls=false,tls-host=,certificate=1,obfs=ws,obfs-path=&amp;quot;/example&amp;quot;obfs-header=&amp;quot;Host:&amp;quot;  旧列表中的Quantumult vmess url</description>
+    </item>
+    
+    <item>
+      <title>安装新版v2ray服务端</title>
+      <link>http://blog.sinowrt.cn/2020/2020-09-15t2314-how-to-install-the-lasted-v2ray/</link>
       <pubDate>Tue, 15 Sep 2020 23:14:00 +0800</pubDate>
       
-      <guid>http://blog.sinowrt.cn/2020/2020-09-15t2314-how-to-install-the-updated-v2ray-on-ubuntu-16.04/</guid>
-      <description></description>
+      <guid>http://blog.sinowrt.cn/2020/2020-09-15t2314-how-to-install-the-lasted-v2ray/</guid>
+      <description>0x00 问题 在使用旧教程安装v2ray的时候，出现如下错误提示
+ERROR: This script has been DISCARDED, please switch to fhs-install-v2ray project. HOW TO USE: https://github.com/v2fly/fhs-install-v2ray TO MIGRATE: https://github.com/v2fly/fhs-install-v2ray/wiki/Migrate-from-the-old-script-to-this  意思是旧版的安装脚本已经停止使用，可以到https://github.com/v2fly/fhs-install-v2ray查看新脚本的使用说明
+0x01 安装步骤 1.使用新脚本安装v2ray bash &amp;lt;(curl -L https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh)
+2.配置config.json文件 需要注意的是，新版的config.json文件默认路径从\etc\v2ray\config.json换到了\usr\local\etc\v2ray\config.json
+由于我在本地备份又config.json，就不再重复配置了
+将自带的config.json重命名为config.json.bak，留个备份，然后用xftp把本地的config.json上传到服务器对应目录中
+要了解如何配置config.json的可以参考旧教程里面的服务端配置模板</description>
+    </item>
+    
+    <item>
+      <title>群晖 moments 中的视频不显示缩略图</title>
+      <link>http://blog.sinowrt.cn/2020/2020-08-16t2053-synology-moments-preview-pictures-of-videos-was-damaged/</link>
+      <pubDate>Sun, 16 Aug 2020 14:27:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-08-16t2053-synology-moments-preview-pictures-of-videos-was-damaged/</guid>
+      <description>0x00 问题描述  为了解决照片备份的问题，我在群晖上安装了moments，但是一直以来都有一个问题，就是备份的所有视频在moments里面的缩略图都是显示损坏的，看着很不是滋味，就上网查了一下是什么原因。一圈下来，都说要看到缩略图的话，需要半洗白，那就洗白吧。  0x01 半洗白（其实根本不能解决问题）  根据网上的资料，半洗白一共有两种方法： 一是通过算号，算出该型号的sn码，然后修改引导配置中的sn，从而达到半洗白 二是通过再docker中安装DDSM，进入虚拟的群晖系统，获取体验的sn号，然后跟方法一同样的，将该SN填入引导配置中  而新版的docker中已经将DDSM功能去掉了，所以使用方法二的话，需要卸载重装旧版的docker，再下载pat安装体验版的系统。整个过程过于繁琐，就不考虑方法二了。
+所以下面就详细描述方法一的操作过程：</description>
     </item>
     
     <item>
@@ -44,15 +86,6 @@
 //这个不会导致事务回滚，因为没用加入到spring的AOP public void testA(){ this.save(&amp;ldquo;000&amp;rdquo;); } }
   public class testB{ @Autowire PersonService personService;
 //这个会导致回滚 public void testB(){ personService.save(&amp;quot;000&amp;quot;); }  } ```</description>
-    </item>
-    
-    <item>
-      <title>centos7 安装 ftp 服务 vsftpd</title>
-      <link>http://blog.sinowrt.cn/2020/2020-07-21t1039-setup-vsftpd-on-centos7/</link>
-      <pubDate>Wed, 22 Jul 2020 12:31:00 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2020/2020-07-21t1039-setup-vsftpd-on-centos7/</guid>
-      <description></description>
     </item>
     
     <item>
@@ -587,15 +620,6 @@ for example cut -c 2-5 是截取了第二到第五位的字符串 即4位pid 若
  抛弃papersignals的类似方式，将esp8266作为服务端，手机作为客户端 鉴于小程序的跨平台特性，决定采用小程序的方式进行手机端开发  在搬瓦工vps搭建ngrok服务端的过程  参考这篇博客在vps上进行ngrok的编译
  该博客中遇到的问题，我全都遇到了，按照相应的步骤操作即可解决 另外在go1.4安装操作步骤混乱的时候，造成goroot路径的错乱，从而无法安装上go1.4和go1.6，只需要unset GOROOT即可 一切安装就绪，卡在ngrok的go编译上，在编译过程中报错：go build project/test: signal: killed 查阅资料，发现是vps内存太小导致的无法编译 改用centos进行编译，但是只有visualbox的centos镜像，而visualbox复制文件上面完全比不上vmware方便，所以改用ubuntu进行ngrok编译。 在ubuntu中部署ngrok编译环境的时候，使用yum命令，发现yum是centos专用的安装命令，在ubuntu上使用会导致很多问题的发生，例如yum的源不知如何配置，所以用回apt命令 由于无法使用yum，造成很多依赖包无法安装上，所以无法安装上官网下载的go1.10包 查找资料发现可以使用sudo apt-get install go-lang命令直接安装go环境，若找不到直接apt update更新源即可 开启sslocal，把ngrok项目从git中拉下来 对ngrok项目进行编译 其中最重要的是$NGROK_DOMAIN的设置，在该教程中直接关系到openssl证书的生成 编译出ngrokd服务端 丢进vps中跑一下 问题：80端口和443端口的占用 解决：启动ngrok命令中修改-httpAddr以及httpsAddr 以更改监听端口，4443为透传接入端口，更改之后直接启动即可，在浏览器中输入www.sinowrt.cn:81 出现trunnel&amp;hellip;的即表示启动成功 编译出windows的客户端，windows的客户端必须要在cmd中才能运行，新建ngrok.cfg,将内容  server_addr: &amp;quot;www.sinowrt.cn:4443&amp;quot; trust_host_root_certs: false  写入该文件中，在cmd进入该目录，敲入命令
 ngrok.exe -config=&amp;quot;ngrok.cfg&amp;quot; -subdomain=&amp;quot;abc&amp;quot; 80  连接上ngrok服务端即可将本地的80端口暴露出外网</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>http://blog.sinowrt.cn/1/2020-08-16t2053-synology-moments-preview-pictures-of-videos-was-damaged/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/1/2020-08-16t2053-synology-moments-preview-pictures-of-videos-was-damaged/</guid>
-      <description></description>
     </item>
     
   </channel>
