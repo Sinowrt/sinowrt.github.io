@@ -14,7 +14,62 @@
       <pubDate>Tue, 01 Dec 2020 22:02:00 +0800</pubDate>
       
       <guid>http://blog.sinowrt.cn/2020/2020-12-02-t1430-instruction-of-installing-aria2-with-ariang-in-docker/</guid>
-      <description></description>
+      <description>
+
+&lt;h2 id=&#34;0x00-序&#34;&gt;0x00 序&lt;/h2&gt;
+
+&lt;p&gt;本次安装分别在&lt;code&gt;绿云东京1T大盘鸡&lt;/code&gt;以及&lt;code&gt;Servarica 2T大盘鸡上面进行&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;两台机都安装了Centos7的系统，因此本次教程主要讲述如何在CentOS7上安装docker，并在docker中部署包含了aria2+ariaNg+filemanager等服务的容器&lt;/p&gt;
+
+&lt;h2 id=&#34;0x01-安装过程&#34;&gt;0x01 安装过程&lt;/h2&gt;
+
+&lt;p&gt;以下过程均在root权限下进行操作&lt;/p&gt;
+
+&lt;h3 id=&#34;1-首先更新源&#34;&gt;1.首先更新源&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;yum update
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;2-安装docker&#34;&gt;2.安装docker&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;yum -y install docker
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;3-启动docker并添加到开机自启动&#34;&gt;3.启动docker并添加到开机自启动&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;systemctl start docker.service
+systemctl enable docker.service
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;4-新建一个文件夹-用于映射到docker中的下载文件夹&#34;&gt;4.新建一个文件夹，用于映射到docker中的下载文件夹&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;docker run --name ccaa -d -p 6800:6800 -p 6080:6080 -v /mnt/download:/Down moerats/ccaa:latest
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;至此，可以使用以下信息访问AriaNG并登录操作了&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#大致信息如下
+AriaNg界面：http://ip:6080
+访问界面用户名密码分别为：admin、moerats
+Aria2密匙：moerats
+Filebrowser访问地址：http://ip:6080/admin，也可以通过AriaNg界面上方的文件管理按钮进入
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;0x02-遇到的问题&#34;&gt;0x02 遇到的问题&lt;/h2&gt;
+
+&lt;h3 id=&#34;1-若ariang的web界面进不去-就需要开启防火墙&#34;&gt;1.若AriaNG的Web界面进不去，就需要开启防火墙&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;# 仅限CentOS7
+firewall-cmd --zone=public --add-port=6080/tcp --permanent
+firewall-cmd --zone=public --add-port=6800/tcp --permanent
+firewall-cmd --reload
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;2-若ariang中aria2-status为disconnected-并且单击显示-authorization-failed-的error-如图&#34;&gt;2.若AriaNG中Aria2 Status为Disconnected，并且单击显示&lt;code&gt;Authorization Failed&lt;/code&gt;的Error，如图&lt;/h3&gt;
+
+&lt;p&gt;则需要&lt;/p&gt;
+</description>
     </item>
     
     <item>

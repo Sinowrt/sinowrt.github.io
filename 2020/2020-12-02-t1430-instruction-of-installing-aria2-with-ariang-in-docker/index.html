@@ -46,7 +46,7 @@
     "articleSection" : "posts",
     "name" : "使用docker安装 aria2\x2bariaNg\x2bfilemanager",
     "headline" : "使用docker安装 aria2\x2bariaNg\x2bfilemanager",
-    "description" : "",
+    "description" : "0x00 序 本次安装分别在绿云东京1T大盘鸡以及Servarica 2T大盘鸡上面进行\n两台机都安装了Centos7的系统，因此本次教程主要讲述如何在CentOS7上安装docker，并在docker中部署包含了aria2\x2bariaNg\x2bfilemanager等服务的容器\n0x01 安装过程 以下过程均在root权限下进行操作\n1.首先更新源 yum update  2.安装docker yum -y install docker  3.启动docker并添加到开机自启动 systemctl start docker.service systemctl enable docker.service  4.新建一个文件夹，用于映射到docker中的下载文件夹 docker run --name ccaa -d -p 6800:6800 -p 6080:6080 -v \/mnt\/download:\/Down moerats\/ccaa:latest  至此，可以使用以下信息访问AriaNG并登录操作了\n#大致信息如下 AriaNg界面：http:\/\/ip:6080 访问界面用户名密码分别为：admin、moerats Aria2密匙：moerats Filebrowser访问地址：http:\/\/ip:6080\/admin，也可以通过AriaNg界面上方的文件管理按钮进入  0x02 遇到的问题 1.若AriaNG的Web界面进不去，就需要开启防火墙 # 仅限CentOS7 firewall-cmd --zone=public --add-port=6080\/tcp --permanent firewall-cmd --zone=public --add-port=6800\/tcp --permanent firewall-cmd --reload  2.若AriaNG中Aria2 Status为Disconnected，并且单击显示Authorization Failed的Error，如图 则需要",
     "inLanguage" : "en-us",
     "author" : "sinowrt",
     "creator" : "sinowrt",
@@ -57,7 +57,7 @@
     "datePublished": "2020-12-01 22:02:00 \x2b0800 CST",
     "dateModified" : "2020-12-01 22:02:00 \x2b0800 CST",
     "url" : "http:\/\/blog.sinowrt.cn\/2020\/2020-12-02-t1430-instruction-of-installing-aria2-with-ariang-in-docker\/",
-    "wordCount" : "0",
+    "wordCount" : "61",
     "keywords" : [ "docker","aria2", "Sinowrt"]
 }
 </script>
@@ -159,6 +159,61 @@ var _hmt = _hmt || [];
           
 
           
+
+<h2 id="0x00-序">0x00 序</h2>
+
+<p>本次安装分别在<code>绿云东京1T大盘鸡</code>以及<code>Servarica 2T大盘鸡上面进行</code></p>
+
+<p>两台机都安装了Centos7的系统，因此本次教程主要讲述如何在CentOS7上安装docker，并在docker中部署包含了aria2+ariaNg+filemanager等服务的容器</p>
+
+<h2 id="0x01-安装过程">0x01 安装过程</h2>
+
+<p>以下过程均在root权限下进行操作</p>
+
+<h3 id="1-首先更新源">1.首先更新源</h3>
+
+<pre><code>yum update
+</code></pre>
+
+<h3 id="2-安装docker">2.安装docker</h3>
+
+<pre><code>yum -y install docker
+</code></pre>
+
+<h3 id="3-启动docker并添加到开机自启动">3.启动docker并添加到开机自启动</h3>
+
+<pre><code>systemctl start docker.service
+systemctl enable docker.service
+</code></pre>
+
+<h3 id="4-新建一个文件夹-用于映射到docker中的下载文件夹">4.新建一个文件夹，用于映射到docker中的下载文件夹</h3>
+
+<pre><code>docker run --name ccaa -d -p 6800:6800 -p 6080:6080 -v /mnt/download:/Down moerats/ccaa:latest
+</code></pre>
+
+<p>至此，可以使用以下信息访问AriaNG并登录操作了</p>
+
+<pre><code>#大致信息如下
+AriaNg界面：http://ip:6080
+访问界面用户名密码分别为：admin、moerats
+Aria2密匙：moerats
+Filebrowser访问地址：http://ip:6080/admin，也可以通过AriaNg界面上方的文件管理按钮进入
+</code></pre>
+
+<h2 id="0x02-遇到的问题">0x02 遇到的问题</h2>
+
+<h3 id="1-若ariang的web界面进不去-就需要开启防火墙">1.若AriaNG的Web界面进不去，就需要开启防火墙</h3>
+
+<pre><code># 仅限CentOS7
+firewall-cmd --zone=public --add-port=6080/tcp --permanent
+firewall-cmd --zone=public --add-port=6800/tcp --permanent
+firewall-cmd --reload
+</code></pre>
+
+<h3 id="2-若ariang中aria2-status为disconnected-并且单击显示-authorization-failed-的error-如图">2.若AriaNG中Aria2 Status为Disconnected，并且单击显示<code>Authorization Failed</code>的Error，如图</h3>
+
+<p>则需要</p>
+
     </div>
 	
     <div class="post-copyright">
