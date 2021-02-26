@@ -23,7 +23,8 @@ ERROR: This script has been DISCARDED, please switch to fhs-install-v2ray projec
 2.配置config.json文件 需要注意的是，新版的config.json文件默认路径从\etc\v2ray\config.json换到了\usr\local\etc\v2ray\config.json
 由于我在本地备份又config.json，就不再重复配置了
 将自带的config.json重命名为config.json.bak，留个备份，然后用xftp把本地的config.json上传到服务器对应目录中
-要了解如何配置config.json的可以参考旧教程里面的服务端配置模板</description>
+要了解如何配置config.json的可以参考旧教程里面的服务端配置模板
+最后附上V2ray新官网地址：https://www.v2fly.org/guide/start.html</description>
     </item>
     
     <item>
