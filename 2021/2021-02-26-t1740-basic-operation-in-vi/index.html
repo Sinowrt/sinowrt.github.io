@@ -9,9 +9,9 @@
   
   
   
-  <link rel="prev" href="http://blog.sinowrt.cn/2020/2020-12-01t2202-how-to-generate-vmess-urls-and-public-as-subscription/" />
-  <link rel="next" href="http://blog.sinowrt.cn/2021/2021-02-26-t1633-compile-a-jvm-on-macos/" />
-  <link rel="canonical" href="http://blog.sinowrt.cn/2020/2020-12-02-t1430-instruction-of-installing-aria2-with-ariang-in-docker/" />
+  <link rel="prev" href="http://blog.sinowrt.cn/2021/2021-02-26-t1633-compile-a-jvm-on-macos/" />
+  
+  <link rel="canonical" href="http://blog.sinowrt.cn/2021/2021-02-26-t1740-basic-operation-in-vi/" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -22,10 +22,10 @@
   <title>
        
        
-           使用docker安装 aria2&#43;ariaNg&#43;filemanager | Sinowrt
+           Vi 的一些基本操作 | Sinowrt
        
   </title>
-  <meta name="title" content="使用docker安装 aria2&#43;ariaNg&#43;filemanager | Sinowrt">
+  <meta name="title" content="Vi 的一些基本操作 | Sinowrt">
     
   
   <link rel="stylesheet" href="/font/iconfont.css">
@@ -44,21 +44,21 @@
          "@id": "http:\/\/blog.sinowrt.cn"
     },
     "articleSection" : "posts",
-    "name" : "使用docker安装 aria2\x2bariaNg\x2bfilemanager",
-    "headline" : "使用docker安装 aria2\x2bariaNg\x2bfilemanager",
-    "description" : "0x00 序 本次安装分别在绿云东京1T大盘鸡以及Servarica 2T大盘鸡上面进行\n两台机都安装了Centos7的系统，因此本次教程主要讲述如何在CentOS7上安装docker，并在docker中部署包含了aria2\x2bariaNg\x2bfilemanager等服务的容器\n0x01 安装过程 以下过程均在root权限下进行操作\n1.首先更新源 yum update  2.安装docker yum -y install docker  3.启动docker并添加到开机自启动 systemctl start docker.service systemctl enable docker.service  4.新建一个文件夹，用于映射到docker中的下载文件夹 docker run --name ccaa -d -p 6800:6800 -p 6080:6080 -v \/mnt\/download:\/Down moerats\/ccaa:latest  至此，可以使用以下信息访问AriaNG并登录操作了\n#大致信息如下 AriaNg界面：http:\/\/ip:6080 访问界面用户名密码分别为：admin、moerats Aria2密匙：moerats Filebrowser访问地址：http:\/\/ip:6080\/admin，也可以通过AriaNg界面上方的文件管理按钮进入  0x02 遇到的问题 1.若AriaNG的Web界面进不去，就需要开启防火墙 # 仅限CentOS7 firewall-cmd --zone=public --add-port=6080\/tcp --permanent firewall-cmd --zone=public --add-port=6800\/tcp --permanent firewall-cmd --reload  2.若AriaNG中Aria2 Status为Disconnected，并且单击显示Authorization Failed的Error，如图 则需要",
+    "name" : "Vi 的一些基本操作",
+    "headline" : "Vi 的一些基本操作",
+    "description" : "0x00 基本操作 1.查找 命令模式下，\\ \x2b 关键字\n2.显示行号 命令模式下, :set number",
     "inLanguage" : "en-us",
     "author" : "sinowrt",
     "creator" : "sinowrt",
     "publisher": "sinowrt",
     "accountablePerson" : "sinowrt",
     "copyrightHolder" : "sinowrt",
-    "copyrightYear" : "2020",
-    "datePublished": "2020-12-01 22:02:00 \x2b0800 CST",
-    "dateModified" : "2020-12-01 22:02:00 \x2b0800 CST",
-    "url" : "http:\/\/blog.sinowrt.cn\/2020\/2020-12-02-t1430-instruction-of-installing-aria2-with-ariang-in-docker\/",
-    "wordCount" : "61",
-    "keywords" : [ "docker","aria2", "Sinowrt"]
+    "copyrightYear" : "2021",
+    "datePublished": "2021-02-26 17:40:00 \x2b0800 CST",
+    "dateModified" : "2021-02-26 17:40:00 \x2b0800 CST",
+    "url" : "http:\/\/blog.sinowrt.cn\/2021\/2021-02-26-t1740-basic-operation-in-vi\/",
+    "wordCount" : "10",
+    "keywords" : [ "Linux","Vi", "Sinowrt"]
 }
 </script>
 
@@ -128,16 +128,17 @@ var _hmt = _hmt || [];
       		
 <article class="post-warp" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">使用docker安装 aria2&#43;ariaNg&#43;filemanager</h1>
+        <h1 class="post-title" itemprop="name headline">Vi 的一些基本操作</h1>
         <div class="post-meta">
                 Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
                 <span class="post-time">
-                on <time datetime=2020-12-01 itemprop="datePublished">December 1, 2020</time>
+                on <time datetime=2021-02-26 itemprop="datePublished">February 26, 2021</time>
                 </span>
                 in
                 <i class="iconfont icon-folder"></i>
                 <span class="post-category">
-                        <a href="http://blog.sinowrt.cn/categories/docker/"> docker </a>
+                        <a href="http://blog.sinowrt.cn/categories/linux/"> Linux </a>
+                        <a href="http://blog.sinowrt.cn/categories/vi/"> Vi </a>
                         
                 </span>
         </div>
@@ -160,59 +161,15 @@ var _hmt = _hmt || [];
 
           
 
-<h2 id="0x00-序">0x00 序</h2>
+<h2 id="0x00-基本操作">0x00 基本操作</h2>
 
-<p>本次安装分别在<code>绿云东京1T大盘鸡</code>以及<code>Servarica 2T大盘鸡上面进行</code></p>
+<h3 id="1-查找">1.查找</h3>
 
-<p>两台机都安装了Centos7的系统，因此本次教程主要讲述如何在CentOS7上安装docker，并在docker中部署包含了aria2+ariaNg+filemanager等服务的容器</p>
+<p>命令模式下，\ + 关键字</p>
 
-<h2 id="0x01-安装过程">0x01 安装过程</h2>
+<h3 id="2-显示行号">2.显示行号</h3>
 
-<p>以下过程均在root权限下进行操作</p>
-
-<h3 id="1-首先更新源">1.首先更新源</h3>
-
-<pre><code>yum update
-</code></pre>
-
-<h3 id="2-安装docker">2.安装docker</h3>
-
-<pre><code>yum -y install docker
-</code></pre>
-
-<h3 id="3-启动docker并添加到开机自启动">3.启动docker并添加到开机自启动</h3>
-
-<pre><code>systemctl start docker.service
-systemctl enable docker.service
-</code></pre>
-
-<h3 id="4-新建一个文件夹-用于映射到docker中的下载文件夹">4.新建一个文件夹，用于映射到docker中的下载文件夹</h3>
-
-<pre><code>docker run --name ccaa -d -p 6800:6800 -p 6080:6080 -v /mnt/download:/Down moerats/ccaa:latest
-</code></pre>
-
-<p>至此，可以使用以下信息访问AriaNG并登录操作了</p>
-
-<pre><code>#大致信息如下
-AriaNg界面：http://ip:6080
-访问界面用户名密码分别为：admin、moerats
-Aria2密匙：moerats
-Filebrowser访问地址：http://ip:6080/admin，也可以通过AriaNg界面上方的文件管理按钮进入
-</code></pre>
-
-<h2 id="0x02-遇到的问题">0x02 遇到的问题</h2>
-
-<h3 id="1-若ariang的web界面进不去-就需要开启防火墙">1.若AriaNG的Web界面进不去，就需要开启防火墙</h3>
-
-<pre><code># 仅限CentOS7
-firewall-cmd --zone=public --add-port=6080/tcp --permanent
-firewall-cmd --zone=public --add-port=6800/tcp --permanent
-firewall-cmd --reload
-</code></pre>
-
-<h3 id="2-若ariang中aria2-status为disconnected-并且单击显示-authorization-failed-的error-如图">2.若AriaNG中Aria2 Status为Disconnected，并且单击显示<code>Authorization Failed</code>的Error，如图</h3>
-
-<p>则需要</p>
+<p>命令模式下, :set number</p>
 
     </div>
 	
@@ -228,7 +185,7 @@ firewall-cmd --reload
              
             <p class="copyright-item">
                     <span>Link:</span>
-                    <a href=http://blog.sinowrt.cn/2020/2020-12-02-t1430-instruction-of-installing-aria2-with-ariang-in-docker/>http://blog.sinowrt.cn/2020/2020-12-02-t1430-instruction-of-installing-aria2-with-ariang-in-docker/</span>
+                    <a href=http://blog.sinowrt.cn/2021/2021-02-26-t1740-basic-operation-in-vi/>http://blog.sinowrt.cn/2021/2021-02-26-t1740-basic-operation-in-vi/</span>
             </p>
 			
             
@@ -245,11 +202,11 @@ firewall-cmd --reload
             <section>
             <i class="iconfont icon-tag"></i>Tag(s): 
             
-            <span class="tag"><a href="http://blog.sinowrt.cn/tags/docker/">
-                    #docker</a></span>
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/linux/">
+                    #Linux</a></span>
             
-            <span class="tag"><a href="http://blog.sinowrt.cn/tags/aria2/">
-                    #aria2</a></span>
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/vi/">
+                    #Vi</a></span>
             
             </section>
         
@@ -261,10 +218,8 @@ firewall-cmd --reload
 
     <div class="post-nav">
         
-        <a href="http://blog.sinowrt.cn/2020/2020-12-01t2202-how-to-generate-vmess-urls-and-public-as-subscription/" class="prev" rel="prev" title="如何生成VMESS URL并发布订阅"><i class="iconfont icon-left"></i>&nbsp;如何生成VMESS URL并发布订阅</a>
+        <a href="http://blog.sinowrt.cn/2021/2021-02-26-t1633-compile-a-jvm-on-macos/" class="prev" rel="prev" title="《深入理解JVM》之别在MacOS编译OpenJDK7"><i class="iconfont icon-left"></i>&nbsp;《深入理解JVM》之别在MacOS编译OpenJDK7</a>
          
-        
-        <a href="http://blog.sinowrt.cn/2021/2021-02-26-t1633-compile-a-jvm-on-macos/" class="next" rel="next" title="《深入理解JVM》之别在MacOS编译OpenJDK7">《深入理解JVM》之别在MacOS编译OpenJDK7&nbsp;<i class="iconfont icon-right"></i></a>
         
     </div>
 

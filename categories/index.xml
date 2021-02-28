@@ -6,10 +6,37 @@
     <description>Recent content in Categories on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 01 Dec 2020 22:02:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 26 Feb 2021 17:40:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Linux</title>
+      <link>http://blog.sinowrt.cn/categories/linux/</link>
+      <pubDate>Fri, 26 Feb 2021 17:40:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Vi</title>
+      <link>http://blog.sinowrt.cn/categories/vi/</link>
+      <pubDate>Fri, 26 Feb 2021 17:40:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/vi/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>JVM</title>
+      <link>http://blog.sinowrt.cn/categories/jvm/</link>
+      <pubDate>Fri, 26 Feb 2021 16:33:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/jvm/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>docker</title>
@@ -26,15 +53,6 @@
       <pubDate>Tue, 01 Dec 2020 22:02:00 +0800</pubDate>
       
       <guid>http://blog.sinowrt.cn/categories/v2ray/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Linux</title>
-      <link>http://blog.sinowrt.cn/categories/linux/</link>
-      <pubDate>Tue, 15 Sep 2020 23:14:00 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/categories/linux/</guid>
       <description></description>
     </item>
     

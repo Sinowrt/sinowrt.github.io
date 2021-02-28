@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vi on Sinowrt</title>
+    <link>http://blog.sinowrt.cn/tags/vi/</link>
+    <description>Recent content in Vi on Sinowrt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 26 Feb 2021 17:40:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.sinowrt.cn/tags/vi/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Vi 的一些基本操作</title>
+      <link>http://blog.sinowrt.cn/2021/2021-02-26-t1740-basic-operation-in-vi/</link>
+      <pubDate>Fri, 26 Feb 2021 17:40:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2021/2021-02-26-t1740-basic-operation-in-vi/</guid>
+      <description>0x00 基本操作 1.查找 命令模式下，\ + 关键字
+2.显示行号 命令模式下, :set number</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>JVM on Sinowrt</title>
+    <link>http://blog.sinowrt.cn/categories/jvm/</link>
+    <description>Recent content in JVM on Sinowrt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 26 Feb 2021 16:33:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.sinowrt.cn/categories/jvm/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>《深入理解JVM》之别在MacOS编译OpenJDK7</title>
+      <link>http://blog.sinowrt.cn/2021/2021-02-26-t1633-compile-a-jvm-on-macos/</link>
+      <pubDate>Fri, 26 Feb 2021 16:33:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2021/2021-02-26-t1633-compile-a-jvm-on-macos/</guid>
+      <description>0x00 前言 《深入理解JVM》这本书都看了大半了，但是里面的实验还没真正动手操作过，于是趁这段时间一一操作一遍。
+首当其冲的当然是编译JVM了，似乎所有的坑都被我都趟了一遍，就写篇文来记录一下，顺便告诫大家，不要试图在新版本的macOS中编译OpenJDK7！
+0x01 编译环境 macOS Catalina 10.15.2
+Xcode 11.6
+Command Line Tools MacOSX10.15.sdk
+0x02 准备工作 1. 下载源码 在macOS中，先用brew安装mercurial代码版本管理工具
+brew install mercurial  获取源码：
+hg clone http://hg.openjdk.java.net/jdk7u/jdk7u-dev cd jdk7u-dev chmod 755 get_source.sh ./get_source.sh  而国内的网络到了./get_source.sh这一步，下载过程中总是会网络异常中断，所以我是在国外的vps上面下载好之后，再压缩拉回来的。
+2. 安装XCode和Command Line Tools for XCode 由于我之前已经安装了，所以这一步跳过，具体的版本可以看0x01编译环境中的描述
+3. 准备一个Bootstrap SDK 书中说到，“如果编译OpenJDK 7，Bootstrap JDK必须使用JDK6 Update 14或之后的版本”，而我用的是JDK1.7.80版本。
+4. 安装Apache Ant Apache Ant 对版本有要求，1.7.1以上即可。 同时，Apache Ant 官网上有一句话必须要看一下：
+&amp;ldquo;The 1.9.x releases require Java5 at runtime and 1.10.x requires Java8 at runtime.</description>
+    </item>
+    
+  </channel>
+</rss>
