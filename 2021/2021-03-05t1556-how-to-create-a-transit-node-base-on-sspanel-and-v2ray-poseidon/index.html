@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="sinowrt">
+  
+  
+  
+  <link rel="prev" href="http://blog.sinowrt.cn/2021/2021-03-04t2218-http-timeout-while-starting-docker-compose/" />
+  <link rel="next" href="http://blog.sinowrt.cn/2021/2021-03-05t1347-failed-to-handler-mux-client-connection/" />
+  <link rel="canonical" href="http://blog.sinowrt.cn/2021/2021-03-05t1556-how-to-create-a-transit-node-base-on-sspanel-and-v2ray-poseidon/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           sspanel 与 v2ray-poseidon 环境下如何搭建一个中转节点 | Sinowrt
+       
+  </title>
+  <meta name="title" content="sspanel 与 v2ray-poseidon 环境下如何搭建一个中转节点 | Sinowrt">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/blog.sinowrt.cn"
+    },
+    "articleSection" : "posts",
+    "name" : "sspanel 与 v2ray-poseidon 环境下如何搭建一个中转节点",
+    "headline" : "sspanel 与 v2ray-poseidon 环境下如何搭建一个中转节点",
+    "description" : "0x00 背景 前两天搭建了个sspanel,后端主要使用v2ray-poseidon。之前没用面板的时候，一直是使用中转节点，安装nginx来反代节点，nginx 反代节点的教程前天也发出来了，大家有兴趣也可以看看。但是那篇文章只写道了如何反代节点，而没有提到如何将这种方式与sspanle搭配使用。\n之前使用nginx反代节点的过程中，在sspanel遇到的问题主要是：在sspanel新建这个中转节点后，面板中总是显示灰色不可用状态，尽管将配置导入v2ray客户端是可用的。\n这个问题困扰了我很久，今天突然就想通了，造成这个问题的主要原因是：面板的节点ID与这个落地节点的ID不匹配，因为落地节点也作为一个独立的节点导入到了面板中，而节点ID又是自增的无法重复设置，所以就会产生这样的问题。\n0x01 解决过程 今天突然发现poseidon的教程中，有服务端多开v2ray的教程，于是我想，那我在这个节点开多一个v2ray实例就行啦！\n1. 使用docker多开v2ray实例用于中转节点连接 1）复制目录\ncd \/root\/v2ray-poseidon\/docker\/sspanel cp -a ws-tls ws-tls-2 cd ws-tls-2  2）修改config.json\n配置nodeId为面板中新建的中转节点ID，然后将acceptProxyProtocol 选项值改为 true。\n3） 修改docker-compose.yml\ncontainer_name:v2ray-ws-tls-2 ports 下面的端口改成其它端口，不然会和原 v2ray-poseidon 出现端口冲突\n4） 启动\ndc up -d\n2. 中转节点配置 1）安装 HAProxy\nyum -y install haproxy\n2）修改HAProxy 配置文件\n清空默认配置\necho \x27\x27 \x26gt; \/etc\/haproxy\/haproxy.cfg  举例，现在我有个中转分配的端口为 20001，需要转发 v2ray.poseidon-gfw.cc\nfrontend sg1_frontend bind *:20001 default_backend sg1_server backend sg1_server server s1 sg1-test-trojanp.poseidon-gfw.cc:443 send-proxy  如果需要中转多个落地机，可以复制上面的内容，比如",
+    "inLanguage" : "en-us",
+    "author" : "sinowrt",
+    "creator" : "sinowrt",
+    "publisher": "sinowrt",
+    "accountablePerson" : "sinowrt",
+    "copyrightHolder" : "sinowrt",
+    "copyrightYear" : "2021",
+    "datePublished": "2021-03-05 13:47:00 \x2b0800 CST",
+    "dateModified" : "2021-03-05 13:47:00 \x2b0800 CST",
+    "url" : "http:\/\/blog.sinowrt.cn\/2021\/2021-03-05t1556-how-to-create-a-transit-node-base-on-sspanel-and-v2ray-poseidon\/",
+    "wordCount" : "213",
+    "keywords" : [ "v2ray", "Sinowrt"]
+}
+</script>
+
+</head>
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?85719ea04c6401b98466dfdbc9399c78";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">sspanel 与 v2ray-poseidon 环境下如何搭建一个中转节点</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2021-03-05 itemprop="datePublished">March 5, 2021</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="http://blog.sinowrt.cn/categories/v2ray/"> v2ray </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          
+
+<h2 id="0x00-背景">0x00 背景</h2>
+
+<p>前两天搭建了个sspanel,后端主要使用v2ray-poseidon。之前没用面板的时候，一直是使用中转节点，安装nginx来反代节点，nginx 反代节点的教程前天也发出来了，大家有兴趣也可以看看。但是那篇文章只写道了如何反代节点，而没有提到如何将这种方式与sspanle搭配使用。</p>
+
+<p>之前使用nginx反代节点的过程中，在sspanel遇到的问题主要是：在sspanel新建这个中转节点后，面板中总是显示灰色不可用状态，尽管将配置导入v2ray客户端是可用的。</p>
+
+<p>这个问题困扰了我很久，今天突然就想通了，造成这个问题的主要原因是：面板的节点ID与这个落地节点的ID不匹配，因为落地节点也作为一个独立的节点导入到了面板中，而节点ID又是自增的无法重复设置，所以就会产生这样的问题。</p>
+
+<h2 id="0x01-解决过程">0x01 解决过程</h2>
+
+<p>今天突然发现poseidon的教程中，有服务端多开v2ray的教程，于是我想，那我在这个节点开多一个v2ray实例就行啦！</p>
+
+<h3 id="1-使用docker多开v2ray实例用于中转节点连接">1. 使用docker多开v2ray实例用于中转节点连接</h3>
+
+<p>1）复制目录</p>
+
+<pre><code class="language-shell">cd /root/v2ray-poseidon/docker/sspanel
+cp -a ws-tls ws-tls-2
+cd ws-tls-2
+</code></pre>
+
+<p>2）修改config.json<br />
+配置nodeId为面板中新建的中转节点ID，然后将acceptProxyProtocol 选项值改为 true。</p>
+
+<p>3） 修改docker-compose.yml<br />
+container_name:v2ray-ws-tls-2
+ports 下面的端口改成其它端口，不然会和原 v2ray-poseidon 出现端口冲突</p>
+
+<p>4） 启动<br />
+<code>dc up -d</code></p>
+
+<h3 id="2-中转节点配置">2. 中转节点配置</h3>
+
+<p>1）安装 HAProxy<br />
+<code>yum -y install haproxy</code></p>
+
+<p>2）修改HAProxy 配置文件<br />
+清空默认配置</p>
+
+<pre><code>echo '' &gt; /etc/haproxy/haproxy.cfg
+</code></pre>
+
+<p>举例，现在我有个中转分配的端口为 20001，需要转发 v2ray.poseidon-gfw.cc</p>
+
+<pre><code>frontend sg1_frontend
+  bind *:20001
+  default_backend sg1_server
+
+backend sg1_server
+  server s1 sg1-test-trojanp.poseidon-gfw.cc:443 send-proxy
+</code></pre>
+
+<p>如果需要中转多个落地机，可以复制上面的内容，比如</p>
+
+<pre><code># 这是第一个
+frontend sg1_frontend
+  bind *:20001
+  default_backend sg1_server
+
+backend sg1_server
+  server s1 sg1-test-trojanp.poseidon-gfw.cc:443 send-proxy
+
+# 这里是第二个
+frontend jp1_frontend(这个是可以随便改的，每个中转端口一个名字，别重就行)
+  bind *:20002
+  default_backend jp1_server(这里必须为落地的名字， backend 后面的内容)
+
+backend jp1_server(此处为落地的名字，可以随便改，每个落地一个名字，别重就行)
+  server s1 jp1-test-trojanp.poseidon-gfw.cc:443 send-proxy
+
+# ... ... 还可以有更多
+</code></pre>
+
+<p>3）重启 HAProxy</p>
+
+<pre><code>systemctl restart haproxy
+</code></pre>
+
+<h3 id="3-sspanel面板配置">3. sspanel面板配置</h3>
+
+<p>由于我是ws + tls，所以面板中的节点地址配置如下：</p>
+
+<pre><code>落地机器ip或域名;落地机器端口;alterid;tls;ws;path=/|server=中转机器ip或域名|outside_port=中转机器端口
+</code></pre>
+
+<p>下面给出其他方案的节点地址配置：</p>
+
+<pre><code>// TCP 示例，请注意后面有两个分号
+非CDN域名或者ip;非0;2;tcp;;
+
+// WS
+非CDN域名或者ip;8080;2;ws;;path=/v2ray|host=这里可以用加了CDN的域名
+
+// WS + TLS (自动配置）
+非CDN域名或者ip;非0;2;tls;ws;path=/v2ray|host=tls的域名|inside_port=10550
+
+// WS + TLS (Caddy 提供)
+非CDN域名或者ip;0;2;tls;ws;path=/v2ray|host=tls的域名|inside_port=10550|outside_port=443
+
+
+// nat鸡 ws
+非CDN域名或者ip;非0;2;ws;;path=/v2ray|host=这里可以用加了CDN的域名
+
+// nat鸡 ws + tls (自动配置)，因为部分商家并不提供 80 &amp; 443 访问，所以请考虑手动申请 SSL 证书
+非CDN域名或者ip;非0;2;tls;ws;path=/v2ray|host=tls的域名
+
+// nat鸡 ws + tls (Caddy 提供)，因为部分商家并不提供 80 &amp; 443 访问，所以请考虑手动申请 SSL 证书
+非CDN域名或者ip;0;2;tls;ws;path=/v2ray|host=tls的域名|inside_port=10550|outside_port=11120
+
+
+// 以下为 KCP 示例部分，支持所有 V2Ray 的 type：
+
+// none: 默认值，不进行伪装，发送的数据是没有特征的数据包。
+非CDN域名或者ip;非0;2;kcp;noop;
+
+// srtp: 伪装成 SRTP 数据包，会被识别为视频通话数据（如 FaceTime）。
+非CDN域名或者ip;非0;2;kcp;srtp;
+
+// utp: 伪装成 uTP 数据包，会被识别为 BT 下载数据。
+非CDN域名或者ip;非0;2;kcp;utp;
+
+// wechat-video: 伪装成微信视频通话的数据包。
+非CDN域名或者ip;非0;2;kcp;wechat-video;
+
+// dtls: 伪装成 DTLS 1.2 数据包。
+非CDN域名或者ip;非0;2;kcp;dtls;
+
+// wireguard: 伪装成 WireGuard 数据包(并不是真正的 WireGuard 协议) 。
+非CDN域名或者ip;非0;2;kcp;wireguard;
+</code></pre>
+
+<h2 id="0x02-结语">0x02 结语</h2>
+
+<p>至此，sspanel的中转节点配置就完成了，其中HAProxy换成nginx的效果应该是一样的，我还没尝试，有兴趣的朋友可以试一下。</p>
+
+    </div>
+	
+    <div class="post-copyright">
+             
+			
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>sinowrt </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://blog.sinowrt.cn/2021/2021-03-05t1556-how-to-create-a-transit-node-base-on-sspanel-and-v2ray-poseidon/>http://blog.sinowrt.cn/2021/2021-03-05t1556-how-to-create-a-transit-node-base-on-sspanel-and-v2ray-poseidon/</span>
+            </p>
+			
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/v2ray/">
+                    #v2ray</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="http://blog.sinowrt.cn">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://blog.sinowrt.cn/2021/2021-03-04t2218-http-timeout-while-starting-docker-compose/" class="prev" rel="prev" title="docker-compose 启动报错 read time out"><i class="iconfont icon-left"></i>&nbsp;docker-compose 启动报错 read time out</a>
+         
+        
+        <a href="http://blog.sinowrt.cn/2021/2021-03-05t1347-failed-to-handler-mux-client-connection/" class="next" rel="next" title="failed to handler mux client connection 错误">failed to handler mux client connection 错误&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2021</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://blog.sinowrt.cn">sinowrt</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

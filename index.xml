@@ -5,15 +5,346 @@
     <description>Recent content in Sinowrt on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 26 Feb 2021 17:40:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 05 Mar 2021 13:47:00 +0800</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>failed to handler mux client connection 错误</title>
+      <link>http://blog.sinowrt.cn/2021/2021-03-05t1347-failed-to-handler-mux-client-connection/</link>
+      <pubDate>Fri, 05 Mar 2021 13:47:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2021/2021-03-05t1347-failed-to-handler-mux-client-connection/</guid>
+      <description>
+
+&lt;h2 id=&#34;0x00-错误描述&#34;&gt;0x00 错误描述&lt;/h2&gt;
+
+&lt;p&gt;使用v2rayN连接节点的时候，总是会出现这个警告：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;2021/03/05 13:45:52 [Warning] failed to handler mux client connection &amp;gt; v2ray.com/core/proxy/vmess/outbound: connection ends &amp;gt; v2ray.com/core/proxy/vmess/outbound: failed to read header &amp;gt; v2ray.com/core/proxy/vmess/encoding: failed to read response header &amp;gt; websocket: close 1000 (normal)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;上网查了一圈，发现是节点时间与客户端时间不一致导致的。&lt;/p&gt;
+
+&lt;h2 id=&#34;0x01-解决方案&#34;&gt;0x01 解决方案&lt;/h2&gt;
+
+&lt;p&gt;节点是基于ubuntu搭建的，所以下面将给出ubuntu设置时区的教程：&lt;/p&gt;
+
+&lt;h3 id=&#34;1-运行-tzselect-选择-asia-china-beijing&#34;&gt;1. 运行&lt;code&gt;tzselect&lt;/code&gt;,选择 Asia -&amp;gt; China -&amp;gt; Beijing。&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;root@KnobbyKindhearted-VM:~/v2ray-poseidon/docker/sspanel/ws-tls# tzselect
+Please identify a location so that time zone rules can be set correctly.
+Please select a continent, ocean, &amp;quot;coord&amp;quot;, or &amp;quot;TZ&amp;quot;.
+ 1) Africa
+ 2) Americas
+ 3) Antarctica
+ 4) Asia
+ 5) Atlantic Ocean
+ 6) Australia
+ 7) Europe
+ 8) Indian Ocean
+ 9) Pacific Ocean
+10) coord - I want to use geographical coordinates.
+11) TZ - I want to specify the time zone using the Posix TZ format.
+#? 4
+Please select a country whose clocks agree with yours.
+ 1) Afghanistan       18) Israel            35) Palestine
+ 2) Armenia       19) Japan         36) Philippines
+ 3) Azerbaijan        20) Jordan            37) Qatar
+ 4) Bahrain       21) Kazakhstan        38) Russia
+ 5) Bangladesh        22) Korea (North)     39) Saudi Arabia
+ 6) Bhutan        23) Korea (South)     40) Singapore
+ 7) Brunei        24) Kuwait            41) Sri Lanka
+ 8) Cambodia          25) Kyrgyzstan        42) Syria
+ 9) China         26) Laos          43) Taiwan
+10) Cyprus        27) Lebanon           44) Tajikistan
+11) East Timor        28) Macau         45) Thailand
+12) Georgia       29) Malaysia          46) Turkmenistan
+13) Hong Kong         30) Mongolia          47) United Arab Emirates
+14) India         31) Myanmar (Burma)       48) Uzbekistan
+15) Indonesia         32) Nepal         49) Vietnam
+16) Iran          33) Oman          50) Yemen
+17) Iraq          34) Pakistan
+#? 9
+Please select one of the following time zone regions.
+1) Beijing Time
+2) Xinjiang Time
+#? 1
+
+The following information has been given:
+
+    China
+    Beijing Time
+
+Therefore TZ=&#39;Asia/Shanghai&#39; will be used.
+Local time is now:  Fri Mar  5 13:46:27 CST 2021.
+Universal Time is now:  Fri Mar  5 05:46:27 UTC 2021.
+Is the above information OK?
+1) Yes
+2) No
+#? 1
+
+You can make this change permanent for yourself by appending the line
+    TZ=&#39;Asia/Shanghai&#39;; export TZ
+to the file &#39;.profile&#39; in your home directory; then log out and log in again.
+
+Here is that TZ value again, this time on standard output so that you
+can use the /usr/bin/tzselect command in shell scripts:
+Asia/Shanghai
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;2-复制文件到-etc目录下-cp-usr-share-zoneinfo-asia-shanghai-etc-localtime&#34;&gt;2. 复制文件到/etc目录下&lt;code&gt;cp /usr/share/zoneinfo/Asia/Shanghai  /etc/localtime&lt;/code&gt;&lt;/h3&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>sspanel 与 v2ray-poseidon 环境下如何搭建一个中转节点</title>
+      <link>http://blog.sinowrt.cn/2021/2021-03-05t1556-how-to-create-a-transit-node-base-on-sspanel-and-v2ray-poseidon/</link>
+      <pubDate>Fri, 05 Mar 2021 13:47:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2021/2021-03-05t1556-how-to-create-a-transit-node-base-on-sspanel-and-v2ray-poseidon/</guid>
+      <description>
+
+&lt;h2 id=&#34;0x00-背景&#34;&gt;0x00 背景&lt;/h2&gt;
+
+&lt;p&gt;前两天搭建了个sspanel,后端主要使用v2ray-poseidon。之前没用面板的时候，一直是使用中转节点，安装nginx来反代节点，nginx 反代节点的教程前天也发出来了，大家有兴趣也可以看看。但是那篇文章只写道了如何反代节点，而没有提到如何将这种方式与sspanle搭配使用。&lt;/p&gt;
+
+&lt;p&gt;之前使用nginx反代节点的过程中，在sspanel遇到的问题主要是：在sspanel新建这个中转节点后，面板中总是显示灰色不可用状态，尽管将配置导入v2ray客户端是可用的。&lt;/p&gt;
+
+&lt;p&gt;这个问题困扰了我很久，今天突然就想通了，造成这个问题的主要原因是：面板的节点ID与这个落地节点的ID不匹配，因为落地节点也作为一个独立的节点导入到了面板中，而节点ID又是自增的无法重复设置，所以就会产生这样的问题。&lt;/p&gt;
+
+&lt;h2 id=&#34;0x01-解决过程&#34;&gt;0x01 解决过程&lt;/h2&gt;
+
+&lt;p&gt;今天突然发现poseidon的教程中，有服务端多开v2ray的教程，于是我想，那我在这个节点开多一个v2ray实例就行啦！&lt;/p&gt;
+
+&lt;h3 id=&#34;1-使用docker多开v2ray实例用于中转节点连接&#34;&gt;1. 使用docker多开v2ray实例用于中转节点连接&lt;/h3&gt;
+
+&lt;p&gt;1）复制目录&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;cd /root/v2ray-poseidon/docker/sspanel
+cp -a ws-tls ws-tls-2
+cd ws-tls-2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;2）修改config.json&lt;br /&gt;
+配置nodeId为面板中新建的中转节点ID，然后将acceptProxyProtocol 选项值改为 true。&lt;/p&gt;
+
+&lt;p&gt;3） 修改docker-compose.yml&lt;br /&gt;
+container_name:v2ray-ws-tls-2
+ports 下面的端口改成其它端口，不然会和原 v2ray-poseidon 出现端口冲突&lt;/p&gt;
+
+&lt;p&gt;4） 启动&lt;br /&gt;
+&lt;code&gt;dc up -d&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;2-中转节点配置&#34;&gt;2. 中转节点配置&lt;/h3&gt;
+
+&lt;p&gt;1）安装 HAProxy&lt;br /&gt;
+&lt;code&gt;yum -y install haproxy&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;2）修改HAProxy 配置文件&lt;br /&gt;
+清空默认配置&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;echo &#39;&#39; &amp;gt; /etc/haproxy/haproxy.cfg
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;举例，现在我有个中转分配的端口为 20001，需要转发 v2ray.poseidon-gfw.cc&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;frontend sg1_frontend
+  bind *:20001
+  default_backend sg1_server
+
+backend sg1_server
+  server s1 sg1-test-trojanp.poseidon-gfw.cc:443 send-proxy
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如果需要中转多个落地机，可以复制上面的内容，比如&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# 这是第一个
+frontend sg1_frontend
+  bind *:20001
+  default_backend sg1_server
+
+backend sg1_server
+  server s1 sg1-test-trojanp.poseidon-gfw.cc:443 send-proxy
+
+# 这里是第二个
+frontend jp1_frontend(这个是可以随便改的，每个中转端口一个名字，别重就行)
+  bind *:20002
+  default_backend jp1_server(这里必须为落地的名字， backend 后面的内容)
+
+backend jp1_server(此处为落地的名字，可以随便改，每个落地一个名字，别重就行)
+  server s1 jp1-test-trojanp.poseidon-gfw.cc:443 send-proxy
+
+# ... ... 还可以有更多
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;3）重启 HAProxy&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;systemctl restart haproxy
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;3-sspanel面板配置&#34;&gt;3. sspanel面板配置&lt;/h3&gt;
+
+&lt;p&gt;由于我是ws + tls，所以面板中的节点地址配置如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;落地机器ip或域名;落地机器端口;alterid;tls;ws;path=/|server=中转机器ip或域名|outside_port=中转机器端口
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;下面给出其他方案的节点地址配置：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// TCP 示例，请注意后面有两个分号
+非CDN域名或者ip;非0;2;tcp;;
+
+// WS
+非CDN域名或者ip;8080;2;ws;;path=/v2ray|host=这里可以用加了CDN的域名
+
+// WS + TLS (自动配置）
+非CDN域名或者ip;非0;2;tls;ws;path=/v2ray|host=tls的域名|inside_port=10550
+
+// WS + TLS (Caddy 提供)
+非CDN域名或者ip;0;2;tls;ws;path=/v2ray|host=tls的域名|inside_port=10550|outside_port=443
+
+
+// nat鸡 ws
+非CDN域名或者ip;非0;2;ws;;path=/v2ray|host=这里可以用加了CDN的域名
+
+// nat鸡 ws + tls (自动配置)，因为部分商家并不提供 80 &amp;amp; 443 访问，所以请考虑手动申请 SSL 证书
+非CDN域名或者ip;非0;2;tls;ws;path=/v2ray|host=tls的域名
+
+// nat鸡 ws + tls (Caddy 提供)，因为部分商家并不提供 80 &amp;amp; 443 访问，所以请考虑手动申请 SSL 证书
+非CDN域名或者ip;0;2;tls;ws;path=/v2ray|host=tls的域名|inside_port=10550|outside_port=11120
+
+
+// 以下为 KCP 示例部分，支持所有 V2Ray 的 type：
+
+// none: 默认值，不进行伪装，发送的数据是没有特征的数据包。
+非CDN域名或者ip;非0;2;kcp;noop;
+
+// srtp: 伪装成 SRTP 数据包，会被识别为视频通话数据（如 FaceTime）。
+非CDN域名或者ip;非0;2;kcp;srtp;
+
+// utp: 伪装成 uTP 数据包，会被识别为 BT 下载数据。
+非CDN域名或者ip;非0;2;kcp;utp;
+
+// wechat-video: 伪装成微信视频通话的数据包。
+非CDN域名或者ip;非0;2;kcp;wechat-video;
+
+// dtls: 伪装成 DTLS 1.2 数据包。
+非CDN域名或者ip;非0;2;kcp;dtls;
+
+// wireguard: 伪装成 WireGuard 数据包(并不是真正的 WireGuard 协议) 。
+非CDN域名或者ip;非0;2;kcp;wireguard;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;0x02-结语&#34;&gt;0x02 结语&lt;/h2&gt;
+
+&lt;p&gt;至此，sspanel的中转节点配置就完成了，其中HAProxy换成nginx的效果应该是一样的，我还没尝试，有兴趣的朋友可以试一下。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>docker-compose 启动报错 read time out</title>
+      <link>http://blog.sinowrt.cn/2021/2021-03-04t2218-http-timeout-while-starting-docker-compose/</link>
+      <pubDate>Thu, 04 Mar 2021 15:53:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2021/2021-03-04t2218-http-timeout-while-starting-docker-compose/</guid>
+      <description>
+
+&lt;h2 id=&#34;0x00-现象&#34;&gt;0x00 现象&lt;/h2&gt;
+
+&lt;p&gt;今晚在三毛中安装docker版的v2节点，在用docker-compose启动过程中，报了read time out 的错误，如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[root@ruvds-4ytfy ws-tls]# dc up -d
+Creating network &amp;quot;ws-tls_default&amp;quot; with the default driver
+Pulling v2ray-ws-tls (v2cc/poseidon:)...
+latest: Pulling from v2cc/poseidon
+ba3557a56b15: Pull complete
+d2371de70a8e: Pull complete
+e93b600e94e9: Pull complete
+Digest: sha256:627405b203b97a91d285dee998dbc8e4503b2dbe7e6fc7d1a788c81e2782f986
+Status: Downloaded newer image for v2cc/poseidon:latest
+Creating v2ray-ws-tls ... 
+
+ERROR: for v2ray-ws-tls  UnixHTTPConnectionPool(host=&#39;localhost&#39;, port=None): Read timed out. (read timeout=60)
+
+ERROR: for v2ray-ws-tls  UnixHTTPConnectionPool(host=&#39;localhost&#39;, port=None): Read timed out. (read timeout=60)
+ERROR: An HTTP request took too long to complete. Retry with --verbose to obtain debug information.
+If you encounter this issue regularly because of slow network conditions, consider setting COMPOSE_HTTP_TIMEOUT to a higher value (current value: 60).
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;0x01-解决方法&#34;&gt;0x01 解决方法&lt;/h2&gt;
+
+&lt;p&gt;在docker-compose.yml的文件夹中，新建一个.env文件，新建一行：&lt;code&gt;COMPOSE_HTTP_TIMEOUT=1000&lt;/code&gt;，然后wq。&lt;br /&gt;
+接着&lt;code&gt;docker down&lt;/code&gt;，再&lt;code&gt;docker up -d&lt;/code&gt;。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>使用Nginx代理ws&#43;tls的V2ray节点</title>
+      <link>http://blog.sinowrt.cn/2021/2021-03-03t1903-using-nginx-to-proxy-tls-ws-v2ray-node/</link>
+      <pubDate>Wed, 03 Mar 2021 19:07:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2021/2021-03-03t1903-using-nginx-to-proxy-tls-ws-v2ray-node/</guid>
+      <description>
+
+&lt;h2 id=&#34;0x00-背景&#34;&gt;0x00 背景&lt;/h2&gt;
+
+&lt;p&gt;这两天给v2节点配上了ws+tls，但是直连的话速度还是不太理想，于是想用另一个vps中转一下，就有了这篇文章。&lt;/p&gt;
+
+&lt;h2 id=&#34;0x01-过程&#34;&gt;0x01 过程&lt;/h2&gt;
+
+&lt;p&gt;虽然之前也用nginx中转过v2流量，但是从没中转过使用tls的节点，都是普通的使用ws节点而已。于是上网查了很多资料，都说直接配置nginx的证书，然后v2节点就取消tls就好了，但是我又希望有时能直连一下这个节点，如果不配置tls的话，感觉又不是很放心。所以还是坚持继续探索，终于也让我找到了。&lt;/p&gt;
+
+&lt;h2 id=&#34;0x02-解决方案&#34;&gt;0x02 解决方案&lt;/h2&gt;
+
+&lt;p&gt;在nginx这段我没有配置ssl，所以不用配置证书啥的，就直接给出nginx的配置吧：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;server {
+        listen 中转节点监听端口;
+        server_name 中转节点域名;
+
+        location / {
+            proxy_pass http://后端IP或域名:后端监听端口/wspath;  # 若后端开启tls，则需要写https://
+            
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection &amp;quot;upgrade&amp;quot;;
+        }
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;0x03-补充说明&#34;&gt;0x03 补充说明&lt;/h2&gt;
+
+&lt;p&gt;之前的迷糊是在于不清楚tls的工作过程，以为中转后客户端也是直接与服务端进行tls握手的，其实真实的情况是，客户端是与nginx直接连接的，而nginx才是与v2服务端握手的一方。也就是说，客户端与nginx的连接 和 nginx与v2服务端的连接是不同的两端连接，两个不同的连接均可自由配置tls。&lt;/p&gt;
+
+&lt;h2 id=&#34;0x04-一些错误&#34;&gt;0x04 一些错误&lt;/h2&gt;
+
+&lt;h3 id=&#34;1-nginx没配置ssl-但是v2客户端配置了tls连接造成的错误&#34;&gt;1.nginx没配置ssl，但是v2客户端配置了tls连接造成的错误&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[Warning] failed to handler mux client connection &amp;gt; v2ray.com/core/proxy/vmess/outbound: failed to find an available destination &amp;gt; v2ray.com/core/common/retry: [v2ray.com/core/transport/internet/websocket: failed to dial WebSocket &amp;gt; v2ray.com/core/transport/internet/websocket: failed to dial to (wss://HOST:PORT/):  &amp;gt; tls: first record does not look like a TLS handshake] &amp;gt; v2ray.com/core/common/retry: all retry attempts failed
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;解决方案：&lt;br /&gt;
+将v2客户端的tls连接去掉即可。&lt;/p&gt;
+
+&lt;h3 id=&#34;2-客户端保留了-伪装域名-也就是host字段保留了cdn的域名造成的错误&#34;&gt;2.客户端保留了“伪装域名”也就是host字段保留了cdn的域名造成的错误&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;[Warning] failed to handler mux client connection &amp;gt; v2ray.com/core/proxy/vmess/outbound: failed to find an available destination &amp;gt; v2ray.com/core/common/retry: [v2ray.com/core/transport/internet/websocket: failed to dial WebSocket &amp;gt; v2ray.com/core/transport/internet/websocket: failed to dial to (ws://HOST:PORT/): 404 Not Found &amp;gt; websocket: bad handshake] &amp;gt; v2ray.com/core/common/retry: all retry attempts failed
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;解决方案：&lt;br /&gt;
+将客户端中的host字段清空去掉就好了。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Vi 的一些基本操作</title>
-      <link>http://blog.sinowrt.cn/2021/2021-02-26-t1740-basic-operation-in-vi/</link>
+      <link>http://blog.sinowrt.cn/2021/2021-02-26t1740-basic-operation-in-vi/</link>
       <pubDate>Fri, 26 Feb 2021 17:40:00 +0800</pubDate>
       
-      <guid>http://blog.sinowrt.cn/2021/2021-02-26-t1740-basic-operation-in-vi/</guid>
+      <guid>http://blog.sinowrt.cn/2021/2021-02-26t1740-basic-operation-in-vi/</guid>
       <description>
 
 &lt;h2 id=&#34;0x00-基本操作&#34;&gt;0x00 基本操作&lt;/h2&gt;
@@ -30,10 +361,10 @@
     
     <item>
       <title>《深入理解JVM》之别在MacOS编译OpenJDK7</title>
-      <link>http://blog.sinowrt.cn/2021/2021-02-26-t1633-compile-a-jvm-on-macos/</link>
+      <link>http://blog.sinowrt.cn/2021/2021-02-26t1633-compile-a-jvm-on-macos/</link>
       <pubDate>Fri, 26 Feb 2021 16:33:00 +0800</pubDate>
       
-      <guid>http://blog.sinowrt.cn/2021/2021-02-26-t1633-compile-a-jvm-on-macos/</guid>
+      <guid>http://blog.sinowrt.cn/2021/2021-02-26t1633-compile-a-jvm-on-macos/</guid>
       <description>
 
 &lt;h2 id=&#34;0x00-前言&#34;&gt;0x00 前言&lt;/h2&gt;
@@ -558,70 +889,6 @@ make: *** [build_product_image] Error 2
     </item>
     
     <item>
-      <title>使用docker安装 aria2&#43;ariaNg&#43;filemanager</title>
-      <link>http://blog.sinowrt.cn/2020/2020-12-02-t1430-instruction-of-installing-aria2-with-ariang-in-docker/</link>
-      <pubDate>Tue, 01 Dec 2020 22:02:00 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2020/2020-12-02-t1430-instruction-of-installing-aria2-with-ariang-in-docker/</guid>
-      <description>
-
-&lt;h2 id=&#34;0x00-序&#34;&gt;0x00 序&lt;/h2&gt;
-
-&lt;p&gt;本次安装分别在&lt;code&gt;绿云东京1T大盘鸡&lt;/code&gt;以及&lt;code&gt;Servarica 2T大盘鸡上面进行&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;两台机都安装了Centos7的系统，因此本次教程主要讲述如何在CentOS7上安装docker，并在docker中部署包含了aria2+ariaNg+filemanager等服务的容器&lt;/p&gt;
-
-&lt;h2 id=&#34;0x01-安装过程&#34;&gt;0x01 安装过程&lt;/h2&gt;
-
-&lt;p&gt;以下过程均在root权限下进行操作&lt;/p&gt;
-
-&lt;h3 id=&#34;1-首先更新源&#34;&gt;1.首先更新源&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;yum update
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;2-安装docker&#34;&gt;2.安装docker&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;yum -y install docker
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;3-启动docker并添加到开机自启动&#34;&gt;3.启动docker并添加到开机自启动&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;systemctl start docker.service
-systemctl enable docker.service
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;4-新建一个文件夹-用于映射到docker中的下载文件夹&#34;&gt;4.新建一个文件夹，用于映射到docker中的下载文件夹&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;docker run --name ccaa -d -p 6800:6800 -p 6080:6080 -v /mnt/download:/Down moerats/ccaa:latest
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;至此，可以使用以下信息访问AriaNG并登录操作了&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;#大致信息如下
-AriaNg界面：http://ip:6080
-访问界面用户名密码分别为：admin、moerats
-Aria2密匙：moerats
-Filebrowser访问地址：http://ip:6080/admin，也可以通过AriaNg界面上方的文件管理按钮进入
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;0x02-遇到的问题&#34;&gt;0x02 遇到的问题&lt;/h2&gt;
-
-&lt;h3 id=&#34;1-若ariang的web界面进不去-就需要开启防火墙&#34;&gt;1.若AriaNG的Web界面进不去，就需要开启防火墙&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;# 仅限CentOS7
-firewall-cmd --zone=public --add-port=6080/tcp --permanent
-firewall-cmd --zone=public --add-port=6800/tcp --permanent
-firewall-cmd --reload
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;2-若ariang中aria2-status为disconnected-并且单击显示-authorization-failed-的error-如图&#34;&gt;2.若AriaNG中Aria2 Status为Disconnected，并且单击显示&lt;code&gt;Authorization Failed&lt;/code&gt;的Error，如图&lt;/h3&gt;
-
-&lt;p&gt;则需要&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>如何生成VMESS URL并发布订阅</title>
       <link>http://blog.sinowrt.cn/2020/2020-12-01t2202-how-to-generate-vmess-urls-and-public-as-subscription/</link>
       <pubDate>Tue, 01 Dec 2020 22:02:00 +0800</pubDate>
@@ -988,79 +1255,6 @@ destination: default
 &amp;quot;DesignCapacity&amp;quot; = 5088
 &amp;quot;BatteryData&amp;quot; = {&amp;quot;StateOfCharge&amp;quot;=96,&amp;quot;PMUConfigured&amp;quot;=0,&amp;quot;Voltage&amp;quot;=12699,&amp;quot;QmaxCell1&amp;quot;=5358,&amp;quot;AdapterPower&amp;quot;=839469241,&amp;quot;SystemPower&amp;quot;=1087516262,&amp;quot;ResScale&amp;quot;=117,&amp;quot;QmaxCell2&amp;quot;=5302,&amp;quot;QmaxCell0&amp;quot;=5341,&amp;quot;CycleCount&amp;quot;=46,&amp;quot;DesignCapacity&amp;quot;=5088}
 &lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>关闭chrome浏览器广告弹窗</title>
-      <link>http://blog.sinowrt.cn/2020/2020-05-27t1334-remove-the-ad-windows-of-chrome/</link>
-      <pubDate>Wed, 27 May 2020 13:34:00 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2020/2020-05-27t1334-remove-the-ad-windows-of-chrome/</guid>
-      <description>&lt;ul&gt;
-&lt;li&gt;之前用google进行调研的时候，点进去了一个网站
-![]()
-迫于打开心切，就点击了允许，之后时不时就会出现Bestdealfor10.life的弹窗，想要禁用，百度无果，使用google发现很多解决方法&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;随便挑一个&lt;a href=&#34;https://malwaretips.com/blogs/remove-bestdealfor10-life/&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;https://malwaretips.com/blogs/remove-bestdealfor10-life/&lt;/a&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;按步骤，在chrome的设置-隐私和安全-网站设置-通知里面将&lt;a href=&#34;https://bestdealfor10.life&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;https://bestdealfor10.life&lt;/a&gt; 移除即可&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>优美的switch</title>
-      <link>http://blog.sinowrt.cn/2020/2020-05-20t1507-javagorgeous-switch/</link>
-      <pubDate>Wed, 20 May 2020 15:07:00 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2020/2020-05-20t1507-javagorgeous-switch/</guid>
-      <description>&lt;p&gt;相信大家都有这种体会，工作以来一直都是自己写代码，感觉自己的代码总是平平无奇，运行倒是能运行，就是没有那种让人眼前一亮的感觉。而每次阅读别人的源码，心里一直再默念，卧槽，还能这样写，天哪，太精辟了！&lt;/p&gt;
-
-&lt;p&gt;于是，我就想，把这些让人眼前一亮的代码都摘录下来。一方面，自己能学习留痕，二来也能把这些知识分享给大家。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;private static String createPlayer(PlayerTypes playerType) {
-    return switch (playerType) {
-        case TENNIS -&amp;gt; &amp;quot;网球运动员费德勒&amp;quot;;
-        case FOOTBALL -&amp;gt; &amp;quot;足球运动员C罗&amp;quot;;
-        case BASKETBALL,PINGPANG -&amp;gt; &amp;quot;牛逼运动员&amp;quot;;
-        case UNKNOWN -&amp;gt; throw new IllegalArgumentException(&amp;quot;未知&amp;quot;);
-    };
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;另外，代码的优化应该在保证业务正常运行的前提下进行，下面我讲一个有隐患的代码优化例子：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;Map map=new HashMap(){{
-    put(&amp;quot;key&amp;quot;,&amp;quot;value&amp;quot;);
-}};
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;这种写法，比起新建HashMap对象后再一个个put值，虽然是提高了代码的整体性，但是却存在着致命的缺陷，这也是我在搭地铁刷掘金时在一篇文章上看到的&lt;/p&gt;
-
-&lt;p&gt;首先给出结论：这种写法会导致抛出OOM异常&lt;/p&gt;
-
-&lt;p&gt;因为在new HashMap时，是调用了一个匿名内部类的put方法，而根据引用计数法，这个对象一直持有外部类的引用，导致该对象在GC时无法清除，埋下了OOM的隐患。&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>mac 安装flutter</title>
-      <link>http://blog.sinowrt.cn/2020/2020-05-12t1531-how-to-install-flutter-on-mac/</link>
-      <pubDate>Tue, 12 May 2020 15:31:00 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2020/2020-05-12t1531-how-to-install-flutter-on-mac/</guid>
-      <description>&lt;p&gt;首先从官网将flutter稳定版的压缩包下载下来，然后解压到一个目录中，
-vi ~/.zshrc
-添加以下一行
-export PATH=/(解压flutter的路径)/flutter/bin:$PATH
-保存然后source ~/.zshrc&lt;/p&gt;
-
-&lt;p&gt;接下来flutter -h，却提示
-&lt;code&gt;无法打开“Dart”，因为apple无法检查其是否包含恶意软件&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;输入以下命令回车（会提示输入密码）即可解决：
-sudo spctl &amp;ndash;master-disable&lt;/p&gt;
-
-&lt;p&gt;再次输入flutter -h验证是否生效&lt;/p&gt;
 </description>
     </item>
     

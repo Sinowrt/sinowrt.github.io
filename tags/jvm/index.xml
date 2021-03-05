@@ -13,10 +13,10 @@
     
     <item>
       <title>《深入理解JVM》之别在MacOS编译OpenJDK7</title>
-      <link>http://blog.sinowrt.cn/2021/2021-02-26-t1633-compile-a-jvm-on-macos/</link>
+      <link>http://blog.sinowrt.cn/2021/2021-02-26t1633-compile-a-jvm-on-macos/</link>
       <pubDate>Fri, 26 Feb 2021 16:33:00 +0800</pubDate>
       
-      <guid>http://blog.sinowrt.cn/2021/2021-02-26-t1633-compile-a-jvm-on-macos/</guid>
+      <guid>http://blog.sinowrt.cn/2021/2021-02-26t1633-compile-a-jvm-on-macos/</guid>
       <description>0x00 前言 《深入理解JVM》这本书都看了大半了，但是里面的实验还没真正动手操作过，于是趁这段时间一一操作一遍。
 首当其冲的当然是编译JVM了，似乎所有的坑都被我都趟了一遍，就写篇文来记录一下，顺便告诫大家，不要试图在新版本的macOS中编译OpenJDK7！
 0x01 编译环境 macOS Catalina 10.15.2

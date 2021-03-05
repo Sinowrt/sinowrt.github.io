@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="sinowrt">
+  
+  
+  
+  <link rel="prev" href="http://blog.sinowrt.cn/2021/2021-03-03t1903-using-nginx-to-proxy-tls-ws-v2ray-node/" />
+  <link rel="next" href="http://blog.sinowrt.cn/2021/2021-03-05t1556-how-to-create-a-transit-node-base-on-sspanel-and-v2ray-poseidon/" />
+  <link rel="canonical" href="http://blog.sinowrt.cn/2021/2021-03-04t2218-http-timeout-while-starting-docker-compose/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           docker-compose 启动报错 read time out | Sinowrt
+       
+  </title>
+  <meta name="title" content="docker-compose 启动报错 read time out | Sinowrt">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/blog.sinowrt.cn"
+    },
+    "articleSection" : "posts",
+    "name" : "docker-compose 启动报错 read time out",
+    "headline" : "docker-compose 启动报错 read time out",
+    "description" : "0x00 现象 今晚在三毛中安装docker版的v2节点，在用docker-compose启动过程中，报了read time out 的错误，如下：\n[root@ruvds-4ytfy ws-tls]# dc up -d Creating network \x26quot;ws-tls_default\x26quot; with the default driver Pulling v2ray-ws-tls (v2cc\/poseidon:)... latest: Pulling from v2cc\/poseidon ba3557a56b15: Pull complete d2371de70a8e: Pull complete e93b600e94e9: Pull complete Digest: sha256:627405b203b97a91d285dee998dbc8e4503b2dbe7e6fc7d1a788c81e2782f986 Status: Downloaded newer image for v2cc\/poseidon:latest Creating v2ray-ws-tls ... ERROR: for v2ray-ws-tls UnixHTTPConnectionPool(host=\x27localhost\x27, port=None): Read timed out. (read timeout=60) ERROR: for v2ray-ws-tls UnixHTTPConnectionPool(host=\x27localhost\x27, port=None): Read timed out. (read timeout=60) ERROR: An HTTP request took too long to complete.",
+    "inLanguage" : "en-us",
+    "author" : "sinowrt",
+    "creator" : "sinowrt",
+    "publisher": "sinowrt",
+    "accountablePerson" : "sinowrt",
+    "copyrightHolder" : "sinowrt",
+    "copyrightYear" : "2021",
+    "datePublished": "2021-03-04 15:53:00 \x2b0800 CST",
+    "dateModified" : "2021-03-04 15:53:00 \x2b0800 CST",
+    "url" : "http:\/\/blog.sinowrt.cn\/2021\/2021-03-04t2218-http-timeout-while-starting-docker-compose\/",
+    "wordCount" : "109",
+    "keywords" : [ "docker", "Sinowrt"]
+}
+</script>
+
+</head>
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?85719ea04c6401b98466dfdbc9399c78";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">docker-compose 启动报错 read time out</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2021-03-04 itemprop="datePublished">March 4, 2021</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="http://blog.sinowrt.cn/categories/docker/"> docker </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          
+
+<h2 id="0x00-现象">0x00 现象</h2>
+
+<p>今晚在三毛中安装docker版的v2节点，在用docker-compose启动过程中，报了read time out 的错误，如下：</p>
+
+<pre><code>[root@ruvds-4ytfy ws-tls]# dc up -d
+Creating network &quot;ws-tls_default&quot; with the default driver
+Pulling v2ray-ws-tls (v2cc/poseidon:)...
+latest: Pulling from v2cc/poseidon
+ba3557a56b15: Pull complete
+d2371de70a8e: Pull complete
+e93b600e94e9: Pull complete
+Digest: sha256:627405b203b97a91d285dee998dbc8e4503b2dbe7e6fc7d1a788c81e2782f986
+Status: Downloaded newer image for v2cc/poseidon:latest
+Creating v2ray-ws-tls ... 
+
+ERROR: for v2ray-ws-tls  UnixHTTPConnectionPool(host='localhost', port=None): Read timed out. (read timeout=60)
+
+ERROR: for v2ray-ws-tls  UnixHTTPConnectionPool(host='localhost', port=None): Read timed out. (read timeout=60)
+ERROR: An HTTP request took too long to complete. Retry with --verbose to obtain debug information.
+If you encounter this issue regularly because of slow network conditions, consider setting COMPOSE_HTTP_TIMEOUT to a higher value (current value: 60).
+</code></pre>
+
+<h2 id="0x01-解决方法">0x01 解决方法</h2>
+
+<p>在docker-compose.yml的文件夹中，新建一个.env文件，新建一行：<code>COMPOSE_HTTP_TIMEOUT=1000</code>，然后wq。<br />
+接着<code>docker down</code>，再<code>docker up -d</code>。</p>
+
+    </div>
+	
+    <div class="post-copyright">
+             
+			
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>sinowrt </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://blog.sinowrt.cn/2021/2021-03-04t2218-http-timeout-while-starting-docker-compose/>http://blog.sinowrt.cn/2021/2021-03-04t2218-http-timeout-while-starting-docker-compose/</span>
+            </p>
+			
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/docker/">
+                    #docker</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="http://blog.sinowrt.cn">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://blog.sinowrt.cn/2021/2021-03-03t1903-using-nginx-to-proxy-tls-ws-v2ray-node/" class="prev" rel="prev" title="使用Nginx代理ws&#43;tls的V2ray节点"><i class="iconfont icon-left"></i>&nbsp;使用Nginx代理ws&#43;tls的V2ray节点</a>
+         
+        
+        <a href="http://blog.sinowrt.cn/2021/2021-03-05t1556-how-to-create-a-transit-node-base-on-sspanel-and-v2ray-poseidon/" class="next" rel="next" title="sspanel 与 v2ray-poseidon 环境下如何搭建一个中转节点">sspanel 与 v2ray-poseidon 环境下如何搭建一个中转节点&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2021</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://blog.sinowrt.cn">sinowrt</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

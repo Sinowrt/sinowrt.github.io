@@ -6,22 +6,19 @@
     <description>Recent content in docker on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 01 Dec 2020 22:02:00 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 04 Mar 2021 15:53:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/tags/docker/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>使用docker安装 aria2&#43;ariaNg&#43;filemanager</title>
-      <link>http://blog.sinowrt.cn/2020/2020-12-02-t1430-instruction-of-installing-aria2-with-ariang-in-docker/</link>
-      <pubDate>Tue, 01 Dec 2020 22:02:00 +0800</pubDate>
+      <title>docker-compose 启动报错 read time out</title>
+      <link>http://blog.sinowrt.cn/2021/2021-03-04t2218-http-timeout-while-starting-docker-compose/</link>
+      <pubDate>Thu, 04 Mar 2021 15:53:00 +0800</pubDate>
       
-      <guid>http://blog.sinowrt.cn/2020/2020-12-02-t1430-instruction-of-installing-aria2-with-ariang-in-docker/</guid>
-      <description>0x00 序 本次安装分别在绿云东京1T大盘鸡以及Servarica 2T大盘鸡上面进行
-两台机都安装了Centos7的系统，因此本次教程主要讲述如何在CentOS7上安装docker，并在docker中部署包含了aria2+ariaNg+filemanager等服务的容器
-0x01 安装过程 以下过程均在root权限下进行操作
-1.首先更新源 yum update  2.安装docker yum -y install docker  3.启动docker并添加到开机自启动 systemctl start docker.service systemctl enable docker.service  4.新建一个文件夹，用于映射到docker中的下载文件夹 docker run --name ccaa -d -p 6800:6800 -p 6080:6080 -v /mnt/download:/Down moerats/ccaa:latest  至此，可以使用以下信息访问AriaNG并登录操作了
-#大致信息如下 AriaNg界面：http://ip:6080 访问界面用户名密码分别为：admin、moerats Aria2密匙：moerats Filebrowser访问地址：http://ip:6080/admin，也可以通过AriaNg界面上方的文件管理按钮进入  0x02 遇到的问题 1.若AriaNG的Web界面进不去，就需要开启防火墙 # 仅限CentOS7 firewall-cmd --zone=public --add-port=6080/tcp --permanent firewall-cmd --zone=public --add-port=6800/tcp --permanent firewall-cmd --reload  2.若AriaNG中Aria2 Status为Disconnected，并且单击显示Authorization Failed的Error，如图 则需要</description>
+      <guid>http://blog.sinowrt.cn/2021/2021-03-04t2218-http-timeout-while-starting-docker-compose/</guid>
+      <description>0x00 现象 今晚在三毛中安装docker版的v2节点，在用docker-compose启动过程中，报了read time out 的错误，如下：
+[root@ruvds-4ytfy ws-tls]# dc up -d Creating network &amp;quot;ws-tls_default&amp;quot; with the default driver Pulling v2ray-ws-tls (v2cc/poseidon:)... latest: Pulling from v2cc/poseidon ba3557a56b15: Pull complete d2371de70a8e: Pull complete e93b600e94e9: Pull complete Digest: sha256:627405b203b97a91d285dee998dbc8e4503b2dbe7e6fc7d1a788c81e2782f986 Status: Downloaded newer image for v2cc/poseidon:latest Creating v2ray-ws-tls ... ERROR: for v2ray-ws-tls UnixHTTPConnectionPool(host=&#39;localhost&#39;, port=None): Read timed out. (read timeout=60) ERROR: for v2ray-ws-tls UnixHTTPConnectionPool(host=&#39;localhost&#39;, port=None): Read timed out. (read timeout=60) ERROR: An HTTP request took too long to complete.</description>
     </item>
     
     <item>

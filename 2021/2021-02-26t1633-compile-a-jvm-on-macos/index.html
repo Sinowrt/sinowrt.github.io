@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="sinowrt">
+  
+  
+  
+  <link rel="prev" href="http://blog.sinowrt.cn/2020/2020-12-01t2202-how-to-generate-vmess-urls-and-public-as-subscription/" />
+  <link rel="next" href="http://blog.sinowrt.cn/2021/2021-02-26t1740-basic-operation-in-vi/" />
+  <link rel="canonical" href="http://blog.sinowrt.cn/2021/2021-02-26t1633-compile-a-jvm-on-macos/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           《深入理解JVM》之别在MacOS编译OpenJDK7 | Sinowrt
+       
+  </title>
+  <meta name="title" content="《深入理解JVM》之别在MacOS编译OpenJDK7 | Sinowrt">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/blog.sinowrt.cn"
+    },
+    "articleSection" : "posts",
+    "name" : "《深入理解JVM》之别在MacOS编译OpenJDK7",
+    "headline" : "《深入理解JVM》之别在MacOS编译OpenJDK7",
+    "description" : "0x00 前言 《深入理解JVM》这本书都看了大半了，但是里面的实验还没真正动手操作过，于是趁这段时间一一操作一遍。\n首当其冲的当然是编译JVM了，似乎所有的坑都被我都趟了一遍，就写篇文来记录一下，顺便告诫大家，不要试图在新版本的macOS中编译OpenJDK7！\n0x01 编译环境 macOS Catalina 10.15.2\nXcode 11.6\nCommand Line Tools MacOSX10.15.sdk\n0x02 准备工作 1. 下载源码 在macOS中，先用brew安装mercurial代码版本管理工具\nbrew install mercurial  获取源码：\nhg clone http:\/\/hg.openjdk.java.net\/jdk7u\/jdk7u-dev cd jdk7u-dev chmod 755 get_source.sh .\/get_source.sh  而国内的网络到了.\/get_source.sh这一步，下载过程中总是会网络异常中断，所以我是在国外的vps上面下载好之后，再压缩拉回来的。\n2. 安装XCode和Command Line Tools for XCode 由于我之前已经安装了，所以这一步跳过，具体的版本可以看0x01编译环境中的描述\n3. 准备一个Bootstrap SDK 书中说到，“如果编译OpenJDK 7，Bootstrap JDK必须使用JDK6 Update 14或之后的版本”，而我用的是JDK1.7.80版本。\n4. 安装Apache Ant Apache Ant 对版本有要求，1.7.1以上即可。 同时，Apache Ant 官网上有一句话必须要看一下：\n\x26ldquo;The 1.9.x releases require Java5 at runtime and 1.10.x requires Java8 at runtime.",
+    "inLanguage" : "en-us",
+    "author" : "sinowrt",
+    "creator" : "sinowrt",
+    "publisher": "sinowrt",
+    "accountablePerson" : "sinowrt",
+    "copyrightHolder" : "sinowrt",
+    "copyrightYear" : "2021",
+    "datePublished": "2021-02-26 16:33:00 \x2b0800 CST",
+    "dateModified" : "2021-02-26 16:33:00 \x2b0800 CST",
+    "url" : "http:\/\/blog.sinowrt.cn\/2021\/2021-02-26t1633-compile-a-jvm-on-macos\/",
+    "wordCount" : "1704",
+    "keywords" : [ "JVM", "Sinowrt"]
+}
+</script>
+
+</head>
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?85719ea04c6401b98466dfdbc9399c78";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">《深入理解JVM》之别在MacOS编译OpenJDK7</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2021-02-26 itemprop="datePublished">February 26, 2021</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="http://blog.sinowrt.cn/categories/jvm/"> JVM </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          
+
+<h2 id="0x00-前言">0x00 前言</h2>
+
+<p>《深入理解JVM》这本书都看了大半了，但是里面的实验还没真正动手操作过，于是趁这段时间一一操作一遍。</p>
+
+<p>首当其冲的当然是编译JVM了，似乎所有的坑都被我都趟了一遍，就写篇文来记录一下，顺便告诫大家，不要试图在新版本的macOS中编译OpenJDK7！</p>
+
+<h2 id="0x01-编译环境">0x01 编译环境</h2>
+
+<p>macOS Catalina 10.15.2<br />
+Xcode 11.6<br />
+Command Line Tools MacOSX10.15.sdk</p>
+
+<h2 id="0x02-准备工作">0x02 准备工作</h2>
+
+<h3 id="1-下载源码">1. 下载源码</h3>
+
+<p>在macOS中，先用brew安装mercurial代码版本管理工具</p>
+
+<pre><code class="language-shell">brew install mercurial
+</code></pre>
+
+<p>获取源码：</p>
+
+<pre><code>hg clone http://hg.openjdk.java.net/jdk7u/jdk7u-dev
+cd jdk7u-dev
+chmod 755 get_source.sh
+./get_source.sh
+</code></pre>
+
+<p>而国内的网络到了<code>./get_source.sh</code>这一步，下载过程中总是会网络异常中断，所以我是在国外的vps上面下载好之后，再压缩拉回来的。</p>
+
+<h3 id="2-安装xcode和command-line-tools-for-xcode">2. 安装XCode和Command Line Tools for XCode</h3>
+
+<p>由于我之前已经安装了，所以这一步跳过，具体的版本可以看0x01编译环境中的描述</p>
+
+<h3 id="3-准备一个bootstrap-sdk">3. 准备一个Bootstrap SDK</h3>
+
+<p>书中说到，“如果编译OpenJDK 7，Bootstrap JDK必须使用JDK6 Update 14或之后的版本”，而我用的是JDK1.7.80版本。</p>
+
+<h3 id="4-安装apache-ant">4. 安装Apache Ant</h3>
+
+<p>Apache Ant 对版本有要求，1.7.1以上即可。
+同时，Apache Ant 官网上有一句话必须要看一下：<br />
+&ldquo;The 1.9.x releases require Java5 at runtime and 1.10.x requires Java8 at runtime. &rdquo;<br />
+大意就是1.9.x版本的ant 要求Java5以上版本的jre，而1.10.x版本的ant则要求Java8以上版本的jre。</p>
+
+<h2 id="0x03-编译">0x03 编译</h2>
+
+<p>书中作者给出的编译脚本如下：</p>
+
+<pre><code class="language-shell">#语言选项，这个必须设置，否则编译好后会出现一个HashTable的NPE错
+export LANG=C
+#Bootstrap JDK的安装路径。必须设置
+export ALT_BOOTDIR=/Library/Java/JavaVirtualMachines/jdk1.7.0_04.jdk/Contents/Home
+#允许自动下载依赖
+export ALLOW_DOWNLOADS=true
+#并行编译的线程数，设置为和CPU内核数量一致即可
+export HOTSPOT_BUILD_JOBS=6
+export ALT_PARALLEL_COMPILE_JOBS=6
+#比较本次build出来的映像与先前版本的差异。这对我们来说没有意义，
+#必须设置为false，否则sanity检查会报缺少先前版本JDK的映像的错误提示。
+#如果已经设置dev或者DEV_ONLY=true，这个不显式设置也行
+export SKIP_COMPARE_IMAGES=true
+#使用预编译头文件，不加这个编译会更慢一些
+export USE_PRECOMPILED_HEADER=true
+#要编译的内容
+export BUILD_LANGTOOLS=true
+#export BUILD_JAXP=false
+#export BUILD_JAXWS=false
+#export BUILD_CORBA=false
+export BUILD_HOTSPOT=true
+export BUILD_JDK=true
+#要编译的版本
+#export SKIP_DEBUG_BUILD=false
+#export SKIP_FASTDEBUG_BUILD=true
+#export DEBUG_NAME=debug
+#把它设置为false可以避开javaws和浏览器Java插件之类的部分的build
+BUILD_DEPLOY=false
+#把它设置为false就不会build出安装包。因为安装包里有些奇怪的依赖，
+#但即便不build出它也已经能得到完整的JDK映像，所以还是别build它好了
+BUILD_INSTALL=false
+#编译结果所存放的路径
+export ALT_OUTPUTDIR=/Users/IcyFenix/Develop/JVM/jdkBuild/openjdk_7u4/build
+#这两个环境变量必须去掉，不然会有很诡异的事情发生（我没有具体查过这些&quot;诡异的
+#事情&quot;，Makefile脚本检查到有这2个变量就会提示警告）
+unset JAVA_HOME
+unset CLASSPATH
+make 2&gt;&amp;1|tee $ALT_OUTPUTDIR/build.log
+</code></pre>
+
+<h2 id="0x04-坑">0x04 坑</h2>
+
+<h3 id="1-llvm-gcc-缺失导致的freetype-versioncheck的编译错误">1.llvm-gcc 缺失导致的freetype_versioncheck的编译错误</h3>
+
+<p>首先最底下出现的是：</p>
+
+<pre><code>ERROR: The Compiler version is undefined. 
+ 
+ERROR: FreeType version  2.3.0  or higher is required. 
+ /bin/mkdir -p /Users/jackietsoi/Documents/develop/jdk7u-dev/JVM/jdkBuild/openjdk_7u4/build/btbins
+rm -f /Users/jackietsoi/Documents/develop/jdk7u-dev/JVM/jdkBuild/openjdk_7u4/build/btbins/freetype_versioncheck
+Failed to build freetypecheck.  
+
+Exiting because of the above error(s).
+</code></pre>
+
+<p>上网搜了一下，还以为是缺失FreeType，于是根据网友说的安装XQuartz(<a href="http://xquartz.macosforge.org/landing/)，因为XQuartz里面自带了freetype2，但是安装之后并没有解决问题，于是继续往上看输出:" rel="nofollow noreferrer" target="_blank">http://xquartz.macosforge.org/landing/)，因为XQuartz里面自带了freetype2，但是安装之后并没有解决问题，于是继续往上看输出:</a></p>
+
+<pre><code class="language-shell">make[2]: /Applications/Xcode.app/Contents/Developer/usr/bin/llvm-gcc: No such file or directory
+make[2]: *** [/Users/jackietsoi/Documents/develop/jdk7u-dev/JVM/jdkBuild/openjdk_7u4/build/btbins/freetype_versioncheck] Error 1
+</code></pre>
+
+<p>解决方法：</p>
+
+<pre><code>sudo ln -s /usr/bin/llvm-g++ /Library/Developer/CommandLineTools/usr/bin/llvm-g++
+sudo ln -s /usr/bin/llvm-gcc /Library/Developer/CommandLineTools/usr/bin/llvm-gcc
+</code></pre>
+
+<h3 id="2-cups-头文件缺失问题">2.cups 头文件缺失问题</h3>
+
+<pre><code>ERROR: You do not have access to valid Cups header files. 
+       Please check your access to 
+           /usr/include/cups/cups.h 
+       and/or check your value of ALT_CUPS_HEADERS_PATH, 
+       CUPS is frequently pre-installed on many systems, 
+       or may be downloaded from http://www.cups.org 
+</code></pre>
+
+<p>解决方法：<br />
+到 <a href="http://www.cups.org" rel="nofollow noreferrer" target="_blank">http://www.cups.org</a> 去下载cups2.3.3 然后解压整个文件夹，放到编译项目根目录
+然后在编译脚本文件中加入一句：<code>export ALT_CUPS_HEADERS_PATH=/Users/jackietsoi/Documents/develop/jdk7u-dev/cups-2.3.3</code></p>
+
+<h3 id="3-freetype-版本问题">3.freetype 版本问题</h3>
+
+<pre><code>ERROR: FreeType version  2.3.0  or higher is required. 
+ /Users/jackietsoi/Documents/develop/jdk7u-dev/JVM/jdkBuild/openjdk_7u4/build/btbins/freetype_versioncheck
+Required version of freetype: 2.3.0
+Detected freetype headers: 2.10.4
+Failed: headers are too old.
+Detected freetype library: 2.10.4
+Failed: too old library.  
+
+Exiting because of the above error(s). 
+ 
+make: *** [post-sanity] Error 1
+</code></pre>
+
+<p>去官网(<a href="https://www.freetype.org/download.html)下载" rel="nofollow noreferrer" target="_blank">https://www.freetype.org/download.html)下载</a> freetype-2.3.0 版本压缩包<br />
+解压，进入根目录执行以下命令进行编译，并安装：</p>
+
+<pre><code>./configure
+make
+make install
+</code></pre>
+
+<p>在编译脚本文件中加入两句：</p>
+
+<pre><code>export ALT_FREETYPE_HEADERS_PATH=/usr/local/include
+export ALT_FREETYPE_LIB_PATH=/usr/local/lib
+</code></pre>
+
+<h3 id="4-ant-1-10-x-要求最低jdk8问题">4.ant 1.10.x 要求最低jdk8问题</h3>
+
+<pre><code>Exception in thread &quot;main&quot; java.lang.UnsupportedClassVersionError: org/apache/tools/ant/launch/Launcher : Unsupported major.minor version 52.0
+    at java.lang.ClassLoader.defineClass1(Native Method)
+    at java.lang.ClassLoader.defineClass(ClassLoader.java:791)
+    at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:142)
+    at java.net.URLClassLoader.defineClass(URLClassLoader.java:449)
+    at java.net.URLClassLoader.access$100(URLClassLoader.java:71)
+    at java.net.URLClassLoader$1.run(URLClassLoader.java:361)
+    at java.net.URLClassLoader$1.run(URLClassLoader.java:355)
+    at java.security.AccessController.doPrivileged(Native Method)
+    at java.net.URLClassLoader.findClass(URLClassLoader.java:354)
+    at java.lang.ClassLoader.loadClass(ClassLoader.java:423)
+    at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:308)
+    at java.lang.ClassLoader.loadClass(ClassLoader.java:356)
+    at sun.launcher.LauncherHelper.checkAndLoadMain(LauncherHelper.java:480)
+Exception in thread &quot;main&quot; java.lang.UnsupportedClassVersionError: org/apache/tools/ant/launch/Launcher : Unsupported major.minor version 52.0
+    at java.lang.ClassLoader.defineClass1(Native Method)
+    at java.lang.ClassLoader.defineClass(ClassLoader.java:791)
+    at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:142)
+    at java.net.URLClassLoader.defineClass(URLClassLoader.java:449)
+    at java.net.URLClassLoader.access$100(URLClassLoader.java:71)
+    at java.net.URLClassLoader$1.run(URLClassLoader.java:361)
+    at java.net.URLClassLoader$1.run(URLClassLoader.java:355)
+    at java.security.AccessController.doPrivileged(Native Method)
+    at java.net.URLClassLoader.findClass(URLClassLoader.java:354)
+    at java.lang.ClassLoader.loadClass(ClassLoader.java:423)
+    at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:308)
+    at java.lang.ClassLoader.loadClass(ClassLoader.java:356)
+    at sun.launcher.LauncherHelper.checkAndLoadMain(LauncherHelper.java:480)
+make[2]: *** [/Users/jackietsoi/Documents/develop/jdk7u-dev/JVM/jdkBuild/openjdk_7u4/build/langtools/build/ant-diagnostics.log] Error 1
+make[1]: *** [langtools-build] Error 2
+make: *** [build_product_image] Error 2
+</code></pre>
+
+<p>解决方法：<br />
+到Apache Ant官网(<a href="http://ant.apache.org/bindownload.cgi)下载" rel="nofollow noreferrer" target="_blank">http://ant.apache.org/bindownload.cgi)下载</a> 1.9.x版本的ant，将压缩包解压到一个目录下，如/usr/local</p>
+
+<p>配置环境变量：<br />
+编辑 ~/.zshrc，在末尾加入两行：</p>
+
+<pre><code>export ANT_HOME=/usr/local/apache-ant-1.9.15
+export PATH=$ANT_HOME/bin:$PATH
+</code></pre>
+
+<p>然后 source ~/.zshrc 使其生效</p>
+
+<h3 id="5-jdk版本问题">5.jdk版本问题</h3>
+
+<pre><code>[javac] Compiling 298 source files to /Users/jackietsoi/Documents/develop/jdk7u-dev/JVM/jdkBuild/openjdk_7u4/build/langtools/build/bootstrap/classes
+    [javac] /Users/jackietsoi/Documents/develop/jdk7u-dev/langtools/src/share/classes/com/sun/tools/javac/comp/Resolve.java:2182: ??: [overrides] ?Resolve.InapplicableSymbolsError.Candidate??? equals, ???????????? hashCode ??
+    [javac]         private class Candidate {
+    [javac]                 ^
+    [javac] ??: ????, ???? -Werror
+    [javac] 1 ???
+    [javac] 1 ???
+
+BUILD FAILED
+/Users/jackietsoi/Documents/develop/jdk7u-dev/langtools/make/build.xml:452: The following error occurred while executing this line:
+/Users/jackietsoi/Documents/develop/jdk7u-dev/langtools/make/build.xml:795: Compile failed; see the compiler error output for details.
+
+Total time: 4 seconds
+make[2]: *** [build] Error 1
+make[1]: *** [langtools-build] Error 2
+make: *** [build_product_image] Error 2
+</code></pre>
+
+<p>解决方法：<br />
+将Bootstrap JDK 从1.8换到1.7即可，下载jdk7(<a href="https://www.oracle.com/java/technologies/javase/javase7-archive-downloads.html" rel="nofollow noreferrer" target="_blank">https://www.oracle.com/java/technologies/javase/javase7-archive-downloads.html</a>)<br />
+这里我下载的是jdk7u80，然后在编译脚本更改Bootstrap JDK的路径：<br />
+<code>export ALT_BOOTDIR=/Library/Java/JavaVirtualMachines/jdk1.7.0_80.jdk/Contents/Home</code></p>
+
+<h3 id="6-warning-转义错误">6. warning 转义错误</h3>
+
+<pre><code>/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/filebuff.cpp:109:8: error: 'this' pointer cannot be null in well-defined C++ code; pointer may be assumed to always convert to true [-Werror,-Wundefined-bool-conversion]
+  if( !this ) return NULL;      // The empty buffer region
+      ~^~~~
+/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/filebuff.cpp:122:8: error: 'this' pointer cannot be null in well-defined C++ code; pointer may be assumed to always convert to true [-Werror,-Wundefined-bool-conversion]
+  if( !this ) return br;        // Merging into nothing
+      ~^~~~
+/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/filebuff.cpp:228:8: error: reference cannot be bound to dereferenced null pointer in well-defined C++ code; comparison may be assumed to always evaluate to false [-Werror,-Wtautological-undefined-compare]
+  if( &amp;br == NULL ) return os;  // The empty buffer region
+       ^~    ~~~~
+/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/filebuff.cpp:244:8: error: 'this' pointer cannot be null in well-defined C++ code; pointer may be assumed to always convert to true [-Werror,-Wundefined-bool-conversion]
+  if( !this ) return;           // Nothing to print
+      ~^~~~
+/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/archDesc.cpp:335:35: error: '&amp;&amp;' within '||' [-Werror,-Wlogical-op-parentheses]
+    if ( instr-&gt;is_ideal_branch() &amp;&amp; instr-&gt;label_position() == -1 ||
+         ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ~~
+/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/archDesc.cpp:335:35: note: place parentheses around the '&amp;&amp;' expression to silence this warning
+    if ( instr-&gt;is_ideal_branch() &amp;&amp; instr-&gt;label_position() == -1 ||
+                                  ^
+         (                                                        )
+/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/archDesc.cpp:336:35: error: '&amp;&amp;' within '||' [-Werror,-Wlogical-op-parentheses]
+        !instr-&gt;is_ideal_branch() &amp;&amp; instr-&gt;label_position() != -1) {
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/archDesc.cpp:336:35: note: place parentheses around the '&amp;&amp;' expression to silence this warning
+        !instr-&gt;is_ideal_branch() &amp;&amp; instr-&gt;label_position() != -1) {
+                                  ^
+        (                                                         )
+4 errors generated.
+2 errors generated.
+make[8]: *** [../generated/adfiles/filebuff.o] Error 1
+make[8]: *** Waiting for unfinished jobs....
+make[8]: *** [../generated/adfiles/archDesc.o] Error 1
+Compiling /Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/forms.cpp
+rm -f ../generated/adfiles/forms.o
+llvm-g++ -D_ALLBSD_SOURCE -D_GNU_SOURCE -DAMD64 -I/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/prims -I/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm -I/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/precompiled -I/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/cpu/x86/vm -I/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/os_cpu/bsd_x86/vm -I/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/os/bsd/vm -I/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/os/posix/vm -I/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc -I../generated -DASSERT -DTARGET_OS_FAMILY_bsd -DTARGET_ARCH_x86 -DTARGET_ARCH_MODEL_x86_64 -DTARGET_OS_ARCH_bsd_x86 -DTARGET_OS_ARCH_MODEL_bsd_x86_64 -DTARGET_COMPILER_gcc -DCOMPILER2 -DCOMPILER1  -fno-rtti -fno-exceptions -pthread -fcheck-new -fvisibility=hidden -m64 -pipe -Werror -g -c -o ../generated/adfiles/forms.o /Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/forms.cpp 
+/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/adlparse.cpp:3217:71: error: equality comparison with extraneous parentheses [-Werror,-Wparentheses-equality]
+    if ( ((primary = get_ident_or_literal_constant(&quot;primary opcode&quot;)) == NULL) ) {
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
+/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/adlparse.cpp:3217:71: note: remove extraneous parentheses around the comparison to silence this warning
+    if ( ((primary = get_ident_or_literal_constant(&quot;primary opcode&quot;)) == NULL) ) {
+         ~                                                            ^      ~
+/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/adlparse.cpp:3217:71: note: use '=' to turn this equality comparison into an assignment
+    if ( ((primary = get_ident_or_literal_constant(&quot;primary opcode&quot;)) == NULL) ) {
+                                                                      ^~
+                                                                      =
+/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/adlparse.cpp:3226:77: error: equality comparison with extraneous parentheses [-Werror,-Wparentheses-equality]
+      if ( ((secondary = get_ident_or_literal_constant(&quot;secondary opcode&quot;)) == NULL) ) {
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
+/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/adlparse.cpp:3226:77: note: remove extraneous parentheses around the comparison to silence this warning
+      if ( ((secondary = get_ident_or_literal_constant(&quot;secondary opcode&quot;)) == NULL) ) {
+           ~                                                                ^      ~
+/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/adlparse.cpp:3226:77: note: use '=' to turn this equality comparison into an assignment
+      if ( ((secondary = get_ident_or_literal_constant(&quot;secondary opcode&quot;)) == NULL) ) {
+                                                                            ^~
+                                                                            =
+/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/adlparse.cpp:3235:77: error: equality comparison with extraneous parentheses [-Werror,-Wparentheses-equality]
+        if ( ((tertiary = get_ident_or_literal_constant(&quot;tertiary opcode&quot;)) == NULL) ) {
+              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
+/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/adlparse.cpp:3235:77: note: remove extraneous parentheses around the comparison to silence this warning
+        if ( ((tertiary = get_ident_or_literal_constant(&quot;tertiary opcode&quot;)) == NULL) ) {
+             ~                                                              ^      ~
+/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/adlparse.cpp:3235:77: note: use '=' to turn this equality comparison into an assignment
+        if ( ((tertiary = get_ident_or_literal_constant(&quot;tertiary opcode&quot;)) == NULL) ) {
+                                                                            ^~
+                                                                            =
+/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/adlparse.cpp:4476:21: error: '&amp;&amp;' within '||' [-Werror,-Wlogical-op-parentheses]
+  while ((c &gt;= '0') &amp;&amp; (c &lt;= '9')
+         ~~~~~~~~~~~^~~~~~~~~~~~~
+/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/adlparse.cpp:4476:21: note: place parentheses around the '&amp;&amp;' expression to silence this warning
+  while ((c &gt;= '0') &amp;&amp; (c &lt;= '9')
+                    ^
+         (                       )
+/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/adlparse.cpp:4515:17: error: equality comparison with extraneous parentheses [-Werror,-Wparentheses-equality]
+    if( (second == '=') ) {
+         ~~~~~~~^~~~~~
+/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/adlparse.cpp:4515:17: note: remove extraneous parentheses around the comparison to silence this warning
+    if( (second == '=') ) {
+        ~       ^     ~
+/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/adlparse.cpp:4515:17: note: use '=' to turn this equality comparison into an assignment
+    if( (second == '=') ) {
+                ^~
+                =
+5 errors generated.
+make[8]: *** [../generated/adfiles/adlparse.o] Error 1
+make[7]: *** [ad_stuff] Error 2
+make[6]: *** [product] Error 2
+make[5]: *** [generic_build2] Error 2
+make[4]: *** [product] Error 2
+make[3]: *** [all_product_universal] Error 2
+make[2]: *** [universal_product] Error 2
+make[1]: *** [hotspot-build] Error 2
+make: *** [build_product_image] Error 2
+</code></pre>
+
+<p>解决方法：<br />
+关掉warning警告，打开编译脚本加入一行<code>export COMPILER_WARNINGS_FATAL=false</code>，继续执行即可</p>
+
+<h3 id="7-clang-error-unknown-argument-fpch-deps-错误">7. clang: error: unknown argument: &lsquo;-fpch-deps&rsquo;错误</h3>
+
+<pre><code>clang: error: unknown argument: '-fpch-deps'
+make[8]: *** [precompiled.hpp.gch] Error 1
+make[7]: *** [the_vm] Error 2
+make[6]: *** [product] Error 2
+make[5]: *** [generic_build2] Error 2
+make[4]: *** [product] Error 2
+make[3]: *** [all_product_universal] Error 2
+make[2]: *** [universal_product] Error 2
+make[1]: *** [hotspot-build] Error 2
+make: *** [build_product_image] Error 2
+</code></pre>
+
+<p>解决方法：<br />
+<code>vi ./hotspot/make/bsd/makefiles/gcc.make</code>将以下两段代码注释掉</p>
+
+<pre><code>#ifneq ($(COMPILER_WARNINGS_FATAL),false)
+#  WARNINGS_ARE_ERRORS = -Werror
+#endif
+</code></pre>
+
+<pre><code>#ifneq (&quot;${CC_VER_MAJOR}&quot;, &quot;2&quot;)
+#DEPFLAGS = -fpch-deps -MMD -MP -MF $(DEP_DIR)/$(@:%=%.d)
+#endif
+</code></pre>
+
+<h3 id="8-error-friend-declaration-specifying-a-default-argument-must-be-a-definition-错误">8.error: friend declaration specifying a default argument must be a definition 错误</h3>
+
+<pre><code>/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/code/relocInfo.hpp:374:27: error: friend declaration specifying a default argument must be a definition
+  inline friend relocInfo prefix_relocInfo(int datalen = 0);
+                          ^
+/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/code/relocInfo.hpp:469:18: error: friend declaration specifying a default argument must be the only declaration
+inline relocInfo prefix_relocInfo(int datalen) {
+</code></pre>
+
+<p>解决方法：
+<code>vi hotspot/src/share/vm/code/relocInfo.hpp</code><br />
+将<code>inline friend relocInfo prefix_relocInfo(int datalen = 0);</code>改成
+<code>inline friend relocInfo prefix_relocInfo(int datalen);</code><br />
+将<code>inline relocInfo prefix_relocInfo(int datalen) {</code>改成<code>inline relocInfo prefix_relocInfo(int datalen = 0) {</code></p>
+
+<h3 id="9-指针与0比较问题">9.指针与0比较问题</h3>
+
+<pre><code>/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/runtime/virtualspace.cpp:527:14: error: ordered comparison between pointer and zero ('char *' and 'int')
+  if (base() &gt; 0) {
+      ~~~~~~ ^ ~
+/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/runtime/virtualspace.cpp:546:14: error: ordered comparison between pointer and zero ('char *' and 'int')
+  if (base() &gt; 0) {
+      ~~~~~~ ^ ~
+</code></pre>
+
+<p>解决方法：<br />
+<code>vi ./hotspot/src/share/vm/runtime/virtualspace.cpp</code><br />
+用<code>/if (base() &gt; 0)</code>查找所有该语句，并将其改成<code>if (base() != NULL)</code></p>
+
+<h3 id="10-找不到javanativefoundation-h头文件问题">10.找不到JavaNativeFoundation.h头文件问题</h3>
+
+<pre><code>/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/agent/src/os/bsd/MacosxDebuggerLocal.m:27:9: fatal error: 'JavaNativeFoundation/JavaNativeFoundation.h' file not found
+#import &lt;JavaNativeFoundation/JavaNativeFoundation.h&gt;
+        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/agent/src/os/bsd/MacosxDebuggerLocal.m:27:9: note: did not find header 'JavaNativeFoundation.h' in framework 'JavaNativeFoundation' (loaded from '/System/Library/Frameworks/JavaVM.framework/Frameworks')
+1 error generated.
+</code></pre>
+
+<p>解决方法：<br />
+终端执行<code>find / -name &quot;*JavaNativeFoundation.h*&quot;</code>命令，出现结果：</p>
+
+<pre><code>/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/JavaVM.framework/Versions/A/Frameworks/JavaNativeFoundation.framework/Versions/A/Headers/JavaNativeFoundation.h
+/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/JavaVM.framework/Versions/A/Frameworks/JavaNativeFoundation.framework/Versions/A/Headers/JavaNativeFoundation.h
+</code></pre>
+
+<p>编辑<code>hotspot/make/bsd/makefiles/saproc.make</code>进行如下修改：</p>
+
+<pre><code>原：
+SALIBS = -g -framework Foundation -F/System/Library/Frameworks/JavaVM.framework/Frameworks -framework JavaNativeFoundation -framework Security -framework CoreFoundation
+修改后：
+SALIBS = -g -framework Foundation -F/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks -framework JavaNativeFoundation -framework Security -framework CoreFoundation
+
+原：
+-I/System/Library/Frameworks/JavaVM.framework/Headers
+修改后：
+-I/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/JavaVM.framework/Versions/A/Frameworks/JavaNativeFoundation.framework/Versions/A/Headers
+</code></pre>
+
+<h3 id="11-undefined-symbols-for-architecture-x86-64">11.Undefined symbols for architecture x86_64</h3>
+
+<pre><code>llvm-gcc -m64   -m64  -L`pwd`  -framework CoreFoundation  -o gamma launcher/java_md.o launcher/java.o launcher/jli_util.o launcher/wildcard.o -ljvm -lm -pthread
+Undefined symbols for architecture x86_64:
+  &quot;_JNI_CreateJavaVM&quot;, referenced from:
+      _LoadJavaVM in java_md.o
+  &quot;_JNI_GetDefaultJavaVMInitArgs&quot;, referenced from:
+      _LoadJavaVM in java_md.o
+ld: symbol(s) not found for architecture x86_64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+make[8]: *** [gamma] Error 1
+make[7]: *** [the_vm] Error 2
+make[6]: *** [product] Error 2
+make[5]: *** [generic_build2] Error 2
+make[4]: *** [product] Error 2
+make[3]: *** [all_product_universal] Error 2
+make[2]: *** [universal_product] Error 2
+make[1]: *** [hotspot-build] Error 2
+make: *** [build_product_image] Error 2
+</code></pre>
+
+<p>解决方法：<br />
+这个错误困扰了我很久，一开始看上面的</p>
+
+<pre><code>Linking vm...
+ld: warning: cannot export hidden symbol _AsyncGetCallTrace from forte.o
+</code></pre>
+
+<p>还以为是export symbol过程中出现问题，修改过jdk/src/macosx/native/sun/osxapp/ThreadUtilities.中的attachCurrentThread函数，改为static，还是无法解决问题<br />
+后面上stackflow上面搜了以下，发现应该是llvm-gcc编译的时候，找不到库文件导致的，仔细看了以下编译命令</p>
+
+<pre><code>llvm-gcc -m64   -m64  -L`pwd`...
+</code></pre>
+
+<p>其中-L是指定库文件目录，它指向了当前pwd即目录，然后我<code>find ./ -name &quot;java_md.o&quot;</code>,发现它在<code>.//JVM/jdkBuild/openjdk_7u4/build/hotspot/outputdir/bsd_amd64_compiler2/product/launcher/java_md.o</code>，那么此时pwd就应该在<code>.//JVM/jdkBuild/openjdk_7u4/build/hotspot/outputdir/bsd_amd64_compiler2/product</code>，而当前编译所需要的库文件是<code>/Library/Java/JavaVirtualMachines/jdk1.7.0_80.jdk/Contents/Home/jre/lib/server/libjvm.dylib</code><br />
+使用cp命令将其复制到pwd就好了：</p>
+
+<pre><code>sudo cp /Library/Java/JavaVirtualMachines/jdk1.7.0_80.jdk/Contents/Home/jre/lib/server/libjvm.dylib ./JVM/jdkBuild/openjdk_7u4/build/hotspot/outputdir/bsd_amd64_compiler2/product
+</code></pre>
+
+<h3 id="12-找不到cgbase-h头文件问题">12.找不到CGBase.h头文件问题</h3>
+
+<pre><code>/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSGeometry.h:9:9: fatal error: 
+      'CoreGraphics/CGBase.h' file not found
+#import &lt;CoreGraphics/CGBase.h&gt;
+        ^~~~~~~~~~~~~~~~~~~~~~~
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSGeometry.h:9:9: note: 
+      did not find header 'CGBase.h' in framework 'CoreGraphics' (loaded from
+      '/System/Library/Frameworks/ApplicationServices.framework/Frameworks')
+1 error generated.
+make[5]: *** [/Users/jackietsoi/Documents/develop/jdk7u-dev/JVM/jdkBuild/openjdk_7u4/build/tmp/java/java.lang/java/obj64/java_props_macosx.o] Error 1
+make[4]: *** [library_parallel_compile] Error 2
+make[3]: *** [all] Error 1
+make[2]: *** [all] Error 1
+make[1]: *** [jdk-build] Error 2
+make: *** [build_product_image] Error 2
+</code></pre>
+
+<p>解决方法：<br />
+<code>vi ./jdk/make/common/Defs-macosx.gmk</code>进行如下更改：</p>
+
+<pre><code>#OTHER_CFLAGS = \
+#         -F/System/Library/Frameworks/JavaVM.framework/Frameworks \
+#       -F/System/Library/Frameworks/CoreGraphics.framework \
+#        -F/System/Library/Frameworks/ApplicationServices.framework/Frameworks
+
+OTHER_CFLAGS = \
+      -F/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/JavaVM.framework/Frameworks \
+      -F/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/CoreGraphics.framework/Frameworks \
+     -F/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/ApplicationServices.framework/Frameworks
+</code></pre>
+
+<p>同样使用<code>find ./ -name &quot;CGBase.h&quot;</code>找到路径，将<code>/System/Library/Frameworks/JavaVM.framework/Frameworks</code>等路径替换掉即可。</p>
+
+<h3 id="15-从macos14-sdk开始不再支持32位程序编译">15 从macOS14 sdk开始不再支持32位程序编译</h3>
+
+<p>awt库的编译需要有i386架构的库的支持，但是Apple从macOS14 sdk开始就不再包含32位程序编译支持了，最后一个支持32位程序编译的版本是macOS13 sdk。</p>
+
+<pre><code>ld: warning: The i386 architecture is deprecated for macOS (remove from the Xcode build setting: ARCHS)
+ld: warning: ignoring file /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/libSystem.tbd, missing required architecture i386 in file /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/libSystem.tbd
+Undefined symbols for architecture i386:
+  &quot;___stack_chk_fail&quot;, referenced from:
+      _main in sizer-32b644.o
+  &quot;___stack_chk_guard&quot;, referenced from:
+      _main in sizer-32b644.o
+  &quot;_printf&quot;, referenced from:
+      _main in sizer-32b644.o
+ld: symbol(s) not found for architecture i386
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+make[4]: *** [/Users/jackietsoi/Documents/develop/jdk7u-dev/JVM/jdkBuild/openjdk_7u4/build/gensrc/sun/awt/X11/generator/sizer.32] Error 1
+make[3]: *** [all] Error 1
+make[2]: *** [all] Error 1
+make[1]: *** [jdk-build] Error 2
+make: *** [build_product_image] Error 2
+</code></pre>
+
+<p>解决方法：<br />
+我也尝试去下载了Command_Line_Tools_macOS_10.13_for_Xcode_10.1.dmg进行安装，但是却提示“该软件包与此版本的macOS不兼容”，有兴趣的朋友可以自己再试一下，我就不再折腾了。最后给出最后给出Command Line Tools的下载地址<code>https://developer.apple.com/download/more/</code>。</p>
+
+<h2 id="0x05-总结">0x05 总结</h2>
+
+<p>在macOS中编译openjdk7也折腾了两天，最终还是以失败告终，接下来我将使用Ubuntu16.04进行再一次编译尝试，敬请期待。</p>
+
+    </div>
+	
+    <div class="post-copyright">
+             
+			
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>sinowrt </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://blog.sinowrt.cn/2021/2021-02-26t1633-compile-a-jvm-on-macos/>http://blog.sinowrt.cn/2021/2021-02-26t1633-compile-a-jvm-on-macos/</span>
+            </p>
+			
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/jvm/">
+                    #JVM</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="http://blog.sinowrt.cn">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://blog.sinowrt.cn/2020/2020-12-01t2202-how-to-generate-vmess-urls-and-public-as-subscription/" class="prev" rel="prev" title="如何生成VMESS URL并发布订阅"><i class="iconfont icon-left"></i>&nbsp;如何生成VMESS URL并发布订阅</a>
+         
+        
+        <a href="http://blog.sinowrt.cn/2021/2021-02-26t1740-basic-operation-in-vi/" class="next" rel="next" title="Vi 的一些基本操作">Vi 的一些基本操作&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2021</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://blog.sinowrt.cn">sinowrt</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

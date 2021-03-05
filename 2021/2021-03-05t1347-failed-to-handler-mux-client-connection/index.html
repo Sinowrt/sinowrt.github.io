@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="sinowrt">
+  
+  
+  
+  <link rel="prev" href="http://blog.sinowrt.cn/2021/2021-03-05t1556-how-to-create-a-transit-node-base-on-sspanel-and-v2ray-poseidon/" />
+  
+  <link rel="canonical" href="http://blog.sinowrt.cn/2021/2021-03-05t1347-failed-to-handler-mux-client-connection/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           failed to handler mux client connection 错误 | Sinowrt
+       
+  </title>
+  <meta name="title" content="failed to handler mux client connection 错误 | Sinowrt">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/blog.sinowrt.cn"
+    },
+    "articleSection" : "posts",
+    "name" : "failed to handler mux client connection 错误",
+    "headline" : "failed to handler mux client connection 错误",
+    "description" : "0x00 错误描述 使用v2rayN连接节点的时候，总是会出现这个警告：\n2021\/03\/05 13:45:52 [Warning] failed to handler mux client connection \x26gt; v2ray.com\/core\/proxy\/vmess\/outbound: connection ends \x26gt; v2ray.com\/core\/proxy\/vmess\/outbound: failed to read header \x26gt; v2ray.com\/core\/proxy\/vmess\/encoding: failed to read response header \x26gt; websocket: close 1000 (normal)  上网查了一圈，发现是节点时间与客户端时间不一致导致的。\n0x01 解决方案 节点是基于ubuntu搭建的，所以下面将给出ubuntu设置时区的教程：\n1. 运行tzselect,选择 Asia -\x26gt; China -\x26gt; Beijing。 root@KnobbyKindhearted-VM:~\/v2ray-poseidon\/docker\/sspanel\/ws-tls# tzselect Please identify a location so that time zone rules can be set correctly. Please select a continent, ocean, \x26quot;coord\x26quot;, or \x26quot;TZ\x26quot;. 1) Africa 2) Americas 3) Antarctica 4) Asia 5) Atlantic Ocean 6) Australia 7) Europe 8) Indian Ocean 9) Pacific Ocean 10) coord - I want to use geographical coordinates.",
+    "inLanguage" : "en-us",
+    "author" : "sinowrt",
+    "creator" : "sinowrt",
+    "publisher": "sinowrt",
+    "accountablePerson" : "sinowrt",
+    "copyrightHolder" : "sinowrt",
+    "copyrightYear" : "2021",
+    "datePublished": "2021-03-05 13:47:00 \x2b0800 CST",
+    "dateModified" : "2021-03-05 13:47:00 \x2b0800 CST",
+    "url" : "http:\/\/blog.sinowrt.cn\/2021\/2021-03-05t1347-failed-to-handler-mux-client-connection\/",
+    "wordCount" : "354",
+    "keywords" : [ "v2ray", "Sinowrt"]
+}
+</script>
+
+</head>
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?85719ea04c6401b98466dfdbc9399c78";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">failed to handler mux client connection 错误</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2021-03-05 itemprop="datePublished">March 5, 2021</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="http://blog.sinowrt.cn/categories/v2ray/"> v2ray </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          
+
+<h2 id="0x00-错误描述">0x00 错误描述</h2>
+
+<p>使用v2rayN连接节点的时候，总是会出现这个警告：</p>
+
+<pre><code>2021/03/05 13:45:52 [Warning] failed to handler mux client connection &gt; v2ray.com/core/proxy/vmess/outbound: connection ends &gt; v2ray.com/core/proxy/vmess/outbound: failed to read header &gt; v2ray.com/core/proxy/vmess/encoding: failed to read response header &gt; websocket: close 1000 (normal)
+</code></pre>
+
+<p>上网查了一圈，发现是节点时间与客户端时间不一致导致的。</p>
+
+<h2 id="0x01-解决方案">0x01 解决方案</h2>
+
+<p>节点是基于ubuntu搭建的，所以下面将给出ubuntu设置时区的教程：</p>
+
+<h3 id="1-运行-tzselect-选择-asia-china-beijing">1. 运行<code>tzselect</code>,选择 Asia -&gt; China -&gt; Beijing。</h3>
+
+<pre><code class="language-shell">root@KnobbyKindhearted-VM:~/v2ray-poseidon/docker/sspanel/ws-tls# tzselect
+Please identify a location so that time zone rules can be set correctly.
+Please select a continent, ocean, &quot;coord&quot;, or &quot;TZ&quot;.
+ 1) Africa
+ 2) Americas
+ 3) Antarctica
+ 4) Asia
+ 5) Atlantic Ocean
+ 6) Australia
+ 7) Europe
+ 8) Indian Ocean
+ 9) Pacific Ocean
+10) coord - I want to use geographical coordinates.
+11) TZ - I want to specify the time zone using the Posix TZ format.
+#? 4
+Please select a country whose clocks agree with yours.
+ 1) Afghanistan       18) Israel            35) Palestine
+ 2) Armenia       19) Japan         36) Philippines
+ 3) Azerbaijan        20) Jordan            37) Qatar
+ 4) Bahrain       21) Kazakhstan        38) Russia
+ 5) Bangladesh        22) Korea (North)     39) Saudi Arabia
+ 6) Bhutan        23) Korea (South)     40) Singapore
+ 7) Brunei        24) Kuwait            41) Sri Lanka
+ 8) Cambodia          25) Kyrgyzstan        42) Syria
+ 9) China         26) Laos          43) Taiwan
+10) Cyprus        27) Lebanon           44) Tajikistan
+11) East Timor        28) Macau         45) Thailand
+12) Georgia       29) Malaysia          46) Turkmenistan
+13) Hong Kong         30) Mongolia          47) United Arab Emirates
+14) India         31) Myanmar (Burma)       48) Uzbekistan
+15) Indonesia         32) Nepal         49) Vietnam
+16) Iran          33) Oman          50) Yemen
+17) Iraq          34) Pakistan
+#? 9
+Please select one of the following time zone regions.
+1) Beijing Time
+2) Xinjiang Time
+#? 1
+
+The following information has been given:
+
+    China
+    Beijing Time
+
+Therefore TZ='Asia/Shanghai' will be used.
+Local time is now:  Fri Mar  5 13:46:27 CST 2021.
+Universal Time is now:  Fri Mar  5 05:46:27 UTC 2021.
+Is the above information OK?
+1) Yes
+2) No
+#? 1
+
+You can make this change permanent for yourself by appending the line
+    TZ='Asia/Shanghai'; export TZ
+to the file '.profile' in your home directory; then log out and log in again.
+
+Here is that TZ value again, this time on standard output so that you
+can use the /usr/bin/tzselect command in shell scripts:
+Asia/Shanghai
+</code></pre>
+
+<h3 id="2-复制文件到-etc目录下-cp-usr-share-zoneinfo-asia-shanghai-etc-localtime">2. 复制文件到/etc目录下<code>cp /usr/share/zoneinfo/Asia/Shanghai  /etc/localtime</code></h3>
+
+    </div>
+	
+    <div class="post-copyright">
+             
+			
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>sinowrt </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://blog.sinowrt.cn/2021/2021-03-05t1347-failed-to-handler-mux-client-connection/>http://blog.sinowrt.cn/2021/2021-03-05t1347-failed-to-handler-mux-client-connection/</span>
+            </p>
+			
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/v2ray/">
+                    #v2ray</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="http://blog.sinowrt.cn">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://blog.sinowrt.cn/2021/2021-03-05t1556-how-to-create-a-transit-node-base-on-sspanel-and-v2ray-poseidon/" class="prev" rel="prev" title="sspanel 与 v2ray-poseidon 环境下如何搭建一个中转节点"><i class="iconfont icon-left"></i>&nbsp;sspanel 与 v2ray-poseidon 环境下如何搭建一个中转节点</a>
+         
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2021</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://blog.sinowrt.cn">sinowrt</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

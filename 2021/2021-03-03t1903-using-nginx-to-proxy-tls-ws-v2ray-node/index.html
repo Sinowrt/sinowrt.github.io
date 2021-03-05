@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="sinowrt">
+  
+  
+  
+  <link rel="prev" href="http://blog.sinowrt.cn/2021/2021-02-26t1740-basic-operation-in-vi/" />
+  <link rel="next" href="http://blog.sinowrt.cn/2021/2021-03-04t2218-http-timeout-while-starting-docker-compose/" />
+  <link rel="canonical" href="http://blog.sinowrt.cn/2021/2021-03-03t1903-using-nginx-to-proxy-tls-ws-v2ray-node/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           使用Nginx代理ws&#43;tls的V2ray节点 | Sinowrt
+       
+  </title>
+  <meta name="title" content="使用Nginx代理ws&#43;tls的V2ray节点 | Sinowrt">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/blog.sinowrt.cn"
+    },
+    "articleSection" : "posts",
+    "name" : "使用Nginx代理ws\x2btls的V2ray节点",
+    "headline" : "使用Nginx代理ws\x2btls的V2ray节点",
+    "description" : "0x00 背景 这两天给v2节点配上了ws\x2btls，但是直连的话速度还是不太理想，于是想用另一个vps中转一下，就有了这篇文章。\n0x01 过程 虽然之前也用nginx中转过v2流量，但是从没中转过使用tls的节点，都是普通的使用ws节点而已。于是上网查了很多资料，都说直接配置nginx的证书，然后v2节点就取消tls就好了，但是我又希望有时能直连一下这个节点，如果不配置tls的话，感觉又不是很放心。所以还是坚持继续探索，终于也让我找到了。\n0x02 解决方案 在nginx这段我没有配置ssl，所以不用配置证书啥的，就直接给出nginx的配置吧：\nserver { listen 中转节点监听端口; server_name 中转节点域名; location \/ { proxy_pass http:\/\/后端IP或域名:后端监听端口\/wspath; # 若后端开启tls，则需要写https:\/\/ proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; proxy_http_version 1.1; proxy_set_header Upgrade $http_upgrade; proxy_set_header Connection \x26quot;upgrade\x26quot;; } }  0x03 补充说明 之前的迷糊是在于不清楚tls的工作过程，以为中转后客户端也是直接与服务端进行tls握手的，其实真实的情况是，客户端是与nginx直接连接的，而nginx才是与v2服务端握手的一方。也就是说，客户端与nginx的连接 和 nginx与v2服务端的连接是不同的两端连接，两个不同的连接均可自由配置tls。\n0x04 一些错误 1.nginx没配置ssl，但是v2客户端配置了tls连接造成的错误 [Warning] failed to handler mux client connection \x26gt; v2ray.com\/core\/proxy\/vmess\/outbound: failed to find an available destination \x26gt; v2ray.com\/core\/common\/retry: [v2ray.com\/core\/transport\/internet\/websocket: failed to dial WebSocket \x26gt; v2ray.",
+    "inLanguage" : "en-us",
+    "author" : "sinowrt",
+    "creator" : "sinowrt",
+    "publisher": "sinowrt",
+    "accountablePerson" : "sinowrt",
+    "copyrightHolder" : "sinowrt",
+    "copyrightYear" : "2021",
+    "datePublished": "2021-03-03 19:07:00 \x2b0800 CST",
+    "dateModified" : "2021-03-03 19:07:00 \x2b0800 CST",
+    "url" : "http:\/\/blog.sinowrt.cn\/2021\/2021-03-03t1903-using-nginx-to-proxy-tls-ws-v2ray-node\/",
+    "wordCount" : "139",
+    "keywords" : [ "Nginx","V2ray", "Sinowrt"]
+}
+</script>
+
+</head>
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?85719ea04c6401b98466dfdbc9399c78";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">使用Nginx代理ws&#43;tls的V2ray节点</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2021-03-03 itemprop="datePublished">March 3, 2021</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="http://blog.sinowrt.cn/categories/nginx/"> Nginx </a>
+                        <a href="http://blog.sinowrt.cn/categories/v2ray/"> V2ray </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          
+
+<h2 id="0x00-背景">0x00 背景</h2>
+
+<p>这两天给v2节点配上了ws+tls，但是直连的话速度还是不太理想，于是想用另一个vps中转一下，就有了这篇文章。</p>
+
+<h2 id="0x01-过程">0x01 过程</h2>
+
+<p>虽然之前也用nginx中转过v2流量，但是从没中转过使用tls的节点，都是普通的使用ws节点而已。于是上网查了很多资料，都说直接配置nginx的证书，然后v2节点就取消tls就好了，但是我又希望有时能直连一下这个节点，如果不配置tls的话，感觉又不是很放心。所以还是坚持继续探索，终于也让我找到了。</p>
+
+<h2 id="0x02-解决方案">0x02 解决方案</h2>
+
+<p>在nginx这段我没有配置ssl，所以不用配置证书啥的，就直接给出nginx的配置吧：</p>
+
+<pre><code>server {
+        listen 中转节点监听端口;
+        server_name 中转节点域名;
+
+        location / {
+            proxy_pass http://后端IP或域名:后端监听端口/wspath;  # 若后端开启tls，则需要写https://
+            
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection &quot;upgrade&quot;;
+        }
+}
+
+</code></pre>
+
+<h2 id="0x03-补充说明">0x03 补充说明</h2>
+
+<p>之前的迷糊是在于不清楚tls的工作过程，以为中转后客户端也是直接与服务端进行tls握手的，其实真实的情况是，客户端是与nginx直接连接的，而nginx才是与v2服务端握手的一方。也就是说，客户端与nginx的连接 和 nginx与v2服务端的连接是不同的两端连接，两个不同的连接均可自由配置tls。</p>
+
+<h2 id="0x04-一些错误">0x04 一些错误</h2>
+
+<h3 id="1-nginx没配置ssl-但是v2客户端配置了tls连接造成的错误">1.nginx没配置ssl，但是v2客户端配置了tls连接造成的错误</h3>
+
+<pre><code>[Warning] failed to handler mux client connection &gt; v2ray.com/core/proxy/vmess/outbound: failed to find an available destination &gt; v2ray.com/core/common/retry: [v2ray.com/core/transport/internet/websocket: failed to dial WebSocket &gt; v2ray.com/core/transport/internet/websocket: failed to dial to (wss://HOST:PORT/):  &gt; tls: first record does not look like a TLS handshake] &gt; v2ray.com/core/common/retry: all retry attempts failed
+</code></pre>
+
+<p>解决方案：<br />
+将v2客户端的tls连接去掉即可。</p>
+
+<h3 id="2-客户端保留了-伪装域名-也就是host字段保留了cdn的域名造成的错误">2.客户端保留了“伪装域名”也就是host字段保留了cdn的域名造成的错误</h3>
+
+<pre><code>[Warning] failed to handler mux client connection &gt; v2ray.com/core/proxy/vmess/outbound: failed to find an available destination &gt; v2ray.com/core/common/retry: [v2ray.com/core/transport/internet/websocket: failed to dial WebSocket &gt; v2ray.com/core/transport/internet/websocket: failed to dial to (ws://HOST:PORT/): 404 Not Found &gt; websocket: bad handshake] &gt; v2ray.com/core/common/retry: all retry attempts failed
+</code></pre>
+
+<p>解决方案：<br />
+将客户端中的host字段清空去掉就好了。</p>
+
+    </div>
+	
+    <div class="post-copyright">
+             
+			
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>sinowrt </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://blog.sinowrt.cn/2021/2021-03-03t1903-using-nginx-to-proxy-tls-ws-v2ray-node/>http://blog.sinowrt.cn/2021/2021-03-03t1903-using-nginx-to-proxy-tls-ws-v2ray-node/</span>
+            </p>
+			
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/nginx/">
+                    #Nginx</a></span>
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/v2ray/">
+                    #V2ray</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="http://blog.sinowrt.cn">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://blog.sinowrt.cn/2021/2021-02-26t1740-basic-operation-in-vi/" class="prev" rel="prev" title="Vi 的一些基本操作"><i class="iconfont icon-left"></i>&nbsp;Vi 的一些基本操作</a>
+         
+        
+        <a href="http://blog.sinowrt.cn/2021/2021-03-04t2218-http-timeout-while-starting-docker-compose/" class="next" rel="next" title="docker-compose 启动报错 read time out">docker-compose 启动报错 read time out&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2021</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://blog.sinowrt.cn">sinowrt</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

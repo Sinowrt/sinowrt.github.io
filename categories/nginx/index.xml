@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nginx on Sinowrt</title>
+    <link>http://blog.sinowrt.cn/categories/nginx/</link>
+    <description>Recent content in Nginx on Sinowrt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 03 Mar 2021 19:07:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.sinowrt.cn/categories/nginx/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用Nginx代理ws&#43;tls的V2ray节点</title>
+      <link>http://blog.sinowrt.cn/2021/2021-03-03t1903-using-nginx-to-proxy-tls-ws-v2ray-node/</link>
+      <pubDate>Wed, 03 Mar 2021 19:07:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2021/2021-03-03t1903-using-nginx-to-proxy-tls-ws-v2ray-node/</guid>
+      <description>0x00 背景 这两天给v2节点配上了ws+tls，但是直连的话速度还是不太理想，于是想用另一个vps中转一下，就有了这篇文章。
+0x01 过程 虽然之前也用nginx中转过v2流量，但是从没中转过使用tls的节点，都是普通的使用ws节点而已。于是上网查了很多资料，都说直接配置nginx的证书，然后v2节点就取消tls就好了，但是我又希望有时能直连一下这个节点，如果不配置tls的话，感觉又不是很放心。所以还是坚持继续探索，终于也让我找到了。
+0x02 解决方案 在nginx这段我没有配置ssl，所以不用配置证书啥的，就直接给出nginx的配置吧：
+server { listen 中转节点监听端口; server_name 中转节点域名; location / { proxy_pass http://后端IP或域名:后端监听端口/wspath; # 若后端开启tls，则需要写https:// proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; proxy_http_version 1.1; proxy_set_header Upgrade $http_upgrade; proxy_set_header Connection &amp;quot;upgrade&amp;quot;; } }  0x03 补充说明 之前的迷糊是在于不清楚tls的工作过程，以为中转后客户端也是直接与服务端进行tls握手的，其实真实的情况是，客户端是与nginx直接连接的，而nginx才是与v2服务端握手的一方。也就是说，客户端与nginx的连接 和 nginx与v2服务端的连接是不同的两端连接，两个不同的连接均可自由配置tls。
+0x04 一些错误 1.nginx没配置ssl，但是v2客户端配置了tls连接造成的错误 [Warning] failed to handler mux client connection &amp;gt; v2ray.com/core/proxy/vmess/outbound: failed to find an available destination &amp;gt; v2ray.com/core/common/retry: [v2ray.com/core/transport/internet/websocket: failed to dial WebSocket &amp;gt; v2ray.</description>
+    </item>
+    
+  </channel>
+</rss>
