@@ -1039,89 +1039,6 @@ TO MIGRATE: https://github.com/v2fly/fhs-install-v2ray/wiki/Migrate-from-the-old
     </item>
     
     <item>
-      <title>新浪爱问一面凉经</title>
-      <link>http://blog.sinowrt.cn/2020/2020-08-04t1230-sina-iask-interview/</link>
-      <pubDate>Tue, 04 Aug 2020 12:30:00 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2020/2020-08-04t1230-sina-iask-interview/</guid>
-      <description>
-
-&lt;h2 id=&#34;新浪爱问一面凉经&#34;&gt;新浪爱问一面凉经&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;早上九点多就到超多维大厦了，还好一楼有个星巴克，抓紧时间复习了垃圾回收算法，三次握手，NIO相关知识，把自我介绍排了一遍。&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;10:21上楼，首先在前台填了面试信息表，等了十几分钟后，被一个看发量就知道是一个资深技术的小哥带进去会议室了&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;照例自我介绍了一波，然后小哥开始问问题：现在有一个新闻推送系统，每天由专人不定时录入新闻，现在需要将这些消息推送给用户，设计一个推送模块，在用户每次刷新的时候，用户都能收到固定数量的新闻，当然新闻可能有些是最新的，有些是比较旧的，如何保证用户在每次刷新的时候都能收到一部分新闻并且保证这些新闻不重复？&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;答：先是把数据库里面的新闻存储结构描述了一下，将每次查询到的新闻id，用户id关联存到redis，用户查询的时候，现在redis查询该用户所查询过的新闻id，然后再到数据库里面将redis查询的结果作为查询条件，排除掉已查询过的新闻，再返回新闻列表。&lt;/p&gt;
-
-&lt;p&gt;问：这样的话又一个问题，redis里面的数据要持久化，并且随着用户查询的次数增多，数据量也越来越大，这样要怎样处理呢。&lt;/p&gt;
-
-&lt;p&gt;答：这样的话可以在数据库里面新建一个表，将每次的查询的新闻id以及用户id关联一下，然后每次再进行连表查询。&lt;/p&gt;
-
-&lt;p&gt;问：这样还是没有从根本上解决问题，随着用户的请求越来越多，该表的数据量也越来越大，性能也越来越慢。&lt;/p&gt;
-
-&lt;p&gt;答：可以引入消息队列，将用户归类，并且对每一类用户的请求，将这一批请求放到消息队列，用户可对这些消息进行重复消费。&lt;/p&gt;
-
-&lt;p&gt;问：这样处理确实可以缓解性能压力，但是还是不是最优方案。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;算了，我再问你一些问题吧，在redis高并发的情况下，缓存失效应该怎么处理呢？（不好意思没了解过）&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;你做的系统最大的并发量有多少（最多应该是光大的，并发量大概在一千左右）&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;hashmap是线程安全的还是线程不安全的？为什么线程不安全？&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;答：线程不安全，因为hashmap不具备可见性，当一个线程在hashmap插入了一个数据之后，但这个更新只在cpu高速缓存中体现，而并未即使更新到内存中，所以这就导致另一个线程在访问hashmap的时候读不到该值，所以是线程不安全的。&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;使用过事务吗，事务有哪几种传播方式（7种，具体名称记不住了）&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;给了两个程序段，问testA方法调用会不会导致事务回滚，testB调用会不会导致事务回滚？
-```java
-@Service
-public class PersonService{
-@trasactional()
-public int save(String id){
-    Person person=new Person();
-    person.setId(id);
-    dao.save(person);
-    throw new Exception(&amp;ldquo;&amp;rdquo;);
-}&lt;/p&gt;
-
-&lt;p&gt;//这个不会导致事务回滚，因为没用加入到spring的AOP
-public void testA(){
-    this.save(&amp;ldquo;000&amp;rdquo;);
-}
-}&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;public class testB{
-    @Autowire
-    PersonService personService;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;//这个会导致回滚
-public void testB(){
-    personService.save(&amp;quot;000&amp;quot;);
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;}
-```&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;我说如果trasactional的rollback为true的话，两个都会回滚，否则两个都不回滚。(面试官有解释，见注释，解释完之后，就完了。。。)&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;我还是tyts了 :(&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
       <title>python3.8 在安装 python-docx 时提示未安装libxml2</title>
       <link>http://blog.sinowrt.cn/2020/2020-07-22t1231-could-not-find-function-xmlcheckversion-in-library-libxml2.-while-installing-python-docx/</link>
       <pubDate>Wed, 22 Jul 2020 12:31:00 +0800</pubDate>
@@ -1255,6 +1172,22 @@ destination: default
 &amp;quot;DesignCapacity&amp;quot; = 5088
 &amp;quot;BatteryData&amp;quot; = {&amp;quot;StateOfCharge&amp;quot;=96,&amp;quot;PMUConfigured&amp;quot;=0,&amp;quot;Voltage&amp;quot;=12699,&amp;quot;QmaxCell1&amp;quot;=5358,&amp;quot;AdapterPower&amp;quot;=839469241,&amp;quot;SystemPower&amp;quot;=1087516262,&amp;quot;ResScale&amp;quot;=117,&amp;quot;QmaxCell2&amp;quot;=5302,&amp;quot;QmaxCell0&amp;quot;=5341,&amp;quot;CycleCount&amp;quot;=46,&amp;quot;DesignCapacity&amp;quot;=5088}
 &lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>关闭chrome浏览器广告弹窗</title>
+      <link>http://blog.sinowrt.cn/2020/2020-05-27t1334-remove-the-ad-windows-of-chrome/</link>
+      <pubDate>Wed, 27 May 2020 13:34:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2020/2020-05-27t1334-remove-the-ad-windows-of-chrome/</guid>
+      <description>&lt;ul&gt;
+&lt;li&gt;之前用google进行调研的时候，点进去了一个网站
+![]()
+迫于打开心切，就点击了允许，之后时不时就会出现Bestdealfor10.life的弹窗，想要禁用，百度无果，使用google发现很多解决方法&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;随便挑一个&lt;a href=&#34;https://malwaretips.com/blogs/remove-bestdealfor10-life/&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;https://malwaretips.com/blogs/remove-bestdealfor10-life/&lt;/a&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;li&gt;按步骤，在chrome的设置-隐私和安全-网站设置-通知里面将&lt;a href=&#34;https://bestdealfor10.life&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;https://bestdealfor10.life&lt;/a&gt; 移除即可&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     
