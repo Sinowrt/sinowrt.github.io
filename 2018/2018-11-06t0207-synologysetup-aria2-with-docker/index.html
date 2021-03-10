@@ -46,7 +46,7 @@
     "articleSection" : "posts",
     "name" : "利用docker为群晖部署aria2下载工具",
     "headline" : "利用docker为群晖部署aria2下载工具",
-    "description" : " 0x00 安装docker  在package center中的Third party找到docker 直接点击install进行安装  安装完毕，点击open即可打开docker\n0x01 下载aria2映像 点击Registry选项卡，搜索aria2\n 找到xujinkai那个下载下来 0x02 启动容器 点击image选项卡，点击launch进行启动 0x03 启动设置 点击Advance 1）Advance Setting 打上这两个√，设置开机自启动以及创建桌面快捷方式 2）Volume设置，添加这两项，前面的文件夹随便选，圈起来的位置务必一样 3）Port设置，为了方便使用，local port修改成您想要的端口 第一项为下载端口\n 第二项为webui端口\n 第三项为下载文件目录端口\n  4）Environment设置 如图添加这两项，否则webui会报错，分别填写你的用户名和密码，ok 5）完成高级设置后，next 6）最后apply 7）打开浏览器，输入服务器地址以及你设置的webui端口，即可访问aria2 webui ",
+    "description" : " 0x00 安装docker  在package center中的Third party找到docker 直接点击install进行安装\n 安装完毕，点击open即可打开docker\n0x01 下载aria2映像 点击Registry选项卡，搜索aria2\n 找到xujinkai那个下载下来\n0x02 启动容器 点击image选项卡，点击launch进行启动\n0x03 启动设置 点击Advance 1）Advance Setting 打上这两个√，设置开机自启动以及创建桌面快捷方式 2）Volume设置，添加这两项，前面的文件夹随便选，圈起来的位置务必一样 3）Port设置，为了方便使用，local port修改成您想要的端口 第一项为下载端口\n 第二项为webui端口\n 第三项为下载文件目录端口\n  4）Environment设置 如图添加这两项，否则webui会报错，分别填写你的用户名和密码，ok 5）完成高级设置后，next 6）最后apply 7）打开浏览器，输入服务器地址以及你设置的webui端口，即可访问aria2 webui ",
     "inLanguage" : "en-us",
     "author" : "SinoWRT",
     "creator" : "SinoWRT",
@@ -166,8 +166,8 @@ var _hmt = _hmt || [];
 
 <ul>
 <li>在package center中的Third party找到docker</li>
-<li>直接点击install进行安装
-<figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-11-06T0207/docker.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></li>
+<li>直接点击install进行安装<br />
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-06T0207-docker.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></li>
 
 <li><p>安装完毕，点击open即可打开docker</p>
 
@@ -175,27 +175,27 @@ var _hmt = _hmt || [];
 
 <li><p>点击Registry选项卡，搜索aria2</p></li>
 
-<li><p>找到xujinkai那个下载下来
-<figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-11-06T0207/image.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
+<li><p>找到xujinkai那个下载下来<br />
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-06T0207-image.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
 
 <h2 id="0x02-启动容器">0x02 启动容器</h2></li>
 
-<li><p>点击image选项卡，点击launch进行启动
-<figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-11-06T0207/launch0.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
+<li><p>点击image选项卡，点击launch进行启动<br />
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-06T0207-launch0.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
 
 <h2 id="0x03-启动设置">0x03 启动设置</h2>
 
 <h3 id="点击advance">点击Advance</h3>
 
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-11-06T0207/launch1.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-06T0207-launch1.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
 
 <h3 id="1-advance-setting-打上这两个-设置开机自启动以及创建桌面快捷方式">1）Advance Setting 打上这两个√，设置开机自启动以及创建桌面快捷方式</h3>
 
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-11-06T0207/launch2.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-06T0207-launch2.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
 
 <h3 id="2-volume设置-添加这两项-前面的文件夹随便选-圈起来的位置务必一样">2）Volume设置，添加这两项，前面的文件夹随便选，圈起来的位置务必一样</h3>
 
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-11-06T0207/launch3.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-06T0207-launch3.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
 
 <h3 id="3-port设置-为了方便使用-local-port修改成您想要的端口">3）Port设置，为了方便使用，local port修改成您想要的端口</h3></li>
 
@@ -206,23 +206,23 @@ var _hmt = _hmt || [];
 <li><p>第三项为下载文件目录端口</p></li>
 </ul>
 
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-11-06T0207/launch4.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-06T0207-launch4.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
 
 <h3 id="4-environment设置-如图添加这两项-否则webui会报错-分别填写你的用户名和密码-ok">4）Environment设置 如图添加这两项，否则webui会报错，分别填写你的用户名和密码，ok</h3>
 
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-11-06T0207/launch5.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-06T0207-launch5.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
 
 <h3 id="5-完成高级设置后-next">5）完成高级设置后，next</h3>
 
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-11-06T0207/launch6.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-06T0207-launch6.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
 
 <h3 id="6-最后apply">6）最后apply</h3>
 
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-11-06T0207/apply.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-06T0207-apply.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
 
 <h3 id="7-打开浏览器-输入服务器地址以及你设置的webui端口-即可访问aria2-webui">7）打开浏览器，输入服务器地址以及你设置的webui端口，即可访问aria2 webui</h3>
 
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/images/2018-11-06T0207/finish.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-06T0207-finish.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
 
     </div>
 	

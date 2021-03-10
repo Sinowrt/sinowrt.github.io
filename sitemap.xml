@@ -4,7 +4,7 @@
     <url>
       <loc>http://blog.sinowrt.cn/categories/</loc>
       
-      <lastmod>2021-03-05T13:47:00+08:00</lastmod>
+      <lastmod>2021-03-09T22:24:00+08:00</lastmod>
       
       
       
@@ -16,7 +16,7 @@
     <url>
       <loc>http://blog.sinowrt.cn/posts/</loc>
       
-      <lastmod>2021-03-05T13:47:00+08:00</lastmod>
+      <lastmod>2021-03-09T22:24:00+08:00</lastmod>
       
       
       
@@ -28,7 +28,7 @@
     <url>
       <loc>http://blog.sinowrt.cn/</loc>
       
-      <lastmod>2021-03-05T13:47:00+08:00</lastmod>
+      <lastmod>2021-03-09T22:24:00+08:00</lastmod>
       
       
       
@@ -40,7 +40,7 @@
     <url>
       <loc>http://blog.sinowrt.cn/tags/</loc>
       
-      <lastmod>2021-03-05T13:47:00+08:00</lastmod>
+      <lastmod>2021-03-09T22:24:00+08:00</lastmod>
       
       
       
@@ -50,19 +50,33 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/2021/2021-03-05t1347-failed-to-handler-mux-client-connection/</loc>
+      <loc>http://blog.sinowrt.cn/categories/minio/</loc>
       
-      <lastmod>2021-03-05T13:47:00+08:00</lastmod>
+      <lastmod>2021-03-09T22:24:00+08:00</lastmod>
       
       
+      
+      <priority>0</priority>
       
       
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/2021/2021-03-05t1556-how-to-create-a-transit-node-base-on-sspanel-and-v2ray-poseidon/</loc>
+      <loc>http://blog.sinowrt.cn/tags/minio/</loc>
       
-      <lastmod>2021-03-05T13:47:00+08:00</lastmod>
+      <lastmod>2021-03-09T22:24:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/2021/2021-03-09t2224-how-to-install-minio-with-docker/</loc>
+      
+      <lastmod>2021-03-09T22:24:00+08:00</lastmod>
       
       
       
@@ -89,6 +103,26 @@
       
       
       <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/2021/2021-03-05t1347-failed-to-handler-mux-client-connection/</loc>
+      
+      <lastmod>2021-03-05T13:47:00+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/2021/2021-03-05t1556-how-to-create-a-transit-node-base-on-sspanel-and-v2ray-poseidon/</loc>
+      
+      <lastmod>2021-03-05T13:47:00+08:00</lastmod>
+      
+      
       
       
     </url>

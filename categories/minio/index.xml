@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>minio on Sinowrt</title>
+    <link>http://blog.sinowrt.cn/categories/minio/</link>
+    <description>Recent content in minio on Sinowrt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 09 Mar 2021 22:24:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.sinowrt.cn/categories/minio/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>用docker安装minio对象存储服务</title>
+      <link>http://blog.sinowrt.cn/2021/2021-03-09t2224-how-to-install-minio-with-docker/</link>
+      <pubDate>Tue, 09 Mar 2021 22:24:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2021/2021-03-09t2224-how-to-install-minio-with-docker/</guid>
+      <description>0x00 背景 博客里面的图片之前使用的是七牛云的对象存储，用http协议传输的，自chrome更新之后就出现了强制跳转https的问题，而用新版edge还是可以打开的，但是今天我突然发现edge也不好使了，都会强制跳转https。而七牛云里面的https是收费的，既然我有服务器，有域名那就物尽其用搭一个对象存储服务吧。
+0x01 过程 由于我的机器之前已经安装了docker，docker的安装过程就不赘述了，咱们直接从minio安装说起。
+1. 首先把minio的镜像拉下来 docker pull minio/minio
+2. 创建docker-compose.yml文件,写入以下内容 version: &#39;3.1&#39; services: minio: image: minio/minio container_name: minio restart: always ports: - 9000:9000 command: server /data #指定容器中的目录 /data environment: MINIO_ACCESS_KEY: minio #管理后台用户名 MINIO_SECRET_KEY: minioxxx #管理后台密码，最小8个字符 volumes: - ./data:/data #映射当前目录下的data目录至容器内/data目录 - ./config:/root/.minio/ #映射配置目录  3. 配置证书 在腾讯云上面申请了免费的证书，解压后将Apache中的xx.crt和xx.key文件分别改名为public.crt和private.key后放到minio的config/cert文件夹中。
+4. 以deamon模式启动minio服务 docker-compose up -d
+5. 配置访问策略 网页登录minio，然后新建一个bucket，点击新建的bucket右边三个点，点击Edit policy，prefix填入*，由于该bucket是用作博客的图床的，所以策略选择read only，最后点击Add即可。
+0x02 遇到的问题 1. 浏览器提示ERR_CERT_COMMON_NAME_INVALID错误 这个错误是因为当时没有添加域名解析，直接使用了ip加端口访问，与证书里面的域名不匹配而提示的不安全连接问题。</description>
+    </item>
+    
+  </channel>
+</rss>

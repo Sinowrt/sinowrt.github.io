@@ -6,10 +6,25 @@
     <description>Recent content in Posts on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 05 Mar 2021 13:47:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 09 Mar 2021 22:24:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>用docker安装minio对象存储服务</title>
+      <link>http://blog.sinowrt.cn/2021/2021-03-09t2224-how-to-install-minio-with-docker/</link>
+      <pubDate>Tue, 09 Mar 2021 22:24:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2021/2021-03-09t2224-how-to-install-minio-with-docker/</guid>
+      <description>0x00 背景 博客里面的图片之前使用的是七牛云的对象存储，用http协议传输的，自chrome更新之后就出现了强制跳转https的问题，而用新版edge还是可以打开的，但是今天我突然发现edge也不好使了，都会强制跳转https。而七牛云里面的https是收费的，既然我有服务器，有域名那就物尽其用搭一个对象存储服务吧。
+0x01 过程 由于我的机器之前已经安装了docker，docker的安装过程就不赘述了，咱们直接从minio安装说起。
+1. 首先把minio的镜像拉下来 docker pull minio/minio
+2. 创建docker-compose.yml文件,写入以下内容 version: &#39;3.1&#39; services: minio: image: minio/minio container_name: minio restart: always ports: - 9000:9000 command: server /data #指定容器中的目录 /data environment: MINIO_ACCESS_KEY: minio #管理后台用户名 MINIO_SECRET_KEY: minioxxx #管理后台密码，最小8个字符 volumes: - ./data:/data #映射当前目录下的data目录至容器内/data目录 - ./config:/root/.minio/ #映射配置目录  3. 配置证书 在腾讯云上面申请了免费的证书，解压后将Apache中的xx.crt和xx.key文件分别改名为public.crt和private.key后放到minio的config/cert文件夹中。
+4. 以deamon模式启动minio服务 docker-compose up -d
+5. 配置访问策略 网页登录minio，然后新建一个bucket，点击新建的bucket右边三个点，点击Edit policy，prefix填入*，由于该bucket是用作博客的图床的，所以策略选择read only，最后点击Add即可。
+0x02 遇到的问题 1. 浏览器提示ERR_CERT_COMMON_NAME_INVALID错误 这个错误是因为当时没有添加域名解析，直接使用了ip加端口访问，与证书里面的域名不匹配而提示的不安全连接问题。</description>
+    </item>
     
     <item>
       <title>failed to handler mux client connection 错误</title>
@@ -527,7 +542,7 @@ ngrokd -domain=ngrok.example.com  0x02 添加域名解析 添加两条域名解�
       <pubDate>Thu, 13 Jun 2019 13:02:08 +0800</pubDate>
       
       <guid>http://blog.sinowrt.cn/2019/2019-06-13t1300-how-to-save-the-baned-ip/</guid>
-      <description>0x00 事件起因  2019年儿童节中午，google搜索超时，ss服务器尚可ping通，但端口连接异常。 13:00 更换端口，仍无法使用，ping检测IP被墙  0x01 解决方案  有消息称等待数天即可解封 等待无果，更换v2ray+cdn+ws代理方案  0x02 bandwagonhost服务器安装v2ray  我的搬瓦工vps是3.99传家宝套餐，64M运行内存，2G磁盘空间，100G流量 需要在kvm面板上安装debian或ubuntu系统 需要注意的是我的vps在安装了debian-8.0-x86_64-minimal后，使用v2ray的官方go.sh脚本安装时，swap空间爆掉了，导致安装意外终止。根据网上的教程调整swap分区无果，于是更换ubuntu-16.04-x86_64系统，安装才得以顺利进行。  环境 临时梯子（用于连接ip被ban的vps） 工具 PuTTy  sudo su 获取root权限 在控制台输入bash &amp;lt;(curl -L -s https://install.direct/go.sh)，此命令主要下载go.sh脚本并运行自动安装 控制台提示V2Ray v4.19.1 is installed.即为安装成功 记下控制台中的PORT和UUID的值  配置v2ray服务端  v2ray使用脚本安装完成后，默认启动服务就可以使用的了，但我们为了使用websock协议，还需要配置一下 打开v2ray的配置文件（/etc/v2ray/config.json）参照下面的进行配置。 只需在port和id这两个属性中填入你之前安装v2ray时记下来的值即可。（若需要CloudeFlare进行CDN转发，port则需要配置成CloudFlare支持的端口，在CloudFlare配置部分有详细说明） log配置是我后来加上的，不需要打日志的可以去掉。  { &amp;quot;log&amp;quot;: { &amp;quot;loglevel&amp;quot;: &amp;quot;debug&amp;quot;, &amp;quot;access&amp;quot;: &amp;quot;/var/log/v2ray/access.log&amp;quot;, &amp;quot;error&amp;quot;: &amp;quot;/var/log/v2ray/error.log&amp;quot; }, &amp;quot;inbounds&amp;quot;: [{ &amp;quot;port&amp;quot;: port, &amp;quot;protocol&amp;quot;: &amp;quot;vmess&amp;quot;, &amp;quot;settings&amp;quot;: { &amp;quot;clients&amp;quot;: [ { &amp;quot;id&amp;quot;: &amp;quot;UUID&amp;quot;, &amp;quot;level&amp;quot;: 1, &amp;quot;alterId&amp;quot;: 64 } ] }, &amp;quot;streamSettings&amp;quot;:{ &amp;quot;wsSettings&amp;quot;:{ &amp;quot;path&amp;quot;:&amp;quot;/&amp;quot;, &amp;quot;headers&amp;quot;:{} }, &amp;quot;network&amp;quot;:&amp;quot;ws&amp;quot; } }], &amp;quot;outbounds&amp;quot;: [{ &amp;quot;protocol&amp;quot;: &amp;quot;freedom&amp;quot;, &amp;quot;settings&amp;quot;: {} },{ &amp;quot;protocol&amp;quot;: &amp;quot;blackhole&amp;quot;, &amp;quot;settings&amp;quot;: {}, &amp;quot;tag&amp;quot;: &amp;quot;blocked&amp;quot; }], &amp;quot;routing&amp;quot;: { &amp;quot;rules&amp;quot;: [ { &amp;quot;type&amp;quot;: &amp;quot;field&amp;quot;, &amp;quot;ip&amp;quot;: [&amp;quot;geoip:private&amp;quot;], &amp;quot;outboundTag&amp;quot;: &amp;quot;blocked&amp;quot; } ] } }  启动v2ray服务端  在控制台输入service v2ray start启动服务即可 v2ray服务端的配置到此完成，需要注意的是，如果是谷歌云、亚马逊云或者其他服务商的需要在防火墙放行v2ray服务的端口。  0x03 配置CloudFlare CDN 准备个人邮箱以及域名  上CloudFlare注册账号，添加域名，选择免费的套餐（每个CloudeFlare仅对一个域名提供免费服务） 将域名的DNS服务器修改为CloudFlare提供的DNS服务器（DNS服务器修改生效最长需要72小时） 在CloudFlare的DNS中添加解析记录（CDN解析生效需要稍等片刻）  需要注意的是：CloudFlare的端口转发仅限于以下端口（Cloudflare支持的 HTTP 端口为：80，8080，8880，2052，2082，2086，2095；Cloudflare 支持的 HTTPs 端口为：443，2053，2083，2087，2096，8443），所以v2ray服务端需要将端口修改成上面支持的端口。 另外，为了提高安全性，建议将Crypto的SSL选择为Full(Strict)模式。 有效性验证 在cmd中nslookup你的域名如(abc.</description>
+      <description>0x00 事件起因  2019年儿童节中午，google搜索超时，ss服务器尚可ping通，但端口连接异常。 13:00 更换端口，仍无法使用，ping检测IP被墙  0x01 解决方案  有消息称等待数天即可解封 等待无果，更换v2ray+cdn+ws代理方案  0x02 bandwagonhost服务器安装v2ray  我的搬瓦工vps是3.99传家宝套餐，64M运行内存，2G磁盘空间，100G流量 需要在kvm面板上安装debian或ubuntu系统 需要注意的是我的vps在安装了debian-8.0-x86_64-minimal后，使用v2ray的官方go.sh脚本安装时，swap空间爆掉了，导致安装意外终止。根据网上的教程调整swap分区无果，于是更换ubuntu-16.04-x86_64系统，安装才得以顺利进行。  环境 临时梯子（用于连接ip被ban的vps） 工具 PuTTy  sudo su 获取root权限 在控制台输入bash &amp;lt;(curl -L -s https://install.direct/go.sh)，此命令主要下载go.sh脚本并运行自动安装 控制台提示V2Ray v4.19.1 is installed.即为安装成功 记下控制台中的PORT和UUID的值  配置v2ray服务端  v2ray使用脚本安装完成后，默认启动服务就可以使用的了，但我们为了使用websock协议，还需要配置一下 打开v2ray的配置文件（/etc/v2ray/config.json）参照下面的进行配置。 只需在port和id这两个属性中填入你之前安装v2ray时记下来的值即可。（若需要CloudeFlare进行CDN转发，port则需要配置成CloudFlare支持的端口，在CloudFlare配置部分有详细说明） log配置是我后来加上的，不需要打日志的可以去掉。  { &amp;quot;log&amp;quot;: { &amp;quot;loglevel&amp;quot;: &amp;quot;debug&amp;quot;, &amp;quot;access&amp;quot;: &amp;quot;/var/log/v2ray/access.log&amp;quot;, &amp;quot;error&amp;quot;: &amp;quot;/var/log/v2ray/error.log&amp;quot; }, &amp;quot;inbounds&amp;quot;: [{ &amp;quot;port&amp;quot;: port, &amp;quot;protocol&amp;quot;: &amp;quot;vmess&amp;quot;, &amp;quot;settings&amp;quot;: { &amp;quot;clients&amp;quot;: [ { &amp;quot;id&amp;quot;: &amp;quot;UUID&amp;quot;, &amp;quot;level&amp;quot;: 1, &amp;quot;alterId&amp;quot;: 64 } ] }, &amp;quot;streamSettings&amp;quot;:{ &amp;quot;wsSettings&amp;quot;:{ &amp;quot;path&amp;quot;:&amp;quot;/&amp;quot;, &amp;quot;headers&amp;quot;:{} }, &amp;quot;network&amp;quot;:&amp;quot;ws&amp;quot; } }], &amp;quot;outbounds&amp;quot;: [{ &amp;quot;protocol&amp;quot;: &amp;quot;freedom&amp;quot;, &amp;quot;settings&amp;quot;: {} },{ &amp;quot;protocol&amp;quot;: &amp;quot;blackhole&amp;quot;, &amp;quot;settings&amp;quot;: {}, &amp;quot;tag&amp;quot;: &amp;quot;blocked&amp;quot; }], &amp;quot;routing&amp;quot;: { &amp;quot;rules&amp;quot;: [ { &amp;quot;type&amp;quot;: &amp;quot;field&amp;quot;, &amp;quot;ip&amp;quot;: [&amp;quot;geoip:private&amp;quot;], &amp;quot;outboundTag&amp;quot;: &amp;quot;blocked&amp;quot; } ] } }  启动v2ray服务端  在控制台输入service v2ray start启动服务即可 v2ray服务端的配置到此完成，需要注意的是，如果是谷歌云、亚马逊云或者其他服务商的需要在防火墙放行v2ray服务的端口。  0x03 配置CloudFlare CDN 准备个人邮箱以及域名  上CloudFlare注册账号，添加域名，选择免费的套餐（每个CloudeFlare仅对一个域名提供免费服务） 将域名的DNS服务器修改为CloudFlare提供的DNS服务器（DNS服务器修改生效最长需要72小时） 在CloudFlare的DNS中添加解析记录（CDN解析生效需要稍等片刻）</description>
     </item>
     
     <item>
@@ -581,7 +596,14 @@ ngrokd -domain=ngrok.example.com  0x02 添加域名解析 添加两条域名解�
       <pubDate>Sat, 17 Nov 2018 15:13:11 +0000</pubDate>
       
       <guid>http://blog.sinowrt.cn/2018/2018-11-17t1513-install-qt5-on-win10/</guid>
-      <description> 0x00背景 信管作业要求用C++实现进销存系统用户交互界面以及业务逻辑 0x01 必备安装包 1.qt-opensource-windows-x86-5.11.2.exe 2.Windows SDK 0x02 下载与安装 1.Qt下载与安装  上Qt下载页面下载你系统对应的安装包  我的是Windoes 10,直接下载qt-opensource-windows-x86-5.11.2.exe 直接打开qt-opensource-windows-x86-5.11.2.exe安装程序 在第一个界面直接下一步 填写账号这一块，如果没有事先申请也可以先跳过这一步  选择安装文件夹 选择编译器，由于我的电脑装了vs2015，所以直接选了MSVC 2015 64-bit（若未安装任何编译器可以直接选择MinGW 5.3.0 32bit）  接下来一路下一步即可  2.Windows SDK下载与安装  上Microsoft开发者下载站 我的系统是Windows 10，还是按自己的系统版本进行下载  下载之后得到这样一个exe，打开按步骤安装   0x03 配置Qt 1.配置Debugger  工具——选项——kits——Debuggers——Add 填写Debugger的名称 浏览WindowsSKD的安装路径，找到你所需要的Debugger，这里我设置了Windows 10的x64的和x86的cdb.exe 2.配置kit 按根据截图按需配置就可以了   到了这步配置基本完成，但是我在编译程序的过程中遇到error link1158 无法运行rc.exe的报错 error link1158 无法运行rc.exe问题解决方法  到C:\Program Files (x86)\Windows Kits\10\bin\10.0.17763.0下的文件夹找到rc.dll和rc.exe复制到qmake文件夹下 qmake的路径可以参考截图   </description>
+      <description> 0x00背景 信管作业要求用C++实现进销存系统用户交互界面以及业务逻辑 0x01 必备安装包 1.qt-opensource-windows-x86-5.11.2.exe 2.Windows SDK 0x02 下载与安装 1.Qt下载与安装  上Qt下载页面下载你系统对应的安装包
+ 我的是Windoes 10,直接下载qt-opensource-windows-x86-5.11.2.exe 直接打开qt-opensource-windows-x86-5.11.2.exe安装程序 在第一个界面直接下一步 填写账号这一块，如果没有事先申请也可以先跳过这一步
+ 选择安装文件夹 选择编译器，由于我的电脑装了vs2015，所以直接选了MSVC 2015 64-bit（若未安装任何编译器可以直接选择MinGW 5.3.0 32bit）
+ 接下来一路下一步即可  2.Windows SDK下载与安装  上Microsoft开发者下载站 我的系统是Windows 10，还是按自己的系统版本进行下载
+ 下载之后得到这样一个exe，打开按步骤安装   0x03 配置Qt 1.配置Debugger  工具——选项——kits——Debuggers——Add 填写Debugger的名称 浏览WindowsSKD的安装路径，找到你所需要的Debugger，这里我设置了Windows 10的x64的和x86的cdb.exe
+2.配置kit 按根据截图按需配置就可以了
+  到了这步配置基本完成，但是我在编译程序的过程中遇到error link1158 无法运行rc.exe的报错 error link1158 无法运行rc.exe问题解决方法  到C:\Program Files (x86)\Windows Kits\10\bin\10.0.17763.0下的文件夹找到rc.dll和rc.exe复制到qmake文件夹下 qmake的路径可以参考截图
+  </description>
     </item>
     
     <item>
@@ -590,9 +612,12 @@ ngrokd -domain=ngrok.example.com  0x02 添加域名解析 添加两条域名解�
       <pubDate>Tue, 06 Nov 2018 02:07:21 +0000</pubDate>
       
       <guid>http://blog.sinowrt.cn/2018/2018-11-06t0207-synologysetup-aria2-with-docker/</guid>
-      <description> 0x00 安装docker  在package center中的Third party找到docker 直接点击install进行安装  安装完毕，点击open即可打开docker
+      <description> 0x00 安装docker  在package center中的Third party找到docker 直接点击install进行安装
+ 安装完毕，点击open即可打开docker
 0x01 下载aria2映像 点击Registry选项卡，搜索aria2
- 找到xujinkai那个下载下来 0x02 启动容器 点击image选项卡，点击launch进行启动 0x03 启动设置 点击Advance 1）Advance Setting 打上这两个√，设置开机自启动以及创建桌面快捷方式 2）Volume设置，添加这两项，前面的文件夹随便选，圈起来的位置务必一样 3）Port设置，为了方便使用，local port修改成您想要的端口 第一项为下载端口
+ 找到xujinkai那个下载下来
+0x02 启动容器 点击image选项卡，点击launch进行启动
+0x03 启动设置 点击Advance 1）Advance Setting 打上这两个√，设置开机自启动以及创建桌面快捷方式 2）Volume设置，添加这两项，前面的文件夹随便选，圈起来的位置务必一样 3）Port设置，为了方便使用，local port修改成您想要的端口 第一项为下载端口
  第二项为webui端口
  第三项为下载文件目录端口
   4）Environment设置 如图添加这两项，否则webui会报错，分别填写你的用户名和密码，ok 5）完成高级设置后，next 6）最后apply 7）打开浏览器，输入服务器地址以及你设置的webui端口，即可访问aria2 webui </description>
@@ -604,7 +629,8 @@ ngrokd -domain=ngrok.example.com  0x02 添加域名解析 添加两条域名解�
       <pubDate>Sun, 04 Nov 2018 12:18:36 +0000</pubDate>
       
       <guid>http://blog.sinowrt.cn/2018/2018-11-04t1218-synalogycustomize-boot-system/</guid>
-      <description> 0x00 打开osfmount 0x01 挂载引导文件  选择img文件 填写offset为16MBytes 去掉read—only前面的勾 点击ok进行挂载   0x02 解压目标系统文件  将xxxxxxx.pat的后缀改成rar 解压 从解压得到的文件夹里面找到rd.gz和zlmage 复制这两个文件到虚拟磁盘根目录下替换原文件  0x03 卸载虚拟磁盘 0x04 将img文件通过Win32DiskImager写入U盘即可 </description>
+      <description> 0x00 打开osfmount 0x01 挂载引导文件  选择img文件 填写offset为16MBytes 去掉read—only前面的勾 点击ok进行挂载
+  0x02 解压目标系统文件  将xxxxxxx.pat的后缀改成rar 解压 从解压得到的文件夹里面找到rd.gz和zlmage 复制这两个文件到虚拟磁盘根目录下替换原文件  0x03 卸载虚拟磁盘 0x04 将img文件通过Win32DiskImager写入U盘即可 </description>
     </item>
     
     <item>
@@ -614,8 +640,14 @@ ngrokd -domain=ngrok.example.com  0x02 添加域名解析 添加两条域名解�
       
       <guid>http://blog.sinowrt.cn/2018/2018-11-04t1148-synologynas-diy/</guid>
       <description>0x00 硬件条件 1.废旧的三星rv415笔记本电脑  CPU AMD Fusion APU E-450 RAM DDR3 2G 800MHz
-2.SANDISK U盘 32G 一个  0x02 软件条件 1.群晖6.x.x引导文件 2.OSFmount 用于挂载引导镜像便于修改 3.Win32DiskImager 将引导文件写入U盘 4.群晖6.1-15047系统文件 5.群晖助手 0x03 网络拓扑 0x04 安装过程 1.安装之前建议先把硬盘格了再进行全新安装 2.制作引导系统 1）挂载img文件  安装osfmount 打开osfmount，对img文件进行挂载，如下所示   选择img文件 填写offset如图所示，选择单位KBytes 去掉read-only前面的勾 点击OK即挂载成功  2）查看U盘vid与pid  打开设备管理器，找到你的U盘  双击打开 打开详细信息选项卡，属性下拉选择硬件id，就可以直接看到vid与pid  3）修改img文件里的vid与pid  打开刚刚挂载成功的磁盘 用notepad++打开grub文件夹下的grub.cfg文件 修改第22行和23行的vid、pid为你U盘对应的数值  修改保存之后即可卸载刚刚挂载的设备
-  4）打开Win32DiskImager将img文件写入U盘  选择刚刚修改好的img文件 点击写入即可  5）用网线将准备安装群晖系统的电脑连入局域网内 6）进入bios将你的电脑启动首选项设置为U盘启动  每台机器都不一样，大家可以google一下 要注意的是，这步很重要，到安装完成重启的过程中，没有选择U盘启动，而由硬盘启动的话，将会引导失败，出现联机失败的错误  7）打开群晖助手搜索局域网内的准备安装群晖系统的机器 * 右键安装，注意一定要选择跟版本号以及型号都一致的pat，否则会出错 * PS:6.</description>
+2.SANDISK U盘 32G 一个  0x02 软件条件 1.群晖6.x.x引导文件 2.OSFmount 用于挂载引导镜像便于修改 3.Win32DiskImager 将引导文件写入U盘 4.群晖6.1-15047系统文件 5.群晖助手 0x03 网络拓扑 0x04 安装过程 1.安装之前建议先把硬盘格了再进行全新安装 2.制作引导系统 1）挂载img文件  安装osfmount 打开osfmount，对img文件进行挂载，如下所示
+   选择img文件 填写offset如图所示，选择单位KBytes 去掉read-only前面的勾 点击OK即挂载成功
+  2）查看U盘vid与pid  打开设备管理器，找到你的U盘
+ 双击打开 打开详细信息选项卡，属性下拉选择硬件id，就可以直接看到vid与pid
+  3）修改img文件里的vid与pid  打开刚刚挂载成功的磁盘 用notepad++打开grub文件夹下的grub.cfg文件 修改第22行和23行的vid、pid为你U盘对应的数值
+ 修改保存之后即可卸载刚刚挂载的设备
+  4）打开Win32DiskImager将img文件写入U盘  选择刚刚修改好的img文件 点击写入即可
+  5）用网线将准备安装群晖系统的电脑连入局域网内 6）进入bios将你的电脑启动首选项设置为U盘启动  每台机器都不一样，大家可以google一下 要注意的是，这步很重要，到安装完成重启的过程中，没有选择U盘启动，而由硬盘启动的话，将会引导失败，出现联机失败的错误  7）打开群晖助手搜索局域网内的准备安装群晖系统的机器 * 右键安装，注意一定要选择跟版本号以及型号都一致的pat，否则会出错 * PS:6.</description>
     </item>
     
     <item>

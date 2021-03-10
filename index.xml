@@ -5,8 +5,67 @@
     <description>Recent content in Sinowrt on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 05 Mar 2021 13:47:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 09 Mar 2021 22:24:00 +0800</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>用docker安装minio对象存储服务</title>
+      <link>http://blog.sinowrt.cn/2021/2021-03-09t2224-how-to-install-minio-with-docker/</link>
+      <pubDate>Tue, 09 Mar 2021 22:24:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2021/2021-03-09t2224-how-to-install-minio-with-docker/</guid>
+      <description>
+
+&lt;h2 id=&#34;0x00-背景&#34;&gt;0x00 背景&lt;/h2&gt;
+
+&lt;p&gt;博客里面的图片之前使用的是七牛云的对象存储，用http协议传输的，自chrome更新之后就出现了强制跳转https的问题，而用新版edge还是可以打开的，但是今天我突然发现edge也不好使了，都会强制跳转https。而七牛云里面的https是收费的，既然我有服务器，有域名那就物尽其用搭一个对象存储服务吧。&lt;/p&gt;
+
+&lt;h2 id=&#34;0x01-过程&#34;&gt;0x01 过程&lt;/h2&gt;
+
+&lt;p&gt;由于我的机器之前已经安装了docker，docker的安装过程就不赘述了，咱们直接从minio安装说起。&lt;/p&gt;
+
+&lt;h3 id=&#34;1-首先把minio的镜像拉下来&#34;&gt;1. 首先把minio的镜像拉下来&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;docker pull minio/minio&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;2-创建docker-compose-yml文件-写入以下内容&#34;&gt;2. 创建docker-compose.yml文件,写入以下内容&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;version: &#39;3.1&#39;
+services: 
+    minio:
+      image: minio/minio
+      container_name: minio
+      restart: always
+      ports:
+        - 9000:9000
+      command: server /data  #指定容器中的目录 /data
+      environment:
+        MINIO_ACCESS_KEY: minio    #管理后台用户名
+        MINIO_SECRET_KEY: minioxxx #管理后台密码，最小8个字符
+      volumes:
+        - ./data:/data              #映射当前目录下的data目录至容器内/data目录
+        - ./config:/root/.minio/     #映射配置目录
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;3-配置证书&#34;&gt;3. 配置证书&lt;/h3&gt;
+
+&lt;p&gt;在腾讯云上面申请了免费的证书，解压后将Apache中的xx.crt和xx.key文件分别改名为public.crt和private.key后放到minio的config/cert文件夹中。&lt;/p&gt;
+
+&lt;h3 id=&#34;4-以deamon模式启动minio服务&#34;&gt;4. 以deamon模式启动minio服务&lt;/h3&gt;
+
+&lt;p&gt;&lt;code&gt;docker-compose up -d&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;5-配置访问策略&#34;&gt;5. 配置访问策略&lt;/h3&gt;
+
+&lt;p&gt;网页登录minio，然后新建一个bucket，点击新建的bucket右边三个点，点击Edit policy，prefix填入*，由于该bucket是用作博客的图床的，所以策略选择read only，最后点击Add即可。&lt;/p&gt;
+
+&lt;h2 id=&#34;0x02-遇到的问题&#34;&gt;0x02 遇到的问题&lt;/h2&gt;
+
+&lt;h3 id=&#34;1-浏览器提示err-cert-common-name-invalid错误&#34;&gt;1. 浏览器提示ERR_CERT_COMMON_NAME_INVALID错误&lt;/h3&gt;
+
+&lt;p&gt;这个错误是因为当时没有添加域名解析，直接使用了ip加端口访问，与证书里面的域名不匹配而提示的不安全连接问题。&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>failed to handler mux client connection 错误</title>
@@ -1172,22 +1231,6 @@ destination: default
 &amp;quot;DesignCapacity&amp;quot; = 5088
 &amp;quot;BatteryData&amp;quot; = {&amp;quot;StateOfCharge&amp;quot;=96,&amp;quot;PMUConfigured&amp;quot;=0,&amp;quot;Voltage&amp;quot;=12699,&amp;quot;QmaxCell1&amp;quot;=5358,&amp;quot;AdapterPower&amp;quot;=839469241,&amp;quot;SystemPower&amp;quot;=1087516262,&amp;quot;ResScale&amp;quot;=117,&amp;quot;QmaxCell2&amp;quot;=5302,&amp;quot;QmaxCell0&amp;quot;=5341,&amp;quot;CycleCount&amp;quot;=46,&amp;quot;DesignCapacity&amp;quot;=5088}
 &lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>关闭chrome浏览器广告弹窗</title>
-      <link>http://blog.sinowrt.cn/2020/2020-05-27t1334-remove-the-ad-windows-of-chrome/</link>
-      <pubDate>Wed, 27 May 2020 13:34:00 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2020/2020-05-27t1334-remove-the-ad-windows-of-chrome/</guid>
-      <description>&lt;ul&gt;
-&lt;li&gt;之前用google进行调研的时候，点进去了一个网站
-![]()
-迫于打开心切，就点击了允许，之后时不时就会出现Bestdealfor10.life的弹窗，想要禁用，百度无果，使用google发现很多解决方法&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;随便挑一个&lt;a href=&#34;https://malwaretips.com/blogs/remove-bestdealfor10-life/&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;https://malwaretips.com/blogs/remove-bestdealfor10-life/&lt;/a&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;li&gt;按步骤，在chrome的设置-隐私和安全-网站设置-通知里面将&lt;a href=&#34;https://bestdealfor10.life&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;https://bestdealfor10.life&lt;/a&gt; 移除即可&lt;/li&gt;
-&lt;/ul&gt;
 </description>
     </item>
     

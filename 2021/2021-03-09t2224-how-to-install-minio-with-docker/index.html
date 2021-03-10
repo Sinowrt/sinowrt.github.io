@@ -9,9 +9,9 @@
   
   
   
-  <link rel="prev" href="http://blog.sinowrt.cn/2019/2019-10-31t1200-dy-interview/" />
-  <link rel="next" href="http://blog.sinowrt.cn/2019/2019-11-30t1214-expose-synology-diskstation-to-the-internet/" />
-  <link rel="canonical" href="http://blog.sinowrt.cn/2019/2019-11-29t0028-newifi-mini-dialing-setting/" />
+  <link rel="prev" href="http://blog.sinowrt.cn/2021/2021-03-05t1347-failed-to-handler-mux-client-connection/" />
+  
+  <link rel="canonical" href="http://blog.sinowrt.cn/2021/2021-03-09t2224-how-to-install-minio-with-docker/" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -22,10 +22,10 @@
   <title>
        
        
-           newifi mini 拨号设置 | Sinowrt
+           用docker安装minio对象存储服务 | Sinowrt
        
   </title>
-  <meta name="title" content="newifi mini 拨号设置 | Sinowrt">
+  <meta name="title" content="用docker安装minio对象存储服务 | Sinowrt">
     
   
   <link rel="stylesheet" href="/font/iconfont.css">
@@ -44,21 +44,21 @@
          "@id": "http:\/\/blog.sinowrt.cn"
     },
     "articleSection" : "posts",
-    "name" : "newifi mini 拨号设置",
-    "headline" : "newifi mini 拨号设置",
-    "description" : " 0x00 线缆连接 * 将路由器接入电源 * 用一根网线，一端接入路由器的任意蓝色端口，另一端接入主机 * 将用于拨号的网线接入路由器的黄色端口\n0x01 登录路由器管理界面 * 打开浏览器，在地址栏输入192.168.123.1,回车 * 在弹出来的登录窗口输入用户名admin,密码admin258\n0x02 拨号设置 * 点击外部网络 * 选择外网连接类型为PPPoE拨号 * 在用户名称处填入拨号账号 * 在用户密码处填入拨号密码 * 最后滑到页面底部，点击应用本页面设置\n0x03 设置好了就网上冲浪吧！ ",
+    "name" : "用docker安装minio对象存储服务",
+    "headline" : "用docker安装minio对象存储服务",
+    "description" : "0x00 背景 博客里面的图片之前使用的是七牛云的对象存储，用http协议传输的，自chrome更新之后就出现了强制跳转https的问题，而用新版edge还是可以打开的，但是今天我突然发现edge也不好使了，都会强制跳转https。而七牛云里面的https是收费的，既然我有服务器，有域名那就物尽其用搭一个对象存储服务吧。\n0x01 过程 由于我的机器之前已经安装了docker，docker的安装过程就不赘述了，咱们直接从minio安装说起。\n1. 首先把minio的镜像拉下来 docker pull minio\/minio\n2. 创建docker-compose.yml文件,写入以下内容 version: \x273.1\x27 services: minio: image: minio\/minio container_name: minio restart: always ports: - 9000:9000 command: server \/data #指定容器中的目录 \/data environment: MINIO_ACCESS_KEY: minio #管理后台用户名 MINIO_SECRET_KEY: minioxxx #管理后台密码，最小8个字符 volumes: - .\/data:\/data #映射当前目录下的data目录至容器内\/data目录 - .\/config:\/root\/.minio\/ #映射配置目录  3. 配置证书 在腾讯云上面申请了免费的证书，解压后将Apache中的xx.crt和xx.key文件分别改名为public.crt和private.key后放到minio的config\/cert文件夹中。\n4. 以deamon模式启动minio服务 docker-compose up -d\n5. 配置访问策略 网页登录minio，然后新建一个bucket，点击新建的bucket右边三个点，点击Edit policy，prefix填入*，由于该bucket是用作博客的图床的，所以策略选择read only，最后点击Add即可。\n0x02 遇到的问题 1. 浏览器提示ERR_CERT_COMMON_NAME_INVALID错误 这个错误是因为当时没有添加域名解析，直接使用了ip加端口访问，与证书里面的域名不匹配而提示的不安全连接问题。",
     "inLanguage" : "en-us",
     "author" : "sinowrt",
     "creator" : "sinowrt",
     "publisher": "sinowrt",
     "accountablePerson" : "sinowrt",
     "copyrightHolder" : "sinowrt",
-    "copyrightYear" : "2019",
-    "datePublished": "2019-11-29 00:28:00 \x2b0800 CST",
-    "dateModified" : "2019-11-29 00:28:00 \x2b0800 CST",
-    "url" : "http:\/\/blog.sinowrt.cn\/2019\/2019-11-29t0028-newifi-mini-dialing-setting\/",
-    "wordCount" : "28",
-    "keywords" : [ "路由", "Sinowrt"]
+    "copyrightYear" : "2021",
+    "datePublished": "2021-03-09 22:24:00 \x2b0800 CST",
+    "dateModified" : "2021-03-09 22:24:00 \x2b0800 CST",
+    "url" : "http:\/\/blog.sinowrt.cn\/2021\/2021-03-09t2224-how-to-install-minio-with-docker\/",
+    "wordCount" : "63",
+    "keywords" : [ "minio", "Sinowrt"]
 }
 </script>
 
@@ -128,16 +128,16 @@ var _hmt = _hmt || [];
       		
 <article class="post-warp" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">newifi mini 拨号设置</h1>
+        <h1 class="post-title" itemprop="name headline">用docker安装minio对象存储服务</h1>
         <div class="post-meta">
                 Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
                 <span class="post-time">
-                on <time datetime=2019-11-29 itemprop="datePublished">November 29, 2019</time>
+                on <time datetime=2021-03-09 itemprop="datePublished">March 9, 2021</time>
                 </span>
                 in
                 <i class="iconfont icon-folder"></i>
                 <span class="post-category">
-                        <a href="http://blog.sinowrt.cn/categories/%E8%B7%AF%E7%94%B1/"> 路由 </a>
+                        <a href="http://blog.sinowrt.cn/categories/minio/"> minio </a>
                         
                 </span>
         </div>
@@ -145,8 +145,6 @@ var _hmt = _hmt || [];
     <div class="post-content">
         
 
-        
-            
         
 
         
@@ -162,31 +160,54 @@ var _hmt = _hmt || [];
 
           
 
-<h2 id="0x00-线缆连接">0x00 线缆连接</h2>
+<h2 id="0x00-背景">0x00 背景</h2>
 
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2019-11-29T0028-back.jpg" alt="背面接口" class="lazyload"><figcaption class="image-caption">背面接口</figcaption></figure>
-* 将路由器接入电源
-* 用一根网线，一端接入路由器的任意蓝色端口，另一端接入主机
-* 将用于拨号的网线接入路由器的黄色端口</p>
+<p>博客里面的图片之前使用的是七牛云的对象存储，用http协议传输的，自chrome更新之后就出现了强制跳转https的问题，而用新版edge还是可以打开的，但是今天我突然发现edge也不好使了，都会强制跳转https。而七牛云里面的https是收费的，既然我有服务器，有域名那就物尽其用搭一个对象存储服务吧。</p>
 
-<h2 id="0x01-登录路由器管理界面">0x01 登录路由器管理界面</h2>
+<h2 id="0x01-过程">0x01 过程</h2>
 
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2019-11-29T0028-login.png" alt="登录" class="lazyload"><figcaption class="image-caption">登录</figcaption></figure>
-* 打开浏览器，在地址栏输入<code>192.168.123.1</code>,回车
-* 在弹出来的登录窗口输入用户名<code>admin</code>,密码<code>admin258</code></p>
+<p>由于我的机器之前已经安装了docker，docker的安装过程就不赘述了，咱们直接从minio安装说起。</p>
 
-<h2 id="0x02-拨号设置">0x02 拨号设置</h2>
+<h3 id="1-首先把minio的镜像拉下来">1. 首先把minio的镜像拉下来</h3>
 
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2019-11-29T0028-dial.PNG" alt="拨号设置" class="lazyload"><figcaption class="image-caption">拨号设置</figcaption></figure>
-* 点击<code>外部网络</code>
-* 选择外网连接类型为<code>PPPoE拨号</code>
-* 在用户名称处填入<code>拨号账号</code>
-* 在用户密码处填入<code>拨号密码</code>
-* 最后滑到页面底部，点击<code>应用本页面设置</code></p>
+<p><code>docker pull minio/minio</code></p>
 
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2019-11-29T0028-save.png" alt="保存配置" class="lazyload"><figcaption class="image-caption">保存配置</figcaption></figure></p>
+<h3 id="2-创建docker-compose-yml文件-写入以下内容">2. 创建docker-compose.yml文件,写入以下内容</h3>
 
-<h2 id="0x03-设置好了就网上冲浪吧">0x03 设置好了就网上冲浪吧！</h2>
+<pre><code>version: '3.1'
+services: 
+    minio:
+      image: minio/minio
+      container_name: minio
+      restart: always
+      ports:
+        - 9000:9000
+      command: server /data  #指定容器中的目录 /data
+      environment:
+        MINIO_ACCESS_KEY: minio    #管理后台用户名
+        MINIO_SECRET_KEY: minioxxx #管理后台密码，最小8个字符
+      volumes:
+        - ./data:/data              #映射当前目录下的data目录至容器内/data目录
+        - ./config:/root/.minio/     #映射配置目录
+</code></pre>
+
+<h3 id="3-配置证书">3. 配置证书</h3>
+
+<p>在腾讯云上面申请了免费的证书，解压后将Apache中的xx.crt和xx.key文件分别改名为public.crt和private.key后放到minio的config/cert文件夹中。</p>
+
+<h3 id="4-以deamon模式启动minio服务">4. 以deamon模式启动minio服务</h3>
+
+<p><code>docker-compose up -d</code></p>
+
+<h3 id="5-配置访问策略">5. 配置访问策略</h3>
+
+<p>网页登录minio，然后新建一个bucket，点击新建的bucket右边三个点，点击Edit policy，prefix填入*，由于该bucket是用作博客的图床的，所以策略选择read only，最后点击Add即可。</p>
+
+<h2 id="0x02-遇到的问题">0x02 遇到的问题</h2>
+
+<h3 id="1-浏览器提示err-cert-common-name-invalid错误">1. 浏览器提示ERR_CERT_COMMON_NAME_INVALID错误</h3>
+
+<p>这个错误是因为当时没有添加域名解析，直接使用了ip加端口访问，与证书里面的域名不匹配而提示的不安全连接问题。</p>
 
     </div>
 	
@@ -202,7 +223,7 @@ var _hmt = _hmt || [];
              
             <p class="copyright-item">
                     <span>Link:</span>
-                    <a href=http://blog.sinowrt.cn/2019/2019-11-29t0028-newifi-mini-dialing-setting/>http://blog.sinowrt.cn/2019/2019-11-29t0028-newifi-mini-dialing-setting/</span>
+                    <a href=http://blog.sinowrt.cn/2021/2021-03-09t2224-how-to-install-minio-with-docker/>http://blog.sinowrt.cn/2021/2021-03-09t2224-how-to-install-minio-with-docker/</span>
             </p>
 			
             
@@ -219,8 +240,8 @@ var _hmt = _hmt || [];
             <section>
             <i class="iconfont icon-tag"></i>Tag(s): 
             
-            <span class="tag"><a href="http://blog.sinowrt.cn/tags/%E8%B7%AF%E7%94%B1/">
-                    #路由</a></span>
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/minio/">
+                    #minio</a></span>
             
             </section>
         
@@ -232,10 +253,8 @@ var _hmt = _hmt || [];
 
     <div class="post-nav">
         
-        <a href="http://blog.sinowrt.cn/2019/2019-10-31t1200-dy-interview/" class="prev" rel="prev" title="记多益面试"><i class="iconfont icon-left"></i>&nbsp;记多益面试</a>
+        <a href="http://blog.sinowrt.cn/2021/2021-03-05t1347-failed-to-handler-mux-client-connection/" class="prev" rel="prev" title="failed to handler mux client connection 错误"><i class="iconfont icon-left"></i>&nbsp;failed to handler mux client connection 错误</a>
          
-        
-        <a href="http://blog.sinowrt.cn/2019/2019-11-30t1214-expose-synology-diskstation-to-the-internet/" class="next" rel="next" title="如何将群晖Nas扔出外网">如何将群晖Nas扔出外网&nbsp;<i class="iconfont icon-right"></i></a>
         
     </div>
 
@@ -277,9 +296,8 @@ var _hmt = _hmt || [];
 
 
     
-     <link href="//lib.baomitu.com/lightgallery/1.6.11/css/lightgallery.min.css" rel="stylesheet">  
-      
-     <script src="/js/vendor_gallery.min.js" async="" ></script>
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
     
   
 

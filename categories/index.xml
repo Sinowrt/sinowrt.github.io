@@ -6,13 +6,22 @@
     <description>Recent content in Categories on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 05 Mar 2021 13:47:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 09 Mar 2021 22:24:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>v2ray</title>
+      <title>minio</title>
+      <link>http://blog.sinowrt.cn/categories/minio/</link>
+      <pubDate>Tue, 09 Mar 2021 22:24:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/minio/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>V2ray</title>
       <link>http://blog.sinowrt.cn/categories/v2ray/</link>
       <pubDate>Fri, 05 Mar 2021 13:47:00 +0800</pubDate>
       
