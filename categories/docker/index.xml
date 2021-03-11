@@ -6,10 +6,23 @@
     <description>Recent content in docker on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 04 Mar 2021 15:53:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 09 Mar 2021 15:30:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/categories/docker/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>为什么挂载在docker容器中的配置文件在宿主机中修改后却没生效</title>
+      <link>http://blog.sinowrt.cn/2021/2021-03-09t1530-why-configuration-file-mounted-in-docker-has-no-effect-after-modified-in-host/</link>
+      <pubDate>Tue, 09 Mar 2021 15:30:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2021/2021-03-09t1530-why-configuration-file-mounted-in-docker-has-no-effect-after-modified-in-host/</guid>
+      <description>0x00 背景 我想在服务器中使用nginx对不同子域名的网页进行分流，于是编辑nginx的配置文件，由于该配置文件从docker里面映射出来了，所以我就只在宿主机里面使用vim修改了配置文件，然后让容器执行命令docker exec -it containerID nginx -s reload，但是似乎没有生效，于是就有了这篇文章。
+0x01 过程 使用命令进入容器里面查看，配置文件没有竟然还是之前的，没有被修改。于是，上去搜索了一下，发现这里面还真有坑。
+问题原因： docker挂载文件时，并不是挂载了某个文件的路径，而是挂载了对应的文件，即挂载了linux指定的inode文件。
+当使用vim之类的编辑器进行保存时，它不是直接保存文件，而是采用了备份、替换的策略，就是编辑时，是创建一个新的文件，在保存的时候，把备份文件替换源文件，这个时候文件的 inode 就发生了变化，而原来 inode 对应的文件其实并没有修改，也就是容器内的文件没有变化。当重启容器的时候，会挂载新的 inode。
+0x02 总结 在docker中应该尽量挂载目录，避免挂载文件。</description>
+    </item>
     
     <item>
       <title>docker-compose 启动报错 read time out</title>

@@ -6,10 +6,29 @@
     <description>Recent content in Linux on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 26 Feb 2021 17:40:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 09 Mar 2021 09:30:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>如何解决cannot run bzip2: No such file or directory错误</title>
+      <link>http://blog.sinowrt.cn/2021/2021-03-09t0930-cannot-run-bzip2-no-such-file-or-directory/</link>
+      <pubDate>Tue, 09 Mar 2021 09:30:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2021/2021-03-09t0930-cannot-run-bzip2-no-such-file-or-directory/</guid>
+      <description>0x00 错误描述 今天在使用tar解压文件的时候，报了一个错 cannot run bzip2: No such file or directory
+0x01 解决方法 这个错误是因为系统中缺少bzip2，使用yum安装上就好了 yum -y install bzip2</description>
+    </item>
+    
+    <item>
+      <title>怎样查看linux版本</title>
+      <link>http://blog.sinowrt.cn/2021/2021-03-08t1833-how-to-check-the-linux-version/</link>
+      <pubDate>Mon, 08 Mar 2021 18:33:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2021/2021-03-08t1833-how-to-check-the-linux-version/</guid>
+      <description> 0x00 相关命令 # 可显示电脑以及操作系统的相关信息 uname -a # 查看正在运行的内核版本 cat /proc/version # 查看发行版本信息 cat /etc/issue # 适用于所有的linux，包括Redhat、SuSE、Debian等发行版，但是在debian下要安装lsb lsb_release -a  </description>
+    </item>
     
     <item>
       <title>Vi 的一些基本操作</title>

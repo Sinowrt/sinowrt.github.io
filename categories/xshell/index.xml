@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>xshell on Sinowrt</title>
+    <link>http://blog.sinowrt.cn/categories/xshell/</link>
+    <description>Recent content in xshell on Sinowrt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 08 Mar 2021 16:08:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.sinowrt.cn/categories/xshell/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>利用xshell将你vps的端口映射到本地主机</title>
+      <link>http://blog.sinowrt.cn/2021/2021-03-08t1608-how-to-forward-a-port-in-your-vps-with-xshell/</link>
+      <pubDate>Mon, 08 Mar 2021 16:08:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2021/2021-03-08t1608-how-to-forward-a-port-in-your-vps-with-xshell/</guid>
+      <description> 0x00 背景 由于命令行管理mysql数据库太不方便了，如果能用navicat管理远程服务器该多好啊，于是就有了这篇文章。
+0x01 过程 之前安装plex服务器的时候，就曾经用xshell把vps中plex服务器的端口映射回本地进行配置，那么数据库的端口啥的都是一样的，下面开始教学。
+1. 把vps中的mysql服务端口映射到宿主机 由于我是使用了docker安装的mysql服务，所以需要将3306端口映射到宿主机，使用本地化安装的可以忽略这一步。
+2. tunnel配置 打开xshell，在会话中选择目标vps，右键属性-连接-SSH-隧道，添加。
+类型：本地拨出 //配置本地的连接 源主机：localhost 侦听端口：33066 //配置vps的连接 目标主机：localhost 目标端口：3306  确定保存。
+3. 建立ssh连接之后，就可以打开navicat使用localhost:33066进行连接了。 </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -6,10 +6,36 @@
     <description>Recent content in python on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 22 Jul 2020 12:31:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 10 Mar 2021 14:51:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/categories/python/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>用python下载七牛云的图片并批量重命名</title>
+      <link>http://blog.sinowrt.cn/2021/2021-03-10t1451-using-python-to-download-pictures-from-qiniu-and-batch-rename/</link>
+      <pubDate>Wed, 10 Mar 2021 14:51:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2021/2021-03-10t1451-using-python-to-download-pictures-from-qiniu-and-batch-rename/</guid>
+      <description>0x00 背景 最近想要搭建一个对象存储服务，并把原本在七牛云上面的图片全部转移到该服务中管理，但是七牛云上面的图片命名本来就很乱，不符合批量管理的要求，所以不能从七牛云直接下载，而是要把图片名格式化一下，再下载下来，这种工作，用python是最适合不过了，于是就有了这篇文章。
+0x01 过程 1. 命名规则转换 原本图片的命名是images/1979-01-01T0000/1.png这样的格式，现在要统一放在一个文件夹，所以需要去掉images文件夹，并把时间和图片名通过&amp;rdquo;-&amp;ldquo;拼接起来。
+2. 将七牛云上面的文件名及其对应的url列表导出 这一步可以直接在七牛云上面批量操作，导出的文件是是csv格式的，所以在python中可以使用csv库直接进行读取
+3. 编写代码 import requests import csv def download_img(img_url, api_token, name): print (img_url) header = {&amp;quot;Authorization&amp;quot;: &amp;quot;Bearer &amp;quot; + api_token} # 设置http header，视情况加需要的条目，这里的token是用来鉴权的一种方式 r = requests.get(img_url, headers=header, stream=True) print(r.status_code) # 返回状态码 if r.status_code == 200: open(&#39;C:\\Users\\Jacky\\Pictures\\blogpic\\&#39; + name, &#39;wb&#39;).write(r.content) # 将内容写入图片 print(&amp;quot;done&amp;quot;) del r if __name__ == &#39;__main__&#39;: api_token = &amp;quot;apitoken&amp;quot; record = csv.reader(open(&#39;urls&#39;, &#39;r&#39;, encoding=&#39;utf-8-sig&#39;)) for i in record: name = i[0] # 改名 name = name[7:].</description>
+    </item>
+    
+    <item>
+      <title>在配置jd_seckill时如何获取eid与fp</title>
+      <link>http://blog.sinowrt.cn/2021/2021-03-07t1617-how-to-get-eid-and-fp-while-configurating-jd_seckill/</link>
+      <pubDate>Sun, 07 Mar 2021 16:17:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2021/2021-03-07t1617-how-to-get-eid-and-fp-while-configurating-jd_seckill/</guid>
+      <description>0x00 背景 很久之前就知道有jd_seckill这个神器，但是一直没空弄，然后今天预约了显卡的抢购活动，就配置一下看看效果如何。
+在项目的配置文件中有两个字段eid和fp，不知道在哪里获取，于是百度了一下就有了这篇文章。
+0x01 如何获取 第一步：进入京东结算页面
+第二步：f12打开Sources
+第三步：右侧的watch，点击加号，填入_JdTdudfp
+即可看到_JdTdudfp:Object</description>
+    </item>
     
     <item>
       <title>python3.8 在安装 python-docx 时提示未安装libxml2</title>

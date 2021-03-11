@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="sinowrt">
+  
+  
+  
+  <link rel="prev" href="http://blog.sinowrt.cn/2021/2021-03-09t0930-cannot-run-bzip2-no-such-file-or-directory/" />
+  <link rel="next" href="http://blog.sinowrt.cn/2021/2021-03-09t2224-how-to-install-minio-with-docker/" />
+  <link rel="canonical" href="http://blog.sinowrt.cn/2021/2021-03-09t1530-why-configuration-file-mounted-in-docker-has-no-effect-after-modified-in-host/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           为什么挂载在docker容器中的配置文件在宿主机中修改后却没生效 | Sinowrt
+       
+  </title>
+  <meta name="title" content="为什么挂载在docker容器中的配置文件在宿主机中修改后却没生效 | Sinowrt">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/blog.sinowrt.cn"
+    },
+    "articleSection" : "posts",
+    "name" : "为什么挂载在docker容器中的配置文件在宿主机中修改后却没生效",
+    "headline" : "为什么挂载在docker容器中的配置文件在宿主机中修改后却没生效",
+    "description" : "0x00 背景 我想在服务器中使用nginx对不同子域名的网页进行分流，于是编辑nginx的配置文件，由于该配置文件从docker里面映射出来了，所以我就只在宿主机里面使用vim修改了配置文件，然后让容器执行命令docker exec -it containerID nginx -s reload，但是似乎没有生效，于是就有了这篇文章。\n0x01 过程 使用命令进入容器里面查看，配置文件没有竟然还是之前的，没有被修改。于是，上去搜索了一下，发现这里面还真有坑。\n问题原因： docker挂载文件时，并不是挂载了某个文件的路径，而是挂载了对应的文件，即挂载了linux指定的inode文件。\n当使用vim之类的编辑器进行保存时，它不是直接保存文件，而是采用了备份、替换的策略，就是编辑时，是创建一个新的文件，在保存的时候，把备份文件替换源文件，这个时候文件的 inode 就发生了变化，而原来 inode 对应的文件其实并没有修改，也就是容器内的文件没有变化。当重启容器的时候，会挂载新的 inode。\n0x02 总结 在docker中应该尽量挂载目录，避免挂载文件。",
+    "inLanguage" : "en-us",
+    "author" : "sinowrt",
+    "creator" : "sinowrt",
+    "publisher": "sinowrt",
+    "accountablePerson" : "sinowrt",
+    "copyrightHolder" : "sinowrt",
+    "copyrightYear" : "2021",
+    "datePublished": "2021-03-09 15:30:00 \x2b0800 CST",
+    "dateModified" : "2021-03-09 15:30:00 \x2b0800 CST",
+    "url" : "http:\/\/blog.sinowrt.cn\/2021\/2021-03-09t1530-why-configuration-file-mounted-in-docker-has-no-effect-after-modified-in-host\/",
+    "wordCount" : "23",
+    "keywords" : [ "docker", "Sinowrt"]
+}
+</script>
+
+</head>
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?85719ea04c6401b98466dfdbc9399c78";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">为什么挂载在docker容器中的配置文件在宿主机中修改后却没生效</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2021-03-09 itemprop="datePublished">March 9, 2021</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="http://blog.sinowrt.cn/categories/docker/"> docker </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          
+
+<h2 id="0x00-背景">0x00 背景</h2>
+
+<p>我想在服务器中使用nginx对不同子域名的网页进行分流，于是编辑nginx的配置文件，由于该配置文件从docker里面映射出来了，所以我就只在宿主机里面使用vim修改了配置文件，然后让容器执行命令<code>docker exec -it containerID nginx -s reload</code>，但是似乎没有生效，于是就有了这篇文章。</p>
+
+<h2 id="0x01-过程">0x01 过程</h2>
+
+<p>使用命令进入容器里面查看，配置文件没有竟然还是之前的，没有被修改。于是，上去搜索了一下，发现这里面还真有坑。</p>
+
+<h3 id="问题原因">问题原因：</h3>
+
+<p>docker挂载文件时，并不是挂载了某个文件的路径，而是挂载了对应的文件，即挂载了linux指定的inode文件。<br />
+当使用vim之类的编辑器进行保存时，它不是直接保存文件，而是采用了备份、替换的策略，就是编辑时，是创建一个新的文件，在保存的时候，把备份文件替换源文件，这个时候文件的 inode 就发生了变化，而原来 inode 对应的文件其实并没有修改，也就是容器内的文件没有变化。当重启容器的时候，会挂载新的 inode。</p>
+
+<h2 id="0x02-总结">0x02 总结</h2>
+
+<p>在docker中应该尽量挂载目录，避免挂载文件。</p>
+
+    </div>
+	
+    <div class="post-copyright">
+             
+			
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>sinowrt </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://blog.sinowrt.cn/2021/2021-03-09t1530-why-configuration-file-mounted-in-docker-has-no-effect-after-modified-in-host/>http://blog.sinowrt.cn/2021/2021-03-09t1530-why-configuration-file-mounted-in-docker-has-no-effect-after-modified-in-host/</span>
+            </p>
+			
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/docker/">
+                    #docker</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="http://blog.sinowrt.cn">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://blog.sinowrt.cn/2021/2021-03-09t0930-cannot-run-bzip2-no-such-file-or-directory/" class="prev" rel="prev" title="如何解决cannot run bzip2: No such file or directory错误"><i class="iconfont icon-left"></i>&nbsp;如何解决cannot run bzip2: No such file or directory错误</a>
+         
+        
+        <a href="http://blog.sinowrt.cn/2021/2021-03-09t2224-how-to-install-minio-with-docker/" class="next" rel="next" title="用docker安装minio对象存储服务">用docker安装minio对象存储服务&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2021</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://blog.sinowrt.cn">sinowrt</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

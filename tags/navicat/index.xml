@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>navicat on Sinowrt</title>
+    <link>http://blog.sinowrt.cn/tags/navicat/</link>
+    <description>Recent content in navicat on Sinowrt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 08 Mar 2021 16:08:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.sinowrt.cn/tags/navicat/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>navicat 连接 mysql数据库报错Authentication plugin &#39;caching_sha2_password&#39; cannot be loaded</title>
+      <link>http://blog.sinowrt.cn/2021/2021-03-08t1412-authentication-plugin-caching_sha2_password-cannot-be-loaded/</link>
+      <pubDate>Mon, 08 Mar 2021 16:08:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2021/2021-03-08t1412-authentication-plugin-caching_sha2_password-cannot-be-loaded/</guid>
+      <description>0x00 错误描述 mysql数据库的版本是8.0.17，使用navicat连接的时候报错Authentication plugin &#39;caching_sha2_password&#39; cannot be loaded
+0x01 解决方法 因为我使用的navicat不支持caching_sha2_password的认证方式，只能在服务器暂时修改为mysql_native_password
+// 登录Mysql(需要输入密码) mysql -u root -p // 选择数据库(这一步不可省略) use mysql // 查看plugin设置 select host, user, plugin from user; // 可以看到root的plugin是caching_sha2_password，我们希望改成mysql_native_password ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED WITH mysql_native_password BY &#39;xxxxx&#39;; ALTER USER &#39;root&#39;@&#39;%&#39; IDENTIFIED WITH mysql_native_password BY &#39;xxxxx&#39;; //使生效 FLUSH PRIVILEGES;  0x02 注意事项 在navicat连接完毕后，需要改回caching_sha2_password，否则后端连接的时候可能会出现问题。</description>
+    </item>
+    
+  </channel>
+</rss>
