@@ -79,7 +79,7 @@
 
 &lt;p&gt;那么问题应该就是出在树莓派上面了，由于之前下载了ubuntu arm64的系统，但是那晚上挂着测试树莓派稳定性的时候，把TF卡烧了，就没有用过这个ubuntu系统。然后我就想，会不会跟系统有关呢，试了那么多个版本的可执行文件都是一个结果。于是拆下TF卡，烧录ubuntu arm64的系统，挂硬盘&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;# 查看待挂载设备列表
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# 查看待挂载设备列表
 sudo fdisk -l
 
 # 挂载硬盘 我在这里是将/dev/sda1挂载到当前目录的ploted文件夹 
@@ -89,7 +89,7 @@ sudo mount /dev/sda1 ./ploted
 sudo umount /dev/sda1
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;硬盘挂载好后，把hpool-miner-chia v1.1.0 版本的执行文件上传上去，安装qemu-user。&lt;/p&gt;
+&lt;p&gt;硬盘挂载好后，把hpool-miner-chia v1.1.0 版本的执行文件上传上去，&lt;code&gt;sudo apt-get install qemu-user&lt;/code&gt;安装qemu-user。&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;qemu-x86_64 ./hpool-miner-chia&lt;/code&gt;运行。竟然好了！！&lt;/p&gt;
 
