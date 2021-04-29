@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="sinowrt">
+  
+  
+  
+  <link rel="prev" href="http://blog.sinowrt.cn/2021/2021-03-10t1451-using-python-to-download-pictures-from-qiniu-and-batch-rename/" />
+  <link rel="next" href="http://blog.sinowrt.cn/2021/2021-04-23t1847-how-to-run-chia-miner-of-hpool-on-raspberry-pi4/" />
+  <link rel="canonical" href="http://blog.sinowrt.cn/2021/2021-04-22t1330-how-to-move-the-package-and-documents-in-synology-to-another-hard-disk/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           如何将群晖的软件包和资料转移到另一个硬盘 | Sinowrt
+       
+  </title>
+  <meta name="title" content="如何将群晖的软件包和资料转移到另一个硬盘 | Sinowrt">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/blog.sinowrt.cn"
+    },
+    "articleSection" : "posts",
+    "name" : "如何将群晖的软件包和资料转移到另一个硬盘",
+    "headline" : "如何将群晖的软件包和资料转移到另一个硬盘",
+    "description" : "0x00 背景 最近网上刮起了chia风，由于手上也有大容量硬盘，但是挂在群晖上做存储盘，于是想将这个盘腾出来，将资料转移到另一个硬盘中。\n0x01 过程 1. 添加新硬盘 首先需要准备一个完全擦除的硬盘，将群晖关机后，将该硬盘接入群晖。启动群晖之后，打开Storage Manager新建一个raid group（我原来是用单盘建立的basic raid group），建立好后再新建一个Volume，如果勾选了全盘扫描的话，需要等待一段时间才能建好。\n2. 转移资料 资料的转移比较简单，打开Control Panel - Shared Folder，选择需要转移的共享文件夹，点击Edit，再Location下拉框中选择新建的Volume即可自动转移。\n3. 转移package 转移package需要用到一个软件MODS Package Manager，我在https:\/\/www.beatificabytes.be\/sspks 上面下载下来，再在Package Center中手动上传安装的。\n在打开Package Manager的时候遇到白屏的问题，原因是该软件的一个JS需要从谷歌下载，打开fq软件代理一下即可解决。（如果没有fq条件的话，也可以参照这篇博客 改成国内可以访问的cdn即可解决） 软件的使用很简单，选择需要移动的package，然后选择目标Volume，点击Move Package即可。 有些软件在转移过程中会失败，套件没有移动成功，可以不用管它。打开Package Center，会提示该套件错误无法运行，这时候点击修复即可完成套件的转移了。\n4. 转移Moments里面的照片 Moments的照片是存在\/homes 共享目录中的，所以只要将该共享目录按步骤2进行转移即可，这一步也可以在Control Panel - User - User Home - Location的下拉框选择转移到新卷。需要特别注意的是Drive的数据库的转移，打开Drive Admin Console - Settings - Database Location 选择转移到目标卷中即可。（在群晖的官网中又说到，在Storage Manager安全地移除Volume也可以转移数据库，但我选择稳妥一点，手动转移）\n5. 安全移除卷 最后一步，我是直接关机，将旧盘直接摘下，然后开机看看有没有什么异常，确保数据都安全地转移到了新卷。\n最后再将旧盘装上，在Storage Manager中安全地移除卷，将旧盘取下来。\n0x02 遇到的问题 在转移资料的第4步中，我没有转移Drive的数据库，直接摘下了硬盘，并启动了群晖，在package center上面修复了Drive 和 Moments，导致Moments不可用。\n最后还是将旧盘装上，在Drive Admin Console中转移了数据库，然后将Moments套件连同数据库一起删除，再重装才解决了问题。 这样的话，就丢失了之前Moments索引的信息，没关系直接再索引一遍就好了。",
+    "inLanguage" : "en-us",
+    "author" : "sinowrt",
+    "creator" : "sinowrt",
+    "publisher": "sinowrt",
+    "accountablePerson" : "sinowrt",
+    "copyrightHolder" : "sinowrt",
+    "copyrightYear" : "2021",
+    "datePublished": "2021-04-22 13:30:00 \x2b0800 CST",
+    "dateModified" : "2021-04-22 13:30:00 \x2b0800 CST",
+    "url" : "http:\/\/blog.sinowrt.cn\/2021\/2021-04-22t1330-how-to-move-the-package-and-documents-in-synology-to-another-hard-disk\/",
+    "wordCount" : "69",
+    "keywords" : [ "synology", "Sinowrt"]
+}
+</script>
+
+</head>
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?85719ea04c6401b98466dfdbc9399c78";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">如何将群晖的软件包和资料转移到另一个硬盘</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2021-04-22 itemprop="datePublished">April 22, 2021</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="http://blog.sinowrt.cn/categories/synology/"> synology </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          
+
+<h2 id="0x00-背景">0x00 背景</h2>
+
+<p>最近网上刮起了chia风，由于手上也有大容量硬盘，但是挂在群晖上做存储盘，于是想将这个盘腾出来，将资料转移到另一个硬盘中。</p>
+
+<h2 id="0x01-过程">0x01 过程</h2>
+
+<h3 id="1-添加新硬盘">1. 添加新硬盘</h3>
+
+<p>首先需要准备一个完全擦除的硬盘，将群晖关机后，将该硬盘接入群晖。启动群晖之后，打开Storage Manager新建一个raid group（我原来是用单盘建立的basic raid group），建立好后再新建一个Volume，如果勾选了全盘扫描的话，需要等待一段时间才能建好。</p>
+
+<h3 id="2-转移资料">2. 转移资料</h3>
+
+<p>资料的转移比较简单，打开Control Panel - Shared Folder，选择需要转移的共享文件夹，点击Edit，再Location下拉框中选择新建的Volume即可自动转移。</p>
+
+<h3 id="3-转移package">3. 转移package</h3>
+
+<p>转移package需要用到一个软件MODS Package Manager，我在<a href="https://www.beatificabytes.be/sspks" rel="nofollow noreferrer" target="_blank">https://www.beatificabytes.be/sspks</a> 上面下载下来，再在Package Center中手动上传安装的。<br />
+在打开Package Manager的时候遇到白屏的问题，原因是该软件的一个JS需要从谷歌下载，打开fq软件代理一下即可解决。（如果没有fq条件的话，也可以参照<a href="https://blog.csdn.net/qq_17311873/article/details/109536316" rel="nofollow noreferrer" target="_blank">这篇博客</a> 改成国内可以访问的cdn即可解决）
+软件的使用很简单，选择需要移动的package，然后选择目标Volume，点击Move Package即可。
+有些软件在转移过程中会失败，套件没有移动成功，可以不用管它。打开Package Center，会提示该套件错误无法运行，这时候点击修复即可完成套件的转移了。</p>
+
+<h3 id="4-转移moments里面的照片">4. 转移Moments里面的照片</h3>
+
+<p>Moments的照片是存在/homes 共享目录中的，所以只要将该共享目录按步骤2进行转移即可，这一步也可以在Control Panel - User - User Home - Location的下拉框选择转移到新卷。需要特别注意的是Drive的数据库的转移，打开Drive Admin Console - Settings - Database Location 选择转移到目标卷中即可。（在群晖的官网中又说到，在Storage Manager安全地移除Volume也可以转移数据库，但我选择稳妥一点，手动转移）</p>
+
+<h3 id="5-安全移除卷">5. 安全移除卷</h3>
+
+<p>最后一步，我是直接关机，将旧盘直接摘下，然后开机看看有没有什么异常，确保数据都安全地转移到了新卷。<br />
+最后再将旧盘装上，在Storage Manager中安全地移除卷，将旧盘取下来。</p>
+
+<h2 id="0x02-遇到的问题">0x02 遇到的问题</h2>
+
+<p>在转移资料的第4步中，我没有转移Drive的数据库，直接摘下了硬盘，并启动了群晖，在package center上面修复了Drive 和 Moments，导致Moments不可用。<br />
+最后还是将旧盘装上，在Drive Admin Console中转移了数据库，然后将Moments套件连同数据库一起删除，再重装才解决了问题。
+这样的话，就丢失了之前Moments索引的信息，没关系直接再索引一遍就好了。</p>
+
+    </div>
+	
+    <div class="post-copyright">
+             
+			
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>sinowrt </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://blog.sinowrt.cn/2021/2021-04-22t1330-how-to-move-the-package-and-documents-in-synology-to-another-hard-disk/>http://blog.sinowrt.cn/2021/2021-04-22t1330-how-to-move-the-package-and-documents-in-synology-to-another-hard-disk/</span>
+            </p>
+			
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/synology/">
+                    #synology</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="http://blog.sinowrt.cn">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://blog.sinowrt.cn/2021/2021-03-10t1451-using-python-to-download-pictures-from-qiniu-and-batch-rename/" class="prev" rel="prev" title="用python下载七牛云的图片并批量重命名"><i class="iconfont icon-left"></i>&nbsp;用python下载七牛云的图片并批量重命名</a>
+         
+        
+        <a href="http://blog.sinowrt.cn/2021/2021-04-23t1847-how-to-run-chia-miner-of-hpool-on-raspberry-pi4/" class="next" rel="next" title="在树莓派（ARM）上面运行hpool的chia挖矿程序（AMD64）">在树莓派（ARM）上面运行hpool的chia挖矿程序（AMD64）&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2021</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://blog.sinowrt.cn">sinowrt</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt | </a><script type="text/javascript" src="https://s4.cnzz.com/z_stat.php?id=1279436618&web_id=1279436618"></script></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

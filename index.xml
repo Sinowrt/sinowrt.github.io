@@ -5,8 +5,149 @@
     <description>Recent content in Sinowrt on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 10 Mar 2021 14:51:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 23 Apr 2021 18:47:00 +0800</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>在树莓派（ARM）上面运行hpool的chia挖矿程序（AMD64）</title>
+      <link>http://blog.sinowrt.cn/2021/2021-04-23t1847-how-to-run-chia-miner-of-hpool-on-raspberry-pi4/</link>
+      <pubDate>Fri, 23 Apr 2021 18:47:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2021/2021-04-23t1847-how-to-run-chia-miner-of-hpool-on-raspberry-pi4/</guid>
+      <description>
+
+&lt;h2 id=&#34;0x00-背景&#34;&gt;0x00 背景&lt;/h2&gt;
+
+&lt;p&gt;最近chia挖矿可太火了，可惜我运气太差，一个币都没挖到，算了还是直接加入矿池吧。可是硬盘容量已经p完了，用台式机挂机的话，怕是电费都不够亏吧。&lt;br /&gt;
+之前在chia的wiki上面，我看到了一个用Rock PI4b组装的矿机，很是心动。可惜Rock pi的生态比Raspberry pi逊色很多，而我又不使用官方软件进行耕种，到时各种适配起来可是个麻烦事。所以，在对比之下我还是选择了Raspberry Pi4B。&lt;/p&gt;
+
+&lt;h2 id=&#34;0x01-硬件准备&#34;&gt;0x01 硬件准备&lt;/h2&gt;
+
+&lt;h3 id=&#34;1-一块树莓派raspberry-pi4b&#34;&gt;1. 一块树莓派Raspberry Pi4B&lt;/h3&gt;
+
+&lt;h3 id=&#34;2-sata转usb3-0的易驱线-带12v供电端口的-我选择的是绿巨能的-便宜好用&#34;&gt;2. sata转usb3.0的易驱线（带12v供电端口的）我选择的是绿巨能的，便宜好用&lt;/h3&gt;
+
+&lt;h3 id=&#34;3-atx电源一个-根据你硬盘的数量来选择功率-我这里用的是家里闲置的200w-长城电源&#34;&gt;3. ATX电源一个（根据你硬盘的数量来选择功率）我这里用的是家里闲置的200W 长城电源&lt;/h3&gt;
+
+&lt;h3 id=&#34;4-大4pin接口转3-5mm-12v-dc接口-转接线若干条&#34;&gt;4. 大4Pin接口转3.5mm 12V DC接口 转接线若干条&lt;/h3&gt;
+
+&lt;h2 id=&#34;0x02-兜兜转转-仅记录过程-解决方案可以直接看下一节&#34;&gt;0x02 兜兜转转（仅记录过程 解决方案可以直接看下一节）&lt;/h2&gt;
+
+&lt;p&gt;将可执行文件上传到树莓派上面，直接运行的时候 会提示&lt;code&gt;Exec Format Error&lt;/code&gt;，因为树莓派是ARM架构的，而可执行文件是AMD64架构的。&lt;br /&gt;
+可执行文件的信息可以使用&lt;code&gt;file 可执行文件&lt;/code&gt;查看，如hpool-miner-chia这个可执行文件的信息就是：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;ubuntu@ubuntu:~/linux$ file ./hpool-miner-chia 
+./hpool-miner-chia: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, Go BuildID=or4EJC7edY1jm53BAfGR/s_m3PpAuyo9gsjpS3x4h/Eg54hBo5Pfw4tHBF5qZ0/g1_NAK8AbL3R_FIeKSr6, stripped
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;也可以使用readelf命令查看，如&lt;code&gt;readelf -h python&lt;/code&gt;，得到的是ELF Header中的项Magic，第五个数 02时为64位，01时为32位。&lt;/p&gt;
+
+&lt;h3 id=&#34;1-box86方案&#34;&gt;1. box86方案&lt;/h3&gt;
+
+&lt;p&gt;第一次尝试是在raspberry os上面安装box86，但是运行的时候发现box86并不支持64位可执行文件，遂作罢。&lt;/p&gt;
+
+&lt;h3 id=&#34;2-exagear方案&#34;&gt;2. exagear方案&lt;/h3&gt;
+
+&lt;p&gt;这个方案并未尝试，因为exagear 跟box86一样，只支持32位的可执行文件。&lt;/p&gt;
+
+&lt;h3 id=&#34;3-qemu方案&#34;&gt;3. qemu方案&lt;/h3&gt;
+
+&lt;p&gt;使用&lt;code&gt;sudo apt-get install qemu-user&lt;/code&gt;命令安装qemu-user，这个命令会自动安装qemu-user和binfmt，binfmt会通过判断可执行文件的类型，自动选择是否通过qemu来执行该文件。&lt;/p&gt;
+
+&lt;p&gt;这个方案虽然是可行的，但是探索的过程也是十分曲折：&lt;/p&gt;
+
+&lt;p&gt;环境: 32位raspios + qemu-user + hpool-miner-chia v1.0.5&lt;br /&gt;
+启动的时候提示：dlopen err: Dynamic loading not supported&lt;br /&gt;
+然后就是不认plot文件，报open fail 和 Invalid file的错误，但是连接矿池正常，只是没认到plot文件，没有算力，hpool上面也不显示矿机在线。&lt;/p&gt;
+
+&lt;p&gt;环境: 32位raspios + qemu-user + hpool-miner-chia v1.0.4.1&lt;br /&gt;
+启动的时候不提示dlopen err: Dynamic loading not supported了&lt;br /&gt;
+但仍然不认plot文件，报open fail 和 Invalid file的错误，但是连接矿池正常，只是没认到plot文件，没有算力，hpool上面也不显示矿机在线。&lt;/p&gt;
+
+&lt;p&gt;环境: 64位raspios + qemu-user + hpool-miner-chia v1.0.4.1&lt;br /&gt;
+启动的时候提示&lt;code&gt;qemu: uncaught target signal 11 (Segmentation fault) - core dumped&lt;/code&gt; 直接罢工了&lt;/p&gt;
+
+&lt;p&gt;在28号下午，hpool 发布了 1.1.0 版本的 hpool-miner-chia，由于官方说下一个版本会支持arm，但是实测并没有，没有就没有吧，试一下能不能用qemu运行&lt;/p&gt;
+
+&lt;p&gt;环境: 32位raspios + qemu-user + hpool-miner-chia v1.1.0&lt;br /&gt;
+启动的时候不提示dlopen err: Dynamic loading not supported了&lt;br /&gt;
+但仍然不认plot文件，报open fail 和 Invalid file的错误，但是连接矿池正常，只是没认到plot文件，没有算力，hpool上面也不显示矿机在线。&lt;/p&gt;
+
+&lt;h2 id=&#34;0x04-最终方案&#34;&gt;0x04 最终方案&lt;/h2&gt;
+
+&lt;p&gt;我曾一度想着是不是 usb3.0转sata 转接线坏了，就在虚拟机上面开了ubuntu，连上了硬盘，运行一切正常。&lt;/p&gt;
+
+&lt;p&gt;那么问题应该就是出在树莓派上面了，由于之前下载了ubuntu arm64的系统，但是那晚上挂着测试树莓派稳定性的时候，把TF卡烧了，就没有用过这个ubuntu系统。然后我就想，会不会跟系统有关呢，试了那么多个版本的可执行文件都是一个结果。于是拆下TF卡，烧录ubuntu arm64的系统，挂硬盘&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# 查看待挂载设备列表
+sudo fdisk -l
+
+# 挂载硬盘 我在这里是将/dev/sda1挂载到当前目录的ploted文件夹 
+sudo mount /dev/sda1 ./ploted
+
+# 解除挂载
+sudo umount /dev/sda1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;硬盘挂载好后，把hpool-miner-chia v1.1.0 版本的执行文件上传上去，安装qemu-user。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;qemu-x86_64 ./hpool-miner-chia&lt;/code&gt;运行。竟然好了！！&lt;/p&gt;
+
+&lt;p&gt;虽然不报错，也能认plot文件了，但是挂了一晚上测试发现，这个软件会自己退出。&lt;/p&gt;
+
+&lt;p&gt;这好办，上supervisor就好了，具体步骤请参考&lt;a href=&#34;https://blog.sinowrt.cn/2020/2020-04-12t2330-ubuntuadd-ngrok-to-supervisor/&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;这篇博客&lt;/a&gt;自行配置。&lt;/p&gt;
+
+&lt;p&gt;最后附上ubuntu的版本: ubuntu-20.04.2-preinstalled-server-arm64+raspi.img.xz&lt;/p&gt;
+
+&lt;p&gt;聪明的彦祖们应该知道怎么下载的。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>如何将群晖的软件包和资料转移到另一个硬盘</title>
+      <link>http://blog.sinowrt.cn/2021/2021-04-22t1330-how-to-move-the-package-and-documents-in-synology-to-another-hard-disk/</link>
+      <pubDate>Thu, 22 Apr 2021 13:30:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2021/2021-04-22t1330-how-to-move-the-package-and-documents-in-synology-to-another-hard-disk/</guid>
+      <description>
+
+&lt;h2 id=&#34;0x00-背景&#34;&gt;0x00 背景&lt;/h2&gt;
+
+&lt;p&gt;最近网上刮起了chia风，由于手上也有大容量硬盘，但是挂在群晖上做存储盘，于是想将这个盘腾出来，将资料转移到另一个硬盘中。&lt;/p&gt;
+
+&lt;h2 id=&#34;0x01-过程&#34;&gt;0x01 过程&lt;/h2&gt;
+
+&lt;h3 id=&#34;1-添加新硬盘&#34;&gt;1. 添加新硬盘&lt;/h3&gt;
+
+&lt;p&gt;首先需要准备一个完全擦除的硬盘，将群晖关机后，将该硬盘接入群晖。启动群晖之后，打开Storage Manager新建一个raid group（我原来是用单盘建立的basic raid group），建立好后再新建一个Volume，如果勾选了全盘扫描的话，需要等待一段时间才能建好。&lt;/p&gt;
+
+&lt;h3 id=&#34;2-转移资料&#34;&gt;2. 转移资料&lt;/h3&gt;
+
+&lt;p&gt;资料的转移比较简单，打开Control Panel - Shared Folder，选择需要转移的共享文件夹，点击Edit，再Location下拉框中选择新建的Volume即可自动转移。&lt;/p&gt;
+
+&lt;h3 id=&#34;3-转移package&#34;&gt;3. 转移package&lt;/h3&gt;
+
+&lt;p&gt;转移package需要用到一个软件MODS Package Manager，我在&lt;a href=&#34;https://www.beatificabytes.be/sspks&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;https://www.beatificabytes.be/sspks&lt;/a&gt; 上面下载下来，再在Package Center中手动上传安装的。&lt;br /&gt;
+在打开Package Manager的时候遇到白屏的问题，原因是该软件的一个JS需要从谷歌下载，打开fq软件代理一下即可解决。（如果没有fq条件的话，也可以参照&lt;a href=&#34;https://blog.csdn.net/qq_17311873/article/details/109536316&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;这篇博客&lt;/a&gt; 改成国内可以访问的cdn即可解决）
+软件的使用很简单，选择需要移动的package，然后选择目标Volume，点击Move Package即可。
+有些软件在转移过程中会失败，套件没有移动成功，可以不用管它。打开Package Center，会提示该套件错误无法运行，这时候点击修复即可完成套件的转移了。&lt;/p&gt;
+
+&lt;h3 id=&#34;4-转移moments里面的照片&#34;&gt;4. 转移Moments里面的照片&lt;/h3&gt;
+
+&lt;p&gt;Moments的照片是存在/homes 共享目录中的，所以只要将该共享目录按步骤2进行转移即可，这一步也可以在Control Panel - User - User Home - Location的下拉框选择转移到新卷。需要特别注意的是Drive的数据库的转移，打开Drive Admin Console - Settings - Database Location 选择转移到目标卷中即可。（在群晖的官网中又说到，在Storage Manager安全地移除Volume也可以转移数据库，但我选择稳妥一点，手动转移）&lt;/p&gt;
+
+&lt;h3 id=&#34;5-安全移除卷&#34;&gt;5. 安全移除卷&lt;/h3&gt;
+
+&lt;p&gt;最后一步，我是直接关机，将旧盘直接摘下，然后开机看看有没有什么异常，确保数据都安全地转移到了新卷。&lt;br /&gt;
+最后再将旧盘装上，在Storage Manager中安全地移除卷，将旧盘取下来。&lt;/p&gt;
+
+&lt;h2 id=&#34;0x02-遇到的问题&#34;&gt;0x02 遇到的问题&lt;/h2&gt;
+
+&lt;p&gt;在转移资料的第4步中，我没有转移Drive的数据库，直接摘下了硬盘，并启动了群晖，在package center上面修复了Drive 和 Moments，导致Moments不可用。&lt;br /&gt;
+最后还是将旧盘装上，在Drive Admin Console中转移了数据库，然后将Moments套件连同数据库一起删除，再重装才解决了问题。
+这样的话，就丢失了之前Moments索引的信息，没关系直接再索引一遍就好了。&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>用python下载七牛云的图片并批量重命名</title>
@@ -649,618 +790,6 @@ If you encounter this issue regularly because of slow network conditions, consid
 &lt;h3 id=&#34;2-显示行号&#34;&gt;2.显示行号&lt;/h3&gt;
 
 &lt;p&gt;命令模式下, :set number&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>《深入理解JVM》之别在MacOS编译OpenJDK7</title>
-      <link>http://blog.sinowrt.cn/2021/2021-02-26t1633-compile-a-jvm-on-macos/</link>
-      <pubDate>Fri, 26 Feb 2021 16:33:00 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2021/2021-02-26t1633-compile-a-jvm-on-macos/</guid>
-      <description>
-
-&lt;h2 id=&#34;0x00-前言&#34;&gt;0x00 前言&lt;/h2&gt;
-
-&lt;p&gt;《深入理解JVM》这本书都看了大半了，但是里面的实验还没真正动手操作过，于是趁这段时间一一操作一遍。&lt;/p&gt;
-
-&lt;p&gt;首当其冲的当然是编译JVM了，似乎所有的坑都被我都趟了一遍，就写篇文来记录一下，顺便告诫大家，不要试图在新版本的macOS中编译OpenJDK7！&lt;/p&gt;
-
-&lt;h2 id=&#34;0x01-编译环境&#34;&gt;0x01 编译环境&lt;/h2&gt;
-
-&lt;p&gt;macOS Catalina 10.15.2&lt;br /&gt;
-Xcode 11.6&lt;br /&gt;
-Command Line Tools MacOSX10.15.sdk&lt;/p&gt;
-
-&lt;h2 id=&#34;0x02-准备工作&#34;&gt;0x02 准备工作&lt;/h2&gt;
-
-&lt;h3 id=&#34;1-下载源码&#34;&gt;1. 下载源码&lt;/h3&gt;
-
-&lt;p&gt;在macOS中，先用brew安装mercurial代码版本管理工具&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;brew install mercurial
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;获取源码：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;hg clone http://hg.openjdk.java.net/jdk7u/jdk7u-dev
-cd jdk7u-dev
-chmod 755 get_source.sh
-./get_source.sh
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;而国内的网络到了&lt;code&gt;./get_source.sh&lt;/code&gt;这一步，下载过程中总是会网络异常中断，所以我是在国外的vps上面下载好之后，再压缩拉回来的。&lt;/p&gt;
-
-&lt;h3 id=&#34;2-安装xcode和command-line-tools-for-xcode&#34;&gt;2. 安装XCode和Command Line Tools for XCode&lt;/h3&gt;
-
-&lt;p&gt;由于我之前已经安装了，所以这一步跳过，具体的版本可以看0x01编译环境中的描述&lt;/p&gt;
-
-&lt;h3 id=&#34;3-准备一个bootstrap-sdk&#34;&gt;3. 准备一个Bootstrap SDK&lt;/h3&gt;
-
-&lt;p&gt;书中说到，“如果编译OpenJDK 7，Bootstrap JDK必须使用JDK6 Update 14或之后的版本”，而我用的是JDK1.7.80版本。&lt;/p&gt;
-
-&lt;h3 id=&#34;4-安装apache-ant&#34;&gt;4. 安装Apache Ant&lt;/h3&gt;
-
-&lt;p&gt;Apache Ant 对版本有要求，1.7.1以上即可。
-同时，Apache Ant 官网上有一句话必须要看一下：&lt;br /&gt;
-&amp;ldquo;The 1.9.x releases require Java5 at runtime and 1.10.x requires Java8 at runtime. &amp;rdquo;&lt;br /&gt;
-大意就是1.9.x版本的ant 要求Java5以上版本的jre，而1.10.x版本的ant则要求Java8以上版本的jre。&lt;/p&gt;
-
-&lt;h2 id=&#34;0x03-编译&#34;&gt;0x03 编译&lt;/h2&gt;
-
-&lt;p&gt;书中作者给出的编译脚本如下：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;#语言选项，这个必须设置，否则编译好后会出现一个HashTable的NPE错
-export LANG=C
-#Bootstrap JDK的安装路径。必须设置
-export ALT_BOOTDIR=/Library/Java/JavaVirtualMachines/jdk1.7.0_04.jdk/Contents/Home
-#允许自动下载依赖
-export ALLOW_DOWNLOADS=true
-#并行编译的线程数，设置为和CPU内核数量一致即可
-export HOTSPOT_BUILD_JOBS=6
-export ALT_PARALLEL_COMPILE_JOBS=6
-#比较本次build出来的映像与先前版本的差异。这对我们来说没有意义，
-#必须设置为false，否则sanity检查会报缺少先前版本JDK的映像的错误提示。
-#如果已经设置dev或者DEV_ONLY=true，这个不显式设置也行
-export SKIP_COMPARE_IMAGES=true
-#使用预编译头文件，不加这个编译会更慢一些
-export USE_PRECOMPILED_HEADER=true
-#要编译的内容
-export BUILD_LANGTOOLS=true
-#export BUILD_JAXP=false
-#export BUILD_JAXWS=false
-#export BUILD_CORBA=false
-export BUILD_HOTSPOT=true
-export BUILD_JDK=true
-#要编译的版本
-#export SKIP_DEBUG_BUILD=false
-#export SKIP_FASTDEBUG_BUILD=true
-#export DEBUG_NAME=debug
-#把它设置为false可以避开javaws和浏览器Java插件之类的部分的build
-BUILD_DEPLOY=false
-#把它设置为false就不会build出安装包。因为安装包里有些奇怪的依赖，
-#但即便不build出它也已经能得到完整的JDK映像，所以还是别build它好了
-BUILD_INSTALL=false
-#编译结果所存放的路径
-export ALT_OUTPUTDIR=/Users/IcyFenix/Develop/JVM/jdkBuild/openjdk_7u4/build
-#这两个环境变量必须去掉，不然会有很诡异的事情发生（我没有具体查过这些&amp;quot;诡异的
-#事情&amp;quot;，Makefile脚本检查到有这2个变量就会提示警告）
-unset JAVA_HOME
-unset CLASSPATH
-make 2&amp;gt;&amp;amp;1|tee $ALT_OUTPUTDIR/build.log
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;0x04-坑&#34;&gt;0x04 坑&lt;/h2&gt;
-
-&lt;h3 id=&#34;1-llvm-gcc-缺失导致的freetype-versioncheck的编译错误&#34;&gt;1.llvm-gcc 缺失导致的freetype_versioncheck的编译错误&lt;/h3&gt;
-
-&lt;p&gt;首先最底下出现的是：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;ERROR: The Compiler version is undefined. 
- 
-ERROR: FreeType version  2.3.0  or higher is required. 
- /bin/mkdir -p /Users/jackietsoi/Documents/develop/jdk7u-dev/JVM/jdkBuild/openjdk_7u4/build/btbins
-rm -f /Users/jackietsoi/Documents/develop/jdk7u-dev/JVM/jdkBuild/openjdk_7u4/build/btbins/freetype_versioncheck
-Failed to build freetypecheck.  
-
-Exiting because of the above error(s).
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;上网搜了一下，还以为是缺失FreeType，于是根据网友说的安装XQuartz(&lt;a href=&#34;http://xquartz.macosforge.org/landing/)，因为XQuartz里面自带了freetype2，但是安装之后并没有解决问题，于是继续往上看输出:&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;http://xquartz.macosforge.org/landing/)，因为XQuartz里面自带了freetype2，但是安装之后并没有解决问题，于是继续往上看输出:&lt;/a&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;make[2]: /Applications/Xcode.app/Contents/Developer/usr/bin/llvm-gcc: No such file or directory
-make[2]: *** [/Users/jackietsoi/Documents/develop/jdk7u-dev/JVM/jdkBuild/openjdk_7u4/build/btbins/freetype_versioncheck] Error 1
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;解决方法：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo ln -s /usr/bin/llvm-g++ /Library/Developer/CommandLineTools/usr/bin/llvm-g++
-sudo ln -s /usr/bin/llvm-gcc /Library/Developer/CommandLineTools/usr/bin/llvm-gcc
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;2-cups-头文件缺失问题&#34;&gt;2.cups 头文件缺失问题&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;ERROR: You do not have access to valid Cups header files. 
-       Please check your access to 
-           /usr/include/cups/cups.h 
-       and/or check your value of ALT_CUPS_HEADERS_PATH, 
-       CUPS is frequently pre-installed on many systems, 
-       or may be downloaded from http://www.cups.org 
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;解决方法：&lt;br /&gt;
-到 &lt;a href=&#34;http://www.cups.org&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;http://www.cups.org&lt;/a&gt; 去下载cups2.3.3 然后解压整个文件夹，放到编译项目根目录
-然后在编译脚本文件中加入一句：&lt;code&gt;export ALT_CUPS_HEADERS_PATH=/Users/jackietsoi/Documents/develop/jdk7u-dev/cups-2.3.3&lt;/code&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;3-freetype-版本问题&#34;&gt;3.freetype 版本问题&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;ERROR: FreeType version  2.3.0  or higher is required. 
- /Users/jackietsoi/Documents/develop/jdk7u-dev/JVM/jdkBuild/openjdk_7u4/build/btbins/freetype_versioncheck
-Required version of freetype: 2.3.0
-Detected freetype headers: 2.10.4
-Failed: headers are too old.
-Detected freetype library: 2.10.4
-Failed: too old library.  
-
-Exiting because of the above error(s). 
- 
-make: *** [post-sanity] Error 1
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;去官网(&lt;a href=&#34;https://www.freetype.org/download.html)下载&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;https://www.freetype.org/download.html)下载&lt;/a&gt; freetype-2.3.0 版本压缩包&lt;br /&gt;
-解压，进入根目录执行以下命令进行编译，并安装：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;./configure
-make
-make install
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;在编译脚本文件中加入两句：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;export ALT_FREETYPE_HEADERS_PATH=/usr/local/include
-export ALT_FREETYPE_LIB_PATH=/usr/local/lib
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;4-ant-1-10-x-要求最低jdk8问题&#34;&gt;4.ant 1.10.x 要求最低jdk8问题&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;Exception in thread &amp;quot;main&amp;quot; java.lang.UnsupportedClassVersionError: org/apache/tools/ant/launch/Launcher : Unsupported major.minor version 52.0
-    at java.lang.ClassLoader.defineClass1(Native Method)
-    at java.lang.ClassLoader.defineClass(ClassLoader.java:791)
-    at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:142)
-    at java.net.URLClassLoader.defineClass(URLClassLoader.java:449)
-    at java.net.URLClassLoader.access$100(URLClassLoader.java:71)
-    at java.net.URLClassLoader$1.run(URLClassLoader.java:361)
-    at java.net.URLClassLoader$1.run(URLClassLoader.java:355)
-    at java.security.AccessController.doPrivileged(Native Method)
-    at java.net.URLClassLoader.findClass(URLClassLoader.java:354)
-    at java.lang.ClassLoader.loadClass(ClassLoader.java:423)
-    at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:308)
-    at java.lang.ClassLoader.loadClass(ClassLoader.java:356)
-    at sun.launcher.LauncherHelper.checkAndLoadMain(LauncherHelper.java:480)
-Exception in thread &amp;quot;main&amp;quot; java.lang.UnsupportedClassVersionError: org/apache/tools/ant/launch/Launcher : Unsupported major.minor version 52.0
-    at java.lang.ClassLoader.defineClass1(Native Method)
-    at java.lang.ClassLoader.defineClass(ClassLoader.java:791)
-    at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:142)
-    at java.net.URLClassLoader.defineClass(URLClassLoader.java:449)
-    at java.net.URLClassLoader.access$100(URLClassLoader.java:71)
-    at java.net.URLClassLoader$1.run(URLClassLoader.java:361)
-    at java.net.URLClassLoader$1.run(URLClassLoader.java:355)
-    at java.security.AccessController.doPrivileged(Native Method)
-    at java.net.URLClassLoader.findClass(URLClassLoader.java:354)
-    at java.lang.ClassLoader.loadClass(ClassLoader.java:423)
-    at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:308)
-    at java.lang.ClassLoader.loadClass(ClassLoader.java:356)
-    at sun.launcher.LauncherHelper.checkAndLoadMain(LauncherHelper.java:480)
-make[2]: *** [/Users/jackietsoi/Documents/develop/jdk7u-dev/JVM/jdkBuild/openjdk_7u4/build/langtools/build/ant-diagnostics.log] Error 1
-make[1]: *** [langtools-build] Error 2
-make: *** [build_product_image] Error 2
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;解决方法：&lt;br /&gt;
-到Apache Ant官网(&lt;a href=&#34;http://ant.apache.org/bindownload.cgi)下载&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;http://ant.apache.org/bindownload.cgi)下载&lt;/a&gt; 1.9.x版本的ant，将压缩包解压到一个目录下，如/usr/local&lt;/p&gt;
-
-&lt;p&gt;配置环境变量：&lt;br /&gt;
-编辑 ~/.zshrc，在末尾加入两行：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;export ANT_HOME=/usr/local/apache-ant-1.9.15
-export PATH=$ANT_HOME/bin:$PATH
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;然后 source ~/.zshrc 使其生效&lt;/p&gt;
-
-&lt;h3 id=&#34;5-jdk版本问题&#34;&gt;5.jdk版本问题&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;[javac] Compiling 298 source files to /Users/jackietsoi/Documents/develop/jdk7u-dev/JVM/jdkBuild/openjdk_7u4/build/langtools/build/bootstrap/classes
-    [javac] /Users/jackietsoi/Documents/develop/jdk7u-dev/langtools/src/share/classes/com/sun/tools/javac/comp/Resolve.java:2182: ??: [overrides] ?Resolve.InapplicableSymbolsError.Candidate??? equals, ???????????? hashCode ??
-    [javac]         private class Candidate {
-    [javac]                 ^
-    [javac] ??: ????, ???? -Werror
-    [javac] 1 ???
-    [javac] 1 ???
-
-BUILD FAILED
-/Users/jackietsoi/Documents/develop/jdk7u-dev/langtools/make/build.xml:452: The following error occurred while executing this line:
-/Users/jackietsoi/Documents/develop/jdk7u-dev/langtools/make/build.xml:795: Compile failed; see the compiler error output for details.
-
-Total time: 4 seconds
-make[2]: *** [build] Error 1
-make[1]: *** [langtools-build] Error 2
-make: *** [build_product_image] Error 2
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;解决方法：&lt;br /&gt;
-将Bootstrap JDK 从1.8换到1.7即可，下载jdk7(&lt;a href=&#34;https://www.oracle.com/java/technologies/javase/javase7-archive-downloads.html&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;https://www.oracle.com/java/technologies/javase/javase7-archive-downloads.html&lt;/a&gt;)&lt;br /&gt;
-这里我下载的是jdk7u80，然后在编译脚本更改Bootstrap JDK的路径：&lt;br /&gt;
-&lt;code&gt;export ALT_BOOTDIR=/Library/Java/JavaVirtualMachines/jdk1.7.0_80.jdk/Contents/Home&lt;/code&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;6-warning-转义错误&#34;&gt;6. warning 转义错误&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/filebuff.cpp:109:8: error: &#39;this&#39; pointer cannot be null in well-defined C++ code; pointer may be assumed to always convert to true [-Werror,-Wundefined-bool-conversion]
-  if( !this ) return NULL;      // The empty buffer region
-      ~^~~~
-/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/filebuff.cpp:122:8: error: &#39;this&#39; pointer cannot be null in well-defined C++ code; pointer may be assumed to always convert to true [-Werror,-Wundefined-bool-conversion]
-  if( !this ) return br;        // Merging into nothing
-      ~^~~~
-/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/filebuff.cpp:228:8: error: reference cannot be bound to dereferenced null pointer in well-defined C++ code; comparison may be assumed to always evaluate to false [-Werror,-Wtautological-undefined-compare]
-  if( &amp;amp;br == NULL ) return os;  // The empty buffer region
-       ^~    ~~~~
-/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/filebuff.cpp:244:8: error: &#39;this&#39; pointer cannot be null in well-defined C++ code; pointer may be assumed to always convert to true [-Werror,-Wundefined-bool-conversion]
-  if( !this ) return;           // Nothing to print
-      ~^~~~
-/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/archDesc.cpp:335:35: error: &#39;&amp;amp;&amp;amp;&#39; within &#39;||&#39; [-Werror,-Wlogical-op-parentheses]
-    if ( instr-&amp;gt;is_ideal_branch() &amp;amp;&amp;amp; instr-&amp;gt;label_position() == -1 ||
-         ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ~~
-/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/archDesc.cpp:335:35: note: place parentheses around the &#39;&amp;amp;&amp;amp;&#39; expression to silence this warning
-    if ( instr-&amp;gt;is_ideal_branch() &amp;amp;&amp;amp; instr-&amp;gt;label_position() == -1 ||
-                                  ^
-         (                                                        )
-/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/archDesc.cpp:336:35: error: &#39;&amp;amp;&amp;amp;&#39; within &#39;||&#39; [-Werror,-Wlogical-op-parentheses]
-        !instr-&amp;gt;is_ideal_branch() &amp;amp;&amp;amp; instr-&amp;gt;label_position() != -1) {
-        ~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/archDesc.cpp:336:35: note: place parentheses around the &#39;&amp;amp;&amp;amp;&#39; expression to silence this warning
-        !instr-&amp;gt;is_ideal_branch() &amp;amp;&amp;amp; instr-&amp;gt;label_position() != -1) {
-                                  ^
-        (                                                         )
-4 errors generated.
-2 errors generated.
-make[8]: *** [../generated/adfiles/filebuff.o] Error 1
-make[8]: *** Waiting for unfinished jobs....
-make[8]: *** [../generated/adfiles/archDesc.o] Error 1
-Compiling /Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/forms.cpp
-rm -f ../generated/adfiles/forms.o
-llvm-g++ -D_ALLBSD_SOURCE -D_GNU_SOURCE -DAMD64 -I/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/prims -I/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm -I/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/precompiled -I/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/cpu/x86/vm -I/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/os_cpu/bsd_x86/vm -I/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/os/bsd/vm -I/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/os/posix/vm -I/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc -I../generated -DASSERT -DTARGET_OS_FAMILY_bsd -DTARGET_ARCH_x86 -DTARGET_ARCH_MODEL_x86_64 -DTARGET_OS_ARCH_bsd_x86 -DTARGET_OS_ARCH_MODEL_bsd_x86_64 -DTARGET_COMPILER_gcc -DCOMPILER2 -DCOMPILER1  -fno-rtti -fno-exceptions -pthread -fcheck-new -fvisibility=hidden -m64 -pipe -Werror -g -c -o ../generated/adfiles/forms.o /Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/forms.cpp 
-/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/adlparse.cpp:3217:71: error: equality comparison with extraneous parentheses [-Werror,-Wparentheses-equality]
-    if ( ((primary = get_ident_or_literal_constant(&amp;quot;primary opcode&amp;quot;)) == NULL) ) {
-          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
-/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/adlparse.cpp:3217:71: note: remove extraneous parentheses around the comparison to silence this warning
-    if ( ((primary = get_ident_or_literal_constant(&amp;quot;primary opcode&amp;quot;)) == NULL) ) {
-         ~                                                            ^      ~
-/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/adlparse.cpp:3217:71: note: use &#39;=&#39; to turn this equality comparison into an assignment
-    if ( ((primary = get_ident_or_literal_constant(&amp;quot;primary opcode&amp;quot;)) == NULL) ) {
-                                                                      ^~
-                                                                      =
-/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/adlparse.cpp:3226:77: error: equality comparison with extraneous parentheses [-Werror,-Wparentheses-equality]
-      if ( ((secondary = get_ident_or_literal_constant(&amp;quot;secondary opcode&amp;quot;)) == NULL) ) {
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
-/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/adlparse.cpp:3226:77: note: remove extraneous parentheses around the comparison to silence this warning
-      if ( ((secondary = get_ident_or_literal_constant(&amp;quot;secondary opcode&amp;quot;)) == NULL) ) {
-           ~                                                                ^      ~
-/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/adlparse.cpp:3226:77: note: use &#39;=&#39; to turn this equality comparison into an assignment
-      if ( ((secondary = get_ident_or_literal_constant(&amp;quot;secondary opcode&amp;quot;)) == NULL) ) {
-                                                                            ^~
-                                                                            =
-/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/adlparse.cpp:3235:77: error: equality comparison with extraneous parentheses [-Werror,-Wparentheses-equality]
-        if ( ((tertiary = get_ident_or_literal_constant(&amp;quot;tertiary opcode&amp;quot;)) == NULL) ) {
-              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~
-/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/adlparse.cpp:3235:77: note: remove extraneous parentheses around the comparison to silence this warning
-        if ( ((tertiary = get_ident_or_literal_constant(&amp;quot;tertiary opcode&amp;quot;)) == NULL) ) {
-             ~                                                              ^      ~
-/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/adlparse.cpp:3235:77: note: use &#39;=&#39; to turn this equality comparison into an assignment
-        if ( ((tertiary = get_ident_or_literal_constant(&amp;quot;tertiary opcode&amp;quot;)) == NULL) ) {
-                                                                            ^~
-                                                                            =
-/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/adlparse.cpp:4476:21: error: &#39;&amp;amp;&amp;amp;&#39; within &#39;||&#39; [-Werror,-Wlogical-op-parentheses]
-  while ((c &amp;gt;= &#39;0&#39;) &amp;amp;&amp;amp; (c &amp;lt;= &#39;9&#39;)
-         ~~~~~~~~~~~^~~~~~~~~~~~~
-/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/adlparse.cpp:4476:21: note: place parentheses around the &#39;&amp;amp;&amp;amp;&#39; expression to silence this warning
-  while ((c &amp;gt;= &#39;0&#39;) &amp;amp;&amp;amp; (c &amp;lt;= &#39;9&#39;)
-                    ^
-         (                       )
-/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/adlparse.cpp:4515:17: error: equality comparison with extraneous parentheses [-Werror,-Wparentheses-equality]
-    if( (second == &#39;=&#39;) ) {
-         ~~~~~~~^~~~~~
-/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/adlparse.cpp:4515:17: note: remove extraneous parentheses around the comparison to silence this warning
-    if( (second == &#39;=&#39;) ) {
-        ~       ^     ~
-/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/adlc/adlparse.cpp:4515:17: note: use &#39;=&#39; to turn this equality comparison into an assignment
-    if( (second == &#39;=&#39;) ) {
-                ^~
-                =
-5 errors generated.
-make[8]: *** [../generated/adfiles/adlparse.o] Error 1
-make[7]: *** [ad_stuff] Error 2
-make[6]: *** [product] Error 2
-make[5]: *** [generic_build2] Error 2
-make[4]: *** [product] Error 2
-make[3]: *** [all_product_universal] Error 2
-make[2]: *** [universal_product] Error 2
-make[1]: *** [hotspot-build] Error 2
-make: *** [build_product_image] Error 2
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;解决方法：&lt;br /&gt;
-关掉warning警告，打开编译脚本加入一行&lt;code&gt;export COMPILER_WARNINGS_FATAL=false&lt;/code&gt;，继续执行即可&lt;/p&gt;
-
-&lt;h3 id=&#34;7-clang-error-unknown-argument-fpch-deps-错误&#34;&gt;7. clang: error: unknown argument: &amp;lsquo;-fpch-deps&amp;rsquo;错误&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;clang: error: unknown argument: &#39;-fpch-deps&#39;
-make[8]: *** [precompiled.hpp.gch] Error 1
-make[7]: *** [the_vm] Error 2
-make[6]: *** [product] Error 2
-make[5]: *** [generic_build2] Error 2
-make[4]: *** [product] Error 2
-make[3]: *** [all_product_universal] Error 2
-make[2]: *** [universal_product] Error 2
-make[1]: *** [hotspot-build] Error 2
-make: *** [build_product_image] Error 2
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;解决方法：&lt;br /&gt;
-&lt;code&gt;vi ./hotspot/make/bsd/makefiles/gcc.make&lt;/code&gt;将以下两段代码注释掉&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;#ifneq ($(COMPILER_WARNINGS_FATAL),false)
-#  WARNINGS_ARE_ERRORS = -Werror
-#endif
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;pre&gt;&lt;code&gt;#ifneq (&amp;quot;${CC_VER_MAJOR}&amp;quot;, &amp;quot;2&amp;quot;)
-#DEPFLAGS = -fpch-deps -MMD -MP -MF $(DEP_DIR)/$(@:%=%.d)
-#endif
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;8-error-friend-declaration-specifying-a-default-argument-must-be-a-definition-错误&#34;&gt;8.error: friend declaration specifying a default argument must be a definition 错误&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/code/relocInfo.hpp:374:27: error: friend declaration specifying a default argument must be a definition
-  inline friend relocInfo prefix_relocInfo(int datalen = 0);
-                          ^
-/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/code/relocInfo.hpp:469:18: error: friend declaration specifying a default argument must be the only declaration
-inline relocInfo prefix_relocInfo(int datalen) {
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;解决方法：
-&lt;code&gt;vi hotspot/src/share/vm/code/relocInfo.hpp&lt;/code&gt;&lt;br /&gt;
-将&lt;code&gt;inline friend relocInfo prefix_relocInfo(int datalen = 0);&lt;/code&gt;改成
-&lt;code&gt;inline friend relocInfo prefix_relocInfo(int datalen);&lt;/code&gt;&lt;br /&gt;
-将&lt;code&gt;inline relocInfo prefix_relocInfo(int datalen) {&lt;/code&gt;改成&lt;code&gt;inline relocInfo prefix_relocInfo(int datalen = 0) {&lt;/code&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;9-指针与0比较问题&#34;&gt;9.指针与0比较问题&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/runtime/virtualspace.cpp:527:14: error: ordered comparison between pointer and zero (&#39;char *&#39; and &#39;int&#39;)
-  if (base() &amp;gt; 0) {
-      ~~~~~~ ^ ~
-/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/src/share/vm/runtime/virtualspace.cpp:546:14: error: ordered comparison between pointer and zero (&#39;char *&#39; and &#39;int&#39;)
-  if (base() &amp;gt; 0) {
-      ~~~~~~ ^ ~
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;解决方法：&lt;br /&gt;
-&lt;code&gt;vi ./hotspot/src/share/vm/runtime/virtualspace.cpp&lt;/code&gt;&lt;br /&gt;
-用&lt;code&gt;/if (base() &amp;gt; 0)&lt;/code&gt;查找所有该语句，并将其改成&lt;code&gt;if (base() != NULL)&lt;/code&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;10-找不到javanativefoundation-h头文件问题&#34;&gt;10.找不到JavaNativeFoundation.h头文件问题&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/agent/src/os/bsd/MacosxDebuggerLocal.m:27:9: fatal error: &#39;JavaNativeFoundation/JavaNativeFoundation.h&#39; file not found
-#import &amp;lt;JavaNativeFoundation/JavaNativeFoundation.h&amp;gt;
-        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/Users/jackietsoi/Documents/develop/jdk7u-dev/hotspot/agent/src/os/bsd/MacosxDebuggerLocal.m:27:9: note: did not find header &#39;JavaNativeFoundation.h&#39; in framework &#39;JavaNativeFoundation&#39; (loaded from &#39;/System/Library/Frameworks/JavaVM.framework/Frameworks&#39;)
-1 error generated.
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;解决方法：&lt;br /&gt;
-终端执行&lt;code&gt;find / -name &amp;quot;*JavaNativeFoundation.h*&amp;quot;&lt;/code&gt;命令，出现结果：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/JavaVM.framework/Versions/A/Frameworks/JavaNativeFoundation.framework/Versions/A/Headers/JavaNativeFoundation.h
-/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/JavaVM.framework/Versions/A/Frameworks/JavaNativeFoundation.framework/Versions/A/Headers/JavaNativeFoundation.h
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;编辑&lt;code&gt;hotspot/make/bsd/makefiles/saproc.make&lt;/code&gt;进行如下修改：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;原：
-SALIBS = -g -framework Foundation -F/System/Library/Frameworks/JavaVM.framework/Frameworks -framework JavaNativeFoundation -framework Security -framework CoreFoundation
-修改后：
-SALIBS = -g -framework Foundation -F/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks -framework JavaNativeFoundation -framework Security -framework CoreFoundation
-
-原：
--I/System/Library/Frameworks/JavaVM.framework/Headers
-修改后：
--I/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/JavaVM.framework/Versions/A/Frameworks/JavaNativeFoundation.framework/Versions/A/Headers
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;11-undefined-symbols-for-architecture-x86-64&#34;&gt;11.Undefined symbols for architecture x86_64&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;llvm-gcc -m64   -m64  -L`pwd`  -framework CoreFoundation  -o gamma launcher/java_md.o launcher/java.o launcher/jli_util.o launcher/wildcard.o -ljvm -lm -pthread
-Undefined symbols for architecture x86_64:
-  &amp;quot;_JNI_CreateJavaVM&amp;quot;, referenced from:
-      _LoadJavaVM in java_md.o
-  &amp;quot;_JNI_GetDefaultJavaVMInitArgs&amp;quot;, referenced from:
-      _LoadJavaVM in java_md.o
-ld: symbol(s) not found for architecture x86_64
-clang: error: linker command failed with exit code 1 (use -v to see invocation)
-make[8]: *** [gamma] Error 1
-make[7]: *** [the_vm] Error 2
-make[6]: *** [product] Error 2
-make[5]: *** [generic_build2] Error 2
-make[4]: *** [product] Error 2
-make[3]: *** [all_product_universal] Error 2
-make[2]: *** [universal_product] Error 2
-make[1]: *** [hotspot-build] Error 2
-make: *** [build_product_image] Error 2
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;解决方法：&lt;br /&gt;
-这个错误困扰了我很久，一开始看上面的&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Linking vm...
-ld: warning: cannot export hidden symbol _AsyncGetCallTrace from forte.o
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;还以为是export symbol过程中出现问题，修改过jdk/src/macosx/native/sun/osxapp/ThreadUtilities.中的attachCurrentThread函数，改为static，还是无法解决问题&lt;br /&gt;
-后面上stackflow上面搜了以下，发现应该是llvm-gcc编译的时候，找不到库文件导致的，仔细看了以下编译命令&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;llvm-gcc -m64   -m64  -L`pwd`...
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;其中-L是指定库文件目录，它指向了当前pwd即目录，然后我&lt;code&gt;find ./ -name &amp;quot;java_md.o&amp;quot;&lt;/code&gt;,发现它在&lt;code&gt;.//JVM/jdkBuild/openjdk_7u4/build/hotspot/outputdir/bsd_amd64_compiler2/product/launcher/java_md.o&lt;/code&gt;，那么此时pwd就应该在&lt;code&gt;.//JVM/jdkBuild/openjdk_7u4/build/hotspot/outputdir/bsd_amd64_compiler2/product&lt;/code&gt;，而当前编译所需要的库文件是&lt;code&gt;/Library/Java/JavaVirtualMachines/jdk1.7.0_80.jdk/Contents/Home/jre/lib/server/libjvm.dylib&lt;/code&gt;&lt;br /&gt;
-使用cp命令将其复制到pwd就好了：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo cp /Library/Java/JavaVirtualMachines/jdk1.7.0_80.jdk/Contents/Home/jre/lib/server/libjvm.dylib ./JVM/jdkBuild/openjdk_7u4/build/hotspot/outputdir/bsd_amd64_compiler2/product
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;12-找不到cgbase-h头文件问题&#34;&gt;12.找不到CGBase.h头文件问题&lt;/h3&gt;
-
-&lt;pre&gt;&lt;code&gt;/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSGeometry.h:9:9: fatal error: 
-      &#39;CoreGraphics/CGBase.h&#39; file not found
-#import &amp;lt;CoreGraphics/CGBase.h&amp;gt;
-        ^~~~~~~~~~~~~~~~~~~~~~~
-/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSGeometry.h:9:9: note: 
-      did not find header &#39;CGBase.h&#39; in framework &#39;CoreGraphics&#39; (loaded from
-      &#39;/System/Library/Frameworks/ApplicationServices.framework/Frameworks&#39;)
-1 error generated.
-make[5]: *** [/Users/jackietsoi/Documents/develop/jdk7u-dev/JVM/jdkBuild/openjdk_7u4/build/tmp/java/java.lang/java/obj64/java_props_macosx.o] Error 1
-make[4]: *** [library_parallel_compile] Error 2
-make[3]: *** [all] Error 1
-make[2]: *** [all] Error 1
-make[1]: *** [jdk-build] Error 2
-make: *** [build_product_image] Error 2
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;解决方法：&lt;br /&gt;
-&lt;code&gt;vi ./jdk/make/common/Defs-macosx.gmk&lt;/code&gt;进行如下更改：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;#OTHER_CFLAGS = \
-#         -F/System/Library/Frameworks/JavaVM.framework/Frameworks \
-#       -F/System/Library/Frameworks/CoreGraphics.framework \
-#        -F/System/Library/Frameworks/ApplicationServices.framework/Frameworks
-
-OTHER_CFLAGS = \
-      -F/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/JavaVM.framework/Frameworks \
-      -F/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/CoreGraphics.framework/Frameworks \
-     -F/Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/ApplicationServices.framework/Frameworks
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;同样使用&lt;code&gt;find ./ -name &amp;quot;CGBase.h&amp;quot;&lt;/code&gt;找到路径，将&lt;code&gt;/System/Library/Frameworks/JavaVM.framework/Frameworks&lt;/code&gt;等路径替换掉即可。&lt;/p&gt;
-
-&lt;h3 id=&#34;15-从macos14-sdk开始不再支持32位程序编译&#34;&gt;15 从macOS14 sdk开始不再支持32位程序编译&lt;/h3&gt;
-
-&lt;p&gt;awt库的编译需要有i386架构的库的支持，但是Apple从macOS14 sdk开始就不再包含32位程序编译支持了，最后一个支持32位程序编译的版本是macOS13 sdk。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;ld: warning: The i386 architecture is deprecated for macOS (remove from the Xcode build setting: ARCHS)
-ld: warning: ignoring file /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/libSystem.tbd, missing required architecture i386 in file /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/libSystem.tbd
-Undefined symbols for architecture i386:
-  &amp;quot;___stack_chk_fail&amp;quot;, referenced from:
-      _main in sizer-32b644.o
-  &amp;quot;___stack_chk_guard&amp;quot;, referenced from:
-      _main in sizer-32b644.o
-  &amp;quot;_printf&amp;quot;, referenced from:
-      _main in sizer-32b644.o
-ld: symbol(s) not found for architecture i386
-clang: error: linker command failed with exit code 1 (use -v to see invocation)
-make[4]: *** [/Users/jackietsoi/Documents/develop/jdk7u-dev/JVM/jdkBuild/openjdk_7u4/build/gensrc/sun/awt/X11/generator/sizer.32] Error 1
-make[3]: *** [all] Error 1
-make[2]: *** [all] Error 1
-make[1]: *** [jdk-build] Error 2
-make: *** [build_product_image] Error 2
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;解决方法：&lt;br /&gt;
-我也尝试去下载了Command_Line_Tools_macOS_10.13_for_Xcode_10.1.dmg进行安装，但是却提示“该软件包与此版本的macOS不兼容”，有兴趣的朋友可以自己再试一下，我就不再折腾了。最后给出最后给出Command Line Tools的下载地址&lt;code&gt;https://developer.apple.com/download/more/&lt;/code&gt;。&lt;/p&gt;
-
-&lt;h2 id=&#34;0x05-总结&#34;&gt;0x05 总结&lt;/h2&gt;
-
-&lt;p&gt;在macOS中编译openjdk7也折腾了两天，最终还是以失败告终，接下来我将使用Ubuntu16.04进行再一次编译尝试，敬请期待。&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>如何生成VMESS URL并发布订阅</title>
-      <link>http://blog.sinowrt.cn/2020/2020-12-01t2202-how-to-generate-vmess-urls-and-public-as-subscription/</link>
-      <pubDate>Tue, 01 Dec 2020 22:02:00 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2020/2020-12-01t2202-how-to-generate-vmess-urls-and-public-as-subscription/</guid>
-      <description>
-
-&lt;h2 id=&#34;0x00-获得vmess-url&#34;&gt;0x00 获得VMESS URL&lt;/h2&gt;
-
-&lt;p&gt;我使用的是V2rayN客户端，直接全选所有节点，然后&lt;code&gt;批量导出分享URL到剪切板&lt;/code&gt;即可&lt;/p&gt;
-
-&lt;h2 id=&#34;0x01-发布订阅信息&#34;&gt;0x01 发布订阅信息&lt;/h2&gt;
-
-&lt;p&gt;订阅信息实际上就是将VMESS URL（每个URL以回车符分隔）进行Base64加密，得到密文做成纯text网页，随便丢到一个安装了apache或nginx服务的服务器即可&lt;/p&gt;
-
-&lt;p&gt;测试方法：在浏览器输入该订阅的网址，能访问到完整的Base64密文即可&lt;/p&gt;
-
-&lt;h2 id=&#34;0x02-发布quantumult订阅信息&#34;&gt;0x02 发布quantumult订阅信息&lt;/h2&gt;
-
-&lt;p&gt;quantumult的订阅信息格式跟V2rayN的不太一样，在这里我还踩了一个小坑，且听我详细道来&lt;/p&gt;
-
-&lt;p&gt;这里要用到一个&lt;a href=&#34;https://quan.eicky.com/&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;小工具&lt;/a&gt;，将V2rayN的vmess url转成符合Quantumult格式的vmess url&lt;/p&gt;
-
-&lt;p&gt;这是示例的vmess url
-&lt;code&gt;vmess://ew0KICAidiI6ICIyIiwNCiAgInBzIjogIuekuuS+iyIsDQogICJhZGQiOiAiMTkyLjE2OC4xLjEiLA0KICAicG9ydCI6ICI0MzIxIiwNCiAgImlkIjogImQ3NzFkODlhLTliZWQtNDc2Ny1hNjlkLTE5NjJkY2MyZTY3YyIsDQogICJhaWQiOiAiNjQiLA0KICAibmV0IjogIndzIiwNCiAgInR5cGUiOiAibm9uZSIsDQogICJob3N0IjogIiIsDQogICJwYXRoIjogIi9leGFtcGxlIiwNCiAgInRscyI6ICIiDQp9&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;使用小工具转换之后的Quantumult vmess url为&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;vmess://56S65L6LID0gdm1lc3MsMTkyLjE2OC4xLjEsNDMyMSxub25lLCJkNzcxZDg5YS05YmVkLTQ3NjctYTY5ZC0xOTYyZGNjMmU2N2MiLG92ZXItdGxzPWZhbHNlLHRscy1ob3N0PSxjZXJ0aWZpY2F0ZT0xLG9iZnM9d3Msb2Jmcy1wYXRoPSIvZXhhbXBsZSJvYmZzLWhlYWRlcj0iSG9zdDoi&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;首先，比较一下V2rayN和Quantumult的vmess url,两者看似非常相似，除了&lt;code&gt;vmess://&lt;/code&gt;相同之外完全不一样。可是你说它不一样吧，它也没个规律比较啥也无从下手&lt;/p&gt;
-
-&lt;p&gt;既然订阅密文是将vmess url 通过base64加密之后得到的，那么vmess://后面这一串东西是不是也是通过base64加密得到的密文呢，那就解密试试吧&lt;/p&gt;
-
-&lt;p&gt;这是V2rayN的Vmess://后一串密文解密的结果&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;{
-  &amp;quot;v&amp;quot;: &amp;quot;2&amp;quot;,
-  &amp;quot;ps&amp;quot;: &amp;quot;示例&amp;quot;,
-  &amp;quot;add&amp;quot;: &amp;quot;192.168.1.1&amp;quot;,
-  &amp;quot;port&amp;quot;: &amp;quot;4321&amp;quot;,
-  &amp;quot;id&amp;quot;: &amp;quot;d771d89a-9bed-4767-a69d-1962dcc2e67c&amp;quot;,
-  &amp;quot;aid&amp;quot;: &amp;quot;64&amp;quot;,
-  &amp;quot;net&amp;quot;: &amp;quot;ws&amp;quot;,
-  &amp;quot;type&amp;quot;: &amp;quot;none&amp;quot;,
-  &amp;quot;host&amp;quot;: &amp;quot;&amp;quot;,
-  &amp;quot;path&amp;quot;: &amp;quot;/example&amp;quot;,
-  &amp;quot;tls&amp;quot;: &amp;quot;&amp;quot;
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;这是Quantumult的Vmess://后一串密文解密的结果&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;示例 = vmess,192.168.1.1,4321,none,&amp;quot;d771d89a-9bed-4767-a69d-1962dcc2e67c&amp;quot;,over-tls=false,tls-host=,certificate=1,obfs=ws,obfs-path=&amp;quot;/example&amp;quot;obfs-header=&amp;quot;Host:&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;通过比较，vmess://后面是base64加密的密文实锤了&lt;/p&gt;
-
-&lt;p&gt;可是将这个vmess url追加到原有的url列表时，Quantumult却只能识别先前的url，而这个追加的无论是单独设为订阅，或是与原来的url一起设为订阅，都无法识别&lt;/p&gt;
-
-&lt;p&gt;更神奇的是，小工具生成Quantumult订阅url时，会同时生成二维码，使用Quantumult应用扫描这个二维码，或者复制这个url通过剪贴板导入的方式，都可以成功识别并添加该服务器&lt;/p&gt;
-
-&lt;p&gt;既然如此，那我们就看看这个Quantumult与原有的url列表中的服务器有什么不一样&lt;/p&gt;
-
-&lt;p&gt;新的Quantumult vmess url&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;示例 = vmess,192.168.1.1,4321,none,&amp;quot;d771d89a-9bed-4767-a69d-1962dcc2e67c&amp;quot;,over-tls=false,tls-host=,certificate=1,obfs=ws,obfs-path=&amp;quot;/example&amp;quot;obfs-header=&amp;quot;Host:&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;旧列表中的Quantumult vmess url&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;示例 = vmess,192.168.1.1,4321,none,&amp;quot;d771d89a-9bed-4767-a69d-1962dcc2e67c&amp;quot;,group=Fndroid,over-tls=false,tls-host=,certificate=1,obfs=ws,obfs-path=&amp;quot;/example&amp;quot;obfs-header=&amp;quot;Host:&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;可以看到，只是多了一个group字段，于是将原来的url添加上group字段，然后base64加密这段字符串追加到vmess://后面&lt;/p&gt;
-
-&lt;p&gt;将这个vmess url追加到原有的vmess url列表中，并将url列表进行base64加密，就可以发布订阅了&lt;/p&gt;
-
-&lt;p&gt;当然这次是能够识别并添加成功了&lt;/p&gt;
 </description>
     </item>
     

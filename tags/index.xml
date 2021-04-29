@@ -6,10 +6,55 @@
     <description>Recent content in Tags on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 10 Mar 2021 14:51:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 23 Apr 2021 18:47:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>AMD64</title>
+      <link>http://blog.sinowrt.cn/tags/amd64/</link>
+      <pubDate>Fri, 23 Apr 2021 18:47:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/tags/amd64/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ARM</title>
+      <link>http://blog.sinowrt.cn/tags/arm/</link>
+      <pubDate>Fri, 23 Apr 2021 18:47:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/tags/arm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>chia</title>
+      <link>http://blog.sinowrt.cn/tags/chia/</link>
+      <pubDate>Fri, 23 Apr 2021 18:47:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/tags/chia/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>raspberry pi</title>
+      <link>http://blog.sinowrt.cn/tags/raspberry-pi/</link>
+      <pubDate>Fri, 23 Apr 2021 18:47:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/tags/raspberry-pi/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>synology</title>
+      <link>http://blog.sinowrt.cn/tags/synology/</link>
+      <pubDate>Thu, 22 Apr 2021 13:30:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/tags/synology/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>python</title>
@@ -39,7 +84,7 @@
     </item>
     
     <item>
-      <title>Linux</title>
+      <title>linux</title>
       <link>http://blog.sinowrt.cn/tags/linux/</link>
       <pubDate>Tue, 09 Mar 2021 09:30:00 +0800</pubDate>
       
@@ -125,15 +170,6 @@
       <pubDate>Tue, 15 Sep 2020 23:14:00 +0800</pubDate>
       
       <guid>http://blog.sinowrt.cn/tags/ubuntu/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>synology</title>
-      <link>http://blog.sinowrt.cn/tags/synology/</link>
-      <pubDate>Sun, 16 Aug 2020 14:27:00 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/tags/synology/</guid>
       <description></description>
     </item>
     

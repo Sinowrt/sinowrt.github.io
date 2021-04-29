@@ -6,10 +6,28 @@
     <description>Recent content in synology on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 16 Aug 2020 14:27:00 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 22 Apr 2021 13:30:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/categories/synology/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>如何将群晖的软件包和资料转移到另一个硬盘</title>
+      <link>http://blog.sinowrt.cn/2021/2021-04-22t1330-how-to-move-the-package-and-documents-in-synology-to-another-hard-disk/</link>
+      <pubDate>Thu, 22 Apr 2021 13:30:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2021/2021-04-22t1330-how-to-move-the-package-and-documents-in-synology-to-another-hard-disk/</guid>
+      <description>0x00 背景 最近网上刮起了chia风，由于手上也有大容量硬盘，但是挂在群晖上做存储盘，于是想将这个盘腾出来，将资料转移到另一个硬盘中。
+0x01 过程 1. 添加新硬盘 首先需要准备一个完全擦除的硬盘，将群晖关机后，将该硬盘接入群晖。启动群晖之后，打开Storage Manager新建一个raid group（我原来是用单盘建立的basic raid group），建立好后再新建一个Volume，如果勾选了全盘扫描的话，需要等待一段时间才能建好。
+2. 转移资料 资料的转移比较简单，打开Control Panel - Shared Folder，选择需要转移的共享文件夹，点击Edit，再Location下拉框中选择新建的Volume即可自动转移。
+3. 转移package 转移package需要用到一个软件MODS Package Manager，我在https://www.beatificabytes.be/sspks 上面下载下来，再在Package Center中手动上传安装的。
+在打开Package Manager的时候遇到白屏的问题，原因是该软件的一个JS需要从谷歌下载，打开fq软件代理一下即可解决。（如果没有fq条件的话，也可以参照这篇博客 改成国内可以访问的cdn即可解决） 软件的使用很简单，选择需要移动的package，然后选择目标Volume，点击Move Package即可。 有些软件在转移过程中会失败，套件没有移动成功，可以不用管它。打开Package Center，会提示该套件错误无法运行，这时候点击修复即可完成套件的转移了。
+4. 转移Moments里面的照片 Moments的照片是存在/homes 共享目录中的，所以只要将该共享目录按步骤2进行转移即可，这一步也可以在Control Panel - User - User Home - Location的下拉框选择转移到新卷。需要特别注意的是Drive的数据库的转移，打开Drive Admin Console - Settings - Database Location 选择转移到目标卷中即可。（在群晖的官网中又说到，在Storage Manager安全地移除Volume也可以转移数据库，但我选择稳妥一点，手动转移）
+5. 安全移除卷 最后一步，我是直接关机，将旧盘直接摘下，然后开机看看有没有什么异常，确保数据都安全地转移到了新卷。
+最后再将旧盘装上，在Storage Manager中安全地移除卷，将旧盘取下来。
+0x02 遇到的问题 在转移资料的第4步中，我没有转移Drive的数据库，直接摘下了硬盘，并启动了群晖，在package center上面修复了Drive 和 Moments，导致Moments不可用。
+最后还是将旧盘装上，在Drive Admin Console中转移了数据库，然后将Moments套件连同数据库一起删除，再重装才解决了问题。 这样的话，就丢失了之前Moments索引的信息，没关系直接再索引一遍就好了。</description>
+    </item>
     
     <item>
       <title>群晖 moments 中的视频不显示缩略图</title>

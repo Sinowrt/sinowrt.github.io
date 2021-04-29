@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>chia on Sinowrt</title>
+    <link>http://blog.sinowrt.cn/tags/chia/</link>
+    <description>Recent content in chia on Sinowrt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 23 Apr 2021 18:47:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.sinowrt.cn/tags/chia/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>在树莓派（ARM）上面运行hpool的chia挖矿程序（AMD64）</title>
+      <link>http://blog.sinowrt.cn/2021/2021-04-23t1847-how-to-run-chia-miner-of-hpool-on-raspberry-pi4/</link>
+      <pubDate>Fri, 23 Apr 2021 18:47:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2021/2021-04-23t1847-how-to-run-chia-miner-of-hpool-on-raspberry-pi4/</guid>
+      <description>0x00 背景 最近chia挖矿可太火了，可惜我运气太差，一个币都没挖到，算了还是直接加入矿池吧。可是硬盘容量已经p完了，用台式机挂机的话，怕是电费都不够亏吧。
+之前在chia的wiki上面，我看到了一个用Rock PI4b组装的矿机，很是心动。可惜Rock pi的生态比Raspberry pi逊色很多，而我又不使用官方软件进行耕种，到时各种适配起来可是个麻烦事。所以，在对比之下我还是选择了Raspberry Pi4B。
+0x01 硬件准备 1. 一块树莓派Raspberry Pi4B 2. sata转usb3.0的易驱线（带12v供电端口的）我选择的是绿巨能的，便宜好用 3. ATX电源一个（根据你硬盘的数量来选择功率）我这里用的是家里闲置的200W 长城电源 4. 大4Pin接口转3.5mm 12V DC接口 转接线若干条 0x02 兜兜转转（仅记录过程 解决方案可以直接看下一节） 将可执行文件上传到树莓派上面，直接运行的时候 会提示Exec Format Error，因为树莓派是ARM架构的，而可执行文件是AMD64架构的。
+可执行文件的信息可以使用file 可执行文件查看，如hpool-miner-chia这个可执行文件的信息就是：
+ubuntu@ubuntu:~/linux$ file ./hpool-miner-chia ./hpool-miner-chia: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, Go BuildID=or4EJC7edY1jm53BAfGR/s_m3PpAuyo9gsjpS3x4h/Eg54hBo5Pfw4tHBF5qZ0/g1_NAK8AbL3R_FIeKSr6, stripped  也可以使用readelf命令查看，如readelf -h python，得到的是ELF Header中的项Magic，第五个数 02时为64位，01时为32位。
+1. box86方案 第一次尝试是在raspberry os上面安装box86，但是运行的时候发现box86并不支持64位可执行文件，遂作罢。
+2. exagear方案 这个方案并未尝试，因为exagear 跟box86一样，只支持32位的可执行文件。
+3. qemu方案 使用sudo apt-get install qemu-user命令安装qemu-user，这个命令会自动安装qemu-user和binfmt，binfmt会通过判断可执行文件的类型，自动选择是否通过qemu来执行该文件。</description>
+    </item>
+    
+  </channel>
+</rss>

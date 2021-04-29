@@ -6,10 +6,28 @@
     <description>Recent content in Categories on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 10 Mar 2021 14:51:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 23 Apr 2021 18:47:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>raspberry pi</title>
+      <link>http://blog.sinowrt.cn/categories/raspberry-pi/</link>
+      <pubDate>Fri, 23 Apr 2021 18:47:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/raspberry-pi/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>synology</title>
+      <link>http://blog.sinowrt.cn/categories/synology/</link>
+      <pubDate>Thu, 22 Apr 2021 13:30:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/synology/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>python</title>
@@ -116,15 +134,6 @@
       <pubDate>Fri, 26 Feb 2021 16:33:00 +0800</pubDate>
       
       <guid>http://blog.sinowrt.cn/categories/jvm/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>synology</title>
-      <link>http://blog.sinowrt.cn/categories/synology/</link>
-      <pubDate>Sun, 16 Aug 2020 14:27:00 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/categories/synology/</guid>
       <description></description>
     </item>
     

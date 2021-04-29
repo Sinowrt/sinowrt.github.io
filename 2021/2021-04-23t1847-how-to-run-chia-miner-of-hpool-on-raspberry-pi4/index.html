@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="sinowrt">
+  
+  
+  
+  <link rel="prev" href="http://blog.sinowrt.cn/2021/2021-04-22t1330-how-to-move-the-package-and-documents-in-synology-to-another-hard-disk/" />
+  
+  <link rel="canonical" href="http://blog.sinowrt.cn/2021/2021-04-23t1847-how-to-run-chia-miner-of-hpool-on-raspberry-pi4/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           在树莓派（ARM）上面运行hpool的chia挖矿程序（AMD64） | Sinowrt
+       
+  </title>
+  <meta name="title" content="在树莓派（ARM）上面运行hpool的chia挖矿程序（AMD64） | Sinowrt">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/blog.sinowrt.cn"
+    },
+    "articleSection" : "posts",
+    "name" : "在树莓派（ARM）上面运行hpool的chia挖矿程序（AMD64）",
+    "headline" : "在树莓派（ARM）上面运行hpool的chia挖矿程序（AMD64）",
+    "description" : "0x00 背景 最近chia挖矿可太火了，可惜我运气太差，一个币都没挖到，算了还是直接加入矿池吧。可是硬盘容量已经p完了，用台式机挂机的话，怕是电费都不够亏吧。\n之前在chia的wiki上面，我看到了一个用Rock PI4b组装的矿机，很是心动。可惜Rock pi的生态比Raspberry pi逊色很多，而我又不使用官方软件进行耕种，到时各种适配起来可是个麻烦事。所以，在对比之下我还是选择了Raspberry Pi4B。\n0x01 硬件准备 1. 一块树莓派Raspberry Pi4B 2. sata转usb3.0的易驱线（带12v供电端口的）我选择的是绿巨能的，便宜好用 3. ATX电源一个（根据你硬盘的数量来选择功率）我这里用的是家里闲置的200W 长城电源 4. 大4Pin接口转3.5mm 12V DC接口 转接线若干条 0x02 兜兜转转（仅记录过程 解决方案可以直接看下一节） 将可执行文件上传到树莓派上面，直接运行的时候 会提示Exec Format Error，因为树莓派是ARM架构的，而可执行文件是AMD64架构的。\n可执行文件的信息可以使用file 可执行文件查看，如hpool-miner-chia这个可执行文件的信息就是：\nubuntu@ubuntu:~\/linux$ file .\/hpool-miner-chia .\/hpool-miner-chia: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, Go BuildID=or4EJC7edY1jm53BAfGR\/s_m3PpAuyo9gsjpS3x4h\/Eg54hBo5Pfw4tHBF5qZ0\/g1_NAK8AbL3R_FIeKSr6, stripped  也可以使用readelf命令查看，如readelf -h python，得到的是ELF Header中的项Magic，第五个数 02时为64位，01时为32位。\n1. box86方案 第一次尝试是在raspberry os上面安装box86，但是运行的时候发现box86并不支持64位可执行文件，遂作罢。\n2. exagear方案 这个方案并未尝试，因为exagear 跟box86一样，只支持32位的可执行文件。\n3. qemu方案 使用sudo apt-get install qemu-user命令安装qemu-user，这个命令会自动安装qemu-user和binfmt，binfmt会通过判断可执行文件的类型，自动选择是否通过qemu来执行该文件。",
+    "inLanguage" : "en-us",
+    "author" : "sinowrt",
+    "creator" : "sinowrt",
+    "publisher": "sinowrt",
+    "accountablePerson" : "sinowrt",
+    "copyrightHolder" : "sinowrt",
+    "copyrightYear" : "2021",
+    "datePublished": "2021-04-23 18:47:00 \x2b0800 CST",
+    "dateModified" : "2021-04-23 18:47:00 \x2b0800 CST",
+    "url" : "http:\/\/blog.sinowrt.cn\/2021\/2021-04-23t1847-how-to-run-chia-miner-of-hpool-on-raspberry-pi4\/",
+    "wordCount" : "181",
+    "keywords" : [ "raspberry pi","ARM","AMD64","chia", "Sinowrt"]
+}
+</script>
+
+</head>
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?85719ea04c6401b98466dfdbc9399c78";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">在树莓派（ARM）上面运行hpool的chia挖矿程序（AMD64）</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2021-04-23 itemprop="datePublished">April 23, 2021</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="http://blog.sinowrt.cn/categories/raspberry-pi/"> raspberry pi </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          
+
+<h2 id="0x00-背景">0x00 背景</h2>
+
+<p>最近chia挖矿可太火了，可惜我运气太差，一个币都没挖到，算了还是直接加入矿池吧。可是硬盘容量已经p完了，用台式机挂机的话，怕是电费都不够亏吧。<br />
+之前在chia的wiki上面，我看到了一个用Rock PI4b组装的矿机，很是心动。可惜Rock pi的生态比Raspberry pi逊色很多，而我又不使用官方软件进行耕种，到时各种适配起来可是个麻烦事。所以，在对比之下我还是选择了Raspberry Pi4B。</p>
+
+<h2 id="0x01-硬件准备">0x01 硬件准备</h2>
+
+<h3 id="1-一块树莓派raspberry-pi4b">1. 一块树莓派Raspberry Pi4B</h3>
+
+<h3 id="2-sata转usb3-0的易驱线-带12v供电端口的-我选择的是绿巨能的-便宜好用">2. sata转usb3.0的易驱线（带12v供电端口的）我选择的是绿巨能的，便宜好用</h3>
+
+<h3 id="3-atx电源一个-根据你硬盘的数量来选择功率-我这里用的是家里闲置的200w-长城电源">3. ATX电源一个（根据你硬盘的数量来选择功率）我这里用的是家里闲置的200W 长城电源</h3>
+
+<h3 id="4-大4pin接口转3-5mm-12v-dc接口-转接线若干条">4. 大4Pin接口转3.5mm 12V DC接口 转接线若干条</h3>
+
+<h2 id="0x02-兜兜转转-仅记录过程-解决方案可以直接看下一节">0x02 兜兜转转（仅记录过程 解决方案可以直接看下一节）</h2>
+
+<p>将可执行文件上传到树莓派上面，直接运行的时候 会提示<code>Exec Format Error</code>，因为树莓派是ARM架构的，而可执行文件是AMD64架构的。<br />
+可执行文件的信息可以使用<code>file 可执行文件</code>查看，如hpool-miner-chia这个可执行文件的信息就是：</p>
+
+<pre><code class="language-shell">ubuntu@ubuntu:~/linux$ file ./hpool-miner-chia 
+./hpool-miner-chia: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, Go BuildID=or4EJC7edY1jm53BAfGR/s_m3PpAuyo9gsjpS3x4h/Eg54hBo5Pfw4tHBF5qZ0/g1_NAK8AbL3R_FIeKSr6, stripped
+</code></pre>
+
+<p>也可以使用readelf命令查看，如<code>readelf -h python</code>，得到的是ELF Header中的项Magic，第五个数 02时为64位，01时为32位。</p>
+
+<h3 id="1-box86方案">1. box86方案</h3>
+
+<p>第一次尝试是在raspberry os上面安装box86，但是运行的时候发现box86并不支持64位可执行文件，遂作罢。</p>
+
+<h3 id="2-exagear方案">2. exagear方案</h3>
+
+<p>这个方案并未尝试，因为exagear 跟box86一样，只支持32位的可执行文件。</p>
+
+<h3 id="3-qemu方案">3. qemu方案</h3>
+
+<p>使用<code>sudo apt-get install qemu-user</code>命令安装qemu-user，这个命令会自动安装qemu-user和binfmt，binfmt会通过判断可执行文件的类型，自动选择是否通过qemu来执行该文件。</p>
+
+<p>这个方案虽然是可行的，但是探索的过程也是十分曲折：</p>
+
+<p>环境: 32位raspios + qemu-user + hpool-miner-chia v1.0.5<br />
+启动的时候提示：dlopen err: Dynamic loading not supported<br />
+然后就是不认plot文件，报open fail 和 Invalid file的错误，但是连接矿池正常，只是没认到plot文件，没有算力，hpool上面也不显示矿机在线。</p>
+
+<p>环境: 32位raspios + qemu-user + hpool-miner-chia v1.0.4.1<br />
+启动的时候不提示dlopen err: Dynamic loading not supported了<br />
+但仍然不认plot文件，报open fail 和 Invalid file的错误，但是连接矿池正常，只是没认到plot文件，没有算力，hpool上面也不显示矿机在线。</p>
+
+<p>环境: 64位raspios + qemu-user + hpool-miner-chia v1.0.4.1<br />
+启动的时候提示<code>qemu: uncaught target signal 11 (Segmentation fault) - core dumped</code> 直接罢工了</p>
+
+<p>在28号下午，hpool 发布了 1.1.0 版本的 hpool-miner-chia，由于官方说下一个版本会支持arm，但是实测并没有，没有就没有吧，试一下能不能用qemu运行</p>
+
+<p>环境: 32位raspios + qemu-user + hpool-miner-chia v1.1.0<br />
+启动的时候不提示dlopen err: Dynamic loading not supported了<br />
+但仍然不认plot文件，报open fail 和 Invalid file的错误，但是连接矿池正常，只是没认到plot文件，没有算力，hpool上面也不显示矿机在线。</p>
+
+<h2 id="0x04-最终方案">0x04 最终方案</h2>
+
+<p>我曾一度想着是不是 usb3.0转sata 转接线坏了，就在虚拟机上面开了ubuntu，连上了硬盘，运行一切正常。</p>
+
+<p>那么问题应该就是出在树莓派上面了，由于之前下载了ubuntu arm64的系统，但是那晚上挂着测试树莓派稳定性的时候，把TF卡烧了，就没有用过这个ubuntu系统。然后我就想，会不会跟系统有关呢，试了那么多个版本的可执行文件都是一个结果。于是拆下TF卡，烧录ubuntu arm64的系统，挂硬盘</p>
+
+<pre><code># 查看待挂载设备列表
+sudo fdisk -l
+
+# 挂载硬盘 我在这里是将/dev/sda1挂载到当前目录的ploted文件夹 
+sudo mount /dev/sda1 ./ploted
+
+# 解除挂载
+sudo umount /dev/sda1
+</code></pre>
+
+<p>硬盘挂载好后，把hpool-miner-chia v1.1.0 版本的执行文件上传上去，安装qemu-user。</p>
+
+<p><code>qemu-x86_64 ./hpool-miner-chia</code>运行。竟然好了！！</p>
+
+<p>虽然不报错，也能认plot文件了，但是挂了一晚上测试发现，这个软件会自己退出。</p>
+
+<p>这好办，上supervisor就好了，具体步骤请参考<a href="https://blog.sinowrt.cn/2020/2020-04-12t2330-ubuntuadd-ngrok-to-supervisor/" rel="nofollow noreferrer" target="_blank">这篇博客</a>自行配置。</p>
+
+<p>最后附上ubuntu的版本: ubuntu-20.04.2-preinstalled-server-arm64+raspi.img.xz</p>
+
+<p>聪明的彦祖们应该知道怎么下载的。</p>
+
+    </div>
+	
+    <div class="post-copyright">
+             
+			
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>sinowrt </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://blog.sinowrt.cn/2021/2021-04-23t1847-how-to-run-chia-miner-of-hpool-on-raspberry-pi4/>http://blog.sinowrt.cn/2021/2021-04-23t1847-how-to-run-chia-miner-of-hpool-on-raspberry-pi4/</span>
+            </p>
+			
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/raspberry-pi/">
+                    #raspberry pi</a></span>
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/arm/">
+                    #ARM</a></span>
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/amd64/">
+                    #AMD64</a></span>
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/chia/">
+                    #chia</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="http://blog.sinowrt.cn">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://blog.sinowrt.cn/2021/2021-04-22t1330-how-to-move-the-package-and-documents-in-synology-to-another-hard-disk/" class="prev" rel="prev" title="如何将群晖的软件包和资料转移到另一个硬盘"><i class="iconfont icon-left"></i>&nbsp;如何将群晖的软件包和资料转移到另一个硬盘</a>
+         
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2021</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://blog.sinowrt.cn">sinowrt</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt | </a><script type="text/javascript" src="https://s4.cnzz.com/z_stat.php?id=1279436618&web_id=1279436618"></script></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>
