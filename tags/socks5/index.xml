@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>socks5 on Sinowrt</title>
+    <link>http://blog.sinowrt.cn/tags/socks5/</link>
+    <description>Recent content in socks5 on Sinowrt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 27 Mar 2022 22:31:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.sinowrt.cn/tags/socks5/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用socks5代理绕过防火墙安全策略</title>
+      <link>http://blog.sinowrt.cn/2022/2022-03-27t2231-bypass-firewall-security-policies-using-a-proxy/</link>
+      <pubDate>Sun, 27 Mar 2022 22:31:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2022/2022-03-27t2231-bypass-firewall-security-policies-using-a-proxy/</guid>
+      <description>0x00 背景 公司不让使用向日葵远程了，在防火墙屏蔽了向日葵，原本可以使用frp穿透的，奈何防病毒软件又太给力了，刚下载下来就被强制删掉，关又关不掉，并且公司电脑是win10家庭版，阉割了远程桌面功能，这个方案就直接pass掉了。由于手头上有空闲的vps，于是转而想到搭建socks5代理服务器，再配置向日葵使用代理连接外网就好了。
+0x01 前期准备 1.国内VPS一台（保证网络更好更稳定）
+2.goproxy
+0x02 服务端搭建 根据系统平台下载对应版本的goproxy，我下载的是windwos版本的，下载后解压进入软件根目录，根据说明文档，运行命令proxy socks -t tcp -p &amp;quot;0.0.0.0:38080&amp;quot; -g &amp;quot;公网地址&amp;quot;--udp-port 0 --udp，启动服务。（记得放行防火墙端口）
+0x03 向日葵连接代理服务器 打开向日葵网络设置，配置代理地址及端口，测试提示连接成功即可保存。
+0x04 总结 至此，整个代理配置已经完成了，过程难点主要在寻找合适的代理软件，在github上面搜搜star多的项目保证没错。（ps：goproxy太好用了，还跨平台，强推！）</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -2,6 +2,112 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
     <url>
+      <loc>http://blog.sinowrt.cn/categories/</loc>
+      
+      <lastmod>2022-03-27T22:31:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/posts/</loc>
+      
+      <lastmod>2022-03-27T22:31:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/</loc>
+      
+      <lastmod>2022-03-27T22:31:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/</loc>
+      
+      <lastmod>2022-03-27T22:31:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/firewall/</loc>
+      
+      <lastmod>2022-03-27T22:31:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/categories/proxy/</loc>
+      
+      <lastmod>2022-03-27T22:31:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/proxy/</loc>
+      
+      <lastmod>2022-03-27T22:31:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/socks5/</loc>
+      
+      <lastmod>2022-03-27T22:31:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/2022/2022-03-27t2231-bypass-firewall-security-policies-using-a-proxy/</loc>
+      
+      <lastmod>2022-03-27T22:31:00+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
       <loc>http://blog.sinowrt.cn/tags/amd64/</loc>
       
       <lastmod>2021-04-23T18:47:00+08:00</lastmod>
@@ -15,54 +121,6 @@
   
     <url>
       <loc>http://blog.sinowrt.cn/tags/arm/</loc>
-      
-      <lastmod>2021-04-23T18:47:00+08:00</lastmod>
-      
-      
-      
-      <priority>0</priority>
-      
-      
-    </url>
-  
-    <url>
-      <loc>http://blog.sinowrt.cn/categories/</loc>
-      
-      <lastmod>2021-04-23T18:47:00+08:00</lastmod>
-      
-      
-      
-      <priority>0</priority>
-      
-      
-    </url>
-  
-    <url>
-      <loc>http://blog.sinowrt.cn/posts/</loc>
-      
-      <lastmod>2021-04-23T18:47:00+08:00</lastmod>
-      
-      
-      
-      <priority>0</priority>
-      
-      
-    </url>
-  
-    <url>
-      <loc>http://blog.sinowrt.cn/</loc>
-      
-      <lastmod>2021-04-23T18:47:00+08:00</lastmod>
-      
-      
-      
-      <priority>0</priority>
-      
-      
-    </url>
-  
-    <url>
-      <loc>http://blog.sinowrt.cn/tags/</loc>
       
       <lastmod>2021-04-23T18:47:00+08:00</lastmod>
       

@@ -5,8 +5,39 @@
     <description>Recent content in Sinowrt on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 23 Apr 2021 18:47:00 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 27 Mar 2022 22:31:00 +0800</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>使用socks5代理绕过防火墙安全策略</title>
+      <link>http://blog.sinowrt.cn/2022/2022-03-27t2231-bypass-firewall-security-policies-using-a-proxy/</link>
+      <pubDate>Sun, 27 Mar 2022 22:31:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2022/2022-03-27t2231-bypass-firewall-security-policies-using-a-proxy/</guid>
+      <description>
+
+&lt;h2 id=&#34;0x00-背景&#34;&gt;0x00 背景&lt;/h2&gt;
+
+&lt;p&gt;公司不让使用向日葵远程了，在防火墙屏蔽了向日葵，原本可以使用frp穿透的，奈何防病毒软件又太给力了，刚下载下来就被强制删掉，关又关不掉，并且公司电脑是win10家庭版，阉割了远程桌面功能，这个方案就直接pass掉了。由于手头上有空闲的vps，于是转而想到搭建socks5代理服务器，再配置向日葵使用代理连接外网就好了。&lt;/p&gt;
+
+&lt;h2 id=&#34;0x01-前期准备&#34;&gt;0x01 前期准备&lt;/h2&gt;
+
+&lt;p&gt;1.国内VPS一台（保证网络更好更稳定）&lt;br /&gt;
+2.&lt;a href=&#34;https://github.com/snail007/goproxy&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;goproxy&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;0x02-服务端搭建&#34;&gt;0x02 服务端搭建&lt;/h2&gt;
+
+&lt;p&gt;根据系统平台下载对应版本的goproxy，我下载的是windwos版本的，下载后解压进入软件根目录，根据说明文档，运行命令&lt;code&gt;proxy socks -t tcp -p &amp;quot;0.0.0.0:38080&amp;quot; -g &amp;quot;公网地址&amp;quot;--udp-port 0 --udp&lt;/code&gt;，启动服务。（记得放行防火墙端口）&lt;/p&gt;
+
+&lt;h2 id=&#34;0x03-向日葵连接代理服务器&#34;&gt;0x03 向日葵连接代理服务器&lt;/h2&gt;
+
+&lt;p&gt;打开向日葵网络设置，配置代理地址及端口，测试提示连接成功即可保存。&lt;/p&gt;
+
+&lt;h2 id=&#34;0x04-总结&#34;&gt;0x04 总结&lt;/h2&gt;
+
+&lt;p&gt;至此，整个代理配置已经完成了，过程难点主要在寻找合适的代理软件，在github上面搜搜star多的项目保证没错。（ps：goproxy太好用了，还跨平台，强推！）&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>在树莓派（ARM）上面运行hpool的chia挖矿程序（AMD64）</title>
@@ -770,26 +801,6 @@ If you encounter this issue regularly because of slow network conditions, consid
 
 &lt;p&gt;解决方案：&lt;br /&gt;
 将客户端中的host字段清空去掉就好了。&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Vi 的一些基本操作</title>
-      <link>http://blog.sinowrt.cn/2021/2021-02-26t1740-basic-operation-in-vi/</link>
-      <pubDate>Fri, 26 Feb 2021 17:40:00 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2021/2021-02-26t1740-basic-operation-in-vi/</guid>
-      <description>
-
-&lt;h2 id=&#34;0x00-基本操作&#34;&gt;0x00 基本操作&lt;/h2&gt;
-
-&lt;h3 id=&#34;1-查找&#34;&gt;1.查找&lt;/h3&gt;
-
-&lt;p&gt;命令模式下，\ + 关键字&lt;/p&gt;
-
-&lt;h3 id=&#34;2-显示行号&#34;&gt;2.显示行号&lt;/h3&gt;
-
-&lt;p&gt;命令模式下, :set number&lt;/p&gt;
 </description>
     </item>
     
