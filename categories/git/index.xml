@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>git on Sinowrt</title>
+    <link>http://blog.sinowrt.cn/categories/git/</link>
+    <description>Recent content in git on Sinowrt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 28 Mar 2022 20:24:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.sinowrt.cn/categories/git/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>在windows server 2019中部署git服务端</title>
+      <link>http://blog.sinowrt.cn/2022/2022-03-28t2024-deploy-a-git-service-on-windows/</link>
+      <pubDate>Mon, 28 Mar 2022 20:24:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2022/2022-03-28t2024-deploy-a-git-service-on-windows/</guid>
+      <description>0x00 背景 最近公司有些文件需要共享，协同编辑，建一个共享文件夹吧，又太糙了，如果能够记录下文件的修改记录就更好了，于是我想到了搭建一个git私服，开干。
+0x01 环境介绍 系统环境：windows server 2019
+软件包：gogs、git for windows
+0x02 部署过程 先安装git for windows，我这里下载的是安装版，傻瓜式安装即可。
+将下载的gogs压缩包解压出来，cmd进入根目录，直接运行./gogs web
+gogs默认是监听了本地3000端口，打开浏览器打开http://localhost:3000/install进行初始化配置
+配置挺简单的，特别说一下设置数据库类型（选SQLite3即可，选其他数据库需要另外安装），其他按需设置即可
+配置完成之后打开http://localhost:3000/即可进入gogs的web界面
+如果需要开放到外网，在防火墙放行端口即可。</description>
+    </item>
+    
+  </channel>
+</rss>

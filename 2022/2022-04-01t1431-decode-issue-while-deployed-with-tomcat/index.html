@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="sinowrt">
+  
+  
+  
+  <link rel="prev" href="http://blog.sinowrt.cn/2022/2022-03-28t2024-deploy-a-git-service-on-windows/" />
+  <link rel="next" href="http://blog.sinowrt.cn/2022/2022-04-17t2024-how-to-install-vmware-tools-on-ubuntu20.04/" />
+  <link rel="canonical" href="http://blog.sinowrt.cn/2022/2022-04-01t1431-decode-issue-while-deployed-with-tomcat/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           修复echart数据不显示的问题————暨解决tomcat默认编码导致后端接收urlencode参数乱码的问题 | Sinowrt
+       
+  </title>
+  <meta name="title" content="修复echart数据不显示的问题————暨解决tomcat默认编码导致后端接收urlencode参数乱码的问题 | Sinowrt">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/blog.sinowrt.cn"
+    },
+    "articleSection" : "posts",
+    "name" : "修复echart数据不显示的问题————暨解决tomcat默认编码导致后端接收urlencode参数乱码的问题",
+    "headline" : "修复echart数据不显示的问题————暨解决tomcat默认编码导致后端接收urlencode参数乱码的问题",
+    "description" : "0x00 背景 最近收到一个开发任务，虽然是新系统，但是技术架构非常老，是使用tomcat进行部署的（这句话要记好，后面会考的）。 这个系统原本外包团队已经开发好了，在公司测试环境中跑起来的时候，echart却不加载，那么我就来看看是什么问题。\n0x01 过程一 首先是将项目基本环境搭建起来，因为我的移动电脑访问不到公司内网数据库，在这里还用Goproxy搭建了一个代理服务，移动电脑通过代理服务间接连到数据库。 项目跑起来之后，通过console调试大法，发现后端是有返回数据的，但是到了echart中却显示不出来。\n既然这样，那就console.log一下echart，看看里面的data是啥，有没有跟后端返回的结果匹配起来。 结果发现后端返回的是广东省或者广西壮族自治区等全称，但是前端的data中就只显示各个省份的简称：广东、广西等。\n既然数据集有了，也比较固定，那么就在前端建立一个映射字典，将后端返回的值进行简称映射替换之后，就可以正常匹配上了。\n这里还有另一个办法，就是在echart的option中新增一个nameMap，将映射关系加上，也能正常匹配，但是由于映射名称之后，各省份的名称比较长，有些重叠有些错位，于是就不适用在option中添加nameMap的方法。\n在经过上面的处理之后，地图中的数据也能正常显示了。\n0x01 过程二 除了过程一中的地图显示问题之外，在该地图下方还有一个对应点击对应省份，放大该省可以显示各区域的数据的功能。首先是地图也默认加载不出来，经排查之后，确认是url拼接有问题，更正之后就可以发送数据请求了，但是请求返回的是无数据。 又经过一番仔细排查，确认是查询省份的时候，传到后端的是“广东”，而非全称“广东省”，这个好办，还是跟上面一样，加一个映射表，在发送请求的时候，将查询参数通过映射表映射为全称即可查到数据。\n加了映射表之后，发现还是查不到！看了后端的日志，发现参数是乱码，我想了下，之前我也调整了tomcat的日志显示编码，也添加了-Dfile参数，日志显示这一块应该是没问题了。那么就只有前端发送请求时没有指定编码或者后端解析参数的时候跟前端编码不一致的问题了，于是在前端指定了content-type的encoding参数，但是发现还是乱码。在后端的requestmapping中指定解码编码也不行。\n好家伙，实在没辙了，那就复制乱码，随便百度一个乱码查询的网站，发现原字符编码是UTF-8，解析编码是iso8859-1的时候，是能够还原回“广东省”的，于是线索又回到了tomcat。\n查了一下资料，发现问题就是出现在tomcat上，如果在server.xml中未指定解析编码的话，tomcat默认编码就是iso-8859-1。\n原因找到了，咱打开tomcat根目录下的conf文件夹，找到server.xml文件，将connector指定编码\n\x26lt;Connector port=\x26quot;8080\x26quot; protocol=\x26quot;HTTP\/1.1\x26quot; connectionTimeout=\x26quot;20000\x26quot; redirectPort=\x26quot;8443\x26quot; \/\x26gt;  修改为：\n\x26lt;Connector useBodyEncodingForURI=\x26quot;true\x26quot; URIEncoding=\x26quot;UTF-8\x26quot; port=\x26quot;8080\x26quot; protocol=\x26quot;HTTP\/1.1\x26quot; connectionTimeout=\x26quot;20000\x26quot; redirectPort=\x26quot;8443\x26quot; \/\x26gt;  之后，重启tomcat即可。\n0x01 过程三 虽然解决了前端传值到后端的乱码问题，但是后面我发现，后端传回浏览器的开发人员工具中的值竟然也显示乱码。\n这又是咋回事呢？ 仔细看了一下，发现是后端返回的时候，response中的header并未携带编码信息，浏览器无法识别到编码，就使用默认的windows-1252进行解析，就产生了乱码的问题，虽然传到前端是正常的，但是为了方便后面上线之后的调试，还是到后端指定了Content-Type的header，指定之后，就正常啦。",
+    "inLanguage" : "en-us",
+    "author" : "sinowrt",
+    "creator" : "sinowrt",
+    "publisher": "sinowrt",
+    "accountablePerson" : "sinowrt",
+    "copyrightHolder" : "sinowrt",
+    "copyrightYear" : "2022",
+    "datePublished": "2022-04-01 14:31:00 \x2b0800 CST",
+    "dateModified" : "2022-04-01 14:31:00 \x2b0800 CST",
+    "url" : "http:\/\/blog.sinowrt.cn\/2022\/2022-04-01t1431-decode-issue-while-deployed-with-tomcat\/",
+    "wordCount" : "42",
+    "keywords" : [ "tomcat","decode","乱码", "Sinowrt"]
+}
+</script>
+
+</head>
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?85719ea04c6401b98466dfdbc9399c78";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">修复echart数据不显示的问题————暨解决tomcat默认编码导致后端接收urlencode参数乱码的问题</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2022-04-01 itemprop="datePublished">April 1, 2022</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="http://blog.sinowrt.cn/categories/tomcat/"> tomcat </a>
+                        <a href="http://blog.sinowrt.cn/categories/decode/"> decode </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          
+
+<h2 id="0x00-背景">0x00 背景</h2>
+
+<p>最近收到一个开发任务，虽然是新系统，但是技术架构非常老，是使用tomcat进行部署的（这句话要记好，后面会考的）。
+这个系统原本外包团队已经开发好了，在公司测试环境中跑起来的时候，echart却不加载，那么我就来看看是什么问题。</p>
+
+<h2 id="0x01-过程一">0x01 过程一</h2>
+
+<p>首先是将项目基本环境搭建起来，因为我的移动电脑访问不到公司内网数据库，在这里还用Goproxy搭建了一个代理服务，移动电脑通过代理服务间接连到数据库。
+项目跑起来之后，通过console调试大法，发现后端是有返回数据的，但是到了echart中却显示不出来。<br />
+既然这样，那就console.log一下echart，看看里面的data是啥，有没有跟后端返回的结果匹配起来。
+结果发现后端返回的是广东省或者广西壮族自治区等全称，但是前端的data中就只显示各个省份的简称：广东、广西等。<br />
+既然数据集有了，也比较固定，那么就在前端建立一个映射字典，将后端返回的值进行简称映射替换之后，就可以正常匹配上了。<br />
+这里还有另一个办法，就是在echart的option中新增一个nameMap，将映射关系加上，也能正常匹配，但是由于映射名称之后，各省份的名称比较长，有些重叠有些错位，于是就不适用在option中添加nameMap的方法。<br />
+在经过上面的处理之后，地图中的数据也能正常显示了。</p>
+
+<h2 id="0x01-过程二">0x01 过程二</h2>
+
+<p>除了过程一中的地图显示问题之外，在该地图下方还有一个对应点击对应省份，放大该省可以显示各区域的数据的功能。首先是地图也默认加载不出来，经排查之后，确认是url拼接有问题，更正之后就可以发送数据请求了，但是请求返回的是无数据。
+又经过一番仔细排查，确认是查询省份的时候，传到后端的是“广东”，而非全称“广东省”，这个好办，还是跟上面一样，加一个映射表，在发送请求的时候，将查询参数通过映射表映射为全称即可查到数据。<br />
+加了映射表之后，发现还是查不到！看了后端的日志，发现参数是乱码，我想了下，之前我也调整了tomcat的日志显示编码，也添加了-Dfile参数，日志显示这一块应该是没问题了。那么就只有前端发送请求时没有指定编码或者后端解析参数的时候跟前端编码不一致的问题了，于是在前端指定了content-type的encoding参数，但是发现还是乱码。在后端的requestmapping中指定解码编码也不行。<br />
+好家伙，实在没辙了，那就复制乱码，随便百度一个乱码查询的网站，发现原字符编码是UTF-8，解析编码是iso8859-1的时候，是能够还原回“广东省”的，于是线索又回到了tomcat。<br />
+查了一下资料，发现问题就是出现在tomcat上，如果在server.xml中未指定解析编码的话，tomcat默认编码就是iso-8859-1。<br />
+原因找到了，咱打开tomcat根目录下的conf文件夹，找到server.xml文件，将connector指定编码</p>
+
+<pre><code class="language-xml">&lt;Connector  port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot; connectionTimeout=&quot;20000&quot; redirectPort=&quot;8443&quot; /&gt;
+</code></pre>
+
+<p>修改为：</p>
+
+<pre><code class="language-xml">&lt;Connector useBodyEncodingForURI=&quot;true&quot; URIEncoding=&quot;UTF-8&quot;
+            port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot;
+            connectionTimeout=&quot;20000&quot;
+            redirectPort=&quot;8443&quot; /&gt;
+</code></pre>
+
+<p>之后，重启tomcat即可。</p>
+
+<h2 id="0x01-过程三">0x01 过程三</h2>
+
+<p>虽然解决了前端传值到后端的乱码问题，但是后面我发现，后端传回浏览器的开发人员工具中的值竟然也显示乱码。<br />
+这又是咋回事呢？
+仔细看了一下，发现是后端返回的时候，response中的header并未携带编码信息，浏览器无法识别到编码，就使用默认的windows-1252进行解析，就产生了乱码的问题，虽然传到前端是正常的，但是为了方便后面上线之后的调试，还是到后端指定了Content-Type的header，指定之后，就正常啦。</p>
+
+    </div>
+	
+    <div class="post-copyright">
+             
+			
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>sinowrt </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://blog.sinowrt.cn/2022/2022-04-01t1431-decode-issue-while-deployed-with-tomcat/>http://blog.sinowrt.cn/2022/2022-04-01t1431-decode-issue-while-deployed-with-tomcat/</span>
+            </p>
+			
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/tomcat/">
+                    #tomcat</a></span>
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/decode/">
+                    #decode</a></span>
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/%E4%B9%B1%E7%A0%81/">
+                    #乱码</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="http://blog.sinowrt.cn">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://blog.sinowrt.cn/2022/2022-03-28t2024-deploy-a-git-service-on-windows/" class="prev" rel="prev" title="在windows server 2019中部署git服务端"><i class="iconfont icon-left"></i>&nbsp;在windows server 2019中部署git服务端</a>
+         
+        
+        <a href="http://blog.sinowrt.cn/2022/2022-04-17t2024-how-to-install-vmware-tools-on-ubuntu20.04/" class="next" rel="next" title="如何在Ubuntu20.04中安装VMware tools">如何在Ubuntu20.04中安装VMware tools&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2022</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://blog.sinowrt.cn">sinowrt</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt | </a><script type="text/javascript" src="https://s4.cnzz.com/z_stat.php?id=1279436618&web_id=1279436618"></script></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

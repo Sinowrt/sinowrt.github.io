@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="sinowrt">
+  
+  
+  
+  <link rel="prev" href="http://blog.sinowrt.cn/2022/2022-03-27t2231-bypass-firewall-security-policies-using-a-proxy/" />
+  <link rel="next" href="http://blog.sinowrt.cn/2022/2022-04-01t1431-decode-issue-while-deployed-with-tomcat/" />
+  <link rel="canonical" href="http://blog.sinowrt.cn/2022/2022-03-28t2024-deploy-a-git-service-on-windows/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           在windows server 2019中部署git服务端 | Sinowrt
+       
+  </title>
+  <meta name="title" content="在windows server 2019中部署git服务端 | Sinowrt">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/blog.sinowrt.cn"
+    },
+    "articleSection" : "posts",
+    "name" : "在windows server 2019中部署git服务端",
+    "headline" : "在windows server 2019中部署git服务端",
+    "description" : "0x00 背景 最近公司有些文件需要共享，协同编辑，建一个共享文件夹吧，又太糙了，如果能够记录下文件的修改记录就更好了，于是我想到了搭建一个git私服，开干。\n0x01 环境介绍 系统环境：windows server 2019\n软件包：gogs、git for windows\n0x02 部署过程 先安装git for windows，我这里下载的是安装版，傻瓜式安装即可。\n将下载的gogs压缩包解压出来，cmd进入根目录，直接运行.\/gogs web\ngogs默认是监听了本地3000端口，打开浏览器打开http:\/\/localhost:3000\/install进行初始化配置\n配置挺简单的，特别说一下设置数据库类型（选SQLite3即可，选其他数据库需要另外安装），其他按需设置即可\n配置完成之后打开http:\/\/localhost:3000\/即可进入gogs的web界面\n如果需要开放到外网，在防火墙放行端口即可。",
+    "inLanguage" : "en-us",
+    "author" : "sinowrt",
+    "creator" : "sinowrt",
+    "publisher": "sinowrt",
+    "accountablePerson" : "sinowrt",
+    "copyrightHolder" : "sinowrt",
+    "copyrightYear" : "2022",
+    "datePublished": "2022-03-28 20:24:00 \x2b0800 CST",
+    "dateModified" : "2022-03-28 20:24:00 \x2b0800 CST",
+    "url" : "http:\/\/blog.sinowrt.cn\/2022\/2022-03-28t2024-deploy-a-git-service-on-windows\/",
+    "wordCount" : "22",
+    "keywords" : [ "git","windows server", "Sinowrt"]
+}
+</script>
+
+</head>
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?85719ea04c6401b98466dfdbc9399c78";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">在windows server 2019中部署git服务端</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2022-03-28 itemprop="datePublished">March 28, 2022</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="http://blog.sinowrt.cn/categories/git/"> git </a>
+                        <a href="http://blog.sinowrt.cn/categories/windows-server/"> windows server </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          
+
+<h2 id="0x00-背景">0x00 背景</h2>
+
+<p>最近公司有些文件需要共享，协同编辑，建一个共享文件夹吧，又太糙了，如果能够记录下文件的修改记录就更好了，于是我想到了搭建一个git私服，开干。</p>
+
+<h2 id="0x01-环境介绍">0x01 环境介绍</h2>
+
+<p>系统环境：windows server 2019<br />
+软件包：<a href="https://dl.gogs.io/" rel="nofollow noreferrer" target="_blank">gogs</a>、<a href="https://git-scm.com/download/win" rel="nofollow noreferrer" target="_blank">git for windows</a></p>
+
+<h2 id="0x02-部署过程">0x02 部署过程</h2>
+
+<p>先安装git for windows，我这里下载的是安装版，傻瓜式安装即可。</p>
+
+<p>将下载的gogs压缩包解压出来，cmd进入根目录，直接运行./gogs web</p>
+
+<p>gogs默认是监听了本地3000端口，打开浏览器打开<code>http://localhost:3000/install</code>进行初始化配置</p>
+
+<p>配置挺简单的，特别说一下设置数据库类型（选SQLite3即可，选其他数据库需要另外安装），其他按需设置即可</p>
+
+<p>配置完成之后打开<code>http://localhost:3000/</code>即可进入gogs的web界面</p>
+
+<p>如果需要开放到外网，在防火墙放行端口即可。</p>
+
+    </div>
+	
+    <div class="post-copyright">
+             
+			
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>sinowrt </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://blog.sinowrt.cn/2022/2022-03-28t2024-deploy-a-git-service-on-windows/>http://blog.sinowrt.cn/2022/2022-03-28t2024-deploy-a-git-service-on-windows/</span>
+            </p>
+			
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/git/">
+                    #git</a></span>
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/windows-server/">
+                    #windows server</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="http://blog.sinowrt.cn">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://blog.sinowrt.cn/2022/2022-03-27t2231-bypass-firewall-security-policies-using-a-proxy/" class="prev" rel="prev" title="使用socks5代理绕过防火墙安全策略"><i class="iconfont icon-left"></i>&nbsp;使用socks5代理绕过防火墙安全策略</a>
+         
+        
+        <a href="http://blog.sinowrt.cn/2022/2022-04-01t1431-decode-issue-while-deployed-with-tomcat/" class="next" rel="next" title="修复echart数据不显示的问题————暨解决tomcat默认编码导致后端接收urlencode参数乱码的问题">修复echart数据不显示的问题————暨解决tomcat默认编码导致后端接收urlencode参数乱码的问题&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2022</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://blog.sinowrt.cn">sinowrt</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt | </a><script type="text/javascript" src="https://s4.cnzz.com/z_stat.php?id=1279436618&web_id=1279436618"></script></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

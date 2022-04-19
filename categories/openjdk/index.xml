@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>openjdk on Sinowrt</title>
+    <link>http://blog.sinowrt.cn/categories/openjdk/</link>
+    <description>Recent content in openjdk on Sinowrt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 17 Apr 2022 20:30:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.sinowrt.cn/categories/openjdk/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>在ubuntu20.04中编译OpenJDK7</title>
+      <link>http://blog.sinowrt.cn/2022/2022-04-17t2030-how-to-compile-openjdk7-on-ubuntu20.04/</link>
+      <pubDate>Sun, 17 Apr 2022 20:30:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2022/2022-04-17t2030-how-to-compile-openjdk7-on-ubuntu20.04/</guid>
+      <description>0x00 编译环境 系统：ubuntu20.04
+目标JDK：openjdk7
+Bootstrap JDK：Java SE Development Kit 7u4
+Ant：apache-ant-1.9.16
+Freetype：freetype-2.3.0
+gcc/g++版本：gcc-4.9/g++-4.9
+0x01 环境配置 安装依赖包
+sudo apt-get install build-essential gawk m4 libasound2-dev libcups2-dev libxrender-dev xorg-dev xutils-dev binutils libmotif-dev  安装Freetype
+将下载的软件包解压出来，进入根目录
+./configure sudo make sudo make install  配置环境变量，可以将以下代码保存到一个文件中，使用source命令，source该文件环境变量即设置成功：
+#语言选项，这个必须设置，否则编译好后会出现一个HashTable的NPE错 export LANG=C #Bootstrap JDK的安装路径。必须设置 export ALT_BOOTDIR=/home/sinowrt/Documents/jre1.7.0_04 #允许自动下载依赖 export ALLOW_DOWNLOADS=true #并行编译的线程数，设置为和CPU内核数量一致即可 export HOTSPOT_BUILD_JOBS=4 export ALT_PARALLEL_COMPILE_JOBS=4 #比较本次build出来的映像与先前版本的差异。这对我们来说没有意义， #必须设置为false，否则sanity检查会报缺少先前版本JDK的映像的错误提示。 #如果已经设置dev或者DEV_ONLY=true，这个不显式设置也行 export SKIP_COMPARE_IMAGES=true #使用预编译头文件，不加这个编译会更慢一些 export USE_PRECOMPILED_HEADER=true #要编译的内容 export BUILD_LANGTOOLS=true #export BUILD_JAXP=false #export BUILD_JAXWS=false #export BUILD_CORBA=false export BUILD_HOTSPOT=true export BUILD_JDK=true #要编译的版本 #export SKIP_DEBUG_BUILD=false #export SKIP_FASTDEBUG_BUILD=true #export DEBUG_NAME=debug #把它设置为false可以避开javaws和浏览器Java插件之类的部分的build BUILD_DEPLOY=false #把它设置为false就不会build出安装包。因为安装包里有些奇怪的依赖， #但即便不build出它也已经能得到完整的JDK映像，所以还是别build它好了 BUILD_INSTALL=false #这两个环境变量必须去掉，不然会有很诡异的事情发生（我没有具体查过这些&amp;quot;诡异的 #事情&amp;quot;，Makefile脚本检查到有这2个变量就会提示警告） unset JAVA_HOME unset CLASSPATH # ==============【以下是我的个性化环境配置，可以按需设置】==================== #设置freetype路径 export ALT_FREETYPE_HEADERS_PATH=/usr/local/include export ALT_FREETYPE_LIB_PATH=/usr/local/lib #设置Ant路径 export PATH=/home/sinowrt/Documents/apache-ant-1.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>decode on Sinowrt</title>
+    <link>http://blog.sinowrt.cn/categories/decode/</link>
+    <description>Recent content in decode on Sinowrt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 01 Apr 2022 14:31:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.sinowrt.cn/categories/decode/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>修复echart数据不显示的问题————暨解决tomcat默认编码导致后端接收urlencode参数乱码的问题</title>
+      <link>http://blog.sinowrt.cn/2022/2022-04-01t1431-decode-issue-while-deployed-with-tomcat/</link>
+      <pubDate>Fri, 01 Apr 2022 14:31:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2022/2022-04-01t1431-decode-issue-while-deployed-with-tomcat/</guid>
+      <description>0x00 背景 最近收到一个开发任务，虽然是新系统，但是技术架构非常老，是使用tomcat进行部署的（这句话要记好，后面会考的）。 这个系统原本外包团队已经开发好了，在公司测试环境中跑起来的时候，echart却不加载，那么我就来看看是什么问题。
+0x01 过程一 首先是将项目基本环境搭建起来，因为我的移动电脑访问不到公司内网数据库，在这里还用Goproxy搭建了一个代理服务，移动电脑通过代理服务间接连到数据库。 项目跑起来之后，通过console调试大法，发现后端是有返回数据的，但是到了echart中却显示不出来。
+既然这样，那就console.log一下echart，看看里面的data是啥，有没有跟后端返回的结果匹配起来。 结果发现后端返回的是广东省或者广西壮族自治区等全称，但是前端的data中就只显示各个省份的简称：广东、广西等。
+既然数据集有了，也比较固定，那么就在前端建立一个映射字典，将后端返回的值进行简称映射替换之后，就可以正常匹配上了。
+这里还有另一个办法，就是在echart的option中新增一个nameMap，将映射关系加上，也能正常匹配，但是由于映射名称之后，各省份的名称比较长，有些重叠有些错位，于是就不适用在option中添加nameMap的方法。
+在经过上面的处理之后，地图中的数据也能正常显示了。
+0x01 过程二 除了过程一中的地图显示问题之外，在该地图下方还有一个对应点击对应省份，放大该省可以显示各区域的数据的功能。首先是地图也默认加载不出来，经排查之后，确认是url拼接有问题，更正之后就可以发送数据请求了，但是请求返回的是无数据。 又经过一番仔细排查，确认是查询省份的时候，传到后端的是“广东”，而非全称“广东省”，这个好办，还是跟上面一样，加一个映射表，在发送请求的时候，将查询参数通过映射表映射为全称即可查到数据。
+加了映射表之后，发现还是查不到！看了后端的日志，发现参数是乱码，我想了下，之前我也调整了tomcat的日志显示编码，也添加了-Dfile参数，日志显示这一块应该是没问题了。那么就只有前端发送请求时没有指定编码或者后端解析参数的时候跟前端编码不一致的问题了，于是在前端指定了content-type的encoding参数，但是发现还是乱码。在后端的requestmapping中指定解码编码也不行。
+好家伙，实在没辙了，那就复制乱码，随便百度一个乱码查询的网站，发现原字符编码是UTF-8，解析编码是iso8859-1的时候，是能够还原回“广东省”的，于是线索又回到了tomcat。
+查了一下资料，发现问题就是出现在tomcat上，如果在server.xml中未指定解析编码的话，tomcat默认编码就是iso-8859-1。
+原因找到了，咱打开tomcat根目录下的conf文件夹，找到server.xml文件，将connector指定编码
+&amp;lt;Connector port=&amp;quot;8080&amp;quot; protocol=&amp;quot;HTTP/1.1&amp;quot; connectionTimeout=&amp;quot;20000&amp;quot; redirectPort=&amp;quot;8443&amp;quot; /&amp;gt;  修改为：
+&amp;lt;Connector useBodyEncodingForURI=&amp;quot;true&amp;quot; URIEncoding=&amp;quot;UTF-8&amp;quot; port=&amp;quot;8080&amp;quot; protocol=&amp;quot;HTTP/1.1&amp;quot; connectionTimeout=&amp;quot;20000&amp;quot; redirectPort=&amp;quot;8443&amp;quot; /&amp;gt;  之后，重启tomcat即可。
+0x01 过程三 虽然解决了前端传值到后端的乱码问题，但是后面我发现，后端传回浏览器的开发人员工具中的值竟然也显示乱码。
+这又是咋回事呢？ 仔细看了一下，发现是后端返回的时候，response中的header并未携带编码信息，浏览器无法识别到编码，就使用默认的windows-1252进行解析，就产生了乱码的问题，虽然传到前端是正常的，但是为了方便后面上线之后的调试，还是到后端指定了Content-Type的header，指定之后，就正常啦。</description>
+    </item>
+    
+  </channel>
+</rss>

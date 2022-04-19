@@ -6,10 +6,79 @@
     <description>Recent content in Posts on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 27 Mar 2022 22:31:00 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 17 Apr 2022 20:30:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>在ubuntu20.04中编译OpenJDK7</title>
+      <link>http://blog.sinowrt.cn/2022/2022-04-17t2030-how-to-compile-openjdk7-on-ubuntu20.04/</link>
+      <pubDate>Sun, 17 Apr 2022 20:30:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2022/2022-04-17t2030-how-to-compile-openjdk7-on-ubuntu20.04/</guid>
+      <description>0x00 编译环境 系统：ubuntu20.04
+目标JDK：openjdk7
+Bootstrap JDK：Java SE Development Kit 7u4
+Ant：apache-ant-1.9.16
+Freetype：freetype-2.3.0
+gcc/g++版本：gcc-4.9/g++-4.9
+0x01 环境配置 安装依赖包
+sudo apt-get install build-essential gawk m4 libasound2-dev libcups2-dev libxrender-dev xorg-dev xutils-dev binutils libmotif-dev  安装Freetype
+将下载的软件包解压出来，进入根目录
+./configure sudo make sudo make install  配置环境变量，可以将以下代码保存到一个文件中，使用source命令，source该文件环境变量即设置成功：
+#语言选项，这个必须设置，否则编译好后会出现一个HashTable的NPE错 export LANG=C #Bootstrap JDK的安装路径。必须设置 export ALT_BOOTDIR=/home/sinowrt/Documents/jre1.7.0_04 #允许自动下载依赖 export ALLOW_DOWNLOADS=true #并行编译的线程数，设置为和CPU内核数量一致即可 export HOTSPOT_BUILD_JOBS=4 export ALT_PARALLEL_COMPILE_JOBS=4 #比较本次build出来的映像与先前版本的差异。这对我们来说没有意义， #必须设置为false，否则sanity检查会报缺少先前版本JDK的映像的错误提示。 #如果已经设置dev或者DEV_ONLY=true，这个不显式设置也行 export SKIP_COMPARE_IMAGES=true #使用预编译头文件，不加这个编译会更慢一些 export USE_PRECOMPILED_HEADER=true #要编译的内容 export BUILD_LANGTOOLS=true #export BUILD_JAXP=false #export BUILD_JAXWS=false #export BUILD_CORBA=false export BUILD_HOTSPOT=true export BUILD_JDK=true #要编译的版本 #export SKIP_DEBUG_BUILD=false #export SKIP_FASTDEBUG_BUILD=true #export DEBUG_NAME=debug #把它设置为false可以避开javaws和浏览器Java插件之类的部分的build BUILD_DEPLOY=false #把它设置为false就不会build出安装包。因为安装包里有些奇怪的依赖， #但即便不build出它也已经能得到完整的JDK映像，所以还是别build它好了 BUILD_INSTALL=false #这两个环境变量必须去掉，不然会有很诡异的事情发生（我没有具体查过这些&amp;quot;诡异的 #事情&amp;quot;，Makefile脚本检查到有这2个变量就会提示警告） unset JAVA_HOME unset CLASSPATH # ==============【以下是我的个性化环境配置，可以按需设置】==================== #设置freetype路径 export ALT_FREETYPE_HEADERS_PATH=/usr/local/include export ALT_FREETYPE_LIB_PATH=/usr/local/lib #设置Ant路径 export PATH=/home/sinowrt/Documents/apache-ant-1.</description>
+    </item>
+    
+    <item>
+      <title>如何在Ubuntu20.04中安装VMware tools</title>
+      <link>http://blog.sinowrt.cn/2022/2022-04-17t2024-how-to-install-vmware-tools-on-ubuntu20.04/</link>
+      <pubDate>Sun, 17 Apr 2022 20:24:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2022/2022-04-17t2024-how-to-install-vmware-tools-on-ubuntu20.04/</guid>
+      <description>0x00 背景 在vmware中装了Ubuntu 20.04之后，要实现虚拟机和宿主机之间的文件或字符串拷贝，必须安装vmware tools。
+0x01 安装过程 sudo apt-get update sudo apt-get install open-vm-tools-desktop -y sudo reboot</description>
+    </item>
+    
+    <item>
+      <title>修复echart数据不显示的问题————暨解决tomcat默认编码导致后端接收urlencode参数乱码的问题</title>
+      <link>http://blog.sinowrt.cn/2022/2022-04-01t1431-decode-issue-while-deployed-with-tomcat/</link>
+      <pubDate>Fri, 01 Apr 2022 14:31:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2022/2022-04-01t1431-decode-issue-while-deployed-with-tomcat/</guid>
+      <description>0x00 背景 最近收到一个开发任务，虽然是新系统，但是技术架构非常老，是使用tomcat进行部署的（这句话要记好，后面会考的）。 这个系统原本外包团队已经开发好了，在公司测试环境中跑起来的时候，echart却不加载，那么我就来看看是什么问题。
+0x01 过程一 首先是将项目基本环境搭建起来，因为我的移动电脑访问不到公司内网数据库，在这里还用Goproxy搭建了一个代理服务，移动电脑通过代理服务间接连到数据库。 项目跑起来之后，通过console调试大法，发现后端是有返回数据的，但是到了echart中却显示不出来。
+既然这样，那就console.log一下echart，看看里面的data是啥，有没有跟后端返回的结果匹配起来。 结果发现后端返回的是广东省或者广西壮族自治区等全称，但是前端的data中就只显示各个省份的简称：广东、广西等。
+既然数据集有了，也比较固定，那么就在前端建立一个映射字典，将后端返回的值进行简称映射替换之后，就可以正常匹配上了。
+这里还有另一个办法，就是在echart的option中新增一个nameMap，将映射关系加上，也能正常匹配，但是由于映射名称之后，各省份的名称比较长，有些重叠有些错位，于是就不适用在option中添加nameMap的方法。
+在经过上面的处理之后，地图中的数据也能正常显示了。
+0x01 过程二 除了过程一中的地图显示问题之外，在该地图下方还有一个对应点击对应省份，放大该省可以显示各区域的数据的功能。首先是地图也默认加载不出来，经排查之后，确认是url拼接有问题，更正之后就可以发送数据请求了，但是请求返回的是无数据。 又经过一番仔细排查，确认是查询省份的时候，传到后端的是“广东”，而非全称“广东省”，这个好办，还是跟上面一样，加一个映射表，在发送请求的时候，将查询参数通过映射表映射为全称即可查到数据。
+加了映射表之后，发现还是查不到！看了后端的日志，发现参数是乱码，我想了下，之前我也调整了tomcat的日志显示编码，也添加了-Dfile参数，日志显示这一块应该是没问题了。那么就只有前端发送请求时没有指定编码或者后端解析参数的时候跟前端编码不一致的问题了，于是在前端指定了content-type的encoding参数，但是发现还是乱码。在后端的requestmapping中指定解码编码也不行。
+好家伙，实在没辙了，那就复制乱码，随便百度一个乱码查询的网站，发现原字符编码是UTF-8，解析编码是iso8859-1的时候，是能够还原回“广东省”的，于是线索又回到了tomcat。
+查了一下资料，发现问题就是出现在tomcat上，如果在server.xml中未指定解析编码的话，tomcat默认编码就是iso-8859-1。
+原因找到了，咱打开tomcat根目录下的conf文件夹，找到server.xml文件，将connector指定编码
+&amp;lt;Connector port=&amp;quot;8080&amp;quot; protocol=&amp;quot;HTTP/1.1&amp;quot; connectionTimeout=&amp;quot;20000&amp;quot; redirectPort=&amp;quot;8443&amp;quot; /&amp;gt;  修改为：
+&amp;lt;Connector useBodyEncodingForURI=&amp;quot;true&amp;quot; URIEncoding=&amp;quot;UTF-8&amp;quot; port=&amp;quot;8080&amp;quot; protocol=&amp;quot;HTTP/1.1&amp;quot; connectionTimeout=&amp;quot;20000&amp;quot; redirectPort=&amp;quot;8443&amp;quot; /&amp;gt;  之后，重启tomcat即可。
+0x01 过程三 虽然解决了前端传值到后端的乱码问题，但是后面我发现，后端传回浏览器的开发人员工具中的值竟然也显示乱码。
+这又是咋回事呢？ 仔细看了一下，发现是后端返回的时候，response中的header并未携带编码信息，浏览器无法识别到编码，就使用默认的windows-1252进行解析，就产生了乱码的问题，虽然传到前端是正常的，但是为了方便后面上线之后的调试，还是到后端指定了Content-Type的header，指定之后，就正常啦。</description>
+    </item>
+    
+    <item>
+      <title>在windows server 2019中部署git服务端</title>
+      <link>http://blog.sinowrt.cn/2022/2022-03-28t2024-deploy-a-git-service-on-windows/</link>
+      <pubDate>Mon, 28 Mar 2022 20:24:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2022/2022-03-28t2024-deploy-a-git-service-on-windows/</guid>
+      <description>0x00 背景 最近公司有些文件需要共享，协同编辑，建一个共享文件夹吧，又太糙了，如果能够记录下文件的修改记录就更好了，于是我想到了搭建一个git私服，开干。
+0x01 环境介绍 系统环境：windows server 2019
+软件包：gogs、git for windows
+0x02 部署过程 先安装git for windows，我这里下载的是安装版，傻瓜式安装即可。
+将下载的gogs压缩包解压出来，cmd进入根目录，直接运行./gogs web
+gogs默认是监听了本地3000端口，打开浏览器打开http://localhost:3000/install进行初始化配置
+配置挺简单的，特别说一下设置数据库类型（选SQLite3即可，选其他数据库需要另外安装），其他按需设置即可
+配置完成之后打开http://localhost:3000/即可进入gogs的web界面
+如果需要开放到外网，在防火墙放行端口即可。</description>
+    </item>
     
     <item>
       <title>使用socks5代理绕过防火墙安全策略</title>

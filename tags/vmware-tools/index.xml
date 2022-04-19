@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>vmware tools on Sinowrt</title>
+    <link>http://blog.sinowrt.cn/tags/vmware-tools/</link>
+    <description>Recent content in vmware tools on Sinowrt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 17 Apr 2022 20:24:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.sinowrt.cn/tags/vmware-tools/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>如何在Ubuntu20.04中安装VMware tools</title>
+      <link>http://blog.sinowrt.cn/2022/2022-04-17t2024-how-to-install-vmware-tools-on-ubuntu20.04/</link>
+      <pubDate>Sun, 17 Apr 2022 20:24:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2022/2022-04-17t2024-how-to-install-vmware-tools-on-ubuntu20.04/</guid>
+      <description>0x00 背景 在vmware中装了Ubuntu 20.04之后，要实现虚拟机和宿主机之间的文件或字符串拷贝，必须安装vmware tools。
+0x01 安装过程 sudo apt-get update sudo apt-get install open-vm-tools-desktop -y sudo reboot</description>
+    </item>
+    
+  </channel>
+</rss>

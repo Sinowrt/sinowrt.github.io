@@ -4,7 +4,7 @@
     <url>
       <loc>http://blog.sinowrt.cn/categories/</loc>
       
-      <lastmod>2022-03-27T22:31:00+08:00</lastmod>
+      <lastmod>2022-04-17T20:30:00+08:00</lastmod>
       
       
       
@@ -16,7 +16,7 @@
     <url>
       <loc>http://blog.sinowrt.cn/posts/</loc>
       
-      <lastmod>2022-03-27T22:31:00+08:00</lastmod>
+      <lastmod>2022-04-17T20:30:00+08:00</lastmod>
       
       
       
@@ -28,7 +28,7 @@
     <url>
       <loc>http://blog.sinowrt.cn/</loc>
       
-      <lastmod>2022-03-27T22:31:00+08:00</lastmod>
+      <lastmod>2022-04-17T20:30:00+08:00</lastmod>
       
       
       
@@ -40,11 +40,243 @@
     <url>
       <loc>http://blog.sinowrt.cn/tags/</loc>
       
-      <lastmod>2022-03-27T22:31:00+08:00</lastmod>
+      <lastmod>2022-04-17T20:30:00+08:00</lastmod>
       
       
       
       <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/compile/</loc>
+      
+      <lastmod>2022-04-17T20:30:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/categories/openjdk/</loc>
+      
+      <lastmod>2022-04-17T20:30:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/openjdk/</loc>
+      
+      <lastmod>2022-04-17T20:30:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/categories/ubuntu/</loc>
+      
+      <lastmod>2022-04-17T20:30:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/ubuntu/</loc>
+      
+      <lastmod>2022-04-17T20:30:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/2022/2022-04-17t2030-how-to-compile-openjdk7-on-ubuntu20.04/</loc>
+      
+      <lastmod>2022-04-17T20:30:00+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/categories/vmware-tools/</loc>
+      
+      <lastmod>2022-04-17T20:24:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/vmware-tools/</loc>
+      
+      <lastmod>2022-04-17T20:24:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/2022/2022-04-17t2024-how-to-install-vmware-tools-on-ubuntu20.04/</loc>
+      
+      <lastmod>2022-04-17T20:24:00+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/categories/decode/</loc>
+      
+      <lastmod>2022-04-01T14:31:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/decode/</loc>
+      
+      <lastmod>2022-04-01T14:31:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/categories/tomcat/</loc>
+      
+      <lastmod>2022-04-01T14:31:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/tomcat/</loc>
+      
+      <lastmod>2022-04-01T14:31:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/%E4%B9%B1%E7%A0%81/</loc>
+      
+      <lastmod>2022-04-01T14:31:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/2022/2022-04-01t1431-decode-issue-while-deployed-with-tomcat/</loc>
+      
+      <lastmod>2022-04-01T14:31:00+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/categories/git/</loc>
+      
+      <lastmod>2022-03-28T20:24:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/git/</loc>
+      
+      <lastmod>2022-03-28T20:24:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/categories/windows-server/</loc>
+      
+      <lastmod>2022-03-28T20:24:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/windows-server/</loc>
+      
+      <lastmod>2022-03-28T20:24:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/2022/2022-03-28t2024-deploy-a-git-service-on-windows/</loc>
+      
+      <lastmod>2022-03-28T20:24:00+08:00</lastmod>
+      
+      
       
       
     </url>
@@ -645,18 +877,6 @@
       <lastmod>2020-12-01T22:02:00+08:00</lastmod>
       
       
-      
-      
-    </url>
-  
-    <url>
-      <loc>http://blog.sinowrt.cn/tags/ubuntu/</loc>
-      
-      <lastmod>2020-09-15T23:14:00+08:00</lastmod>
-      
-      
-      
-      <priority>0</priority>
       
       
     </url>

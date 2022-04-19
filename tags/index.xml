@@ -6,10 +6,91 @@
     <description>Recent content in Tags on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 27 Mar 2022 22:31:00 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 17 Apr 2022 20:30:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>compile</title>
+      <link>http://blog.sinowrt.cn/tags/compile/</link>
+      <pubDate>Sun, 17 Apr 2022 20:30:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/tags/compile/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>openjdk</title>
+      <link>http://blog.sinowrt.cn/tags/openjdk/</link>
+      <pubDate>Sun, 17 Apr 2022 20:30:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/tags/openjdk/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ubuntu</title>
+      <link>http://blog.sinowrt.cn/tags/ubuntu/</link>
+      <pubDate>Sun, 17 Apr 2022 20:30:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/tags/ubuntu/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>vmware tools</title>
+      <link>http://blog.sinowrt.cn/tags/vmware-tools/</link>
+      <pubDate>Sun, 17 Apr 2022 20:24:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/tags/vmware-tools/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>decode</title>
+      <link>http://blog.sinowrt.cn/tags/decode/</link>
+      <pubDate>Fri, 01 Apr 2022 14:31:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/tags/decode/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tomcat</title>
+      <link>http://blog.sinowrt.cn/tags/tomcat/</link>
+      <pubDate>Fri, 01 Apr 2022 14:31:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/tags/tomcat/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>乱码</title>
+      <link>http://blog.sinowrt.cn/tags/%E4%B9%B1%E7%A0%81/</link>
+      <pubDate>Fri, 01 Apr 2022 14:31:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/tags/%E4%B9%B1%E7%A0%81/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>git</title>
+      <link>http://blog.sinowrt.cn/tags/git/</link>
+      <pubDate>Mon, 28 Mar 2022 20:24:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/tags/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>windows server</title>
+      <link>http://blog.sinowrt.cn/tags/windows-server/</link>
+      <pubDate>Mon, 28 Mar 2022 20:24:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/tags/windows-server/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>firewall</title>
@@ -111,7 +192,7 @@
     </item>
     
     <item>
-      <title>linux</title>
+      <title>Linux</title>
       <link>http://blog.sinowrt.cn/tags/linux/</link>
       <pubDate>Tue, 09 Mar 2021 09:30:00 +0800</pubDate>
       
@@ -188,15 +269,6 @@
       <pubDate>Fri, 26 Feb 2021 16:33:00 +0800</pubDate>
       
       <guid>http://blog.sinowrt.cn/tags/jvm/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ubuntu</title>
-      <link>http://blog.sinowrt.cn/tags/ubuntu/</link>
-      <pubDate>Tue, 15 Sep 2020 23:14:00 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/tags/ubuntu/</guid>
       <description></description>
     </item>
     

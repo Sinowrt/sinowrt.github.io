@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="sinowrt">
+  
+  
+  
+  <link rel="prev" href="http://blog.sinowrt.cn/2022/2022-04-17t2024-how-to-install-vmware-tools-on-ubuntu20.04/" />
+  
+  <link rel="canonical" href="http://blog.sinowrt.cn/2022/2022-04-17t2030-how-to-compile-openjdk7-on-ubuntu20.04/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           在ubuntu20.04中编译OpenJDK7 | Sinowrt
+       
+  </title>
+  <meta name="title" content="在ubuntu20.04中编译OpenJDK7 | Sinowrt">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/blog.sinowrt.cn"
+    },
+    "articleSection" : "posts",
+    "name" : "在ubuntu20.04中编译OpenJDK7",
+    "headline" : "在ubuntu20.04中编译OpenJDK7",
+    "description" : "0x00 编译环境 系统：ubuntu20.04\n目标JDK：openjdk7\nBootstrap JDK：Java SE Development Kit 7u4\nAnt：apache-ant-1.9.16\nFreetype：freetype-2.3.0\ngcc\/g\x2b\x2b版本：gcc-4.9\/g\x2b\x2b-4.9\n0x01 环境配置 安装依赖包\nsudo apt-get install build-essential gawk m4 libasound2-dev libcups2-dev libxrender-dev xorg-dev xutils-dev binutils libmotif-dev  安装Freetype\n将下载的软件包解压出来，进入根目录\n.\/configure sudo make sudo make install  配置环境变量，可以将以下代码保存到一个文件中，使用source命令，source该文件环境变量即设置成功：\n#语言选项，这个必须设置，否则编译好后会出现一个HashTable的NPE错 export LANG=C #Bootstrap JDK的安装路径。必须设置 export ALT_BOOTDIR=\/home\/sinowrt\/Documents\/jre1.7.0_04 #允许自动下载依赖 export ALLOW_DOWNLOADS=true #并行编译的线程数，设置为和CPU内核数量一致即可 export HOTSPOT_BUILD_JOBS=4 export ALT_PARALLEL_COMPILE_JOBS=4 #比较本次build出来的映像与先前版本的差异。这对我们来说没有意义， #必须设置为false，否则sanity检查会报缺少先前版本JDK的映像的错误提示。 #如果已经设置dev或者DEV_ONLY=true，这个不显式设置也行 export SKIP_COMPARE_IMAGES=true #使用预编译头文件，不加这个编译会更慢一些 export USE_PRECOMPILED_HEADER=true #要编译的内容 export BUILD_LANGTOOLS=true #export BUILD_JAXP=false #export BUILD_JAXWS=false #export BUILD_CORBA=false export BUILD_HOTSPOT=true export BUILD_JDK=true #要编译的版本 #export SKIP_DEBUG_BUILD=false #export SKIP_FASTDEBUG_BUILD=true #export DEBUG_NAME=debug #把它设置为false可以避开javaws和浏览器Java插件之类的部分的build BUILD_DEPLOY=false #把它设置为false就不会build出安装包。因为安装包里有些奇怪的依赖， #但即便不build出它也已经能得到完整的JDK映像，所以还是别build它好了 BUILD_INSTALL=false #这两个环境变量必须去掉，不然会有很诡异的事情发生（我没有具体查过这些\x26quot;诡异的 #事情\x26quot;，Makefile脚本检查到有这2个变量就会提示警告） unset JAVA_HOME unset CLASSPATH # ==============【以下是我的个性化环境配置，可以按需设置】==================== #设置freetype路径 export ALT_FREETYPE_HEADERS_PATH=\/usr\/local\/include export ALT_FREETYPE_LIB_PATH=\/usr\/local\/lib #设置Ant路径 export PATH=\/home\/sinowrt\/Documents\/apache-ant-1.",
+    "inLanguage" : "en-us",
+    "author" : "sinowrt",
+    "creator" : "sinowrt",
+    "publisher": "sinowrt",
+    "accountablePerson" : "sinowrt",
+    "copyrightHolder" : "sinowrt",
+    "copyrightYear" : "2022",
+    "datePublished": "2022-04-17 20:30:00 \x2b0800 CST",
+    "dateModified" : "2022-04-17 20:30:00 \x2b0800 CST",
+    "url" : "http:\/\/blog.sinowrt.cn\/2022\/2022-04-17t2030-how-to-compile-openjdk7-on-ubuntu20.04\/",
+    "wordCount" : "1810",
+    "keywords" : [ "ubuntu","openjdk","compile", "Sinowrt"]
+}
+</script>
+
+</head>
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?85719ea04c6401b98466dfdbc9399c78";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">在ubuntu20.04中编译OpenJDK7</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2022-04-17 itemprop="datePublished">April 17, 2022</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="http://blog.sinowrt.cn/categories/ubuntu/"> ubuntu </a>
+                        <a href="http://blog.sinowrt.cn/categories/openjdk/"> openjdk </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          
+
+<h2 id="0x00-编译环境">0x00 编译环境</h2>
+
+<p>系统：ubuntu20.04<br />
+目标JDK：openjdk7<br />
+Bootstrap JDK：Java SE Development Kit 7u4<br />
+Ant：apache-ant-1.9.16<br />
+Freetype：freetype-2.3.0<br />
+gcc/g++版本：gcc-4.9/g++-4.9</p>
+
+<h2 id="0x01-环境配置">0x01 环境配置</h2>
+
+<p>安装依赖包</p>
+
+<pre><code class="language-shell">sudo apt-get install build-essential gawk m4 libasound2-dev libcups2-dev libxrender-dev xorg-dev xutils-dev binutils libmotif-dev
+</code></pre>
+
+<p>安装Freetype<br />
+将下载的软件包解压出来，进入根目录</p>
+
+<pre><code class="language-shell">./configure
+sudo make
+sudo make install
+</code></pre>
+
+<p>配置环境变量，可以将以下代码保存到一个文件中，使用source命令，source该文件环境变量即设置成功：</p>
+
+<pre><code class="language-shell">#语言选项，这个必须设置，否则编译好后会出现一个HashTable的NPE错
+export LANG=C
+#Bootstrap JDK的安装路径。必须设置
+export ALT_BOOTDIR=/home/sinowrt/Documents/jre1.7.0_04
+#允许自动下载依赖
+export ALLOW_DOWNLOADS=true
+#并行编译的线程数，设置为和CPU内核数量一致即可
+export HOTSPOT_BUILD_JOBS=4
+export ALT_PARALLEL_COMPILE_JOBS=4
+#比较本次build出来的映像与先前版本的差异。这对我们来说没有意义，
+#必须设置为false，否则sanity检查会报缺少先前版本JDK的映像的错误提示。
+#如果已经设置dev或者DEV_ONLY=true，这个不显式设置也行
+export SKIP_COMPARE_IMAGES=true
+#使用预编译头文件，不加这个编译会更慢一些
+export USE_PRECOMPILED_HEADER=true
+#要编译的内容
+export BUILD_LANGTOOLS=true
+#export BUILD_JAXP=false
+#export BUILD_JAXWS=false
+#export BUILD_CORBA=false
+export BUILD_HOTSPOT=true
+export BUILD_JDK=true
+#要编译的版本
+#export SKIP_DEBUG_BUILD=false
+#export SKIP_FASTDEBUG_BUILD=true
+#export DEBUG_NAME=debug
+#把它设置为false可以避开javaws和浏览器Java插件之类的部分的build
+BUILD_DEPLOY=false
+#把它设置为false就不会build出安装包。因为安装包里有些奇怪的依赖，
+#但即便不build出它也已经能得到完整的JDK映像，所以还是别build它好了
+BUILD_INSTALL=false
+#这两个环境变量必须去掉，不然会有很诡异的事情发生（我没有具体查过这些&quot;诡异的
+#事情&quot;，Makefile脚本检查到有这2个变量就会提示警告）
+unset JAVA_HOME
+unset CLASSPATH
+
+# ==============【以下是我的个性化环境配置，可以按需设置】====================
+#设置freetype路径
+export ALT_FREETYPE_HEADERS_PATH=/usr/local/include
+export ALT_FREETYPE_LIB_PATH=/usr/local/lib
+#设置Ant路径
+export PATH=/home/sinowrt/Documents/apache-ant-1.9.16/bin:$PATH
+#编译结果所存放的路径
+export ALT_OUTPUTDIR=/home/sinowrt/Documents/jdk7u-dev/build
+export ANT_HOME=/home/sinowrt/Documents/apache-ant-1.9.16
+#取消Hotspot系统支持检查
+export DISABLE_HOTSPOT_OS_VERSION_CHECK=false
+</code></pre>
+
+<h2 id="0x02-编译jdk">0x02 编译JDK</h2>
+
+<p>可以使用make sanity命令检查前面所做的设置是否正确，如果显示“Sanity check passed”即说明检查过程通过了<br />
+然后使用make命令进行编译，但是错了，让我们看看报错信息：</p>
+
+<pre><code class="language-shell">g++ -DLINUX -D_GNU_SOURCE -DAMD64 -DPRODUCT -I. -I/home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/prims -I/home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm -I/home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/precompiled -I/home/sinowrt/Documents/jdk7u-dev/hotspot/src/cpu/x86/vm -I/home/sinowrt/Documents/jdk7u-dev/hotspot/src/os_cpu/linux_x86/vm -I/home/sinowrt/Documents/jdk7u-dev/hotspot/src/os/linux/vm -I/home/sinowrt/Documents/jdk7u-dev/hotspot/src/os/posix/vm -I../generated -DHOTSPOT_RELEASE_VERSION=&quot;\&quot;24.80-b07\&quot;&quot; -DHOTSPOT_BUILD_TARGET=&quot;\&quot;product\&quot;&quot; -DHOTSPOT_BUILD_USER=&quot;\&quot;sinowrt\&quot;&quot; -DHOTSPOT_LIB_ARCH=\&quot;amd64\&quot; -DHOTSPOT_VM_DISTRO=&quot;\&quot;OpenJDK\&quot;&quot; -DTARGET_OS_FAMILY_linux -DTARGET_ARCH_x86 -DTARGET_ARCH_MODEL_x86_64 -DTARGET_OS_ARCH_linux_x86 -DTARGET_OS_ARCH_MODEL_linux_x86_64 -DTARGET_COMPILER_gcc -DCOMPILER2 -DCOMPILER1 -fPIC -fno-rtti -fno-exceptions -D_REENTRANT -fcheck-new -fvisibility=hidden -m64 -pipe -O3 -fno-strict-aliasing -g -DVM_LITTLE_ENDIAN -D_LP64=1 -fno-omit-frame-pointer -DINCLUDE_TRACE=1 -Werror -Wpointer-arith -Wsign-compare    -c -fpch-deps -MMD -MP -MF ../generated/dependencies/precompiled.hpp.gch.d -x c++-header /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/precompiled/precompiled.hpp -o precompiled.hpp.gch 
+In file included from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/memory/sharedHeap.hpp:30,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/gc_implementation/parallelScavenge/psParallelCompact.hpp:34,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/gc_implementation/shared/markSweep.inline.hpp:32,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/oops/oop.inline.hpp:29,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/classfile/classFileParser.hpp:30,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/classfile/classLoader.hpp:28,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/classfile/systemDictionary.hpp:29,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/ci/ciEnv.hpp:30,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/ci/ciUtilities.hpp:28,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/ci/ciNullObject.hpp:30,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/ci/ciConstant.hpp:29,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/precompiled/precompiled.hpp:36:
+/home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/memory/generation.hpp:422:17: error: invalid suffix on literal; C++11 requires a space between literal and string macro [-Werror=literal-suffix]
+  422 |         warning(&quot;time warp: &quot;INT64_FORMAT&quot; to &quot;INT64_FORMAT, _time_of_last_gc, now);
+      |                 ^
+/home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/memory/generation.hpp:422:42: error: invalid suffix on literal; C++11 requires a space between literal and string macro [-Werror=literal-suffix]
+  422 |         warning(&quot;time warp: &quot;INT64_FORMAT&quot; to &quot;INT64_FORMAT, _time_of_last_gc, now);
+      |                                          ^
+In file included from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/gc_interface/collectedHeap.inline.hpp:30,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/oops/oop.inline.hpp:30,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/classfile/classFileParser.hpp:30,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/classfile/classLoader.hpp:28,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/classfile/systemDictionary.hpp:29,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/ci/ciEnv.hpp:30,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/ci/ciUtilities.hpp:28,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/ci/ciNullObject.hpp:30,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/ci/ciConstant.hpp:29,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/precompiled/precompiled.hpp:36:
+/home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/memory/threadLocalAllocBuffer.inline.hpp:97:25: error: invalid suffix on literal; C++11 requires a space between literal and string macro [-Werror=literal-suffix]
+   97 |     gclog_or_tty-&gt;print(&quot;TLAB: %s thread: &quot;INTPTR_FORMAT&quot; [id: %2d]&quot;
+      |                         ^
+/home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/memory/threadLocalAllocBuffer.inline.hpp:98:25: error: invalid suffix on literal; C++11 requires a space between literal and string macro [-Werror=literal-suffix]
+   98 |                         &quot; obj: &quot;SIZE_FORMAT
+      |                         ^
+/home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/memory/threadLocalAllocBuffer.inline.hpp:99:25: error: invalid suffix on literal; C++11 requires a space between literal and string macro [-Werror=literal-suffix]
+   99 |                         &quot; free: &quot;SIZE_FORMAT
+      |                         ^
+/home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/memory/threadLocalAllocBuffer.inline.hpp💯25: error: invalid suffix on literal; C++11 requires a space between literal and string macro [-Werror=literal-suffix]
+  100 |                         &quot; waste: &quot;SIZE_FORMAT&quot;\n&quot;,
+      |                         ^
+In file included from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/memory/space.hpp:30,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/memory/space.inline.hpp:29,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/gc_implementation/shared/cSpaceCounters.hpp:29,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/memory/defNewGeneration.hpp:29,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/services/memoryPool.hpp:29,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/services/lowMemoryDetector.hpp:29,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/gc_interface/collectedHeap.inline.hpp:36,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/oops/oop.inline.hpp:30,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/classfile/classFileParser.hpp:30,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/classfile/classLoader.hpp:28,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/classfile/systemDictionary.hpp:29,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/ci/ciEnv.hpp:30,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/ci/ciUtilities.hpp:28,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/ci/ciNullObject.hpp:30,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/ci/ciConstant.hpp:29,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/precompiled/precompiled.hpp:36:
+/home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/memory/cardTableModRefBS.hpp:156:20: error: invalid suffix on literal; C++11 requires a space between literal and string macro [-Werror=literal-suffix]
+  156 |            err_msg(&quot;Attempt to access p = &quot;PTR_FORMAT&quot; out of bounds of &quot;
+      |                    ^
+/home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/memory/cardTableModRefBS.hpp:157:20: error: invalid suffix on literal; C++11 requires a space between literal and string macro [-Werror=literal-suffix]
+  157 |                    &quot; card marking array's _whole_heap = [&quot;PTR_FORMAT&quot;,&quot;PTR_FORMAT&quot;)&quot;,
+      |                    ^
+/home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/memory/cardTableModRefBS.hpp:157:69: error: invalid suffix on literal; C++11 requires a space between literal and string macro [-Werror=literal-suffix]
+  157 |                    &quot; card marking array's _whole_heap = [&quot;PTR_FORMAT&quot;,&quot;PTR_FORMAT&quot;)&quot;,
+      |                                                                     ^
+/home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/memory/cardTableModRefBS.hpp:432:20: error: invalid suffix on literal; C++11 requires a space between literal and string macro [-Werror=literal-suffix]
+  432 |            err_msg(&quot;Returning result = &quot;PTR_FORMAT&quot; out of bounds of &quot;
+      |                    ^
+/home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/memory/cardTableModRefBS.hpp:433:20: error: invalid suffix on literal; C++11 requires a space between literal and string macro [-Werror=literal-suffix]
+  433 |                    &quot; card marking array's _whole_heap = [&quot;PTR_FORMAT&quot;,&quot;PTR_FORMAT&quot;)&quot;,
+      |                    ^
+/home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/memory/cardTableModRefBS.hpp:433:69: error: invalid suffix on literal; C++11 requires a space between literal and string macro [-Werror=literal-suffix]
+  433 |                    &quot; card marking array's _whole_heap = [&quot;PTR_FORMAT&quot;,&quot;PTR_FORMAT&quot;)&quot;,
+      |                                                                     ^
+/home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/memory/cardTableModRefBS.hpp:441:20: error: invalid suffix on literal; C++11 requires a space between literal and string macro [-Werror=literal-suffix]
+  441 |            err_msg(&quot;Attempt to access p = &quot;PTR_FORMAT&quot; out of bounds of &quot;
+      |                    ^
+/home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/memory/cardTableModRefBS.hpp:442:20: error: invalid suffix on literal; C++11 requires a space between literal and string macro [-Werror=literal-suffix]
+  442 |                    &quot; card marking array's _whole_heap = [&quot;PTR_FORMAT&quot;,&quot;PTR_FORMAT&quot;)&quot;,
+      |                    ^
+/home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/memory/cardTableModRefBS.hpp:442:69: error: invalid suffix on literal; C++11 requires a space between literal and string macro [-Werror=literal-suffix]
+  442 |                    &quot; card marking array's _whole_heap = [&quot;PTR_FORMAT&quot;,&quot;PTR_FORMAT&quot;)&quot;,
+      |                                                                     ^
+In file included from ../generated/tracefiles/traceEventClasses.hpp:18,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/trace/tracing.hpp:28,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/opto/compile.hpp:44,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/opto/node.hpp:30,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/opto/addnode.hpp:28,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/precompiled/precompiled.hpp:259:
+/home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/trace/traceStream.hpp:44:15: error: invalid suffix on literal; C++11 requires a space between literal and string macro [-Werror=literal-suffix]
+   44 |     _st.print(&quot;%s = &quot;UINT32_FORMAT, label, val);
+      |               ^
+/home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/trace/traceStream.hpp:48:15: error: invalid suffix on literal; C++11 requires a space between literal and string macro [-Werror=literal-suffix]
+   48 |     _st.print(&quot;%s = &quot;UINT32_FORMAT, label, val);
+      |               ^
+/home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/trace/traceStream.hpp:52:15: error: invalid suffix on literal; C++11 requires a space between literal and string macro [-Werror=literal-suffix]
+   52 |     _st.print(&quot;%s = &quot;INT32_FORMAT, label, val);
+      |               ^
+/home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/trace/traceStream.hpp:56:15: error: invalid suffix on literal; C++11 requires a space between literal and string macro [-Werror=literal-suffix]
+   56 |     _st.print(&quot;%s = &quot;UINT32_FORMAT, label, val);
+      |               ^
+/home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/trace/traceStream.hpp:60:15: error: invalid suffix on literal; C++11 requires a space between literal and string macro [-Werror=literal-suffix]
+   60 |     _st.print(&quot;%s = &quot;INT32_FORMAT, label, val);
+      |               ^
+/home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/trace/traceStream.hpp:64:15: error: invalid suffix on literal; C++11 requires a space between literal and string macro [-Werror=literal-suffix]
+   64 |     _st.print(&quot;%s = &quot;UINT64_FORMAT, label, val);
+      |               ^
+/home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/trace/traceStream.hpp:68:15: error: invalid suffix on literal; C++11 requires a space between literal and string macro [-Werror=literal-suffix]
+   68 |     _st.print(&quot;%s = &quot;INT64_FORMAT, label, val);
+      |               ^
+In file included from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/asm/assembler.hpp:29,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/precompiled/precompiled.hpp:29:
+/home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/code/relocInfo.hpp:374:27: error: friend declaration of 'relocInfo prefix_relocInfo(int)' specifies default arguments and isn't a definition [-fpermissive]
+  374 |   inline friend relocInfo prefix_relocInfo(int datalen = 0);
+      |                           ^~~~~~~~~~~~~~~~
+In file included from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/asm/assembler.hpp:29,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/precompiled/precompiled.hpp:29:
+/home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/code/relocInfo.hpp:469:18: error: friend declaration of 'relocInfo prefix_relocInfo(int)' specifies default arguments and isn't the only declaration [-fpermissive]
+  469 | inline relocInfo prefix_relocInfo(int datalen) {
+      |                  ^~~~~~~~~~~~~~~~
+In file included from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/asm/assembler.hpp:29,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/precompiled/precompiled.hpp:29:
+/home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/code/relocInfo.hpp:374:27: note: previous declaration of 'relocInfo prefix_relocInfo(int)'
+  374 |   inline friend relocInfo prefix_relocInfo(int datalen = 0);
+      |                           ^~~~~~~~~~~~~~~~
+In file included from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/compiler/disassembler.hpp:31,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/asm/assembler.inline.hpp:30,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/precompiled/precompiled.hpp:30:
+/home/sinowrt/Documents/jdk7u-dev/hotspot/src/os/linux/vm/os_linux.inline.hpp: In static member function 'static dirent* os::readdir(DIR*, dirent*)':
+/home/sinowrt/Documents/jdk7u-dev/hotspot/src/os/linux/vm/os_linux.inline.hpp:154:18: error: 'int readdir_r(DIR*, dirent*, dirent**)' is deprecated [-Werror=deprecated-declarations]
+  154 |   if((status = ::readdir_r(dirp, dbuf, &amp;p)) != 0) {
+      |                  ^~~~~~~~~
+In file included from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/os/linux/vm/jvm_linux.h:44,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/prims/jvm.h:30,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/utilities/debug.hpp:28,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/runtime/globals.hpp:28,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/memory/allocation.hpp:28,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/memory/iterator.hpp:28,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/memory/genOopClosures.hpp:28,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/oops/klass.hpp:28,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/runtime/handles.hpp:28,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/code/oopRecorder.hpp:28,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/asm/assembler.hpp:28,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/precompiled/precompiled.hpp:29:
+/usr/include/dirent.h:183:12: note: declared here
+  183 | extern int readdir_r (DIR *__restrict __dirp,
+      |            ^~~~~~~~~
+In file included from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/compiler/disassembler.hpp:31,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/asm/assembler.inline.hpp:30,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/precompiled/precompiled.hpp:30:
+/home/sinowrt/Documents/jdk7u-dev/hotspot/src/os/linux/vm/os_linux.inline.hpp:154:42: error: 'int readdir_r(DIR*, dirent*, dirent**)' is deprecated [-Werror=deprecated-declarations]
+  154 |   if((status = ::readdir_r(dirp, dbuf, &amp;p)) != 0) {
+      |                                          ^
+In file included from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/os/linux/vm/jvm_linux.h:44,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/prims/jvm.h:30,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/utilities/debug.hpp:28,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/runtime/globals.hpp:28,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/memory/allocation.hpp:28,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/memory/iterator.hpp:28,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/memory/genOopClosures.hpp:28,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/oops/klass.hpp:28,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/runtime/handles.hpp:28,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/code/oopRecorder.hpp:28,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/asm/assembler.hpp:28,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/precompiled/precompiled.hpp:29:
+/usr/include/dirent.h:183:12: note: declared here
+  183 | extern int readdir_r (DIR *__restrict __dirp,
+      |            ^~~~~~~~~
+In file included from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/compiler/disassembler.hpp:31,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/asm/assembler.inline.hpp:30,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/precompiled/precompiled.hpp:30:
+/home/sinowrt/Documents/jdk7u-dev/hotspot/src/os/linux/vm/os_linux.inline.hpp:154:42: error: 'int readdir_r(DIR*, dirent*, dirent**)' is deprecated [-Werror=deprecated-declarations]
+  154 |   if((status = ::readdir_r(dirp, dbuf, &amp;p)) != 0) {
+      |                                          ^
+In file included from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/os/linux/vm/jvm_linux.h:44,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/prims/jvm.h:30,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/utilities/debug.hpp:28,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/runtime/globals.hpp:28,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/memory/allocation.hpp:28,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/memory/iterator.hpp:28,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/memory/genOopClosures.hpp:28,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/oops/klass.hpp:28,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/runtime/handles.hpp:28,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/code/oopRecorder.hpp:28,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/asm/assembler.hpp:28,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/precompiled/precompiled.hpp:29:
+/usr/include/dirent.h:183:12: note: declared here
+  183 | extern int readdir_r (DIR *__restrict __dirp,
+      |            ^~~~~~~~~
+In file included from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/oops/constantPoolOop.hpp:29,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/oops/methodOop.hpp:33,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/runtime/frame.hpp:29,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/prims/jvmtiExport.hpp:33,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/runtime/thread.hpp:32,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/os/linux/vm/thread_linux.inline.hpp:30,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/memory/resourceArea.hpp:30,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/classfile/classFileParser.hpp:29,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/classfile/classLoader.hpp:28,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/classfile/systemDictionary.hpp:29,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/ci/ciEnv.hpp:30,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/ci/ciUtilities.hpp:28,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/ci/ciNullObject.hpp:30,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/ci/ciConstant.hpp:29,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/precompiled/precompiled.hpp:36:
+/home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/oops/cpCacheOop.hpp: At global scope:
+/home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/oops/cpCacheOop.hpp:189:42: error: left operand of shift expression '(-1 &lt;&lt; 28)' is negative [-fpermissive]
+  189 |     option_bits_mask           = ~(((-1) &lt;&lt; tos_state_shift) | (field_index_mask | parameter_size_mask))
+      |                                    ~~~~~~^~~~~~~~~~~~~~~~~~~
+/home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/oops/cpCacheOop.hpp:189:104: error: enumerator value for 'option_bits_mask' is not an integer constant
+  189 |     option_bits_mask           = ~(((-1) &lt;&lt; tos_state_shift) | (field_index_mask | parameter_size_mask))
+      |                                                                                                        ^
+In file included from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/ci/ciEnv.hpp:32,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/ci/ciUtilities.hpp:28,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/ci/ciNullObject.hpp:30,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/ci/ciConstant.hpp:29,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/precompiled/precompiled.hpp:36:
+/home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/code/dependencies.hpp:169:59: error: left operand of shift expression '(-1 &lt;&lt; 1)' is negative [-fpermissive]
+  169 |     all_types           = ((1 &lt;&lt; TYPE_LIMIT) - 1) &amp; ((-1) &lt;&lt; FIRST_TYPE),
+      |                                                     ~~~~~~^~~~~~~~~~~~~~
+/home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/code/dependencies.hpp:169:72: error: enumerator value for 'all_types' is not an integer constant
+  169 |     all_types           = ((1 &lt;&lt; TYPE_LIMIT) - 1) &amp; ((-1) &lt;&lt; FIRST_TYPE),
+      |                                                                        ^
+cc1plus: all warnings being treated as errors
+make[6]: *** [/home/sinowrt/Documents/jdk7u-dev/hotspot/make/linux/makefiles/vm.make:296: precompiled.hpp.gch] Error 1
+make[6]: Leaving directory '/home/sinowrt/Documents/jdk7u-dev/build/hotspot/outputdir/linux_amd64_compiler2/product'
+make[5]: *** [/home/sinowrt/Documents/jdk7u-dev/hotspot/make/linux/makefiles/top.make:119: the_vm] Error 2
+make[5]: Leaving directory '/home/sinowrt/Documents/jdk7u-dev/build/hotspot/outputdir/linux_amd64_compiler2/product'
+make[4]: *** [/home/sinowrt/Documents/jdk7u-dev/hotspot/make/linux/Makefile:290: product] Error 2
+make[4]: Leaving directory '/home/sinowrt/Documents/jdk7u-dev/build/hotspot/outputdir'
+make[3]: *** [Makefile:192: generic_build2] Error 2
+make[3]: Leaving directory '/home/sinowrt/Documents/jdk7u-dev/hotspot/make'
+make[2]: *** [Makefile:151: product] Error 2
+make[2]: Leaving directory '/home/sinowrt/Documents/jdk7u-dev/hotspot/make'
+make[1]: *** [make/hotspot-rules.gmk:114: hotspot-build] Error 2
+make[1]: Leaving directory '/home/sinowrt/Documents/jdk7u-dev'
+make: *** [Makefile:251: build_product_image] Error 2
+</code></pre>
+
+<p>这个问题是因为安装依赖包时，默认安装了高版本的gcc和g++，可使用<code>gcc -v</code>或<code>g++ -v</code>命令查看版本，需要安装低版本的gcc/g++</p>
+
+<pre><code class="language-shell">sinowrt@ubuntu:~/Documents/jdk7u-dev$ gcc -v
+#省略若干行...
+gcc version 9.4.0 (Ubuntu 9.4.0-1ubuntu1~20.04.1)
+
+sinowrt@ubuntu:~/Documents/jdk7u-dev$ g++ -v      
+#省略若干行...
+gcc version 9.4.0 (Ubuntu 9.4.0-1ubuntu1~20.04.1)
+</code></pre>
+
+<p>我选择安装4.9版本的gcc与g++<br />
+而ubuntu20.04中<code>sudo apt-get install gcc-4.9</code>会提示找不到安装包，需要添加低版本的源，这里我添加的是ubuntu16的aliyun源</p>
+
+<pre><code class="language-shell">sudo vi /etc/apt/source.list
+
+#在文件最后面添加源信息,`:wq`保存退出
+#源===========================【Start】=============================
+deb http://mirrors.aliyun.com/ubuntu/ xenial main
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial main
+
+deb http://mirrors.aliyun.com/ubuntu/ xenial-updates main
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates main
+
+deb http://mirrors.aliyun.com/ubuntu/ xenial universe
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial universe
+deb http://mirrors.aliyun.com/ubuntu/ xenial-updates universe
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates universe
+
+deb http://mirrors.aliyun.com/ubuntu/ xenial-security main
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security main
+deb http://mirrors.aliyun.com/ubuntu/ xenial-security universe
+deb-src http://mirrors.aliyun.com/ubuntu/ xenial-security universe
+#源===========================【E n d】=============================
+
+#更新源
+sudo apt-get update
+#安装gcc-4.9 g++-4.9
+sudo apt-get install gcc-4.9 g++-4.9
+
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-4.9 40
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 50
+sudo update-alternatives --config gcc
+
+#sinowrt@ubuntu:~/Documents/jdk7u-dev$ sudo update-alternatives --config gcc
+#There are 2 choices for the alternative gcc (providing /usr/bin/gcc)
+#
+#  Selection    Path              Priority   Status
+#------------------------------------------------------------
+#* 0            /usr/bin/gcc-9     50        auto mode
+#  1            /usr/bin/gcc-4.9   40        manual mode
+#  2            /usr/bin/gcc-9     50        manual mode
+#Press &lt;enter&gt; to keep the current choice[*], or type selection number: 
+
+#根据提示，输入数字1，选择当前使用的gcc为gcc-4.9
+#g++的配置也一样，此处略
+</code></pre>
+
+<p>切换到低版本的gcc和g++后，make clean重新make，虽然还是会报error，但是只是warning输出为error，如下面输出所示</p>
+
+<pre><code class="language-shell">g++ -DLINUX -D_GNU_SOURCE -DAMD64 -DPRODUCT -I. -I/home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/prims -I/home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm -I/home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/precompiled -I/home/sinowrt/Documents/jdk7u-dev/hotspot/src/cpu/x86/vm -I/home/sinowrt/Documents/jdk7u-dev/hotspot/src/os_cpu/linux_x86/vm -I/home/sinowrt/Documents/jdk7u-dev/hotspot/src/os/linux/vm -I/home/sinowrt/Documents/jdk7u-dev/hotspot/src/os/posix/vm -I../generated -DHOTSPOT_RELEASE_VERSION=&quot;\&quot;24.80-b07\&quot;&quot; -DHOTSPOT_BUILD_TARGET=&quot;\&quot;product\&quot;&quot; -DHOTSPOT_BUILD_USER=&quot;\&quot;sinowrt\&quot;&quot; -DHOTSPOT_LIB_ARCH=\&quot;amd64\&quot; -DHOTSPOT_VM_DISTRO=&quot;\&quot;OpenJDK\&quot;&quot; -DTARGET_OS_FAMILY_linux -DTARGET_ARCH_x86 -DTARGET_ARCH_MODEL_x86_64 -DTARGET_OS_ARCH_linux_x86 -DTARGET_OS_ARCH_MODEL_linux_x86_64 -DTARGET_COMPILER_gcc -DCOMPILER2 -DCOMPILER1 -fPIC -fno-rtti -fno-exceptions -D_REENTRANT -fcheck-new -fvisibility=hidden -m64 -pipe -O3 -fno-strict-aliasing -g -DVM_LITTLE_ENDIAN -D_LP64=1 -fno-omit-frame-pointer -DINCLUDE_TRACE=1 -Werror -Wpointer-arith -Wsign-compare    -c -fpch-deps -MMD -MP -MF ../generated/dependencies/precompiled.hpp.gch.d -x c++-header /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/precompiled/precompiled.hpp -o precompiled.hpp.gch 
+In file included from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/compiler/disassembler.hpp:31:0,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/asm/assembler.inline.hpp:30,
+                 from /home/sinowrt/Documents/jdk7u-dev/hotspot/src/share/vm/precompiled/precompiled.hpp:30:
+/home/sinowrt/Documents/jdk7u-dev/hotspot/src/os/linux/vm/os_linux.inline.hpp: In static member function 'static dirent* os::readdir(DIR*, dirent*)':
+/home/sinowrt/Documents/jdk7u-dev/hotspot/src/os/linux/vm/os_linux.inline.hpp:154:18: error: 'int readdir_r(DIR*, dirent*, dirent**)' is deprecated (declared at /usr/include/dirent.h:183) [-Werror=deprecated-declarations]
+   if((status = ::readdir_r(dirp, dbuf, &amp;p)) != 0) {
+                  ^
+/home/sinowrt/Documents/jdk7u-dev/hotspot/src/os/linux/vm/os_linux.inline.hpp:154:42: error: 'int readdir_r(DIR*, dirent*, dirent**)' is deprecated (declared at /usr/include/dirent.h:183) [-Werror=deprecated-declarations]
+   if((status = ::readdir_r(dirp, dbuf, &amp;p)) != 0) {
+                                          ^
+cc1plus: all warnings being treated as errors
+make[6]: *** [/home/sinowrt/Documents/jdk7u-dev/hotspot/make/linux/makefiles/vm.make:296: precompiled.hpp.gch] Error 1
+make[6]: Leaving directory '/home/sinowrt/Documents/jdk7u-dev/build/hotspot/outputdir/linux_amd64_compiler2/product'
+make[5]: *** [/home/sinowrt/Documents/jdk7u-dev/hotspot/make/linux/makefiles/top.make:119: the_vm] Error 2
+make[5]: Leaving directory '/home/sinowrt/Documents/jdk7u-dev/build/hotspot/outputdir/linux_amd64_compiler2/product'
+make[4]: *** [/home/sinowrt/Documents/jdk7u-dev/hotspot/make/linux/Makefile:290: product] Error 2
+make[4]: Leaving directory '/home/sinowrt/Documents/jdk7u-dev/build/hotspot/outputdir'
+make[3]: *** [Makefile:192: generic_build2] Error 2
+make[3]: Leaving directory '/home/sinowrt/Documents/jdk7u-dev/hotspot/make'
+make[2]: *** [Makefile:151: product] Error 2
+make[2]: Leaving directory '/home/sinowrt/Documents/jdk7u-dev/hotspot/make'
+make[1]: *** [make/hotspot-rules.gmk:114: hotspot-build] Error 2
+make[1]: Leaving directory '/home/sinowrt/Documents/jdk7u-dev'
+make: *** [Makefile:251: build_product_image] Error 2
+</code></pre>
+
+<p>出现这些错误是因为编译的时候，添加了-Werror参数，只要将-Werror参数去掉即可</p>
+
+<pre><code class="language-shell">vi hotspot/make/linux/makefiles/gcc.make
+#找到WARNINGS_ARE_ERRORS = -Werror整行注释掉
+</code></pre>
+
+<p><code>:wq</code>保存退出之后，<code>make clean</code>再重新<code>make</code>即可成功编译，整个编译过程有点久，耐心等待即可。<br />
+编译成功会出现如下提示：</p>
+
+<pre><code class="language-shell">########################################################################
+##### Leaving jdk for target(s) sanity all docs images             #####
+########################################################################
+##### Build time 00:05:21 jdk for target(s) sanity all docs images #####
+########################################################################
+
+#-- Build times ----------
+Target all_product_build
+Start 2022-04-19 06:55:27
+End   2022-04-19 07:05:10
+00:00:59 corba
+00:02:51 hotspot
+00:00:08 jaxp
+00:00:10 jaxws
+00:05:21 jdk
+00:00:14 langtools
+00:09:43 TOTAL
+-------------------------
+</code></pre>
+
+<h2 id="0x03-总结">0x03 总结</h2>
+
+<p>Ubuntu相对于Mac和Win平台，编译JDK更容易，之前也在MacOS中尝试过编译JDK7，由于Command Line Tools与新版本macOS不兼容而以失败告终，在Ubuntu中软件包的安装更宽松，使得编译环境更容易配置，建议老版本的JDK优先考虑使用Ubuntu进行编译。</p>
+
+    </div>
+	
+    <div class="post-copyright">
+             
+			
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>sinowrt </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://blog.sinowrt.cn/2022/2022-04-17t2030-how-to-compile-openjdk7-on-ubuntu20.04/>http://blog.sinowrt.cn/2022/2022-04-17t2030-how-to-compile-openjdk7-on-ubuntu20.04/</span>
+            </p>
+			
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/ubuntu/">
+                    #ubuntu</a></span>
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/openjdk/">
+                    #openjdk</a></span>
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/compile/">
+                    #compile</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="http://blog.sinowrt.cn">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://blog.sinowrt.cn/2022/2022-04-17t2024-how-to-install-vmware-tools-on-ubuntu20.04/" class="prev" rel="prev" title="如何在Ubuntu20.04中安装VMware tools"><i class="iconfont icon-left"></i>&nbsp;如何在Ubuntu20.04中安装VMware tools</a>
+         
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2022</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://blog.sinowrt.cn">sinowrt</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt | </a><script type="text/javascript" src="https://s4.cnzz.com/z_stat.php?id=1279436618&web_id=1279436618"></script></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>
