@@ -30,13 +30,11 @@
 
 &lt;p&gt;遵循不重复造轮子原则，我首先在网上搜集了一下相关的信息，看看有没有现成的方案。&lt;/p&gt;
 
-&lt;p&gt;首先在知乎找到了&lt;a href=&#34;https://zhuanlan.zhihu.com/p/136898412&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;《总是忘打卡？用iBeacon提醒你!》&lt;/a&gt;这篇文章，作者在万能淘宝上购买的iBeacon信标，使用Python搭配pybluez库探测iBeacon信号，根据iBeacon信号的消失或者出现来判断作者上班与下班的状态。&lt;/p&gt;
+&lt;p&gt;首先在知乎找到了&lt;a href=&#34;https://zhuanlan.zhihu.com/p/136898412&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;《总是忘打卡？用iBeacon提醒你！》&lt;/a&gt;这篇文章，作者在万能淘宝上购买的iBeacon信标，使用Python搭配pybluez库探测iBeacon信号，根据iBeacon信号的消失或者出现来判断作者上班与下班的状态。&lt;/p&gt;
 
 &lt;p&gt;但是据了解，iPhone是会持续向外发射BLE信号的，既然有现成的信号源，就不用买万能淘宝的iBeacon信标了。&lt;/p&gt;
 
-&lt;p&gt;因为iPhone的BLE广播的是随机地址，那么要如何唯一确定该随机地址是我的设备呢? 首先我们要知道随机地址是什么意思，随机地址是蓝牙核心规范中的一个词条，那么在蓝牙核心规范中必然会有&amp;rdquo;随机地址&amp;rdquo;的定义和描述。&lt;/p&gt;
-
-&lt;p&gt;下载&lt;a href=&#34;https://www.bluetooth.com/zh-cn/specifications/specs/core-specification-5-3/&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;蓝牙核心规范5.3&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;因为iPhone的BLE广播的是随机地址，那么要如何唯一确定该随机地址是我的设备呢? 首先我们要知道随机地址是什么意思，随机地址是蓝牙核心规范中的一个词条，那么在蓝牙核心规范中必然会有&amp;rdquo;随机地址&amp;rdquo;的定义和描述，附上&lt;a href=&#34;https://www.bluetooth.com/zh-cn/specifications/specs/core-specification-5-3/&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;蓝牙核心规范5.3下载链接&lt;/a&gt;。&lt;/p&gt;
 
 &lt;h2 id=&#34;0x03-实现方案&#34;&gt;0x03 实现方案&lt;/h2&gt;
 
@@ -44,7 +42,7 @@
 
 &lt;ol&gt;
 &lt;li&gt;将IRK以及随机地址的前24位prand作为输入，然后prand需要补齐128位变为r&amp;rsquo;&lt;/li&gt;
-&lt;li&gt;使用&lt;code&gt;[Vol 3] Part H, Section 2.2.2&lt;/code&gt;的ah哈希函数，进行ah(IRK,r&amp;rsquo;)，ah函数实际上就是(NIST Publication FIPS-197)[&lt;a href=&#34;https://csrc.nist.gov/csrc/media/publications/fips/197/final/documents/fips-197.pdf]中描述的AES-128加密，IRK作为key，r&#39;作为plaintext&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;https://csrc.nist.gov/csrc/media/publications/fips/197/final/documents/fips-197.pdf]中描述的AES-128加密，IRK作为key，r&#39;作为plaintext&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;使用&lt;code&gt;[Vol 3] Part H, Section 2.2.2&lt;/code&gt;的ah哈希函数，进行ah(IRK,r&amp;rsquo;)，ah函数实际上就是&lt;a href=&#34;https://csrc.nist.gov/csrc/media/publications/fips/197/final/documents/fips-197.pdf&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;NIST Publication FIPS-197&lt;/a&gt;中描述的AES-128加密，IRK作为key，r&amp;rsquo;作为plaintext&lt;/li&gt;
 &lt;li&gt;取ah哈希运算结果的最后24位，跟随机地址的后24位进行比较，若一样则可判断为同一设备。&lt;/li&gt;
 &lt;/ol&gt;
 
@@ -62,7 +60,7 @@
 
 &lt;p&gt;将电脑与手机进行配对，配对完成后，打开设备管理器，找到iPhone的蓝牙LE设备，打开属性窗口的事件选项卡，在信息栏记录蓝牙LE设备的设备号（如图5.1）&lt;br /&gt;
 &lt;img src=&#34;https://pic.sinowrt.cn/blogpics/20220508181736.jpg&#34; alt=&#34;图 5.1&#34; /&gt;&lt;br /&gt;
-下载(PsTools)[&lt;a href=&#34;https://docs.microsoft.com/en-us/sysinternals/downloads/psexec]解压,使用管理员权限打开CMD，cd到解压好的PsTools根目录，执行命令&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;https://docs.microsoft.com/en-us/sysinternals/downloads/psexec]解压,使用管理员权限打开CMD，cd到解压好的PsTools根目录，执行命令&lt;/a&gt;&lt;/p&gt;
+下载&lt;a href=&#34;https://docs.microsoft.com/en-us/sysinternals/downloads/psexec&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;PsTools&lt;/a&gt;解压,使用管理员权限打开CMD，cd到解压好的PsTools根目录，执行命令&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# 64位操作系统执行以下命令
 PsExec64.exe -si regedit
@@ -216,7 +214,7 @@ def send_email(title, content):
         print(e)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;公众号通知提醒，需要开通一个测试号（可以实现模板消息（业务通知）发送的功能的最简单方式），然后配置消息模板，在代码层面还要做以下工作：&lt;/p&gt;
+&lt;p&gt;公众号通知提醒，需要开通一个测试号（可以实现模板消息（业务通知）发送的功能的最简单方式），可以打开&lt;a href=&#34;https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;这里&lt;/a&gt;注册，然后配置消息模板，模板内容中字段使用&amp;rdquo;{{字段名.DATA}}&amp;ldquo;的格式进行配置，配置好之后记录下模板id，在代码层面还要做以下工作：&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# access_token的数据结构
 access_token = {&#39;token&#39;: None, &#39;expire_time&#39;: None}
@@ -283,7 +281,72 @@ def send_template_msg(access_token, msg_content, msg_time):
 
 &lt;h2 id=&#34;0x08-花絮&#34;&gt;0x08 花絮&lt;/h2&gt;
 
-&lt;p&gt;在Windows中使用Python实现受阻后，发现Windows SDK是提供BLE的完整支持的，于是又转过头准备在windows使用C#实现这个功能，微软还提供了若干例程，比如：&lt;a href=&#34;https://github.com/microsoft/Windows-universal-samples/tree/dev/Samples/BluetoothLE&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;BluetoothLE&lt;/a&gt;,&lt;a href=&#34;https://github.com/Microsoft/BluetoothLEExplorer&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;BluetoothLEExplorer&lt;/a&gt;但是C#也太久没接触了，要重新上手开发所花费的时间成本是巨大的，就还是将工作转到寻找Win10兼容的Python BLE库了。&lt;/p&gt;
+&lt;p&gt;在Windows中使用Python实现受阻后，发现Windows SDK是提供BLE的完整支持的，于是又转过头准备在windows使用C#实现这个功能，微软还提供了若干例程，比如：&lt;a href=&#34;https://github.com/microsoft/Windows-universal-samples/tree/dev/Samples/BluetoothLE&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;BluetoothLE&lt;/a&gt;, &lt;a href=&#34;https://github.com/Microsoft/BluetoothLEExplorer&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;BluetoothLEExplorer&lt;/a&gt;有C#开发经验的朋友可以优先考虑C#实现。因为C#我太久没接触了，要重新上手开发所花费的时间成本是巨大的，就还是将工作转到寻找Win10兼容的Python BLE库了。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Python 3.10.04 环境下使用 pip install pybluez 的若干报错</title>
+      <link>http://blog.sinowrt.cn/2022/2022-04-30t1807-several-errors-while-installing-pybluez-with-pip-python-version-3.10.04/</link>
+      <pubDate>Sat, 30 Apr 2022 18:07:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2022/2022-04-30t1807-several-errors-while-installing-pybluez-with-pip-python-version-3.10.04/</guid>
+      <description>
+
+&lt;h2 id=&#34;0x00-背景&#34;&gt;0x00 背景&lt;/h2&gt;
+
+&lt;p&gt;准备在Win10使用python做蓝牙功能开发，安装了最新的Python 3.10.04，然后在Pycharm中新建工程，指定venv环境为Python 3.10.04。在使用pip安装pybluez包的时候，报了若干个Error，就写篇Blog记录一下，给大家做参考。&lt;/p&gt;
+
+&lt;h2 id=&#34;0x01-报错及解决过程&#34;&gt;0x01 报错及解决过程&lt;/h2&gt;
+
+&lt;p&gt;第一个报错为：&lt;code&gt;error in pybluez2 setup command: use_2to3 is invalid.&lt;/code&gt;&lt;br /&gt;
+原因：高版本的&lt;code&gt;setuptools&lt;/code&gt;中不再使用&lt;code&gt;use_2to3&lt;/code&gt;
+解决方法：&lt;code&gt;File &amp;gt; Settings &amp;gt; Project:xxxx &amp;gt; Python Interpreter 的Package中&lt;/code&gt; 将 &lt;code&gt;setuptools&lt;/code&gt; 版本降到58以下即可&lt;/p&gt;
+
+&lt;p&gt;第二个报错为：&lt;code&gt;LINK : fatal error LNK1181: cannot open input file &#39;Irprops.lib&#39;&lt;/code&gt;
+原因：Windows Kit中删除了irprops.lib，链接到 irprops.lib 的应用可直接改为链接到 bthprops.lib
+解决方法：
+根据编译命令，找到Windows Kit的位置：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt; C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Tools\MSVC\14.16.27023\bin\HostX86\x64\link.exe /nologo /INCREMENTAL:NO /LTCG /
+DLL /MANIFEST:EMBED,ID=2 /MANIFESTUAC:NO /LIBPATH:E:\mcp\WorkPal\venv\libs /LIBPATH:D:\Program Files\Python\Python_310\libs /LIBPATH:D:\Program Fil
+es\Python\Python_310 /LIBPATH:E:\mcp\WorkPal\venv\PCbuild\amd64 /LIBPATH:C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Tools\MS
+VC\14.16.27023\lib\x64 /LIBPATH:C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\lib\um\x64 /LIBPATH:C:\Program Files (x86)\Windows Kits\10\lib\1
+0.0.22000.0\ucrt\x64 /LIBPATH:C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x64 WS2_32.lib Irprops.lib /EXPORT:PyInit__msbt build\temp
+.win-amd64-3.10\Release\msbt\_msbt.obj /OUT:build\lib.win-amd64-3.10\bluetooth\_msbt.cp310-win_amd64.pyd /IMPLIB:build\temp.win-amd64-3.10\Release\
+msbt\_msbt.cp310-win_amd64.lib
+  LINK : fatal error LNK1181: cannot open input file &#39;Irprops.lib&#39;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;根据命令，我的lib目录为&lt;code&gt;C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x64&lt;/code&gt;&lt;br /&gt;
+用管理员身份打开CMD，cd到该目录，然后使用&lt;code&gt;mklink IRPROPS.LIB bthprops.lib&lt;/code&gt;创建符号链接&lt;br /&gt;
+然后重新pip install pybluez即可&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>pip install WinError 10061解决方法</title>
+      <link>http://blog.sinowrt.cn/2022/2022-04-26t2103-how-to-solve-pycharm-pip-install-winerror-10061/</link>
+      <pubDate>Tue, 26 Apr 2022 21:03:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2022/2022-04-26t2103-how-to-solve-pycharm-pip-install-winerror-10061/</guid>
+      <description>
+
+&lt;h2 id=&#34;0x00-解决过程&#34;&gt;0x00 解决过程&lt;/h2&gt;
+
+&lt;p&gt;今晚在pycharm的terminal中更新pip版本的时候，遇到下面的报错：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by &#39;ProxyError(&#39;Cannot connect to proxy.&#39;, NewConnectionError(&#39;&amp;lt;pip._vendor.urllib3.connection.VerifiedHTTPSConnection object at 0x0000011051C02790&amp;gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。&#39;))&#39;: /pypi/simple/pip/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;无论下载什么包都是报10061的Error。&lt;/p&gt;
+
+&lt;p&gt;查了网上全是关系统代理呀，关浏览器代理呀，全试了一遍都没用，pycharm的代理也找了一遍都没发现问题，重启pycharm重启电脑都没用。&lt;/p&gt;
+
+&lt;p&gt;后面还是修改注册表解决了，修改过程如下：&lt;br /&gt;
+&lt;code&gt;Win+R&lt;/code&gt;键，输入regedit回车打开注册表，打开&lt;code&gt;计算机\HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings&lt;/code&gt;，找到&lt;code&gt;ProxyEnable&lt;/code&gt;表项，修改数值数据为0，点击确定即可。&lt;/p&gt;
+
+&lt;p&gt;无需重启，直接打开pycharm的terminal，可以正常更新pip了。&lt;/p&gt;
 </description>
     </item>
     
@@ -297,7 +360,7 @@ def send_template_msg(access_token, msg_content, msg_time):
 
 &lt;h2 id=&#34;0x00-解决过程&#34;&gt;0x00 解决过程&lt;/h2&gt;
 
-&lt;pre&gt;&lt;code&gt;#安装bluetoothctl
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;#安装bluetoothctl
 sudo apt-get install pi-bluetooth
 
 #配置设备，如果遇到配置超时，重试即可，输出Device setup complete说明配置成功
@@ -1211,70 +1274,6 @@ services:
 
 &lt;p&gt;这个错误是因为系统中缺少bzip2，使用yum安装上就好了
 &lt;code&gt;yum -y install bzip2&lt;/code&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>怎样查看linux版本</title>
-      <link>http://blog.sinowrt.cn/2021/2021-03-08t1833-how-to-check-the-linux-version/</link>
-      <pubDate>Mon, 08 Mar 2021 18:33:00 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2021/2021-03-08t1833-how-to-check-the-linux-version/</guid>
-      <description>
-
-&lt;h2 id=&#34;0x00-相关命令&#34;&gt;0x00 相关命令&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code&gt;# 可显示电脑以及操作系统的相关信息
-uname -a
-
-# 查看正在运行的内核版本
-cat /proc/version
-
-# 查看发行版本信息
-cat /etc/issue
-
-# 适用于所有的linux，包括Redhat、SuSE、Debian等发行版，但是在debian下要安装lsb
-lsb_release -a
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>navicat 连接 mysql数据库报错Authentication plugin &#39;caching_sha2_password&#39; cannot be loaded</title>
-      <link>http://blog.sinowrt.cn/2021/2021-03-08t1412-authentication-plugin-caching_sha2_password-cannot-be-loaded/</link>
-      <pubDate>Mon, 08 Mar 2021 16:08:00 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2021/2021-03-08t1412-authentication-plugin-caching_sha2_password-cannot-be-loaded/</guid>
-      <description>
-
-&lt;h2 id=&#34;0x00-错误描述&#34;&gt;0x00 错误描述&lt;/h2&gt;
-
-&lt;p&gt;mysql数据库的版本是8.0.17，使用navicat连接的时候报错&lt;code&gt;Authentication plugin &#39;caching_sha2_password&#39; cannot be loaded&lt;/code&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;0x01-解决方法&#34;&gt;0x01 解决方法&lt;/h2&gt;
-
-&lt;p&gt;因为我使用的navicat不支持caching_sha2_password的认证方式，只能在服务器暂时修改为mysql_native_password&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;// 登录Mysql(需要输入密码)
-mysql -u root -p
-
-// 选择数据库(这一步不可省略)
-use mysql
-
-// 查看plugin设置
-select host, user, plugin from user;
-
-// 可以看到root的plugin是caching_sha2_password，我们希望改成mysql_native_password
-ALTER USER &#39;root&#39;@&#39;localhost&#39; IDENTIFIED WITH mysql_native_password BY &#39;xxxxx&#39;;
-ALTER USER &#39;root&#39;@&#39;%&#39; IDENTIFIED WITH mysql_native_password BY &#39;xxxxx&#39;;
-
-//使生效
-FLUSH PRIVILEGES;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;0x02-注意事项&#34;&gt;0x02 注意事项&lt;/h2&gt;
-
-&lt;p&gt;在navicat连接完毕后，需要改回caching_sha2_password，否则后端连接的时候可能会出现问题。&lt;/p&gt;
 </description>
     </item>
     

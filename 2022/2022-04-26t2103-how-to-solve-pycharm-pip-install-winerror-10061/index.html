@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="sinowrt">
+  
+  
+  
+  <link rel="prev" href="http://blog.sinowrt.cn/2022/2022-04-25t1936-raspberry-pi-how-to-enable-bluetooth-on-ubuntu-server-20.04/" />
+  <link rel="next" href="http://blog.sinowrt.cn/2022/2022-04-30t1807-several-errors-while-installing-pybluez-with-pip-python-version-3.10.04/" />
+  <link rel="canonical" href="http://blog.sinowrt.cn/2022/2022-04-26t2103-how-to-solve-pycharm-pip-install-winerror-10061/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           pip install WinError 10061解决方法 | Sinowrt
+       
+  </title>
+  <meta name="title" content="pip install WinError 10061解决方法 | Sinowrt">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/blog.sinowrt.cn"
+    },
+    "articleSection" : "posts",
+    "name" : "pip install WinError 10061解决方法",
+    "headline" : "pip install WinError 10061解决方法",
+    "description" : "0x00 解决过程 今晚在pycharm的terminal中更新pip版本的时候，遇到下面的报错：\nWARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by \x27ProxyError(\x27Cannot connect to proxy.\x27, NewConnectionError(\x27\x26lt;pip._vendor.urllib3.connection.VerifiedHTTPSConnection object at 0x0000011051C02790\x26gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。\x27))\x27: \/pypi\/simple\/pip\/  无论下载什么包都是报10061的Error。\n查了网上全是关系统代理呀，关浏览器代理呀，全试了一遍都没用，pycharm的代理也找了一遍都没发现问题，重启pycharm重启电脑都没用。\n后面还是修改注册表解决了，修改过程如下：\nWin\x2bR键，输入regedit回车打开注册表，打开计算机\\HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings，找到ProxyEnable表项，修改数值数据为0，点击确定即可。\n无需重启，直接打开pycharm的terminal，可以正常更新pip了。",
+    "inLanguage" : "en-us",
+    "author" : "sinowrt",
+    "creator" : "sinowrt",
+    "publisher": "sinowrt",
+    "accountablePerson" : "sinowrt",
+    "copyrightHolder" : "sinowrt",
+    "copyrightYear" : "2022",
+    "datePublished": "2022-04-26 21:03:00 \x2b0800 CST",
+    "dateModified" : "2022-04-26 21:03:00 \x2b0800 CST",
+    "url" : "http:\/\/blog.sinowrt.cn\/2022\/2022-04-26t2103-how-to-solve-pycharm-pip-install-winerror-10061\/",
+    "wordCount" : "38",
+    "keywords" : [ "pycharm","pip", "Sinowrt"]
+}
+</script>
+
+</head>
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?85719ea04c6401b98466dfdbc9399c78";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">pip install WinError 10061解决方法</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2022-04-26 itemprop="datePublished">April 26, 2022</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="http://blog.sinowrt.cn/categories/pycharm/"> pycharm </a>
+                        <a href="http://blog.sinowrt.cn/categories/pip/"> pip </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          
+
+<h2 id="0x00-解决过程">0x00 解决过程</h2>
+
+<p>今晚在pycharm的terminal中更新pip版本的时候，遇到下面的报错：</p>
+
+<pre><code class="language-shell">WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ProxyError('Cannot connect to proxy.', NewConnectionError('&lt;pip._vendor.urllib3.connection.VerifiedHTTPSConnection object at 0x0000011051C02790&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。'))': /pypi/simple/pip/
+</code></pre>
+
+<p>无论下载什么包都是报10061的Error。</p>
+
+<p>查了网上全是关系统代理呀，关浏览器代理呀，全试了一遍都没用，pycharm的代理也找了一遍都没发现问题，重启pycharm重启电脑都没用。</p>
+
+<p>后面还是修改注册表解决了，修改过程如下：<br />
+<code>Win+R</code>键，输入regedit回车打开注册表，打开<code>计算机\HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings</code>，找到<code>ProxyEnable</code>表项，修改数值数据为0，点击确定即可。</p>
+
+<p>无需重启，直接打开pycharm的terminal，可以正常更新pip了。</p>
+
+    </div>
+	
+    <div class="post-copyright">
+             
+			
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>sinowrt </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://blog.sinowrt.cn/2022/2022-04-26t2103-how-to-solve-pycharm-pip-install-winerror-10061/>http://blog.sinowrt.cn/2022/2022-04-26t2103-how-to-solve-pycharm-pip-install-winerror-10061/</span>
+            </p>
+			
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/pycharm/">
+                    #pycharm</a></span>
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/pip/">
+                    #pip</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="http://blog.sinowrt.cn">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://blog.sinowrt.cn/2022/2022-04-25t1936-raspberry-pi-how-to-enable-bluetooth-on-ubuntu-server-20.04/" class="prev" rel="prev" title="树莓派 ubuntu server 20.04启用蓝牙功能"><i class="iconfont icon-left"></i>&nbsp;树莓派 ubuntu server 20.04启用蓝牙功能</a>
+         
+        
+        <a href="http://blog.sinowrt.cn/2022/2022-04-30t1807-several-errors-while-installing-pybluez-with-pip-python-version-3.10.04/" class="next" rel="next" title="Python 3.10.04 环境下使用 pip install pybluez 的若干报错">Python 3.10.04 环境下使用 pip install pybluez 的若干报错&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2022</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://blog.sinowrt.cn">sinowrt</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt | </a><script type="text/javascript" src="https://s4.cnzz.com/z_stat.php?id=1279436618&web_id=1279436618"></script></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

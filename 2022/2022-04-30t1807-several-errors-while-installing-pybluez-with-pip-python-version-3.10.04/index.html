@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="sinowrt">
+  
+  
+  
+  <link rel="prev" href="http://blog.sinowrt.cn/2022/2022-04-26t2103-how-to-solve-pycharm-pip-install-winerror-10061/" />
+  <link rel="next" href="http://blog.sinowrt.cn/2022/2022-05-03t2145-using-ios-ble-to-remind-me-clock-inpython-implement/" />
+  <link rel="canonical" href="http://blog.sinowrt.cn/2022/2022-04-30t1807-several-errors-while-installing-pybluez-with-pip-python-version-3.10.04/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           Python 3.10.04 环境下使用 pip install pybluez 的若干报错 | Sinowrt
+       
+  </title>
+  <meta name="title" content="Python 3.10.04 环境下使用 pip install pybluez 的若干报错 | Sinowrt">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/blog.sinowrt.cn"
+    },
+    "articleSection" : "posts",
+    "name" : "Python 3.10.04 环境下使用 pip install pybluez 的若干报错",
+    "headline" : "Python 3.10.04 环境下使用 pip install pybluez 的若干报错",
+    "description" : "0x00 背景 准备在Win10使用python做蓝牙功能开发，安装了最新的Python 3.10.04，然后在Pycharm中新建工程，指定venv环境为Python 3.10.04。在使用pip安装pybluez包的时候，报了若干个Error，就写篇Blog记录一下，给大家做参考。\n0x01 报错及解决过程 第一个报错为：error in pybluez2 setup command: use_2to3 is invalid.\n原因：高版本的setuptools中不再使用use_2to3 解决方法：File \x26gt; Settings \x26gt; Project:xxxx \x26gt; Python Interpreter 的Package中 将 setuptools 版本降到58以下即可\n第二个报错为：LINK : fatal error LNK1181: cannot open input file \x27Irprops.lib\x27 原因：Windows Kit中删除了irprops.lib，链接到 irprops.lib 的应用可直接改为链接到 bthprops.lib 解决方法： 根据编译命令，找到Windows Kit的位置：\nC:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\BuildTools\\VC\\Tools\\MSVC\\14.16.27023\\bin\\HostX86\\x64\\link.exe \/nologo \/INCREMENTAL:NO \/LTCG \/ DLL \/MANIFEST:EMBED,ID=2 \/MANIFESTUAC:NO \/LIBPATH:E:\\mcp\\WorkPal\\venv\\libs \/LIBPATH:D:\\Program Files\\Python\\Python_310\\libs \/LIBPATH:D:\\Program Fil es\\Python\\Python_310 \/LIBPATH:E:\\mcp\\WorkPal\\venv\\PCbuild\\amd64 \/LIBPATH:C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\BuildTools\\VC\\Tools\\MS VC\\14.",
+    "inLanguage" : "en-us",
+    "author" : "sinowrt",
+    "creator" : "sinowrt",
+    "publisher": "sinowrt",
+    "accountablePerson" : "sinowrt",
+    "copyrightHolder" : "sinowrt",
+    "copyrightYear" : "2022",
+    "datePublished": "2022-04-30 18:07:00 \x2b0800 CST",
+    "dateModified" : "2022-04-30 18:07:00 \x2b0800 CST",
+    "url" : "http:\/\/blog.sinowrt.cn\/2022\/2022-04-30t1807-several-errors-while-installing-pybluez-with-pip-python-version-3.10.04\/",
+    "wordCount" : "112",
+    "keywords" : [ "python","pip","pybluez", "Sinowrt"]
+}
+</script>
+
+</head>
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?85719ea04c6401b98466dfdbc9399c78";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Python 3.10.04 环境下使用 pip install pybluez 的若干报错</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2022-04-30 itemprop="datePublished">April 30, 2022</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="http://blog.sinowrt.cn/categories/python/"> python </a>
+                        <a href="http://blog.sinowrt.cn/categories/pip/"> pip </a>
+                        <a href="http://blog.sinowrt.cn/categories/pybluez/"> pybluez </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          
+
+<h2 id="0x00-背景">0x00 背景</h2>
+
+<p>准备在Win10使用python做蓝牙功能开发，安装了最新的Python 3.10.04，然后在Pycharm中新建工程，指定venv环境为Python 3.10.04。在使用pip安装pybluez包的时候，报了若干个Error，就写篇Blog记录一下，给大家做参考。</p>
+
+<h2 id="0x01-报错及解决过程">0x01 报错及解决过程</h2>
+
+<p>第一个报错为：<code>error in pybluez2 setup command: use_2to3 is invalid.</code><br />
+原因：高版本的<code>setuptools</code>中不再使用<code>use_2to3</code>
+解决方法：<code>File &gt; Settings &gt; Project:xxxx &gt; Python Interpreter 的Package中</code> 将 <code>setuptools</code> 版本降到58以下即可</p>
+
+<p>第二个报错为：<code>LINK : fatal error LNK1181: cannot open input file 'Irprops.lib'</code>
+原因：Windows Kit中删除了irprops.lib，链接到 irprops.lib 的应用可直接改为链接到 bthprops.lib
+解决方法：
+根据编译命令，找到Windows Kit的位置：</p>
+
+<pre><code class="language-shell"> C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Tools\MSVC\14.16.27023\bin\HostX86\x64\link.exe /nologo /INCREMENTAL:NO /LTCG /
+DLL /MANIFEST:EMBED,ID=2 /MANIFESTUAC:NO /LIBPATH:E:\mcp\WorkPal\venv\libs /LIBPATH:D:\Program Files\Python\Python_310\libs /LIBPATH:D:\Program Fil
+es\Python\Python_310 /LIBPATH:E:\mcp\WorkPal\venv\PCbuild\amd64 /LIBPATH:C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Tools\MS
+VC\14.16.27023\lib\x64 /LIBPATH:C:\Program Files (x86)\Windows Kits\NETFXSDK\4.6.1\lib\um\x64 /LIBPATH:C:\Program Files (x86)\Windows Kits\10\lib\1
+0.0.22000.0\ucrt\x64 /LIBPATH:C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x64 WS2_32.lib Irprops.lib /EXPORT:PyInit__msbt build\temp
+.win-amd64-3.10\Release\msbt\_msbt.obj /OUT:build\lib.win-amd64-3.10\bluetooth\_msbt.cp310-win_amd64.pyd /IMPLIB:build\temp.win-amd64-3.10\Release\
+msbt\_msbt.cp310-win_amd64.lib
+  LINK : fatal error LNK1181: cannot open input file 'Irprops.lib'
+</code></pre>
+
+<p>根据命令，我的lib目录为<code>C:\Program Files (x86)\Windows Kits\10\lib\10.0.22000.0\um\x64</code><br />
+用管理员身份打开CMD，cd到该目录，然后使用<code>mklink IRPROPS.LIB bthprops.lib</code>创建符号链接<br />
+然后重新pip install pybluez即可</p>
+
+    </div>
+	
+    <div class="post-copyright">
+             
+			
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>sinowrt </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://blog.sinowrt.cn/2022/2022-04-30t1807-several-errors-while-installing-pybluez-with-pip-python-version-3.10.04/>http://blog.sinowrt.cn/2022/2022-04-30t1807-several-errors-while-installing-pybluez-with-pip-python-version-3.10.04/</span>
+            </p>
+			
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/python/">
+                    #python</a></span>
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/pip/">
+                    #pip</a></span>
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/pybluez/">
+                    #pybluez</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="http://blog.sinowrt.cn">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://blog.sinowrt.cn/2022/2022-04-26t2103-how-to-solve-pycharm-pip-install-winerror-10061/" class="prev" rel="prev" title="pip install WinError 10061解决方法"><i class="iconfont icon-left"></i>&nbsp;pip install WinError 10061解决方法</a>
+         
+        
+        <a href="http://blog.sinowrt.cn/2022/2022-05-03t2145-using-ios-ble-to-remind-me-clock-inpython-implement/" class="next" rel="next" title="巧用IOS的BLE实现上下班打卡提醒（Python实现）">巧用IOS的BLE实现上下班打卡提醒（Python实现）&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2022</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://blog.sinowrt.cn">sinowrt</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt | </a><script type="text/javascript" src="https://s4.cnzz.com/z_stat.php?id=1279436618&web_id=1279436618"></script></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

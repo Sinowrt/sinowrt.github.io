@@ -9,7 +9,7 @@
   
   
   
-  <link rel="prev" href="http://blog.sinowrt.cn/2022/2022-04-25t1936-raspberry-pi-how-to-enable-bluetooth-on-ubuntu-server-20.04/" />
+  <link rel="prev" href="http://blog.sinowrt.cn/2022/2022-04-30t1807-several-errors-while-installing-pybluez-with-pip-python-version-3.10.04/" />
   
   <link rel="canonical" href="http://blog.sinowrt.cn/2022/2022-05-03t2145-using-ios-ble-to-remind-me-clock-inpython-implement/" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -46,7 +46,7 @@
     "articleSection" : "posts",
     "name" : "巧用IOS的BLE实现上下班打卡提醒（Python实现）",
     "headline" : "巧用IOS的BLE实现上下班打卡提醒（Python实现）",
-    "description" : "0x00 背景 因为公司使用刷脸打卡，这就导致有时候打了卡，却突然失忆，忘了自己有没有打卡；或者直接就忘了打卡，并且也忘了自己有没有打卡。这几种情况都实实在在发生过的，上个班还要时时刻刻去回忆有没有打卡实在是非常痛苦的一件事。所以一直就想做一个提醒打卡的小程序。\n0x01 设想的几种方案 第一种方案，是基于IOS快捷指令的自动化功能，设置到达或者离开目的地的提醒，但是这个自动化的方式非常鸡肋，一个是触发之后，还要手动点运行；二是到达或离开目的地根本就不提醒，反而是每次走到定位地址外的一个准确位置，反而又会准确提醒，不知道是不是地图位置有偏移还是咋滴。\n第二种方案是想起之前阿里公众号中的一篇文章，就讲到在外卖取餐的场景中，如何准确识别外卖小哥到店取餐的解决方案，这给了我很大的启发，该场景跟我上下班的场景很是契合，只要在到店（到公司上班）识别的基础上，加上离店（下班回家）识别的功能即可。开干！\n0x02 资料收集 遵循不重复造轮子原则，我首先在网上搜集了一下相关的信息，看看有没有现成的方案。\n首先在知乎找到了《总是忘打卡？用iBeacon提醒你!》这篇文章，作者在万能淘宝上购买的iBeacon信标，使用Python搭配pybluez库探测iBeacon信号，根据iBeacon信号的消失或者出现来判断作者上班与下班的状态。\n但是据了解，iPhone是会持续向外发射BLE信号的，既然有现成的信号源，就不用买万能淘宝的iBeacon信标了。\n因为iPhone的BLE广播的是随机地址，那么要如何唯一确定该随机地址是我的设备呢? 首先我们要知道随机地址是什么意思，随机地址是蓝牙核心规范中的一个词条，那么在蓝牙核心规范中必然会有\x26rdquo;随机地址\x26rdquo;的定义和描述。\n下载蓝牙核心规范5.3\n0x03 实现方案 根据蓝牙核心规范5.3中[Vol 6] Part B, Section 1.3.2.3的描述，可解析随机地址（iPhone BLE使用的正是可解析随机地址）可以使用设备配对过程中产生的IRK进行解析\n 将IRK以及随机地址的前24位prand作为输入，然后prand需要补齐128位变为r\x26rsquo; 使用[Vol 3] Part H, Section 2.2.2的ah哈希函数，进行ah(IRK,r\x26rsquo;)，ah函数实际上就是(NIST Publication FIPS-197)[https:\/\/csrc.nist.gov\/csrc\/media\/publications\/fips\/197\/final\/documents\/fips-197.pdf]中描述的AES-128加密，IRK作为key，r\x27作为plaintext 取ah哈希运算结果的最后24位，跟随机地址的后24位进行比较，若一样则可判断为同一设备。  0x04 运行环境的选择 我脑海中最先想到的是树莓派，作为一个wifi 蓝牙 有线功能完备，软件支持完整，即插即用，并且技术成熟的ARM设备，确实是实现各种小功能的首选设备。\n等等，为什么不在windows中实现呢？我的办公电脑又是24小时开机的，少维护一个设备多香啊。但是在实现的过程中发现pybluez的库在windows平台上并不支持BLE。。。但是万能的GayHub说：pybluez不行我这还有pysimpleble，尽管文档少，又不是不能用对吧。\n0x05 获取IRK 既然随机地址是根据IRK来解析的，那首先就要获取到一个IRK。\n首先，需要一个支持BLE的蓝牙适配器（我两台电脑蓝牙适配器可能因为不支持BLE配对，只能获取到Linkkey），以及Win10系统环境。\n将电脑与手机进行配对，配对完成后，打开设备管理器，找到iPhone的蓝牙LE设备，打开属性窗口的事件选项卡，在信息栏记录蓝牙LE设备的设备号（如图5.1）\n下载(PsTools)[https:\/\/docs.microsoft.com\/en-us\/sysinternals\/downloads\/psexec]解压,使用管理员权限打开CMD，cd到解压好的PsTools根目录，执行命令\n# 64位操作系统执行以下命令 PsExec64.exe -si regedit # 32位操作系统执行以下命令 PsExec.exe -si regedit  执行命令后会打开注册表窗口，在左侧找到HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\services\\BTHPORT\\Parameters\\Keys\\目录(如图 5.2)\n第一层目录是本机蓝牙Mac地址，在第二层目录中找到设备管理器中记录下的设备号，点击该目录，记录右侧窗口的IRK秘钥串\nPS：如果有 ESP32 开发板，可以烧录Decoding-Random-Bluetooth-Address项目的get_irk - esp32_irk.ino，再使用手机跟ESP32配对，在串口监视器中即可看到打印出来的IRK。\n另外，Decoding-Random-Bluetooth-Address这个项目中的nrf_ble_add文件夹中，有C语实现的程序，可以用来研究随机地址与irk匹配的具体算法，我仅参考了ah函数的具体实现过程，因为项目跑起来的发现随机地址和irk的匹配结果不对。\n0x06 位置判断实现篇 ## 随机地址校验器 class RandomAddressValidator(object): def __init__(self): self.",
+    "description" : "0x00 背景 因为公司使用刷脸打卡，这就导致有时候打了卡，却突然失忆，忘了自己有没有打卡；或者直接就忘了打卡，并且也忘了自己有没有打卡。这几种情况都实实在在发生过的，上个班还要时时刻刻去回忆有没有打卡实在是非常痛苦的一件事。所以一直就想做一个提醒打卡的小程序。\n0x01 设想的几种方案 第一种方案，是基于IOS快捷指令的自动化功能，设置到达或者离开目的地的提醒，但是这个自动化的方式非常鸡肋，一个是触发之后，还要手动点运行；二是到达或离开目的地根本就不提醒，反而是每次走到定位地址外的一个准确位置，反而又会准确提醒，不知道是不是地图位置有偏移还是咋滴。\n第二种方案是想起之前阿里公众号中的一篇文章，就讲到在外卖取餐的场景中，如何准确识别外卖小哥到店取餐的解决方案，这给了我很大的启发，该场景跟我上下班的场景很是契合，只要在到店（到公司上班）识别的基础上，加上离店（下班回家）识别的功能即可。开干！\n0x02 资料收集 遵循不重复造轮子原则，我首先在网上搜集了一下相关的信息，看看有没有现成的方案。\n首先在知乎找到了《总是忘打卡？用iBeacon提醒你！》这篇文章，作者在万能淘宝上购买的iBeacon信标，使用Python搭配pybluez库探测iBeacon信号，根据iBeacon信号的消失或者出现来判断作者上班与下班的状态。\n但是据了解，iPhone是会持续向外发射BLE信号的，既然有现成的信号源，就不用买万能淘宝的iBeacon信标了。\n因为iPhone的BLE广播的是随机地址，那么要如何唯一确定该随机地址是我的设备呢? 首先我们要知道随机地址是什么意思，随机地址是蓝牙核心规范中的一个词条，那么在蓝牙核心规范中必然会有\x26rdquo;随机地址\x26rdquo;的定义和描述，附上蓝牙核心规范5.3下载链接。\n0x03 实现方案 根据蓝牙核心规范5.3中[Vol 6] Part B, Section 1.3.2.3的描述，可解析随机地址（iPhone BLE使用的正是可解析随机地址）可以使用设备配对过程中产生的IRK进行解析\n 将IRK以及随机地址的前24位prand作为输入，然后prand需要补齐128位变为r\x26rsquo; 使用[Vol 3] Part H, Section 2.2.2的ah哈希函数，进行ah(IRK,r\x26rsquo;)，ah函数实际上就是NIST Publication FIPS-197中描述的AES-128加密，IRK作为key，r\x26rsquo;作为plaintext 取ah哈希运算结果的最后24位，跟随机地址的后24位进行比较，若一样则可判断为同一设备。  0x04 运行环境的选择 我脑海中最先想到的是树莓派，作为一个wifi 蓝牙 有线功能完备，软件支持完整，即插即用，并且技术成熟的ARM设备，确实是实现各种小功能的首选设备。\n等等，为什么不在windows中实现呢？我的办公电脑又是24小时开机的，少维护一个设备多香啊。但是在实现的过程中发现pybluez的库在windows平台上并不支持BLE。。。但是万能的GayHub说：pybluez不行我这还有pysimpleble，尽管文档少，又不是不能用对吧。\n0x05 获取IRK 既然随机地址是根据IRK来解析的，那首先就要获取到一个IRK。\n首先，需要一个支持BLE的蓝牙适配器（我两台电脑蓝牙适配器可能因为不支持BLE配对，只能获取到Linkkey），以及Win10系统环境。\n将电脑与手机进行配对，配对完成后，打开设备管理器，找到iPhone的蓝牙LE设备，打开属性窗口的事件选项卡，在信息栏记录蓝牙LE设备的设备号（如图5.1）\n下载PsTools解压,使用管理员权限打开CMD，cd到解压好的PsTools根目录，执行命令\n# 64位操作系统执行以下命令 PsExec64.exe -si regedit # 32位操作系统执行以下命令 PsExec.exe -si regedit  执行命令后会打开注册表窗口，在左侧找到HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\services\\BTHPORT\\Parameters\\Keys\\目录(如图 5.2)\n第一层目录是本机蓝牙Mac地址，在第二层目录中找到设备管理器中记录下的设备号，点击该目录，记录右侧窗口的IRK秘钥串\nPS：如果有 ESP32 开发板，可以烧录Decoding-Random-Bluetooth-Address项目的get_irk - esp32_irk.ino，再使用手机跟ESP32配对，在串口监视器中即可看到打印出来的IRK。\n另外，Decoding-Random-Bluetooth-Address这个项目中的nrf_ble_add文件夹中，有C语实现的程序，可以用来研究随机地址与irk匹配的具体算法，我仅参考了ah函数的具体实现过程，因为项目跑起来的发现随机地址和irk的匹配结果不对。\n0x06 位置判断实现篇 ## 随机地址校验器 class RandomAddressValidator(object): def __init__(self): self.",
     "inLanguage" : "en-us",
     "author" : "sinowrt",
     "creator" : "sinowrt",
@@ -178,13 +178,11 @@ var _hmt = _hmt || [];
 
 <p>遵循不重复造轮子原则，我首先在网上搜集了一下相关的信息，看看有没有现成的方案。</p>
 
-<p>首先在知乎找到了<a href="https://zhuanlan.zhihu.com/p/136898412" rel="nofollow noreferrer" target="_blank">《总是忘打卡？用iBeacon提醒你!》</a>这篇文章，作者在万能淘宝上购买的iBeacon信标，使用Python搭配pybluez库探测iBeacon信号，根据iBeacon信号的消失或者出现来判断作者上班与下班的状态。</p>
+<p>首先在知乎找到了<a href="https://zhuanlan.zhihu.com/p/136898412" rel="nofollow noreferrer" target="_blank">《总是忘打卡？用iBeacon提醒你！》</a>这篇文章，作者在万能淘宝上购买的iBeacon信标，使用Python搭配pybluez库探测iBeacon信号，根据iBeacon信号的消失或者出现来判断作者上班与下班的状态。</p>
 
 <p>但是据了解，iPhone是会持续向外发射BLE信号的，既然有现成的信号源，就不用买万能淘宝的iBeacon信标了。</p>
 
-<p>因为iPhone的BLE广播的是随机地址，那么要如何唯一确定该随机地址是我的设备呢? 首先我们要知道随机地址是什么意思，随机地址是蓝牙核心规范中的一个词条，那么在蓝牙核心规范中必然会有&rdquo;随机地址&rdquo;的定义和描述。</p>
-
-<p>下载<a href="https://www.bluetooth.com/zh-cn/specifications/specs/core-specification-5-3/" rel="nofollow noreferrer" target="_blank">蓝牙核心规范5.3</a></p>
+<p>因为iPhone的BLE广播的是随机地址，那么要如何唯一确定该随机地址是我的设备呢? 首先我们要知道随机地址是什么意思，随机地址是蓝牙核心规范中的一个词条，那么在蓝牙核心规范中必然会有&rdquo;随机地址&rdquo;的定义和描述，附上<a href="https://www.bluetooth.com/zh-cn/specifications/specs/core-specification-5-3/" rel="nofollow noreferrer" target="_blank">蓝牙核心规范5.3下载链接</a>。</p>
 
 <h2 id="0x03-实现方案">0x03 实现方案</h2>
 
@@ -192,7 +190,7 @@ var _hmt = _hmt || [];
 
 <ol>
 <li>将IRK以及随机地址的前24位prand作为输入，然后prand需要补齐128位变为r&rsquo;</li>
-<li>使用<code>[Vol 3] Part H, Section 2.2.2</code>的ah哈希函数，进行ah(IRK,r&rsquo;)，ah函数实际上就是(NIST Publication FIPS-197)[<a href="https://csrc.nist.gov/csrc/media/publications/fips/197/final/documents/fips-197.pdf]中描述的AES-128加密，IRK作为key，r'作为plaintext" rel="nofollow noreferrer" target="_blank">https://csrc.nist.gov/csrc/media/publications/fips/197/final/documents/fips-197.pdf]中描述的AES-128加密，IRK作为key，r'作为plaintext</a></li>
+<li>使用<code>[Vol 3] Part H, Section 2.2.2</code>的ah哈希函数，进行ah(IRK,r&rsquo;)，ah函数实际上就是<a href="https://csrc.nist.gov/csrc/media/publications/fips/197/final/documents/fips-197.pdf" rel="nofollow noreferrer" target="_blank">NIST Publication FIPS-197</a>中描述的AES-128加密，IRK作为key，r&rsquo;作为plaintext</li>
 <li>取ah哈希运算结果的最后24位，跟随机地址的后24位进行比较，若一样则可判断为同一设备。</li>
 </ol>
 
@@ -210,7 +208,7 @@ var _hmt = _hmt || [];
 
 <p>将电脑与手机进行配对，配对完成后，打开设备管理器，找到iPhone的蓝牙LE设备，打开属性窗口的事件选项卡，在信息栏记录蓝牙LE设备的设备号（如图5.1）<br />
 <figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/20220508181736.jpg" alt="图 5.1" class="lazyload"><figcaption class="image-caption">图 5.1</figcaption></figure><br />
-下载(PsTools)[<a href="https://docs.microsoft.com/en-us/sysinternals/downloads/psexec]解压,使用管理员权限打开CMD，cd到解压好的PsTools根目录，执行命令" rel="nofollow noreferrer" target="_blank">https://docs.microsoft.com/en-us/sysinternals/downloads/psexec]解压,使用管理员权限打开CMD，cd到解压好的PsTools根目录，执行命令</a></p>
+下载<a href="https://docs.microsoft.com/en-us/sysinternals/downloads/psexec" rel="nofollow noreferrer" target="_blank">PsTools</a>解压,使用管理员权限打开CMD，cd到解压好的PsTools根目录，执行命令</p>
 
 <pre><code class="language-shell"># 64位操作系统执行以下命令
 PsExec64.exe -si regedit
@@ -364,7 +362,7 @@ def send_email(title, content):
         print(e)
 </code></pre>
 
-<p>公众号通知提醒，需要开通一个测试号（可以实现模板消息（业务通知）发送的功能的最简单方式），然后配置消息模板，在代码层面还要做以下工作：</p>
+<p>公众号通知提醒，需要开通一个测试号（可以实现模板消息（业务通知）发送的功能的最简单方式），可以打开<a href="https://mp.weixin.qq.com/debug/cgi-bin/sandbox?t=sandbox/login" rel="nofollow noreferrer" target="_blank">这里</a>注册，然后配置消息模板，模板内容中字段使用&rdquo;{{字段名.DATA}}&ldquo;的格式进行配置，配置好之后记录下模板id，在代码层面还要做以下工作：</p>
 
 <pre><code class="language-python"># access_token的数据结构
 access_token = {'token': None, 'expire_time': None}
@@ -431,7 +429,7 @@ def send_template_msg(access_token, msg_content, msg_time):
 
 <h2 id="0x08-花絮">0x08 花絮</h2>
 
-<p>在Windows中使用Python实现受阻后，发现Windows SDK是提供BLE的完整支持的，于是又转过头准备在windows使用C#实现这个功能，微软还提供了若干例程，比如：<a href="https://github.com/microsoft/Windows-universal-samples/tree/dev/Samples/BluetoothLE" rel="nofollow noreferrer" target="_blank">BluetoothLE</a>,<a href="https://github.com/Microsoft/BluetoothLEExplorer" rel="nofollow noreferrer" target="_blank">BluetoothLEExplorer</a>但是C#也太久没接触了，要重新上手开发所花费的时间成本是巨大的，就还是将工作转到寻找Win10兼容的Python BLE库了。</p>
+<p>在Windows中使用Python实现受阻后，发现Windows SDK是提供BLE的完整支持的，于是又转过头准备在windows使用C#实现这个功能，微软还提供了若干例程，比如：<a href="https://github.com/microsoft/Windows-universal-samples/tree/dev/Samples/BluetoothLE" rel="nofollow noreferrer" target="_blank">BluetoothLE</a>, <a href="https://github.com/Microsoft/BluetoothLEExplorer" rel="nofollow noreferrer" target="_blank">BluetoothLEExplorer</a>有C#开发经验的朋友可以优先考虑C#实现。因为C#我太久没接触了，要重新上手开发所花费的时间成本是巨大的，就还是将工作转到寻找Win10兼容的Python BLE库了。</p>
 
     </div>
 	
@@ -483,7 +481,7 @@ def send_template_msg(access_token, msg_content, msg_time):
 
     <div class="post-nav">
         
-        <a href="http://blog.sinowrt.cn/2022/2022-04-25t1936-raspberry-pi-how-to-enable-bluetooth-on-ubuntu-server-20.04/" class="prev" rel="prev" title="树莓派 ubuntu server 20.04启用蓝牙功能"><i class="iconfont icon-left"></i>&nbsp;树莓派 ubuntu server 20.04启用蓝牙功能</a>
+        <a href="http://blog.sinowrt.cn/2022/2022-04-30t1807-several-errors-while-installing-pybluez-with-pip-python-version-3.10.04/" class="prev" rel="prev" title="Python 3.10.04 环境下使用 pip install pybluez 的若干报错"><i class="iconfont icon-left"></i>&nbsp;Python 3.10.04 环境下使用 pip install pybluez 的若干报错</a>
          
         
     </div>

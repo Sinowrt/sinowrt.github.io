@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>pybluez on Sinowrt</title>
+    <link>http://blog.sinowrt.cn/categories/pybluez/</link>
+    <description>Recent content in pybluez on Sinowrt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 30 Apr 2022 18:07:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.sinowrt.cn/categories/pybluez/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Python 3.10.04 环境下使用 pip install pybluez 的若干报错</title>
+      <link>http://blog.sinowrt.cn/2022/2022-04-30t1807-several-errors-while-installing-pybluez-with-pip-python-version-3.10.04/</link>
+      <pubDate>Sat, 30 Apr 2022 18:07:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2022/2022-04-30t1807-several-errors-while-installing-pybluez-with-pip-python-version-3.10.04/</guid>
+      <description>0x00 背景 准备在Win10使用python做蓝牙功能开发，安装了最新的Python 3.10.04，然后在Pycharm中新建工程，指定venv环境为Python 3.10.04。在使用pip安装pybluez包的时候，报了若干个Error，就写篇Blog记录一下，给大家做参考。
+0x01 报错及解决过程 第一个报错为：error in pybluez2 setup command: use_2to3 is invalid.
+原因：高版本的setuptools中不再使用use_2to3 解决方法：File &amp;gt; Settings &amp;gt; Project:xxxx &amp;gt; Python Interpreter 的Package中 将 setuptools 版本降到58以下即可
+第二个报错为：LINK : fatal error LNK1181: cannot open input file &#39;Irprops.lib&#39; 原因：Windows Kit中删除了irprops.lib，链接到 irprops.lib 的应用可直接改为链接到 bthprops.lib 解决方法： 根据编译命令，找到Windows Kit的位置：
+C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Tools\MSVC\14.16.27023\bin\HostX86\x64\link.exe /nologo /INCREMENTAL:NO /LTCG / DLL /MANIFEST:EMBED,ID=2 /MANIFESTUAC:NO /LIBPATH:E:\mcp\WorkPal\venv\libs /LIBPATH:D:\Program Files\Python\Python_310\libs /LIBPATH:D:\Program Fil es\Python\Python_310 /LIBPATH:E:\mcp\WorkPal\venv\PCbuild\amd64 /LIBPATH:C:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\VC\Tools\MS VC\14.</description>
+    </item>
+    
+  </channel>
+</rss>

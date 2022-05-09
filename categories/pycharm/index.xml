@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>pycharm on Sinowrt</title>
+    <link>http://blog.sinowrt.cn/categories/pycharm/</link>
+    <description>Recent content in pycharm on Sinowrt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 26 Apr 2022 21:03:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.sinowrt.cn/categories/pycharm/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>pip install WinError 10061解决方法</title>
+      <link>http://blog.sinowrt.cn/2022/2022-04-26t2103-how-to-solve-pycharm-pip-install-winerror-10061/</link>
+      <pubDate>Tue, 26 Apr 2022 21:03:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2022/2022-04-26t2103-how-to-solve-pycharm-pip-install-winerror-10061/</guid>
+      <description>0x00 解决过程 今晚在pycharm的terminal中更新pip版本的时候，遇到下面的报错：
+WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by &#39;ProxyError(&#39;Cannot connect to proxy.&#39;, NewConnectionError(&#39;&amp;lt;pip._vendor.urllib3.connection.VerifiedHTTPSConnection object at 0x0000011051C02790&amp;gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。&#39;))&#39;: /pypi/simple/pip/  无论下载什么包都是报10061的Error。
+查了网上全是关系统代理呀，关浏览器代理呀，全试了一遍都没用，pycharm的代理也找了一遍都没发现问题，重启pycharm重启电脑都没用。
+后面还是修改注册表解决了，修改过程如下：
+Win+R键，输入regedit回车打开注册表，打开计算机\HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings，找到ProxyEnable表项，修改数值数据为0，点击确定即可。
+无需重启，直接打开pycharm的terminal，可以正常更新pip了。</description>
+    </item>
+    
+  </channel>
+</rss>
