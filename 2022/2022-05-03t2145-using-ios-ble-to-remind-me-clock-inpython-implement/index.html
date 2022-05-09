@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="sinowrt">
+  
+  
+  
+  <link rel="prev" href="http://blog.sinowrt.cn/2022/2022-04-25t1936-raspberry-pi-how-to-enable-bluetooth-on-ubuntu-server-20.04/" />
+  
+  <link rel="canonical" href="http://blog.sinowrt.cn/2022/2022-05-03t2145-using-ios-ble-to-remind-me-clock-inpython-implement/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           巧用IOS的BLE实现上下班打卡提醒（Python实现） | Sinowrt
+       
+  </title>
+  <meta name="title" content="巧用IOS的BLE实现上下班打卡提醒（Python实现） | Sinowrt">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/blog.sinowrt.cn"
+    },
+    "articleSection" : "posts",
+    "name" : "巧用IOS的BLE实现上下班打卡提醒（Python实现）",
+    "headline" : "巧用IOS的BLE实现上下班打卡提醒（Python实现）",
+    "description" : "0x00 背景 因为公司使用刷脸打卡，这就导致有时候打了卡，却突然失忆，忘了自己有没有打卡；或者直接就忘了打卡，并且也忘了自己有没有打卡。这几种情况都实实在在发生过的，上个班还要时时刻刻去回忆有没有打卡实在是非常痛苦的一件事。所以一直就想做一个提醒打卡的小程序。\n0x01 设想的几种方案 第一种方案，是基于IOS快捷指令的自动化功能，设置到达或者离开目的地的提醒，但是这个自动化的方式非常鸡肋，一个是触发之后，还要手动点运行；二是到达或离开目的地根本就不提醒，反而是每次走到定位地址外的一个准确位置，反而又会准确提醒，不知道是不是地图位置有偏移还是咋滴。\n第二种方案是想起之前阿里公众号中的一篇文章，就讲到在外卖取餐的场景中，如何准确识别外卖小哥到店取餐的解决方案，这给了我很大的启发，该场景跟我上下班的场景很是契合，只要在到店（到公司上班）识别的基础上，加上离店（下班回家）识别的功能即可。开干！\n0x02 资料收集 遵循不重复造轮子原则，我首先在网上搜集了一下相关的信息，看看有没有现成的方案。\n首先在知乎找到了《总是忘打卡？用iBeacon提醒你!》这篇文章，作者在万能淘宝上购买的iBeacon信标，使用Python搭配pybluez库探测iBeacon信号，根据iBeacon信号的消失或者出现来判断作者上班与下班的状态。\n但是据了解，iPhone是会持续向外发射BLE信号的，既然有现成的信号源，就不用买万能淘宝的iBeacon信标了。\n因为iPhone的BLE广播的是随机地址，那么要如何唯一确定该随机地址是我的设备呢? 首先我们要知道随机地址是什么意思，随机地址是蓝牙核心规范中的一个词条，那么在蓝牙核心规范中必然会有\x26rdquo;随机地址\x26rdquo;的定义和描述。\n下载蓝牙核心规范5.3\n0x03 实现方案 根据蓝牙核心规范5.3中[Vol 6] Part B, Section 1.3.2.3的描述，可解析随机地址（iPhone BLE使用的正是可解析随机地址）可以使用设备配对过程中产生的IRK进行解析\n 将IRK以及随机地址的前24位prand作为输入，然后prand需要补齐128位变为r\x26rsquo; 使用[Vol 3] Part H, Section 2.2.2的ah哈希函数，进行ah(IRK,r\x26rsquo;)，ah函数实际上就是(NIST Publication FIPS-197)[https:\/\/csrc.nist.gov\/csrc\/media\/publications\/fips\/197\/final\/documents\/fips-197.pdf]中描述的AES-128加密，IRK作为key，r\x27作为plaintext 取ah哈希运算结果的最后24位，跟随机地址的后24位进行比较，若一样则可判断为同一设备。  0x04 运行环境的选择 我脑海中最先想到的是树莓派，作为一个wifi 蓝牙 有线功能完备，软件支持完整，即插即用，并且技术成熟的ARM设备，确实是实现各种小功能的首选设备。\n等等，为什么不在windows中实现呢？我的办公电脑又是24小时开机的，少维护一个设备多香啊。但是在实现的过程中发现pybluez的库在windows平台上并不支持BLE。。。但是万能的GayHub说：pybluez不行我这还有pysimpleble，尽管文档少，又不是不能用对吧。\n0x05 获取IRK 既然随机地址是根据IRK来解析的，那首先就要获取到一个IRK。\n首先，需要一个支持BLE的蓝牙适配器（我两台电脑蓝牙适配器可能因为不支持BLE配对，只能获取到Linkkey），以及Win10系统环境。\n将电脑与手机进行配对，配对完成后，打开设备管理器，找到iPhone的蓝牙LE设备，打开属性窗口的事件选项卡，在信息栏记录蓝牙LE设备的设备号（如图5.1）\n下载(PsTools)[https:\/\/docs.microsoft.com\/en-us\/sysinternals\/downloads\/psexec]解压,使用管理员权限打开CMD，cd到解压好的PsTools根目录，执行命令\n# 64位操作系统执行以下命令 PsExec64.exe -si regedit # 32位操作系统执行以下命令 PsExec.exe -si regedit  执行命令后会打开注册表窗口，在左侧找到HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\services\\BTHPORT\\Parameters\\Keys\\目录(如图 5.2)\n第一层目录是本机蓝牙Mac地址，在第二层目录中找到设备管理器中记录下的设备号，点击该目录，记录右侧窗口的IRK秘钥串\nPS：如果有 ESP32 开发板，可以烧录Decoding-Random-Bluetooth-Address项目的get_irk - esp32_irk.ino，再使用手机跟ESP32配对，在串口监视器中即可看到打印出来的IRK。\n另外，Decoding-Random-Bluetooth-Address这个项目中的nrf_ble_add文件夹中，有C语实现的程序，可以用来研究随机地址与irk匹配的具体算法，我仅参考了ah函数的具体实现过程，因为项目跑起来的发现随机地址和irk的匹配结果不对。\n0x06 位置判断实现篇 ## 随机地址校验器 class RandomAddressValidator(object): def __init__(self): self.",
+    "inLanguage" : "en-us",
+    "author" : "sinowrt",
+    "creator" : "sinowrt",
+    "publisher": "sinowrt",
+    "accountablePerson" : "sinowrt",
+    "copyrightHolder" : "sinowrt",
+    "copyrightYear" : "2022",
+    "datePublished": "2022-05-03 21:45:00 \x2b0800 CST",
+    "dateModified" : "2022-05-03 21:45:00 \x2b0800 CST",
+    "url" : "http:\/\/blog.sinowrt.cn\/2022\/2022-05-03t2145-using-ios-ble-to-remind-me-clock-inpython-implement\/",
+    "wordCount" : "509",
+    "keywords" : [ "python","iBeacon","BLE", "Sinowrt"]
+}
+</script>
+
+</head>
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?85719ea04c6401b98466dfdbc9399c78";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">巧用IOS的BLE实现上下班打卡提醒（Python实现）</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2022-05-03 itemprop="datePublished">May 3, 2022</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="http://blog.sinowrt.cn/categories/python/"> python </a>
+                        <a href="http://blog.sinowrt.cn/categories/ibeacon/"> iBeacon </a>
+                        <a href="http://blog.sinowrt.cn/categories/ble/"> BLE </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+            
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          
+
+<h2 id="0x00-背景">0x00 背景</h2>
+
+<p>因为公司使用刷脸打卡，这就导致有时候打了卡，却突然失忆，忘了自己有没有打卡；或者直接就忘了打卡，并且也忘了自己有没有打卡。这几种情况都实实在在发生过的，上个班还要时时刻刻去回忆有没有打卡实在是非常痛苦的一件事。所以一直就想做一个提醒打卡的小程序。</p>
+
+<h2 id="0x01-设想的几种方案">0x01 设想的几种方案</h2>
+
+<p>第一种方案，是基于IOS快捷指令的自动化功能，设置到达或者离开目的地的提醒，但是这个自动化的方式非常鸡肋，一个是触发之后，还要手动点运行；二是到达或离开目的地根本就不提醒，反而是每次走到定位地址外的一个准确位置，反而又会准确提醒，不知道是不是地图位置有偏移还是咋滴。</p>
+
+<p>第二种方案是想起之前阿里公众号中的一篇<a href="https://mp.weixin.qq.com/s/7jVa-K-qUlYIrCg3YpPSEQ" rel="nofollow noreferrer" target="_blank">文章</a>，就讲到在外卖取餐的场景中，如何准确识别外卖小哥到店取餐的解决方案，这给了我很大的启发，该场景跟我上下班的场景很是契合，只要在到店（到公司上班）识别的基础上，加上离店（下班回家）识别的功能即可。开干！</p>
+
+<h2 id="0x02-资料收集">0x02 资料收集</h2>
+
+<p>遵循不重复造轮子原则，我首先在网上搜集了一下相关的信息，看看有没有现成的方案。</p>
+
+<p>首先在知乎找到了<a href="https://zhuanlan.zhihu.com/p/136898412" rel="nofollow noreferrer" target="_blank">《总是忘打卡？用iBeacon提醒你!》</a>这篇文章，作者在万能淘宝上购买的iBeacon信标，使用Python搭配pybluez库探测iBeacon信号，根据iBeacon信号的消失或者出现来判断作者上班与下班的状态。</p>
+
+<p>但是据了解，iPhone是会持续向外发射BLE信号的，既然有现成的信号源，就不用买万能淘宝的iBeacon信标了。</p>
+
+<p>因为iPhone的BLE广播的是随机地址，那么要如何唯一确定该随机地址是我的设备呢? 首先我们要知道随机地址是什么意思，随机地址是蓝牙核心规范中的一个词条，那么在蓝牙核心规范中必然会有&rdquo;随机地址&rdquo;的定义和描述。</p>
+
+<p>下载<a href="https://www.bluetooth.com/zh-cn/specifications/specs/core-specification-5-3/" rel="nofollow noreferrer" target="_blank">蓝牙核心规范5.3</a></p>
+
+<h2 id="0x03-实现方案">0x03 实现方案</h2>
+
+<p>根据蓝牙核心规范5.3中<code>[Vol 6] Part B, Section 1.3.2.3</code>的描述，可解析随机地址（iPhone BLE使用的正是可解析随机地址）可以使用设备配对过程中产生的IRK进行解析</p>
+
+<ol>
+<li>将IRK以及随机地址的前24位prand作为输入，然后prand需要补齐128位变为r&rsquo;</li>
+<li>使用<code>[Vol 3] Part H, Section 2.2.2</code>的ah哈希函数，进行ah(IRK,r&rsquo;)，ah函数实际上就是(NIST Publication FIPS-197)[<a href="https://csrc.nist.gov/csrc/media/publications/fips/197/final/documents/fips-197.pdf]中描述的AES-128加密，IRK作为key，r'作为plaintext" rel="nofollow noreferrer" target="_blank">https://csrc.nist.gov/csrc/media/publications/fips/197/final/documents/fips-197.pdf]中描述的AES-128加密，IRK作为key，r'作为plaintext</a></li>
+<li>取ah哈希运算结果的最后24位，跟随机地址的后24位进行比较，若一样则可判断为同一设备。</li>
+</ol>
+
+<h2 id="0x04-运行环境的选择">0x04 运行环境的选择</h2>
+
+<p>我脑海中最先想到的是树莓派，作为一个wifi 蓝牙 有线功能完备，软件支持完整，即插即用，并且技术成熟的ARM设备，确实是实现各种小功能的首选设备。</p>
+
+<p>等等，为什么不在windows中实现呢？我的办公电脑又是24小时开机的，少维护一个设备多香啊。但是在实现的过程中发现pybluez的库在windows平台上并不支持BLE。。。但是万能的GayHub说：pybluez不行我这还有pysimpleble，尽管文档少，又不是不能用对吧。</p>
+
+<h2 id="0x05-获取irk">0x05 获取IRK</h2>
+
+<p>既然随机地址是根据IRK来解析的，那首先就要获取到一个IRK。</p>
+
+<p>首先，需要一个支持BLE的蓝牙适配器（我两台电脑蓝牙适配器可能因为不支持BLE配对，只能获取到Linkkey），以及Win10系统环境。</p>
+
+<p>将电脑与手机进行配对，配对完成后，打开设备管理器，找到iPhone的蓝牙LE设备，打开属性窗口的事件选项卡，在信息栏记录蓝牙LE设备的设备号（如图5.1）<br />
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/20220508181736.jpg" alt="图 5.1" class="lazyload"><figcaption class="image-caption">图 5.1</figcaption></figure><br />
+下载(PsTools)[<a href="https://docs.microsoft.com/en-us/sysinternals/downloads/psexec]解压,使用管理员权限打开CMD，cd到解压好的PsTools根目录，执行命令" rel="nofollow noreferrer" target="_blank">https://docs.microsoft.com/en-us/sysinternals/downloads/psexec]解压,使用管理员权限打开CMD，cd到解压好的PsTools根目录，执行命令</a></p>
+
+<pre><code class="language-shell"># 64位操作系统执行以下命令
+PsExec64.exe -si regedit
+# 32位操作系统执行以下命令
+PsExec.exe -si regedit
+</code></pre>
+
+<p>执行命令后会打开注册表窗口，在左侧找到<code>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\BTHPORT\Parameters\Keys\</code>目录(如图 5.2)<br />
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/20220508181400.png" alt="图 5.2" class="lazyload"><figcaption class="image-caption">图 5.2</figcaption></figure></p>
+
+<p>第一层目录是本机蓝牙Mac地址，在第二层目录中找到设备管理器中记录下的设备号，点击该目录，记录右侧窗口的IRK秘钥串</p>
+
+<p>PS：如果有 ESP32 开发板，可以烧录<a href="https://github.com/fryefryefrye/Decoding-Random-Bluetooth-Address" rel="nofollow noreferrer" target="_blank">Decoding-Random-Bluetooth-Address</a>项目的<code>get_irk - esp32_irk.ino</code>，再使用手机跟ESP32配对，在串口监视器中即可看到打印出来的IRK。</p>
+
+<p>另外，<a href="https://github.com/fryefryefrye/Decoding-Random-Bluetooth-Address" rel="nofollow noreferrer" target="_blank">Decoding-Random-Bluetooth-Address</a>这个项目中的nrf_ble_add文件夹中，有C语实现的程序，可以用来研究随机地址与irk匹配的具体算法，我仅参考了ah函数的具体实现过程，因为项目跑起来的发现随机地址和irk的匹配结果不对。</p>
+
+<h2 id="0x06-位置判断实现篇">0x06 位置判断实现篇</h2>
+
+<pre><code class="language-python">## 随机地址校验器
+class RandomAddressValidator(object):
+    def __init__(self):
+        self.irk = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+        # 将irk的hex数值转换为字节数组
+        self.key = bytearray.fromhex(self.irk)  
+        self.MODE = AES.MODE_ECB
+
+    # ah函数
+    def ah(self, k, _r):
+        aes = AES.new(k, self.MODE)
+        encrypted_text = aes.encrypt(_r)
+        return encrypted_text.hex()
+
+    def validate(self, random_address):
+        random_address = random_address.replace(':', '')
+        # padding用于填充prand位数
+        padding = '00000000000000000000000000'
+        # prand为随机地址的高24位
+        prand = random_address[:6]
+        # 用于最终校验的hash为随机地址的低24位
+        hash = random_address[-6:]
+        # 将填充到128位的prand转换为字节数组
+        _r = bytearray.fromhex(padding + prand)
+        # ah函数传入irk以及填充后的prand并返回运算结果
+        ah_res = self.ah(self.key, _r)
+        # 返回对比结果
+        return ah_res[-6:] == hash
+</code></pre>
+
+<p>校验器有了，接下来只需要循环扫描BLE信号，然后将扫描到的蓝牙地址进行一一校验，即可判断我的手机有没有在附近</p>
+
+<pre><code class="language-python">pre_is_nearby = False
+is_nearby = False
+sendNotify_status = 'unknow'
+
+while True:
+    adapters = simplepyble.Adapter.get_adapters()
+
+    if len(adapters) == 0:
+        print(&quot;No adapters found&quot;)
+
+    adapter = adapters[0]
+
+    print(f&quot;Selected adapter: {adapter.identifier()} [{adapter.address()}]&quot;)
+    adapter.set_callback_on_scan_start(lambda: print(&quot;Scan started.&quot;))
+    adapter.set_callback_on_scan_stop(lambda: print(&quot;Scan complete.&quot;))
+    adapter.set_callback_on_scan_found(
+        lambda peripheral: print(f&quot;Found {peripheral.identifier()} [{peripheral.address()}]&quot;))
+
+    # Scan for 10 seconds
+    adapter.scan_for(10000)
+
+    peripherals = adapter.scan_get_results()
+
+    time.sleep(1)
+
+    pre_is_nearby = is_nearby
+    is_nearby = False
+
+    for i, peripheral in enumerate(peripherals):
+        validate_res = RandomAddressValidator().validate(peripheral.address())
+        print(f&quot;[{peripheral.address()}] is_Matched:{validate_res}&quot;)
+
+        if validate_res:
+            is_nearby = True
+            break
+
+    now_localtime = time.strftime(&quot;%H:%M:%S&quot;, time.localtime())
+
+    # 上班时间
+    if &quot;07:00:00&quot; &lt; now_localtime &lt; &quot;08:10:00&quot;:
+        if is_nearby and sendNotify_status != 'morning':
+            # 发送上班打卡提醒
+            sendNotify_status = 'morning'
+    # 下班时间
+    elif &quot;16:59:00&quot; &lt; now_localtime &lt; &quot;20:00:00&quot;:
+        # 晚上会有暂时离开电脑，但并未下班的情况，需重复提醒
+        if pre_is_nearby != is_nearby:
+            sendNotify_status = 'unknow'
+
+        if not is_nearby and sendNotify_status != 'night':
+            # 发送下班打卡提醒
+            sendNotify_status = 'night'     
+
+    # 每30秒扫描一次
+    time.sleep(30）
+</code></pre>
+
+<h2 id="0x07-提醒方式实现篇">0x07 提醒方式实现篇</h2>
+
+<p>我实现的提醒方式主要有两种：邮件提醒 以及 公众号通知提醒。还有一种扩展的提醒方式，是基于IOS快捷指令的自动化功能，当收到邮件时，自动弹出快捷指令提醒，该方式可以将快捷指令设置为当用户手动运行快捷指令时，自动访问确认打卡的回调网址。</p>
+
+<p>邮件提醒的实现非常简单，只需要在邮箱后台设置一下授权码，填入代码中即可：</p>
+
+<pre><code class="language-python"># 这段代码是可以开箱即用的
+def send_email(title, content):
+    import smtplib
+    from email.mime.multipart import MIMEMultipart
+    from email.mime.text import MIMEText
+    # 设置smtp host
+    mail_host = 'smtp.163.com'
+    # 设置邮箱
+    mail_user = 'XXXXXXXXXX@163.com'
+
+    # 这个是授权码 不是密码 需要去163设置
+    mail_pass = 'XXXXXXXXXX'
+    sender = 'XXXXXXXXXX@163.com'
+    # 收件人邮箱
+    receivers = ['XXXXXXXXXX@qq.com']
+
+    # 构造message （邮件内容）
+    message = MIMEText(content, 'plain', 'utf-8')
+    message['Subject'] = title
+    message['From'] = sender
+    message['To'] = receivers[0]
+
+    # smtp = smtplib.SMTP(mail_host, 587)
+    try:
+        # smtp = smtplib.SMTP_SSL(mail_host, 465)  # 启用SSL发信, 端口一般是465
+
+        smtp = smtplib.SMTP()
+        smtp.connect(mail_host)
+        smtp.set_debuglevel(1)
+        smtp.ehlo()
+        # smtp.starttls()
+        smtp.ehlo()
+        smtp.login(mail_user, mail_pass)
+        smtp.sendmail(sender, receivers, message.as_string())
+        smtp.quit()
+        print(&quot;mail has been send successfully.&quot;)
+    except smtplib.SMTPException as e:
+        print(e)
+</code></pre>
+
+<p>公众号通知提醒，需要开通一个测试号（可以实现模板消息（业务通知）发送的功能的最简单方式），然后配置消息模板，在代码层面还要做以下工作：</p>
+
+<pre><code class="language-python"># access_token的数据结构
+access_token = {'token': None, 'expire_time': None}
+
+# 检查access_token是否过期，过期则重新获取
+def check_access_token(access_token_dict):
+    current_time = datetime.datetime.now()
+    if access_token_dict['token'] is None or current_time &gt; access_token_dict['expire_time']:
+        token = get_access_token()
+        expire_time = current_time + datetime.timedelta(seconds=7200)
+        access_token_dict['token'] = token
+        access_token_dict['expire_time'] = expire_time
+    return access_token_dict
+
+# 由于发送模板消息时需要携带access_token，token是有时间限制的，所以需要定期刷新token
+def get_access_token():
+    # appid和secret可以在测试号后台的“测试号信息”中获取
+    url = &quot;https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;appid=xxxxxxxxxx&amp;secret=xxxxxxxxxx&quot;
+
+    payload = {}
+    headers = {}
+
+    response = requests.request(&quot;GET&quot;, url, headers=headers, data=payload)
+    res = json.loads(response.text)
+    print(f&quot;Get access_token successfully!\n[access_token]:{res['access_token']}&quot;)
+
+    return res['access_token']
+
+# 发送模板消息的方法，
+def send_template_msg(access_token, msg_content, msg_time):
+    url = &quot;https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=&quot; + access_token
+
+    payload = json.dumps({
+        # 接收者openid
+        &quot;touser&quot;: &quot;openid&quot;,
+        # 模板id
+        &quot;template_id&quot;: &quot;xxxxxxxxxx&quot;,
+        # 点击模板消息跳转的url
+        &quot;url&quot;: &quot;http://weixin.qq.com/download&quot;,
+        &quot;topcolor&quot;: &quot;#FF0000&quot;,
+        &quot;data&quot;: {
+            &quot;content&quot;: {
+                &quot;value&quot;: msg_content,
+                &quot;color&quot;: &quot;#173177&quot;
+            },
+            &quot;time&quot;: {
+                &quot;value&quot;: msg_time,
+                &quot;color&quot;: &quot;#173177&quot;
+            }
+        }
+    })
+    headers = {
+        'Content-Type': 'application/json'
+    }
+    response = requests.request(&quot;POST&quot;, url, headers=headers, data=payload)
+    print(response.text)
+    return response.text
+</code></pre>
+
+<p>快捷指令提醒设置：<br />
+首先需要设置IOS的邮箱，我使用的是QQ邮箱，需要到QQ邮箱的设置中启用IMAP/SMTP服务，然后生成授权码。获取到授权码之后，到“邮件”中添加QQ邮箱账户，然后主机名填写imap.qq.com，用户名为QQ邮箱，密码为授权码，由于我没使用到SMTP服务，就没有进行配置。具体的配置过程可以参考<a href="https://service.mail.qq.com/cgi-bin/help?subtype=1&amp;&amp;id=28&amp;&amp;no=334#5" rel="nofollow noreferrer" target="_blank">QQ官方教程</a></p>
+
+<p>快捷指令设置：找到快捷指令的自动化功能，具体操作很简单，就不再赘述了。</p>
+
+<h2 id="0x08-花絮">0x08 花絮</h2>
+
+<p>在Windows中使用Python实现受阻后，发现Windows SDK是提供BLE的完整支持的，于是又转过头准备在windows使用C#实现这个功能，微软还提供了若干例程，比如：<a href="https://github.com/microsoft/Windows-universal-samples/tree/dev/Samples/BluetoothLE" rel="nofollow noreferrer" target="_blank">BluetoothLE</a>,<a href="https://github.com/Microsoft/BluetoothLEExplorer" rel="nofollow noreferrer" target="_blank">BluetoothLEExplorer</a>但是C#也太久没接触了，要重新上手开发所花费的时间成本是巨大的，就还是将工作转到寻找Win10兼容的Python BLE库了。</p>
+
+    </div>
+	
+    <div class="post-copyright">
+             
+			
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>sinowrt </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://blog.sinowrt.cn/2022/2022-05-03t2145-using-ios-ble-to-remind-me-clock-inpython-implement/>http://blog.sinowrt.cn/2022/2022-05-03t2145-using-ios-ble-to-remind-me-clock-inpython-implement/</span>
+            </p>
+			
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/python/">
+                    #python</a></span>
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/ibeacon/">
+                    #iBeacon</a></span>
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/ble/">
+                    #BLE</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="http://blog.sinowrt.cn">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://blog.sinowrt.cn/2022/2022-04-25t1936-raspberry-pi-how-to-enable-bluetooth-on-ubuntu-server-20.04/" class="prev" rel="prev" title="树莓派 ubuntu server 20.04启用蓝牙功能"><i class="iconfont icon-left"></i>&nbsp;树莓派 ubuntu server 20.04启用蓝牙功能</a>
+         
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2022</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://blog.sinowrt.cn">sinowrt</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt | </a><script type="text/javascript" src="https://s4.cnzz.com/z_stat.php?id=1279436618&web_id=1279436618"></script></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+     <link href="//lib.baomitu.com/lightgallery/1.6.11/css/lightgallery.min.css" rel="stylesheet">  
+      
+     <script src="/js/vendor_gallery.min.js" async="" ></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

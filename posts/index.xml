@@ -6,10 +6,47 @@
     <description>Recent content in Posts on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 17 Apr 2022 20:30:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 03 May 2022 21:45:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>巧用IOS的BLE实现上下班打卡提醒（Python实现）</title>
+      <link>http://blog.sinowrt.cn/2022/2022-05-03t2145-using-ios-ble-to-remind-me-clock-inpython-implement/</link>
+      <pubDate>Tue, 03 May 2022 21:45:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2022/2022-05-03t2145-using-ios-ble-to-remind-me-clock-inpython-implement/</guid>
+      <description>0x00 背景 因为公司使用刷脸打卡，这就导致有时候打了卡，却突然失忆，忘了自己有没有打卡；或者直接就忘了打卡，并且也忘了自己有没有打卡。这几种情况都实实在在发生过的，上个班还要时时刻刻去回忆有没有打卡实在是非常痛苦的一件事。所以一直就想做一个提醒打卡的小程序。
+0x01 设想的几种方案 第一种方案，是基于IOS快捷指令的自动化功能，设置到达或者离开目的地的提醒，但是这个自动化的方式非常鸡肋，一个是触发之后，还要手动点运行；二是到达或离开目的地根本就不提醒，反而是每次走到定位地址外的一个准确位置，反而又会准确提醒，不知道是不是地图位置有偏移还是咋滴。
+第二种方案是想起之前阿里公众号中的一篇文章，就讲到在外卖取餐的场景中，如何准确识别外卖小哥到店取餐的解决方案，这给了我很大的启发，该场景跟我上下班的场景很是契合，只要在到店（到公司上班）识别的基础上，加上离店（下班回家）识别的功能即可。开干！
+0x02 资料收集 遵循不重复造轮子原则，我首先在网上搜集了一下相关的信息，看看有没有现成的方案。
+首先在知乎找到了《总是忘打卡？用iBeacon提醒你!》这篇文章，作者在万能淘宝上购买的iBeacon信标，使用Python搭配pybluez库探测iBeacon信号，根据iBeacon信号的消失或者出现来判断作者上班与下班的状态。
+但是据了解，iPhone是会持续向外发射BLE信号的，既然有现成的信号源，就不用买万能淘宝的iBeacon信标了。
+因为iPhone的BLE广播的是随机地址，那么要如何唯一确定该随机地址是我的设备呢? 首先我们要知道随机地址是什么意思，随机地址是蓝牙核心规范中的一个词条，那么在蓝牙核心规范中必然会有&amp;rdquo;随机地址&amp;rdquo;的定义和描述。
+下载蓝牙核心规范5.3
+0x03 实现方案 根据蓝牙核心规范5.3中[Vol 6] Part B, Section 1.3.2.3的描述，可解析随机地址（iPhone BLE使用的正是可解析随机地址）可以使用设备配对过程中产生的IRK进行解析
+ 将IRK以及随机地址的前24位prand作为输入，然后prand需要补齐128位变为r&amp;rsquo; 使用[Vol 3] Part H, Section 2.2.2的ah哈希函数，进行ah(IRK,r&amp;rsquo;)，ah函数实际上就是(NIST Publication FIPS-197)[https://csrc.nist.gov/csrc/media/publications/fips/197/final/documents/fips-197.pdf]中描述的AES-128加密，IRK作为key，r&#39;作为plaintext 取ah哈希运算结果的最后24位，跟随机地址的后24位进行比较，若一样则可判断为同一设备。  0x04 运行环境的选择 我脑海中最先想到的是树莓派，作为一个wifi 蓝牙 有线功能完备，软件支持完整，即插即用，并且技术成熟的ARM设备，确实是实现各种小功能的首选设备。
+等等，为什么不在windows中实现呢？我的办公电脑又是24小时开机的，少维护一个设备多香啊。但是在实现的过程中发现pybluez的库在windows平台上并不支持BLE。。。但是万能的GayHub说：pybluez不行我这还有pysimpleble，尽管文档少，又不是不能用对吧。
+0x05 获取IRK 既然随机地址是根据IRK来解析的，那首先就要获取到一个IRK。
+首先，需要一个支持BLE的蓝牙适配器（我两台电脑蓝牙适配器可能因为不支持BLE配对，只能获取到Linkkey），以及Win10系统环境。
+将电脑与手机进行配对，配对完成后，打开设备管理器，找到iPhone的蓝牙LE设备，打开属性窗口的事件选项卡，在信息栏记录蓝牙LE设备的设备号（如图5.1）
+下载(PsTools)[https://docs.microsoft.com/en-us/sysinternals/downloads/psexec]解压,使用管理员权限打开CMD，cd到解压好的PsTools根目录，执行命令
+# 64位操作系统执行以下命令 PsExec64.exe -si regedit # 32位操作系统执行以下命令 PsExec.exe -si regedit  执行命令后会打开注册表窗口，在左侧找到HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\BTHPORT\Parameters\Keys\目录(如图 5.2)
+第一层目录是本机蓝牙Mac地址，在第二层目录中找到设备管理器中记录下的设备号，点击该目录，记录右侧窗口的IRK秘钥串
+PS：如果有 ESP32 开发板，可以烧录Decoding-Random-Bluetooth-Address项目的get_irk - esp32_irk.ino，再使用手机跟ESP32配对，在串口监视器中即可看到打印出来的IRK。
+另外，Decoding-Random-Bluetooth-Address这个项目中的nrf_ble_add文件夹中，有C语实现的程序，可以用来研究随机地址与irk匹配的具体算法，我仅参考了ah函数的具体实现过程，因为项目跑起来的发现随机地址和irk的匹配结果不对。
+0x06 位置判断实现篇 ## 随机地址校验器 class RandomAddressValidator(object): def __init__(self): self.</description>
+    </item>
+    
+    <item>
+      <title>树莓派 ubuntu server 20.04启用蓝牙功能</title>
+      <link>http://blog.sinowrt.cn/2022/2022-04-25t1936-raspberry-pi-how-to-enable-bluetooth-on-ubuntu-server-20.04/</link>
+      <pubDate>Mon, 25 Apr 2022 19:36:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2022/2022-04-25t1936-raspberry-pi-how-to-enable-bluetooth-on-ubuntu-server-20.04/</guid>
+      <description> 0x00 解决过程 #安装bluetoothctl sudo apt-get install pi-bluetooth #配置设备，如果遇到配置超时，重试即可，输出Device setup complete说明配置成功 sudo hciattach /dev/ttyAMA0 bcm43xx 921600 nowflow - #运行bluetoothctl sudo bluetoothctl #启动蓝牙 power on #可被发现 discoverable on #搜索设备 scan on #配对 pair 设备地址 #连接 connect 设备地址  </description>
+    </item>
     
     <item>
       <title>在ubuntu20.04中编译OpenJDK7</title>
@@ -929,6 +966,24 @@ for example cut -c 2-5 是截取了第二到第五位的字符串 即4位pid 若
  抛弃papersignals的类似方式，将esp8266作为服务端，手机作为客户端 鉴于小程序的跨平台特性，决定采用小程序的方式进行手机端开发  在搬瓦工vps搭建ngrok服务端的过程  参考这篇博客在vps上进行ngrok的编译
  该博客中遇到的问题，我全都遇到了，按照相应的步骤操作即可解决 另外在go1.4安装操作步骤混乱的时候，造成goroot路径的错乱，从而无法安装上go1.4和go1.6，只需要unset GOROOT即可 一切安装就绪，卡在ngrok的go编译上，在编译过程中报错：go build project/test: signal: killed 查阅资料，发现是vps内存太小导致的无法编译 改用centos进行编译，但是只有visualbox的centos镜像，而visualbox复制文件上面完全比不上vmware方便，所以改用ubuntu进行ngrok编译。 在ubuntu中部署ngrok编译环境的时候，使用yum命令，发现yum是centos专用的安装命令，在ubuntu上使用会导致很多问题的发生，例如yum的源不知如何配置，所以用回apt命令 由于无法使用yum，造成很多依赖包无法安装上，所以无法安装上官网下载的go1.10包 查找资料发现可以使用sudo apt-get install go-lang命令直接安装go环境，若找不到直接apt update更新源即可 开启sslocal，把ngrok项目从git中拉下来 对ngrok项目进行编译 其中最重要的是$NGROK_DOMAIN的设置，在该教程中直接关系到openssl证书的生成 编译出ngrokd服务端 丢进vps中跑一下 问题：80端口和443端口的占用 解决：启动ngrok命令中修改-httpAddr以及httpsAddr 以更改监听端口，4443为透传接入端口，更改之后直接启动即可，在浏览器中输入www.sinowrt.cn:81 出现trunnel&amp;hellip;的即表示启动成功 编译出windows的客户端，windows的客户端必须要在cmd中才能运行，新建ngrok.cfg,将内容  server_addr: &amp;quot;www.sinowrt.cn:4443&amp;quot; trust_host_root_certs: false  写入该文件中，在cmd进入该目录，敲入命令
 ngrok.exe -config=&amp;quot;ngrok.cfg&amp;quot; -subdomain=&amp;quot;abc&amp;quot; 80  连接上ngrok服务端即可将本地的80端口暴露出外网</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://blog.sinowrt.cn/1/2022-04-26t2103-how-to-solve-pycharm-pip-install-winerror-10061/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/1/2022-04-26t2103-how-to-solve-pycharm-pip-install-winerror-10061/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://blog.sinowrt.cn/1/2022-04-30t1807-several-errors-while-installing-pybluez-with-pip-python-version-3.10.04/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/1/2022-04-30t1807-several-errors-while-installing-pybluez-with-pip-python-version-3.10.04/</guid>
+      <description></description>
     </item>
     
   </channel>

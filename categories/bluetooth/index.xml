@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>bluetooth on Sinowrt</title>
+    <link>http://blog.sinowrt.cn/categories/bluetooth/</link>
+    <description>Recent content in bluetooth on Sinowrt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 25 Apr 2022 19:36:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.sinowrt.cn/categories/bluetooth/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>树莓派 ubuntu server 20.04启用蓝牙功能</title>
+      <link>http://blog.sinowrt.cn/2022/2022-04-25t1936-raspberry-pi-how-to-enable-bluetooth-on-ubuntu-server-20.04/</link>
+      <pubDate>Mon, 25 Apr 2022 19:36:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2022/2022-04-25t1936-raspberry-pi-how-to-enable-bluetooth-on-ubuntu-server-20.04/</guid>
+      <description> 0x00 解决过程 #安装bluetoothctl sudo apt-get install pi-bluetooth #配置设备，如果遇到配置超时，重试即可，输出Device setup complete说明配置成功 sudo hciattach /dev/ttyAMA0 bcm43xx 921600 nowflow - #运行bluetoothctl sudo bluetoothctl #启动蓝牙 power on #可被发现 discoverable on #搜索设备 scan on #配对 pair 设备地址 #连接 connect 设备地址  </description>
+    </item>
+    
+  </channel>
+</rss>

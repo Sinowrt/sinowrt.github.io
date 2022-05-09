@@ -5,8 +5,325 @@
     <description>Recent content in Sinowrt on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 17 Apr 2022 20:30:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 03 May 2022 21:45:00 +0800</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>巧用IOS的BLE实现上下班打卡提醒（Python实现）</title>
+      <link>http://blog.sinowrt.cn/2022/2022-05-03t2145-using-ios-ble-to-remind-me-clock-inpython-implement/</link>
+      <pubDate>Tue, 03 May 2022 21:45:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2022/2022-05-03t2145-using-ios-ble-to-remind-me-clock-inpython-implement/</guid>
+      <description>
+
+&lt;h2 id=&#34;0x00-背景&#34;&gt;0x00 背景&lt;/h2&gt;
+
+&lt;p&gt;因为公司使用刷脸打卡，这就导致有时候打了卡，却突然失忆，忘了自己有没有打卡；或者直接就忘了打卡，并且也忘了自己有没有打卡。这几种情况都实实在在发生过的，上个班还要时时刻刻去回忆有没有打卡实在是非常痛苦的一件事。所以一直就想做一个提醒打卡的小程序。&lt;/p&gt;
+
+&lt;h2 id=&#34;0x01-设想的几种方案&#34;&gt;0x01 设想的几种方案&lt;/h2&gt;
+
+&lt;p&gt;第一种方案，是基于IOS快捷指令的自动化功能，设置到达或者离开目的地的提醒，但是这个自动化的方式非常鸡肋，一个是触发之后，还要手动点运行；二是到达或离开目的地根本就不提醒，反而是每次走到定位地址外的一个准确位置，反而又会准确提醒，不知道是不是地图位置有偏移还是咋滴。&lt;/p&gt;
+
+&lt;p&gt;第二种方案是想起之前阿里公众号中的一篇&lt;a href=&#34;https://mp.weixin.qq.com/s/7jVa-K-qUlYIrCg3YpPSEQ&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;文章&lt;/a&gt;，就讲到在外卖取餐的场景中，如何准确识别外卖小哥到店取餐的解决方案，这给了我很大的启发，该场景跟我上下班的场景很是契合，只要在到店（到公司上班）识别的基础上，加上离店（下班回家）识别的功能即可。开干！&lt;/p&gt;
+
+&lt;h2 id=&#34;0x02-资料收集&#34;&gt;0x02 资料收集&lt;/h2&gt;
+
+&lt;p&gt;遵循不重复造轮子原则，我首先在网上搜集了一下相关的信息，看看有没有现成的方案。&lt;/p&gt;
+
+&lt;p&gt;首先在知乎找到了&lt;a href=&#34;https://zhuanlan.zhihu.com/p/136898412&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;《总是忘打卡？用iBeacon提醒你!》&lt;/a&gt;这篇文章，作者在万能淘宝上购买的iBeacon信标，使用Python搭配pybluez库探测iBeacon信号，根据iBeacon信号的消失或者出现来判断作者上班与下班的状态。&lt;/p&gt;
+
+&lt;p&gt;但是据了解，iPhone是会持续向外发射BLE信号的，既然有现成的信号源，就不用买万能淘宝的iBeacon信标了。&lt;/p&gt;
+
+&lt;p&gt;因为iPhone的BLE广播的是随机地址，那么要如何唯一确定该随机地址是我的设备呢? 首先我们要知道随机地址是什么意思，随机地址是蓝牙核心规范中的一个词条，那么在蓝牙核心规范中必然会有&amp;rdquo;随机地址&amp;rdquo;的定义和描述。&lt;/p&gt;
+
+&lt;p&gt;下载&lt;a href=&#34;https://www.bluetooth.com/zh-cn/specifications/specs/core-specification-5-3/&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;蓝牙核心规范5.3&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;0x03-实现方案&#34;&gt;0x03 实现方案&lt;/h2&gt;
+
+&lt;p&gt;根据蓝牙核心规范5.3中&lt;code&gt;[Vol 6] Part B, Section 1.3.2.3&lt;/code&gt;的描述，可解析随机地址（iPhone BLE使用的正是可解析随机地址）可以使用设备配对过程中产生的IRK进行解析&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;将IRK以及随机地址的前24位prand作为输入，然后prand需要补齐128位变为r&amp;rsquo;&lt;/li&gt;
+&lt;li&gt;使用&lt;code&gt;[Vol 3] Part H, Section 2.2.2&lt;/code&gt;的ah哈希函数，进行ah(IRK,r&amp;rsquo;)，ah函数实际上就是(NIST Publication FIPS-197)[&lt;a href=&#34;https://csrc.nist.gov/csrc/media/publications/fips/197/final/documents/fips-197.pdf]中描述的AES-128加密，IRK作为key，r&#39;作为plaintext&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;https://csrc.nist.gov/csrc/media/publications/fips/197/final/documents/fips-197.pdf]中描述的AES-128加密，IRK作为key，r&#39;作为plaintext&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;取ah哈希运算结果的最后24位，跟随机地址的后24位进行比较，若一样则可判断为同一设备。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;0x04-运行环境的选择&#34;&gt;0x04 运行环境的选择&lt;/h2&gt;
+
+&lt;p&gt;我脑海中最先想到的是树莓派，作为一个wifi 蓝牙 有线功能完备，软件支持完整，即插即用，并且技术成熟的ARM设备，确实是实现各种小功能的首选设备。&lt;/p&gt;
+
+&lt;p&gt;等等，为什么不在windows中实现呢？我的办公电脑又是24小时开机的，少维护一个设备多香啊。但是在实现的过程中发现pybluez的库在windows平台上并不支持BLE。。。但是万能的GayHub说：pybluez不行我这还有pysimpleble，尽管文档少，又不是不能用对吧。&lt;/p&gt;
+
+&lt;h2 id=&#34;0x05-获取irk&#34;&gt;0x05 获取IRK&lt;/h2&gt;
+
+&lt;p&gt;既然随机地址是根据IRK来解析的，那首先就要获取到一个IRK。&lt;/p&gt;
+
+&lt;p&gt;首先，需要一个支持BLE的蓝牙适配器（我两台电脑蓝牙适配器可能因为不支持BLE配对，只能获取到Linkkey），以及Win10系统环境。&lt;/p&gt;
+
+&lt;p&gt;将电脑与手机进行配对，配对完成后，打开设备管理器，找到iPhone的蓝牙LE设备，打开属性窗口的事件选项卡，在信息栏记录蓝牙LE设备的设备号（如图5.1）&lt;br /&gt;
+&lt;img src=&#34;https://pic.sinowrt.cn/blogpics/20220508181736.jpg&#34; alt=&#34;图 5.1&#34; /&gt;&lt;br /&gt;
+下载(PsTools)[&lt;a href=&#34;https://docs.microsoft.com/en-us/sysinternals/downloads/psexec]解压,使用管理员权限打开CMD，cd到解压好的PsTools根目录，执行命令&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;https://docs.microsoft.com/en-us/sysinternals/downloads/psexec]解压,使用管理员权限打开CMD，cd到解压好的PsTools根目录，执行命令&lt;/a&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# 64位操作系统执行以下命令
+PsExec64.exe -si regedit
+# 32位操作系统执行以下命令
+PsExec.exe -si regedit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;执行命令后会打开注册表窗口，在左侧找到&lt;code&gt;HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\BTHPORT\Parameters\Keys\&lt;/code&gt;目录(如图 5.2)&lt;br /&gt;
+&lt;img src=&#34;https://pic.sinowrt.cn/blogpics/20220508181400.png&#34; alt=&#34;图 5.2&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;第一层目录是本机蓝牙Mac地址，在第二层目录中找到设备管理器中记录下的设备号，点击该目录，记录右侧窗口的IRK秘钥串&lt;/p&gt;
+
+&lt;p&gt;PS：如果有 ESP32 开发板，可以烧录&lt;a href=&#34;https://github.com/fryefryefrye/Decoding-Random-Bluetooth-Address&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;Decoding-Random-Bluetooth-Address&lt;/a&gt;项目的&lt;code&gt;get_irk - esp32_irk.ino&lt;/code&gt;，再使用手机跟ESP32配对，在串口监视器中即可看到打印出来的IRK。&lt;/p&gt;
+
+&lt;p&gt;另外，&lt;a href=&#34;https://github.com/fryefryefrye/Decoding-Random-Bluetooth-Address&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;Decoding-Random-Bluetooth-Address&lt;/a&gt;这个项目中的nrf_ble_add文件夹中，有C语实现的程序，可以用来研究随机地址与irk匹配的具体算法，我仅参考了ah函数的具体实现过程，因为项目跑起来的发现随机地址和irk的匹配结果不对。&lt;/p&gt;
+
+&lt;h2 id=&#34;0x06-位置判断实现篇&#34;&gt;0x06 位置判断实现篇&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;## 随机地址校验器
+class RandomAddressValidator(object):
+    def __init__(self):
+        self.irk = &#39;XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX&#39;
+        # 将irk的hex数值转换为字节数组
+        self.key = bytearray.fromhex(self.irk)  
+        self.MODE = AES.MODE_ECB
+
+    # ah函数
+    def ah(self, k, _r):
+        aes = AES.new(k, self.MODE)
+        encrypted_text = aes.encrypt(_r)
+        return encrypted_text.hex()
+
+    def validate(self, random_address):
+        random_address = random_address.replace(&#39;:&#39;, &#39;&#39;)
+        # padding用于填充prand位数
+        padding = &#39;00000000000000000000000000&#39;
+        # prand为随机地址的高24位
+        prand = random_address[:6]
+        # 用于最终校验的hash为随机地址的低24位
+        hash = random_address[-6:]
+        # 将填充到128位的prand转换为字节数组
+        _r = bytearray.fromhex(padding + prand)
+        # ah函数传入irk以及填充后的prand并返回运算结果
+        ah_res = self.ah(self.key, _r)
+        # 返回对比结果
+        return ah_res[-6:] == hash
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;校验器有了，接下来只需要循环扫描BLE信号，然后将扫描到的蓝牙地址进行一一校验，即可判断我的手机有没有在附近&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;pre_is_nearby = False
+is_nearby = False
+sendNotify_status = &#39;unknow&#39;
+
+while True:
+    adapters = simplepyble.Adapter.get_adapters()
+
+    if len(adapters) == 0:
+        print(&amp;quot;No adapters found&amp;quot;)
+
+    adapter = adapters[0]
+
+    print(f&amp;quot;Selected adapter: {adapter.identifier()} [{adapter.address()}]&amp;quot;)
+    adapter.set_callback_on_scan_start(lambda: print(&amp;quot;Scan started.&amp;quot;))
+    adapter.set_callback_on_scan_stop(lambda: print(&amp;quot;Scan complete.&amp;quot;))
+    adapter.set_callback_on_scan_found(
+        lambda peripheral: print(f&amp;quot;Found {peripheral.identifier()} [{peripheral.address()}]&amp;quot;))
+
+    # Scan for 10 seconds
+    adapter.scan_for(10000)
+
+    peripherals = adapter.scan_get_results()
+
+    time.sleep(1)
+
+    pre_is_nearby = is_nearby
+    is_nearby = False
+
+    for i, peripheral in enumerate(peripherals):
+        validate_res = RandomAddressValidator().validate(peripheral.address())
+        print(f&amp;quot;[{peripheral.address()}] is_Matched:{validate_res}&amp;quot;)
+
+        if validate_res:
+            is_nearby = True
+            break
+
+    now_localtime = time.strftime(&amp;quot;%H:%M:%S&amp;quot;, time.localtime())
+
+    # 上班时间
+    if &amp;quot;07:00:00&amp;quot; &amp;lt; now_localtime &amp;lt; &amp;quot;08:10:00&amp;quot;:
+        if is_nearby and sendNotify_status != &#39;morning&#39;:
+            # 发送上班打卡提醒
+            sendNotify_status = &#39;morning&#39;
+    # 下班时间
+    elif &amp;quot;16:59:00&amp;quot; &amp;lt; now_localtime &amp;lt; &amp;quot;20:00:00&amp;quot;:
+        # 晚上会有暂时离开电脑，但并未下班的情况，需重复提醒
+        if pre_is_nearby != is_nearby:
+            sendNotify_status = &#39;unknow&#39;
+
+        if not is_nearby and sendNotify_status != &#39;night&#39;:
+            # 发送下班打卡提醒
+            sendNotify_status = &#39;night&#39;     
+
+    # 每30秒扫描一次
+    time.sleep(30）
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;0x07-提醒方式实现篇&#34;&gt;0x07 提醒方式实现篇&lt;/h2&gt;
+
+&lt;p&gt;我实现的提醒方式主要有两种：邮件提醒 以及 公众号通知提醒。还有一种扩展的提醒方式，是基于IOS快捷指令的自动化功能，当收到邮件时，自动弹出快捷指令提醒，该方式可以将快捷指令设置为当用户手动运行快捷指令时，自动访问确认打卡的回调网址。&lt;/p&gt;
+
+&lt;p&gt;邮件提醒的实现非常简单，只需要在邮箱后台设置一下授权码，填入代码中即可：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# 这段代码是可以开箱即用的
+def send_email(title, content):
+    import smtplib
+    from email.mime.multipart import MIMEMultipart
+    from email.mime.text import MIMEText
+    # 设置smtp host
+    mail_host = &#39;smtp.163.com&#39;
+    # 设置邮箱
+    mail_user = &#39;XXXXXXXXXX@163.com&#39;
+
+    # 这个是授权码 不是密码 需要去163设置
+    mail_pass = &#39;XXXXXXXXXX&#39;
+    sender = &#39;XXXXXXXXXX@163.com&#39;
+    # 收件人邮箱
+    receivers = [&#39;XXXXXXXXXX@qq.com&#39;]
+
+    # 构造message （邮件内容）
+    message = MIMEText(content, &#39;plain&#39;, &#39;utf-8&#39;)
+    message[&#39;Subject&#39;] = title
+    message[&#39;From&#39;] = sender
+    message[&#39;To&#39;] = receivers[0]
+
+    # smtp = smtplib.SMTP(mail_host, 587)
+    try:
+        # smtp = smtplib.SMTP_SSL(mail_host, 465)  # 启用SSL发信, 端口一般是465
+
+        smtp = smtplib.SMTP()
+        smtp.connect(mail_host)
+        smtp.set_debuglevel(1)
+        smtp.ehlo()
+        # smtp.starttls()
+        smtp.ehlo()
+        smtp.login(mail_user, mail_pass)
+        smtp.sendmail(sender, receivers, message.as_string())
+        smtp.quit()
+        print(&amp;quot;mail has been send successfully.&amp;quot;)
+    except smtplib.SMTPException as e:
+        print(e)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;公众号通知提醒，需要开通一个测试号（可以实现模板消息（业务通知）发送的功能的最简单方式），然后配置消息模板，在代码层面还要做以下工作：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# access_token的数据结构
+access_token = {&#39;token&#39;: None, &#39;expire_time&#39;: None}
+
+# 检查access_token是否过期，过期则重新获取
+def check_access_token(access_token_dict):
+    current_time = datetime.datetime.now()
+    if access_token_dict[&#39;token&#39;] is None or current_time &amp;gt; access_token_dict[&#39;expire_time&#39;]:
+        token = get_access_token()
+        expire_time = current_time + datetime.timedelta(seconds=7200)
+        access_token_dict[&#39;token&#39;] = token
+        access_token_dict[&#39;expire_time&#39;] = expire_time
+    return access_token_dict
+
+# 由于发送模板消息时需要携带access_token，token是有时间限制的，所以需要定期刷新token
+def get_access_token():
+    # appid和secret可以在测试号后台的“测试号信息”中获取
+    url = &amp;quot;https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;amp;appid=xxxxxxxxxx&amp;amp;secret=xxxxxxxxxx&amp;quot;
+
+    payload = {}
+    headers = {}
+
+    response = requests.request(&amp;quot;GET&amp;quot;, url, headers=headers, data=payload)
+    res = json.loads(response.text)
+    print(f&amp;quot;Get access_token successfully!\n[access_token]:{res[&#39;access_token&#39;]}&amp;quot;)
+
+    return res[&#39;access_token&#39;]
+
+# 发送模板消息的方法，
+def send_template_msg(access_token, msg_content, msg_time):
+    url = &amp;quot;https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=&amp;quot; + access_token
+
+    payload = json.dumps({
+        # 接收者openid
+        &amp;quot;touser&amp;quot;: &amp;quot;openid&amp;quot;,
+        # 模板id
+        &amp;quot;template_id&amp;quot;: &amp;quot;xxxxxxxxxx&amp;quot;,
+        # 点击模板消息跳转的url
+        &amp;quot;url&amp;quot;: &amp;quot;http://weixin.qq.com/download&amp;quot;,
+        &amp;quot;topcolor&amp;quot;: &amp;quot;#FF0000&amp;quot;,
+        &amp;quot;data&amp;quot;: {
+            &amp;quot;content&amp;quot;: {
+                &amp;quot;value&amp;quot;: msg_content,
+                &amp;quot;color&amp;quot;: &amp;quot;#173177&amp;quot;
+            },
+            &amp;quot;time&amp;quot;: {
+                &amp;quot;value&amp;quot;: msg_time,
+                &amp;quot;color&amp;quot;: &amp;quot;#173177&amp;quot;
+            }
+        }
+    })
+    headers = {
+        &#39;Content-Type&#39;: &#39;application/json&#39;
+    }
+    response = requests.request(&amp;quot;POST&amp;quot;, url, headers=headers, data=payload)
+    print(response.text)
+    return response.text
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;快捷指令提醒设置：&lt;br /&gt;
+首先需要设置IOS的邮箱，我使用的是QQ邮箱，需要到QQ邮箱的设置中启用IMAP/SMTP服务，然后生成授权码。获取到授权码之后，到“邮件”中添加QQ邮箱账户，然后主机名填写imap.qq.com，用户名为QQ邮箱，密码为授权码，由于我没使用到SMTP服务，就没有进行配置。具体的配置过程可以参考&lt;a href=&#34;https://service.mail.qq.com/cgi-bin/help?subtype=1&amp;amp;&amp;amp;id=28&amp;amp;&amp;amp;no=334#5&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;QQ官方教程&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;快捷指令设置：找到快捷指令的自动化功能，具体操作很简单，就不再赘述了。&lt;/p&gt;
+
+&lt;h2 id=&#34;0x08-花絮&#34;&gt;0x08 花絮&lt;/h2&gt;
+
+&lt;p&gt;在Windows中使用Python实现受阻后，发现Windows SDK是提供BLE的完整支持的，于是又转过头准备在windows使用C#实现这个功能，微软还提供了若干例程，比如：&lt;a href=&#34;https://github.com/microsoft/Windows-universal-samples/tree/dev/Samples/BluetoothLE&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;BluetoothLE&lt;/a&gt;,&lt;a href=&#34;https://github.com/Microsoft/BluetoothLEExplorer&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;BluetoothLEExplorer&lt;/a&gt;但是C#也太久没接触了，要重新上手开发所花费的时间成本是巨大的，就还是将工作转到寻找Win10兼容的Python BLE库了。&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>树莓派 ubuntu server 20.04启用蓝牙功能</title>
+      <link>http://blog.sinowrt.cn/2022/2022-04-25t1936-raspberry-pi-how-to-enable-bluetooth-on-ubuntu-server-20.04/</link>
+      <pubDate>Mon, 25 Apr 2022 19:36:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2022/2022-04-25t1936-raspberry-pi-how-to-enable-bluetooth-on-ubuntu-server-20.04/</guid>
+      <description>
+
+&lt;h2 id=&#34;0x00-解决过程&#34;&gt;0x00 解决过程&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;#安装bluetoothctl
+sudo apt-get install pi-bluetooth
+
+#配置设备，如果遇到配置超时，重试即可，输出Device setup complete说明配置成功
+sudo hciattach /dev/ttyAMA0 bcm43xx 921600 nowflow -
+
+#运行bluetoothctl
+sudo bluetoothctl
+
+#启动蓝牙
+power on
+
+#可被发现
+discoverable on
+
+#搜索设备
+scan on
+
+#配对
+pair 设备地址
+
+#连接
+connect 设备地址
+
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
     
     <item>
       <title>在ubuntu20.04中编译OpenJDK7</title>
@@ -958,73 +1275,6 @@ FLUSH PRIVILEGES;
 &lt;h2 id=&#34;0x02-注意事项&#34;&gt;0x02 注意事项&lt;/h2&gt;
 
 &lt;p&gt;在navicat连接完毕后，需要改回caching_sha2_password，否则后端连接的时候可能会出现问题。&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>利用xshell将你vps的端口映射到本地主机</title>
-      <link>http://blog.sinowrt.cn/2021/2021-03-08t1608-how-to-forward-a-port-in-your-vps-with-xshell/</link>
-      <pubDate>Mon, 08 Mar 2021 16:08:00 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2021/2021-03-08t1608-how-to-forward-a-port-in-your-vps-with-xshell/</guid>
-      <description>
-
-&lt;h2 id=&#34;0x00-背景&#34;&gt;0x00 背景&lt;/h2&gt;
-
-&lt;p&gt;由于命令行管理mysql数据库太不方便了，如果能用navicat管理远程服务器该多好啊，于是就有了这篇文章。&lt;/p&gt;
-
-&lt;h2 id=&#34;0x01-过程&#34;&gt;0x01 过程&lt;/h2&gt;
-
-&lt;p&gt;之前安装plex服务器的时候，就曾经用xshell把vps中plex服务器的端口映射回本地进行配置，那么数据库的端口啥的都是一样的，下面开始教学。&lt;/p&gt;
-
-&lt;h3 id=&#34;1-把vps中的mysql服务端口映射到宿主机&#34;&gt;1. 把vps中的mysql服务端口映射到宿主机&lt;/h3&gt;
-
-&lt;p&gt;由于我是使用了docker安装的mysql服务，所以需要将3306端口映射到宿主机，使用本地化安装的可以忽略这一步。&lt;/p&gt;
-
-&lt;h3 id=&#34;2-tunnel配置&#34;&gt;2. tunnel配置&lt;/h3&gt;
-
-&lt;p&gt;打开xshell，在会话中选择目标vps，右键属性-连接-SSH-隧道，添加。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;类型：本地拨出
-
-//配置本地的连接
-源主机：localhost
-侦听端口：33066
-
-//配置vps的连接
-目标主机：localhost
-目标端口：3306
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;确定保存。&lt;/p&gt;
-
-&lt;h3 id=&#34;3-建立ssh连接之后-就可以打开navicat使用localhost-33066进行连接了&#34;&gt;3. 建立ssh连接之后，就可以打开navicat使用localhost:33066进行连接了。&lt;/h3&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>在配置jd_seckill时如何获取eid与fp</title>
-      <link>http://blog.sinowrt.cn/2021/2021-03-07t1617-how-to-get-eid-and-fp-while-configurating-jd_seckill/</link>
-      <pubDate>Sun, 07 Mar 2021 16:17:00 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2021/2021-03-07t1617-how-to-get-eid-and-fp-while-configurating-jd_seckill/</guid>
-      <description>
-
-&lt;h2 id=&#34;0x00-背景&#34;&gt;0x00 背景&lt;/h2&gt;
-
-&lt;p&gt;很久之前就知道有jd_seckill这个神器，但是一直没空弄，然后今天预约了显卡的抢购活动，就配置一下看看效果如何。&lt;/p&gt;
-
-&lt;p&gt;在项目的配置文件中有两个字段eid和fp，不知道在哪里获取，于是百度了一下就有了这篇文章。&lt;/p&gt;
-
-&lt;h2 id=&#34;0x01-如何获取&#34;&gt;0x01 如何获取&lt;/h2&gt;
-
-&lt;p&gt;第一步：进入京东结算页面&lt;/p&gt;
-
-&lt;p&gt;第二步：f12打开Sources&lt;/p&gt;
-
-&lt;p&gt;第三步：右侧的watch，点击加号，填入_JdTdudfp&lt;/p&gt;
-
-&lt;p&gt;即可看到_JdTdudfp:Object&lt;/p&gt;
 </description>
     </item>
     

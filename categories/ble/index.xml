@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>BLE on Sinowrt</title>
+    <link>http://blog.sinowrt.cn/categories/ble/</link>
+    <description>Recent content in BLE on Sinowrt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 03 May 2022 21:45:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.sinowrt.cn/categories/ble/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>巧用IOS的BLE实现上下班打卡提醒（Python实现）</title>
+      <link>http://blog.sinowrt.cn/2022/2022-05-03t2145-using-ios-ble-to-remind-me-clock-inpython-implement/</link>
+      <pubDate>Tue, 03 May 2022 21:45:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2022/2022-05-03t2145-using-ios-ble-to-remind-me-clock-inpython-implement/</guid>
+      <description>0x00 背景 因为公司使用刷脸打卡，这就导致有时候打了卡，却突然失忆，忘了自己有没有打卡；或者直接就忘了打卡，并且也忘了自己有没有打卡。这几种情况都实实在在发生过的，上个班还要时时刻刻去回忆有没有打卡实在是非常痛苦的一件事。所以一直就想做一个提醒打卡的小程序。
+0x01 设想的几种方案 第一种方案，是基于IOS快捷指令的自动化功能，设置到达或者离开目的地的提醒，但是这个自动化的方式非常鸡肋，一个是触发之后，还要手动点运行；二是到达或离开目的地根本就不提醒，反而是每次走到定位地址外的一个准确位置，反而又会准确提醒，不知道是不是地图位置有偏移还是咋滴。
+第二种方案是想起之前阿里公众号中的一篇文章，就讲到在外卖取餐的场景中，如何准确识别外卖小哥到店取餐的解决方案，这给了我很大的启发，该场景跟我上下班的场景很是契合，只要在到店（到公司上班）识别的基础上，加上离店（下班回家）识别的功能即可。开干！
+0x02 资料收集 遵循不重复造轮子原则，我首先在网上搜集了一下相关的信息，看看有没有现成的方案。
+首先在知乎找到了《总是忘打卡？用iBeacon提醒你!》这篇文章，作者在万能淘宝上购买的iBeacon信标，使用Python搭配pybluez库探测iBeacon信号，根据iBeacon信号的消失或者出现来判断作者上班与下班的状态。
+但是据了解，iPhone是会持续向外发射BLE信号的，既然有现成的信号源，就不用买万能淘宝的iBeacon信标了。
+因为iPhone的BLE广播的是随机地址，那么要如何唯一确定该随机地址是我的设备呢? 首先我们要知道随机地址是什么意思，随机地址是蓝牙核心规范中的一个词条，那么在蓝牙核心规范中必然会有&amp;rdquo;随机地址&amp;rdquo;的定义和描述。
+下载蓝牙核心规范5.3
+0x03 实现方案 根据蓝牙核心规范5.3中[Vol 6] Part B, Section 1.3.2.3的描述，可解析随机地址（iPhone BLE使用的正是可解析随机地址）可以使用设备配对过程中产生的IRK进行解析
+ 将IRK以及随机地址的前24位prand作为输入，然后prand需要补齐128位变为r&amp;rsquo; 使用[Vol 3] Part H, Section 2.2.2的ah哈希函数，进行ah(IRK,r&amp;rsquo;)，ah函数实际上就是(NIST Publication FIPS-197)[https://csrc.nist.gov/csrc/media/publications/fips/197/final/documents/fips-197.pdf]中描述的AES-128加密，IRK作为key，r&#39;作为plaintext 取ah哈希运算结果的最后24位，跟随机地址的后24位进行比较，若一样则可判断为同一设备。  0x04 运行环境的选择 我脑海中最先想到的是树莓派，作为一个wifi 蓝牙 有线功能完备，软件支持完整，即插即用，并且技术成熟的ARM设备，确实是实现各种小功能的首选设备。
+等等，为什么不在windows中实现呢？我的办公电脑又是24小时开机的，少维护一个设备多香啊。但是在实现的过程中发现pybluez的库在windows平台上并不支持BLE。。。但是万能的GayHub说：pybluez不行我这还有pysimpleble，尽管文档少，又不是不能用对吧。
+0x05 获取IRK 既然随机地址是根据IRK来解析的，那首先就要获取到一个IRK。
+首先，需要一个支持BLE的蓝牙适配器（我两台电脑蓝牙适配器可能因为不支持BLE配对，只能获取到Linkkey），以及Win10系统环境。
+将电脑与手机进行配对，配对完成后，打开设备管理器，找到iPhone的蓝牙LE设备，打开属性窗口的事件选项卡，在信息栏记录蓝牙LE设备的设备号（如图5.1）
+下载(PsTools)[https://docs.microsoft.com/en-us/sysinternals/downloads/psexec]解压,使用管理员权限打开CMD，cd到解压好的PsTools根目录，执行命令
+# 64位操作系统执行以下命令 PsExec64.exe -si regedit # 32位操作系统执行以下命令 PsExec.exe -si regedit  执行命令后会打开注册表窗口，在左侧找到HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\BTHPORT\Parameters\Keys\目录(如图 5.2)
+第一层目录是本机蓝牙Mac地址，在第二层目录中找到设备管理器中记录下的设备号，点击该目录，记录右侧窗口的IRK秘钥串
+PS：如果有 ESP32 开发板，可以烧录Decoding-Random-Bluetooth-Address项目的get_irk - esp32_irk.ino，再使用手机跟ESP32配对，在串口监视器中即可看到打印出来的IRK。
+另外，Decoding-Random-Bluetooth-Address这个项目中的nrf_ble_add文件夹中，有C语实现的程序，可以用来研究随机地址与irk匹配的具体算法，我仅参考了ah函数的具体实现过程，因为项目跑起来的发现随机地址和irk的匹配结果不对。
+0x06 位置判断实现篇 ## 随机地址校验器 class RandomAddressValidator(object): def __init__(self): self.</description>
+    </item>
+    
+  </channel>
+</rss>

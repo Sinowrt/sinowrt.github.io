@@ -6,10 +6,64 @@
     <description>Recent content in Categories on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 17 Apr 2022 20:30:00 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 03 May 2022 21:45:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>BLE</title>
+      <link>http://blog.sinowrt.cn/categories/ble/</link>
+      <pubDate>Tue, 03 May 2022 21:45:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/ble/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>iBeacon</title>
+      <link>http://blog.sinowrt.cn/categories/ibeacon/</link>
+      <pubDate>Tue, 03 May 2022 21:45:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/ibeacon/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>http://blog.sinowrt.cn/categories/python/</link>
+      <pubDate>Tue, 03 May 2022 21:45:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>bluetooth</title>
+      <link>http://blog.sinowrt.cn/categories/bluetooth/</link>
+      <pubDate>Mon, 25 Apr 2022 19:36:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/bluetooth/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>raspberry pi</title>
+      <link>http://blog.sinowrt.cn/categories/raspberry-pi/</link>
+      <pubDate>Mon, 25 Apr 2022 19:36:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/raspberry-pi/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ubuntu server</title>
+      <link>http://blog.sinowrt.cn/categories/ubuntu-server/</link>
+      <pubDate>Mon, 25 Apr 2022 19:36:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/ubuntu-server/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>openjdk</title>
@@ -84,29 +138,11 @@
     </item>
     
     <item>
-      <title>raspberry pi</title>
-      <link>http://blog.sinowrt.cn/categories/raspberry-pi/</link>
-      <pubDate>Fri, 23 Apr 2021 18:47:00 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/categories/raspberry-pi/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>synology</title>
       <link>http://blog.sinowrt.cn/categories/synology/</link>
       <pubDate>Thu, 22 Apr 2021 13:30:00 +0800</pubDate>
       
       <guid>http://blog.sinowrt.cn/categories/synology/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>python</title>
-      <link>http://blog.sinowrt.cn/categories/python/</link>
-      <pubDate>Wed, 10 Mar 2021 14:51:00 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/categories/python/</guid>
       <description></description>
     </item>
     
