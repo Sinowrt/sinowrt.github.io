@@ -36,8 +36,8 @@ sudo apt-get install build-essential gawk m4 libasound2-dev libcups2-dev libxren
       <pubDate>Sun, 17 Apr 2022 20:24:00 +0800</pubDate>
       
       <guid>http://blog.sinowrt.cn/2022/2022-04-17t2024-how-to-install-vmware-tools-on-ubuntu20.04/</guid>
-      <description>0x00 背景 在vmware中装了Ubuntu 20.04之后，要实现虚拟机和宿主机之间的文件或字符串拷贝，必须安装vmware tools。
-0x01 安装过程 sudo apt-get update sudo apt-get install open-vm-tools-desktop -y sudo reboot</description>
+      <description> 0x00 背景 在vmware中装了Ubuntu 20.04之后，要实现虚拟机和宿主机之间的文件或字符串拷贝，必须安装vmware tools。
+0x01 安装过程 sudo apt-get update sudo apt-get install open-vm-tools-desktop -y sudo reboot  </description>
     </item>
     
     <item>

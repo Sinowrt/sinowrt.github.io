@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="sinowrt">
+  
+  
+  
+  <link rel="prev" href="http://blog.sinowrt.cn/2022/2022-07-24t1508-some-problems-while-using-vue/" />
+  
+  <link rel="canonical" href="http://blog.sinowrt.cn/2022/2022-07-24t1730-the-maven-icon-of-idea-disappeared-after-importing-the-project-from-another-computer/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           从另一台电脑导入项目到IDEA后报错 点击Maven图标立即消失 | Sinowrt
+       
+  </title>
+  <meta name="title" content="从另一台电脑导入项目到IDEA后报错 点击Maven图标立即消失 | Sinowrt">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/blog.sinowrt.cn"
+    },
+    "articleSection" : "posts",
+    "name" : "从另一台电脑导入项目到IDEA后报错 点击Maven图标立即消失",
+    "headline" : "从另一台电脑导入项目到IDEA后报错 点击Maven图标立即消失",
+    "description" : "0x00 报错信息 Cannot run program \x26ldquo;XXX\x26rdquo; (in directory \x26ldquo;XXX\x26rdquo;): CreateProcess error=2, 系统找不到指定的文件。\n0x01 报错原因 该项目是在别的电脑压缩打包拷贝过来的，所以项目的Java编译器路径、Maven路径以及Maven依赖的Jave环境路径都是原主机的\n0x02 解决办法 点击IDEA右上角的齿轮，Project Structures - Project - SDK，将SDK配置为本机已安装的SDK路径，接着打开Project下面的Modules，将Module SDK也配置好。\nMaven图标消失了的话，点击菜单 Help - Find Action, 搜索 Maven Settings， 点进去，Maven home path、 setting file、 repository都根据本机具体情况进行配置； 回到左侧列表树，展开Maven - Runner，将JRE也配置一下\n最后确认保存即可。",
+    "inLanguage" : "en-us",
+    "author" : "sinowrt",
+    "creator" : "sinowrt",
+    "publisher": "sinowrt",
+    "accountablePerson" : "sinowrt",
+    "copyrightHolder" : "sinowrt",
+    "copyrightYear" : "2022",
+    "datePublished": "2022-07-24 15:08:00 \x2b0800 CST",
+    "dateModified" : "2022-07-24 15:08:00 \x2b0800 CST",
+    "url" : "http:\/\/blog.sinowrt.cn\/2022\/2022-07-24t1730-the-maven-icon-of-idea-disappeared-after-importing-the-project-from-another-computer\/",
+    "wordCount" : "42",
+    "keywords" : [ "IDEA","Maven", "Sinowrt"]
+}
+</script>
+
+</head>
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y7CHCJ00RL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Y7CHCJ00RL');
+</script>
+
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">从另一台电脑导入项目到IDEA后报错 点击Maven图标立即消失</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2022-07-24 itemprop="datePublished">July 24, 2022</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="http://blog.sinowrt.cn/categories/idea/"> IDEA </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          
+
+<h2 id="0x00-报错信息">0x00 报错信息</h2>
+
+<p>Cannot run program &ldquo;XXX&rdquo; (in directory &ldquo;XXX&rdquo;): CreateProcess error=2, 系统找不到指定的文件。</p>
+
+<h2 id="0x01-报错原因">0x01 报错原因</h2>
+
+<p>该项目是在别的电脑压缩打包拷贝过来的，所以项目的Java编译器路径、Maven路径以及Maven依赖的Jave环境路径都是原主机的</p>
+
+<h2 id="0x02-解决办法">0x02 解决办法</h2>
+
+<p>点击IDEA右上角的齿轮，Project Structures - Project - SDK，将SDK配置为本机已安装的SDK路径，接着打开Project下面的Modules，将Module SDK也配置好。</p>
+
+<p>Maven图标消失了的话，点击菜单 Help - Find Action, 搜索 Maven Settings， 点进去，Maven home path、 setting file、 repository都根据本机具体情况进行配置；
+回到左侧列表树，展开Maven - Runner，将JRE也配置一下</p>
+
+<p>最后确认保存即可。</p>
+
+    </div>
+	
+    <div class="post-copyright">
+             
+			
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>sinowrt </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://blog.sinowrt.cn/2022/2022-07-24t1730-the-maven-icon-of-idea-disappeared-after-importing-the-project-from-another-computer/>http://blog.sinowrt.cn/2022/2022-07-24t1730-the-maven-icon-of-idea-disappeared-after-importing-the-project-from-another-computer/</span>
+            </p>
+			
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/idea/">
+                    #IDEA</a></span>
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/maven/">
+                    #Maven</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="http://blog.sinowrt.cn">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://blog.sinowrt.cn/2022/2022-07-24t1508-some-problems-while-using-vue/" class="prev" rel="prev" title="使用Vue开发过程中的一些问题"><i class="iconfont icon-left"></i>&nbsp;使用Vue开发过程中的一些问题</a>
+         
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2023</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://blog.sinowrt.cn">sinowrt</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt | </a><script type="text/javascript" src="https://s4.cnzz.com/z_stat.php?id=1279436618&web_id=1279436618"></script></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

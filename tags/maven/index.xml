@@ -6,10 +6,23 @@
     <description>Recent content in maven on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 16 Apr 2020 10:23:00 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 24 Jul 2022 15:08:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/tags/maven/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>从另一台电脑导入项目到IDEA后报错 点击Maven图标立即消失</title>
+      <link>http://blog.sinowrt.cn/2022/2022-07-24t1730-the-maven-icon-of-idea-disappeared-after-importing-the-project-from-another-computer/</link>
+      <pubDate>Sun, 24 Jul 2022 15:08:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2022/2022-07-24t1730-the-maven-icon-of-idea-disappeared-after-importing-the-project-from-another-computer/</guid>
+      <description>0x00 报错信息 Cannot run program &amp;ldquo;XXX&amp;rdquo; (in directory &amp;ldquo;XXX&amp;rdquo;): CreateProcess error=2, 系统找不到指定的文件。
+0x01 报错原因 该项目是在别的电脑压缩打包拷贝过来的，所以项目的Java编译器路径、Maven路径以及Maven依赖的Jave环境路径都是原主机的
+0x02 解决办法 点击IDEA右上角的齿轮，Project Structures - Project - SDK，将SDK配置为本机已安装的SDK路径，接着打开Project下面的Modules，将Module SDK也配置好。
+Maven图标消失了的话，点击菜单 Help - Find Action, 搜索 Maven Settings， 点进去，Maven home path、 setting file、 repository都根据本机具体情况进行配置； 回到左侧列表树，展开Maven - Runner，将JRE也配置一下
+最后确认保存即可。</description>
+    </item>
     
     <item>
       <title>maven问题汇总</title>

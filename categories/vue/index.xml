@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vue on Sinowrt</title>
+    <link>http://blog.sinowrt.cn/categories/vue/</link>
+    <description>Recent content in Vue on Sinowrt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 24 Jul 2022 15:08:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.sinowrt.cn/categories/vue/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用Vue开发过程中的一些问题</title>
+      <link>http://blog.sinowrt.cn/2022/2022-07-24t1508-some-problems-while-using-vue/</link>
+      <pubDate>Sun, 24 Jul 2022 15:08:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2022/2022-07-24t1508-some-problems-while-using-vue/</guid>
+      <description>0x00 问题1：npm install 时报错 gyp verb which failed Error: not found: python2 原因：NodeJS和node-sass版本不匹配    NodeJS Supported node-sass version Node Module     Node 16 6.0+ 93   Node 15 5.0+ 88   Node 14 4.14+ 83   Node 13 4.13+, &amp;lt;5.0 79   Node 12 4.12+ 72   Node 11 4.10+, &amp;lt;5.0 67   Node 10 4.9+, &amp;lt;6.0 64   Node 8 4.</description>
+    </item>
+    
+  </channel>
+</rss>

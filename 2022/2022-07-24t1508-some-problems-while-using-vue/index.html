@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="sinowrt">
+  
+  
+  
+  <link rel="prev" href="http://blog.sinowrt.cn/2022/2022-05-03t2145-using-ios-ble-to-remind-me-clock-inpython-implement/" />
+  <link rel="next" href="http://blog.sinowrt.cn/2022/2022-07-24t1730-the-maven-icon-of-idea-disappeared-after-importing-the-project-from-another-computer/" />
+  <link rel="canonical" href="http://blog.sinowrt.cn/2022/2022-07-24t1508-some-problems-while-using-vue/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           使用Vue开发过程中的一些问题 | Sinowrt
+       
+  </title>
+  <meta name="title" content="使用Vue开发过程中的一些问题 | Sinowrt">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/blog.sinowrt.cn"
+    },
+    "articleSection" : "posts",
+    "name" : "使用Vue开发过程中的一些问题",
+    "headline" : "使用Vue开发过程中的一些问题",
+    "description" : "0x00 问题1：npm install 时报错 gyp verb which failed Error: not found: python2 原因：NodeJS和node-sass版本不匹配    NodeJS Supported node-sass version Node Module     Node 16 6.0\x2b 93   Node 15 5.0\x2b 88   Node 14 4.14\x2b 83   Node 13 4.13\x2b, \x26lt;5.0 79   Node 12 4.12\x2b 72   Node 11 4.10\x2b, \x26lt;5.0 67   Node 10 4.9\x2b, \x26lt;6.0 64   Node 8 4.",
+    "inLanguage" : "en-us",
+    "author" : "sinowrt",
+    "creator" : "sinowrt",
+    "publisher": "sinowrt",
+    "accountablePerson" : "sinowrt",
+    "copyrightHolder" : "sinowrt",
+    "copyrightYear" : "2022",
+    "datePublished": "2022-07-24 15:08:00 \x2b0800 CST",
+    "dateModified" : "2022-07-24 15:08:00 \x2b0800 CST",
+    "url" : "http:\/\/blog.sinowrt.cn\/2022\/2022-07-24t1508-some-problems-while-using-vue\/",
+    "wordCount" : "87",
+    "keywords" : [ "Vue","node-sass", "Sinowrt"]
+}
+</script>
+
+</head>
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y7CHCJ00RL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Y7CHCJ00RL');
+</script>
+
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">使用Vue开发过程中的一些问题</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2022-07-24 itemprop="datePublished">July 24, 2022</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="http://blog.sinowrt.cn/categories/vue/"> Vue </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          
+
+<h2 id="0x00-问题1-npm-install-时报错-gyp-verb-which-failed-error-not-found-python2">0x00 问题1：npm install 时报错 gyp verb <code>which</code> failed Error: not found: python2</h2>
+
+<h3 id="原因-nodejs和node-sass版本不匹配">原因：NodeJS和node-sass版本不匹配</h3>
+
+<table>
+<thead>
+<tr>
+<th>NodeJS</th>
+<th>Supported node-sass version</th>
+<th>Node Module</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Node 16</td>
+<td>6.0+</td>
+<td>93</td>
+</tr>
+
+<tr>
+<td>Node 15</td>
+<td>5.0+</td>
+<td>88</td>
+</tr>
+
+<tr>
+<td>Node 14</td>
+<td>4.14+</td>
+<td>83</td>
+</tr>
+
+<tr>
+<td>Node 13</td>
+<td>4.13+, &lt;5.0</td>
+<td>79</td>
+</tr>
+
+<tr>
+<td>Node 12</td>
+<td>4.12+</td>
+<td>72</td>
+</tr>
+
+<tr>
+<td>Node 11</td>
+<td>4.10+, &lt;5.0</td>
+<td>67</td>
+</tr>
+
+<tr>
+<td>Node 10</td>
+<td>4.9+, &lt;6.0</td>
+<td>64</td>
+</tr>
+
+<tr>
+<td>Node 8</td>
+<td>4.5.3+, &lt;5.0</td>
+<td>57</td>
+</tr>
+
+<tr>
+<td>Node &lt;8</td>
+<td>&lt;5.0</td>
+<td>&lt;57</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code># node --version
+v16.14.2
+
+而 package.json 中 node-sass 的配置为
+
+&quot;node-sass&quot;: &quot;^4.14.1&quot;,
+</code></pre>
+
+<h3 id="解决办法-安装python2-7-并配置环境变量path-删掉node-modules文件夹-重新npm-install即可">解决办法：安装python2.7，并配置环境变量PATH，删掉node_modules文件夹，重新npm install即可</h3>
+
+<h2 id="0x01-问题2-npm-build-时报错-error-cannot-find-module-imagemin-gifsicle">0x01 问题2：npm build 时报错 error:cannot find module &ldquo;imagemin-gifsicle&rdquo;</h2>
+
+<h3 id="原因-应该是npm-install-时-因为网络问题-image-webpack-loader没有完整下载">原因：应该是npm install 时，因为网络问题，image-webpack-loader没有完整下载</h3>
+
+<h3 id="解决办法-删除nodu-modules下的image-webpack-loader-包-使用cnpm-install-命令重新安装即可">解决办法：删除nodu_modules下的image-webpack-loader 包，，使用cnpm install 命令重新安装即可</h3>
+
+    </div>
+	
+    <div class="post-copyright">
+             
+			
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>sinowrt </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://blog.sinowrt.cn/2022/2022-07-24t1508-some-problems-while-using-vue/>http://blog.sinowrt.cn/2022/2022-07-24t1508-some-problems-while-using-vue/</span>
+            </p>
+			
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/vue/">
+                    #Vue</a></span>
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/node-sass/">
+                    #node-sass</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="http://blog.sinowrt.cn">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://blog.sinowrt.cn/2022/2022-05-03t2145-using-ios-ble-to-remind-me-clock-inpython-implement/" class="prev" rel="prev" title="巧用IOS的BLE实现上下班打卡提醒（Python实现）"><i class="iconfont icon-left"></i>&nbsp;巧用IOS的BLE实现上下班打卡提醒（Python实现）</a>
+         
+        
+        <a href="http://blog.sinowrt.cn/2022/2022-07-24t1730-the-maven-icon-of-idea-disappeared-after-importing-the-project-from-another-computer/" class="next" rel="next" title="从另一台电脑导入项目到IDEA后报错 点击Maven图标立即消失">从另一台电脑导入项目到IDEA后报错 点击Maven图标立即消失&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2023</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://blog.sinowrt.cn">sinowrt</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt | </a><script type="text/javascript" src="https://s4.cnzz.com/z_stat.php?id=1279436618&web_id=1279436618"></script></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>
