@@ -316,30 +316,6 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/raspberry-pi/</loc>
-      
-      <lastmod>2022-04-25T19:36:00+08:00</lastmod>
-      
-      
-      
-      <priority>0</priority>
-      
-      
-    </url>
-  
-    <url>
-      <loc>http://blog.sinowrt.cn/tags/raspberry-pi/</loc>
-      
-      <lastmod>2022-04-25T19:36:00+08:00</lastmod>
-      
-      
-      
-      <priority>0</priority>
-      
-      
-    </url>
-  
-    <url>
       <loc>http://blog.sinowrt.cn/categories/bluetooth/</loc>
       
       <lastmod>2022-04-25T19:36:00+08:00</lastmod>
@@ -353,6 +329,30 @@
   
     <url>
       <loc>http://blog.sinowrt.cn/tags/bluetooth/</loc>
+      
+      <lastmod>2022-04-25T19:36:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/categories/raspberry-pi/</loc>
+      
+      <lastmod>2022-04-25T19:36:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/raspberry-pi/</loc>
       
       <lastmod>2022-04-25T19:36:00+08:00</lastmod>
       
