@@ -9,9 +9,9 @@
   
   
   
-  <link rel="prev" href="http://blog.sinowrt.cn/2022/2022-07-24t1508-some-problems-while-using-vue/" />
-  <link rel="next" href="http://blog.sinowrt.cn/2022/2022-08-13t2000-migrate-the-data-from-the-old-server-to-the-new-one/" />
-  <link rel="canonical" href="http://blog.sinowrt.cn/2022/2022-07-24t1730-the-maven-icon-of-idea-disappeared-after-importing-the-project-from-another-computer/" />
+  <link rel="prev" href="http://blog.sinowrt.cn/2022/2022-07-24t1730-the-maven-icon-of-idea-disappeared-after-importing-the-project-from-another-computer/" />
+  
+  <link rel="canonical" href="http://blog.sinowrt.cn/2022/2022-08-13t2000-migrate-the-data-from-the-old-server-to-the-new-one/" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -22,10 +22,10 @@
   <title>
        
        
-           从另一台电脑导入项目到IDEA后报错 点击Maven图标立即消失 | Sinowrt
+           将旧服务器的数据完整迁移到新服务器 | Sinowrt
        
   </title>
-  <meta name="title" content="从另一台电脑导入项目到IDEA后报错 点击Maven图标立即消失 | Sinowrt">
+  <meta name="title" content="将旧服务器的数据完整迁移到新服务器 | Sinowrt">
     
   
   <link rel="stylesheet" href="/font/iconfont.css">
@@ -44,9 +44,9 @@
          "@id": "http:\/\/blog.sinowrt.cn"
     },
     "articleSection" : "posts",
-    "name" : "从另一台电脑导入项目到IDEA后报错 点击Maven图标立即消失",
-    "headline" : "从另一台电脑导入项目到IDEA后报错 点击Maven图标立即消失",
-    "description" : "0x00 报错信息 Cannot run program \x26ldquo;XXX\x26rdquo; (in directory \x26ldquo;XXX\x26rdquo;): CreateProcess error=2, 系统找不到指定的文件。\n0x01 报错原因 该项目是在别的电脑压缩打包拷贝过来的，所以项目的Java编译器路径、Maven路径以及Maven依赖的Jave环境路径都是原主机的\n0x02 解决办法 点击IDEA右上角的齿轮，Project Structures - Project - SDK，将SDK配置为本机已安装的SDK路径，接着打开Project下面的Modules，将Module SDK也配置好。\nMaven图标消失了的话，点击菜单 Help - Find Action, 搜索 Maven Settings， 点进去，Maven home path、 setting file、 repository都根据本机具体情况进行配置； 回到左侧列表树，展开Maven - Runner，将JRE也配置一下\n最后确认保存即可。",
+    "name" : "将旧服务器的数据完整迁移到新服务器",
+    "headline" : "将旧服务器的数据完整迁移到新服务器",
+    "description" : "0x00 命令记录 过程中用过的一些命令记录一下，由于服务器空间问题实际上并没有使用整机备份的方法 ### 查找大文件 find . -type f -size \x2b800M -print0 | xargs -0 du -h | sort -nr # 查找大目录 du -hm --max-depth=2 | sort -n # 整机备份 tar cvpzf backup.tgz \/ --exclude=\/proc --exclude=\/lost\x2bfound --exclude=\/backup.tgz --exclude=\/mnt --exclude=\/sys # 解压 tar xvpzf backup.tgz -C \/ # cvpzf - “创建档案文件”、“保持权限”(保留所有东西原来的权限)、“使用gzip来减小文件尺寸”  0x01 实际迁移过程 由于所有的服务都在docker运行，所以迁移docker的数据即可 # 停掉docker服务 systemctl stop docker # 打包\/var\/lib\/docker tar cvpzf docker.tgz \/var\/lib\/docker # 打包\/opt数据文件目录 tar cvpzf opt.",
     "inLanguage" : "en-us",
     "author" : "sinowrt",
     "creator" : "sinowrt",
@@ -54,11 +54,11 @@
     "accountablePerson" : "sinowrt",
     "copyrightHolder" : "sinowrt",
     "copyrightYear" : "2022",
-    "datePublished": "2022-07-24 15:08:00 \x2b0800 CST",
-    "dateModified" : "2022-07-24 15:08:00 \x2b0800 CST",
-    "url" : "http:\/\/blog.sinowrt.cn\/2022\/2022-07-24t1730-the-maven-icon-of-idea-disappeared-after-importing-the-project-from-another-computer\/",
-    "wordCount" : "42",
-    "keywords" : [ "IDEA","Maven", "Sinowrt"]
+    "datePublished": "2022-08-13 20:00:00 \x2b0800 CST",
+    "dateModified" : "2022-08-13 20:00:00 \x2b0800 CST",
+    "url" : "http:\/\/blog.sinowrt.cn\/2022\/2022-08-13t2000-migrate-the-data-from-the-old-server-to-the-new-one\/",
+    "wordCount" : "169",
+    "keywords" : [ "server","data migration", "Sinowrt"]
 }
 </script>
 
@@ -129,16 +129,17 @@
       		
 <article class="post-warp" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">从另一台电脑导入项目到IDEA后报错 点击Maven图标立即消失</h1>
+        <h1 class="post-title" itemprop="name headline">将旧服务器的数据完整迁移到新服务器</h1>
         <div class="post-meta">
                 Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
                 <span class="post-time">
-                on <time datetime=2022-07-24 itemprop="datePublished">July 24, 2022</time>
+                on <time datetime=2022-08-13 itemprop="datePublished">August 13, 2022</time>
                 </span>
                 in
                 <i class="iconfont icon-folder"></i>
                 <span class="post-category">
-                        <a href="http://blog.sinowrt.cn/categories/idea/"> IDEA </a>
+                        <a href="http://blog.sinowrt.cn/categories/server/"> server </a>
+                        <a href="http://blog.sinowrt.cn/categories/data-migration/"> data migration </a>
                         
                 </span>
         </div>
@@ -161,22 +162,87 @@
 
           
 
-<h2 id="0x00-报错信息">0x00 报错信息</h2>
+<h2 id="0x00-命令记录">0x00 命令记录</h2>
 
-<p>Cannot run program &ldquo;XXX&rdquo; (in directory &ldquo;XXX&rdquo;): CreateProcess error=2, 系统找不到指定的文件。</p>
+<h3 id="过程中用过的一些命令记录一下-由于服务器空间问题实际上并没有使用整机备份的方法">过程中用过的一些命令记录一下，由于服务器空间问题实际上并没有使用整机备份的方法</h3>
 
-<h2 id="0x01-报错原因">0x01 报错原因</h2>
+<pre><code class="language-shell">### 查找大文件
+find . -type f -size +800M  -print0 | xargs -0 du -h | sort -nr
+# 查找大目录
+du -hm --max-depth=2 | sort -n
+# 整机备份
+tar cvpzf backup.tgz / --exclude=/proc --exclude=/lost+found --exclude=/backup.tgz --exclude=/mnt --exclude=/sys
+# 解压
+tar xvpzf backup.tgz -C /
 
-<p>该项目是在别的电脑压缩打包拷贝过来的，所以项目的Java编译器路径、Maven路径以及Maven依赖的Jave环境路径都是原主机的</p>
+# cvpzf - “创建档案文件”、“保持权限”(保留所有东西原来的权限)、“使用gzip来减小文件尺寸”
+</code></pre>
 
-<h2 id="0x02-解决办法">0x02 解决办法</h2>
+<h2 id="0x01-实际迁移过程">0x01 实际迁移过程</h2>
 
-<p>点击IDEA右上角的齿轮，Project Structures - Project - SDK，将SDK配置为本机已安装的SDK路径，接着打开Project下面的Modules，将Module SDK也配置好。</p>
+<h3 id="由于所有的服务都在docker运行-所以迁移docker的数据即可">由于所有的服务都在docker运行，所以迁移docker的数据即可</h3>
 
-<p>Maven图标消失了的话，点击菜单 Help - Find Action, 搜索 Maven Settings， 点进去，Maven home path、 setting file、 repository都根据本机具体情况进行配置；
-回到左侧列表树，展开Maven - Runner，将JRE也配置一下</p>
+<pre><code class="language-shell"># 停掉docker服务
+systemctl stop docker
 
-<p>最后确认保存即可。</p>
+# 打包/var/lib/docker 
+tar cvpzf docker.tgz /var/lib/docker
+
+# 打包/opt数据文件目录
+tar cvpzf opt.tgz /var/lib/opt
+
+# 将压缩包下载到新服务器
+scp XXX@xxx.xxx.xxx.xxx:/root/opt.tgz
+scp XXX@xxx.xxx.xxx.xxx:/root/docker.tgz
+
+# 在新服务器安装版本一致的docker和docker-compose
+yum info docker
+yum install docker
+
+# docker-compose也安排上
+curl -L &quot;https://github.com/docker/compose/releases/download/1.25.3/docker-compose-$(uname -s)-$(uname -m)&quot; -o /usr/local/bin/docker-compose
+chmod a+x /usr/local/bin/docker-compose
+
+systemctl start docker
+service docker start
+systemctl enable docker.service
+systemctl status docker.service
+
+# 查看是否安装成功，成功的话，就直接关掉docker
+systemctl stop docker
+
+# 删掉目标主机的
+rm -rf /var/lib/docker
+rm -rf /opt/*
+
+# 解压
+tar xvpfz opt.tgz -C /
+tar xvpfz docker.tgz -C /
+
+# 启动docker服务
+systemctl start docker
+</code></pre>
+
+<h2 id="0x02-遇到的一些问题">0x02 遇到的一些问题</h2>
+
+<h3 id="后面发现从容器里面访问不到宿主机的端口-但是可以ping通">后面发现从容器里面访问不到宿主机的端口，但是可以ping通</h3>
+
+<pre><code class="language-shell"># 查看防火墙状态
+firewall-cmd --state
+# 显示running，于是ifconfig，查看br前缀的虚拟网卡，将其ip在防火墙放行即可
+firewall-cmd  --zone=trusted --add-source=172.20.0.1/16 --permanent
+
+### 应用防火墙配置
+firewall-cmd --reload
+</code></pre>
+
+<h3 id="docker边运行边打包数据-是不行的-mysql数据会不一致-导致启动失败">docker边运行边打包数据，是不行的，mysql数据会不一致，导致启动失败</h3>
+
+<pre><code class="language-shell"># 错误信息
+mysqld got signal 11；
+stack_bottom = 0 thread_stack 0x46000
+# 迁移之前把docker所有服务关闭即可避免该问题
+</code></pre>
 
     </div>
 	
@@ -192,7 +258,7 @@
              
             <p class="copyright-item">
                     <span>Link:</span>
-                    <a href=http://blog.sinowrt.cn/2022/2022-07-24t1730-the-maven-icon-of-idea-disappeared-after-importing-the-project-from-another-computer/>http://blog.sinowrt.cn/2022/2022-07-24t1730-the-maven-icon-of-idea-disappeared-after-importing-the-project-from-another-computer/</span>
+                    <a href=http://blog.sinowrt.cn/2022/2022-08-13t2000-migrate-the-data-from-the-old-server-to-the-new-one/>http://blog.sinowrt.cn/2022/2022-08-13t2000-migrate-the-data-from-the-old-server-to-the-new-one/</span>
             </p>
 			
             
@@ -209,11 +275,11 @@
             <section>
             <i class="iconfont icon-tag"></i>Tag(s): 
             
-            <span class="tag"><a href="http://blog.sinowrt.cn/tags/idea/">
-                    #IDEA</a></span>
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/server/">
+                    #server</a></span>
             
-            <span class="tag"><a href="http://blog.sinowrt.cn/tags/maven/">
-                    #Maven</a></span>
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/data-migration/">
+                    #data migration</a></span>
             
             </section>
         
@@ -225,10 +291,8 @@
 
     <div class="post-nav">
         
-        <a href="http://blog.sinowrt.cn/2022/2022-07-24t1508-some-problems-while-using-vue/" class="prev" rel="prev" title="使用Vue开发过程中的一些问题"><i class="iconfont icon-left"></i>&nbsp;使用Vue开发过程中的一些问题</a>
+        <a href="http://blog.sinowrt.cn/2022/2022-07-24t1730-the-maven-icon-of-idea-disappeared-after-importing-the-project-from-another-computer/" class="prev" rel="prev" title="从另一台电脑导入项目到IDEA后报错 点击Maven图标立即消失"><i class="iconfont icon-left"></i>&nbsp;从另一台电脑导入项目到IDEA后报错 点击Maven图标立即消失</a>
          
-        
-        <a href="http://blog.sinowrt.cn/2022/2022-08-13t2000-migrate-the-data-from-the-old-server-to-the-new-one/" class="next" rel="next" title="将旧服务器的数据完整迁移到新服务器">将旧服务器的数据完整迁移到新服务器&nbsp;<i class="iconfont icon-right"></i></a>
         
     </div>
 

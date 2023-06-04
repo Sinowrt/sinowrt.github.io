@@ -9,9 +9,9 @@
   
   
   
-  <link rel="prev" href="http://blog.sinowrt.cn/2022/2022-07-24t1508-some-problems-while-using-vue/" />
-  <link rel="next" href="http://blog.sinowrt.cn/2022/2022-08-13t2000-migrate-the-data-from-the-old-server-to-the-new-one/" />
-  <link rel="canonical" href="http://blog.sinowrt.cn/2022/2022-07-24t1730-the-maven-icon-of-idea-disappeared-after-importing-the-project-from-another-computer/" />
+  <link rel="prev" href="http://blog.sinowrt.cn/2022/2022-05-03t2145-using-ios-ble-to-remind-me-clock-inpython-implement/" />
+  <link rel="next" href="http://blog.sinowrt.cn/2022/2022-07-24t1508-some-problems-while-using-vue/" />
+  <link rel="canonical" href="http://blog.sinowrt.cn/2022/2022-06-03t1635-package-javax.rules.admin-does-not-exist/" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -22,10 +22,10 @@
   <title>
        
        
-           从另一台电脑导入项目到IDEA后报错 点击Maven图标立即消失 | Sinowrt
+           程序包`javax.rules.admin`不存在的问题 | Sinowrt
        
   </title>
-  <meta name="title" content="从另一台电脑导入项目到IDEA后报错 点击Maven图标立即消失 | Sinowrt">
+  <meta name="title" content="程序包`javax.rules.admin`不存在的问题 | Sinowrt">
     
   
   <link rel="stylesheet" href="/font/iconfont.css">
@@ -44,9 +44,9 @@
          "@id": "http:\/\/blog.sinowrt.cn"
     },
     "articleSection" : "posts",
-    "name" : "从另一台电脑导入项目到IDEA后报错 点击Maven图标立即消失",
-    "headline" : "从另一台电脑导入项目到IDEA后报错 点击Maven图标立即消失",
-    "description" : "0x00 报错信息 Cannot run program \x26ldquo;XXX\x26rdquo; (in directory \x26ldquo;XXX\x26rdquo;): CreateProcess error=2, 系统找不到指定的文件。\n0x01 报错原因 该项目是在别的电脑压缩打包拷贝过来的，所以项目的Java编译器路径、Maven路径以及Maven依赖的Jave环境路径都是原主机的\n0x02 解决办法 点击IDEA右上角的齿轮，Project Structures - Project - SDK，将SDK配置为本机已安装的SDK路径，接着打开Project下面的Modules，将Module SDK也配置好。\nMaven图标消失了的话，点击菜单 Help - Find Action, 搜索 Maven Settings， 点进去，Maven home path、 setting file、 repository都根据本机具体情况进行配置； 回到左侧列表树，展开Maven - Runner，将JRE也配置一下\n最后确认保存即可。",
+    "name" : "程序包`javax.rules.admin`不存在的问题",
+    "headline" : "程序包`javax.rules.admin`不存在的问题",
+    "description" : " 0x00 过程 初始化工程的时候报错 package javax.rules.admin 不存在 \/\/ 代码这几行全部标红 import javax.rules.admin.LocalRuleExecutionSetProvider; import javax.rules.admin.RuleAdministrator; import javax.rules.admin.RuleExecutionSet; import javax.rules.admin.RuleExecutionSetDeregistrationException; import javax.rules.admin.RuleExecutionSetProvider; import javax.rules.admin.RuleExecutionSetRegisterException;  查了一下是流程引擎相关的包，最终手动下载JSR94的包导入MAVEN仓库后问题解决 ",
     "inLanguage" : "en-us",
     "author" : "sinowrt",
     "creator" : "sinowrt",
@@ -54,11 +54,11 @@
     "accountablePerson" : "sinowrt",
     "copyrightHolder" : "sinowrt",
     "copyrightYear" : "2022",
-    "datePublished": "2022-07-24 15:08:00 \x2b0800 CST",
-    "dateModified" : "2022-07-24 15:08:00 \x2b0800 CST",
-    "url" : "http:\/\/blog.sinowrt.cn\/2022\/2022-07-24t1730-the-maven-icon-of-idea-disappeared-after-importing-the-project-from-another-computer\/",
-    "wordCount" : "42",
-    "keywords" : [ "IDEA","Maven", "Sinowrt"]
+    "datePublished": "2022-06-03 16:35:00 \x2b0800 CST",
+    "dateModified" : "2022-06-03 16:35:00 \x2b0800 CST",
+    "url" : "http:\/\/blog.sinowrt.cn\/2022\/2022-06-03t1635-package-javax.rules.admin-does-not-exist\/",
+    "wordCount" : "21",
+    "keywords" : [ "java", "Sinowrt"]
 }
 </script>
 
@@ -129,16 +129,16 @@
       		
 <article class="post-warp" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">从另一台电脑导入项目到IDEA后报错 点击Maven图标立即消失</h1>
+        <h1 class="post-title" itemprop="name headline">程序包`javax.rules.admin`不存在的问题</h1>
         <div class="post-meta">
                 Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
                 <span class="post-time">
-                on <time datetime=2022-07-24 itemprop="datePublished">July 24, 2022</time>
+                on <time datetime=2022-06-03 itemprop="datePublished">June 3, 2022</time>
                 </span>
                 in
                 <i class="iconfont icon-folder"></i>
                 <span class="post-category">
-                        <a href="http://blog.sinowrt.cn/categories/idea/"> IDEA </a>
+                        <a href="http://blog.sinowrt.cn/categories/java/"> java </a>
                         
                 </span>
         </div>
@@ -161,22 +161,20 @@
 
           
 
-<h2 id="0x00-报错信息">0x00 报错信息</h2>
+<h2 id="0x00-过程">0x00 过程</h2>
 
-<p>Cannot run program &ldquo;XXX&rdquo; (in directory &ldquo;XXX&rdquo;): CreateProcess error=2, 系统找不到指定的文件。</p>
+<h3 id="初始化工程的时候报错-package-javax-rules-admin-不存在">初始化工程的时候报错 package javax.rules.admin 不存在</h3>
 
-<h2 id="0x01-报错原因">0x01 报错原因</h2>
+<pre><code class="language-java">// 代码这几行全部标红
+import javax.rules.admin.LocalRuleExecutionSetProvider;
+import javax.rules.admin.RuleAdministrator;
+import javax.rules.admin.RuleExecutionSet;
+import javax.rules.admin.RuleExecutionSetDeregistrationException;
+import javax.rules.admin.RuleExecutionSetProvider;
+import javax.rules.admin.RuleExecutionSetRegisterException;
+</code></pre>
 
-<p>该项目是在别的电脑压缩打包拷贝过来的，所以项目的Java编译器路径、Maven路径以及Maven依赖的Jave环境路径都是原主机的</p>
-
-<h2 id="0x02-解决办法">0x02 解决办法</h2>
-
-<p>点击IDEA右上角的齿轮，Project Structures - Project - SDK，将SDK配置为本机已安装的SDK路径，接着打开Project下面的Modules，将Module SDK也配置好。</p>
-
-<p>Maven图标消失了的话，点击菜单 Help - Find Action, 搜索 Maven Settings， 点进去，Maven home path、 setting file、 repository都根据本机具体情况进行配置；
-回到左侧列表树，展开Maven - Runner，将JRE也配置一下</p>
-
-<p>最后确认保存即可。</p>
+<h3 id="查了一下是流程引擎相关的包-最终手动下载jsr94的包导入maven仓库后问题解决">查了一下是流程引擎相关的包，最终手动下载JSR94的包导入MAVEN仓库后问题解决</h3>
 
     </div>
 	
@@ -192,7 +190,7 @@
              
             <p class="copyright-item">
                     <span>Link:</span>
-                    <a href=http://blog.sinowrt.cn/2022/2022-07-24t1730-the-maven-icon-of-idea-disappeared-after-importing-the-project-from-another-computer/>http://blog.sinowrt.cn/2022/2022-07-24t1730-the-maven-icon-of-idea-disappeared-after-importing-the-project-from-another-computer/</span>
+                    <a href=http://blog.sinowrt.cn/2022/2022-06-03t1635-package-javax.rules.admin-does-not-exist/>http://blog.sinowrt.cn/2022/2022-06-03t1635-package-javax.rules.admin-does-not-exist/</span>
             </p>
 			
             
@@ -209,11 +207,8 @@
             <section>
             <i class="iconfont icon-tag"></i>Tag(s): 
             
-            <span class="tag"><a href="http://blog.sinowrt.cn/tags/idea/">
-                    #IDEA</a></span>
-            
-            <span class="tag"><a href="http://blog.sinowrt.cn/tags/maven/">
-                    #Maven</a></span>
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/java/">
+                    #java</a></span>
             
             </section>
         
@@ -225,10 +220,10 @@
 
     <div class="post-nav">
         
-        <a href="http://blog.sinowrt.cn/2022/2022-07-24t1508-some-problems-while-using-vue/" class="prev" rel="prev" title="使用Vue开发过程中的一些问题"><i class="iconfont icon-left"></i>&nbsp;使用Vue开发过程中的一些问题</a>
+        <a href="http://blog.sinowrt.cn/2022/2022-05-03t2145-using-ios-ble-to-remind-me-clock-inpython-implement/" class="prev" rel="prev" title="巧用IOS的BLE实现上下班打卡提醒（Python实现）"><i class="iconfont icon-left"></i>&nbsp;巧用IOS的BLE实现上下班打卡提醒（Python实现）</a>
          
         
-        <a href="http://blog.sinowrt.cn/2022/2022-08-13t2000-migrate-the-data-from-the-old-server-to-the-new-one/" class="next" rel="next" title="将旧服务器的数据完整迁移到新服务器">将旧服务器的数据完整迁移到新服务器&nbsp;<i class="iconfont icon-right"></i></a>
+        <a href="http://blog.sinowrt.cn/2022/2022-07-24t1508-some-problems-while-using-vue/" class="next" rel="next" title="使用Vue开发过程中的一些问题">使用Vue开发过程中的一些问题&nbsp;<i class="iconfont icon-right"></i></a>
         
     </div>
 

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>data migration on Sinowrt</title>
+    <link>http://blog.sinowrt.cn/tags/data-migration/</link>
+    <description>Recent content in data migration on Sinowrt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 13 Aug 2022 20:00:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.sinowrt.cn/tags/data-migration/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>将旧服务器的数据完整迁移到新服务器</title>
+      <link>http://blog.sinowrt.cn/2022/2022-08-13t2000-migrate-the-data-from-the-old-server-to-the-new-one/</link>
+      <pubDate>Sat, 13 Aug 2022 20:00:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2022/2022-08-13t2000-migrate-the-data-from-the-old-server-to-the-new-one/</guid>
+      <description>0x00 命令记录 过程中用过的一些命令记录一下，由于服务器空间问题实际上并没有使用整机备份的方法 ### 查找大文件 find . -type f -size +800M -print0 | xargs -0 du -h | sort -nr # 查找大目录 du -hm --max-depth=2 | sort -n # 整机备份 tar cvpzf backup.tgz / --exclude=/proc --exclude=/lost+found --exclude=/backup.tgz --exclude=/mnt --exclude=/sys # 解压 tar xvpzf backup.tgz -C / # cvpzf - “创建档案文件”、“保持权限”(保留所有东西原来的权限)、“使用gzip来减小文件尺寸”  0x01 实际迁移过程 由于所有的服务都在docker运行，所以迁移docker的数据即可 # 停掉docker服务 systemctl stop docker # 打包/var/lib/docker tar cvpzf docker.tgz /var/lib/docker # 打包/opt数据文件目录 tar cvpzf opt.</description>
+    </item>
+    
+  </channel>
+</rss>

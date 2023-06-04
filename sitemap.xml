@@ -4,11 +4,105 @@
     <url>
       <loc>http://blog.sinowrt.cn/categories/</loc>
       
-      <lastmod>2022-07-24T15:08:00+08:00</lastmod>
+      <lastmod>2022-08-13T20:00:00+08:00</lastmod>
       
       
       
       <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/posts/</loc>
+      
+      <lastmod>2022-08-13T20:00:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/</loc>
+      
+      <lastmod>2022-08-13T20:00:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/</loc>
+      
+      <lastmod>2022-08-13T20:00:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/categories/data-migration/</loc>
+      
+      <lastmod>2022-08-13T20:00:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/data-migration/</loc>
+      
+      <lastmod>2022-08-13T20:00:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/categories/server/</loc>
+      
+      <lastmod>2022-08-13T20:00:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/server/</loc>
+      
+      <lastmod>2022-08-13T20:00:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/2022/2022-08-13t2000-migrate-the-data-from-the-old-server-to-the-new-one/</loc>
+      
+      <lastmod>2022-08-13T20:00:00+08:00</lastmod>
+      
+      
       
       
     </url>
@@ -27,42 +121,6 @@
   
     <url>
       <loc>http://blog.sinowrt.cn/tags/idea/</loc>
-      
-      <lastmod>2022-07-24T15:08:00+08:00</lastmod>
-      
-      
-      
-      <priority>0</priority>
-      
-      
-    </url>
-  
-    <url>
-      <loc>http://blog.sinowrt.cn/posts/</loc>
-      
-      <lastmod>2022-07-24T15:08:00+08:00</lastmod>
-      
-      
-      
-      <priority>0</priority>
-      
-      
-    </url>
-  
-    <url>
-      <loc>http://blog.sinowrt.cn/</loc>
-      
-      <lastmod>2022-07-24T15:08:00+08:00</lastmod>
-      
-      
-      
-      <priority>0</priority>
-      
-      
-    </url>
-  
-    <url>
-      <loc>http://blog.sinowrt.cn/tags/</loc>
       
       <lastmod>2022-07-24T15:08:00+08:00</lastmod>
       
@@ -135,6 +193,40 @@
       <loc>http://blog.sinowrt.cn/2022/2022-07-24t1508-some-problems-while-using-vue/</loc>
       
       <lastmod>2022-07-24T15:08:00+08:00</lastmod>
+      
+      
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/categories/java/</loc>
+      
+      <lastmod>2022-06-03T16:35:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/java/</loc>
+      
+      <lastmod>2022-06-03T16:35:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/2022/2022-06-03t1635-package-javax.rules.admin-does-not-exist/</loc>
+      
+      <lastmod>2022-06-03T16:35:00+08:00</lastmod>
       
       
       
@@ -2201,16 +2293,6 @@
       <lastmod>2018-10-16T08:11:56+00:00</lastmod>
       
       
-      
-      
-    </url>
-  
-    <url>
-      <loc>http://blog.sinowrt.cn/1/20220813/</loc>
-      
-      
-      
-      <priority>0</priority>
       
       
     </url>

@@ -6,10 +6,28 @@
     <description>Recent content in Categories on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 24 Jul 2022 15:08:00 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 13 Aug 2022 20:00:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>data migration</title>
+      <link>http://blog.sinowrt.cn/categories/data-migration/</link>
+      <pubDate>Sat, 13 Aug 2022 20:00:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/data-migration/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>server</title>
+      <link>http://blog.sinowrt.cn/categories/server/</link>
+      <pubDate>Sat, 13 Aug 2022 20:00:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/server/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>IDEA</title>
@@ -26,6 +44,15 @@
       <pubDate>Sun, 24 Jul 2022 15:08:00 +0800</pubDate>
       
       <guid>http://blog.sinowrt.cn/categories/vue/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>java</title>
+      <link>http://blog.sinowrt.cn/categories/java/</link>
+      <pubDate>Fri, 03 Jun 2022 16:35:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/java/</guid>
       <description></description>
     </item>
     
