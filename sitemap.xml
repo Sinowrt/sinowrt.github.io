@@ -50,18 +50,6 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/data-migration/</loc>
-      
-      <lastmod>2022-08-13T20:00:00+08:00</lastmod>
-      
-      
-      
-      <priority>0</priority>
-      
-      
-    </url>
-  
-    <url>
       <loc>http://blog.sinowrt.cn/tags/data-migration/</loc>
       
       <lastmod>2022-08-13T20:00:00+08:00</lastmod>
@@ -74,7 +62,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/server/</loc>
+      <loc>http://blog.sinowrt.cn/categories/data-migration/</loc>
       
       <lastmod>2022-08-13T20:00:00+08:00</lastmod>
       
@@ -98,23 +86,23 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/2022/2022-08-13t2000-migrate-the-data-from-the-old-server-to-the-new-one/</loc>
+      <loc>http://blog.sinowrt.cn/categories/server/</loc>
       
       <lastmod>2022-08-13T20:00:00+08:00</lastmod>
       
       
       
+      <priority>0</priority>
+      
       
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/idea/</loc>
+      <loc>http://blog.sinowrt.cn/2022/2022-08-13t2000-migrate-the-data-from-the-old-server-to-the-new-one/</loc>
       
-      <lastmod>2022-07-24T15:08:00+08:00</lastmod>
+      <lastmod>2022-08-13T20:00:00+08:00</lastmod>
       
       
-      
-      <priority>0</priority>
       
       
     </url>
@@ -132,7 +120,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/vue/</loc>
+      <loc>http://blog.sinowrt.cn/categories/idea/</loc>
       
       <lastmod>2022-07-24T15:08:00+08:00</lastmod>
       
@@ -145,6 +133,18 @@
   
     <url>
       <loc>http://blog.sinowrt.cn/tags/vue/</loc>
+      
+      <lastmod>2022-07-24T15:08:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/categories/vue/</loc>
       
       <lastmod>2022-07-24T15:08:00+08:00</lastmod>
       
@@ -200,7 +200,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/java/</loc>
+      <loc>http://blog.sinowrt.cn/tags/java/</loc>
       
       <lastmod>2022-06-03T16:35:00+08:00</lastmod>
       
@@ -212,7 +212,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/tags/java/</loc>
+      <loc>http://blog.sinowrt.cn/categories/java/</loc>
       
       <lastmod>2022-06-03T16:35:00+08:00</lastmod>
       
@@ -234,18 +234,6 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/ble/</loc>
-      
-      <lastmod>2022-05-03T21:45:00+08:00</lastmod>
-      
-      
-      
-      <priority>0</priority>
-      
-      
-    </url>
-  
-    <url>
       <loc>http://blog.sinowrt.cn/tags/ble/</loc>
       
       <lastmod>2022-05-03T21:45:00+08:00</lastmod>
@@ -258,7 +246,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/ibeacon/</loc>
+      <loc>http://blog.sinowrt.cn/categories/ble/</loc>
       
       <lastmod>2022-05-03T21:45:00+08:00</lastmod>
       
@@ -282,7 +270,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/python/</loc>
+      <loc>http://blog.sinowrt.cn/categories/ibeacon/</loc>
       
       <lastmod>2022-05-03T21:45:00+08:00</lastmod>
       
@@ -295,6 +283,18 @@
   
     <url>
       <loc>http://blog.sinowrt.cn/tags/python/</loc>
+      
+      <lastmod>2022-05-03T21:45:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/categories/python/</loc>
       
       <lastmod>2022-05-03T21:45:00+08:00</lastmod>
       
@@ -326,18 +326,6 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/pip/</loc>
-      
-      <lastmod>2022-04-30T18:07:00+08:00</lastmod>
-      
-      
-      
-      <priority>0</priority>
-      
-      
-    </url>
-  
-    <url>
       <loc>http://blog.sinowrt.cn/tags/pip/</loc>
       
       <lastmod>2022-04-30T18:07:00+08:00</lastmod>
@@ -350,7 +338,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/pybluez/</loc>
+      <loc>http://blog.sinowrt.cn/categories/pip/</loc>
       
       <lastmod>2022-04-30T18:07:00+08:00</lastmod>
       
@@ -374,23 +362,23 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/2022/2022-04-26t2103-how-to-solve-pycharm-pip-install-winerror-10061/</loc>
+      <loc>http://blog.sinowrt.cn/categories/pybluez/</loc>
       
-      <lastmod>2022-04-26T21:03:00+08:00</lastmod>
+      <lastmod>2022-04-30T18:07:00+08:00</lastmod>
       
       
+      
+      <priority>0</priority>
       
       
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/pycharm/</loc>
+      <loc>http://blog.sinowrt.cn/2022/2022-04-26t2103-how-to-solve-pycharm-pip-install-winerror-10061/</loc>
       
       <lastmod>2022-04-26T21:03:00+08:00</lastmod>
       
       
-      
-      <priority>0</priority>
       
       
     </url>
@@ -408,9 +396,9 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/bluetooth/</loc>
+      <loc>http://blog.sinowrt.cn/categories/pycharm/</loc>
       
-      <lastmod>2022-04-25T19:36:00+08:00</lastmod>
+      <lastmod>2022-04-26T21:03:00+08:00</lastmod>
       
       
       
@@ -432,7 +420,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/raspberry-pi/</loc>
+      <loc>http://blog.sinowrt.cn/categories/bluetooth/</loc>
       
       <lastmod>2022-04-25T19:36:00+08:00</lastmod>
       
@@ -456,7 +444,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/ubuntu-server/</loc>
+      <loc>http://blog.sinowrt.cn/categories/raspberry-pi/</loc>
       
       <lastmod>2022-04-25T19:36:00+08:00</lastmod>
       
@@ -469,6 +457,18 @@
   
     <url>
       <loc>http://blog.sinowrt.cn/tags/ubuntu-server/</loc>
+      
+      <lastmod>2022-04-25T19:36:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/categories/ubuntu-server/</loc>
       
       <lastmod>2022-04-25T19:36:00+08:00</lastmod>
       
@@ -502,18 +502,6 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/openjdk/</loc>
-      
-      <lastmod>2022-04-17T20:30:00+08:00</lastmod>
-      
-      
-      
-      <priority>0</priority>
-      
-      
-    </url>
-  
-    <url>
       <loc>http://blog.sinowrt.cn/tags/openjdk/</loc>
       
       <lastmod>2022-04-17T20:30:00+08:00</lastmod>
@@ -526,7 +514,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/ubuntu/</loc>
+      <loc>http://blog.sinowrt.cn/categories/openjdk/</loc>
       
       <lastmod>2022-04-17T20:30:00+08:00</lastmod>
       
@@ -550,6 +538,18 @@
     </url>
   
     <url>
+      <loc>http://blog.sinowrt.cn/categories/ubuntu/</loc>
+      
+      <lastmod>2022-04-17T20:30:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
       <loc>http://blog.sinowrt.cn/2022/2022-04-17t2030-how-to-compile-openjdk7-on-ubuntu20.04/</loc>
       
       <lastmod>2022-04-17T20:30:00+08:00</lastmod>
@@ -560,7 +560,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/vmware-tools/</loc>
+      <loc>http://blog.sinowrt.cn/tags/vmware-tools/</loc>
       
       <lastmod>2022-04-17T20:24:00+08:00</lastmod>
       
@@ -572,7 +572,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/tags/vmware-tools/</loc>
+      <loc>http://blog.sinowrt.cn/categories/vmware-tools/</loc>
       
       <lastmod>2022-04-17T20:24:00+08:00</lastmod>
       
@@ -594,18 +594,6 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/decode/</loc>
-      
-      <lastmod>2022-04-01T14:31:00+08:00</lastmod>
-      
-      
-      
-      <priority>0</priority>
-      
-      
-    </url>
-  
-    <url>
       <loc>http://blog.sinowrt.cn/tags/decode/</loc>
       
       <lastmod>2022-04-01T14:31:00+08:00</lastmod>
@@ -618,7 +606,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/tomcat/</loc>
+      <loc>http://blog.sinowrt.cn/categories/decode/</loc>
       
       <lastmod>2022-04-01T14:31:00+08:00</lastmod>
       
@@ -631,6 +619,18 @@
   
     <url>
       <loc>http://blog.sinowrt.cn/tags/tomcat/</loc>
+      
+      <lastmod>2022-04-01T14:31:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/categories/tomcat/</loc>
       
       <lastmod>2022-04-01T14:31:00+08:00</lastmod>
       
@@ -664,18 +664,6 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/git/</loc>
-      
-      <lastmod>2022-03-28T20:24:00+08:00</lastmod>
-      
-      
-      
-      <priority>0</priority>
-      
-      
-    </url>
-  
-    <url>
       <loc>http://blog.sinowrt.cn/tags/git/</loc>
       
       <lastmod>2022-03-28T20:24:00+08:00</lastmod>
@@ -688,7 +676,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/windows-server/</loc>
+      <loc>http://blog.sinowrt.cn/categories/git/</loc>
       
       <lastmod>2022-03-28T20:24:00+08:00</lastmod>
       
@@ -701,6 +689,18 @@
   
     <url>
       <loc>http://blog.sinowrt.cn/tags/windows-server/</loc>
+      
+      <lastmod>2022-03-28T20:24:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/categories/windows-server/</loc>
       
       <lastmod>2022-03-28T20:24:00+08:00</lastmod>
       
@@ -734,7 +734,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/proxy/</loc>
+      <loc>http://blog.sinowrt.cn/tags/proxy/</loc>
       
       <lastmod>2022-03-27T22:31:00+08:00</lastmod>
       
@@ -746,7 +746,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/tags/proxy/</loc>
+      <loc>http://blog.sinowrt.cn/categories/proxy/</loc>
       
       <lastmod>2022-03-27T22:31:00+08:00</lastmod>
       
@@ -826,7 +826,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/synology/</loc>
+      <loc>http://blog.sinowrt.cn/tags/synology/</loc>
       
       <lastmod>2021-04-22T13:30:00+08:00</lastmod>
       
@@ -838,7 +838,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/tags/synology/</loc>
+      <loc>http://blog.sinowrt.cn/categories/synology/</loc>
       
       <lastmod>2021-04-22T13:30:00+08:00</lastmod>
       
@@ -870,7 +870,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/minio/</loc>
+      <loc>http://blog.sinowrt.cn/tags/minio/</loc>
       
       <lastmod>2021-03-09T22:24:00+08:00</lastmod>
       
@@ -882,7 +882,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/tags/minio/</loc>
+      <loc>http://blog.sinowrt.cn/categories/minio/</loc>
       
       <lastmod>2021-03-09T22:24:00+08:00</lastmod>
       
@@ -904,7 +904,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/docker/</loc>
+      <loc>http://blog.sinowrt.cn/tags/docker/</loc>
       
       <lastmod>2021-03-09T15:30:00+08:00</lastmod>
       
@@ -916,7 +916,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/tags/docker/</loc>
+      <loc>http://blog.sinowrt.cn/categories/docker/</loc>
       
       <lastmod>2021-03-09T15:30:00+08:00</lastmod>
       
@@ -938,7 +938,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/linux/</loc>
+      <loc>http://blog.sinowrt.cn/tags/linux/</loc>
       
       <lastmod>2021-03-09T09:30:00+08:00</lastmod>
       
@@ -950,7 +950,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/tags/linux/</loc>
+      <loc>http://blog.sinowrt.cn/categories/linux/</loc>
       
       <lastmod>2021-03-09T09:30:00+08:00</lastmod>
       
@@ -982,18 +982,6 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/mysql/</loc>
-      
-      <lastmod>2021-03-08T16:08:00+08:00</lastmod>
-      
-      
-      
-      <priority>0</priority>
-      
-      
-    </url>
-  
-    <url>
       <loc>http://blog.sinowrt.cn/tags/mysql/</loc>
       
       <lastmod>2021-03-08T16:08:00+08:00</lastmod>
@@ -1006,7 +994,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/navicat/</loc>
+      <loc>http://blog.sinowrt.cn/categories/mysql/</loc>
       
       <lastmod>2021-03-08T16:08:00+08:00</lastmod>
       
@@ -1030,23 +1018,23 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/2021/2021-03-08t1412-authentication-plugin-caching_sha2_password-cannot-be-loaded/</loc>
-      
-      <lastmod>2021-03-08T16:08:00+08:00</lastmod>
-      
-      
-      
-      
-    </url>
-  
-    <url>
-      <loc>http://blog.sinowrt.cn/categories/tunnel/</loc>
+      <loc>http://blog.sinowrt.cn/categories/navicat/</loc>
       
       <lastmod>2021-03-08T16:08:00+08:00</lastmod>
       
       
       
       <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/2021/2021-03-08t1412-authentication-plugin-caching_sha2_password-cannot-be-loaded/</loc>
+      
+      <lastmod>2021-03-08T16:08:00+08:00</lastmod>
+      
+      
       
       
     </url>
@@ -1064,7 +1052,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/xshell/</loc>
+      <loc>http://blog.sinowrt.cn/categories/tunnel/</loc>
       
       <lastmod>2021-03-08T16:08:00+08:00</lastmod>
       
@@ -1077,6 +1065,18 @@
   
     <url>
       <loc>http://blog.sinowrt.cn/tags/xshell/</loc>
+      
+      <lastmod>2021-03-08T16:08:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/categories/xshell/</loc>
       
       <lastmod>2021-03-08T16:08:00+08:00</lastmod>
       
@@ -1128,7 +1128,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/v2ray/</loc>
+      <loc>http://blog.sinowrt.cn/tags/v2ray/</loc>
       
       <lastmod>2021-03-05T13:47:00+08:00</lastmod>
       
@@ -1140,7 +1140,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/tags/v2ray/</loc>
+      <loc>http://blog.sinowrt.cn/categories/v2ray/</loc>
       
       <lastmod>2021-03-05T13:47:00+08:00</lastmod>
       
@@ -1162,7 +1162,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/nginx/</loc>
+      <loc>http://blog.sinowrt.cn/tags/nginx/</loc>
       
       <lastmod>2021-03-03T19:07:00+08:00</lastmod>
       
@@ -1174,7 +1174,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/tags/nginx/</loc>
+      <loc>http://blog.sinowrt.cn/categories/nginx/</loc>
       
       <lastmod>2021-03-03T19:07:00+08:00</lastmod>
       
@@ -1196,7 +1196,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/vi/</loc>
+      <loc>http://blog.sinowrt.cn/tags/vi/</loc>
       
       <lastmod>2021-02-26T17:40:00+08:00</lastmod>
       
@@ -1208,7 +1208,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/tags/vi/</loc>
+      <loc>http://blog.sinowrt.cn/categories/vi/</loc>
       
       <lastmod>2021-02-26T17:40:00+08:00</lastmod>
       
@@ -1230,7 +1230,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/jvm/</loc>
+      <loc>http://blog.sinowrt.cn/tags/jvm/</loc>
       
       <lastmod>2021-02-26T16:33:00+08:00</lastmod>
       
@@ -1242,7 +1242,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/tags/jvm/</loc>
+      <loc>http://blog.sinowrt.cn/categories/jvm/</loc>
       
       <lastmod>2021-02-26T16:33:00+08:00</lastmod>
       
@@ -1338,7 +1338,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/wifi/</loc>
+      <loc>http://blog.sinowrt.cn/tags/wifi/</loc>
       
       <lastmod>2020-06-12T14:36:00+08:00</lastmod>
       
@@ -1350,7 +1350,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/tags/wifi/</loc>
+      <loc>http://blog.sinowrt.cn/categories/wifi/</loc>
       
       <lastmod>2020-06-12T14:36:00+08:00</lastmod>
       
@@ -1392,18 +1392,6 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/macbook/</loc>
-      
-      <lastmod>2020-06-10T14:27:00+08:00</lastmod>
-      
-      
-      
-      <priority>0</priority>
-      
-      
-    </url>
-  
-    <url>
       <loc>http://blog.sinowrt.cn/tags/macbook/</loc>
       
       <lastmod>2020-06-10T14:27:00+08:00</lastmod>
@@ -1416,7 +1404,19 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/chrome/</loc>
+      <loc>http://blog.sinowrt.cn/categories/macbook/</loc>
+      
+      <lastmod>2020-06-10T14:27:00+08:00</lastmod>
+      
+      
+      
+      <priority>0</priority>
+      
+      
+    </url>
+  
+    <url>
+      <loc>http://blog.sinowrt.cn/tags/chrome/</loc>
       
       <lastmod>2020-05-27T13:34:00+08:00</lastmod>
       
@@ -1428,7 +1428,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/tags/chrome/</loc>
+      <loc>http://blog.sinowrt.cn/categories/chrome/</loc>
       
       <lastmod>2020-05-27T13:34:00+08:00</lastmod>
       
@@ -1546,7 +1546,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/esxi/</loc>
+      <loc>http://blog.sinowrt.cn/tags/esxi/</loc>
       
       <lastmod>2020-04-16T16:19:00+08:00</lastmod>
       
@@ -1558,7 +1558,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/tags/esxi/</loc>
+      <loc>http://blog.sinowrt.cn/categories/esxi/</loc>
       
       <lastmod>2020-04-16T16:19:00+08:00</lastmod>
       
@@ -1612,7 +1612,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/ngrok/</loc>
+      <loc>http://blog.sinowrt.cn/tags/ngrok/</loc>
       
       <lastmod>2020-04-12T23:33:00+08:00</lastmod>
       
@@ -1624,7 +1624,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/tags/ngrok/</loc>
+      <loc>http://blog.sinowrt.cn/categories/ngrok/</loc>
       
       <lastmod>2020-04-12T23:33:00+08:00</lastmod>
       
@@ -1702,7 +1702,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/javascript/</loc>
+      <loc>http://blog.sinowrt.cn/tags/javascript/</loc>
       
       <lastmod>2020-03-05T16:18:00+08:00</lastmod>
       
@@ -1714,7 +1714,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/tags/javascript/</loc>
+      <loc>http://blog.sinowrt.cn/categories/javascript/</loc>
       
       <lastmod>2020-03-05T16:18:00+08:00</lastmod>
       
@@ -1848,7 +1848,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/%E8%B7%AF%E7%94%B1/</loc>
+      <loc>http://blog.sinowrt.cn/tags/%E8%B7%AF%E7%94%B1/</loc>
       
       <lastmod>2019-11-29T00:28:00+08:00</lastmod>
       
@@ -1860,7 +1860,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/tags/%E8%B7%AF%E7%94%B1/</loc>
+      <loc>http://blog.sinowrt.cn/categories/%E8%B7%AF%E7%94%B1/</loc>
       
       <lastmod>2019-11-29T00:28:00+08:00</lastmod>
       
@@ -2044,7 +2044,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/categories/vpn/</loc>
+      <loc>http://blog.sinowrt.cn/tags/vpn/</loc>
       
       <lastmod>2019-06-13T13:02:08+08:00</lastmod>
       
@@ -2056,7 +2056,7 @@
     </url>
   
     <url>
-      <loc>http://blog.sinowrt.cn/tags/vpn/</loc>
+      <loc>http://blog.sinowrt.cn/categories/vpn/</loc>
       
       <lastmod>2019-06-13T13:02:08+08:00</lastmod>
       
