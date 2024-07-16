@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noodp"/>
+  <meta name="referrer" content="no-referrer" />
   <meta name="author" content="sinowrt">
   
   
@@ -46,18 +47,18 @@
     "articleSection" : "posts",
     "name" : "Win10装光驱位硬盘分区不显示",
     "headline" : "Win10装光驱位硬盘分区不显示",
-    "description" : " 0x00 前阵子用旧电脑装了个群晖nas，无奈用的120G硬盘，完全不够用，看手上还有个500G的三星机械盘，就买了个光驱硬盘盒，到手后插上电脑没显示分区？不兼容？盘坏了？ 0x01 打开设备管理器，扫描硬件更新，可以看到三星机械盘，盘和架子应该没问题 0x02 打开partition wizard,可以看到硬盘基本信息都在，就是没有盘符 0x03 分配盘符后，可以看到电脑显示分区正常，应该是没有挂载 0x04 也可以利用diskpart对卷进行挂载 0x05 Z盘挂载成功 ",
+    "description" : " 0x00 起因 前阵子用旧电脑装了个群晖nas，无奈用的120G硬盘，完全不够用，看手上还有个500G的三星机械盘，就买了个光驱硬盘盒，到手后插上电脑没显示分区？不兼容？盘坏了？ 0x01 排查  打开设备管理器，扫描硬件更新，可以看到三星机械盘，盘和架子应该没问题  打开partition wizard,可以看到硬盘基本信息都在，就是没有盘符  分配盘符后，可以看到电脑显示分区正常，应该是没有挂载  也可以利用diskpart对卷进行挂载  Z盘挂载成功   ",
     "inLanguage" : "en-us",
-    "author" : "SinoWRT",
-    "creator" : "SinoWRT",
-    "publisher": "SinoWRT",
-    "accountablePerson" : "SinoWRT",
-    "copyrightHolder" : "SinoWRT",
+    "author" : "sinowrt",
+    "creator" : "sinowrt",
+    "publisher": "sinowrt",
+    "accountablePerson" : "sinowrt",
+    "copyrightHolder" : "sinowrt",
     "copyrightYear" : "2018",
     "datePublished": "2018-12-03 12:58:57 \x2b0000 \x2b0000",
     "dateModified" : "2018-12-03 12:58:57 \x2b0000 \x2b0000",
     "url" : "http:\/\/blog.sinowrt.cn\/2018\/2018-12-03t1258-hard-disk-parttion-unview\/",
-    "wordCount" : "13",
+    "wordCount" : "11",
     "keywords" : [  "Sinowrt"]
 }
 </script>
@@ -131,7 +132,7 @@
     <header class="post-header">
         <h1 class="post-title" itemprop="name headline">Win10装光驱位硬盘分区不显示</h1>
         <div class="post-meta">
-                Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">SinoWRT</a> with ♥ 
+                Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
                 <span class="post-time">
                 on <time datetime=2018-12-03 itemprop="datePublished">December 3, 2018</time>
                 </span>
@@ -163,29 +164,29 @@
 
           
 
-<h4 id="0x00-前阵子用旧电脑装了个群晖nas-无奈用的120g硬盘-完全不够用-看手上还有个500g的三星机械盘-就买了个光驱硬盘盒-到手后插上电脑没显示分区-不兼容-盘坏了">0x00 前阵子用旧电脑装了个群晖nas，无奈用的120G硬盘，完全不够用，看手上还有个500G的三星机械盘，就买了个光驱硬盘盒，到手后插上电脑没显示分区？不兼容？盘坏了？</h4>
+<h2 id="0x00-起因">0x00 起因</h2>
 
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-12-03T1258-1.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+<p>前阵子用旧电脑装了个群晖nas，无奈用的120G硬盘，完全不够用，看手上还有个500G的三星机械盘，就买了个光驱硬盘盒，到手后插上电脑没显示分区？不兼容？盘坏了？
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721146551445-239c6f96-c105-422f-ac97-5f3240db9759.png#averageHue=%23faf6f5&amp;clientId=ufd801f5a-8395-4&amp;from=paste&amp;height=453&amp;id=u34aa6f71&amp;originHeight=453&amp;originWidth=1030&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=38400&amp;status=done&amp;style=none&amp;taskId=u94c707c4-ebd5-4eb2-9eba-6f9e2819a19&amp;title=&amp;width=1030" alt="2018-12-03T1258-1.png" class="lazyload"><figcaption class="image-caption">2018-12-03T1258-1.png</figcaption></figure></p>
 
-<h4 id="0x01-打开设备管理器-扫描硬件更新-可以看到三星机械盘-盘和架子应该没问题">0x01 打开设备管理器，扫描硬件更新，可以看到三星机械盘，盘和架子应该没问题</h4>
+<h2 id="0x01-排查">0x01 排查</h2>
 
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-12-03T1258-2.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+<ul>
+<li><p>打开设备管理器，扫描硬件更新，可以看到三星机械盘，盘和架子应该没问题
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721146552402-a499cb52-de1d-484c-962f-79ba18f30ad1.png#averageHue=%23f7f7f6&amp;clientId=ufd801f5a-8395-4&amp;from=paste&amp;height=708&amp;id=uefbf28b0&amp;originHeight=708&amp;originWidth=986&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=72997&amp;status=done&amp;style=none&amp;taskId=u70baabbd-e135-4073-8bca-e534b889fcb&amp;title=&amp;width=986" alt="2018-12-03T1258-2.png" class="lazyload"><figcaption class="image-caption">2018-12-03T1258-2.png</figcaption></figure></p></li>
 
-<h4 id="0x02-打开partition-wizard-可以看到硬盘基本信息都在-就是没有盘符">0x02 打开partition wizard,可以看到硬盘基本信息都在，就是没有盘符</h4>
+<li><p>打开partition wizard,可以看到硬盘基本信息都在，就是没有盘符
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721146552730-dee742a4-a949-40ed-91fd-fe39c82fdfe9.png#averageHue=%23f1e3a3&amp;clientId=ufd801f5a-8395-4&amp;from=paste&amp;height=800&amp;id=u0d8bb15b&amp;originHeight=800&amp;originWidth=1026&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=114950&amp;status=done&amp;style=none&amp;taskId=u01e7698b-f5f7-465d-8af1-0f67297d056&amp;title=&amp;width=1026" alt="2018-12-03T1258-3.png" class="lazyload"><figcaption class="image-caption">2018-12-03T1258-3.png</figcaption></figure></p></li>
 
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-12-03T1258-3.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+<li><p>分配盘符后，可以看到电脑显示分区正常，应该是没有挂载
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721146557885-fac64556-9857-465a-9977-067c7fb5f63f.png#averageHue=%23e8dca2&amp;clientId=ufd801f5a-8395-4&amp;from=paste&amp;height=800&amp;id=u77dabb98&amp;originHeight=800&amp;originWidth=1027&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=125270&amp;status=done&amp;style=none&amp;taskId=u239c2dfa-d767-42f0-8e96-a6b113cec53&amp;title=&amp;width=1027" alt="2018-12-03T1258-4.png" class="lazyload"><figcaption class="image-caption">2018-12-03T1258-4.png</figcaption></figure></p></li>
 
-<h4 id="0x03-分配盘符后-可以看到电脑显示分区正常-应该是没有挂载">0x03 分配盘符后，可以看到电脑显示分区正常，应该是没有挂载</h4>
+<li><p>也可以利用diskpart对卷进行挂载
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721146583642-e25aac2d-213a-4189-9ae4-df5df5bf0ad4.png#averageHue=%23161616&amp;clientId=ufd801f5a-8395-4&amp;from=paste&amp;height=579&amp;id=u2558d4e8&amp;originHeight=579&amp;originWidth=983&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=25534&amp;status=done&amp;style=none&amp;taskId=u818a3534-c7c1-4306-b623-37821c44035&amp;title=&amp;width=983" alt="2018-12-03T1258-5.png" class="lazyload"><figcaption class="image-caption">2018-12-03T1258-5.png</figcaption></figure></p></li>
 
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-12-03T1258-4.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
-
-<h4 id="0x04-也可以利用diskpart对卷进行挂载">0x04 也可以利用diskpart对卷进行挂载</h4>
-
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-12-03T1258-5.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
-
-<h4 id="0x05-z盘挂载成功">0x05 Z盘挂载成功</h4>
-
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-12-03T1258-6.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+<li><p>Z盘挂载成功
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721146583719-79259ebe-7744-49c2-b9a3-ae678f1d45a8.png#averageHue=%23fcf9f9&amp;clientId=ufd801f5a-8395-4&amp;from=paste&amp;height=676&amp;id=u298591df&amp;originHeight=676&amp;originWidth=1222&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=44107&amp;status=done&amp;style=none&amp;taskId=u3ac99e8d-bafb-486a-ac1a-a4c195ed104&amp;title=&amp;width=1222" alt="2018-12-03T1258-6.png" class="lazyload"><figcaption class="image-caption">2018-12-03T1258-6.png</figcaption></figure></p></li>
+</ul>
 
     </div>
 	
@@ -242,7 +243,7 @@
     <div class="copyright">
         &copy;
         
-        <span itemprop="copyrightYear">2018 - 2023</span>
+        <span itemprop="copyrightYear">2018 - 2024</span>
         
         <span class="with-love">
     	 <i class="iconfont icon-love"></i> 

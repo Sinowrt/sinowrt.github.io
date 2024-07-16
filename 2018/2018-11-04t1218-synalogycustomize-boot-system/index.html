@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noodp"/>
+  <meta name="referrer" content="no-referrer" />
   <meta name="author" content="sinowrt">
   
   
@@ -46,13 +47,13 @@
     "articleSection" : "posts",
     "name" : "自定义黑群晖6.X.X引导系统版本",
     "headline" : "自定义黑群晖6.X.X引导系统版本",
-    "description" : " 0x00 打开osfmount 0x01 挂载引导文件  选择img文件 填写offset为16MBytes 去掉read—only前面的勾 点击ok进行挂载\n  0x02 解压目标系统文件  将xxxxxxx.pat的后缀改成rar 解压 从解压得到的文件夹里面找到rd.gz和zlmage 复制这两个文件到虚拟磁盘根目录下替换原文件  0x03 卸载虚拟磁盘 0x04 将img文件通过Win32DiskImager写入U盘即可 ",
+    "description" : " 0x00 打开osfmount 0x01 挂载引导文件  选择img文件 填写offset为16MBytes 去掉read—only前面的勾 点击ok进行挂载 0x02 解压目标系统文件 将xxxxxxx.pat的后缀改成rar\n 解压\n 从解压得到的文件夹里面找到rd.gz和zlmage\n 复制这两个文件到虚拟磁盘根目录下替换原文件\n  0x03 卸载虚拟磁盘 0x04 将img文件通过Win32DiskImager写入U盘即可 ",
     "inLanguage" : "en-us",
-    "author" : "SinoWRT",
-    "creator" : "SinoWRT",
-    "publisher": "SinoWRT",
-    "accountablePerson" : "SinoWRT",
-    "copyrightHolder" : "SinoWRT",
+    "author" : "sinowrt",
+    "creator" : "sinowrt",
+    "publisher": "sinowrt",
+    "accountablePerson" : "sinowrt",
+    "copyrightHolder" : "sinowrt",
     "copyrightYear" : "2018",
     "datePublished": "2018-11-04 12:18:36 \x2b0000 \x2b0000",
     "dateModified" : "2018-11-04 12:18:36 \x2b0000 \x2b0000",
@@ -131,7 +132,7 @@
     <header class="post-header">
         <h1 class="post-title" itemprop="name headline">自定义黑群晖6.X.X引导系统版本</h1>
         <div class="post-meta">
-                Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">SinoWRT</a> with ♥ 
+                Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
                 <span class="post-time">
                 on <time datetime=2018-11-04 itemprop="datePublished">November 4, 2018</time>
                 </span>
@@ -165,7 +166,7 @@
 
 <h2 id="0x00-打开osfmount">0x00 打开osfmount</h2>
 
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-04T1218-osfmount1.jpg" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/jpeg/35574316/1721140556763-146620ab-65e7-4331-9d77-0ce4d4b65779.jpeg#averageHue=%23f5f5f5&amp;clientId=ue5bede0e-2702-4&amp;from=paste&amp;height=391&amp;id=uabc1a0c2&amp;originHeight=391&amp;originWidth=821&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=23567&amp;status=done&amp;style=none&amp;taskId=ue8f1bda3-9ccb-4743-8473-e0fe084a825&amp;title=&amp;width=821" alt="2018-11-04T1218-osfmount1.jpg" class="lazyload"><figcaption class="image-caption">2018-11-04T1218-osfmount1.jpg</figcaption></figure></p>
 
 <h2 id="0x01-挂载引导文件">0x01 挂载引导文件</h2>
 
@@ -173,22 +174,24 @@
 <li>选择img文件</li>
 <li>填写offset为16MBytes</li>
 <li>去掉read—only前面的勾</li>
-<li>点击ok进行挂载<br />
-<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-04T1218-osfmount2-1.jpg" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></li>
-</ul>
 
-<h2 id="0x02-解压目标系统文件">0x02 解压目标系统文件</h2>
+<li><p>点击ok进行挂载
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/jpeg/35574316/1721140590413-5881f7eb-62f6-4e1a-8ec6-24635bc8070d.jpeg#averageHue=%23e7e5e5&amp;clientId=ue5bede0e-2702-4&amp;from=paste&amp;height=562&amp;id=u76ab95ff&amp;originHeight=562&amp;originWidth=343&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=37607&amp;status=done&amp;style=none&amp;taskId=u99d687fa-38f0-4e83-85fb-fbc255c381b&amp;title=&amp;width=343" alt="2018-11-04T1218-osfmount2-1.jpg" class="lazyload"><figcaption class="image-caption">2018-11-04T1218-osfmount2-1.jpg</figcaption></figure></p>
 
-<ul>
-<li>将xxxxxxx.pat的后缀改成rar</li>
-<li>解压</li>
-<li>从解压得到的文件夹里面找到rd.gz和zlmage</li>
-<li>复制这两个文件到虚拟磁盘根目录下替换原文件</li>
+<h2 id="0x02-解压目标系统文件">0x02 解压目标系统文件</h2></li>
+
+<li><p>将xxxxxxx.pat的后缀改成rar</p></li>
+
+<li><p>解压</p></li>
+
+<li><p>从解压得到的文件夹里面找到rd.gz和zlmage</p></li>
+
+<li><p>复制这两个文件到虚拟磁盘根目录下替换原文件</p></li>
 </ul>
 
 <h2 id="0x03-卸载虚拟磁盘">0x03 卸载虚拟磁盘</h2>
 
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-04T1218-dismount.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721140617836-139f4d1d-af13-4969-a616-e61a02d4b384.png#averageHue=%23f4f4f4&amp;clientId=ue5bede0e-2702-4&amp;from=paste&amp;height=392&amp;id=uf9798722&amp;originHeight=392&amp;originWidth=810&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=19158&amp;status=done&amp;style=none&amp;taskId=u65974177-0fb2-41f5-9126-76ab9fa416b&amp;title=&amp;width=810" alt="2018-11-04T1218-dismount.png" class="lazyload"><figcaption class="image-caption">2018-11-04T1218-dismount.png</figcaption></figure></p>
 
 <h2 id="0x04-将img文件通过win32diskimager写入u盘即可">0x04 将img文件通过Win32DiskImager写入U盘即可</h2>
 
@@ -247,7 +250,7 @@
     <div class="copyright">
         &copy;
         
-        <span itemprop="copyrightYear">2018 - 2023</span>
+        <span itemprop="copyrightYear">2018 - 2024</span>
         
         <span class="with-love">
     	 <i class="iconfont icon-love"></i> 

@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noodp"/>
+  <meta name="referrer" content="no-referrer" />
   <meta name="author" content="sinowrt">
   
   
@@ -46,7 +47,7 @@
     "articleSection" : "posts",
     "name" : "帮酒店修复网络",
     "headline" : "帮酒店修复网络",
-    "description" : "0x00 事由 最近在外地出差，我住的酒店环境还不错，就是我这个房间的网络down了，提示宽带密码错误。 于是我就连了楼上相同房间号的wifi。但是始终是隔着一层水泥板，信号不怎么好。于是我就想，那就进后台找一下宽带密码，修复一下我房间的wifi吧。\n0x01 步骤 首先route -n get default查看默认网关，一般这种盒子的网关就是路由的管理后台地址，得到网关地址为192.168.125.1\nsh-3.2# route -n get default route to: default destination: default mask: default gateway: 192.168.125.1 interface: en0 flags: \x26lt;UP,GATEWAY,DONE,STATIC,PRCLONING\x26gt; recvpipe sendpipe ssthresh rtt,msec rttvar hopcount mtu expire 0 0 0 0 0 0 1500 0  然后在浏览器输入地址192.168.125.1，打开后台登陆界面，还要输入用户名和密码\n根据经验输入最常见的用户名admin 密码admin，回车，进去了\n找到wan口设置，账户名直接能看到，密码用点号隐藏了，于是使出F12大法找到密码\n然后连到我房间这个路由器,进入后台把密码填进去就可以了，跟前面是一样的步骤，就不赘述了\n设置完保存\x26amp;应用，等待设置生效后，ping一下看看网络通不通\n搞定！",
+    "description" : "0x00 事由 最近在外地出差，我住的酒店环境还不错，就是我这个房间的网络down了，提示宽带密码错误。 于是我就连了楼上相同房间号的wifi。但是始终是隔着一层水泥板，信号不怎么好。于是我就想，那就进后台找一下宽带密码，修复一下我房间的wifi吧。\n0x01 步骤 首先route -n get default查看默认网关，一般这种盒子的网关就是路由的管理后台地址，得到网关地址为192.168.125.1\nsh-3.2# route -n get default route to: default destination: default mask: default gateway: 192.168.125.1 interface: en0 flags: \x26lt;UP,GATEWAY,DONE,STATIC,PRCLONING\x26gt; recvpipe sendpipe ssthresh rtt,msec rttvar hopcount mtu expire 0 0 0 0 0 0 1500 0  然后在浏览器输入地址192.168.125.1，打开后台登陆界面，还要输入用户名和密码 根据经验输入最常见的用户名admin 密码admin，回车，进去了 找到wan口设置，账户名直接能看到，密码用点号隐藏了，于是使出F12大法找到密码 然后连到我房间这个路由器,进入后台把密码填进去就可以了，跟前面是一样的步骤，就不赘述了 设置完保存\x26amp;应用，等待设置生效后，ping一下看看网络通不通 搞定！",
     "inLanguage" : "en-us",
     "author" : "sinowrt",
     "creator" : "sinowrt",
@@ -166,7 +167,7 @@
 <h3 id="0x00-事由">0x00 事由</h3>
 
 <p>最近在外地出差，我住的酒店环境还不错，就是我这个房间的网络down了，提示宽带密码错误。
-<figure><img src="/images/ring.svg" data-sizes="auto" data-src="http://pic.sinowrt.cn/image/2020-06-14T1436/wrong%20password.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure>
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721148476857-d2b43dcd-58fe-4801-b56b-5309a3cef82b.png#averageHue=%23c7b463&amp;clientId=ua96e9eb8-68fc-4&amp;from=paste&amp;height=1144&amp;id=u3528e02a&amp;originHeight=1144&amp;originWidth=1800&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=323280&amp;status=done&amp;style=none&amp;taskId=u93e791b2-1f31-44e7-8012-780f0d8cd10&amp;title=&amp;width=1800" alt="wrong password.png" class="lazyload"><figcaption class="image-caption">wrong password.png</figcaption></figure>
 于是我就连了楼上相同房间号的wifi。但是始终是隔着一层水泥板，信号不怎么好。于是我就想，那就进后台找一下宽带密码，修复一下我房间的wifi吧。</p>
 
 <h3 id="0x01-步骤">0x01 步骤</h3>
@@ -184,17 +185,12 @@ destination: default
        0         0         0         0         0         0      1500         0
 </code></pre>
 
-<p>然后在浏览器输入地址192.168.125.1，打开后台登陆界面，还要输入用户名和密码</p>
-
-<p>根据经验输入最常见的用户名admin 密码admin，回车，进去了</p>
-
-<p>找到wan口设置，账户名直接能看到，密码用点号隐藏了，于是使出F12大法找到密码</p>
-
-<p>然后连到我房间这个路由器,进入后台把密码填进去就可以了，跟前面是一样的步骤，就不赘述了</p>
-
-<p>设置完保存&amp;应用，等待设置生效后，ping一下看看网络通不通</p>
-
-<p>搞定！</p>
+<p>然后在浏览器输入地址192.168.125.1，打开后台登陆界面，还要输入用户名和密码
+根据经验输入最常见的用户名admin 密码admin，回车，进去了
+找到wan口设置，账户名直接能看到，密码用点号隐藏了，于是使出F12大法找到密码
+然后连到我房间这个路由器,进入后台把密码填进去就可以了，跟前面是一样的步骤，就不赘述了
+设置完保存&amp;应用，等待设置生效后，ping一下看看网络通不通
+搞定！</p>
 
     </div>
 	
@@ -259,7 +255,7 @@ destination: default
     <div class="copyright">
         &copy;
         
-        <span itemprop="copyrightYear">2018 - 2023</span>
+        <span itemprop="copyrightYear">2018 - 2024</span>
         
         <span class="with-love">
     	 <i class="iconfont icon-love"></i> 

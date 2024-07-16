@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noodp"/>
+  <meta name="referrer" content="no-referrer" />
   <meta name="author" content="sinowrt">
   
   
@@ -46,13 +47,13 @@
     "articleSection" : "posts",
     "name" : "Windows 10安装Qt5.11.2",
     "headline" : "Windows 10安装Qt5.11.2",
-    "description" : " 0x00背景 信管作业要求用C\x2b\x2b实现进销存系统用户交互界面以及业务逻辑 0x01 必备安装包 1.qt-opensource-windows-x86-5.11.2.exe 2.Windows SDK 0x02 下载与安装 1.Qt下载与安装  上Qt下载页面下载你系统对应的安装包\n 我的是Windoes 10,直接下载qt-opensource-windows-x86-5.11.2.exe 直接打开qt-opensource-windows-x86-5.11.2.exe安装程序 在第一个界面直接下一步 填写账号这一块，如果没有事先申请也可以先跳过这一步\n 选择安装文件夹 选择编译器，由于我的电脑装了vs2015，所以直接选了MSVC 2015 64-bit（若未安装任何编译器可以直接选择MinGW 5.3.0 32bit）\n 接下来一路下一步即可  2.Windows SDK下载与安装  上Microsoft开发者下载站 我的系统是Windows 10，还是按自己的系统版本进行下载\n 下载之后得到这样一个exe，打开按步骤安装   0x03 配置Qt 1.配置Debugger  工具——选项——kits——Debuggers——Add 填写Debugger的名称 浏览WindowsSKD的安装路径，找到你所需要的Debugger，这里我设置了Windows 10的x64的和x86的cdb.exe\n2.配置kit 按根据截图按需配置就可以了\n  到了这步配置基本完成，但是我在编译程序的过程中遇到error link1158 无法运行rc.exe的报错 error link1158 无法运行rc.exe问题解决方法  到C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.17763.0下的文件夹找到rc.dll和rc.exe复制到qmake文件夹下 qmake的路径可以参考截图\n  ",
+    "description" : " 0x00背景 信管作业要求用C\x2b\x2b实现进销存系统用户交互界面以及业务逻辑 0x01 必备安装包  qt-opensource-windows-x86-5.11.2.exe Windows SDK\n0x02 下载与安装 1.Qt下载与安装 上Qt下载页面下载你系统对应的安装包\n   我的是Windoes 10,直接下载qt-opensource-windows-x86-5.11.2.exe 直接打开qt-opensource-windows-x86-5.11.2.exe安装程序 在第一个界面直接下一步 填写账号这一块，如果没有事先申请也可以先跳过这一步   选择安装文件夹 选择编译器，由于我的电脑装了vs2015，所以直接选了MSVC 2015 64-bit（若未安装任何编译器可以直接选择MinGW 5.3.0 32bit）   接下来一路下一步即可\n2.Windows SDK下载与安装 上Microsoft开发者下载站\n 我的系统是Windows 10，还是按自己的系统版本进行下载\n   下载之后得到这样一个exe，打开按步骤安装  0x03 配置Qt 1.配置Debugger  工具——选项——kits——Debuggers——Add 填写Debugger的名称 浏览WindowsSKD的安装路径，找到你所需要的Debugger，这里我设置了Windows 10的x64的和x86的cdb.exe  2.配置kit  按根据截图按需配置就可以了  到了这步配置基本完成，但是我在编译程序的过程中遇到error link1158 无法运行rc.exe的报错 error link1158 无法运行rc.exe问题解决方法  到C:\\Program Files (x86)\\Windows Kits\\10\\bin\\10.0.17763.0下的文件夹找到rc.dll和rc.exe复制到qmake文件夹下 qmake的路径可以参考截图  ",
     "inLanguage" : "en-us",
-    "author" : "SinoWRT",
-    "creator" : "SinoWRT",
-    "publisher": "SinoWRT",
-    "accountablePerson" : "SinoWRT",
-    "copyrightHolder" : "SinoWRT",
+    "author" : "sinowrt",
+    "creator" : "sinowrt",
+    "publisher": "sinowrt",
+    "accountablePerson" : "sinowrt",
+    "copyrightHolder" : "sinowrt",
     "copyrightYear" : "2018",
     "datePublished": "2018-11-17 15:13:11 \x2b0000 \x2b0000",
     "dateModified" : "2018-11-17 15:13:11 \x2b0000 \x2b0000",
@@ -131,7 +132,7 @@
     <header class="post-header">
         <h1 class="post-title" itemprop="name headline">Windows 10安装Qt5.11.2</h1>
         <div class="post-meta">
-                Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">SinoWRT</a> with ♥ 
+                Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
                 <span class="post-time">
                 on <time datetime=2018-11-17 itemprop="datePublished">November 17, 2018</time>
                 </span>
@@ -169,39 +170,55 @@
 
 <h2 id="0x01-必备安装包">0x01 必备安装包</h2>
 
-<h4 id="1-qt-opensource-windows-x86-5-11-2-exe">1.qt-opensource-windows-x86-5.11.2.exe</h4>
+<ul>
+<li>qt-opensource-windows-x86-5.11.2.exe</li>
 
-<h4 id="2-windows-sdk">2.Windows SDK</h4>
+<li><p>Windows SDK</p>
 
 <h2 id="0x02-下载与安装">0x02 下载与安装</h2>
 
-<h4 id="1-qt下载与安装">1.Qt下载与安装</h4>
+<h4 id="1-qt下载与安装">1.Qt下载与安装</h4></li>
+
+<li><p>上<a href="http://download.qt.io/archive/qt/5.11/5.11.2/" rel="nofollow noreferrer" target="_blank">Qt下载页面</a>下载你系统对应的安装包</p></li>
+</ul>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721141948100-38f41c86-c36c-4f3c-a75a-fab9653c3ef1.png#averageHue=%23f7f7f6&amp;clientId=ua3132c8c-3c7e-4&amp;from=paste&amp;height=776&amp;id=u092fb2bd&amp;originHeight=776&amp;originWidth=991&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=69348&amp;status=done&amp;style=none&amp;taskId=ud98f91cb-5526-4c4b-bccf-c40ae043ac4&amp;title=&amp;width=991" alt="2018-11-17T1513-1.png" class="lazyload"><figcaption class="image-caption">2018-11-17T1513-1.png</figcaption></figure></p>
 
 <ul>
-<li>上<a href="http://download.qt.io/archive/qt/5.11/5.11.2/" title="Qt下载页面" rel="nofollow noreferrer" target="_blank">Qt下载页面</a>下载你系统对应的安装包<br />
-<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-17T1513-1.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></li>
 <li>我的是Windoes 10,直接下载qt-opensource-windows-x86-5.11.2.exe</li>
 <li>直接打开qt-opensource-windows-x86-5.11.2.exe安装程序</li>
 <li>在第一个界面直接下一步</li>
-<li>填写账号这一块，如果没有事先申请也可以先跳过这一步<br />
-<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-17T1513-2.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure><br />
-<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-17T1513-3.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></li>
-<li>选择安装文件夹</li>
-<li>选择编译器，由于我的电脑装了vs2015，所以直接选了MSVC 2015 64-bit（若未安装任何编译器可以直接选择MinGW 5.3.0 32bit）<br />
-<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-17T1513-4.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure><br />
-<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-17T1513-5.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></li>
-<li>接下来一路下一步即可</li>
+<li>填写账号这一块，如果没有事先申请也可以先跳过这一步</li>
 </ul>
 
-<h4 id="2-windows-sdk下载与安装">2.Windows SDK下载与安装</h4>
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721142012020-2f75bc7f-4af1-43a9-b75c-4f1ca0bd5748.png#averageHue=%23fafafa&amp;clientId=ua3132c8c-3c7e-4&amp;from=paste&amp;height=568&amp;id=u9e60132e&amp;originHeight=568&amp;originWidth=516&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=12708&amp;status=done&amp;style=none&amp;taskId=u82cc8e58-7bcb-4b24-8ac7-b90719b9961&amp;title=&amp;width=516" alt="2018-11-17T1513-2.png" class="lazyload"><figcaption class="image-caption">2018-11-17T1513-2.png</figcaption></figure>
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721142044114-570f15f9-975d-4d3e-9112-11b9ac222239.png#averageHue=%23f9f9f9&amp;clientId=ua3132c8c-3c7e-4&amp;from=paste&amp;height=568&amp;id=u85e5fdeb&amp;originHeight=568&amp;originWidth=516&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=10720&amp;status=done&amp;style=none&amp;taskId=uffbeb383-a418-42b5-893b-36e115a3566&amp;title=&amp;width=516" alt="2018-11-17T1513-3.png" class="lazyload"><figcaption class="image-caption">2018-11-17T1513-3.png</figcaption></figure></p>
 
 <ul>
-<li>上<a href="https://developer.microsoft.com/zh-cn/windows/downloads/sdk-archive" rel="nofollow noreferrer" target="_blank">Microsoft开发者下载站</a></li>
-<li>我的系统是Windows 10，还是按自己的系统版本进行下载<br />
-<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-17T1513-6.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></li>
-<li>下载之后得到这样一个exe，打开按步骤安装
-<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-17T1513-7.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></li>
+<li>选择安装文件夹</li>
+<li>选择编译器，由于我的电脑装了vs2015，所以直接选了MSVC 2015 64-bit（若未安装任何编译器可以直接选择MinGW 5.3.0 32bit）</li>
 </ul>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721142107918-9de0c767-1b90-47f0-9bad-52f4915aa28c.png#averageHue=%23fafafa&amp;clientId=ua3132c8c-3c7e-4&amp;from=paste&amp;height=568&amp;id=u99c6a084&amp;originHeight=568&amp;originWidth=516&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=8760&amp;status=done&amp;style=none&amp;taskId=u78c40bc6-57a1-459f-92ec-b7f08a2abb4&amp;title=&amp;width=516" alt="2018-11-17T1513-4.png" class="lazyload"><figcaption class="image-caption">2018-11-17T1513-4.png</figcaption></figure>
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721142115558-111127a0-de5f-468c-9a42-bf626524afb1.png#averageHue=%23f7f6f6&amp;clientId=ua3132c8c-3c7e-4&amp;from=paste&amp;height=568&amp;id=ua7961159&amp;originHeight=568&amp;originWidth=516&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=22471&amp;status=done&amp;style=none&amp;taskId=u7873ed94-4f4e-48b1-ae84-6facc464c73&amp;title=&amp;width=516" alt="2018-11-17T1513-5.png" class="lazyload"><figcaption class="image-caption">2018-11-17T1513-5.png</figcaption></figure></p>
+
+<ul>
+<li><p>接下来一路下一步即可</p>
+
+<h4 id="2-windows-sdk下载与安装">2.Windows SDK下载与安装</h4></li>
+
+<li><p>上<a href="https://developer.microsoft.com/zh-cn/windows/downloads/sdk-archive" rel="nofollow noreferrer" target="_blank">Microsoft开发者下载站</a></p></li>
+
+<li><p>我的系统是Windows 10，还是按自己的系统版本进行下载</p></li>
+</ul>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721142140149-013cf59d-bc3e-47f7-8f80-fbc410cd04cd.png#averageHue=%23755a41&amp;clientId=ua3132c8c-3c7e-4&amp;from=paste&amp;height=799&amp;id=uc940bd0d&amp;originHeight=799&amp;originWidth=837&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=103413&amp;status=done&amp;style=none&amp;taskId=uf63190a3-983f-4f18-8bff-4fbf2a635e3&amp;title=&amp;width=837" alt="2018-11-17T1513-6.png" class="lazyload"><figcaption class="image-caption">2018-11-17T1513-6.png</figcaption></figure></p>
+
+<ul>
+<li>下载之后得到这样一个exe，打开按步骤安装</li>
+</ul>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721142156169-fcff25c5-24a5-456e-b642-c2e232fd6af4.png#averageHue=%2399deca&amp;clientId=ua3132c8c-3c7e-4&amp;from=paste&amp;height=28&amp;id=udb9e1c55&amp;originHeight=28&amp;originWidth=150&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=966&amp;status=done&amp;style=none&amp;taskId=ub4c83298-21e8-4fd7-a047-b768ba51489&amp;title=&amp;width=150" alt="2018-11-17T1513-7.png" class="lazyload"><figcaption class="image-caption">2018-11-17T1513-7.png</figcaption></figure></p>
 
 <h2 id="0x03-配置qt">0x03 配置Qt</h2>
 
@@ -210,15 +227,18 @@
 <ul>
 <li>工具——选项——kits——Debuggers——Add</li>
 <li>填写Debugger的名称</li>
-
-<li><p>浏览WindowsSKD的安装路径，找到你所需要的Debugger，这里我设置了Windows 10的x64的和x86的cdb.exe<br />
-<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-17T1513-8.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
-
-<h4 id="2-配置kit">2.配置kit</h4></li>
-
-<li><p>按根据截图按需配置就可以了<br />
-<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-17T1513-10.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p></li>
+<li>浏览WindowsSKD的安装路径，找到你所需要的Debugger，这里我设置了Windows 10的x64的和x86的cdb.exe</li>
 </ul>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721142182466-a7a8f1c4-0611-48bb-b405-c0f2815f8aa9.png#averageHue=%23efefec&amp;clientId=ua3132c8c-3c7e-4&amp;from=paste&amp;height=732&amp;id=uf9fc17f0&amp;originHeight=732&amp;originWidth=1257&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=104923&amp;status=done&amp;style=none&amp;taskId=u3c251840-678f-4e6a-92a9-6f9c5d61406&amp;title=&amp;width=1257" alt="2018-11-17T1513-8.png" class="lazyload"><figcaption class="image-caption">2018-11-17T1513-8.png</figcaption></figure></p>
+
+<h4 id="2-配置kit">2.配置kit</h4>
+
+<ul>
+<li>按根据截图按需配置就可以了</li>
+</ul>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721142193613-1d59a09f-5ff9-4654-b453-faebd5bcdc4e.png#averageHue=%23f1f1f1&amp;clientId=ua3132c8c-3c7e-4&amp;from=paste&amp;height=833&amp;id=ubae9f6d8&amp;originHeight=833&amp;originWidth=982&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=42797&amp;status=done&amp;style=none&amp;taskId=u850010ac-23c6-4c79-99fe-104df2d30af&amp;title=&amp;width=982" alt="2018-11-17T1513-10.png" class="lazyload"><figcaption class="image-caption">2018-11-17T1513-10.png</figcaption></figure></p>
 
 <h4 id="到了这步配置基本完成-但是我在编译程序的过程中遇到error-link1158-无法运行rc-exe的报错">到了这步配置基本完成，但是我在编译程序的过程中遇到error link1158 无法运行rc.exe的报错</h4>
 
@@ -226,9 +246,10 @@
 
 <ul>
 <li>到<code>C:\Program Files (x86)\Windows Kits\10\bin\10.0.17763.0</code>下的文件夹找到rc.dll和rc.exe复制到qmake文件夹下</li>
-<li>qmake的路径可以参考截图<br />
-<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-17T1513-9.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></li>
+<li>qmake的路径可以参考截图</li>
 </ul>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721142210634-ef6179f9-f005-4ea9-b75f-12282d053e65.png#averageHue=%23f2f2f0&amp;clientId=ua3132c8c-3c7e-4&amp;from=paste&amp;height=739&amp;id=u2e02127b&amp;originHeight=739&amp;originWidth=1276&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=93783&amp;status=done&amp;style=none&amp;taskId=u52511343-4e7f-4506-bbba-39fcda5bb53&amp;title=&amp;width=1276" alt="2018-11-17T1513-9.png" class="lazyload"><figcaption class="image-caption">2018-11-17T1513-9.png</figcaption></figure></p>
 
     </div>
 	
@@ -285,7 +306,7 @@
     <div class="copyright">
         &copy;
         
-        <span itemprop="copyrightYear">2018 - 2023</span>
+        <span itemprop="copyrightYear">2018 - 2024</span>
         
         <span class="with-love">
     	 <i class="iconfont icon-love"></i> 

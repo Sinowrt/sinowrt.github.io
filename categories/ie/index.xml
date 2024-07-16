@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>IE on Sinowrt</title>
+    <link>http://blog.sinowrt.cn/categories/ie/</link>
+    <description>Recent content in IE on Sinowrt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 01 Sep 2023 08:19:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.sinowrt.cn/categories/ie/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Vue 动态加载 docx-preview 解决IE报语法错误的问题</title>
+      <link>http://blog.sinowrt.cn/2023/2023-09-01t0819-vue-dynamic-loading-docx-preview-to-solve-ie-syntax-error-problem/</link>
+      <pubDate>Fri, 01 Sep 2023 08:19:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2023/2023-09-01t0819-vue-dynamic-loading-docx-preview-to-solve-ie-syntax-error-problem/</guid>
+      <description>0x00 故障描述 最近领导要求附件要做预览的功能，在前端集成了docx-preview插件，在chromium内核浏览器是正常工作的，但是用IE打开详情页面的时候页面加载不出来，F12查看console输出，报语法错误 0x01 排查过程 根据最近的修改记录，问题大概率出在引入的包或者方法上面，import代码就只有两行，依次注释后用IE浏览器打开相关页面查看页面是否正常工作，最后发现问题出在import {renderAsync} from &amp;quot;docx-preview&amp;quot;;这行
+0x02 解决方案 将renderAsync方法改成动态加载，点击预览的时候，判断如果是IE浏览器则提示“IE浏览器不支持预览功能”，如果是chromium内核浏览器，通过const renderAsync = (await import(&#39;docx-preview&#39;)).renderAsync;引入renderAsync方法。</description>
+    </item>
+    
+  </channel>
+</rss>

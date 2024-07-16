@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="referrer" content="no-referrer" />
+  <meta name="author" content="sinowrt">
+  
+  
+  
+  <link rel="prev" href="http://blog.sinowrt.cn/2022/2022-08-13t2000-migrate-the-data-from-the-old-server-to-the-new-one/" />
+  
+  <link rel="canonical" href="http://blog.sinowrt.cn/2023/2023-09-01t0819-vue-dynamic-loading-docx-preview-to-solve-ie-syntax-error-problem/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           Vue 动态加载 docx-preview 解决IE报语法错误的问题 | Sinowrt
+       
+  </title>
+  <meta name="title" content="Vue 动态加载 docx-preview 解决IE报语法错误的问题 | Sinowrt">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/blog.sinowrt.cn"
+    },
+    "articleSection" : "posts",
+    "name" : "Vue 动态加载 docx-preview 解决IE报语法错误的问题",
+    "headline" : "Vue 动态加载 docx-preview 解决IE报语法错误的问题",
+    "description" : "0x00 故障描述 最近领导要求附件要做预览的功能，在前端集成了docx-preview插件，在chromium内核浏览器是正常工作的，但是用IE打开详情页面的时候页面加载不出来，F12查看console输出，报语法错误 0x01 排查过程 根据最近的修改记录，问题大概率出在引入的包或者方法上面，import代码就只有两行，依次注释后用IE浏览器打开相关页面查看页面是否正常工作，最后发现问题出在import {renderAsync} from \x26quot;docx-preview\x26quot;;这行\n0x02 解决方案 将renderAsync方法改成动态加载，点击预览的时候，判断如果是IE浏览器则提示“IE浏览器不支持预览功能”，如果是chromium内核浏览器，通过const renderAsync = (await import(\x27docx-preview\x27)).renderAsync;引入renderAsync方法。",
+    "inLanguage" : "en-us",
+    "author" : "sinowrt",
+    "creator" : "sinowrt",
+    "publisher": "sinowrt",
+    "accountablePerson" : "sinowrt",
+    "copyrightHolder" : "sinowrt",
+    "copyrightYear" : "2023",
+    "datePublished": "2023-09-01 08:19:00 \x2b0800 CST",
+    "dateModified" : "2023-09-01 08:19:00 \x2b0800 CST",
+    "url" : "http:\/\/blog.sinowrt.cn\/2023\/2023-09-01t0819-vue-dynamic-loading-docx-preview-to-solve-ie-syntax-error-problem\/",
+    "wordCount" : "16",
+    "keywords" : [ "Vue","docx-preview","IE", "Sinowrt"]
+}
+</script>
+
+</head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5081260758385926"
+     crossorigin="anonymous"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y7CHCJ00RL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Y7CHCJ00RL');
+</script>
+
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Vue 动态加载 docx-preview 解决IE报语法错误的问题</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2023-09-01 itemprop="datePublished">September 1, 2023</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="http://blog.sinowrt.cn/categories/vue/"> Vue </a>
+                        <a href="http://blog.sinowrt.cn/categories/docx-preview/"> docx-preview </a>
+                        <a href="http://blog.sinowrt.cn/categories/ie/"> IE </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+            
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          
+
+<h2 id="0x00-故障描述">0x00 故障描述</h2>
+
+<p>最近领导要求附件要做预览的功能，在前端集成了docx-preview插件，在chromium内核浏览器是正常工作的，但是用IE打开详情页面的时候页面加载不出来，F12查看console输出，报语法错误
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2023/png/35574316/1693787617881-ad0f9765-6492-45de-81c7-2c13eee00f58.png#averageHue=%23ef8e38&amp;clientId=u078dbfc5-2a63-4&amp;from=paste&amp;height=74&amp;id=u17335514&amp;originHeight=74&amp;originWidth=565&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=9180&amp;status=done&amp;style=none&amp;taskId=u25c108ba-1076-4616-9a29-24568dab8ba&amp;title=&amp;width=565" alt="image.png" class="lazyload"><figcaption class="image-caption">image.png</figcaption></figure></p>
+
+<h2 id="0x01-排查过程">0x01 排查过程</h2>
+
+<p>根据最近的修改记录，问题大概率出在引入的包或者方法上面，import代码就只有两行，依次注释后用IE浏览器打开相关页面查看页面是否正常工作，最后发现问题出在<code>import {renderAsync} from &quot;docx-preview&quot;;</code>这行</p>
+
+<h2 id="0x02-解决方案">0x02 解决方案</h2>
+
+<p>将renderAsync方法改成动态加载，点击预览的时候，判断如果是IE浏览器则提示“IE浏览器不支持预览功能”，如果是chromium内核浏览器，通过<code>const renderAsync = (await import('docx-preview')).renderAsync;</code>引入renderAsync方法。</p>
+
+    </div>
+	
+    <div class="post-copyright">
+             
+			
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>sinowrt </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://blog.sinowrt.cn/2023/2023-09-01t0819-vue-dynamic-loading-docx-preview-to-solve-ie-syntax-error-problem/>http://blog.sinowrt.cn/2023/2023-09-01t0819-vue-dynamic-loading-docx-preview-to-solve-ie-syntax-error-problem/</span>
+            </p>
+			
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/vue/">
+                    #Vue</a></span>
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/docx-preview/">
+                    #docx-preview</a></span>
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/ie/">
+                    #IE</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="http://blog.sinowrt.cn">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://blog.sinowrt.cn/2022/2022-08-13t2000-migrate-the-data-from-the-old-server-to-the-new-one/" class="prev" rel="prev" title="将旧服务器的数据完整迁移到新服务器"><i class="iconfont icon-left"></i>&nbsp;将旧服务器的数据完整迁移到新服务器</a>
+         
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2024</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://blog.sinowrt.cn">sinowrt</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt | </a><script type="text/javascript" src="https://s4.cnzz.com/z_stat.php?id=1279436618&web_id=1279436618"></script></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+     <link href="//lib.baomitu.com/lightgallery/1.6.11/css/lightgallery.min.css" rel="stylesheet">  
+      
+     <script src="/js/vendor_gallery.min.js" async="" ></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

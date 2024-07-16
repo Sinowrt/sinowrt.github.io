@@ -6,10 +6,37 @@
     <description>Recent content in Categories on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 13 Aug 2022 20:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 01 Sep 2023 08:19:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>IE</title>
+      <link>http://blog.sinowrt.cn/categories/ie/</link>
+      <pubDate>Fri, 01 Sep 2023 08:19:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/ie/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Vue</title>
+      <link>http://blog.sinowrt.cn/categories/vue/</link>
+      <pubDate>Fri, 01 Sep 2023 08:19:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/vue/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>docx-preview</title>
+      <link>http://blog.sinowrt.cn/categories/docx-preview/</link>
+      <pubDate>Fri, 01 Sep 2023 08:19:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/docx-preview/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>data migration</title>
@@ -35,15 +62,6 @@
       <pubDate>Sun, 24 Jul 2022 15:08:00 +0800</pubDate>
       
       <guid>http://blog.sinowrt.cn/categories/idea/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Vue</title>
-      <link>http://blog.sinowrt.cn/categories/vue/</link>
-      <pubDate>Sun, 24 Jul 2022 15:08:00 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/categories/vue/</guid>
       <description></description>
     </item>
     

@@ -5,8 +5,31 @@
     <description>Recent content in Sinowrt on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 13 Aug 2022 20:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 01 Sep 2023 08:19:00 +0800</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Vue 动态加载 docx-preview 解决IE报语法错误的问题</title>
+      <link>http://blog.sinowrt.cn/2023/2023-09-01t0819-vue-dynamic-loading-docx-preview-to-solve-ie-syntax-error-problem/</link>
+      <pubDate>Fri, 01 Sep 2023 08:19:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2023/2023-09-01t0819-vue-dynamic-loading-docx-preview-to-solve-ie-syntax-error-problem/</guid>
+      <description>
+
+&lt;h2 id=&#34;0x00-故障描述&#34;&gt;0x00 故障描述&lt;/h2&gt;
+
+&lt;p&gt;最近领导要求附件要做预览的功能，在前端集成了docx-preview插件，在chromium内核浏览器是正常工作的，但是用IE打开详情页面的时候页面加载不出来，F12查看console输出，报语法错误
+&lt;img src=&#34;https://cdn.nlark.com/yuque/0/2023/png/35574316/1693787617881-ad0f9765-6492-45de-81c7-2c13eee00f58.png#averageHue=%23ef8e38&amp;amp;clientId=u078dbfc5-2a63-4&amp;amp;from=paste&amp;amp;height=74&amp;amp;id=u17335514&amp;amp;originHeight=74&amp;amp;originWidth=565&amp;amp;originalType=binary&amp;amp;ratio=1&amp;amp;rotation=0&amp;amp;showTitle=false&amp;amp;size=9180&amp;amp;status=done&amp;amp;style=none&amp;amp;taskId=u25c108ba-1076-4616-9a29-24568dab8ba&amp;amp;title=&amp;amp;width=565&#34; alt=&#34;image.png&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;0x01-排查过程&#34;&gt;0x01 排查过程&lt;/h2&gt;
+
+&lt;p&gt;根据最近的修改记录，问题大概率出在引入的包或者方法上面，import代码就只有两行，依次注释后用IE浏览器打开相关页面查看页面是否正常工作，最后发现问题出在&lt;code&gt;import {renderAsync} from &amp;quot;docx-preview&amp;quot;;&lt;/code&gt;这行&lt;/p&gt;
+
+&lt;h2 id=&#34;0x02-解决方案&#34;&gt;0x02 解决方案&lt;/h2&gt;
+
+&lt;p&gt;将renderAsync方法改成动态加载，点击预览的时候，判断如果是IE浏览器则提示“IE浏览器不支持预览功能”，如果是chromium内核浏览器，通过&lt;code&gt;const renderAsync = (await import(&#39;docx-preview&#39;)).renderAsync;&lt;/code&gt;引入renderAsync方法。&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>将旧服务器的数据完整迁移到新服务器</title>
@@ -298,8 +321,8 @@ import javax.rules.admin.RuleExecutionSetRegisterException;
 
 &lt;p&gt;首先，需要一个支持BLE的蓝牙适配器（我两台电脑蓝牙适配器可能因为不支持BLE配对，只能获取到Linkkey），以及Win10系统环境。&lt;/p&gt;
 
-&lt;p&gt;将电脑与手机进行配对，配对完成后，打开设备管理器，找到iPhone的蓝牙LE设备，打开属性窗口的事件选项卡，在信息栏记录蓝牙LE设备的设备号（如图5.1）&lt;br /&gt;
-&lt;img src=&#34;https://pic.sinowrt.cn/blogpics/20220508181736.jpg&#34; alt=&#34;图 5.1&#34; /&gt;&lt;br /&gt;
+&lt;p&gt;将电脑与手机进行配对，配对完成后，打开设备管理器，找到iPhone的蓝牙LE设备，打开属性窗口的事件选项卡，在信息栏记录蓝牙LE设备的设备号（如图5.1）
+&lt;img src=&#34;https://cdn.nlark.com/yuque/0/2024/jpeg/35574316/1721148681472-a1953cb3-8dd2-4b84-884f-53050639dc58.jpeg#averageHue=%23f6f5f5&amp;amp;clientId=u12f5a7e0-5c25-4&amp;amp;from=paste&amp;amp;height=550&amp;amp;id=uf6685b7a&amp;amp;originHeight=550&amp;amp;originWidth=464&amp;amp;originalType=binary&amp;amp;ratio=1&amp;amp;rotation=0&amp;amp;showTitle=false&amp;amp;size=28082&amp;amp;status=done&amp;amp;style=none&amp;amp;taskId=u5bf8b940-f704-44e9-a7f2-ca0941b61df&amp;amp;title=&amp;amp;width=464&#34; alt=&#34;图5.1&#34; /&gt;
 下载&lt;a href=&#34;https://docs.microsoft.com/en-us/sysinternals/downloads/psexec&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;PsTools&lt;/a&gt;解压,使用管理员权限打开CMD，cd到解压好的PsTools根目录，执行命令&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# 64位操作系统执行以下命令
@@ -308,8 +331,8 @@ PsExec64.exe -si regedit
 PsExec.exe -si regedit
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;执行命令后会打开注册表窗口，在左侧找到&lt;code&gt;HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\BTHPORT\Parameters\Keys\&lt;/code&gt;目录(如图 5.2)&lt;br /&gt;
-&lt;img src=&#34;https://pic.sinowrt.cn/blogpics/20220508181400.png&#34; alt=&#34;图 5.2&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;执行命令后会打开注册表窗口，在左侧找到&lt;code&gt;HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\BTHPORT\Parameters\Keys\&lt;/code&gt;目录(如图 5.2)
+&lt;img src=&#34;https://cdn.nlark.com/yuque/0/2024/png/35574316/1721148704959-e9e67e31-3079-4bcf-9b1c-94f9f0bd01ff.png#averageHue=%23e1dbce&amp;amp;clientId=u12f5a7e0-5c25-4&amp;amp;from=paste&amp;amp;height=383&amp;amp;id=u05572753&amp;amp;originHeight=383&amp;amp;originWidth=768&amp;amp;originalType=binary&amp;amp;ratio=1&amp;amp;rotation=0&amp;amp;showTitle=false&amp;amp;size=213964&amp;amp;status=done&amp;amp;style=none&amp;amp;taskId=u32d6b2dc-bba0-41c6-b549-6bab51e3340&amp;amp;title=&amp;amp;width=768&#34; alt=&#34;图 5.2&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;第一层目录是本机蓝牙Mac地址，在第二层目录中找到设备管理器中记录下的设备号，点击该目录，记录右侧窗口的IRK秘钥串&lt;/p&gt;
 
@@ -514,7 +537,7 @@ def send_template_msg(access_token, msg_content, msg_time):
     return response.text
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;快捷指令提醒设置：&lt;br /&gt;
+&lt;p&gt;快捷指令提醒设置：
 首先需要设置IOS的邮箱，我使用的是QQ邮箱，需要到QQ邮箱的设置中启用IMAP/SMTP服务，然后生成授权码。获取到授权码之后，到“邮件”中添加QQ邮箱账户，然后主机名填写imap.qq.com，用户名为QQ邮箱，密码为授权码，由于我没使用到SMTP服务，就没有进行配置。具体的配置过程可以参考&lt;a href=&#34;https://service.mail.qq.com/cgi-bin/help?subtype=1&amp;amp;&amp;amp;id=28&amp;amp;&amp;amp;no=334#5&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;QQ官方教程&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;快捷指令设置：找到快捷指令的自动化功能，具体操作很简单，就不再赘述了。&lt;/p&gt;
@@ -1307,52 +1330,6 @@ sudo umount /dev/sda1
 &lt;p&gt;最后附上ubuntu的版本: ubuntu-20.04.2-preinstalled-server-arm64+raspi.img.xz&lt;/p&gt;
 
 &lt;p&gt;聪明的彦祖们应该知道怎么下载的。&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>如何将群晖的软件包和资料转移到另一个硬盘</title>
-      <link>http://blog.sinowrt.cn/2021/2021-04-22t1330-how-to-move-the-package-and-documents-in-synology-to-another-hard-disk/</link>
-      <pubDate>Thu, 22 Apr 2021 13:30:00 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2021/2021-04-22t1330-how-to-move-the-package-and-documents-in-synology-to-another-hard-disk/</guid>
-      <description>
-
-&lt;h2 id=&#34;0x00-背景&#34;&gt;0x00 背景&lt;/h2&gt;
-
-&lt;p&gt;最近网上刮起了chia风，由于手上也有大容量硬盘，但是挂在群晖上做存储盘，于是想将这个盘腾出来，将资料转移到另一个硬盘中。&lt;/p&gt;
-
-&lt;h2 id=&#34;0x01-过程&#34;&gt;0x01 过程&lt;/h2&gt;
-
-&lt;h3 id=&#34;1-添加新硬盘&#34;&gt;1. 添加新硬盘&lt;/h3&gt;
-
-&lt;p&gt;首先需要准备一个完全擦除的硬盘，将群晖关机后，将该硬盘接入群晖。启动群晖之后，打开Storage Manager新建一个raid group（我原来是用单盘建立的basic raid group），建立好后再新建一个Volume，如果勾选了全盘扫描的话，需要等待一段时间才能建好。&lt;/p&gt;
-
-&lt;h3 id=&#34;2-转移资料&#34;&gt;2. 转移资料&lt;/h3&gt;
-
-&lt;p&gt;资料的转移比较简单，打开Control Panel - Shared Folder，选择需要转移的共享文件夹，点击Edit，再Location下拉框中选择新建的Volume即可自动转移。&lt;/p&gt;
-
-&lt;h3 id=&#34;3-转移package&#34;&gt;3. 转移package&lt;/h3&gt;
-
-&lt;p&gt;转移package需要用到一个软件MODS Package Manager，我在&lt;a href=&#34;https://www.beatificabytes.be/sspks&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;https://www.beatificabytes.be/sspks&lt;/a&gt; 上面下载下来，再在Package Center中手动上传安装的。&lt;br /&gt;
-在打开Package Manager的时候遇到白屏的问题，原因是该软件的一个JS需要从谷歌下载，打开fq软件代理一下即可解决。（如果没有fq条件的话，也可以参照&lt;a href=&#34;https://blog.csdn.net/qq_17311873/article/details/109536316&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;这篇博客&lt;/a&gt; 改成国内可以访问的cdn即可解决）
-软件的使用很简单，选择需要移动的package，然后选择目标Volume，点击Move Package即可。
-有些软件在转移过程中会失败，套件没有移动成功，可以不用管它。打开Package Center，会提示该套件错误无法运行，这时候点击修复即可完成套件的转移了。&lt;/p&gt;
-
-&lt;h3 id=&#34;4-转移moments里面的照片&#34;&gt;4. 转移Moments里面的照片&lt;/h3&gt;
-
-&lt;p&gt;Moments的照片是存在/homes 共享目录中的，所以只要将该共享目录按步骤2进行转移即可，这一步也可以在Control Panel - User - User Home - Location的下拉框选择转移到新卷。需要特别注意的是Drive的数据库的转移，打开Drive Admin Console - Settings - Database Location 选择转移到目标卷中即可。（在群晖的官网中又说到，在Storage Manager安全地移除Volume也可以转移数据库，但我选择稳妥一点，手动转移）&lt;/p&gt;
-
-&lt;h3 id=&#34;5-安全移除卷&#34;&gt;5. 安全移除卷&lt;/h3&gt;
-
-&lt;p&gt;最后一步，我是直接关机，将旧盘直接摘下，然后开机看看有没有什么异常，确保数据都安全地转移到了新卷。&lt;br /&gt;
-最后再将旧盘装上，在Storage Manager中安全地移除卷，将旧盘取下来。&lt;/p&gt;
-
-&lt;h2 id=&#34;0x02-遇到的问题&#34;&gt;0x02 遇到的问题&lt;/h2&gt;
-
-&lt;p&gt;在转移资料的第4步中，我没有转移Drive的数据库，直接摘下了硬盘，并启动了群晖，在package center上面修复了Drive 和 Moments，导致Moments不可用。&lt;br /&gt;
-最后还是将旧盘装上，在Drive Admin Console中转移了数据库，然后将Moments套件连同数据库一起删除，再重装才解决了问题。
-这样的话，就丢失了之前Moments索引的信息，没关系直接再索引一遍就好了。&lt;/p&gt;
 </description>
     </item>
     

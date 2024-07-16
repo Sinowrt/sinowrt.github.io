@@ -6,10 +6,20 @@
     <description>Recent content in Posts on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 13 Aug 2022 20:00:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 01 Sep 2023 08:19:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Vue 动态加载 docx-preview 解决IE报语法错误的问题</title>
+      <link>http://blog.sinowrt.cn/2023/2023-09-01t0819-vue-dynamic-loading-docx-preview-to-solve-ie-syntax-error-problem/</link>
+      <pubDate>Fri, 01 Sep 2023 08:19:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2023/2023-09-01t0819-vue-dynamic-loading-docx-preview-to-solve-ie-syntax-error-problem/</guid>
+      <description>0x00 故障描述 最近领导要求附件要做预览的功能，在前端集成了docx-preview插件，在chromium内核浏览器是正常工作的，但是用IE打开详情页面的时候页面加载不出来，F12查看console输出，报语法错误 0x01 排查过程 根据最近的修改记录，问题大概率出在引入的包或者方法上面，import代码就只有两行，依次注释后用IE浏览器打开相关页面查看页面是否正常工作，最后发现问题出在import {renderAsync} from &amp;quot;docx-preview&amp;quot;;这行
+0x02 解决方案 将renderAsync方法改成动态加载，点击预览的时候，判断如果是IE浏览器则提示“IE浏览器不支持预览功能”，如果是chromium内核浏览器，通过const renderAsync = (await import(&#39;docx-preview&#39;)).renderAsync;引入renderAsync方法。</description>
+    </item>
     
     <item>
       <title>将旧服务器的数据完整迁移到新服务器</title>
@@ -69,10 +79,8 @@ Maven图标消失了的话，点击菜单 Help - Find Action, 搜索 Maven Setti
 等等，为什么不在windows中实现呢？我的办公电脑又是24小时开机的，少维护一个设备多香啊。但是在实现的过程中发现pybluez的库在windows平台上并不支持BLE。。。但是万能的GayHub说：pybluez不行我这还有pysimpleble，尽管文档少，又不是不能用对吧。
 0x05 获取IRK 既然随机地址是根据IRK来解析的，那首先就要获取到一个IRK。
 首先，需要一个支持BLE的蓝牙适配器（我两台电脑蓝牙适配器可能因为不支持BLE配对，只能获取到Linkkey），以及Win10系统环境。
-将电脑与手机进行配对，配对完成后，打开设备管理器，找到iPhone的蓝牙LE设备，打开属性窗口的事件选项卡，在信息栏记录蓝牙LE设备的设备号（如图5.1）
-下载PsTools解压,使用管理员权限打开CMD，cd到解压好的PsTools根目录，执行命令
-# 64位操作系统执行以下命令 PsExec64.exe -si regedit # 32位操作系统执行以下命令 PsExec.exe -si regedit  执行命令后会打开注册表窗口，在左侧找到HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\BTHPORT\Parameters\Keys\目录(如图 5.2)
-第一层目录是本机蓝牙Mac地址，在第二层目录中找到设备管理器中记录下的设备号，点击该目录，记录右侧窗口的IRK秘钥串
+将电脑与手机进行配对，配对完成后，打开设备管理器，找到iPhone的蓝牙LE设备，打开属性窗口的事件选项卡，在信息栏记录蓝牙LE设备的设备号（如图5.1） 下载PsTools解压,使用管理员权限打开CMD，cd到解压好的PsTools根目录，执行命令
+# 64位操作系统执行以下命令 PsExec64.exe -si regedit # 32位操作系统执行以下命令 PsExec.exe -si regedit  执行命令后会打开注册表窗口，在左侧找到HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\BTHPORT\Parameters\Keys\目录(如图 5.2) 第一层目录是本机蓝牙Mac地址，在第二层目录中找到设备管理器中记录下的设备号，点击该目录，记录右侧窗口的IRK秘钥串
 PS：如果有 ESP32 开发板，可以烧录Decoding-Random-Bluetooth-Address项目的get_irk - esp32_irk.ino，再使用手机跟ESP32配对，在串口监视器中即可看到打印出来的IRK。
 另外，Decoding-Random-Bluetooth-Address这个项目中的nrf_ble_add文件夹中，有C语实现的程序，可以用来研究随机地址与irk匹配的具体算法，我仅参考了ah函数的具体实现过程，因为项目跑起来的发现随机地址和irk的匹配结果不对。
 0x06 位置判断实现篇 ## 随机地址校验器 class RandomAddressValidator(object): def __init__(self): self.</description>
@@ -513,12 +521,7 @@ wget https://raw.githubusercontent.com/likeadoc/synocodectool-patch/master/patch
       <guid>http://blog.sinowrt.cn/2020/2020-06-12t1436-help-bojue-hotel-to-repair-the-wireless/</guid>
       <description>0x00 事由 最近在外地出差，我住的酒店环境还不错，就是我这个房间的网络down了，提示宽带密码错误。 于是我就连了楼上相同房间号的wifi。但是始终是隔着一层水泥板，信号不怎么好。于是我就想，那就进后台找一下宽带密码，修复一下我房间的wifi吧。
 0x01 步骤 首先route -n get default查看默认网关，一般这种盒子的网关就是路由的管理后台地址，得到网关地址为192.168.125.1
-sh-3.2# route -n get default route to: default destination: default mask: default gateway: 192.168.125.1 interface: en0 flags: &amp;lt;UP,GATEWAY,DONE,STATIC,PRCLONING&amp;gt; recvpipe sendpipe ssthresh rtt,msec rttvar hopcount mtu expire 0 0 0 0 0 0 1500 0  然后在浏览器输入地址192.168.125.1，打开后台登陆界面，还要输入用户名和密码
-根据经验输入最常见的用户名admin 密码admin，回车，进去了
-找到wan口设置，账户名直接能看到，密码用点号隐藏了，于是使出F12大法找到密码
-然后连到我房间这个路由器,进入后台把密码填进去就可以了，跟前面是一样的步骤，就不赘述了
-设置完保存&amp;amp;应用，等待设置生效后，ping一下看看网络通不通
-搞定！</description>
+sh-3.2# route -n get default route to: default destination: default mask: default gateway: 192.168.125.1 interface: en0 flags: &amp;lt;UP,GATEWAY,DONE,STATIC,PRCLONING&amp;gt; recvpipe sendpipe ssthresh rtt,msec rttvar hopcount mtu expire 0 0 0 0 0 0 1500 0  然后在浏览器输入地址192.168.125.1，打开后台登陆界面，还要输入用户名和密码 根据经验输入最常见的用户名admin 密码admin，回车，进去了 找到wan口设置，账户名直接能看到，密码用点号隐藏了，于是使出F12大法找到密码 然后连到我房间这个路由器,进入后台把密码填进去就可以了，跟前面是一样的步骤，就不赘述了 设置完保存&amp;amp;应用，等待设置生效后，ping一下看看网络通不通 搞定！</description>
     </item>
     
     <item>
@@ -754,14 +757,10 @@ windows查看进程启动时间，run-&amp;gt;msinfo32，在打开的系统信�
       <guid>http://blog.sinowrt.cn/2020/2020-01-08t0021-problems-of-using-the-external-interupt-on-esp8266/</guid>
       <description>0x00 起因 十月份使用esp8266，利用sonoff的源码做了个homekit小开关，虽然源码已经做得十分完善了，但是不符合我的需求：我需要使用ios的家庭开关灯（这个功能不用改动），还要将esp8266部署到墙上的86开关上，源码中的处理逻辑是在gpio0设置一个微动开关，长按清配置，短按开关灯。但我不可能将墙上原本就有的开关改成微动吧，一来不好操作，二来线路也太乱，于是我就想基于该源码的基础上，添加一个按键，io口电平发生变化即触发开关灯逻辑。 于是故事就开始了。。。
 0x01 过程 程序的编写十分简单，新建自定义的button头文件和源文件，根据原来的按钮照葫芦画瓢进行编码，然后引入到main中，一切都进行得十分顺利。然鹅，这才是噩梦的开始。。。
-0x02 遇到的问题 1. 接荧光灯，使用物理按键，开灯秒熄 主要原因：按键未消抖
-次要原因：荧光灯电磁干扰
-解决过程：更换荧光灯为led灯，发现问题依旧。随后关注到开关过程的信号抖动，下面贴出第一版代码:
+0x02 遇到的问题 1. 接荧光灯，使用物理按键，开灯秒熄 主要原因：按键未消抖 次要原因：荧光灯电磁干扰 解决过程：更换荧光灯为led灯，发现问题依旧。随后关注到开关过程的信号抖动，下面贴出第一版代码:
 void realbtn_intr_callback(uint8_t gpio){ rcallback(gpio); }  软件硬件均无消抖，一旦遇到抖动，便触发n次开关逻辑，后来仔细研究了原作者的按键代码，发现消抖逻辑十分巧妙，于是在自定义按钮上也仿照着写了个消抖逻辑，如下为添加了按键消抖的代码：
 void realbtn_intr_callback(uint8_t gpio){ uint32_t now = xTaskGetTickCountFromISR(); if ((now - last_event_time)*portTICK_PERIOD_MS &amp;lt; 200) { // debounce time, ignore events return; } rcallback(gpio); last_event_time = now; }  使用了这段代码之后，按键就基本上能用了，但是时不时会出现开关客厅的荧光灯也会触发中断。
-2. 接入用电器会触发中断，导致无故开关灯。 这个问题排查了很久，从电源，到板子再回到程序，都查了一个遍，期间也踩了很多坑。
-起初怀疑电源电压不稳，造成模块重启，但是回头一想，模块重启只会熄灯，而不会开灯，电源问题排除。
-再就是怀疑板子质量，之前被我拆焊过芯片，存在虚焊的风险，而手头上还有块nodemcu，于是将程序烧到nodemcu上，问题依旧。在调试原全io引出的模块和nodemcu的过程中，踩了最大的坑就是使用了陈年面包板和杜邦线，可能时时间长了，金属触点被氧化的原因，杜邦线电阻竟然有1-2欧，导致加到模块的电压存在0.2-0.3v的压降，这就要命了。烧好程序，一上电就飞，各种奇奇怪怪的现象都出来了。还一度以为烧写次数太多，把模块给烧烂了。。。后来使用了短杜邦线，板子突然又好用了，这才引起了我的怀疑。到网上一搜，同样是哀鸿遍野。总结为两点：面包板杜邦线这东西，要测过再用，电源的检查更要上心。
+2. 接入用电器会触发中断，导致无故开关灯。 这个问题排查了很久，从电源，到板子再回到程序，都查了一个遍，期间也踩了很多坑。 起初怀疑电源电压不稳，造成模块重启，但是回头一想，模块重启只会熄灯，而不会开灯，电源问题排除。 再就是怀疑板子质量，之前被我拆焊过芯片，存在虚焊的风险，而手头上还有块nodemcu，于是将程序烧到nodemcu上，问题依旧。在调试原全io引出的模块和nodemcu的过程中，踩了最大的坑就是使用了陈年面包板和杜邦线，可能时时间长了，金属触点被氧化的原因，杜邦线电阻竟然有1-2欧，导致加到模块的电压存在0.2-0.3v的压降，这就要命了。烧好程序，一上电就飞，各种奇奇怪怪的现象都出来了。还一度以为烧写次数太多，把模块给烧烂了。。。后来使用了短杜邦线，板子突然又好用了，这才引起了我的怀疑。到网上一搜，同样是哀鸿遍野。总结为两点：面包板杜邦线这东西，要测过再用，电源的检查更要上心。
 在这之前，我就怀疑是电磁干扰的问题，虽然手头上没有示波器，但是对于这个的怀疑还是一直有的。也尝试过很多办法，将导线进行绞合，将模块从86盒中拆出来，问题还是存在。直到前两天收拾桌子，在排插上插入台灯的插头，房间的灯就很有节奏地，插进去就关，再插一下就灭。于是就有了测试用例。后来，偶然地将连接按键的导线都拆了，再进行测试，问题就消失了，于是确定是电磁干扰再导线中形成了噪声，而外部中断的io口十分灵敏，一旦有电平的变化，以及会响应。于是上网搜索了软件消抖的例子，最简单也最好用的实属中断延时判断了。一开始使用vTaskDelay进行延时，但是每次触发中断都会导致模块重启，看了下看门狗的输出，再结合网上的搜索结果，原来是rtos系统在中断程序中不允许使用延时api。不使用也行，那我设置while循环用xTaskGetTickCountFromISR()获取节拍，减去now，乘上节拍周期，对该时间进行判断总行了把。结果还是一触发，模块就重启。后来将xTaskGetTickCountFromISR()和now都打印出来，才了解到xTaskGetTickCountFromISR()是从节拍寄存器中取节拍数的，当前都中断了，节拍寄存器的内容当然不会发生变化了。于是我把while段给删了，留下printf打印语句，只想看看触发的tick数和节拍周期的数值是怎样的。结果误打误撞，延时判断似乎生效了。很早之前就知道将数据打印到串口会花费一定的时间，但是怎么就没想到用到这里呢！突然茅塞顿开，下面贴出代码：
 void realbtn_intr_callback(uint8_t gpio){ uint32_t now = xTaskGetTickCountFromISR(); if ((now - last_event_time)*portTICK_PERIOD_MS &amp;lt; 200) { // debounce time, ignore events return; } printf(&amp;quot;interupted--[-%d--%d]\n&amp;quot;,(now - last_event_time),portTICK_PERIOD_MS); if(gpio_read(gpio)!</description>
     </item>
@@ -773,14 +772,11 @@ void realbtn_intr_callback(uint8_t gpio){ uint32_t now = xTaskGetTickCountFromIS
       
       <guid>http://blog.sinowrt.cn/2019/2019-11-30t1214-expose-synology-diskstation-to-the-internet/</guid>
       <description>0x00 思路 分别在vps和路由端部署ngrok服务端与客户端，客户端在线时主动向服务端发起请求建立隧道，外部设备可直接向服务端请求相应的隧道，从而实现内网穿透。
-0x01 在vps上部署ngrok服务端 良心云和套路云的学生套餐用来做内网穿透的服务端还是相当香的，由于ngrok需要用到域名，而我的域名只在良心北了岸，要是用套路云的话会截断提示未备案，无法访问，所以这次就直接用良心云的vps搭建服务端。 * 安装ngrok服务端
-网上大部分教程都是从安装go环境开始，再编译ngrok客户端，过程很复杂。而我只要简单的穿透服务，不需要tls啥的，其实安装过程很简单，只需要两条命令
-apt-get update apt-get install ngrok-server   启动ngrok服务端
-  一条命令就搞定，监听80、443、4443端口，如果vps有防火墙请放行这几个入站端口。如果需要指定证书还有端口什么的可以自行添加启动参数，这里不再赘述。
+0x01 在vps上部署ngrok服务端 良心云和套路云的学生套餐用来做内网穿透的服务端还是相当香的，由于ngrok需要用到域名，而我的域名只在良心北了岸，要是用套路云的话会截断提示未备案，无法访问，所以这次就直接用良心云的vps搭建服务端。
+ 安装ngrok服务端  网上大部分教程都是从安装go环境开始，再编译ngrok客户端，过程很复杂。而我只要简单的穿透服务，不需要tls啥的，其实安装过程很简单，只需要两条命令
+apt-get update apt-get install ngrok-server   启动ngrok服务端  一条命令就搞定，监听80、443、4443端口，如果vps有防火墙请放行这几个入站端口。如果需要指定证书还有端口什么的可以自行添加启动参数，这里不再赘述。
 ngrokd -domain=ngrok.example.com  0x02 添加域名解析 添加两条域名解析记录
-类型 | Name | Content -|-|- A记录 | *.ngrok | ngrok服务器ip A记录 | ngrok | ngrok服务器ip
-0x03 ngrok客户端配置  在本地，我使用刷了padavan固件的newifi3路由，内置了1.4版本的ngrok客户端。服务端是1.6版本的，经测试能通用。
- 客户端配置很简单   0x04 结语 到这里，群晖已经暴露在外网了，请设置强大的登录密码防止数据泄露。</description>
+   类型 Name Content     A记录 *.ngrok ngrok服务器ip   A记录 ngrok ngrok服务器ip    0x03 ngrok客户端配置  在本地，我使用刷了padavan固件的newifi3路由，内置了1.4版本的ngrok客户端。服务端是1.6版本的，经测试能通用。 客户端配置很简单  0x04 结语 到这里，群晖已经暴露在外网了，请设置强大的登录密码防止数据泄露。</description>
     </item>
     
     <item>
@@ -789,10 +785,15 @@ ngrokd -domain=ngrok.example.com  0x02 添加域名解析 添加两条域名解�
       <pubDate>Fri, 29 Nov 2019 00:28:00 +0800</pubDate>
       
       <guid>http://blog.sinowrt.cn/2019/2019-11-29t0028-newifi-mini-dialing-setting/</guid>
-      <description> 0x00 线缆连接 * 将路由器接入电源 * 用一根网线，一端接入路由器的任意蓝色端口，另一端接入主机 * 将用于拨号的网线接入路由器的黄色端口
-0x01 登录路由器管理界面 * 打开浏览器，在地址栏输入192.168.123.1,回车 * 在弹出来的登录窗口输入用户名admin,密码admin258
-0x02 拨号设置 * 点击外部网络 * 选择外网连接类型为PPPoE拨号 * 在用户名称处填入拨号账号 * 在用户密码处填入拨号密码 * 最后滑到页面底部，点击应用本页面设置
-0x03 设置好了就网上冲浪吧！ </description>
+      <description> 0x00 线缆连接  将路由器接入电源 用一根网线，一端接入路由器的任意蓝色端口，另一端接入主机 将用于拨号的网线接入路由器的黄色端口
+0x01 登录路由器管理界面  打开浏览器，在地址栏输入192.168.123.1,回车
+ 在弹出来的登录窗口输入用户名admin,密码admin258
+0x02 拨号设置  点击外部网络
+ 选择外网连接类型为PPPoE拨号
+ 在用户名称处填入拨号账号
+ 在用户密码处填入拨号密码
+ 最后滑到页面底部，点击应用本页面设置
+  0x03 设置好了就网上冲浪吧！ </description>
     </item>
     
     <item>
@@ -811,7 +812,17 @@ ngrokd -domain=ngrok.example.com  0x02 添加域名解析 添加两条域名解�
       <pubDate>Sun, 08 Sep 2019 15:59:08 +0800</pubDate>
       
       <guid>http://blog.sinowrt.cn/2019/2019-09-08t1559-zte-w815n-refitting/</guid>
-      <description> 0x00 状况描述  毕业租房子后，一直在整网络。因为是出租屋，想着租一年就搬了，就把学校的热点桥接过来将就着用就算了。这两个月，桥接用过newifi mini，TP的340G+，信号一直不理想，就想着搞个正版ubnt。看着看着，就觉得吧，这个ubnt的水也深，也不便宜，看到无线论坛上有坛友说用运营级别的大功率网桥，深入了解，其中还真的不乏好设备。看过烽火2400、中兴W815，想着大品牌折腾的人应该不少，最后入手了中兴W815。  0x01 设备描述  中兴W815拥有双功放，无线功率最高可达500mw，基于7240+9283方案，改ubnt的教程也不少，但是资料较为零散，需要取百家所长。  0x02 改装过程  首先是备份原厂固件，用风枪将flash取下，焊到编程器上面，我用的是ch341普通的绿板编程器，备份过程挺久的，毕竟固件有16m。 固件备份完成后，直接擦除芯片，将breed写入flash，我用的是h大的将gpio12作为reset键的版本breed-ar724x-reset12-r1163.bin，烧录好就将flash焊回去。 烧好breed，就要改reset键了。这里参考的是坛友的改装方案 用漆包线将7240的第89脚用漆包线引出，焊到空车位上，在旁边补上10k上拉电阻  翻到后面同样用漆包线引到直连reset键的C70电容右脚。  很奇怪，我按照坛友的方法改好后，开机却一直重启。用万用表测量gpio12的对地电压，开机时很稳定的2.5v但是开机完成后马上跳回0.1v，导致机器无限重启。于是我尝试将电阻换为2.2k甚至1k，问题依旧，最后直接不要电阻，将电阻两脚直接点上，没再出现重启的现象。最后还是接上了20欧的电阻，电流能减少一点是一点，开机一切正常。  0x03 提取art  art在原厂固件的最后64KB，直接用winhex备份出来即可  0x04 刷入ubnt固件与art  由于我找不到适用的ubnt固件，最后还是用了坛友的编程器固件，最后刷入art正常使用  0x05 外接天线  由于原机的天线接头比较特别，是N型母头，要和sma接头的八木天线连接，还得买个N型公头转sma外螺内针的转接头  0x06 使用效果  用原机的5dbi天线伸出窗外效果还行，信号在-60db左右，但是这机子不防水啊，常年这样用也不是办法，但是把机子放在室内，再外接八木天线或者6dbi的全向天线效果都不理想！ 总结：翻车了！  </description>
+      <description> 0x00 状况描述  毕业租房子后，一直在整网络。因为是出租屋，想着租一年就搬了，就把学校的热点桥接过来将就着用就算了。这两个月，桥接用过newifi mini，TP的340G+，信号一直不理想，就想着搞个正版ubnt。看着看着，就觉得吧，这个ubnt的水也深，也不便宜，看到无线论坛上有坛友说用运营级别的大功率网桥，深入了解，其中还真的不乏好设备。看过烽火2400、中兴W815，想着大品牌折腾的人应该不少，最后入手了中兴W815。
+0x01 设备描述 中兴W815拥有双功放，无线功率最高可达500mw，基于7240+9283方案，改ubnt的教程也不少，但是资料较为零散，需要取百家所长。
+0x02 改装过程 首先是备份原厂固件，用风枪将flash取下，焊到编程器上面，我用的是ch341普通的绿板编程器，备份过程挺久的，毕竟固件有16m。
+ 固件备份完成后，直接擦除芯片，将breed写入flash，我用的是h大的将gpio12作为reset键的版本breed-ar724x-reset12-r1163.bin，烧录好就将flash焊回去。
+ 烧好breed，就要改reset键了。这里参考的是坛友的改装方案 用漆包线将7240的第89脚用漆包线引出，焊到空车位上，在旁边补上10k上拉电阻  翻到后面同样用漆包线引到直连reset键的C70电容右脚。  很奇怪，我按照坛友的方法改好后，开机却一直重启。用万用表测量gpio12的对地电压，开机时很稳定的2.5v但是开机完成后马上跳回0.1v，导致机器无限重启。于是我尝试将电阻换为2.2k甚至1k，问题依旧，最后直接不要电阻，将电阻两脚直接点上，没再出现重启的现象。最后还是接上了20欧的电阻，电流能减少一点是一点，开机一切正常。
+0x03 提取art art在原厂固件的最后64KB，直接用winhex备份出来即可
+0x04 刷入ubnt固件与art 由于我找不到适用的ubnt固件，最后还是用了坛友的编程器固件，最后刷入art正常使用
+0x05 外接天线 由于原机的天线接头比较特别，是N型母头，要和sma接头的八木天线连接，还得买个N型公头转sma外螺内针的转接头
+0x06 使用效果 用原机的5dbi天线伸出窗外效果还行，信号在-60db左右，但是这机子不防水啊，常年这样用也不是办法，但是把机子放在室内，再外接八木天线或者6dbi的全向天线效果都不理想！
+ 总结：翻车了！
+  </description>
     </item>
     
     <item>
@@ -857,7 +868,18 @@ ngrokd -domain=ngrok.example.com  0x02 添加域名解析 添加两条域名解�
       <pubDate>Thu, 13 Jun 2019 13:02:08 +0800</pubDate>
       
       <guid>http://blog.sinowrt.cn/2019/2019-06-13t1300-how-to-save-the-baned-ip/</guid>
-      <description>0x00 事件起因  2019年儿童节中午，google搜索超时，ss服务器尚可ping通，但端口连接异常。 13:00 更换端口，仍无法使用，ping检测IP被墙  0x01 解决方案  有消息称等待数天即可解封 等待无果，更换v2ray+cdn+ws代理方案  0x02 bandwagonhost服务器安装v2ray  我的搬瓦工vps是3.99传家宝套餐，64M运行内存，2G磁盘空间，100G流量 需要在kvm面板上安装debian或ubuntu系统 需要注意的是我的vps在安装了debian-8.0-x86_64-minimal后，使用v2ray的官方go.sh脚本安装时，swap空间爆掉了，导致安装意外终止。根据网上的教程调整swap分区无果，于是更换ubuntu-16.04-x86_64系统，安装才得以顺利进行。  环境 临时梯子（用于连接ip被ban的vps） 工具 PuTTy  sudo su 获取root权限 在控制台输入bash &amp;lt;(curl -L -s https://install.direct/go.sh)，此命令主要下载go.sh脚本并运行自动安装 控制台提示V2Ray v4.19.1 is installed.即为安装成功 记下控制台中的PORT和UUID的值  配置v2ray服务端  v2ray使用脚本安装完成后，默认启动服务就可以使用的了，但我们为了使用websock协议，还需要配置一下 打开v2ray的配置文件（/etc/v2ray/config.json）参照下面的进行配置。 只需在port和id这两个属性中填入你之前安装v2ray时记下来的值即可。（若需要CloudeFlare进行CDN转发，port则需要配置成CloudFlare支持的端口，在CloudFlare配置部分有详细说明） log配置是我后来加上的，不需要打日志的可以去掉。  { &amp;quot;log&amp;quot;: { &amp;quot;loglevel&amp;quot;: &amp;quot;debug&amp;quot;, &amp;quot;access&amp;quot;: &amp;quot;/var/log/v2ray/access.log&amp;quot;, &amp;quot;error&amp;quot;: &amp;quot;/var/log/v2ray/error.log&amp;quot; }, &amp;quot;inbounds&amp;quot;: [{ &amp;quot;port&amp;quot;: port, &amp;quot;protocol&amp;quot;: &amp;quot;vmess&amp;quot;, &amp;quot;settings&amp;quot;: { &amp;quot;clients&amp;quot;: [ { &amp;quot;id&amp;quot;: &amp;quot;UUID&amp;quot;, &amp;quot;level&amp;quot;: 1, &amp;quot;alterId&amp;quot;: 64 } ] }, &amp;quot;streamSettings&amp;quot;:{ &amp;quot;wsSettings&amp;quot;:{ &amp;quot;path&amp;quot;:&amp;quot;/&amp;quot;, &amp;quot;headers&amp;quot;:{} }, &amp;quot;network&amp;quot;:&amp;quot;ws&amp;quot; } }], &amp;quot;outbounds&amp;quot;: [{ &amp;quot;protocol&amp;quot;: &amp;quot;freedom&amp;quot;, &amp;quot;settings&amp;quot;: {} },{ &amp;quot;protocol&amp;quot;: &amp;quot;blackhole&amp;quot;, &amp;quot;settings&amp;quot;: {}, &amp;quot;tag&amp;quot;: &amp;quot;blocked&amp;quot; }], &amp;quot;routing&amp;quot;: { &amp;quot;rules&amp;quot;: [ { &amp;quot;type&amp;quot;: &amp;quot;field&amp;quot;, &amp;quot;ip&amp;quot;: [&amp;quot;geoip:private&amp;quot;], &amp;quot;outboundTag&amp;quot;: &amp;quot;blocked&amp;quot; } ] } }  启动v2ray服务端  在控制台输入service v2ray start启动服务即可 v2ray服务端的配置到此完成，需要注意的是，如果是谷歌云、亚马逊云或者其他服务商的需要在防火墙放行v2ray服务的端口。  0x03 配置CloudFlare CDN 准备个人邮箱以及域名  上CloudFlare注册账号，添加域名，选择免费的套餐（每个CloudeFlare仅对一个域名提供免费服务） 将域名的DNS服务器修改为CloudFlare提供的DNS服务器（DNS服务器修改生效最长需要72小时） 在CloudFlare的DNS中添加解析记录（CDN解析生效需要稍等片刻）</description>
+      <description>0x00 事件起因  2019年儿童节中午，google搜索超时，ss服务器尚可ping通，但端口连接异常。 13:00 更换端口，仍无法使用，ping检测IP被墙
+0x01 解决方案 有消息称等待数天即可解封
+ 等待无果，更换v2ray+cdn+ws代理方案
+0x02 bandwagonhost服务器安装v2ray 我的搬瓦工vps是3.99传家宝套餐，64M运行内存，2G磁盘空间，100G流量
+ 需要在kvm面板上安装debian或ubuntu系统
+ 需要注意的是我的vps在安装了debian-8.0-x86_64-minimal后，使用v2ray的官方go.sh脚本安装时，swap空间爆掉了，导致安装意外终止。根据网上的教程调整swap分区无果，于是更换ubuntu-16.04-x86_64系统，安装才得以顺利进行。
+环境 临时梯子（用于连接ip被ban的vps） 工具 PuTTy sudo su 获取root权限
+ 在控制台输入bash &amp;lt;(curl -L -s https://install.direct/go.sh)，此命令主要下载go.sh脚本并运行自动安装
+ 控制台提示V2Ray v4.19.1 is installed.即为安装成功
+ 记下控制台中的PORT和UUID的值
+  配置v2ray服务端  v2ray使用脚本安装完成后，默认启动服务就可以使用的了，但我们为了使用websock协议，还需要配置一下 打开v2ray的配置文件（/etc/v2ray/config.json）参照下面的进行配置。 只需在port和id这两个属性中填入你之前安装v2ray时记下来的值即可。（若需要CloudeFlare进行CDN转发，port则需要配置成CloudFlare支持的端口，在CloudFlare配置部分有详细说明） log配置是我后来加上的，不需要打日志的可以去掉。
+  { &amp;quot;log&amp;quot;: { &amp;quot;loglevel&amp;quot;: &amp;quot;debug&amp;quot;, &amp;quot;access&amp;quot;: &amp;quot;/var/log/v2ray/access.log&amp;quot;, &amp;quot;error&amp;quot;: &amp;quot;/var/log/v2ray/error.log&amp;quot; }, &amp;quot;inbounds&amp;quot;: [{ &amp;quot;port&amp;quot;: port, &amp;quot;protocol&amp;quot;: &amp;quot;vmess&amp;quot;, &amp;quot;settings&amp;quot;: { &amp;quot;clients&amp;quot;: [ { &amp;quot;id&amp;quot;: &amp;quot;UUID&amp;quot;, &amp;quot;level&amp;quot;: 1, &amp;quot;alterId&amp;quot;: 64 } ] }, &amp;quot;streamSettings&amp;quot;:{ &amp;quot;wsSettings&amp;quot;:{ &amp;quot;path&amp;quot;:&amp;quot;/&amp;quot;, &amp;quot;headers&amp;quot;:{} }, &amp;quot;network&amp;quot;:&amp;quot;ws&amp;quot; } }], &amp;quot;outbounds&amp;quot;: [{ &amp;quot;protocol&amp;quot;: &amp;quot;freedom&amp;quot;, &amp;quot;settings&amp;quot;: {} },{ &amp;quot;protocol&amp;quot;: &amp;quot;blackhole&amp;quot;, &amp;quot;settings&amp;quot;: {}, &amp;quot;tag&amp;quot;: &amp;quot;blocked&amp;quot; }], &amp;quot;routing&amp;quot;: { &amp;quot;rules&amp;quot;: [ { &amp;quot;type&amp;quot;: &amp;quot;field&amp;quot;, &amp;quot;ip&amp;quot;: [&amp;quot;geoip:private&amp;quot;], &amp;quot;outboundTag&amp;quot;: &amp;quot;blocked&amp;quot; } ] } }  启动v2ray服务端  在控制台输入service v2ray start启动服务即可 v2ray服务端的配置到此完成，需要注意的是，如果是谷歌云、亚马逊云或者其他服务商的需要在防火墙放行v2ray服务的端口。</description>
     </item>
     
     <item>
@@ -893,7 +915,7 @@ ngrokd -domain=ngrok.example.com  0x02 添加域名解析 添加两条域名解�
       <pubDate>Mon, 03 Dec 2018 12:58:57 +0000</pubDate>
       
       <guid>http://blog.sinowrt.cn/2018/2018-12-03t1258-hard-disk-parttion-unview/</guid>
-      <description> 0x00 前阵子用旧电脑装了个群晖nas，无奈用的120G硬盘，完全不够用，看手上还有个500G的三星机械盘，就买了个光驱硬盘盒，到手后插上电脑没显示分区？不兼容？盘坏了？ 0x01 打开设备管理器，扫描硬件更新，可以看到三星机械盘，盘和架子应该没问题 0x02 打开partition wizard,可以看到硬盘基本信息都在，就是没有盘符 0x03 分配盘符后，可以看到电脑显示分区正常，应该是没有挂载 0x04 也可以利用diskpart对卷进行挂载 0x05 Z盘挂载成功 </description>
+      <description> 0x00 起因 前阵子用旧电脑装了个群晖nas，无奈用的120G硬盘，完全不够用，看手上还有个500G的三星机械盘，就买了个光驱硬盘盒，到手后插上电脑没显示分区？不兼容？盘坏了？ 0x01 排查  打开设备管理器，扫描硬件更新，可以看到三星机械盘，盘和架子应该没问题  打开partition wizard,可以看到硬盘基本信息都在，就是没有盘符  分配盘符后，可以看到电脑显示分区正常，应该是没有挂载  也可以利用diskpart对卷进行挂载  Z盘挂载成功   </description>
     </item>
     
     <item>
@@ -911,14 +933,12 @@ ngrokd -domain=ngrok.example.com  0x02 添加域名解析 添加两条域名解�
       <pubDate>Sat, 17 Nov 2018 15:13:11 +0000</pubDate>
       
       <guid>http://blog.sinowrt.cn/2018/2018-11-17t1513-install-qt5-on-win10/</guid>
-      <description> 0x00背景 信管作业要求用C++实现进销存系统用户交互界面以及业务逻辑 0x01 必备安装包 1.qt-opensource-windows-x86-5.11.2.exe 2.Windows SDK 0x02 下载与安装 1.Qt下载与安装  上Qt下载页面下载你系统对应的安装包
- 我的是Windoes 10,直接下载qt-opensource-windows-x86-5.11.2.exe 直接打开qt-opensource-windows-x86-5.11.2.exe安装程序 在第一个界面直接下一步 填写账号这一块，如果没有事先申请也可以先跳过这一步
- 选择安装文件夹 选择编译器，由于我的电脑装了vs2015，所以直接选了MSVC 2015 64-bit（若未安装任何编译器可以直接选择MinGW 5.3.0 32bit）
- 接下来一路下一步即可  2.Windows SDK下载与安装  上Microsoft开发者下载站 我的系统是Windows 10，还是按自己的系统版本进行下载
- 下载之后得到这样一个exe，打开按步骤安装   0x03 配置Qt 1.配置Debugger  工具——选项——kits——Debuggers——Add 填写Debugger的名称 浏览WindowsSKD的安装路径，找到你所需要的Debugger，这里我设置了Windows 10的x64的和x86的cdb.exe
-2.配置kit 按根据截图按需配置就可以了
-  到了这步配置基本完成，但是我在编译程序的过程中遇到error link1158 无法运行rc.exe的报错 error link1158 无法运行rc.exe问题解决方法  到C:\Program Files (x86)\Windows Kits\10\bin\10.0.17763.0下的文件夹找到rc.dll和rc.exe复制到qmake文件夹下 qmake的路径可以参考截图
-  </description>
+      <description> 0x00背景 信管作业要求用C++实现进销存系统用户交互界面以及业务逻辑 0x01 必备安装包  qt-opensource-windows-x86-5.11.2.exe Windows SDK
+0x02 下载与安装 1.Qt下载与安装 上Qt下载页面下载你系统对应的安装包
+   我的是Windoes 10,直接下载qt-opensource-windows-x86-5.11.2.exe 直接打开qt-opensource-windows-x86-5.11.2.exe安装程序 在第一个界面直接下一步 填写账号这一块，如果没有事先申请也可以先跳过这一步   选择安装文件夹 选择编译器，由于我的电脑装了vs2015，所以直接选了MSVC 2015 64-bit（若未安装任何编译器可以直接选择MinGW 5.3.0 32bit）   接下来一路下一步即可
+2.Windows SDK下载与安装 上Microsoft开发者下载站
+ 我的系统是Windows 10，还是按自己的系统版本进行下载
+   下载之后得到这样一个exe，打开按步骤安装  0x03 配置Qt 1.配置Debugger  工具——选项——kits——Debuggers——Add 填写Debugger的名称 浏览WindowsSKD的安装路径，找到你所需要的Debugger，这里我设置了Windows 10的x64的和x86的cdb.exe  2.配置kit  按根据截图按需配置就可以了  到了这步配置基本完成，但是我在编译程序的过程中遇到error link1158 无法运行rc.exe的报错 error link1158 无法运行rc.exe问题解决方法  到C:\Program Files (x86)\Windows Kits\10\bin\10.0.17763.0下的文件夹找到rc.dll和rc.exe复制到qmake文件夹下 qmake的路径可以参考截图  </description>
     </item>
     
     <item>
@@ -927,15 +947,7 @@ ngrokd -domain=ngrok.example.com  0x02 添加域名解析 添加两条域名解�
       <pubDate>Tue, 06 Nov 2018 02:07:21 +0000</pubDate>
       
       <guid>http://blog.sinowrt.cn/2018/2018-11-06t0207-synologysetup-aria2-with-docker/</guid>
-      <description> 0x00 安装docker  在package center中的Third party找到docker 直接点击install进行安装
- 安装完毕，点击open即可打开docker
-0x01 下载aria2映像 点击Registry选项卡，搜索aria2
- 找到xujinkai那个下载下来
-0x02 启动容器 点击image选项卡，点击launch进行启动
-0x03 启动设置 点击Advance 1）Advance Setting 打上这两个√，设置开机自启动以及创建桌面快捷方式 2）Volume设置，添加这两项，前面的文件夹随便选，圈起来的位置务必一样 3）Port设置，为了方便使用，local port修改成您想要的端口 第一项为下载端口
- 第二项为webui端口
- 第三项为下载文件目录端口
-  4）Environment设置 如图添加这两项，否则webui会报错，分别填写你的用户名和密码，ok 5）完成高级设置后，next 6）最后apply 7）打开浏览器，输入服务器地址以及你设置的webui端口，即可访问aria2 webui </description>
+      <description> 0x00 安装docker  在package center中的Third party找到docker 直接点击install进行安装   安装完毕，点击open即可打开docker  0x01 下载aria2映像  点击Registry选项卡，搜索aria2 找到xujinkai那个下载下来  0x02 启动容器  点击image选项卡，点击launch进行启动  0x03 启动设置 点击Advance 1）Advance Setting 打上这两个√，设置开机自启动以及创建桌面快捷方式 2）Volume设置，添加这两项，前面的文件夹随便选，圈起来的位置务必一样 3）Port设置，为了方便使用，local port修改成您想要的端口  第一项为下载端口 第二项为webui端口 第三项为下载文件目录端口  4）Environment设置 如图添加这两项，否则webui会报错，分别填写你的用户名和密码，ok 5）完成高级设置后，next 6）最后apply 7）打开浏览器，输入服务器地址以及你设置的webui端口，即可访问aria2 webui </description>
     </item>
     
     <item>
@@ -944,8 +956,11 @@ ngrokd -domain=ngrok.example.com  0x02 添加域名解析 添加两条域名解�
       <pubDate>Sun, 04 Nov 2018 12:18:36 +0000</pubDate>
       
       <guid>http://blog.sinowrt.cn/2018/2018-11-04t1218-synalogycustomize-boot-system/</guid>
-      <description> 0x00 打开osfmount 0x01 挂载引导文件  选择img文件 填写offset为16MBytes 去掉read—only前面的勾 点击ok进行挂载
-  0x02 解压目标系统文件  将xxxxxxx.pat的后缀改成rar 解压 从解压得到的文件夹里面找到rd.gz和zlmage 复制这两个文件到虚拟磁盘根目录下替换原文件  0x03 卸载虚拟磁盘 0x04 将img文件通过Win32DiskImager写入U盘即可 </description>
+      <description> 0x00 打开osfmount 0x01 挂载引导文件  选择img文件 填写offset为16MBytes 去掉read—only前面的勾 点击ok进行挂载 0x02 解压目标系统文件 将xxxxxxx.pat的后缀改成rar
+ 解压
+ 从解压得到的文件夹里面找到rd.gz和zlmage
+ 复制这两个文件到虚拟磁盘根目录下替换原文件
+  0x03 卸载虚拟磁盘 0x04 将img文件通过Win32DiskImager写入U盘即可 </description>
     </item>
     
     <item>
@@ -954,15 +969,11 @@ ngrokd -domain=ngrok.example.com  0x02 添加域名解析 添加两条域名解�
       <pubDate>Sun, 04 Nov 2018 11:48:41 +0000</pubDate>
       
       <guid>http://blog.sinowrt.cn/2018/2018-11-04t1148-synologynas-diy/</guid>
-      <description>0x00 硬件条件 1.废旧的三星rv415笔记本电脑  CPU AMD Fusion APU E-450 RAM DDR3 2G 800MHz
-2.SANDISK U盘 32G 一个  0x02 软件条件 1.群晖6.x.x引导文件 2.OSFmount 用于挂载引导镜像便于修改 3.Win32DiskImager 将引导文件写入U盘 4.群晖6.1-15047系统文件 5.群晖助手 0x03 网络拓扑 0x04 安装过程 1.安装之前建议先把硬盘格了再进行全新安装 2.制作引导系统 1）挂载img文件  安装osfmount 打开osfmount，对img文件进行挂载，如下所示
-   选择img文件 填写offset如图所示，选择单位KBytes 去掉read-only前面的勾 点击OK即挂载成功
-  2）查看U盘vid与pid  打开设备管理器，找到你的U盘
- 双击打开 打开详细信息选项卡，属性下拉选择硬件id，就可以直接看到vid与pid
-  3）修改img文件里的vid与pid  打开刚刚挂载成功的磁盘 用notepad++打开grub文件夹下的grub.cfg文件 修改第22行和23行的vid、pid为你U盘对应的数值
- 修改保存之后即可卸载刚刚挂载的设备
-  4）打开Win32DiskImager将img文件写入U盘  选择刚刚修改好的img文件 点击写入即可
-  5）用网线将准备安装群晖系统的电脑连入局域网内 6）进入bios将你的电脑启动首选项设置为U盘启动  每台机器都不一样，大家可以google一下 要注意的是，这步很重要，到安装完成重启的过程中，没有选择U盘启动，而由硬盘启动的话，将会引导失败，出现联机失败的错误  7）打开群晖助手搜索局域网内的准备安装群晖系统的机器 * 右键安装，注意一定要选择跟版本号以及型号都一致的pat，否则会出错 * PS:6.</description>
+      <description>0x00 Hardware  废旧的三星rv415笔记本电脑
+CPU AMD Fusion APU E-450
+RAM DDR3 2G 800MHz
+ SANDISK U盘 32G 一个
+  0x02 Software  群晖6.x.x引导文件 OSFmount 用于挂载引导镜像便于修改 Win32DiskImager 将引导文件写入U盘 群晖6.1-15047系统文件 群晖助手  0x03 网络拓扑 0x04 安装过程 1.安装之前建议先把硬盘格了再进行全新安装 2.制作引导系统 1）挂载img文件  安装osfmount 打开osfmount，对img文件进行挂载，如下所示   选择img文件 填写offset如图所示，选择单位KBytes 去掉read-only前面的勾 点击OK即挂载成功  2）查看U盘vid与pid  打开设备管理器，找到你的U盘  双击打开 打开详细信息选项卡，属性下拉选择硬件id，就可以直接看到vid与pid  3）修改img文件里的vid与pid  打开刚刚挂载成功的磁盘 用notepad++打开grub文件夹下的grub.cfg文件 修改第22行和23行的vid、pid为你U盘对应的数值  修改保存之后即可卸载刚刚挂载的设备  4）打开Win32DiskImager将img文件写入U盘  选择刚刚修改好的img文件 点击写入即可  5）用网线将准备安装群晖系统的电脑连入局域网内 6）进入bios将你的电脑启动首选项设置为U盘启动  每台机器都不一样，大家可以google一下 要注意的是，这步很重要，到安装完成重启的过程中，没有选择U盘启动，而由硬盘启动的话，将会引导失败，出现联机失败的错误  7）打开群晖助手搜索局域网内的准备安装群晖系统的机器  右键安装，注意一定要选择跟版本号以及型号都一致的pat，否则会出错 PS:6.</description>
     </item>
     
     <item>

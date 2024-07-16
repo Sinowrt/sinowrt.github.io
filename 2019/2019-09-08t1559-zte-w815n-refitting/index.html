@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noodp"/>
+  <meta name="referrer" content="no-referrer" />
   <meta name="author" content="sinowrt">
   
   
@@ -46,7 +47,7 @@
     "articleSection" : "posts",
     "name" : "中兴W815N V3 500mw网桥改ubnt",
     "headline" : "中兴W815N V3 500mw网桥改ubnt",
-    "description" : " 0x00 状况描述  毕业租房子后，一直在整网络。因为是出租屋，想着租一年就搬了，就把学校的热点桥接过来将就着用就算了。这两个月，桥接用过newifi mini，TP的340G\x2b，信号一直不理想，就想着搞个正版ubnt。看着看着，就觉得吧，这个ubnt的水也深，也不便宜，看到无线论坛上有坛友说用运营级别的大功率网桥，深入了解，其中还真的不乏好设备。看过烽火2400、中兴W815，想着大品牌折腾的人应该不少，最后入手了中兴W815。  0x01 设备描述  中兴W815拥有双功放，无线功率最高可达500mw，基于7240\x2b9283方案，改ubnt的教程也不少，但是资料较为零散，需要取百家所长。  0x02 改装过程  首先是备份原厂固件，用风枪将flash取下，焊到编程器上面，我用的是ch341普通的绿板编程器，备份过程挺久的，毕竟固件有16m。 固件备份完成后，直接擦除芯片，将breed写入flash，我用的是h大的将gpio12作为reset键的版本breed-ar724x-reset12-r1163.bin，烧录好就将flash焊回去。 烧好breed，就要改reset键了。这里参考的是坛友的改装方案 用漆包线将7240的第89脚用漆包线引出，焊到空车位上，在旁边补上10k上拉电阻  翻到后面同样用漆包线引到直连reset键的C70电容右脚。  很奇怪，我按照坛友的方法改好后，开机却一直重启。用万用表测量gpio12的对地电压，开机时很稳定的2.5v但是开机完成后马上跳回0.1v，导致机器无限重启。于是我尝试将电阻换为2.2k甚至1k，问题依旧，最后直接不要电阻，将电阻两脚直接点上，没再出现重启的现象。最后还是接上了20欧的电阻，电流能减少一点是一点，开机一切正常。  0x03 提取art  art在原厂固件的最后64KB，直接用winhex备份出来即可  0x04 刷入ubnt固件与art  由于我找不到适用的ubnt固件，最后还是用了坛友的编程器固件，最后刷入art正常使用  0x05 外接天线  由于原机的天线接头比较特别，是N型母头，要和sma接头的八木天线连接，还得买个N型公头转sma外螺内针的转接头  0x06 使用效果  用原机的5dbi天线伸出窗外效果还行，信号在-60db左右，但是这机子不防水啊，常年这样用也不是办法，但是把机子放在室内，再外接八木天线或者6dbi的全向天线效果都不理想！ 总结：翻车了！  ",
+    "description" : " 0x00 状况描述  毕业租房子后，一直在整网络。因为是出租屋，想着租一年就搬了，就把学校的热点桥接过来将就着用就算了。这两个月，桥接用过newifi mini，TP的340G\x2b，信号一直不理想，就想着搞个正版ubnt。看着看着，就觉得吧，这个ubnt的水也深，也不便宜，看到无线论坛上有坛友说用运营级别的大功率网桥，深入了解，其中还真的不乏好设备。看过烽火2400、中兴W815，想着大品牌折腾的人应该不少，最后入手了中兴W815。\n0x01 设备描述 中兴W815拥有双功放，无线功率最高可达500mw，基于7240\x2b9283方案，改ubnt的教程也不少，但是资料较为零散，需要取百家所长。\n0x02 改装过程 首先是备份原厂固件，用风枪将flash取下，焊到编程器上面，我用的是ch341普通的绿板编程器，备份过程挺久的，毕竟固件有16m。\n 固件备份完成后，直接擦除芯片，将breed写入flash，我用的是h大的将gpio12作为reset键的版本breed-ar724x-reset12-r1163.bin，烧录好就将flash焊回去。\n 烧好breed，就要改reset键了。这里参考的是坛友的改装方案 用漆包线将7240的第89脚用漆包线引出，焊到空车位上，在旁边补上10k上拉电阻  翻到后面同样用漆包线引到直连reset键的C70电容右脚。  很奇怪，我按照坛友的方法改好后，开机却一直重启。用万用表测量gpio12的对地电压，开机时很稳定的2.5v但是开机完成后马上跳回0.1v，导致机器无限重启。于是我尝试将电阻换为2.2k甚至1k，问题依旧，最后直接不要电阻，将电阻两脚直接点上，没再出现重启的现象。最后还是接上了20欧的电阻，电流能减少一点是一点，开机一切正常。\n0x03 提取art art在原厂固件的最后64KB，直接用winhex备份出来即可\n0x04 刷入ubnt固件与art 由于我找不到适用的ubnt固件，最后还是用了坛友的编程器固件，最后刷入art正常使用\n0x05 外接天线 由于原机的天线接头比较特别，是N型母头，要和sma接头的八木天线连接，还得买个N型公头转sma外螺内针的转接头\n0x06 使用效果 用原机的5dbi天线伸出窗外效果还行，信号在-60db左右，但是这机子不防水啊，常年这样用也不是办法，但是把机子放在室内，再外接八木天线或者6dbi的全向天线效果都不理想！\n 总结：翻车了！\n  ",
     "inLanguage" : "en-us",
     "author" : "sinowrt",
     "creator" : "sinowrt",
@@ -166,51 +167,44 @@
 <h2 id="0x00-状况描述">0x00 状况描述</h2>
 
 <ul>
-<li>毕业租房子后，一直在整网络。因为是出租屋，想着租一年就搬了，就把学校的热点桥接过来将就着用就算了。这两个月，桥接用过newifi mini，TP的340G+，信号一直不理想，就想着搞个正版ubnt。看着看着，就觉得吧，这个ubnt的水也深，也不便宜，看到无线论坛上有坛友说用运营级别的大功率网桥，深入了解，其中还真的不乏好设备。看过烽火2400、中兴W815，想着大品牌折腾的人应该不少，最后入手了中兴W815。</li>
-</ul>
+<li><p>毕业租房子后，一直在整网络。因为是出租屋，想着租一年就搬了，就把学校的热点桥接过来将就着用就算了。这两个月，桥接用过newifi mini，TP的340G+，信号一直不理想，就想着搞个正版ubnt。看着看着，就觉得吧，这个ubnt的水也深，也不便宜，看到无线论坛上有坛友说用运营级别的大功率网桥，深入了解，其中还真的不乏好设备。看过烽火2400、中兴W815，想着大品牌折腾的人应该不少，最后入手了中兴W815。</p>
 
-<h2 id="0x01-设备描述">0x01 设备描述</h2>
+<h2 id="0x01-设备描述">0x01 设备描述</h2></li>
 
-<ul>
-<li>中兴W815拥有双功放，无线功率最高可达500mw，基于7240+9283方案，改ubnt的教程也不少，但是资料较为零散，需要取百家所长。</li>
-</ul>
+<li><p>中兴W815拥有双功放，无线功率最高可达500mw，基于7240+9283方案，改ubnt的教程也不少，但是资料较为零散，需要取百家所长。</p>
 
-<h2 id="0x02-改装过程">0x02 改装过程</h2>
+<h2 id="0x02-改装过程">0x02 改装过程</h2></li>
 
-<ul>
-<li>首先是备份原厂固件，用风枪将flash取下，焊到编程器上面，我用的是ch341普通的绿板编程器，备份过程挺久的，毕竟固件有16m。</li>
-<li>固件备份完成后，直接擦除芯片，将breed写入flash，我用的是h大的将gpio12作为reset键的版本<code>breed-ar724x-reset12-r1163.bin</code>，烧录好就将flash焊回去。</li>
-<li>烧好breed，就要改reset键了。这里参考的是坛友的<a href="https://www.anywlan.com/thread-258718-1-1.html" rel="nofollow noreferrer" target="_blank">改装方案</a> 用漆包线将7240的第89脚用漆包线引出，焊到空车位上，在旁边补上10k上拉电阻
-<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2019-09-08T1650-1.jpg" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></li>
-<li>翻到后面同样用漆包线引到直连reset键的C70电容右脚。
-<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2019-09-08T1650-3.jpg" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure>
-<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2019-09-08T1650-2.jpg" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></li>
-<li>很奇怪，我按照坛友的方法改好后，开机却一直重启。用万用表测量gpio12的对地电压，开机时很稳定的2.5v但是开机完成后马上跳回0.1v，导致机器无限重启。于是我尝试将电阻换为2.2k甚至1k，问题依旧，最后直接不要电阻，将电阻两脚直接点上，没再出现重启的现象。最后还是接上了20欧的电阻，电流能减少一点是一点，开机一切正常。</li>
-</ul>
+<li><p>首先是备份原厂固件，用风枪将flash取下，焊到编程器上面，我用的是ch341普通的绿板编程器，备份过程挺久的，毕竟固件有16m。</p></li>
 
-<h2 id="0x03-提取art">0x03 提取art</h2>
+<li><p>固件备份完成后，直接擦除芯片，将breed写入flash，我用的是h大的将gpio12作为reset键的版本<code>breed-ar724x-reset12-r1163.bin</code>，烧录好就将flash焊回去。</p></li>
 
-<ul>
-<li>art在原厂固件的最后64KB，直接用winhex备份出来即可</li>
-</ul>
+<li><p>烧好breed，就要改reset键了。这里参考的是坛友的<a href="https://www.anywlan.com/thread-258718-1-1.html" rel="nofollow noreferrer" target="_blank">改装方案</a> 用漆包线将7240的第89脚用漆包线引出，焊到空车位上，在旁边补上10k上拉电阻
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/jpeg/35574316/1721147609503-28879a2a-e66e-411a-99e8-c7c2535672f0.jpeg#averageHue=%235e615b&amp;clientId=u092cab1a-8508-4&amp;from=paste&amp;height=1080&amp;id=uf9f62f78&amp;originHeight=1080&amp;originWidth=1440&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=230563&amp;status=done&amp;style=none&amp;taskId=u94b4ac86-18f7-4b8e-9338-56d50179d8b&amp;title=&amp;width=1440" alt="2019-09-08T1650-1.jpg" class="lazyload"><figcaption class="image-caption">2019-09-08T1650-1.jpg</figcaption></figure></p></li>
 
-<h2 id="0x04-刷入ubnt固件与art">0x04 刷入ubnt固件与art</h2>
+<li><p>翻到后面同样用漆包线引到直连reset键的C70电容右脚。
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/jpeg/35574316/1721147618693-409bf788-6638-4259-a5ca-79ebcb2d5a05.jpeg#averageHue=%23637375&amp;clientId=u092cab1a-8508-4&amp;from=paste&amp;height=1080&amp;id=ua4be924f&amp;originHeight=1080&amp;originWidth=1440&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=150321&amp;status=done&amp;style=none&amp;taskId=u26a9087d-9b72-4670-91b1-1f7b3c3b0b3&amp;title=&amp;width=1440" alt="2019-09-08T1650-3.jpg" class="lazyload"><figcaption class="image-caption">2019-09-08T1650-3.jpg</figcaption></figure>
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/jpeg/35574316/1721147622264-203cd2f2-afd0-45e4-99b2-e3bbc37d9c89.jpeg#averageHue=%23466472&amp;clientId=u092cab1a-8508-4&amp;from=paste&amp;height=1080&amp;id=u6efabc0f&amp;originHeight=1080&amp;originWidth=1440&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=221539&amp;status=done&amp;style=none&amp;taskId=ufc298285-a9b3-4f2c-b563-771f62c9296&amp;title=&amp;width=1440" alt="2019-09-08T1650-2.jpg" class="lazyload"><figcaption class="image-caption">2019-09-08T1650-2.jpg</figcaption></figure></p></li>
 
-<ul>
-<li>由于我找不到适用的ubnt固件，最后还是用了坛友的编程器固件，最后刷入art正常使用</li>
-</ul>
+<li><p>很奇怪，我按照坛友的方法改好后，开机却一直重启。用万用表测量gpio12的对地电压，开机时很稳定的2.5v但是开机完成后马上跳回0.1v，导致机器无限重启。于是我尝试将电阻换为2.2k甚至1k，问题依旧，最后直接不要电阻，将电阻两脚直接点上，没再出现重启的现象。最后还是接上了20欧的电阻，电流能减少一点是一点，开机一切正常。</p>
 
-<h2 id="0x05-外接天线">0x05 外接天线</h2>
+<h2 id="0x03-提取art">0x03 提取art</h2></li>
 
-<ul>
-<li>由于原机的天线接头比较特别，是N型母头，要和sma接头的八木天线连接，还得买个N型公头转sma外螺内针的转接头</li>
-</ul>
+<li><p>art在原厂固件的最后64KB，直接用winhex备份出来即可</p>
 
-<h2 id="0x06-使用效果">0x06 使用效果</h2>
+<h2 id="0x04-刷入ubnt固件与art">0x04 刷入ubnt固件与art</h2></li>
 
-<ul>
-<li>用原机的5dbi天线伸出窗外效果还行，信号在-60db左右，但是这机子不防水啊，常年这样用也不是办法，但是把机子放在室内，再外接八木天线或者6dbi的全向天线效果都不理想！</li>
-<li>总结：翻车了！</li>
+<li><p>由于我找不到适用的ubnt固件，最后还是用了坛友的编程器固件，最后刷入art正常使用</p>
+
+<h2 id="0x05-外接天线">0x05 外接天线</h2></li>
+
+<li><p>由于原机的天线接头比较特别，是N型母头，要和sma接头的八木天线连接，还得买个N型公头转sma外螺内针的转接头</p>
+
+<h2 id="0x06-使用效果">0x06 使用效果</h2></li>
+
+<li><p>用原机的5dbi天线伸出窗外效果还行，信号在-60db左右，但是这机子不防水啊，常年这样用也不是办法，但是把机子放在室内，再外接八木天线或者6dbi的全向天线效果都不理想！</p></li>
+
+<li><p>总结：翻车了！</p></li>
 </ul>
 
     </div>
@@ -282,7 +276,7 @@
     <div class="copyright">
         &copy;
         
-        <span itemprop="copyrightYear">2018 - 2023</span>
+        <span itemprop="copyrightYear">2018 - 2024</span>
         
         <span class="with-love">
     	 <i class="iconfont icon-love"></i> 

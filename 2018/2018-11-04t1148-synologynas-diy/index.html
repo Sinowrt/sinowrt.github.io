@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noodp"/>
+  <meta name="referrer" content="no-referrer" />
   <meta name="author" content="sinowrt">
   
   
@@ -46,18 +47,18 @@
     "articleSection" : "posts",
     "name" : "旧笔记本安装黑群晖NAS系统——打造属于自己的私有云",
     "headline" : "旧笔记本安装黑群晖NAS系统——打造属于自己的私有云",
-    "description" : "0x00 硬件条件 1.废旧的三星rv415笔记本电脑  CPU AMD Fusion APU E-450 RAM DDR3 2G 800MHz\n2.SANDISK U盘 32G 一个  0x02 软件条件 1.群晖6.x.x引导文件 2.OSFmount 用于挂载引导镜像便于修改 3.Win32DiskImager 将引导文件写入U盘 4.群晖6.1-15047系统文件 5.群晖助手 0x03 网络拓扑 0x04 安装过程 1.安装之前建议先把硬盘格了再进行全新安装 2.制作引导系统 1）挂载img文件  安装osfmount 打开osfmount，对img文件进行挂载，如下所示\n   选择img文件 填写offset如图所示，选择单位KBytes 去掉read-only前面的勾 点击OK即挂载成功\n  2）查看U盘vid与pid  打开设备管理器，找到你的U盘\n 双击打开 打开详细信息选项卡，属性下拉选择硬件id，就可以直接看到vid与pid\n  3）修改img文件里的vid与pid  打开刚刚挂载成功的磁盘 用notepad\x2b\x2b打开grub文件夹下的grub.cfg文件 修改第22行和23行的vid、pid为你U盘对应的数值\n 修改保存之后即可卸载刚刚挂载的设备\n  4）打开Win32DiskImager将img文件写入U盘  选择刚刚修改好的img文件 点击写入即可\n  5）用网线将准备安装群晖系统的电脑连入局域网内 6）进入bios将你的电脑启动首选项设置为U盘启动  每台机器都不一样，大家可以google一下 要注意的是，这步很重要，到安装完成重启的过程中，没有选择U盘启动，而由硬盘启动的话，将会引导失败，出现联机失败的错误  7）打开群晖助手搜索局域网内的准备安装群晖系统的机器 * 右键安装，注意一定要选择跟版本号以及型号都一致的pat，否则会出错 * PS:6.",
+    "description" : "0x00 Hardware  废旧的三星rv415笔记本电脑\nCPU AMD Fusion APU E-450\nRAM DDR3 2G 800MHz\n SANDISK U盘 32G 一个\n  0x02 Software  群晖6.x.x引导文件 OSFmount 用于挂载引导镜像便于修改 Win32DiskImager 将引导文件写入U盘 群晖6.1-15047系统文件 群晖助手  0x03 网络拓扑 0x04 安装过程 1.安装之前建议先把硬盘格了再进行全新安装 2.制作引导系统 1）挂载img文件  安装osfmount 打开osfmount，对img文件进行挂载，如下所示   选择img文件 填写offset如图所示，选择单位KBytes 去掉read-only前面的勾 点击OK即挂载成功  2）查看U盘vid与pid  打开设备管理器，找到你的U盘  双击打开 打开详细信息选项卡，属性下拉选择硬件id，就可以直接看到vid与pid  3）修改img文件里的vid与pid  打开刚刚挂载成功的磁盘 用notepad\x2b\x2b打开grub文件夹下的grub.cfg文件 修改第22行和23行的vid、pid为你U盘对应的数值  修改保存之后即可卸载刚刚挂载的设备  4）打开Win32DiskImager将img文件写入U盘  选择刚刚修改好的img文件 点击写入即可  5）用网线将准备安装群晖系统的电脑连入局域网内 6）进入bios将你的电脑启动首选项设置为U盘启动  每台机器都不一样，大家可以google一下 要注意的是，这步很重要，到安装完成重启的过程中，没有选择U盘启动，而由硬盘启动的话，将会引导失败，出现联机失败的错误  7）打开群晖助手搜索局域网内的准备安装群晖系统的机器  右键安装，注意一定要选择跟版本号以及型号都一致的pat，否则会出错 PS:6.",
     "inLanguage" : "en-us",
-    "author" : "SinoWRT",
-    "creator" : "SinoWRT",
-    "publisher": "SinoWRT",
-    "accountablePerson" : "SinoWRT",
-    "copyrightHolder" : "SinoWRT",
+    "author" : "sinowrt",
+    "creator" : "sinowrt",
+    "publisher": "sinowrt",
+    "accountablePerson" : "sinowrt",
+    "copyrightHolder" : "sinowrt",
     "copyrightYear" : "2018",
     "datePublished": "2018-11-04 11:48:41 \x2b0000 \x2b0000",
     "dateModified" : "2018-11-04 11:48:41 \x2b0000 \x2b0000",
     "url" : "http:\/\/blog.sinowrt.cn\/2018\/2018-11-04t1148-synologynas-diy\/",
-    "wordCount" : "89",
+    "wordCount" : "74",
     "keywords" : [  "Sinowrt"]
 }
 </script>
@@ -131,7 +132,7 @@
     <header class="post-header">
         <h1 class="post-title" itemprop="name headline">旧笔记本安装黑群晖NAS系统——打造属于自己的私有云</h1>
         <div class="post-meta">
-                Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">SinoWRT</a> with ♥ 
+                Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
                 <span class="post-time">
                 on <time datetime=2018-11-04 itemprop="datePublished">November 4, 2018</time>
                 </span>
@@ -163,33 +164,30 @@
 
           
 
-<h2 id="0x00-硬件条件">0x00 硬件条件</h2>
-
-<h3 id="1-废旧的三星rv415笔记本电脑">1.废旧的三星rv415笔记本电脑</h3>
+<h2 id="0x00-hardware">0x00 Hardware</h2>
 
 <ul>
-<li>CPU  AMD Fusion APU E-450</li>
+<li><p>废旧的三星rv415笔记本电脑</p>
 
-<li><p>RAM  DDR3 2G 800MHz</p>
+<p>CPU  AMD Fusion APU E-450<br />
+RAM  DDR3 2G 800MHz</p></li>
 
-<h3 id="2-sandisk-u盘-32g-一个">2.SANDISK U盘 32G 一个</h3></li>
+<li><p>SANDISK U盘 32G 一个</p></li>
 </ul>
 
-<h2 id="0x02-软件条件">0x02 软件条件</h2>
+<h2 id="0x02-software">0x02 Software</h2>
 
-<h3 id="1-群晖6-x-x引导文件">1.群晖6.x.x引导文件</h3>
-
-<h3 id="2-osfmount-用于挂载引导镜像便于修改">2.OSFmount 用于挂载引导镜像便于修改</h3>
-
-<h3 id="3-win32diskimager-将引导文件写入u盘">3.Win32DiskImager 将引导文件写入U盘</h3>
-
-<h3 id="4-群晖6-1-15047系统文件">4.群晖6.1-15047系统文件</h3>
-
-<h3 id="5-群晖助手">5.群晖助手</h3>
+<ul>
+<li>群晖6.x.x引导文件</li>
+<li>OSFmount 用于挂载引导镜像便于修改</li>
+<li>Win32DiskImager 将引导文件写入U盘</li>
+<li>群晖6.1-15047系统文件</li>
+<li>群晖助手</li>
+</ul>
 
 <h2 id="0x03-网络拓扑">0x03 网络拓扑</h2>
 
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-04T1148-拓扑.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721060654439-b3d17e2c-acab-48cc-8c32-781f9de9bbc5.png#averageHue=%23f9f9f9&amp;clientId=u4d8170d1-8264-4&amp;from=paste&amp;height=423&amp;id=u39e46cef&amp;originHeight=423&amp;originWidth=591&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=30139&amp;status=done&amp;style=none&amp;taskId=u8dcd0c53-467e-4a2d-aa79-bfb5f4906a3&amp;title=&amp;width=591" alt="2018-11-04T1148-拓扑.png" class="lazyload"><figcaption class="image-caption">2018-11-04T1148-拓扑.png</figcaption></figure></p>
 
 <h2 id="0x04-安装过程">0x04 安装过程</h2>
 
@@ -201,53 +199,51 @@
 
 <ul>
 <li>安装osfmount</li>
-<li>打开osfmount，对img文件进行挂载，如下所示<br /></li>
+<li>打开osfmount，对img文件进行挂载，如下所示</li>
 </ul>
 
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-04T1148-osfmount1.jpg" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/jpeg/35574316/1721060716580-6b083e78-bc0c-4324-81e5-afe02865e805.jpeg#averageHue=%23f5f5f5&amp;clientId=u4d8170d1-8264-4&amp;from=paste&amp;height=391&amp;id=uba3a4742&amp;originHeight=391&amp;originWidth=821&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=23567&amp;status=done&amp;style=none&amp;taskId=ud8409a55-0e7d-445f-87b7-abeb990705c&amp;title=&amp;width=821" alt="2018-11-04T1148-osfmount1.jpg" class="lazyload"><figcaption class="image-caption">2018-11-04T1148-osfmount1.jpg</figcaption></figure></p>
 
 <ul>
 <li>选择img文件</li>
 <li>填写offset如图所示，选择单位KBytes</li>
 <li>去掉read-only前面的勾</li>
-<li>点击OK即挂载成功<br /></li>
+<li>点击OK即挂载成功</li>
 </ul>
 
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-04T1148-osfmount2.jpg" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/jpeg/35574316/1721060752439-9bee5e37-b08f-4bdb-903f-d6df14e4f5e2.jpeg#averageHue=%23e7e5e4&amp;clientId=u4d8170d1-8264-4&amp;from=paste&amp;height=561&amp;id=u3794b236&amp;originHeight=561&amp;originWidth=347&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=40737&amp;status=done&amp;style=none&amp;taskId=u52f21256-1219-441a-9a35-3b8054e1e50&amp;title=&amp;width=347" alt="2018-11-04T1148-osfmount2.jpg" class="lazyload"><figcaption class="image-caption">2018-11-04T1148-osfmount2.jpg</figcaption></figure></p>
 
 <h4 id="2-查看u盘vid与pid">2）查看U盘vid与pid</h4>
 
 <ul>
-<li>打开设备管理器，找到你的U盘<br />
-<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-04T1148-设备管理器.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></li>
+<li>打开设备管理器，找到你的U盘
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721060813376-66c89677-d7f9-428d-9d6c-8f307d609e9e.png#averageHue=%23f9f8f7&amp;clientId=u4d8170d1-8264-4&amp;from=paste&amp;height=707&amp;id=u2149eee8&amp;originHeight=707&amp;originWidth=988&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=67252&amp;status=done&amp;style=none&amp;taskId=u4e36f43c-7a1f-49ab-ad86-9ed4150be74&amp;title=&amp;width=988" alt="2018-11-04T1148-设备管理器.png" class="lazyload"><figcaption class="image-caption">2018-11-04T1148-设备管理器.png</figcaption></figure></li>
 <li>双击打开</li>
-<li>打开详细信息选项卡，属性下拉选择硬件id，就可以直接看到vid与pid<br /></li>
+<li>打开详细信息选项卡，属性下拉选择硬件id，就可以直接看到vid与pid</li>
 </ul>
 
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-04T1148-vp.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721060816951-1ce227c1-9cf9-4112-90d6-03af8cc09cb8.png#averageHue=%23f8f6f6&amp;clientId=u4d8170d1-8264-4&amp;from=paste&amp;height=582&amp;id=u3450115d&amp;originHeight=582&amp;originWidth=465&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=14883&amp;status=done&amp;style=none&amp;taskId=u508704e3-a7cc-4c88-ae4f-792b7235f03&amp;title=&amp;width=465" alt="2018-11-04T1148-vp.png" class="lazyload"><figcaption class="image-caption">2018-11-04T1148-vp.png</figcaption></figure></p>
 
 <h4 id="3-修改img文件里的vid与pid">3）修改img文件里的vid与pid</h4>
 
 <ul>
 <li>打开刚刚挂载成功的磁盘</li>
 <li>用notepad++打开grub文件夹下的grub.cfg文件</li>
-
-<li><p>修改第22行和23行的vid、pid为你U盘对应的数值<br />
-<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-04T1148-MODIvp.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p></li>
-
-<li><p>修改保存之后即可卸载刚刚挂载的设备</p></li>
+<li>修改第22行和23行的vid、pid为你U盘对应的数值
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721060877665-96960861-aadd-4022-bb60-34e10e796fb9.png#averageHue=%23f3f1ef&amp;clientId=u4d8170d1-8264-4&amp;from=paste&amp;height=840&amp;id=u64c92252&amp;originHeight=840&amp;originWidth=623&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=59053&amp;status=done&amp;style=none&amp;taskId=u6a292f90-be6d-442c-9bc7-7cd2636976b&amp;title=&amp;width=623" alt="2018-11-04T1148-MODIvp.png" class="lazyload"><figcaption class="image-caption">2018-11-04T1148-MODIvp.png</figcaption></figure></li>
+<li>修改保存之后即可卸载刚刚挂载的设备</li>
 </ul>
 
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-04T1148-dismount.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721060909984-b0910dce-cb25-4a8c-9fc9-27a38495d642.png#averageHue=%23f4f4f4&amp;clientId=u4d8170d1-8264-4&amp;from=paste&amp;height=392&amp;id=u5f7d4ce4&amp;originHeight=392&amp;originWidth=810&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=19158&amp;status=done&amp;style=none&amp;taskId=ua4a13aa1-4ebb-466a-a291-f05db4933e6&amp;title=&amp;width=810" alt="2018-11-04T1148-dismount.png" class="lazyload"><figcaption class="image-caption">2018-11-04T1148-dismount.png</figcaption></figure></p>
 
 <h4 id="4-打开win32diskimager将img文件写入u盘">4）打开Win32DiskImager将img文件写入U盘</h4>
 
 <ul>
 <li>选择刚刚修改好的img文件</li>
-<li>点击写入即可<br /></li>
+<li>点击写入即可</li>
 </ul>
 
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-04T1148-win32.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721060942194-9bada0ee-5a2b-4e47-b94f-7fce69dd9bd4.png#averageHue=%23e9e8e8&amp;clientId=u4d8170d1-8264-4&amp;from=paste&amp;height=333&amp;id=u66c92271&amp;originHeight=333&amp;originWidth=482&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=13653&amp;status=done&amp;style=none&amp;taskId=u28339cdc-b046-4d48-a4dc-0460d8d2fd5&amp;title=&amp;width=482" alt="2018-11-04T1148-win32.png" class="lazyload"><figcaption class="image-caption">2018-11-04T1148-win32.png</figcaption></figure></p>
 
 <h4 id="5-用网线将准备安装群晖系统的电脑连入局域网内">5）用网线将准备安装群晖系统的电脑连入局域网内</h4>
 
@@ -260,42 +256,53 @@
 
 <h4 id="7-打开群晖助手搜索局域网内的准备安装群晖系统的机器">7）打开群晖助手搜索局域网内的准备安装群晖系统的机器</h4>
 
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-04T1148-setup.jpg" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure>
- * 右键安装，注意一定要选择跟版本号以及型号都一致的pat，否则会出错
- * PS:6.x.x引导文件的版本号可以自定义，见<a href="https://prismjs.com/download.html" rel="nofollow noreferrer" target="_blank">自定义黑群晖6.x.x引导系统版本</a><br />
- <figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-04T1148-setup1.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure>
- * 选好群晖系统之后，直接下一步
- * 填写服务器密码<br />
- <figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-04T1148-setup2.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure>
-* 设置网络，如果网络内有DHCP服务器，可以直接下一步
-* 若没有DHCP服务器，或者希望服务器用静态地址，选手动配置<br />
- <figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-04T1148-setup3.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure>
-* 配置好网络之后，点击完成，安装就开始了，如下所示：<br />
- <figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-04T1148-setup4.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure>
-* 到了这一步，DMS安装完成，会重启服务器<br />
- <figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-04T1148-setup5.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
-
-<h2 id="注意">注意：</h2>
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/jpeg/35574316/1721060946763-049f8985-fed6-4291-81f5-94fb13aba626.jpeg#averageHue=%23f9f8f1&amp;clientId=u4d8170d1-8264-4&amp;from=paste&amp;height=606&amp;id=u6794af86&amp;originHeight=606&amp;originWidth=940&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=41700&amp;status=done&amp;style=none&amp;taskId=ufac5e088-2008-4a27-8091-0431f10631c&amp;title=&amp;width=940" alt="2018-11-04T1148-setup.jpg" class="lazyload"><figcaption class="image-caption">2018-11-04T1148-setup.jpg</figcaption></figure></p>
 
 <ul>
-<li>现象：如果BIOS没设置好，会直接从硬盘启动，系统无法引导：即左上角一直有个光标在闪</li>
-<li>后果：若倒计时超时，会出现无法联机的错误，重启服务器再搜索群晖服务器，会显示可转移，即没安装成功</li>
-<li>解决方法：在出现引导失败的情况时，即左上角一直有个光标在闪，应该立即重启服务器，手动选择U盘启动方式，等待片刻即可出现下面的提示<br /></li>
+<li>右键安装，注意一定要选择跟版本号以及型号都一致的pat，否则会出错</li>
+<li>PS:6.x.x引导文件的版本号可以自定义，见<a href="https://prismjs.com/download.html" rel="nofollow noreferrer" target="_blank">自定义黑群晖6.x.x引导系统版本</a></li>
 </ul>
 
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-04T1148-setup6.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure>
- * 出现安装成功的提示之后，即可右键，进行联机<br />
- <figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-04T1148-finish0.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure>
-* 联机将会通过默认浏览器打开这个界面,填入admin以及您设置的密码即可登陆服务器<br />
- <figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-04T1148-finish1.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure>
-* 第一次联机要求对服务器进行配置，升级配置我们选择第三项，手动升级，否则会出现自动更新系统，而引导文件不支持该系统，则会引导失败，系统无法启动
-* 其他选项保持默认即可<br />
- <figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-04T1148-finish2.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure>
-* 这个界面是用于设置QuickConnect账户，便于外网访问，我们是黑群晖，所以这一步选择跳过<br />
-* 要通过外网访问则要通过路由设置内网穿透<br />
- <figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-04T1148-finish3.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure>
-* 完成所有设置之后，就能进入系统了<br />
- <figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-04T1148-final.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721060988232-c44333d0-a59e-4376-87fe-5329adf0db4d.png#averageHue=%23efeeee&amp;clientId=u4d8170d1-8264-4&amp;from=paste&amp;height=513&amp;id=uf1d14864&amp;originHeight=513&amp;originWidth=745&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=13612&amp;status=done&amp;style=none&amp;taskId=ud4823df8-2233-4943-a27d-ef872ad824d&amp;title=&amp;width=745" alt="2018-11-04T1148-setup1.png" class="lazyload"><figcaption class="image-caption">2018-11-04T1148-setup1.png</figcaption></figure></p>
+
+<ul>
+<li>选好群晖系统之后，直接下一步</li>
+<li>填写服务器密码
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721061020173-aa989459-5ca2-4536-9bc7-aeee344dd592.png#averageHue=%23f7f6f6&amp;clientId=u4d8170d1-8264-4&amp;from=paste&amp;height=513&amp;id=u79641176&amp;originHeight=513&amp;originWidth=743&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=15086&amp;status=done&amp;style=none&amp;taskId=uae9478aa-7e66-472d-9345-2529a049c37&amp;title=&amp;width=743" alt="2018-11-04T1148-setup2.png" class="lazyload"><figcaption class="image-caption">2018-11-04T1148-setup2.png</figcaption></figure></li>
+<li>设置网络，如果网络内有DHCP服务器，可以直接下一步</li>
+<li>若没有DHCP服务器，或者希望服务器用静态地址，选手动配置
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721061039570-cf6e8cc9-6940-4ab9-9e9d-f0585215f33e.png#averageHue=%23f6f6f6&amp;clientId=u4d8170d1-8264-4&amp;from=paste&amp;height=514&amp;id=u4785b7d3&amp;originHeight=514&amp;originWidth=745&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=17334&amp;status=done&amp;style=none&amp;taskId=u6ec932b0-623b-4a8a-8706-a6039905b8b&amp;title=&amp;width=745" alt="2018-11-04T1148-setup3.png" class="lazyload"><figcaption class="image-caption">2018-11-04T1148-setup3.png</figcaption></figure></li>
+<li>配置好网络之后，点击完成，安装就开始了，如下所示：
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721061060338-729b4447-b1a3-4748-819d-9561103ba40e.png#averageHue=%23fafafa&amp;clientId=u4d8170d1-8264-4&amp;from=paste&amp;height=633&amp;id=u17b8f1dd&amp;originHeight=633&amp;originWidth=802&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=13553&amp;status=done&amp;style=none&amp;taskId=u9bcde066-c31c-467f-b1c5-25e9ae64af6&amp;title=&amp;width=802" alt="2018-11-04T1148-setup4.png" class="lazyload"><figcaption class="image-caption">2018-11-04T1148-setup4.png</figcaption></figure></li>
+
+<li><p>到了这一步，DMS安装完成，会重启服务器
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721061074080-6c68e5e3-c513-496a-a031-c0aaa5c2b2e0.png#averageHue=%23fbfbfb&amp;clientId=u4d8170d1-8264-4&amp;from=paste&amp;height=632&amp;id=u2b68ec4c&amp;originHeight=632&amp;originWidth=798&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=13878&amp;status=done&amp;style=none&amp;taskId=u875b551c-c089-44a4-8b68-87f8ce2ee2c&amp;title=&amp;width=798" alt="2018-11-04T1148-setup5.png" class="lazyload"><figcaption class="image-caption">2018-11-04T1148-setup5.png</figcaption></figure></p>
+
+<h2 id="注意">注意：</h2></li>
+
+<li><p>现象：如果BIOS没设置好，会直接从硬盘启动，系统无法引导：即左上角一直有个光标在闪</p></li>
+
+<li><p>后果：若倒计时超时，会出现无法联机的错误，重启服务器再搜索群晖服务器，会显示可转移，即没安装成功</p></li>
+
+<li><p>解决方法：在出现引导失败的情况时，即左上角一直有个光标在闪，应该立即重启服务器，手动选择U盘启动方式，等待片刻即可出现下面的提示</p></li>
+</ul>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721061091064-2e027e61-5f70-40b7-863a-22acf4b42275.png#averageHue=%23fbfbfb&amp;clientId=u4d8170d1-8264-4&amp;from=paste&amp;height=634&amp;id=mDkOg&amp;originHeight=634&amp;originWidth=803&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=18166&amp;status=done&amp;style=none&amp;taskId=ude5390da-7fc4-4999-b956-cc8964ab502&amp;title=&amp;width=803" alt="2018-11-04T1148-setup6.png" class="lazyload"><figcaption class="image-caption">2018-11-04T1148-setup6.png</figcaption></figure></p>
+
+<ul>
+<li>出现安装成功的提示之后，即可右键，进行联机
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721061132475-cf4930fa-556e-4244-b269-21c009d942a4.png#averageHue=%23fcfcfc&amp;clientId=u4d8170d1-8264-4&amp;from=paste&amp;height=606&amp;id=u15d78d83&amp;originHeight=606&amp;originWidth=942&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=31137&amp;status=done&amp;style=none&amp;taskId=ue86b0ed0-54a1-4589-aacb-70afa2eddde&amp;title=&amp;width=942" alt="2018-11-04T1148-finish0.png" class="lazyload"><figcaption class="image-caption">2018-11-04T1148-finish0.png</figcaption></figure></li>
+<li>联机将会通过默认浏览器打开这个界面,填入admin以及您设置的密码即可登陆服务器
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721061145997-d3346814-3094-444b-8c4d-60fe92af22bf.png#averageHue=%231975d2&amp;clientId=u4d8170d1-8264-4&amp;from=paste&amp;height=577&amp;id=u963ab7be&amp;originHeight=577&amp;originWidth=881&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=343091&amp;status=done&amp;style=none&amp;taskId=ufd0bd059-851e-49f8-86dd-29dd583eb8d&amp;title=&amp;width=881" alt="2018-11-04T1148-finish1.png" class="lazyload"><figcaption class="image-caption">2018-11-04T1148-finish1.png</figcaption></figure></li>
+<li>第一次联机要求对服务器进行配置，升级配置我们选择第三项，手动升级，否则会出现自动更新系统，而引导文件不支持该系统，则会引导失败，系统无法启动</li>
+<li>其他选项保持默认即可
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721061159850-7b221576-5415-4e03-9684-d81658626a90.png#averageHue=%231674b1&amp;clientId=u4d8170d1-8264-4&amp;from=paste&amp;height=712&amp;id=uf7294202&amp;originHeight=712&amp;originWidth=1165&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=566775&amp;status=done&amp;style=none&amp;taskId=u3dfd89dc-aef7-429e-bace-86a486cfd48&amp;title=&amp;width=1165" alt="2018-11-04T1148-finish2.png" class="lazyload"><figcaption class="image-caption">2018-11-04T1148-finish2.png</figcaption></figure></li>
+<li>这个界面是用于设置QuickConnect账户，便于外网访问，我们是黑群晖，所以这一步选择跳过<br /></li>
+<li>要通过外网访问则要通过路由设置内网穿透
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721061172773-c0630a55-5fc4-472f-b4ba-83ff939e507b.png#averageHue=%231773b0&amp;clientId=u4d8170d1-8264-4&amp;from=paste&amp;height=712&amp;id=u242928e6&amp;originHeight=712&amp;originWidth=1165&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=560379&amp;status=done&amp;style=none&amp;taskId=u761cf5fa-f096-40e6-af43-915f6c9e446&amp;title=&amp;width=1165" alt="2018-11-04T1148-finish3.png" class="lazyload"><figcaption class="image-caption">2018-11-04T1148-finish3.png</figcaption></figure></li>
+<li>完成所有设置之后，就能进入系统了
+<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721061198109-d7bb5121-ae65-4f9b-ae3d-8a9f3f7e22b0.png#averageHue=%235a82b6&amp;clientId=u4d8170d1-8264-4&amp;from=paste&amp;height=712&amp;id=ucd1c6750&amp;originHeight=712&amp;originWidth=1165&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=582311&amp;status=done&amp;style=none&amp;taskId=uee87a7a2-e8ca-46f5-8da4-15fb4ff0676&amp;title=&amp;width=1165" alt="2018-11-04T1148-final.png" class="lazyload"><figcaption class="image-caption">2018-11-04T1148-final.png</figcaption></figure></li>
+</ul>
 
     </div>
 	
@@ -352,7 +359,7 @@
     <div class="copyright">
         &copy;
         
-        <span itemprop="copyrightYear">2018 - 2023</span>
+        <span itemprop="copyrightYear">2018 - 2024</span>
         
         <span class="with-love">
     	 <i class="iconfont icon-love"></i> 

@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noodp"/>
+  <meta name="referrer" content="no-referrer" />
   <meta name="author" content="sinowrt">
   
   
@@ -46,13 +47,13 @@
     "articleSection" : "posts",
     "name" : "利用docker为群晖部署aria2下载工具",
     "headline" : "利用docker为群晖部署aria2下载工具",
-    "description" : " 0x00 安装docker  在package center中的Third party找到docker 直接点击install进行安装\n 安装完毕，点击open即可打开docker\n0x01 下载aria2映像 点击Registry选项卡，搜索aria2\n 找到xujinkai那个下载下来\n0x02 启动容器 点击image选项卡，点击launch进行启动\n0x03 启动设置 点击Advance 1）Advance Setting 打上这两个√，设置开机自启动以及创建桌面快捷方式 2）Volume设置，添加这两项，前面的文件夹随便选，圈起来的位置务必一样 3）Port设置，为了方便使用，local port修改成您想要的端口 第一项为下载端口\n 第二项为webui端口\n 第三项为下载文件目录端口\n  4）Environment设置 如图添加这两项，否则webui会报错，分别填写你的用户名和密码，ok 5）完成高级设置后，next 6）最后apply 7）打开浏览器，输入服务器地址以及你设置的webui端口，即可访问aria2 webui ",
+    "description" : " 0x00 安装docker  在package center中的Third party找到docker 直接点击install进行安装   安装完毕，点击open即可打开docker  0x01 下载aria2映像  点击Registry选项卡，搜索aria2 找到xujinkai那个下载下来  0x02 启动容器  点击image选项卡，点击launch进行启动  0x03 启动设置 点击Advance 1）Advance Setting 打上这两个√，设置开机自启动以及创建桌面快捷方式 2）Volume设置，添加这两项，前面的文件夹随便选，圈起来的位置务必一样 3）Port设置，为了方便使用，local port修改成您想要的端口  第一项为下载端口 第二项为webui端口 第三项为下载文件目录端口  4）Environment设置 如图添加这两项，否则webui会报错，分别填写你的用户名和密码，ok 5）完成高级设置后，next 6）最后apply 7）打开浏览器，输入服务器地址以及你设置的webui端口，即可访问aria2 webui ",
     "inLanguage" : "en-us",
-    "author" : "SinoWRT",
-    "creator" : "SinoWRT",
-    "publisher": "SinoWRT",
-    "accountablePerson" : "SinoWRT",
-    "copyrightHolder" : "SinoWRT",
+    "author" : "sinowrt",
+    "creator" : "sinowrt",
+    "publisher": "sinowrt",
+    "accountablePerson" : "sinowrt",
+    "copyrightHolder" : "sinowrt",
     "copyrightYear" : "2018",
     "datePublished": "2018-11-06 02:07:21 \x2b0000 \x2b0000",
     "dateModified" : "2018-11-06 02:07:21 \x2b0000 \x2b0000",
@@ -131,7 +132,7 @@
     <header class="post-header">
         <h1 class="post-title" itemprop="name headline">利用docker为群晖部署aria2下载工具</h1>
         <div class="post-meta">
-                Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">SinoWRT</a> with ♥ 
+                Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
                 <span class="post-time">
                 on <time datetime=2018-11-06 itemprop="datePublished">November 6, 2018</time>
                 </span>
@@ -167,63 +168,71 @@
 
 <ul>
 <li>在package center中的Third party找到docker</li>
-<li>直接点击install进行安装<br />
-<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-06T0207-docker.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></li>
+<li>直接点击install进行安装</li>
+</ul>
 
-<li><p>安装完毕，点击open即可打开docker</p>
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721140960549-c2bf34f0-370a-4444-8736-f8bf26a2aa91.png#averageHue=%23a7d4dc&amp;clientId=ufb10de1e-7265-4&amp;from=paste&amp;height=770&amp;id=uf8c39506&amp;originHeight=770&amp;originWidth=1168&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=333313&amp;status=done&amp;style=none&amp;taskId=uacfe2c6b-590c-46a0-adc3-c5f24ede876&amp;title=&amp;width=1168" alt="2018-11-06T0207-docker.png" class="lazyload"><figcaption class="image-caption">2018-11-06T0207-docker.png</figcaption></figure></p>
 
-<h2 id="0x01-下载aria2映像">0x01 下载aria2映像</h2></li>
+<ul>
+<li>安装完毕，点击open即可打开docker</li>
+</ul>
 
-<li><p>点击Registry选项卡，搜索aria2</p></li>
+<h2 id="0x01-下载aria2映像">0x01 下载aria2映像</h2>
 
-<li><p>找到xujinkai那个下载下来<br />
-<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-06T0207-image.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
+<ul>
+<li>点击Registry选项卡，搜索aria2</li>
+<li>找到xujinkai那个下载下来</li>
+</ul>
 
-<h2 id="0x02-启动容器">0x02 启动容器</h2></li>
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721140992868-cf78bddc-798e-4531-8957-f16d0d6bb0c3.png#averageHue=%23edeeb9&amp;clientId=ufb10de1e-7265-4&amp;from=paste&amp;height=770&amp;id=ucc8d40a0&amp;originHeight=770&amp;originWidth=1168&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=250914&amp;status=done&amp;style=none&amp;taskId=ue4e16bef-d9be-46ab-af3a-abfeef06e16&amp;title=&amp;width=1168" alt="2018-11-06T0207-image.png" class="lazyload"><figcaption class="image-caption">2018-11-06T0207-image.png</figcaption></figure></p>
 
-<li><p>点击image选项卡，点击launch进行启动<br />
-<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-06T0207-launch0.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
+<h2 id="0x02-启动容器">0x02 启动容器</h2>
+
+<ul>
+<li>点击image选项卡，点击launch进行启动</li>
+</ul>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721141023992-e538cec1-8999-4a10-b2f1-bf2761a99684.png#averageHue=%23dadb8a&amp;clientId=ufb10de1e-7265-4&amp;from=paste&amp;height=770&amp;id=u70cd6862&amp;originHeight=770&amp;originWidth=1168&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=226213&amp;status=done&amp;style=none&amp;taskId=ue1bec270-f32b-4e7d-a19e-a3501add9d1&amp;title=&amp;width=1168" alt="2018-11-06T0207-launch0.png" class="lazyload"><figcaption class="image-caption">2018-11-06T0207-launch0.png</figcaption></figure></p>
 
 <h2 id="0x03-启动设置">0x03 启动设置</h2>
 
 <h3 id="点击advance">点击Advance</h3>
 
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-06T0207-launch1.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721141095159-02479e52-b740-46b7-927d-159810a13782.png#averageHue=%23e5f1cf&amp;clientId=ufb10de1e-7265-4&amp;from=paste&amp;height=770&amp;id=u816c7ef7&amp;originHeight=770&amp;originWidth=1168&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=276529&amp;status=done&amp;style=none&amp;taskId=u0e003be0-93d4-4be4-afe0-006c0d191f6&amp;title=&amp;width=1168" alt="2018-11-06T0207-launch1.png" class="lazyload"><figcaption class="image-caption">2018-11-06T0207-launch1.png</figcaption></figure></p>
 
 <h3 id="1-advance-setting-打上这两个-设置开机自启动以及创建桌面快捷方式">1）Advance Setting 打上这两个√，设置开机自启动以及创建桌面快捷方式</h3>
 
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-06T0207-launch2.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721141120729-bd00f708-72f6-43b9-8cf4-7cde38643a5b.png#averageHue=%23e7d580&amp;clientId=ufb10de1e-7265-4&amp;from=paste&amp;height=770&amp;id=ud36b40f3&amp;originHeight=770&amp;originWidth=1168&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=244116&amp;status=done&amp;style=none&amp;taskId=u34c58223-b85d-43bd-938e-992bd33da34&amp;title=&amp;width=1168" alt="2018-11-06T0207-launch2.png" class="lazyload"><figcaption class="image-caption">2018-11-06T0207-launch2.png</figcaption></figure></p>
 
 <h3 id="2-volume设置-添加这两项-前面的文件夹随便选-圈起来的位置务必一样">2）Volume设置，添加这两项，前面的文件夹随便选，圈起来的位置务必一样</h3>
 
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-06T0207-launch3.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721141121011-448394d3-9bab-46f5-9bb1-7dbdd1edbf8f.png#averageHue=%23e8eaac&amp;clientId=ufb10de1e-7265-4&amp;from=paste&amp;height=819&amp;id=u4a874017&amp;originHeight=819&amp;originWidth=1168&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=278452&amp;status=done&amp;style=none&amp;taskId=u7338d7c0-0889-4a4e-9e5a-05cb1255142&amp;title=&amp;width=1168" alt="2018-11-06T0207-launch3.png" class="lazyload"><figcaption class="image-caption">2018-11-06T0207-launch3.png</figcaption></figure></p>
 
-<h3 id="3-port设置-为了方便使用-local-port修改成您想要的端口">3）Port设置，为了方便使用，local port修改成您想要的端口</h3></li>
+<h3 id="3-port设置-为了方便使用-local-port修改成您想要的端口">3）Port设置，为了方便使用，local port修改成您想要的端口</h3>
 
-<li><p>第一项为下载端口</p></li>
-
-<li><p>第二项为webui端口</p></li>
-
-<li><p>第三项为下载文件目录端口</p></li>
+<ul>
+<li>第一项为下载端口</li>
+<li>第二项为webui端口</li>
+<li>第三项为下载文件目录端口</li>
 </ul>
 
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-06T0207-launch4.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721141155201-e86e0fe6-964c-4ce3-86ac-20c59decb961.png#averageHue=%23e6db91&amp;clientId=ufb10de1e-7265-4&amp;from=paste&amp;height=770&amp;id=ud8b4396e&amp;originHeight=770&amp;originWidth=1168&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=237666&amp;status=done&amp;style=none&amp;taskId=u817c30db-f78c-4ccc-9207-60d90952d6c&amp;title=&amp;width=1168" alt="2018-11-06T0207-launch4.png" class="lazyload"><figcaption class="image-caption">2018-11-06T0207-launch4.png</figcaption></figure></p>
 
 <h3 id="4-environment设置-如图添加这两项-否则webui会报错-分别填写你的用户名和密码-ok">4）Environment设置 如图添加这两项，否则webui会报错，分别填写你的用户名和密码，ok</h3>
 
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-06T0207-launch5.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721141172956-dd5c848f-9586-46e5-b8ca-0dc99f0edbd6.png#averageHue=%23e9e5a0&amp;clientId=ufb10de1e-7265-4&amp;from=paste&amp;height=819&amp;id=ubffd912a&amp;originHeight=819&amp;originWidth=1168&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=271398&amp;status=done&amp;style=none&amp;taskId=ubd5077c2-d801-4798-a97c-a661510345e&amp;title=&amp;width=1168" alt="2018-11-06T0207-launch5.png" class="lazyload"><figcaption class="image-caption">2018-11-06T0207-launch5.png</figcaption></figure></p>
 
 <h3 id="5-完成高级设置后-next">5）完成高级设置后，next</h3>
 
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-06T0207-launch6.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721141179028-7f12c4d8-e0f7-4d57-991b-47c8a86c75d4.png#averageHue=%23cae3bc&amp;clientId=ufb10de1e-7265-4&amp;from=paste&amp;height=819&amp;id=u86bfbf9b&amp;originHeight=819&amp;originWidth=1168&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=314918&amp;status=done&amp;style=none&amp;taskId=u8cf4257b-533f-490f-82c4-239783b4abc&amp;title=&amp;width=1168" alt="2018-11-06T0207-launch6.png" class="lazyload"><figcaption class="image-caption">2018-11-06T0207-launch6.png</figcaption></figure></p>
 
 <h3 id="6-最后apply">6）最后apply</h3>
 
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-06T0207-apply.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721141189823-e31a6d6c-17ab-4e0c-9655-8f9f0135c1f2.png#averageHue=%23c9e6c4&amp;clientId=ufb10de1e-7265-4&amp;from=paste&amp;height=819&amp;id=u18d30964&amp;originHeight=819&amp;originWidth=1168&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=318155&amp;status=done&amp;style=none&amp;taskId=ucad0352c-e04e-4567-a9f3-53a29c19b3a&amp;title=&amp;width=1168" alt="2018-11-06T0207-apply.png" class="lazyload"><figcaption class="image-caption">2018-11-06T0207-apply.png</figcaption></figure></p>
 
 <h3 id="7-打开浏览器-输入服务器地址以及你设置的webui端口-即可访问aria2-webui">7）打开浏览器，输入服务器地址以及你设置的webui端口，即可访问aria2 webui</h3>
 
-<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://pic.sinowrt.cn/blogpics/2018-11-06T0207-finish.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2024/png/35574316/1721141201482-4743f46f-57f2-4042-af8b-0aef15e6d812.png#averageHue=%23f4f4f4&amp;clientId=ufb10de1e-7265-4&amp;from=paste&amp;height=819&amp;id=u49260411&amp;originHeight=819&amp;originWidth=1168&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=34390&amp;status=done&amp;style=none&amp;taskId=ud3e31b6f-844d-47b0-9af3-67c997bd938&amp;title=&amp;width=1168" alt="2018-11-06T0207-finish.png" class="lazyload"><figcaption class="image-caption">2018-11-06T0207-finish.png</figcaption></figure></p>
 
     </div>
 	
@@ -280,7 +289,7 @@
     <div class="copyright">
         &copy;
         
-        <span itemprop="copyrightYear">2018 - 2023</span>
+        <span itemprop="copyrightYear">2018 - 2024</span>
         
         <span class="with-love">
     	 <i class="iconfont icon-love"></i> 
