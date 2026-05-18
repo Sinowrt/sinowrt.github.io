@@ -6,10 +6,19 @@
     <description>Recent content in Categories on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 01 Sep 2023 08:19:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 16 May 2025 18:19:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>疑难杂症</title>
+      <link>http://blog.sinowrt.cn/categories/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/</link>
+      <pubDate>Fri, 16 May 2025 18:19:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/categories/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>IE</title>

@@ -6,10 +6,37 @@
     <description>Recent content in Tags on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 01 Sep 2023 08:19:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 16 May 2025 18:19:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>win10</title>
+      <link>http://blog.sinowrt.cn/tags/win10/</link>
+      <pubDate>Fri, 16 May 2025 18:19:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/tags/win10/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>死机</title>
+      <link>http://blog.sinowrt.cn/tags/%E6%AD%BB%E6%9C%BA/</link>
+      <pubDate>Fri, 16 May 2025 18:19:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/tags/%E6%AD%BB%E6%9C%BA/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>零信任</title>
+      <link>http://blog.sinowrt.cn/tags/%E9%9B%B6%E4%BF%A1%E4%BB%BB/</link>
+      <pubDate>Fri, 16 May 2025 18:19:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/tags/%E9%9B%B6%E4%BF%A1%E4%BB%BB/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>IE</title>
@@ -620,15 +647,6 @@
       <pubDate>Sat, 10 Aug 2019 15:44:08 +0800</pubDate>
       
       <guid>http://blog.sinowrt.cn/tags/bug/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>win10</title>
-      <link>http://blog.sinowrt.cn/tags/win10/</link>
-      <pubDate>Sat, 10 Aug 2019 15:44:08 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/tags/win10/</guid>
       <description></description>
     </item>
     

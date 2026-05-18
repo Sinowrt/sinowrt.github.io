@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>死机 on Sinowrt</title>
+    <link>http://blog.sinowrt.cn/tags/%E6%AD%BB%E6%9C%BA/</link>
+    <description>Recent content in 死机 on Sinowrt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 16 May 2025 18:19:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.sinowrt.cn/tags/%E6%AD%BB%E6%9C%BA/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>深信服零信任导致的频繁蓝屏死机排查</title>
+      <link>http://blog.sinowrt.cn/2025/troubleshooting-frequent-blue-screen-crashes-caused-by-sangfor-atrust/</link>
+      <pubDate>Fri, 16 May 2025 18:19:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2025/troubleshooting-frequent-blue-screen-crashes-caused-by-sangfor-atrust/</guid>
+      <description>0x00 故障描述 最近电脑蓝屏死机的现象频频发生，蓝屏代码为DRIVER_IRQL_NOT_LESS_OR_EQUAL，考虑到刚更换了显卡，一直从显卡方面入手，更换了几次显卡驱动，从game ready版本更新到studio版本，问题依旧。
+0x01 排查过程 某日下午，熟悉的蓝屏再次出现，死机重启之后，我决定彻底排查该问题
+1、打开计算机管理-系统工具-事件查看器-Windows日志-系统
+2、筛选出该时间段的系统错误日志，查到系统针对该异常关机事件生成了转储文件dmp。
+3、使用windbg.exe打开dmp文件
+4、加载完成后运行!analyze -v命令进行分析
+ExtensionGallery settings after reading &#39;SOFTWARE\Microsoft\Debug Engine&#39; registry: ExtensionGallery ExtensionRepository: Implicit ************* Preparing the environment for Debugger Extensions Gallery repositories ************** ExtensionRepository : Implicit UseExperimentalFeatureForNugetShare : true AllowNugetExeUpdate : true NonInteractiveNuget : true AllowNugetMSCredentialProviderInstall : true AllowParallelInitializationOfLocalRepositories : true EnableRedirectToChakraJsProvider : false -- Configuring repositories ----&amp;gt; Repository : LocalInstalled, Enabled: true ----&amp;gt; Repository : UserExtensions, Enabled: true &amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt; Preparing the environment for Debugger Extensions Gallery repositories completed, duration 0.</description>
+    </item>
+    
+  </channel>
+</rss>

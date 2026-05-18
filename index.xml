@@ -5,8 +5,394 @@
     <description>Recent content in Sinowrt on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 01 Sep 2023 08:19:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 16 May 2025 18:19:00 +0800</lastBuildDate>
     <atom:link href="/" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>深信服零信任导致的频繁蓝屏死机排查</title>
+      <link>http://blog.sinowrt.cn/2025/troubleshooting-frequent-blue-screen-crashes-caused-by-sangfor-atrust/</link>
+      <pubDate>Fri, 16 May 2025 18:19:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2025/troubleshooting-frequent-blue-screen-crashes-caused-by-sangfor-atrust/</guid>
+      <description>
+
+&lt;h2 id=&#34;0x00-故障描述&#34;&gt;0x00 故障描述&lt;/h2&gt;
+
+&lt;p&gt;最近电脑蓝屏死机的现象频频发生，蓝屏代码为DRIVER_IRQL_NOT_LESS_OR_EQUAL，考虑到刚更换了显卡，一直从显卡方面入手，更换了几次显卡驱动，从game ready版本更新到studio版本，问题依旧。&lt;/p&gt;
+
+&lt;h2 id=&#34;0x01-排查过程&#34;&gt;0x01 排查过程&lt;/h2&gt;
+
+&lt;p&gt;某日下午，熟悉的蓝屏再次出现，死机重启之后，我决定彻底排查该问题&lt;/p&gt;
+
+&lt;p&gt;1、打开计算机管理-系统工具-事件查看器-Windows日志-系统&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://cdn.nlark.com/yuque/0/2026/png/35574316/1779096201898-fdc3e83a-c748-491d-b17d-7bc0e4f46893.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;2、筛选出该时间段的系统错误日志，查到系统针对该异常关机事件生成了转储文件dmp。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://cdn.nlark.com/yuque/0/2026/png/35574316/1779096240249-a319c3e9-23e3-4772-b6e3-4933223e3920.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;3、使用windbg.exe打开dmp文件&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://cdn.nlark.com/yuque/0/2026/png/35574316/1779096386375-7e04bb41-67e4-4fc1-a88f-de02b7a67015.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;4、加载完成后运行!analyze -v命令进行分析&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-powershell&#34;&gt;ExtensionGallery settings after reading &#39;SOFTWARE\Microsoft\Debug Engine&#39; registry:
+ExtensionGallery ExtensionRepository: Implicit
+
+************* Preparing the environment for Debugger Extensions Gallery repositories **************
+   ExtensionRepository : Implicit
+   UseExperimentalFeatureForNugetShare : true
+   AllowNugetExeUpdate : true
+   NonInteractiveNuget : true
+   AllowNugetMSCredentialProviderInstall : true
+   AllowParallelInitializationOfLocalRepositories : true
+   EnableRedirectToChakraJsProvider : false
+
+   -- Configuring repositories
+      ----&amp;gt; Repository : LocalInstalled, Enabled: true
+      ----&amp;gt; Repository : UserExtensions, Enabled: true
+
+&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt; Preparing the environment for Debugger Extensions Gallery repositories completed, duration 0.000 seconds
+
+************* Waiting for Debugger Extensions Gallery to Initialize **************
+
+&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt; Waiting for Debugger Extensions Gallery to Initialize completed, duration 0.031 seconds
+   ----&amp;gt; Repository : UserExtensions, Enabled: true, Packages count: 0
+   ----&amp;gt; Repository : LocalInstalled, Enabled: true, Packages count: 46
+
+Microsoft (R) Windows Debugger Version 10.0.29547.1002 AMD64
+Copyright (c) Microsoft Corporation. All rights reserved.
+
+
+Loading Dump File [C:\Windows\Minidump\051326-25703-01.dmp]
+Mini Kernel Dump File: Only registers and stack trace are available
+
+Symbol search path is: srv*
+Executable search path is: 
+Windows 10 Kernel Version 19041 MP (16 procs) Free x64
+Product: WinNt, suite: TerminalServer SingleUserTS
+Kernel base = 0xfffff803`78800000 PsLoadedModuleList = 0xfffff803`7942a3f0
+Debug session time: Wed May 13 16:35:39.228 2026 (UTC + 8:00)
+System Uptime: 15 days 18:49:25.546
+Loading Kernel Symbols
+...............................................................
+................................................................
+................................................................
+................................................................
+..................
+Loading User Symbols
+PEB is paged out (Peb.Ldr = 000000ac`f0959018).  Type &amp;quot;.hh dbgerr001&amp;quot; for details
+Loading unloaded module list
+................
+For analysis of this file, run !analyze -v
+nt!KeBugCheckEx:
+fffff803`78bfd510 48894c2408      mov     qword ptr [rsp+8],rcx ss:0018:ffff8603`91443b30=000000000000000a
+15: kd&amp;gt; !analyze -v
+Loading Kernel Symbols
+...............................................................
+................................................................
+................................................................
+................................................................
+..................
+Loading User Symbols
+PEB is paged out (Peb.Ldr = 000000ac`f0959018).  Type &amp;quot;.hh dbgerr001&amp;quot; for details
+Loading unloaded module list
+................
+*******************************************************************************
+*                                                                             *
+*                        Bugcheck Analysis                                    *
+*                                                                             *
+*******************************************************************************
+
+DRIVER_IRQL_NOT_LESS_OR_EQUAL (d1)
+An attempt was made to access a pageable (or completely invalid) address at an
+interrupt request level (IRQL) that is too high.  This is usually
+caused by drivers using improper addresses.
+If kernel debugger is available get stack backtrace.
+Arguments:
+Arg1: 0000000000000000, memory referenced
+Arg2: 0000000000000002, IRQL
+Arg3: 0000000000000008, value 0 = read operation, 1 = write operation
+Arg4: 0000000000000000, address which referenced memory
+
+Debugging Details:
+------------------
+
+
+KEY_VALUES_STRING: 1
+
+    Key  : Analysis.CPU.mSec
+    Value: 1281
+
+    Key  : Analysis.Elapsed.mSec
+    Value: 6773
+
+    Key  : Analysis.IO.Other.Mb
+    Value: 0
+
+    Key  : Analysis.IO.Read.Mb
+    Value: 1
+
+    Key  : Analysis.IO.Write.Mb
+    Value: 1
+
+    Key  : Analysis.Init.CPU.mSec
+    Value: 593
+
+    Key  : Analysis.Init.Elapsed.mSec
+    Value: 15776
+
+    Key  : Analysis.Memory.CommitPeak.Mb
+    Value: 79
+
+    Key  : Analysis.Version.DbgEng
+    Value: 10.0.29547.1002
+
+    Key  : Analysis.Version.Description
+    Value: 10.2602.27.2 amd64fre
+
+    Key  : Analysis.Version.Ext
+    Value: 1.2602.27.2
+
+    Key  : Bugcheck.Code.LegacyAPI
+    Value: 0xd1
+
+    Key  : Bugcheck.Code.TargetModel
+    Value: 0xd1
+
+    Key  : Dump.Attributes.AsUlong
+    Value: 0x8
+
+    Key  : Dump.Attributes.KernelGeneratedTriageDump
+    Value: 1
+
+    Key  : Failure.Bucket
+    Value: AV_nt!KiPageFault
+
+    Key  : Failure.Hash
+    Value: {ec3e2762-48ae-ffe9-5b16-fbcb853e8320}
+
+    Key  : Faulting.IP.Type
+    Value: Null
+
+    Key  : Hypervisor.Enlightenments.Value
+    Value: 77057948
+
+    Key  : Hypervisor.Enlightenments.ValueHex
+    Value: 0x497cf9c
+
+    Key  : Hypervisor.Flags.AnyHypervisorPresent
+    Value: 1
+
+    Key  : Hypervisor.Flags.ApicEnlightened
+    Value: 1
+
+    Key  : Hypervisor.Flags.ApicVirtualizationAvailable
+    Value: 0
+
+    Key  : Hypervisor.Flags.AsyncMemoryHint
+    Value: 0
+
+    Key  : Hypervisor.Flags.CoreSchedulerRequested
+    Value: 0
+
+    Key  : Hypervisor.Flags.CpuManager
+    Value: 1
+
+    Key  : Hypervisor.Flags.DeprecateAutoEoi
+    Value: 0
+
+    Key  : Hypervisor.Flags.DynamicCpuDisabled
+    Value: 1
+
+    Key  : Hypervisor.Flags.Epf
+    Value: 0
+
+    Key  : Hypervisor.Flags.ExtendedProcessorMasks
+    Value: 1
+
+    Key  : Hypervisor.Flags.HardwareMbecAvailable
+    Value: 1
+
+    Key  : Hypervisor.Flags.MaxBankNumber
+    Value: 0
+
+    Key  : Hypervisor.Flags.MemoryZeroingControl
+    Value: 0
+
+    Key  : Hypervisor.Flags.NoExtendedRangeFlush
+    Value: 0
+
+    Key  : Hypervisor.Flags.NoNonArchCoreSharing
+    Value: 1
+
+    Key  : Hypervisor.Flags.Phase0InitDone
+    Value: 1
+
+    Key  : Hypervisor.Flags.PowerSchedulerQos
+    Value: 0
+
+    Key  : Hypervisor.Flags.RootScheduler
+    Value: 0
+
+    Key  : Hypervisor.Flags.SynicAvailable
+    Value: 1
+
+    Key  : Hypervisor.Flags.UseQpcBias
+    Value: 0
+
+    Key  : Hypervisor.Flags.Value
+    Value: 4853999
+
+    Key  : Hypervisor.Flags.ValueHex
+    Value: 0x4a10ef
+
+    Key  : Hypervisor.Flags.VpAssistPage
+    Value: 1
+
+    Key  : Hypervisor.Flags.VsmAvailable
+    Value: 1
+
+    Key  : Hypervisor.RootFlags.AccessStats
+    Value: 1
+
+    Key  : Hypervisor.RootFlags.CrashdumpEnlightened
+    Value: 1
+
+    Key  : Hypervisor.RootFlags.CreateVirtualProcessor
+    Value: 1
+
+    Key  : Hypervisor.RootFlags.DisableHyperthreading
+    Value: 0
+
+    Key  : Hypervisor.RootFlags.HostTimelineSync
+    Value: 1
+
+    Key  : Hypervisor.RootFlags.HypervisorDebuggingEnabled
+    Value: 0
+
+    Key  : Hypervisor.RootFlags.IsHyperV
+    Value: 1
+
+    Key  : Hypervisor.RootFlags.LivedumpEnlightened
+    Value: 1
+
+    Key  : Hypervisor.RootFlags.MapDeviceInterrupt
+    Value: 1
+
+    Key  : Hypervisor.RootFlags.MceEnlightened
+    Value: 1
+
+    Key  : Hypervisor.RootFlags.Nested
+    Value: 0
+
+    Key  : Hypervisor.RootFlags.StartLogicalProcessor
+    Value: 1
+
+    Key  : Hypervisor.RootFlags.Value
+    Value: 1015
+
+    Key  : Hypervisor.RootFlags.ValueHex
+    Value: 0x3f7
+
+
+BUGCHECK_CODE:  d1
+
+BUGCHECK_P1: 0
+
+BUGCHECK_P2: 2
+
+BUGCHECK_P3: 8
+
+BUGCHECK_P4: 0
+
+FILE_IN_CAB:  051326-25703-01.dmp
+
+DUMP_FILE_ATTRIBUTES: 0x8
+  Kernel Generated Triage Dump
+
+FAULTING_THREAD:  ffff8b0b051d4080
+
+READ_ADDRESS: fffff803794fb390: Unable to get MiVisibleState
+ 0000000000000000 
+
+PROCESS_NAME:  aTrustXtunnel.
+
+CUSTOMER_CRASH_COUNT:  1
+
+STACK_TEXT:  
+ffff8603`91443b28 fffff803`78c11da9     : 00000000`0000000a 00000000`00000000 00000000`00000002 00000000`00000008 : nt!KeBugCheckEx
+ffff8603`91443b30 fffff803`78c0d778     : 00000000`00000000 00000000`00000000 00000000`00000000 00000000`00000000 : nt!KiBugCheckDispatch+0x69
+ffff8603`91443c70 00000000`00000000     : fffff803`7e413865 ffff8b0a`f1c5ddf0 ffff8603`91443e90 00000000`00000000 : nt!KiPageFault+0x478
+
+
+SYMBOL_NAME:  nt!KiPageFault+478
+
+MODULE_NAME: nt
+
+IMAGE_NAME:  ntkrnlmp.exe
+
+IMAGE_VERSION:  10.0.19041.6216
+
+STACK_COMMAND: .process /r /p 0xffff8b0b059c5080; .thread /r /p 0xffff8b0b051d4080 ; kb
+
+BUCKET_ID_FUNC_OFFSET:  478
+
+FAILURE_BUCKET_ID:  AV_nt!KiPageFault
+
+OSPLATFORM_TYPE:  x64
+
+OSNAME:  Windows 10
+
+FAILURE_ID_HASH:  {ec3e2762-48ae-ffe9-5b16-fbcb853e8320}
+
+Followup:     MachineOwner
+---------
+
+
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;0x02-问题分析&#34;&gt;0x02 问题分析&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;错误类型&lt;/strong&gt;: &lt;code&gt;DRIVER_IRQL_NOT_LESS_OR_EQUAL (0xD1)&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;这个错误意味着某个内核模式的驱动程序试图在不被允许的过高权限级别（IRQL）下，访问一段可以被换出到硬盘的内存（pageable memory）。简单来说，就是驱动程序“越权”访问了它不该在此时访问的内存地址。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;触发进程&lt;/strong&gt;: &lt;code&gt;PROCESS_NAME: aTrustXtunnel.&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;这是定位问题的关键线索。崩溃发生时，正在运行的程序是 &lt;code&gt;aTrustXtunnel.exe&lt;/code&gt;。这个程序通常是深信服（Sangfor）零信任安全客户端的一部分，它会安装自己的内核驱动来管理网络连接和安全策略。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;根本原因&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;综合以上两点，可以得出结论：&lt;strong&gt;深信服 aTrust 客户端的某个驱动程序存在缺陷或与当前系统环境不兼容&lt;/strong&gt;。当 &lt;code&gt;aTrustXtunnel.exe&lt;/code&gt; 调用该驱动执行操作时，驱动程序内部的错误逻辑导致了这次非法内存访问，从而引发系统蓝屏保护性重启。虽然堆栈显示故障发生在 &lt;code&gt;nt!KiPageFault&lt;/code&gt;（Windows内核的页面错误处理程序），但这只是系统捕获到错误后的最终行为，真正的源头是导致这次错误访问的驱动。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;0x03-疑惑&#34;&gt;0x03 疑惑&lt;/h2&gt;
+
+&lt;p&gt;我并没有开启aTrust客户端的开机自启动功能，为什么还有后台进程在运行，从任务管理器中也可以证实该现象：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://cdn.nlark.com/yuque/0/2026/png/35574316/1779096977619-cc0d5150-a6c0-46cf-809d-b67209c2e789.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;继续排查，我打开服务管理窗口，看到aTrust确实安装了一项服务，点进服务详情：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://cdn.nlark.com/yuque/0/2026/png/35574316/1779097074211-ce6e0461-ba4f-4068-8928-97221bf0798c.png&#34; alt=&#34;&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;该项服务描述为：&lt;strong&gt;深信服零信任守护服务，禁止后，将导致功能使用异常&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;该描述更是莫名奇妙，我甚至没有启动主程序，您在后台守护啥呢？&lt;/p&gt;
+
+&lt;h2 id=&#34;0x03-解决方案&#34;&gt;0x03 解决方案&lt;/h2&gt;
+
+&lt;p&gt;由于接下来的工作已经不再需要再用到深信服的aTrust客户端，所以直接将其删除，后续并没有再出现蓝屏的情况。&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Vue 动态加载 docx-preview 解决IE报语法错误的问题</title>
@@ -1235,101 +1621,6 @@ sudo reboot
 &lt;h2 id=&#34;0x04-总结&#34;&gt;0x04 总结&lt;/h2&gt;
 
 &lt;p&gt;至此，整个代理配置已经完成了，过程难点主要在寻找合适的代理软件，在github上面搜搜star多的项目保证没错。（ps：goproxy太好用了，还跨平台，强推！）&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>在树莓派（ARM）上面运行hpool的chia挖矿程序（AMD64）</title>
-      <link>http://blog.sinowrt.cn/2021/2021-04-23t1847-how-to-run-chia-miner-of-hpool-on-raspberry-pi4/</link>
-      <pubDate>Fri, 23 Apr 2021 18:47:00 +0800</pubDate>
-      
-      <guid>http://blog.sinowrt.cn/2021/2021-04-23t1847-how-to-run-chia-miner-of-hpool-on-raspberry-pi4/</guid>
-      <description>
-
-&lt;h2 id=&#34;0x00-背景&#34;&gt;0x00 背景&lt;/h2&gt;
-
-&lt;p&gt;最近chia挖矿可太火了，可惜我运气太差，一个币都没挖到，算了还是直接加入矿池吧。可是硬盘容量已经p完了，用台式机挂机的话，怕是电费都不够亏吧。&lt;br /&gt;
-之前在chia的wiki上面，我看到了一个用Rock PI4b组装的矿机，很是心动。可惜Rock pi的生态比Raspberry pi逊色很多，而我又不使用官方软件进行耕种，到时各种适配起来可是个麻烦事。所以，在对比之下我还是选择了Raspberry Pi4B。&lt;/p&gt;
-
-&lt;h2 id=&#34;0x01-硬件准备&#34;&gt;0x01 硬件准备&lt;/h2&gt;
-
-&lt;h3 id=&#34;1-一块树莓派raspberry-pi4b&#34;&gt;1. 一块树莓派Raspberry Pi4B&lt;/h3&gt;
-
-&lt;h3 id=&#34;2-sata转usb3-0的易驱线-带12v供电端口的-我选择的是绿巨能的-便宜好用&#34;&gt;2. sata转usb3.0的易驱线（带12v供电端口的）我选择的是绿巨能的，便宜好用&lt;/h3&gt;
-
-&lt;h3 id=&#34;3-atx电源一个-根据你硬盘的数量来选择功率-我这里用的是家里闲置的200w-长城电源&#34;&gt;3. ATX电源一个（根据你硬盘的数量来选择功率）我这里用的是家里闲置的200W 长城电源&lt;/h3&gt;
-
-&lt;h3 id=&#34;4-大4pin接口转3-5mm-12v-dc接口-转接线若干条&#34;&gt;4. 大4Pin接口转3.5mm 12V DC接口 转接线若干条&lt;/h3&gt;
-
-&lt;h2 id=&#34;0x02-兜兜转转-仅记录过程-解决方案可以直接看下一节&#34;&gt;0x02 兜兜转转（仅记录过程 解决方案可以直接看下一节）&lt;/h2&gt;
-
-&lt;p&gt;将可执行文件上传到树莓派上面，直接运行的时候 会提示&lt;code&gt;Exec Format Error&lt;/code&gt;，因为树莓派是ARM架构的，而可执行文件是AMD64架构的。&lt;br /&gt;
-可执行文件的信息可以使用&lt;code&gt;file 可执行文件&lt;/code&gt;查看，如hpool-miner-chia这个可执行文件的信息就是：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;ubuntu@ubuntu:~/linux$ file ./hpool-miner-chia 
-./hpool-miner-chia: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, Go BuildID=or4EJC7edY1jm53BAfGR/s_m3PpAuyo9gsjpS3x4h/Eg54hBo5Pfw4tHBF5qZ0/g1_NAK8AbL3R_FIeKSr6, stripped
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;也可以使用readelf命令查看，如&lt;code&gt;readelf -h python&lt;/code&gt;，得到的是ELF Header中的项Magic，第五个数 02时为64位，01时为32位。&lt;/p&gt;
-
-&lt;h3 id=&#34;1-box86方案&#34;&gt;1. box86方案&lt;/h3&gt;
-
-&lt;p&gt;第一次尝试是在raspberry os上面安装box86，但是运行的时候发现box86并不支持64位可执行文件，遂作罢。&lt;/p&gt;
-
-&lt;h3 id=&#34;2-exagear方案&#34;&gt;2. exagear方案&lt;/h3&gt;
-
-&lt;p&gt;这个方案并未尝试，因为exagear 跟box86一样，只支持32位的可执行文件。&lt;/p&gt;
-
-&lt;h3 id=&#34;3-qemu方案&#34;&gt;3. qemu方案&lt;/h3&gt;
-
-&lt;p&gt;使用&lt;code&gt;sudo apt-get install qemu-user&lt;/code&gt;命令安装qemu-user，这个命令会自动安装qemu-user和binfmt，binfmt会通过判断可执行文件的类型，自动选择是否通过qemu来执行该文件。&lt;/p&gt;
-
-&lt;p&gt;这个方案虽然是可行的，但是探索的过程也是十分曲折：&lt;/p&gt;
-
-&lt;p&gt;环境: 32位raspios + qemu-user + hpool-miner-chia v1.0.5&lt;br /&gt;
-启动的时候提示：dlopen err: Dynamic loading not supported&lt;br /&gt;
-然后就是不认plot文件，报open fail 和 Invalid file的错误，但是连接矿池正常，只是没认到plot文件，没有算力，hpool上面也不显示矿机在线。&lt;/p&gt;
-
-&lt;p&gt;环境: 32位raspios + qemu-user + hpool-miner-chia v1.0.4.1&lt;br /&gt;
-启动的时候不提示dlopen err: Dynamic loading not supported了&lt;br /&gt;
-但仍然不认plot文件，报open fail 和 Invalid file的错误，但是连接矿池正常，只是没认到plot文件，没有算力，hpool上面也不显示矿机在线。&lt;/p&gt;
-
-&lt;p&gt;环境: 64位raspios + qemu-user + hpool-miner-chia v1.0.4.1&lt;br /&gt;
-启动的时候提示&lt;code&gt;qemu: uncaught target signal 11 (Segmentation fault) - core dumped&lt;/code&gt; 直接罢工了&lt;/p&gt;
-
-&lt;p&gt;在28号下午，hpool 发布了 1.1.0 版本的 hpool-miner-chia，由于官方说下一个版本会支持arm，但是实测并没有，没有就没有吧，试一下能不能用qemu运行&lt;/p&gt;
-
-&lt;p&gt;环境: 32位raspios + qemu-user + hpool-miner-chia v1.1.0&lt;br /&gt;
-启动的时候不提示dlopen err: Dynamic loading not supported了&lt;br /&gt;
-但仍然不认plot文件，报open fail 和 Invalid file的错误，但是连接矿池正常，只是没认到plot文件，没有算力，hpool上面也不显示矿机在线。&lt;/p&gt;
-
-&lt;h2 id=&#34;0x04-最终方案&#34;&gt;0x04 最终方案&lt;/h2&gt;
-
-&lt;p&gt;我曾一度想着是不是 usb3.0转sata 转接线坏了，就在虚拟机上面开了ubuntu，连上了硬盘，运行一切正常。&lt;/p&gt;
-
-&lt;p&gt;那么问题应该就是出在树莓派上面了，由于之前下载了ubuntu arm64的系统，但是那晚上挂着测试树莓派稳定性的时候，把TF卡烧了，就没有用过这个ubuntu系统。然后我就想，会不会跟系统有关呢，试了那么多个版本的可执行文件都是一个结果。于是拆下TF卡，烧录ubuntu arm64的系统，挂硬盘&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-shell&#34;&gt;# 查看待挂载设备列表
-sudo fdisk -l
-
-# 挂载硬盘 我在这里是将/dev/sda1挂载到当前目录的ploted文件夹 
-sudo mount /dev/sda1 ./ploted
-
-# 解除挂载
-sudo umount /dev/sda1
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;硬盘挂载好后，把hpool-miner-chia v1.1.0 版本的执行文件上传上去，&lt;code&gt;sudo apt-get install qemu-user&lt;/code&gt;安装qemu-user。&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;qemu-x86_64 ./hpool-miner-chia&lt;/code&gt;运行。竟然好了！！&lt;/p&gt;
-
-&lt;p&gt;虽然不报错，也能认plot文件了，但是挂了一晚上测试发现，这个软件会自己退出。&lt;/p&gt;
-
-&lt;p&gt;这好办，上supervisor就好了，具体步骤请参考&lt;a href=&#34;https://blog.sinowrt.cn/2020/2020-04-12t2330-ubuntuadd-ngrok-to-supervisor/&#34; rel=&#34;nofollow noreferrer&#34; target=&#34;_blank&#34;&gt;这篇博客&lt;/a&gt;自行配置。&lt;/p&gt;
-
-&lt;p&gt;最后附上ubuntu的版本: ubuntu-20.04.2-preinstalled-server-arm64+raspi.img.xz&lt;/p&gt;
-
-&lt;p&gt;聪明的彦祖们应该知道怎么下载的。&lt;/p&gt;
 </description>
     </item>
     
