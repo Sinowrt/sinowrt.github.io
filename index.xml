@@ -10,10 +10,10 @@
     
     <item>
       <title>5060 VS Tesla P100 Hashcat跑包速度大比拼</title>
-      <link>http://blog.sinowrt.cn/2026/rtx-5060-vs-tesla-p100-password-cracking-speed-showdown/</link>
+      <link>http://blog.sinowrt.cn/2026/2026-08-06t1850-rtx-5060-vs-tesla-p100-password-cracking-speed-showdown/</link>
       <pubDate>Thu, 06 Aug 2026 18:50:00 +0800</pubDate>
       
-      <guid>http://blog.sinowrt.cn/2026/rtx-5060-vs-tesla-p100-password-cracking-speed-showdown/</guid>
+      <guid>http://blog.sinowrt.cn/2026/2026-08-06t1850-rtx-5060-vs-tesla-p100-password-cracking-speed-showdown/</guid>
       <description>
 
 &lt;h2 id=&#34;0x00-实验环境&#34;&gt;0x00 实验环境&lt;/h2&gt;
@@ -80,10 +80,10 @@ Hardware.Mon.#1..: Temp: 68c Fan: 73% Util: 97% Core:2827MHz Mem:13801MHz Bus:8
     
     <item>
       <title>WSL Debian系统安装Hashcat及Cuda</title>
-      <link>http://blog.sinowrt.cn/2026/installing-hashcat-and-cuda-toolkit-on-wsl-debian/</link>
+      <link>http://blog.sinowrt.cn/2026/2026-08-06t1840-installing-hashcat-and-cuda-toolkit-on-wsl-debian/</link>
       <pubDate>Thu, 06 Aug 2026 18:40:00 +0800</pubDate>
       
-      <guid>http://blog.sinowrt.cn/2026/installing-hashcat-and-cuda-toolkit-on-wsl-debian/</guid>
+      <guid>http://blog.sinowrt.cn/2026/2026-08-06t1840-installing-hashcat-and-cuda-toolkit-on-wsl-debian/</guid>
       <description>
 
 &lt;h2 id=&#34;0x00-安装环境&#34;&gt;0x00 安装环境&lt;/h2&gt;
@@ -206,10 +206,10 @@ libffi-dev liblzma-dev
     
     <item>
       <title>深信服零信任导致的频繁蓝屏死机排查</title>
-      <link>http://blog.sinowrt.cn/2025/troubleshooting-frequent-blue-screen-crashes-caused-by-sangfor-atrust/</link>
+      <link>http://blog.sinowrt.cn/2025/2025-05-16t1819-troubleshooting-frequent-blue-screen-crashes-caused-by-sangfor-atrust/</link>
       <pubDate>Fri, 16 May 2025 18:19:00 +0800</pubDate>
       
-      <guid>http://blog.sinowrt.cn/2025/troubleshooting-frequent-blue-screen-crashes-caused-by-sangfor-atrust/</guid>
+      <guid>http://blog.sinowrt.cn/2025/2025-05-16t1819-troubleshooting-frequent-blue-screen-crashes-caused-by-sangfor-atrust/</guid>
       <description>
 
 &lt;h2 id=&#34;0x00-故障描述&#34;&gt;0x00 故障描述&lt;/h2&gt;

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="referrer" content="no-referrer" />
+  <meta name="author" content="sinowrt">
+  
+  
+  
+  <link rel="prev" href="http://blog.sinowrt.cn/2025/2025-05-16t1819-troubleshooting-frequent-blue-screen-crashes-caused-by-sangfor-atrust/" />
+  <link rel="next" href="http://blog.sinowrt.cn/2026/2026-08-06t1850-rtx-5060-vs-tesla-p100-password-cracking-speed-showdown/" />
+  <link rel="canonical" href="http://blog.sinowrt.cn/2026/2026-08-06t1840-installing-hashcat-and-cuda-toolkit-on-wsl-debian/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           WSL Debian系统安装Hashcat及Cuda | Sinowrt
+       
+  </title>
+  <meta name="title" content="WSL Debian系统安装Hashcat及Cuda | Sinowrt">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/blog.sinowrt.cn"
+    },
+    "articleSection" : "posts",
+    "name" : "WSL Debian系统安装Hashcat及Cuda",
+    "headline" : "WSL Debian系统安装Hashcat及Cuda",
+    "description" : "0x00 安装环境 宿主机：windows 10\n虚拟系统：Debian\n目标hashcat版本：v6.2.3（项目地址）\n目标cuda-toolkit版本：12.8\n0x01 安装hashcat 步骤1：安装依赖及pyenv\n# 安装构建python所需依赖库 sudo apt install libbz2-dev libssl-dev libncurses5-dev libffi-dev libreadline-dev libsqlite3-dev liblzma-dev # 安装pyenv curl https:\/\/pyenv.run | bash  步骤2：使用pyenv安装python\n# 安装Python 3.12或更新版本 pyenv install 3.12 # 检查安装的版本 pyenv versions # Example: # * system # 3.12.11  步骤3：克隆Hashcat仓库到本地\n$ git clone https:\/\/github.com\/hashcat\/hashcat.git -b v6.2.3 $ cd hashcat  步骤4：编译Hashcat\nmake clean \x26amp;\x26amp; make  步骤5：安装Hashcat\n$ make install  0x02 安装 CUDA Toolkit # 下载安装官方的软件源密钥环： wget https:\/\/developer.",
+    "inLanguage" : "en-us",
+    "author" : "sinowrt",
+    "creator" : "sinowrt",
+    "publisher": "sinowrt",
+    "accountablePerson" : "sinowrt",
+    "copyrightHolder" : "sinowrt",
+    "copyrightYear" : "2026",
+    "datePublished": "2026-08-06 18:40:00 \x2b0800 CST",
+    "dateModified" : "2026-08-06 18:40:00 \x2b0800 CST",
+    "url" : "http:\/\/blog.sinowrt.cn\/2026\/2026-08-06t1840-installing-hashcat-and-cuda-toolkit-on-wsl-debian\/",
+    "wordCount" : "251",
+    "keywords" : [ "hashcat","cuda toolkit", "Sinowrt"]
+}
+</script>
+
+</head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5081260758385926"
+     crossorigin="anonymous"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y7CHCJ00RL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Y7CHCJ00RL');
+</script>
+
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">WSL Debian系统安装Hashcat及Cuda</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2026-08-06 itemprop="datePublished">August 6, 2026</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="http://blog.sinowrt.cn/categories/wsl/"> WSL </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          
+
+<h2 id="0x00-安装环境">0x00 安装环境</h2>
+
+<p>宿主机：windows 10</p>
+
+<p>虚拟系统：Debian</p>
+
+<p>目标hashcat版本：v6.2.3（<a href="https://github.com/hashcat/hashcat" rel="nofollow noreferrer" target="_blank">项目地址</a>）</p>
+
+<p>目标cuda-toolkit版本：12.8</p>
+
+<h2 id="0x01-安装hashcat">0x01 安装hashcat</h2>
+
+<p>步骤1：安装依赖及pyenv</p>
+
+<pre><code class="language-bash"># 安装构建python所需依赖库
+sudo apt install libbz2-dev libssl-dev libncurses5-dev libffi-dev libreadline-dev libsqlite3-dev liblzma-dev
+# 安装pyenv
+curl https://pyenv.run | bash
+</code></pre>
+
+<p>步骤2：使用pyenv安装python</p>
+
+<pre><code class="language-bash"># 安装Python 3.12或更新版本
+pyenv install 3.12
+# 检查安装的版本
+pyenv versions
+# Example:
+# * system
+#   3.12.11
+</code></pre>
+
+<p>步骤3：克隆Hashcat仓库到本地</p>
+
+<pre><code class="language-bash">$ git clone https://github.com/hashcat/hashcat.git -b v6.2.3
+$ cd hashcat
+</code></pre>
+
+<p>步骤4：编译Hashcat</p>
+
+<pre><code class="language-bash">make clean &amp;&amp; make
+</code></pre>
+
+<p>步骤5：安装Hashcat</p>
+
+<pre><code class="language-bash">$ make install
+</code></pre>
+
+<h2 id="0x02-安装-cuda-toolkit">0x02 安装 CUDA Toolkit</h2>
+
+<pre><code class="language-bash"># 下载安装官方的软件源密钥环：
+wget https://developer.download.nvidia.com/compute/cuda/repos/wsl-ubuntu/x86_64/cuda-keyring_1.1-1_all.deb
+sudo dpkg -i cuda-keyring_1.1-1_all.deb
+# 更新软件列表
+sudo apt-get update
+# 安装 CUDA Toolkit
+sudo apt-get -y install cuda-toolkit-12-8
+</code></pre>
+
+<h2 id="0x03-验证hashcat是否识别到显卡">0x03 验证Hashcat是否识别到显卡</h2>
+
+<pre><code class="language-bash">hashcat -I
+
+# 输出如下信息即为识别成功
+# hashcat (v6.2.3) starting in backend information mode
+
+# clGetPlatformIDs(): CL_PLATFORM_NOT_FOUND_KHR
+
+# CUDA Info:
+# ==========
+
+# CUDA.Version.: 13.2
+
+# Backend Device ID #1
+#   Name...........: NVIDIA GeForce RTX 5060
+#   Processor(s)...: 30
+#   Clock..........: 2535
+#   Memory.Total...: 8150 MB
+#   Memory.Free....: 7020 MB
+#   PCI.Addr.BDFe..: 0000:07:00.0
+</code></pre>
+
+<h2 id="0x04-安装中遇到的问题">0x04 安装中遇到的问题</h2>
+
+<p>在安装hashcat的步骤2中，使用pyenv安装3.12版本的python时，出现以下报错：</p>
+
+<pre><code class="language-bash">root@PC:/home/admin# pyenv install 3.12
+Downloading Python-3.12.13.tar.gz...
+-&gt; https://www.python.org/ftp/python/3.12.13/Python-3.12.13.tgz
+Installing Python-3.12.13...
+
+BUILD FAILED (Debian GNU/Linux 12 using python-build 2.8.2)
+
+Inspect or clean up the working tree at /tmp/python-build.20260805093022.3379
+Results logged to /tmp/python-build.20260805093022.3379.log
+
+Last 10 log lines:
+checking for --enable-universalsdk... no
+checking for --with-universal-archs... no
+checking MACHDEP... &quot;linux&quot;
+checking for gcc... no
+checking for cc... no
+checking for cl.exe... no
+checking for clang... no
+configure: error: in `/tmp/python-build.20260805093022.3379/Python-3.12.13':
+configure: error: no acceptable C compiler found in $PATH
+See `config.log' for more details
+</code></pre>
+
+<p>解决办法：运行以下命令安装C语言编译器</p>
+
+<pre><code class="language-bash">apt-get install -y make build-essential libssl-dev zlib1g-dev \
+libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
+libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev \
+libffi-dev liblzma-dev
+</code></pre>
+
+    </div>
+	
+    <div class="post-copyright">
+             
+			
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>sinowrt </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://blog.sinowrt.cn/2026/2026-08-06t1840-installing-hashcat-and-cuda-toolkit-on-wsl-debian/>http://blog.sinowrt.cn/2026/2026-08-06t1840-installing-hashcat-and-cuda-toolkit-on-wsl-debian/</span>
+            </p>
+			
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/hashcat/">
+                    #hashcat</a></span>
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/cuda-toolkit/">
+                    #cuda toolkit</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="http://blog.sinowrt.cn">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://blog.sinowrt.cn/2025/2025-05-16t1819-troubleshooting-frequent-blue-screen-crashes-caused-by-sangfor-atrust/" class="prev" rel="prev" title="深信服零信任导致的频繁蓝屏死机排查"><i class="iconfont icon-left"></i>&nbsp;深信服零信任导致的频繁蓝屏死机排查</a>
+         
+        
+        <a href="http://blog.sinowrt.cn/2026/2026-08-06t1850-rtx-5060-vs-tesla-p100-password-cracking-speed-showdown/" class="next" rel="next" title="5060 VS Tesla P100 Hashcat跑包速度大比拼">5060 VS Tesla P100 Hashcat跑包速度大比拼&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2026</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://blog.sinowrt.cn">sinowrt</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt | </a><script type="text/javascript" src="https://s4.cnzz.com/z_stat.php?id=1279436618&web_id=1279436618"></script></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>

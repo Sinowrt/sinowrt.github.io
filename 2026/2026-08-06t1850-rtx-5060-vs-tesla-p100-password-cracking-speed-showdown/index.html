@@ -10,9 +10,9 @@
   
   
   
-  <link rel="prev" href="http://blog.sinowrt.cn/2022/2022-08-13t2000-migrate-the-data-from-the-old-server-to-the-new-one/" />
-  <link rel="next" href="http://blog.sinowrt.cn/2025/2025-05-16t1819-troubleshooting-frequent-blue-screen-crashes-caused-by-sangfor-atrust/" />
-  <link rel="canonical" href="http://blog.sinowrt.cn/2023/2023-09-01t0819-vue-dynamic-loading-docx-preview-to-solve-ie-syntax-error-problem/" />
+  <link rel="prev" href="http://blog.sinowrt.cn/2026/2026-08-06t1840-installing-hashcat-and-cuda-toolkit-on-wsl-debian/" />
+  
+  <link rel="canonical" href="http://blog.sinowrt.cn/2026/2026-08-06t1850-rtx-5060-vs-tesla-p100-password-cracking-speed-showdown/" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -23,10 +23,10 @@
   <title>
        
        
-           Vue 动态加载 docx-preview 解决IE报语法错误的问题 | Sinowrt
+           5060 VS Tesla P100 Hashcat跑包速度大比拼 | Sinowrt
        
   </title>
-  <meta name="title" content="Vue 动态加载 docx-preview 解决IE报语法错误的问题 | Sinowrt">
+  <meta name="title" content="5060 VS Tesla P100 Hashcat跑包速度大比拼 | Sinowrt">
     
   
   <link rel="stylesheet" href="/font/iconfont.css">
@@ -45,21 +45,21 @@
          "@id": "http:\/\/blog.sinowrt.cn"
     },
     "articleSection" : "posts",
-    "name" : "Vue 动态加载 docx-preview 解决IE报语法错误的问题",
-    "headline" : "Vue 动态加载 docx-preview 解决IE报语法错误的问题",
-    "description" : "0x00 故障描述 最近领导要求附件要做预览的功能，在前端集成了docx-preview插件，在chromium内核浏览器是正常工作的，但是用IE打开详情页面的时候页面加载不出来，F12查看console输出，报语法错误 0x01 排查过程 根据最近的修改记录，问题大概率出在引入的包或者方法上面，import代码就只有两行，依次注释后用IE浏览器打开相关页面查看页面是否正常工作，最后发现问题出在import {renderAsync} from \x26quot;docx-preview\x26quot;;这行\n0x02 解决方案 将renderAsync方法改成动态加载，点击预览的时候，判断如果是IE浏览器则提示“IE浏览器不支持预览功能”，如果是chromium内核浏览器，通过const renderAsync = (await import(\x27docx-preview\x27)).renderAsync;引入renderAsync方法。",
+    "name" : "5060 VS Tesla P100 Hashcat跑包速度大比拼",
+    "headline" : "5060 VS Tesla P100 Hashcat跑包速度大比拼",
+    "description" : "0x00 实验环境 为了保证测试的严谨性，本次对比测试的具体环境配置如下：\n测试软件：Hashcat v6.2.3\n对比显卡：RTX 5060 (8GB) \/ Tesla P100 (16GB)\n测试字典：文件大小 9.8GB，共计 9.4 亿条记录\n0x01 运行结果 # P100 Hashcat 输出 Session..........: hashcat Status...........: Exhausted Hash.Name........: WPA-EAPOL-PBKDF2 Hash.Target......: xxx Time.Started.....: Fri Jan 22 12:13:51 2021 (45 mins, 44 secs) Time.Estimated...: Fri Jan 22 12:59:35 2021 (0 secs) Guess.Base.......: File (dict.dic) Guess.Queue......: 1\/1 (100.00%) Speed.#1.........: 343.6 kH\/s (3.00ms) @ Accel:8 Loops:32 Thr:1024 Vec:1 Recovered........: 0\/1 (0.00%) Digests Progress.........: 942424852\/942424852 (100.",
     "inLanguage" : "en-us",
     "author" : "sinowrt",
     "creator" : "sinowrt",
     "publisher": "sinowrt",
     "accountablePerson" : "sinowrt",
     "copyrightHolder" : "sinowrt",
-    "copyrightYear" : "2023",
-    "datePublished": "2023-09-01 08:19:00 \x2b0800 CST",
-    "dateModified" : "2023-09-01 08:19:00 \x2b0800 CST",
-    "url" : "http:\/\/blog.sinowrt.cn\/2023\/2023-09-01t0819-vue-dynamic-loading-docx-preview-to-solve-ie-syntax-error-problem\/",
-    "wordCount" : "16",
-    "keywords" : [ "Vue","docx-preview","IE", "Sinowrt"]
+    "copyrightYear" : "2026",
+    "datePublished": "2026-08-06 18:50:00 \x2b0800 CST",
+    "dateModified" : "2026-08-06 18:50:00 \x2b0800 CST",
+    "url" : "http:\/\/blog.sinowrt.cn\/2026\/2026-08-06t1850-rtx-5060-vs-tesla-p100-password-cracking-speed-showdown\/",
+    "wordCount" : "183",
+    "keywords" : [ "hashcat","跑包", "Sinowrt"]
 }
 </script>
 
@@ -130,18 +130,16 @@
       		
 <article class="post-warp" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">Vue 动态加载 docx-preview 解决IE报语法错误的问题</h1>
+        <h1 class="post-title" itemprop="name headline">5060 VS Tesla P100 Hashcat跑包速度大比拼</h1>
         <div class="post-meta">
                 Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
                 <span class="post-time">
-                on <time datetime=2023-09-01 itemprop="datePublished">September 1, 2023</time>
+                on <time datetime=2026-08-06 itemprop="datePublished">August 6, 2026</time>
                 </span>
                 in
                 <i class="iconfont icon-folder"></i>
                 <span class="post-category">
-                        <a href="http://blog.sinowrt.cn/categories/vue/"> Vue </a>
-                        <a href="http://blog.sinowrt.cn/categories/docx-preview/"> docx-preview </a>
-                        <a href="http://blog.sinowrt.cn/categories/ie/"> IE </a>
+                        <a href="http://blog.sinowrt.cn/categories/%E6%98%BE%E5%8D%A1/"> 显卡 </a>
                         
                 </span>
         </div>
@@ -149,8 +147,6 @@
     <div class="post-content">
         
 
-        
-            
         
 
         
@@ -166,18 +162,65 @@
 
           
 
-<h2 id="0x00-故障描述">0x00 故障描述</h2>
+<h2 id="0x00-实验环境">0x00 实验环境</h2>
 
-<p>最近领导要求附件要做预览的功能，在前端集成了docx-preview插件，在chromium内核浏览器是正常工作的，但是用IE打开详情页面的时候页面加载不出来，F12查看console输出，报语法错误
-<figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2023/png/35574316/1693787617881-ad0f9765-6492-45de-81c7-2c13eee00f58.png#averageHue=%23ef8e38&amp;clientId=u078dbfc5-2a63-4&amp;from=paste&amp;height=74&amp;id=u17335514&amp;originHeight=74&amp;originWidth=565&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=9180&amp;status=done&amp;style=none&amp;taskId=u25c108ba-1076-4616-9a29-24568dab8ba&amp;title=&amp;width=565" alt="image.png" class="lazyload"><figcaption class="image-caption">image.png</figcaption></figure></p>
+<p>为了保证测试的严谨性，本次对比测试的具体环境配置如下：</p>
 
-<h2 id="0x01-排查过程">0x01 排查过程</h2>
+<p>测试软件：Hashcat v6.2.3</p>
 
-<p>根据最近的修改记录，问题大概率出在引入的包或者方法上面，import代码就只有两行，依次注释后用IE浏览器打开相关页面查看页面是否正常工作，最后发现问题出在<code>import {renderAsync} from &quot;docx-preview&quot;;</code>这行</p>
+<p>对比显卡：RTX 5060 (8GB) / Tesla P100 (16GB)</p>
 
-<h2 id="0x02-解决方案">0x02 解决方案</h2>
+<p>测试字典：文件大小 9.8GB，共计 9.4 亿条记录</p>
 
-<p>将renderAsync方法改成动态加载，点击预览的时候，判断如果是IE浏览器则提示“IE浏览器不支持预览功能”，如果是chromium内核浏览器，通过<code>const renderAsync = (await import('docx-preview')).renderAsync;</code>引入renderAsync方法。</p>
+<h2 id="0x01-运行结果">0x01 运行结果</h2>
+
+<pre><code class="language-bash"># P100 Hashcat 输出
+Session..........: hashcat
+Status...........: Exhausted
+Hash.Name........: WPA-EAPOL-PBKDF2
+Hash.Target......: xxx
+Time.Started.....: Fri Jan 22 12:13:51 2021 (45 mins, 44 secs)
+Time.Estimated...: Fri Jan 22 12:59:35 2021 (0 secs)
+Guess.Base.......: File (dict.dic)
+Guess.Queue......: 1/1 (100.00%)
+Speed.#1.........:   343.6 kH/s (3.00ms) @ Accel:8 Loops:32 Thr:1024 Vec:1
+Recovered........: 0/1 (0.00%) Digests
+Progress.........: 942424852/942424852 (100.00%)
+Rejected.........: 0/942424852 (0.00%)
+Restore.Point....: 942424852/942424852 (100.00%)
+Restore.Sub.#1...: Salt:0 Amplifier:0-1 Iteration:0-1
+Candidates.#1....: zzszgjj@sina.com -&gt; ZZZZZZZZZZZZZZZZ
+Hardware.Mon.#1..: Temp: 72c Util: 49% Core:1328MHz Mem: 715MHz Bus:16
+
+# 5060 Hashcat 输出
+Session..........: hashcat
+Status...........: Exhausted
+Hash.Name........: WPA-EAPOL-PBKDF2
+Hash.Target......: xxx
+Time.Started.....: Wed Aug  5 23:50:53 2026 (31 mins, 24 secs)
+Time.Estimated...: Thu Aug  6 00:22:17 2026 (0 secs)
+Kernel.Feature...: Pure Kernel
+Guess.Base.......: File (dict.dic)
+Guess.Queue......: 1/1 (100.00%)
+Speed.#1.........:   500.7 kH/s (5.34ms) @ Accel:8 Loops:64 Thr:1024 Vec:1
+Recovered........: 0/1 (0.00%) Digests
+Progress.........: 942424852/942424852 (100.00%)
+Rejected.........: 0/942424852 (0.00%)
+Restore.Point....: 942424852/942424852 (100.00%)
+Restore.Sub.#1...: Salt:0 Amplifier:0-1 Iteration:0-1
+Candidate.Engine.: Device Generator
+Candidates.#1....: zzq221000 -&gt; ZZZZZZZZZZZZZZZZ
+Hardware.Mon.#1..: Temp: 68c Fan: 73% Util: 97% Core:2827MHz Mem:13801MHz Bus:8
+</code></pre>
+
+<h2 id="0x03-结果对比">0x03 结果对比</h2>
+
+<pre><code>    从实测数据来看，RTX 5060展现出了惊人的性能跃升：其运行速度较上一代经典专业计算卡P100大幅提升了45.7%。在处理9.8GB字典数据的测试场景中，5060更是将耗时缩短了整整14分钟，效率提升肉眼可见。
+
+    回望2021至2026这五年，一张定位“甜品级”的消费级显卡，如今已能在实际运算中全面超越昔日的专业计算卡。这背后，不仅是GPU制造工艺的代际飞跃，更是NVIDIA在CUDA生态与底层架构上多年深耕、持续迭代的必然结果。消费级算力正在以惊人的速度重塑行业格局。
+
+    下一期，我将把目光转向更高阶的RTX 4070 Ti，看看它在同类场景下又能带来怎样的性能表现。测试数据即将出炉，大家敬请期待！
+</code></pre>
 
     </div>
 	
@@ -193,7 +236,7 @@
              
             <p class="copyright-item">
                     <span>Link:</span>
-                    <a href=http://blog.sinowrt.cn/2023/2023-09-01t0819-vue-dynamic-loading-docx-preview-to-solve-ie-syntax-error-problem/>http://blog.sinowrt.cn/2023/2023-09-01t0819-vue-dynamic-loading-docx-preview-to-solve-ie-syntax-error-problem/</span>
+                    <a href=http://blog.sinowrt.cn/2026/2026-08-06t1850-rtx-5060-vs-tesla-p100-password-cracking-speed-showdown/>http://blog.sinowrt.cn/2026/2026-08-06t1850-rtx-5060-vs-tesla-p100-password-cracking-speed-showdown/</span>
             </p>
 			
             
@@ -210,14 +253,11 @@
             <section>
             <i class="iconfont icon-tag"></i>Tag(s): 
             
-            <span class="tag"><a href="http://blog.sinowrt.cn/tags/vue/">
-                    #Vue</a></span>
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/hashcat/">
+                    #hashcat</a></span>
             
-            <span class="tag"><a href="http://blog.sinowrt.cn/tags/docx-preview/">
-                    #docx-preview</a></span>
-            
-            <span class="tag"><a href="http://blog.sinowrt.cn/tags/ie/">
-                    #IE</a></span>
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/%E8%B7%91%E5%8C%85/">
+                    #跑包</a></span>
             
             </section>
         
@@ -229,10 +269,8 @@
 
     <div class="post-nav">
         
-        <a href="http://blog.sinowrt.cn/2022/2022-08-13t2000-migrate-the-data-from-the-old-server-to-the-new-one/" class="prev" rel="prev" title="将旧服务器的数据完整迁移到新服务器"><i class="iconfont icon-left"></i>&nbsp;将旧服务器的数据完整迁移到新服务器</a>
+        <a href="http://blog.sinowrt.cn/2026/2026-08-06t1840-installing-hashcat-and-cuda-toolkit-on-wsl-debian/" class="prev" rel="prev" title="WSL Debian系统安装Hashcat及Cuda"><i class="iconfont icon-left"></i>&nbsp;WSL Debian系统安装Hashcat及Cuda</a>
          
-        
-        <a href="http://blog.sinowrt.cn/2025/2025-05-16t1819-troubleshooting-frequent-blue-screen-crashes-caused-by-sangfor-atrust/" class="next" rel="next" title="深信服零信任导致的频繁蓝屏死机排查">深信服零信任导致的频繁蓝屏死机排查&nbsp;<i class="iconfont icon-right"></i></a>
         
     </div>
 
@@ -274,9 +312,8 @@
 
 
     
-     <link href="//lib.baomitu.com/lightgallery/1.6.11/css/lightgallery.min.css" rel="stylesheet">  
-      
-     <script src="/js/vendor_gallery.min.js" async="" ></script>
+    
+    <script src="/js/vendor_no_gallery.min.js" async=""></script>
     
   
 

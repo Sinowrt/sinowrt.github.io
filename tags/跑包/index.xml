@@ -13,10 +13,10 @@
     
     <item>
       <title>5060 VS Tesla P100 Hashcat跑包速度大比拼</title>
-      <link>http://blog.sinowrt.cn/2026/rtx-5060-vs-tesla-p100-password-cracking-speed-showdown/</link>
+      <link>http://blog.sinowrt.cn/2026/2026-08-06t1850-rtx-5060-vs-tesla-p100-password-cracking-speed-showdown/</link>
       <pubDate>Thu, 06 Aug 2026 18:50:00 +0800</pubDate>
       
-      <guid>http://blog.sinowrt.cn/2026/rtx-5060-vs-tesla-p100-password-cracking-speed-showdown/</guid>
+      <guid>http://blog.sinowrt.cn/2026/2026-08-06t1850-rtx-5060-vs-tesla-p100-password-cracking-speed-showdown/</guid>
       <description>0x00 实验环境 为了保证测试的严谨性，本次对比测试的具体环境配置如下：
 测试软件：Hashcat v6.2.3
 对比显卡：RTX 5060 (8GB) / Tesla P100 (16GB)

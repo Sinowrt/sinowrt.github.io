@@ -13,10 +13,10 @@
     
     <item>
       <title>5060 VS Tesla P100 Hashcat跑包速度大比拼</title>
-      <link>http://blog.sinowrt.cn/2026/rtx-5060-vs-tesla-p100-password-cracking-speed-showdown/</link>
+      <link>http://blog.sinowrt.cn/2026/2026-08-06t1850-rtx-5060-vs-tesla-p100-password-cracking-speed-showdown/</link>
       <pubDate>Thu, 06 Aug 2026 18:50:00 +0800</pubDate>
       
-      <guid>http://blog.sinowrt.cn/2026/rtx-5060-vs-tesla-p100-password-cracking-speed-showdown/</guid>
+      <guid>http://blog.sinowrt.cn/2026/2026-08-06t1850-rtx-5060-vs-tesla-p100-password-cracking-speed-showdown/</guid>
       <description>0x00 实验环境 为了保证测试的严谨性，本次对比测试的具体环境配置如下：
 测试软件：Hashcat v6.2.3
 对比显卡：RTX 5060 (8GB) / Tesla P100 (16GB)
@@ -26,10 +26,10 @@
     
     <item>
       <title>WSL Debian系统安装Hashcat及Cuda</title>
-      <link>http://blog.sinowrt.cn/2026/installing-hashcat-and-cuda-toolkit-on-wsl-debian/</link>
+      <link>http://blog.sinowrt.cn/2026/2026-08-06t1840-installing-hashcat-and-cuda-toolkit-on-wsl-debian/</link>
       <pubDate>Thu, 06 Aug 2026 18:40:00 +0800</pubDate>
       
-      <guid>http://blog.sinowrt.cn/2026/installing-hashcat-and-cuda-toolkit-on-wsl-debian/</guid>
+      <guid>http://blog.sinowrt.cn/2026/2026-08-06t1840-installing-hashcat-and-cuda-toolkit-on-wsl-debian/</guid>
       <description>0x00 安装环境 宿主机：windows 10
 虚拟系统：Debian
 目标hashcat版本：v6.2.3（项目地址）
@@ -44,10 +44,10 @@ $ make install  0x02 安装 CUDA Toolkit # 下载安装官方的软件源密钥�
     
     <item>
       <title>深信服零信任导致的频繁蓝屏死机排查</title>
-      <link>http://blog.sinowrt.cn/2025/troubleshooting-frequent-blue-screen-crashes-caused-by-sangfor-atrust/</link>
+      <link>http://blog.sinowrt.cn/2025/2025-05-16t1819-troubleshooting-frequent-blue-screen-crashes-caused-by-sangfor-atrust/</link>
       <pubDate>Fri, 16 May 2025 18:19:00 +0800</pubDate>
       
-      <guid>http://blog.sinowrt.cn/2025/troubleshooting-frequent-blue-screen-crashes-caused-by-sangfor-atrust/</guid>
+      <guid>http://blog.sinowrt.cn/2025/2025-05-16t1819-troubleshooting-frequent-blue-screen-crashes-caused-by-sangfor-atrust/</guid>
       <description>0x00 故障描述 最近电脑蓝屏死机的现象频频发生，蓝屏代码为DRIVER_IRQL_NOT_LESS_OR_EQUAL，考虑到刚更换了显卡，一直从显卡方面入手，更换了几次显卡驱动，从game ready版本更新到studio版本，问题依旧。
 0x01 排查过程 某日下午，熟悉的蓝屏再次出现，死机重启之后，我决定彻底排查该问题
 1、打开计算机管理-系统工具-事件查看器-Windows日志-系统

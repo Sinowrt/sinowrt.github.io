@@ -13,10 +13,10 @@
     
     <item>
       <title>WSL Debian系统安装Hashcat及Cuda</title>
-      <link>http://blog.sinowrt.cn/2026/installing-hashcat-and-cuda-toolkit-on-wsl-debian/</link>
+      <link>http://blog.sinowrt.cn/2026/2026-08-06t1840-installing-hashcat-and-cuda-toolkit-on-wsl-debian/</link>
       <pubDate>Thu, 06 Aug 2026 18:40:00 +0800</pubDate>
       
-      <guid>http://blog.sinowrt.cn/2026/installing-hashcat-and-cuda-toolkit-on-wsl-debian/</guid>
+      <guid>http://blog.sinowrt.cn/2026/2026-08-06t1840-installing-hashcat-and-cuda-toolkit-on-wsl-debian/</guid>
       <description>0x00 安装环境 宿主机：windows 10
 虚拟系统：Debian
 目标hashcat版本：v6.2.3（项目地址）
