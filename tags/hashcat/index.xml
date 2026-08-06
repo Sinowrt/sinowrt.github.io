@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>hashcat on Sinowrt</title>
+    <link>http://blog.sinowrt.cn/tags/hashcat/</link>
+    <description>Recent content in hashcat on Sinowrt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 06 Aug 2026 18:50:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.sinowrt.cn/tags/hashcat/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>5060 VS Tesla P100 Hashcat跑包速度大比拼</title>
+      <link>http://blog.sinowrt.cn/2026/rtx-5060-vs-tesla-p100-password-cracking-speed-showdown/</link>
+      <pubDate>Thu, 06 Aug 2026 18:50:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2026/rtx-5060-vs-tesla-p100-password-cracking-speed-showdown/</guid>
+      <description>0x00 实验环境 为了保证测试的严谨性，本次对比测试的具体环境配置如下：
+测试软件：Hashcat v6.2.3
+对比显卡：RTX 5060 (8GB) / Tesla P100 (16GB)
+测试字典：文件大小 9.8GB，共计 9.4 亿条记录
+0x01 运行结果 # P100 Hashcat 输出 Session..........: hashcat Status...........: Exhausted Hash.Name........: WPA-EAPOL-PBKDF2 Hash.Target......: xxx Time.Started.....: Fri Jan 22 12:13:51 2021 (45 mins, 44 secs) Time.Estimated...: Fri Jan 22 12:59:35 2021 (0 secs) Guess.Base.......: File (dict.dic) Guess.Queue......: 1/1 (100.00%) Speed.#1.........: 343.6 kH/s (3.00ms) @ Accel:8 Loops:32 Thr:1024 Vec:1 Recovered........: 0/1 (0.00%) Digests Progress.........: 942424852/942424852 (100.</description>
+    </item>
+    
+    <item>
+      <title>WSL Debian系统安装Hashcat及Cuda</title>
+      <link>http://blog.sinowrt.cn/2026/installing-hashcat-and-cuda-toolkit-on-wsl-debian/</link>
+      <pubDate>Thu, 06 Aug 2026 18:40:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2026/installing-hashcat-and-cuda-toolkit-on-wsl-debian/</guid>
+      <description>0x00 安装环境 宿主机：windows 10
+虚拟系统：Debian
+目标hashcat版本：v6.2.3（项目地址）
+目标cuda-toolkit版本：12.8
+0x01 安装hashcat 步骤1：安装依赖及pyenv
+# 安装构建python所需依赖库 sudo apt install libbz2-dev libssl-dev libncurses5-dev libffi-dev libreadline-dev libsqlite3-dev liblzma-dev # 安装pyenv curl https://pyenv.run | bash  步骤2：使用pyenv安装python
+# 安装Python 3.12或更新版本 pyenv install 3.12 # 检查安装的版本 pyenv versions # Example: # * system # 3.12.11  步骤3：克隆Hashcat仓库到本地
+$ git clone https://github.com/hashcat/hashcat.git -b v6.2.3 $ cd hashcat  步骤4：编译Hashcat
+make clean &amp;amp;&amp;amp; make  步骤5：安装Hashcat
+$ make install  0x02 安装 CUDA Toolkit # 下载安装官方的软件源密钥环： wget https://developer.</description>
+    </item>
+    
+  </channel>
+</rss>

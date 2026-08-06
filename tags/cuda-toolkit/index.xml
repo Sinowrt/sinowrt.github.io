@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cuda toolkit on Sinowrt</title>
+    <link>http://blog.sinowrt.cn/tags/cuda-toolkit/</link>
+    <description>Recent content in cuda toolkit on Sinowrt</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 06 Aug 2026 18:40:00 +0800</lastBuildDate>
+    
+	<atom:link href="http://blog.sinowrt.cn/tags/cuda-toolkit/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>WSL Debian系统安装Hashcat及Cuda</title>
+      <link>http://blog.sinowrt.cn/2026/installing-hashcat-and-cuda-toolkit-on-wsl-debian/</link>
+      <pubDate>Thu, 06 Aug 2026 18:40:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2026/installing-hashcat-and-cuda-toolkit-on-wsl-debian/</guid>
+      <description>0x00 安装环境 宿主机：windows 10
+虚拟系统：Debian
+目标hashcat版本：v6.2.3（项目地址）
+目标cuda-toolkit版本：12.8
+0x01 安装hashcat 步骤1：安装依赖及pyenv
+# 安装构建python所需依赖库 sudo apt install libbz2-dev libssl-dev libncurses5-dev libffi-dev libreadline-dev libsqlite3-dev liblzma-dev # 安装pyenv curl https://pyenv.run | bash  步骤2：使用pyenv安装python
+# 安装Python 3.12或更新版本 pyenv install 3.12 # 检查安装的版本 pyenv versions # Example: # * system # 3.12.11  步骤3：克隆Hashcat仓库到本地
+$ git clone https://github.com/hashcat/hashcat.git -b v6.2.3 $ cd hashcat  步骤4：编译Hashcat
+make clean &amp;amp;&amp;amp; make  步骤5：安装Hashcat
+$ make install  0x02 安装 CUDA Toolkit # 下载安装官方的软件源密钥环： wget https://developer.</description>
+    </item>
+    
+  </channel>
+</rss>
