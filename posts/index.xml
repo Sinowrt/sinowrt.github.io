@@ -6,10 +6,23 @@
     <description>Recent content in Posts on Sinowrt</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 06 Aug 2026 18:50:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 07 Aug 2026 15:24:00 +0800</lastBuildDate>
     
 	<atom:link href="http://blog.sinowrt.cn/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>4070TI VS 5060 跑包速度大比拼</title>
+      <link>http://blog.sinowrt.cn/2026/2026-08-07t1524-rtx-4070ti-vs-rtx5060-password-cracking-speed-showdown/</link>
+      <pubDate>Fri, 07 Aug 2026 15:24:00 +0800</pubDate>
+      
+      <guid>http://blog.sinowrt.cn/2026/2026-08-07t1524-rtx-4070ti-vs-rtx5060-password-cracking-speed-showdown/</guid>
+      <description>0x00 实验环境 为了保证测试的严谨性，本次对比测试的具体环境配置如下：
+测试软件：Hashcat v6.2.3
+对比显卡：RTX 4070TI (16GB) / RTX 5060 (8GB)
+测试字典：文件大小 9.8GB，共计 9.4 亿条记录
+0x01 运行结果 # 4070TI Hashcat输出 Session..........: hashcat Status...........: Exhausted Hash.Name........: WPA-EAPOL-PBKDF2 Hash.Target......: xxx Time.Started.....: Fri Aug 7 15:00:59 2026 (19 mins, 55 secs) Time.Estimated...: Fri Aug 7 15:20:54 2026 (0 secs) Kernel.Feature...: Pure Kernel Guess.Base.......: File (dict.dic) Guess.Queue......: 1/1 (100.00%) Speed.#1.........: 788.7 kH/s (4.62ms) @ Accel:8 Loops:64 Thr:1024 Vec:1 Recovered........: 0/1 (0.00%) Digests Progress.</description>
+    </item>
     
     <item>
       <title>5060 VS Tesla P100 Hashcat跑包速度大比拼</title>
@@ -44,10 +57,10 @@ $ make install  0x02 安装 CUDA Toolkit # 下载安装官方的软件源密钥�
     
     <item>
       <title>深信服零信任导致的频繁蓝屏死机排查</title>
-      <link>http://blog.sinowrt.cn/2025/2025-05-16t1819-troubleshooting-frequent-blue-screen-crashes-caused-by-sangfor-atrust/</link>
-      <pubDate>Fri, 16 May 2025 18:19:00 +0800</pubDate>
+      <link>http://blog.sinowrt.cn/2026/2026-05-16t1819-troubleshooting-frequent-blue-screen-crashes-caused-by-sangfor-atrust/</link>
+      <pubDate>Sat, 16 May 2026 18:19:00 +0800</pubDate>
       
-      <guid>http://blog.sinowrt.cn/2025/2025-05-16t1819-troubleshooting-frequent-blue-screen-crashes-caused-by-sangfor-atrust/</guid>
+      <guid>http://blog.sinowrt.cn/2026/2026-05-16t1819-troubleshooting-frequent-blue-screen-crashes-caused-by-sangfor-atrust/</guid>
       <description>0x00 故障描述 最近电脑蓝屏死机的现象频频发生，蓝屏代码为DRIVER_IRQL_NOT_LESS_OR_EQUAL，考虑到刚更换了显卡，一直从显卡方面入手，更换了几次显卡驱动，从game ready版本更新到studio版本，问题依旧。
 0x01 排查过程 某日下午，熟悉的蓝屏再次出现，死机重启之后，我决定彻底排查该问题
 1、打开计算机管理-系统工具-事件查看器-Windows日志-系统

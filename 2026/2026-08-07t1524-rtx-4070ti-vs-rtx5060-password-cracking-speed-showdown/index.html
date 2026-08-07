@@ -10,9 +10,9 @@
   
   
   
-  <link rel="prev" href="http://blog.sinowrt.cn/2026/2026-08-06t1840-installing-hashcat-and-cuda-toolkit-on-wsl-debian/" />
-  <link rel="next" href="http://blog.sinowrt.cn/2026/2026-08-07t1524-rtx-4070ti-vs-rtx5060-password-cracking-speed-showdown/" />
-  <link rel="canonical" href="http://blog.sinowrt.cn/2026/2026-08-06t1850-rtx-5060-vs-tesla-p100-password-cracking-speed-showdown/" />
+  <link rel="prev" href="http://blog.sinowrt.cn/2026/2026-08-06t1850-rtx-5060-vs-tesla-p100-password-cracking-speed-showdown/" />
+  
+  <link rel="canonical" href="http://blog.sinowrt.cn/2026/2026-08-07t1524-rtx-4070ti-vs-rtx5060-password-cracking-speed-showdown/" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -23,10 +23,10 @@
   <title>
        
        
-           5060 VS Tesla P100 Hashcat跑包速度大比拼 | Sinowrt
+           4070TI VS 5060 跑包速度大比拼 | Sinowrt
        
   </title>
-  <meta name="title" content="5060 VS Tesla P100 Hashcat跑包速度大比拼 | Sinowrt">
+  <meta name="title" content="4070TI VS 5060 跑包速度大比拼 | Sinowrt">
     
   
   <link rel="stylesheet" href="/font/iconfont.css">
@@ -45,9 +45,9 @@
          "@id": "http:\/\/blog.sinowrt.cn"
     },
     "articleSection" : "posts",
-    "name" : "5060 VS Tesla P100 Hashcat跑包速度大比拼",
-    "headline" : "5060 VS Tesla P100 Hashcat跑包速度大比拼",
-    "description" : "0x00 实验环境 为了保证测试的严谨性，本次对比测试的具体环境配置如下：\n测试软件：Hashcat v6.2.3\n对比显卡：RTX 5060 (8GB) \/ Tesla P100 (16GB)\n测试字典：文件大小 9.8GB，共计 9.4 亿条记录\n0x01 运行结果 # P100 Hashcat 输出 Session..........: hashcat Status...........: Exhausted Hash.Name........: WPA-EAPOL-PBKDF2 Hash.Target......: xxx Time.Started.....: Fri Jan 22 12:13:51 2021 (45 mins, 44 secs) Time.Estimated...: Fri Jan 22 12:59:35 2021 (0 secs) Guess.Base.......: File (dict.dic) Guess.Queue......: 1\/1 (100.00%) Speed.#1.........: 343.6 kH\/s (3.00ms) @ Accel:8 Loops:32 Thr:1024 Vec:1 Recovered........: 0\/1 (0.00%) Digests Progress.........: 942424852\/942424852 (100.",
+    "name" : "4070TI VS 5060 跑包速度大比拼",
+    "headline" : "4070TI VS 5060 跑包速度大比拼",
+    "description" : "0x00 实验环境 为了保证测试的严谨性，本次对比测试的具体环境配置如下：\n测试软件：Hashcat v6.2.3\n对比显卡：RTX 4070TI (16GB) \/ RTX 5060 (8GB)\n测试字典：文件大小 9.8GB，共计 9.4 亿条记录\n0x01 运行结果 # 4070TI Hashcat输出 Session..........: hashcat Status...........: Exhausted Hash.Name........: WPA-EAPOL-PBKDF2 Hash.Target......: xxx Time.Started.....: Fri Aug 7 15:00:59 2026 (19 mins, 55 secs) Time.Estimated...: Fri Aug 7 15:20:54 2026 (0 secs) Kernel.Feature...: Pure Kernel Guess.Base.......: File (dict.dic) Guess.Queue......: 1\/1 (100.00%) Speed.#1.........: 788.7 kH\/s (4.62ms) @ Accel:8 Loops:64 Thr:1024 Vec:1 Recovered........: 0\/1 (0.00%) Digests Progress.",
     "inLanguage" : "en-us",
     "author" : "sinowrt",
     "creator" : "sinowrt",
@@ -55,10 +55,10 @@
     "accountablePerson" : "sinowrt",
     "copyrightHolder" : "sinowrt",
     "copyrightYear" : "2026",
-    "datePublished": "2026-08-06 18:50:00 \x2b0800 CST",
-    "dateModified" : "2026-08-06 18:50:00 \x2b0800 CST",
-    "url" : "http:\/\/blog.sinowrt.cn\/2026\/2026-08-06t1850-rtx-5060-vs-tesla-p100-password-cracking-speed-showdown\/",
-    "wordCount" : "183",
+    "datePublished": "2026-08-07 15:24:00 \x2b0800 CST",
+    "dateModified" : "2026-08-07 15:24:00 \x2b0800 CST",
+    "url" : "http:\/\/blog.sinowrt.cn\/2026\/2026-08-07t1524-rtx-4070ti-vs-rtx5060-password-cracking-speed-showdown\/",
+    "wordCount" : "203",
     "keywords" : [ "hashcat","跑包", "Sinowrt"]
 }
 </script>
@@ -130,11 +130,11 @@
       		
 <article class="post-warp" itemscope itemtype="http://schema.org/Article">
     <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">5060 VS Tesla P100 Hashcat跑包速度大比拼</h1>
+        <h1 class="post-title" itemprop="name headline">4070TI VS 5060 跑包速度大比拼</h1>
         <div class="post-meta">
                 Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
                 <span class="post-time">
-                on <time datetime=2026-08-06 itemprop="datePublished">August 6, 2026</time>
+                on <time datetime=2026-08-07 itemprop="datePublished">August 7, 2026</time>
                 </span>
                 in
                 <i class="iconfont icon-folder"></i>
@@ -168,29 +168,31 @@
 
 <p>测试软件：Hashcat v6.2.3</p>
 
-<p>对比显卡：RTX 5060 (8GB) / Tesla P100 (16GB)</p>
+<p>对比显卡：RTX 4070TI (16GB) / RTX 5060 (8GB)</p>
 
 <p>测试字典：文件大小 9.8GB，共计 9.4 亿条记录</p>
 
 <h2 id="0x01-运行结果">0x01 运行结果</h2>
 
-<pre><code class="language-bash"># P100 Hashcat 输出
+<pre><code class="language-bash"># 4070TI Hashcat输出
 Session..........: hashcat
 Status...........: Exhausted
 Hash.Name........: WPA-EAPOL-PBKDF2
 Hash.Target......: xxx
-Time.Started.....: Fri Jan 22 12:13:51 2021 (45 mins, 44 secs)
-Time.Estimated...: Fri Jan 22 12:59:35 2021 (0 secs)
+Time.Started.....: Fri Aug  7 15:00:59 2026 (19 mins, 55 secs)
+Time.Estimated...: Fri Aug  7 15:20:54 2026 (0 secs)
+Kernel.Feature...: Pure Kernel
 Guess.Base.......: File (dict.dic)
 Guess.Queue......: 1/1 (100.00%)
-Speed.#1.........:   343.6 kH/s (3.00ms) @ Accel:8 Loops:32 Thr:1024 Vec:1
+Speed.#1.........:   788.7 kH/s (4.62ms) @ Accel:8 Loops:64 Thr:1024 Vec:1
 Recovered........: 0/1 (0.00%) Digests
 Progress.........: 942424852/942424852 (100.00%)
 Rejected.........: 0/942424852 (0.00%)
 Restore.Point....: 942424852/942424852 (100.00%)
 Restore.Sub.#1...: Salt:0 Amplifier:0-1 Iteration:0-1
-Candidates.#1....: zzszgjj@sina.com -&gt; ZZZZZZZZZZZZZZZZ
-Hardware.Mon.#1..: Temp: 72c Util: 49% Core:1328MHz Mem: 715MHz Bus:16
+Candidate.Engine.: Device Generator
+Candidates.#1....: zzzjkllkj -&gt; ZZZZZZZZZZZZZZZZ
+Hardware.Mon.#1..: Temp: 82c Fan:100% Util: 81% Core:2220MHz Mem:10251MHz Bus:16
 
 # 5060 Hashcat 输出
 Session..........: hashcat
@@ -215,11 +217,9 @@ Hardware.Mon.#1..: Temp: 68c Fan: 73% Util: 97% Core:2827MHz Mem:13801MHz Bus:8
 
 <h2 id="0x03-结果对比">0x03 结果对比</h2>
 
-<pre><code>    从实测数据来看，RTX 5060展现出了惊人的性能跃升：其运行速度较上一代经典专业计算卡P100大幅提升了45.7%。在处理9.8GB字典数据的测试场景中，5060更是将耗时缩短了整整14分钟，效率提升肉眼可见。
+<pre><code>从实测跑分数据来看，RTX 4070 Ti 展现出了绝对的性能压制力，平均哈希速率高达 788.7 kH/s，较 RTX 5060 的 500.7 kH/s 大幅领先 57.5%。在测试初期，其瞬时速率甚至一度飙升至 855 kH/s，这种跨级别的算力差距，无疑是典型的“规格压制”。
 
-    回望2021至2026这五年，一张定位“甜品级”的消费级显卡，如今已能在实际运算中全面超越昔日的专业计算卡。这背后，不仅是GPU制造工艺的代际飞跃，更是NVIDIA在CUDA生态与底层架构上多年深耕、持续迭代的必然结果。消费级算力正在以惊人的速度重塑行业格局。
-
-    下一期，我将把目光转向更高阶的RTX 4070 Ti，看看它在同类场景下又能带来怎样的性能表现。测试数据即将出炉，大家敬请期待！
+然而，强悍的性能必然伴随着高昂的代价。4070 Ti 的绝对实力毋庸置疑，毕竟其市场定位与售价摆在那里。若要在极致性能中“鸡蛋里挑骨头”，其满载时的风扇噪音无疑是最大的槽点——高转速下犹如飞机引擎般的呼啸声，对使用环境的声学体验极不友好。反观 RTX 5060，虽然在绝对算力上有所妥协，但在功耗控制与散热静音方面却表现出了越级的优势。在同等负载的跑包测试中，5060 的声学表现要温和得多，为那些对噪音敏感或机箱空间受限的玩家提供了更为舒适的体验。
 </code></pre>
 
     </div>
@@ -236,7 +236,7 @@ Hardware.Mon.#1..: Temp: 68c Fan: 73% Util: 97% Core:2827MHz Mem:13801MHz Bus:8
              
             <p class="copyright-item">
                     <span>Link:</span>
-                    <a href=http://blog.sinowrt.cn/2026/2026-08-06t1850-rtx-5060-vs-tesla-p100-password-cracking-speed-showdown/>http://blog.sinowrt.cn/2026/2026-08-06t1850-rtx-5060-vs-tesla-p100-password-cracking-speed-showdown/</span>
+                    <a href=http://blog.sinowrt.cn/2026/2026-08-07t1524-rtx-4070ti-vs-rtx5060-password-cracking-speed-showdown/>http://blog.sinowrt.cn/2026/2026-08-07t1524-rtx-4070ti-vs-rtx5060-password-cracking-speed-showdown/</span>
             </p>
 			
             
@@ -269,10 +269,8 @@ Hardware.Mon.#1..: Temp: 68c Fan: 73% Util: 97% Core:2827MHz Mem:13801MHz Bus:8
 
     <div class="post-nav">
         
-        <a href="http://blog.sinowrt.cn/2026/2026-08-06t1840-installing-hashcat-and-cuda-toolkit-on-wsl-debian/" class="prev" rel="prev" title="WSL Debian系统安装Hashcat及Cuda"><i class="iconfont icon-left"></i>&nbsp;WSL Debian系统安装Hashcat及Cuda</a>
+        <a href="http://blog.sinowrt.cn/2026/2026-08-06t1850-rtx-5060-vs-tesla-p100-password-cracking-speed-showdown/" class="prev" rel="prev" title="5060 VS Tesla P100 Hashcat跑包速度大比拼"><i class="iconfont icon-left"></i>&nbsp;5060 VS Tesla P100 Hashcat跑包速度大比拼</a>
          
-        
-        <a href="http://blog.sinowrt.cn/2026/2026-08-07t1524-rtx-4070ti-vs-rtx5060-password-cracking-speed-showdown/" class="next" rel="next" title="4070TI VS 5060 跑包速度大比拼">4070TI VS 5060 跑包速度大比拼&nbsp;<i class="iconfont icon-right"></i></a>
         
     </div>
 

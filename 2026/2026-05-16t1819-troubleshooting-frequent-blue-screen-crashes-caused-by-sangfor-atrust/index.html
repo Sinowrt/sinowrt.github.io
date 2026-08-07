@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="referrer" content="no-referrer" />
+  <meta name="author" content="sinowrt">
+  
+  
+  
+  <link rel="prev" href="http://blog.sinowrt.cn/2023/2023-09-01t0819-vue-dynamic-loading-docx-preview-to-solve-ie-syntax-error-problem/" />
+  <link rel="next" href="http://blog.sinowrt.cn/2026/2026-08-06t1840-installing-hashcat-and-cuda-toolkit-on-wsl-debian/" />
+  <link rel="canonical" href="http://blog.sinowrt.cn/2026/2026-05-16t1819-troubleshooting-frequent-blue-screen-crashes-caused-by-sangfor-atrust/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           深信服零信任导致的频繁蓝屏死机排查 | Sinowrt
+       
+  </title>
+  <meta name="title" content="深信服零信任导致的频繁蓝屏死机排查 | Sinowrt">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "http:\/\/blog.sinowrt.cn"
+    },
+    "articleSection" : "posts",
+    "name" : "深信服零信任导致的频繁蓝屏死机排查",
+    "headline" : "深信服零信任导致的频繁蓝屏死机排查",
+    "description" : "0x00 故障描述 最近电脑蓝屏死机的现象频频发生，蓝屏代码为DRIVER_IRQL_NOT_LESS_OR_EQUAL，考虑到刚更换了显卡，一直从显卡方面入手，更换了几次显卡驱动，从game ready版本更新到studio版本，问题依旧。\n0x01 排查过程 某日下午，熟悉的蓝屏再次出现，死机重启之后，我决定彻底排查该问题\n1、打开计算机管理-系统工具-事件查看器-Windows日志-系统\n2、筛选出该时间段的系统错误日志，查到系统针对该异常关机事件生成了转储文件dmp。\n3、使用windbg.exe打开dmp文件\n4、加载完成后运行!analyze -v命令进行分析\nExtensionGallery settings after reading \x27SOFTWARE\\Microsoft\\Debug Engine\x27 registry: ExtensionGallery ExtensionRepository: Implicit ************* Preparing the environment for Debugger Extensions Gallery repositories ************** ExtensionRepository : Implicit UseExperimentalFeatureForNugetShare : true AllowNugetExeUpdate : true NonInteractiveNuget : true AllowNugetMSCredentialProviderInstall : true AllowParallelInitializationOfLocalRepositories : true EnableRedirectToChakraJsProvider : false -- Configuring repositories ----\x26gt; Repository : LocalInstalled, Enabled: true ----\x26gt; Repository : UserExtensions, Enabled: true \x26gt;\x26gt;\x26gt;\x26gt;\x26gt;\x26gt;\x26gt;\x26gt;\x26gt;\x26gt;\x26gt;\x26gt;\x26gt; Preparing the environment for Debugger Extensions Gallery repositories completed, duration 0.",
+    "inLanguage" : "en-us",
+    "author" : "sinowrt",
+    "creator" : "sinowrt",
+    "publisher": "sinowrt",
+    "accountablePerson" : "sinowrt",
+    "copyrightHolder" : "sinowrt",
+    "copyrightYear" : "2026",
+    "datePublished": "2026-05-16 18:19:00 \x2b0800 CST",
+    "dateModified" : "2026-05-16 18:19:00 \x2b0800 CST",
+    "url" : "http:\/\/blog.sinowrt.cn\/2026\/2026-05-16t1819-troubleshooting-frequent-blue-screen-crashes-caused-by-sangfor-atrust\/",
+    "wordCount" : "764",
+    "keywords" : [ "零信任","win10","死机", "Sinowrt"]
+}
+</script>
+
+</head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5081260758385926"
+     crossorigin="anonymous"></script>
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y7CHCJ00RL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Y7CHCJ00RL');
+</script>
+
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="http://blog.sinowrt.cn">Sinowrt</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/categories/" title="">Categories</a>
+                
+                <a class="menu-item" href="/tags/" title="">Tags</a>
+                
+                <a class="menu-item" href="/about/" title="">About</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">深信服零信任导致的频繁蓝屏死机排查</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="http://blog.sinowrt.cn" rel="author">sinowrt</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2026-05-16 itemprop="datePublished">May 16, 2026</time>
+                </span>
+                in
+                <i class="iconfont icon-folder"></i>
+                <span class="post-category">
+                        <a href="http://blog.sinowrt.cn/categories/%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/"> 疑难杂症 </a>
+                        
+                </span>
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+            
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          
+
+<h2 id="0x00-故障描述">0x00 故障描述</h2>
+
+<p>最近电脑蓝屏死机的现象频频发生，蓝屏代码为DRIVER_IRQL_NOT_LESS_OR_EQUAL，考虑到刚更换了显卡，一直从显卡方面入手，更换了几次显卡驱动，从game ready版本更新到studio版本，问题依旧。</p>
+
+<h2 id="0x01-排查过程">0x01 排查过程</h2>
+
+<p>某日下午，熟悉的蓝屏再次出现，死机重启之后，我决定彻底排查该问题</p>
+
+<p>1、打开计算机管理-系统工具-事件查看器-Windows日志-系统</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2026/png/35574316/1779096201898-fdc3e83a-c748-491d-b17d-7bc0e4f46893.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>2、筛选出该时间段的系统错误日志，查到系统针对该异常关机事件生成了转储文件dmp。</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2026/png/35574316/1779096240249-a319c3e9-23e3-4772-b6e3-4933223e3920.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>3、使用windbg.exe打开dmp文件</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2026/png/35574316/1779096386375-7e04bb41-67e4-4fc1-a88f-de02b7a67015.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>4、加载完成后运行!analyze -v命令进行分析</p>
+
+<pre><code class="language-powershell">ExtensionGallery settings after reading 'SOFTWARE\Microsoft\Debug Engine' registry:
+ExtensionGallery ExtensionRepository: Implicit
+
+************* Preparing the environment for Debugger Extensions Gallery repositories **************
+   ExtensionRepository : Implicit
+   UseExperimentalFeatureForNugetShare : true
+   AllowNugetExeUpdate : true
+   NonInteractiveNuget : true
+   AllowNugetMSCredentialProviderInstall : true
+   AllowParallelInitializationOfLocalRepositories : true
+   EnableRedirectToChakraJsProvider : false
+
+   -- Configuring repositories
+      ----&gt; Repository : LocalInstalled, Enabled: true
+      ----&gt; Repository : UserExtensions, Enabled: true
+
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Preparing the environment for Debugger Extensions Gallery repositories completed, duration 0.000 seconds
+
+************* Waiting for Debugger Extensions Gallery to Initialize **************
+
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Waiting for Debugger Extensions Gallery to Initialize completed, duration 0.031 seconds
+   ----&gt; Repository : UserExtensions, Enabled: true, Packages count: 0
+   ----&gt; Repository : LocalInstalled, Enabled: true, Packages count: 46
+
+Microsoft (R) Windows Debugger Version 10.0.29547.1002 AMD64
+Copyright (c) Microsoft Corporation. All rights reserved.
+
+
+Loading Dump File [C:\Windows\Minidump\051326-25703-01.dmp]
+Mini Kernel Dump File: Only registers and stack trace are available
+
+Symbol search path is: srv*
+Executable search path is: 
+Windows 10 Kernel Version 19041 MP (16 procs) Free x64
+Product: WinNt, suite: TerminalServer SingleUserTS
+Kernel base = 0xfffff803`78800000 PsLoadedModuleList = 0xfffff803`7942a3f0
+Debug session time: Wed May 13 16:35:39.228 2026 (UTC + 8:00)
+System Uptime: 15 days 18:49:25.546
+Loading Kernel Symbols
+...............................................................
+................................................................
+................................................................
+................................................................
+..................
+Loading User Symbols
+PEB is paged out (Peb.Ldr = 000000ac`f0959018).  Type &quot;.hh dbgerr001&quot; for details
+Loading unloaded module list
+................
+For analysis of this file, run !analyze -v
+nt!KeBugCheckEx:
+fffff803`78bfd510 48894c2408      mov     qword ptr [rsp+8],rcx ss:0018:ffff8603`91443b30=000000000000000a
+15: kd&gt; !analyze -v
+Loading Kernel Symbols
+...............................................................
+................................................................
+................................................................
+................................................................
+..................
+Loading User Symbols
+PEB is paged out (Peb.Ldr = 000000ac`f0959018).  Type &quot;.hh dbgerr001&quot; for details
+Loading unloaded module list
+................
+*******************************************************************************
+*                                                                             *
+*                        Bugcheck Analysis                                    *
+*                                                                             *
+*******************************************************************************
+
+DRIVER_IRQL_NOT_LESS_OR_EQUAL (d1)
+An attempt was made to access a pageable (or completely invalid) address at an
+interrupt request level (IRQL) that is too high.  This is usually
+caused by drivers using improper addresses.
+If kernel debugger is available get stack backtrace.
+Arguments:
+Arg1: 0000000000000000, memory referenced
+Arg2: 0000000000000002, IRQL
+Arg3: 0000000000000008, value 0 = read operation, 1 = write operation
+Arg4: 0000000000000000, address which referenced memory
+
+Debugging Details:
+------------------
+
+
+KEY_VALUES_STRING: 1
+
+    Key  : Analysis.CPU.mSec
+    Value: 1281
+
+    Key  : Analysis.Elapsed.mSec
+    Value: 6773
+
+    Key  : Analysis.IO.Other.Mb
+    Value: 0
+
+    Key  : Analysis.IO.Read.Mb
+    Value: 1
+
+    Key  : Analysis.IO.Write.Mb
+    Value: 1
+
+    Key  : Analysis.Init.CPU.mSec
+    Value: 593
+
+    Key  : Analysis.Init.Elapsed.mSec
+    Value: 15776
+
+    Key  : Analysis.Memory.CommitPeak.Mb
+    Value: 79
+
+    Key  : Analysis.Version.DbgEng
+    Value: 10.0.29547.1002
+
+    Key  : Analysis.Version.Description
+    Value: 10.2602.27.2 amd64fre
+
+    Key  : Analysis.Version.Ext
+    Value: 1.2602.27.2
+
+    Key  : Bugcheck.Code.LegacyAPI
+    Value: 0xd1
+
+    Key  : Bugcheck.Code.TargetModel
+    Value: 0xd1
+
+    Key  : Dump.Attributes.AsUlong
+    Value: 0x8
+
+    Key  : Dump.Attributes.KernelGeneratedTriageDump
+    Value: 1
+
+    Key  : Failure.Bucket
+    Value: AV_nt!KiPageFault
+
+    Key  : Failure.Hash
+    Value: {ec3e2762-48ae-ffe9-5b16-fbcb853e8320}
+
+    Key  : Faulting.IP.Type
+    Value: Null
+
+    Key  : Hypervisor.Enlightenments.Value
+    Value: 77057948
+
+    Key  : Hypervisor.Enlightenments.ValueHex
+    Value: 0x497cf9c
+
+    Key  : Hypervisor.Flags.AnyHypervisorPresent
+    Value: 1
+
+    Key  : Hypervisor.Flags.ApicEnlightened
+    Value: 1
+
+    Key  : Hypervisor.Flags.ApicVirtualizationAvailable
+    Value: 0
+
+    Key  : Hypervisor.Flags.AsyncMemoryHint
+    Value: 0
+
+    Key  : Hypervisor.Flags.CoreSchedulerRequested
+    Value: 0
+
+    Key  : Hypervisor.Flags.CpuManager
+    Value: 1
+
+    Key  : Hypervisor.Flags.DeprecateAutoEoi
+    Value: 0
+
+    Key  : Hypervisor.Flags.DynamicCpuDisabled
+    Value: 1
+
+    Key  : Hypervisor.Flags.Epf
+    Value: 0
+
+    Key  : Hypervisor.Flags.ExtendedProcessorMasks
+    Value: 1
+
+    Key  : Hypervisor.Flags.HardwareMbecAvailable
+    Value: 1
+
+    Key  : Hypervisor.Flags.MaxBankNumber
+    Value: 0
+
+    Key  : Hypervisor.Flags.MemoryZeroingControl
+    Value: 0
+
+    Key  : Hypervisor.Flags.NoExtendedRangeFlush
+    Value: 0
+
+    Key  : Hypervisor.Flags.NoNonArchCoreSharing
+    Value: 1
+
+    Key  : Hypervisor.Flags.Phase0InitDone
+    Value: 1
+
+    Key  : Hypervisor.Flags.PowerSchedulerQos
+    Value: 0
+
+    Key  : Hypervisor.Flags.RootScheduler
+    Value: 0
+
+    Key  : Hypervisor.Flags.SynicAvailable
+    Value: 1
+
+    Key  : Hypervisor.Flags.UseQpcBias
+    Value: 0
+
+    Key  : Hypervisor.Flags.Value
+    Value: 4853999
+
+    Key  : Hypervisor.Flags.ValueHex
+    Value: 0x4a10ef
+
+    Key  : Hypervisor.Flags.VpAssistPage
+    Value: 1
+
+    Key  : Hypervisor.Flags.VsmAvailable
+    Value: 1
+
+    Key  : Hypervisor.RootFlags.AccessStats
+    Value: 1
+
+    Key  : Hypervisor.RootFlags.CrashdumpEnlightened
+    Value: 1
+
+    Key  : Hypervisor.RootFlags.CreateVirtualProcessor
+    Value: 1
+
+    Key  : Hypervisor.RootFlags.DisableHyperthreading
+    Value: 0
+
+    Key  : Hypervisor.RootFlags.HostTimelineSync
+    Value: 1
+
+    Key  : Hypervisor.RootFlags.HypervisorDebuggingEnabled
+    Value: 0
+
+    Key  : Hypervisor.RootFlags.IsHyperV
+    Value: 1
+
+    Key  : Hypervisor.RootFlags.LivedumpEnlightened
+    Value: 1
+
+    Key  : Hypervisor.RootFlags.MapDeviceInterrupt
+    Value: 1
+
+    Key  : Hypervisor.RootFlags.MceEnlightened
+    Value: 1
+
+    Key  : Hypervisor.RootFlags.Nested
+    Value: 0
+
+    Key  : Hypervisor.RootFlags.StartLogicalProcessor
+    Value: 1
+
+    Key  : Hypervisor.RootFlags.Value
+    Value: 1015
+
+    Key  : Hypervisor.RootFlags.ValueHex
+    Value: 0x3f7
+
+
+BUGCHECK_CODE:  d1
+
+BUGCHECK_P1: 0
+
+BUGCHECK_P2: 2
+
+BUGCHECK_P3: 8
+
+BUGCHECK_P4: 0
+
+FILE_IN_CAB:  051326-25703-01.dmp
+
+DUMP_FILE_ATTRIBUTES: 0x8
+  Kernel Generated Triage Dump
+
+FAULTING_THREAD:  ffff8b0b051d4080
+
+READ_ADDRESS: fffff803794fb390: Unable to get MiVisibleState
+ 0000000000000000 
+
+PROCESS_NAME:  aTrustXtunnel.
+
+CUSTOMER_CRASH_COUNT:  1
+
+STACK_TEXT:  
+ffff8603`91443b28 fffff803`78c11da9     : 00000000`0000000a 00000000`00000000 00000000`00000002 00000000`00000008 : nt!KeBugCheckEx
+ffff8603`91443b30 fffff803`78c0d778     : 00000000`00000000 00000000`00000000 00000000`00000000 00000000`00000000 : nt!KiBugCheckDispatch+0x69
+ffff8603`91443c70 00000000`00000000     : fffff803`7e413865 ffff8b0a`f1c5ddf0 ffff8603`91443e90 00000000`00000000 : nt!KiPageFault+0x478
+
+
+SYMBOL_NAME:  nt!KiPageFault+478
+
+MODULE_NAME: nt
+
+IMAGE_NAME:  ntkrnlmp.exe
+
+IMAGE_VERSION:  10.0.19041.6216
+
+STACK_COMMAND: .process /r /p 0xffff8b0b059c5080; .thread /r /p 0xffff8b0b051d4080 ; kb
+
+BUCKET_ID_FUNC_OFFSET:  478
+
+FAILURE_BUCKET_ID:  AV_nt!KiPageFault
+
+OSPLATFORM_TYPE:  x64
+
+OSNAME:  Windows 10
+
+FAILURE_ID_HASH:  {ec3e2762-48ae-ffe9-5b16-fbcb853e8320}
+
+Followup:     MachineOwner
+---------
+
+
+</code></pre>
+
+<h2 id="0x02-问题分析">0x02 问题分析</h2>
+
+<p><strong>错误类型</strong>: <code>DRIVER_IRQL_NOT_LESS_OR_EQUAL (0xD1)</code></p>
+
+<ul>
+<li>这个错误意味着某个内核模式的驱动程序试图在不被允许的过高权限级别（IRQL）下，访问一段可以被换出到硬盘的内存（pageable memory）。简单来说，就是驱动程序“越权”访问了它不该在此时访问的内存地址。</li>
+</ul>
+
+<p><strong>触发进程</strong>: <code>PROCESS_NAME: aTrustXtunnel.</code></p>
+
+<ul>
+<li>这是定位问题的关键线索。崩溃发生时，正在运行的程序是 <code>aTrustXtunnel.exe</code>。这个程序通常是深信服（Sangfor）零信任安全客户端的一部分，它会安装自己的内核驱动来管理网络连接和安全策略。</li>
+</ul>
+
+<p><strong>根本原因</strong>:</p>
+
+<ul>
+<li>综合以上两点，可以得出结论：<strong>深信服 aTrust 客户端的某个驱动程序存在缺陷或与当前系统环境不兼容</strong>。当 <code>aTrustXtunnel.exe</code> 调用该驱动执行操作时，驱动程序内部的错误逻辑导致了这次非法内存访问，从而引发系统蓝屏保护性重启。虽然堆栈显示故障发生在 <code>nt!KiPageFault</code>（Windows内核的页面错误处理程序），但这只是系统捕获到错误后的最终行为，真正的源头是导致这次错误访问的驱动。</li>
+</ul>
+
+<h2 id="0x03-疑惑">0x03 疑惑</h2>
+
+<p>我并没有开启aTrust客户端的开机自启动功能，为什么还有后台进程在运行，从任务管理器中也可以证实该现象：</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2026/png/35574316/1779096977619-cc0d5150-a6c0-46cf-809d-b67209c2e789.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>继续排查，我打开服务管理窗口，看到aTrust确实安装了一项服务，点进服务详情：</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="https://cdn.nlark.com/yuque/0/2026/png/35574316/1779097074211-ce6e0461-ba4f-4068-8928-97221bf0798c.png" alt="" class="lazyload"><figcaption class="image-caption"></figcaption></figure></p>
+
+<p>该项服务描述为：<strong>深信服零信任守护服务，禁止后，将导致功能使用异常</strong></p>
+
+<p>该描述更是莫名奇妙，我甚至没有启动主程序，您在后台守护啥呢？</p>
+
+<h2 id="0x03-解决方案">0x03 解决方案</h2>
+
+<p>由于接下来的工作已经不再需要再用到深信服的aTrust客户端，所以直接将其删除，后续并没有再出现蓝屏的情况。</p>
+
+    </div>
+	
+    <div class="post-copyright">
+             
+			
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>sinowrt </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=http://blog.sinowrt.cn/2026/2026-05-16t1819-troubleshooting-frequent-blue-screen-crashes-caused-by-sangfor-atrust/>http://blog.sinowrt.cn/2026/2026-05-16t1819-troubleshooting-frequent-blue-screen-crashes-caused-by-sangfor-atrust/</span>
+            </p>
+			
+            
+             
+            <p class="copyright-item lincese">
+                本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
+            </p>
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+            <section>
+            <i class="iconfont icon-tag"></i>Tag(s): 
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/%E9%9B%B6%E4%BF%A1%E4%BB%BB/">
+                    #零信任</a></span>
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/win10/">
+                    #win10</a></span>
+            
+            <span class="tag"><a href="http://blog.sinowrt.cn/tags/%E6%AD%BB%E6%9C%BA/">
+                    #死机</a></span>
+            
+            </section>
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="http://blog.sinowrt.cn">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+        <a href="http://blog.sinowrt.cn/2023/2023-09-01t0819-vue-dynamic-loading-docx-preview-to-solve-ie-syntax-error-problem/" class="prev" rel="prev" title="Vue 动态加载 docx-preview 解决IE报语法错误的问题"><i class="iconfont icon-left"></i>&nbsp;Vue 动态加载 docx-preview 解决IE报语法错误的问题</a>
+         
+        
+        <a href="http://blog.sinowrt.cn/2026/2026-08-06t1840-installing-hashcat-and-cuda-toolkit-on-wsl-debian/" class="next" rel="next" title="WSL Debian系统安装Hashcat及Cuda">WSL Debian系统安装Hashcat及Cuda&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span itemprop="copyrightYear">2018 - 2026</span>
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="http://blog.sinowrt.cn">sinowrt</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt | </a><script type="text/javascript" src="https://s4.cnzz.com/z_stat.php?id=1279436618&web_id=1279436618"></script></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+     <link href="//lib.baomitu.com/lightgallery/1.6.11/css/lightgallery.min.css" rel="stylesheet">  
+      
+     <script src="/js/vendor_gallery.min.js" async="" ></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>
